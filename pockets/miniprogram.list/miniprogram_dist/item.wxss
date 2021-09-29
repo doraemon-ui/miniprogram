@@ -1,0 +1,109 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+.dora-list-item {
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  color: inherit!important;
+  background: 0 0!important;
+  font-size: inherit;
+  font-weight: 400;
+  line-height: inherit;
+  text-align: inherit;
+  text-decoration: none;
+  overflow: visible;
+  min-height: 0!important;
+  width: auto!important;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  padding: 20rpx 30rpx;
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #fff;
+  background: var(--dora-component-background-color)
+}
+.dora-list-item::after {
+  display: block;
+  position: static;
+  top: auto;
+  left: auto;
+  width: auto;
+  height: auto;
+  border: none;
+  border-radius: 0;
+  transform: none;
+  transform-origin: 0 0
+}
+.dora-list-item--has-line.dora-list-item::after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 1PX;
+  border-bottom: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15));
+  border-bottom: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15));
+  color: var(--dora-border-color-split,var(--dora-color-step-15));
+  color: var(--dora-border-color-split,var(--dora-color-step-15));
+  transform-origin: 0 100%;
+  transform: scaleY(.5);
+  left: 30rpx
+}
+.dora-list-item--has-line.dora-list-item--last::after {
+  display: none
+}
+.dora-list-item--hover {
+  background-color: var(--dora-active-state-bg,var(--dora-color-step-10))!important;
+  background-color: var(--dora-active-state-bg,var(--dora-color-step-10))!important
+}
+.dora-list-item--disabled {
+  opacity: var(--dora-disabled-opacity,.3);
+  opacity: var(--dora-disabled-opacity,.3)
+}
+.dora-list-item__thumb {
+  width: 40rpx;
+  height: 40rpx;
+  display: block;
+  margin-right: 10rpx
+}
+.dora-list-item__bd {
+  -ms-flex: 1;
+  flex: 1
+}
+.dora-list-item__text {
+  text-align: left
+}
+.dora-list-item__desc {
+  text-align: left;
+  line-height: 1.2;
+  font-size: 24rpx;
+  color: rgba(0,0,0,.45);
+  color: rgba(var(--dora-text-color-rgb),.45)
+}
+.dora-list-item__ft {
+  text-align: right;
+  color: rgba(0,0,0,.45);
+  color: rgba(var(--dora-text-color-rgb),.45)
+}
+.dora-list-item--access .dora-list-item__ft {
+  padding-right: 34rpx;
+  position: relative
+}
+.dora-list-item--access .dora-list-item__ft::after {
+  content: " ";
+  display: inline-block;
+  width: 30rpx;
+  height: 30rpx;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2216%22%20height%3D%2226%22%20viewBox%3D%220%200%2016%2026%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M2%200L0%202l11.5%2011L0%2024l2%202%2014-13z%22%20fill%3D%22%23c7c7cc%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  transform: rotate(0);
+  transform: rotate(0) translateY(-50%);
+  position: absolute;
+  top: 50%;
+  right: 0
+}

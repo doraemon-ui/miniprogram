@@ -1,0 +1,11 @@
+.git
+.github
+.*.js
+packages
+dist
+lib
+types
+example/dist
+miniprogram_dist
+node_modules
+.husky/

@@ -1,0 +1,73 @@
+@import "./variables.less";
+
+// ListItem styles
+// -----------------------------
+.@{list-prefix-cls}-item {
+  .button-reset();
+
+  padding: @list-padding;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: @list-bg;
+
+  &--has-line&::after {
+    .setBottomLine(@border-color-split);
+
+    left: 15px;
+  }
+
+  &--has-line&--last::after {
+    display: none;
+  }
+
+  &--hover {
+    background-color: @active-state-bg !important;
+  }
+
+  &--disabled {
+    opacity: @disabled-opacity;
+  }
+
+  &__thumb {
+    .square(@list-icon-size);
+
+    display: block;
+    margin-right: @margin-component-base;
+  }
+
+  &__bd {
+    flex: 1;
+  }
+
+  &__text {
+    text-align: left;
+  }
+
+  &__desc {
+    text-align: left;
+    line-height: 1.2;
+    font-size: @font-size-sm;
+    color: @text-color-secondary;
+  }
+
+  &__ft {
+    text-align: right;
+    color: @text-color-secondary;
+  }
+
+  &--access &__ft {
+    padding-right: 17px;
+    position: relative;
+
+    &::after {
+      content: " ";
+      .setArrow(right);
+
+      transform: rotate(0) translateY(-50%);
+      position: absolute;
+      top: 50%;
+      right: 0;
+    }
+  }
+}

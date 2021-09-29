@@ -1,0 +1,56 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+.dora-pagination {
+  display: block;
+  width: 100%;
+  height: 88rpx;
+  overflow: hidden;
+  box-sizing: border-box;
+  position: relative
+}
+.dora-pagination__prev {
+  position: absolute;
+  left: 20rpx;
+  top: 0
+}
+.dora-pagination__next {
+  position: absolute;
+  right: 20rpx;
+  top: 0
+}
+.dora-pagination__number {
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  margin: 0 auto;
+  text-align: center
+}
+.dora-pagination__active {
+  display: inline;
+  color: #3880ff;
+  color: var(--dora-color-positive)
+}
+.dora-pagination__pointer {
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  margin: 0 auto;
+  text-align: center
+}
+.dora-pagination__dot {
+  width: 16rpx;
+  height: 16rpx;
+  display: inline-block;
+  margin: 0 4rpx;
+  border-radius: 50%;
+  background: #ccc;
+  background: var(--dora-color-step-20)
+}
+.dora-pagination__dot--active {
+  background: #8c8c8c;
+  background: var(--dora-color-step-45)
+}
+.dora-pagination__button {
+  display: inline-block;
+  margin: 0
+}

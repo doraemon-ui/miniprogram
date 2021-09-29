@@ -1,0 +1,31 @@
+{
+  "name": "@doraemon-ui/style",
+  "private": false,
+  "version": "0.0.1-alpha.5",
+  "description": "common style component for doraemon-ui",
+  "author": "skyvow",
+  "homepage": "",
+  "license": "MIT",
+  "miniprogram": "miniprogram_dist",
+  "main": "miniprogram_dist/var.wxss",
+  "keywords": [
+    "doraemon-ui",
+    "miniprogram",
+    "style"
+  ],
+  "scripts": {
+    "build": "lessc lib/var.less miniprogram_dist/var.wxss",
+    "test": "cross-env NODE_ENV=testing jest --coverage",
+    "clean": "cross-env rimraf miniprogram_dist/* .coverage-report/*",
+    "preversion": "npm run clean && npm run build && npm run test"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "jest": "^27.0.6",
+    "less": "^4.1.1",
+    "rimraf": "^3.0.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

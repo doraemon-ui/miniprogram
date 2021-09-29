@@ -1,0 +1,34 @@
+@import "./variables.less";
+
+// Accordion styles
+// -----------------------------
+.@{accordion-prefix-cls} {
+  position: relative;
+  border: none;
+
+  &__hd {
+    padding: @accordion-hd-padding;
+    font-size: @font-size-base;
+    color: @text-color-secondary;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  &__bd {
+    position: relative;
+    background-color: @accordion-bg;
+
+    &::after {
+      .hairline(@border-color-split);
+
+      border-top-width: @border-width-base;
+      border-bottom-width: @border-width-base;
+    }
+  }
+
+  &__ft {
+    padding: @accordion-ft-padding;
+    font-size: @font-size-base;
+    color: @text-color-secondary;
+  }
+}

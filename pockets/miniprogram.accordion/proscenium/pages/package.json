@@ -1,0 +1,19 @@
+{
+  "name": "@doraemon-ui/miniprogram.accordion-proscenium",
+  "private": false,
+  "version": "0.0.1",
+  "description": "miniprogram accordion component for doraemon-ui",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "doraemon-ui",
+    "miniprogram"
+  ],
+  "author": "skyvow <724355924@qq.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@doraemon-ui/miniprogram.accordion": "0.0.2-alpha.16"
+  }
+}

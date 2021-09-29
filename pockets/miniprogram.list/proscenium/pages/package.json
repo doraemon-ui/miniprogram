@@ -1,0 +1,20 @@
+{
+  "name": "@doraemon-ui/miniprogram.list-proscenium",
+  "private": false,
+  "version": "0.0.1",
+  "description": "miniprogram list component for doraemon-ui",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "doraemon-ui",
+    "miniprogram"
+  ],
+  "author": "skyvow <724355924@qq.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@doraemon-ui/miniprogram.list": "^0.0.2-alpha.23",
+    "@doraemon-ui/style": "^0.0.1-alpha.5"
+  }
+}

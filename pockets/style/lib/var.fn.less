@@ -1,0 +1,49 @@
+// Body node for miniprogram
+@body-node: page;
+
+.dark(@rule) {
+  @{body-node} [data-dora-theme='dark'] & {
+    @rule();
+  }
+
+  @media (prefers-color-scheme: dark) {
+    @{body-node} [data-dora-theme="auto"] & {
+      @rule();
+    }
+    @{body-node} [data-dora-theme="dark"] & {
+      @rule();
+    }
+  }
+}
+
+.setColor(@var, @color) {
+  .setColor(@var, @color, @color);
+}
+
+.setColor(@var, @light, @dark) {
+  ._setColor({
+    @{var}: @light;
+  }, {
+    @{var}: @dark;
+  });
+}
+
+._setColor(@lightRule, @darkRule) {
+  @{body-node} {
+    @lightRule();
+  }
+  @{body-node} [data-dora-theme="dark"] {
+    @darkRule();
+  }
+
+  @media (prefers-color-scheme: dark) {
+    @{body-node} [data-dora-theme="auto"],
+    @{body-node} [data-dora-theme="dark"] {
+      @darkRule();
+    }
+  }
+}
+
+.colorToRGB(@color) {
+  @list: red(@color), green(@color), blue(@color)
+}

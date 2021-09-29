@@ -1,0 +1,97 @@
+// The prefix to use on all css classes from doraemon-ui.
+@dora-prefix: dora;
+
+// -------- Colors -----------
+@light: var(--dora-color-light);
+@stable: var(--dora-color-stable);
+@positive: var(--dora-color-positive);
+@calm: var(--dora-color-calm);
+@balanced: var(--dora-color-balanced);
+@energized: var(--dora-color-energized);
+@assertive: var(--dora-color-assertive);
+@royal: var(--dora-color-royal);
+@dark: var(--dora-color-dark);
+
+// @light-inverse: #ddd;
+// @stable-inverse: #b2b2b2;
+
+@white: var(--dora-white);
+@black: var(--dora-black);
+
+// Base Scaffolding Variables
+// ---
+
+// Background color for `<body>`
+// @body-background: var(--dora-background-color);
+// Base background color for most components
+@component-background: var(--dora-component-background-color);
+// @font-family: var(--dora-font-family);
+@text-color: rgba(var(--dora-text-color-rgb), .65);
+@text-color-secondary: rgba(var(--dora-text-color-rgb), .45);
+@text-color-inverse: @white;
+@heading-color: rgba(var(--dora-text-color-rgb), .55);
+// @heading-color-dark: rgba(var(--dora-white-rgb), 1);
+@text-color-dark: rgba(var(--dora-white-rgb), .85);
+// @text-color-secondary-dark: rgba(var(--dora-white-rgb), .65);
+@font-variant-base: tabular-nums;
+@font-feature-settings-base: 'tnum';
+@font-size-base: 14px;
+@font-size-lg: 16px;
+@font-size-sm: 12px;
+@line-height-base: 1.5;
+@line-height-lg: 2;
+@line-height-sm: 1;
+@border-radius-base: 4px;
+@border-radius-lg: 6px;
+@border-radius-sm: 2px;
+
+// SafeArea
+@safe-area-inset-top: 44px;
+@safe-area-inset-right: 0;
+@safe-area-inset-bottom: 34px;
+@safe-area-inset-left: 0;
+
+// Spacing
+@spacing-base: 10px;
+@spacing-xl: 20px;
+@spacing-lg: 15px;
+@spacing-sm: 5px;
+
+// Margin
+@margin-component-base: 5px;
+@margin-component-lg: 10px;
+@margin-component-sm: 2px;
+
+// Disabled states
+@disabled-opacity: var(--dora-disabled-opacity, .3);
+
+// Backdrop
+@backdrop-background: var(--dora-backdrop-background-color, rgba(var(--dora-black-rgb), .4));
+@backdrop-background-inverse: transparent;
+
+@background-color-base: var(--dora-color-step-10);
+@background-color-light: var(--dora-color-step-5);
+
+// Icon
+// Base background color for small icons. eg: dots
+@icon-color-base: var(--dora-color-step-20);
+@icon-color-active: var(--dora-color-step-45);
+
+// Scroll view max height
+@scroll-view-size: 270px;
+
+// The background color for active state
+// buttons & cells and so on
+@active-state-bg: var(--dora-active-state-bg, var(--dora-color-step-10));
+
+// Border color
+@border-color-base: var(--dora-border-color, var(--dora-color-step-10)); // base border outline a component
+@border-color-split: var(--dora-border-color-split, var(--dora-color-step-15)); // split border inside a component
+@border-color-inverse: @white;
+@border-width-base: var(--dora-border-width, 1PX); // width of the border for a component
+@border-style-base: var(--dora-border-style, solid); // style of a components border
+
+// Shadow
+@shadow-color: var(--dora-box-shadow-color, rgba(var(--dora-black-rgb), .15));
+@shadow-color-inverse: @white;
+@box-shadow-base: 0 2px 8px @shadow-color;

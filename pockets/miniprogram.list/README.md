@@ -1,0 +1,94 @@
+# List 列表
+
+基础布局组件，布局时基于 `list` 和 `list-item` 来定义信息区块的外部框架。
+
+## 使用指南
+
+### 在 page.json 中引入组件
+
+[json](./proscenium/pages/index/index.json ':include :type=code')
+
+### 示例代码
+
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/zSdqGAm67stc)
+
+<!-- tabs:start -->
+
+#### **WXML**
+
+[wxml](./proscenium/pages/index/index.wxml ':include :type=code')
+
+#### **JAVASCRIPT**
+
+[js](./proscenium/pages/index/index.js ':include :type=code')
+
+#### **WXSS**
+
+[wxss](./proscenium/pages/index/index.wxss ':include :type=code')
+
+<!-- tabs:end -->
+
+## API
+
+### List props
+
+| 参数 | 类型 | 描述 | 默认值 |
+| --- | --- | --- | --- |
+| prefixCls | `string` | 自定义类名前缀 | dora-list |
+| title | `string` | 标题 | - |
+| label | `string` | 描述 | - |
+
+### List externalClasses
+
+| 名称 | 描述 |
+| --- | --- |
+| dora-class | 根节点样式类 |
+
+### ListItem props
+
+| 参数 | 类型 | 描述 | 默认值 |
+| --- | --- | --- | --- |
+| prefixCls | `string` | 自定义类名前缀 | dora-list-item |
+| disabled | `boolean` | 是否禁用 | false |
+| openType | `string` | 跳转方式，可选值为 navigateTo、redirectTo、switchTab、navigateBack、reLaunch；微信开放能力，可选值为 contact、share、getUserInfo、getPhoneNumber、launchApp、openSetting、feedback | navigateTo |
+| hoverClass | `string` | 指定按下去的样式类。当 hover-class="none" 时，没有点击态效果 | default |
+| hoverStopPropagation | `boolean` | 指定是否阻止本节点的祖先节点出现点击态 | false |
+| hoverStartTime | `number` | 按住后多久出现点击态，单位毫秒 | 20 |
+| hoverStayTime | `number` | 手指松开后点击态保留时间，单位毫秒 | 70 |
+| lang | `string` | 指定返回用户信息的语言，zh_CN 简体中文，zh_TW 繁体中文，en 英文。 | en |
+| sessionFrom | `string` | 会话来源 | - |
+| sendMessageTitle | `string` | 会话内消息卡片标题 | 当前标题 |
+| sendMessagePath | `string` | 会话内消息卡片点击跳转小程序路径 | 当前分享路径 |
+| sendMessageImg | `string` | 会话内消息卡片图片 | 截图 |
+| showMessageCard | `boolean` | 显示会话内消息卡片 | false |
+| appParameter | `string` | 打开 APP 时，向 APP 传递的参数 | - |
+| thumb | `string` | 左侧缩略图 | - |
+| title | `string` | 左侧标题 | - |
+| label | `string` | 标题下方的描述信息 | - |
+| extra | `string` | 右侧内容 | - |
+| hasLine | `boolean` | 是否有底部横线 | true |
+| isLink | `boolean` | 是否展示右侧箭头并开启尝试以 url 跳转 | - |
+| url | `string` | 跳转链接 | - |
+| delta | `number` | 当 open-type 为 'navigateBack' 时有效，表示回退的层数 | 1 |
+| bind:click | `function` | 点击事件 | - |
+| bind:getuserinfo | `function` | 用户点击该按钮时，会返回获取到的用户信息，回调的detail数据与wx.getUserInfo返回的一致 | - 
+| bind:contact | `function` | 客服消息回调 | - |
+| bind:getphonenumber | `function` | 获取用户手机号回调 | - |
+| bind:error | `function` | 当使用开放能力时，发生错误的回调 | - |
+| bind:opensetting | `function` | 在打开授权设置页后回调 | - |
+
+> 更多参数说明请参考微信官方的表单组件 [Button](https://developers.weixin.qq.com/miniprogram/dev/component/button.html)。
+
+### ListItem slot
+
+| 名称 | 描述 |
+| --- | --- |
+| - | 自定义标题或描述 |
+| header | 自定义左侧缩略图 |
+| footer | 自定义右侧内容 |
+
+### ListItem externalClasses
+
+| 名称 | 描述 |
+| --- | --- |
+| dora-class | 根节点样式类 |

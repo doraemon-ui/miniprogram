@@ -1,0 +1,86 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+.dora-accordion-panel__hd {
+  position: relative;
+  padding: 20rpx 30rpx;
+  color: #000;
+  color: var(--dora-black);
+  background-color: #fff;
+  background-color: var(--dora-component-background-color);
+  box-sizing: border-box;
+  padding-right: 60rpx;
+  width: auto;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center
+}
+.dora-accordion-panel__hd::after {
+  content: " ";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 1PX;
+  border-bottom: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15));
+  border-bottom: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15));
+  color: var(--dora-border-color-split,var(--dora-color-step-15));
+  color: var(--dora-border-color-split,var(--dora-color-step-15));
+  transform-origin: 0 100%;
+  transform: scaleY(.5);
+  left: 0
+}
+.dora-accordion-panel__thumb {
+  width: 40rpx;
+  height: 40rpx;
+  display: block;
+  margin-right: 10rpx
+}
+.dora-accordion-panel__arrow {
+  display: inline-block;
+  width: 30rpx;
+  height: 30rpx;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2216%22%20height%3D%2226%22%20viewBox%3D%220%200%2016%2026%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M2%200L0%202l11.5%2011L0%2024l2%202%2014-13z%22%20fill%3D%22%23c7c7cc%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  transform: rotate(90deg);
+  transition: transform .2s ease;
+  position: absolute;
+  display: block;
+  top: 30rpx;
+  right: 30rpx
+}
+.dora-accordion-panel--current > .dora-accordion-panel__hd > .dora-accordion-panel__arrow {
+  transform: rotate(270deg)
+}
+.dora-accordion-panel__bd {
+  display: none;
+  overflow: hidden;
+  background: #fff;
+  background: var(--dora-component-background-color);
+  font-size: 30rpx;
+  color: rgba(0,0,0,.55);
+  color: rgba(var(--dora-text-color-rgb),.55);
+  position: relative;
+  padding: 30rpx
+}
+.dora-accordion-panel__bd::after {
+  content: " ";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 1PX;
+  border-bottom: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15));
+  border-bottom: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15));
+  color: var(--dora-border-color-split,var(--dora-color-step-15));
+  color: var(--dora-border-color-split,var(--dora-color-step-15));
+  transform-origin: 0 100%;
+  transform: scaleY(.5);
+  left: 0
+}
+.dora-accordion-panel--current > .dora-accordion-panel__bd {
+  display: block
+}

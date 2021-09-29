@@ -1,0 +1,39 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+.dora-list__hd {
+  padding: 30rpx 30rpx 18rpx;
+  font-size: 28rpx;
+  color: rgba(0,0,0,.45);
+  color: rgba(var(--dora-text-color-rgb),.45);
+  width: 100%;
+  box-sizing: border-box
+}
+.dora-list__bd {
+  position: relative;
+  background-color: #fff;
+  background-color: var(--dora-component-background-color)
+}
+.dora-list__bd::after {
+  content: " ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  transform: scale(.5);
+  transform-origin: 0 0;
+  pointer-events: none;
+  box-sizing: border-box;
+  border: 0 solid var(--dora-border-color-split,var(--dora-color-step-15));
+  border: 0 solid var(--dora-border-color-split,var(--dora-color-step-15));
+  border-top-width: var(--dora-border-width,1PX);
+  border-top-width: var(--dora-border-width,1PX);
+  border-bottom-width: var(--dora-border-width,1PX);
+  border-bottom-width: var(--dora-border-width,1PX)
+}
+.dora-list__ft {
+  padding: 18rpx 30rpx 30rpx;
+  font-size: 28rpx;
+  color: rgba(0,0,0,.45);
+  color: rgba(var(--dora-text-color-rgb),.45)
+}

@@ -1,0 +1,28 @@
+<view class="page" data-dora-theme="auto">
+  <view class="page__hd">
+    <view class="page__title">List</view>
+    <view class="page__desc">列表</view>
+  </view>
+  <view class="page__bd">
+    <dora-list title="带说明的列表项">
+      <dora-list-item title="标题文字"></dora-list-item>
+      <dora-list-item title="禁用状态" disabled></dora-list-item>
+    </dora-list>
+    <dora-list title="带图标、说明的列表项">
+      <dora-list-item thumb="http://cdn.skyvow.cn/logo.png" title="标题文字" extra="说明文字"></dora-list-item>
+      <dora-list-item thumb="http://cdn.skyvow.cn/logo.png" title="标题文字" extra="说明文字"></dora-list-item>
+    </dora-list>
+    <dora-list title="带跳转的列表项" label="底部说明文字">
+      <dora-list-item title="标题文字" is-link extra="说明文字"></dora-list-item>
+      <dora-list-item title="标题文字" is-link label="附加描述" extra="说明文字"></dora-list-item>
+      <dora-list-item title="只显示箭头" is-link></dora-list-item>
+      <dora-list-item title="跳转到首页" is-link url="/pages/index/index" open-type="switchTab"></dora-list-item>
+    </dora-list>
+    <dora-list title="微信开放能力">
+      <dora-list-item title="打开客服会话" is-link open-type="contact" bind:contact="onContact"></dora-list-item>
+      <dora-list-item title="触发用户转发" is-link open-type="share"></dora-list-item>
+      <dora-list-item title="获取用户信息" is-link open-type="getUserInfo" bind:getuserinfo="onGotUserInfo"></dora-list-item>
+      <dora-list-item title="获取用户手机号" is-link open-type="getPhoneNumber" bind:getphonenumber="onGotPhoneNumber"></dora-list-item>
+    </dora-list>
+  </view>
+</view>

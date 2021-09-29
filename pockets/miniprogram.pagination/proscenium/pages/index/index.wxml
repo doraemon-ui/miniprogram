@@ -1,0 +1,33 @@
+<view class="page" data-dora-theme="auto">
+  <view class="page__hd">
+    <view class="page__title">Pagination</view>
+    <view class="page__desc">分页器</view>
+  </view>
+  <view class="page__bd page__bd--spacing">
+    <view class="page__sub-title">Button with text</view>
+      <dora-pagination defaultCurrent="1" total="5" bind:prev="onPrev" bind:next="onNext">
+        <view slot="prev">Prev</view>
+        <view slot="next">Next</view>
+      </dora-pagination>
+      <view class="page__sub-title">Controlled</view>
+      <dora-pagination current="{{ current }}" total="5" mode="button" controlled bind:change="onChange">
+        <view slot="prev">Prev</view>
+        <view slot="next">Next</view>
+      </dora-pagination>
+      <view class="page__sub-title">Hide number</view>
+      <dora-pagination defaultCurrent="1" total="5" simple>
+        <view slot="prev">Prev</view>
+        <view slot="next">Next</view>
+      </dora-pagination>
+      <view class="page__sub-title">Show number only</view>
+      <dora-pagination defaultCurrent="1" total="5" mode="number">
+        <view slot="prev">Prev</view>
+        <view slot="next">Next</view>
+      </dora-pagination>
+      <view class="page__sub-title">Point style</view>
+      <dora-pagination defaultCurrent="1" total="5" mode="pointer">
+        <view slot="prev">Prev</view>
+        <view slot="next">Next</view>
+      </dora-pagination>
+  </view>
+</view>

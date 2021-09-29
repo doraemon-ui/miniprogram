@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "Pagination",
+  "usingComponents": {
+    "dora-pagination": "@doraemon-ui/miniprogram.pagination/index"
+  }
+}

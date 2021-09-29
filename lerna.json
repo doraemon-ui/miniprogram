@@ -1,0 +1,34 @@
+{
+  "granularPathspec": false,
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "packages": [
+    "pockets/*",
+    "proscenium/**"
+  ],
+  "command": {
+    "publish": {
+      "verifyAccess": false,
+      "verifyRegistry": false,
+      "allowBranch": [
+        "master"
+      ]
+    }
+  },
+  "ignoreChanges": [
+    "proscenium/**",
+    "**/package-lock.json",
+    "**/*.md",
+    "**/.*",
+    "**/.*/**",
+    "**/*.spec.ts",
+    "**/*.spec.js",
+    "**/*.tgz",
+    "jest.config.js",
+    "**/dist/**",
+    "**/demo/**",
+    "**/miniprogram_dist/**",
+    "**/proscenium/**"
+  ],
+  "version": "independent"
+}

@@ -1,0 +1,67 @@
+@import "./variables.less";
+
+// AccordionPanel styles
+// -----------------------------
+.@{accordion-prefix-cls}-panel {
+  &__hd {
+    position: relative;
+    padding: @accordion-panel-hd-padding;
+    color: @accordion-color;
+    background-color: @accordion-bg;
+    box-sizing: border-box;
+    padding-right: @accordion-panel-hd-padding-extra;
+    width: auto;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+
+    &::after {
+      .setBottomLine(@border-color-split);
+
+      left: 0;
+    }
+  }
+
+  &__thumb {
+    .square(@accordion-panel-icon-size);
+
+    display: block;
+    margin-right: @margin-component-base;
+  }
+
+  &__arrow {
+    .setArrow(down);
+
+    transition: transform .2s ease;
+    position: absolute;
+    display: block;
+    top: 15px;
+    right: 15px;
+  }
+
+  &--current > &__hd > &__arrow {
+    transform: rotate(270deg);
+  }
+
+  &__bd {
+    display: none;
+    overflow: hidden;
+    background: @accordion-bg;
+    font-size: 15px;
+    color: @heading-color;
+    position: relative;
+    padding: @accordion-panel-bd-padding;
+
+    &::after {
+      .setBottomLine(@border-color-split);
+
+      left: 0;
+    }
+  }
+
+  &--current > &__bd {
+    display: block;
+  }
+}

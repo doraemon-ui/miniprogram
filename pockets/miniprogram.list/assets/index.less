@@ -1,0 +1,31 @@
+@import "./variables.less";
+
+// List styles
+// -----------------------------
+.@{list-prefix-cls} {
+  &__hd {
+    padding: @list-hd-padding;
+    font-size: @font-size-base;
+    color: @text-color-secondary;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  &__bd {
+    position: relative;
+    background-color: @list-bg;
+
+    &::after {
+      .hairline(@border-color-split);
+
+      border-top-width: @border-width-base;
+      border-bottom-width: @border-width-base;
+    }
+  }
+
+  &__ft {
+    padding: @list-ft-padding;
+    font-size: @font-size-base;
+    color: @text-color-secondary;
+  }
+}

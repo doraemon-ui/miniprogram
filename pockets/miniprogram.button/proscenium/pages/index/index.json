@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "Button",
+  "usingComponents": {
+    "dora-button": "@doraemon-ui/miniprogram.button/index"
+  }
+}

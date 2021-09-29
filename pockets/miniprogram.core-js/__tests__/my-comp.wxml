@@ -1,0 +1,2 @@
+<view class="my-comp">{{foo}}</view>
+<test-comp class="test-comp" />

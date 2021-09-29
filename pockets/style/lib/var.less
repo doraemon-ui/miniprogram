@@ -1,0 +1,35 @@
+@import "./var.dark.less";
+@import "./var.default.less";
+@import "./var.light.less";
+@import "./var.fn.less";
+
+/*! inject:wxss:../../@doraemon-ui/style/var.wxss */
+
+// Light & Dark Mode
+// --------------------------------------------------
+@{body-node} {
+  .varLight();
+}
+
+@media (prefers-color-scheme: dark) {
+  @{body-node} [data-dora-theme="auto"],
+  @{body-node} [data-dora-theme="dark"] {
+    .varDark();
+  }
+}
+
+@{body-node} [data-dora-theme="dark"] {
+  .varDark();
+}
+
+// Global Styles
+// --------------------------------------------------
+@{body-node} {
+  .varDefault();
+}
+
+@{body-node} {
+  font-family: var(--dora-font-family);
+  background: var(--dora-background-color);
+}
+/*! endinject */

@@ -1,0 +1,27 @@
+<button
+  data-dora-theme="{{ darkmode }}"
+  class="dora-class {{ classes.wrap }}"
+  disabled="{{ disabled }}"
+  loading="{{ loading }}"
+  form-type="{{ formType }}"
+  open-type="{{ openType }}"
+  hover-class="dora-hover-class {{ !disabled ? classes.hover : 'none' }}"
+  hover-stop-propagation="{{ hoverStopPropagation }}"
+  hover-start-time="{{ hoverStartTime }}"
+  hover-stay-time="{{ hoverStayTime }}"
+  lang="{{ lang }}"
+  bindgetuserinfo="onGetUserInfo"
+  session-from="{{ sessionFrom }}"
+  send-message-title="{{ sendMessageTitle }}"
+  send-message-path="{{ sendMessagePath }}"
+  send-message-img="{{ sendMessageImg }}"
+  show-message-card="{{ showMessageCard }}"
+  bindcontact="onContact"
+  bindgetphonenumber="onGetPhoneNumber"
+  app-parameter="{{ appParameter }}"
+  binderror="onError"
+  bindopensetting="onOpenSetting"
+  bindtap="onClick"
+>
+  <slot></slot>
+</button>

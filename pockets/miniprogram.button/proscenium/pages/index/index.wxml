@@ -1,0 +1,68 @@
+<view class="page" data-dora-theme="auto">
+  <view class="page__hd">
+    <view class="page__title">Button</view>
+    <view class="page__desc">按钮</view>
+  </view>
+  <view class="page__bd page__bd--spacing">
+    <view class="page__sub-title">Type</view>
+    <dora-button block type="light">light</dora-button>
+    <dora-button block type="stable">stable</dora-button>
+    <dora-button block type="positive">positive</dora-button>
+    <dora-button block type="calm">calm</dora-button>
+    <dora-button block type="assertive">assertive</dora-button>
+    <dora-button block type="balanced">balanced</dora-button>
+    <dora-button block type="energized">energized</dora-button>
+    <dora-button block type="royal">royal</dora-button>
+    <dora-button block type="dark">dark</dora-button>
+    <view class="page__sub-title">Outline</view>
+    <dora-button block outline type="light">light</dora-button>
+    <dora-button block outline type="stable">stable</dora-button>
+    <dora-button block outline type="positive">positive</dora-button>
+    <dora-button block outline type="calm">calm</dora-button>
+    <dora-button block outline type="assertive">assertive</dora-button>
+    <dora-button block outline type="balanced">balanced</dora-button>
+    <dora-button block outline type="energized">energized</dora-button>
+    <dora-button block outline type="royal">royal</dora-button>
+    <dora-button block outline type="dark">dark</dora-button>
+    <view class="page__sub-title">Size</view>
+    <dora-button block size="small" type="light">light</dora-button>
+    <dora-button block size="small" type="stable">stable</dora-button>
+    <dora-button block size="small" type="positive">positive</dora-button>
+    <dora-button block size="default" type="calm">calm</dora-button>
+    <dora-button block size="default" type="assertive">assertive</dora-button>
+    <dora-button block size="default" type="balanced">balanced</dora-button>
+    <dora-button block size="large" type="energized">energized</dora-button>
+    <dora-button block size="large" type="royal">royal</dora-button>
+    <dora-button block size="large" type="dark">dark</dora-button>
+    <view class="page__sub-title">Clear</view>
+    <dora-button block clear type="light">light</dora-button>
+    <dora-button block clear type="stable">stable</dora-button>
+    <dora-button block clear type="positive">positive</dora-button>
+    <dora-button block clear type="calm">calm</dora-button>
+    <dora-button block clear type="assertive">assertive</dora-button>
+    <dora-button block clear type="balanced">balanced</dora-button>
+    <dora-button block clear type="energized">energized</dora-button>
+    <dora-button block clear type="royal">royal</dora-button>
+    <dora-button block clear type="dark">dark</dora-button>
+    <view class="page__sub-title">Loading</view>
+    <dora-button block loading type="light">light</dora-button>
+    <dora-button block loading type="stable">stable</dora-button>
+    <dora-button block loading type="positive">positive</dora-button>
+    <dora-button block loading type="calm">calm</dora-button>
+    <dora-button block loading type="assertive">assertive</dora-button>
+    <dora-button block loading type="balanced">balanced</dora-button>
+    <dora-button block loading type="energized">energized</dora-button>
+    <dora-button block loading type="royal">royal</dora-button>
+    <dora-button block loading type="dark">dark</dora-button>
+    <view class="page__sub-title">Disabled</view>
+    <dora-button block disabled type="light">light</dora-button>
+    <dora-button block disabled type="stable">stable</dora-button>
+    <dora-button block disabled type="positive">positive</dora-button>
+    <dora-button block disabled type="calm">calm</dora-button>
+    <dora-button block disabled type="assertive">assertive</dora-button>
+    <dora-button block disabled type="balanced">balanced</dora-button>
+    <dora-button block disabled type="energized">energized</dora-button>
+    <dora-button block disabled type="royal">royal</dora-button>
+    <dora-button block disabled type="dark">dark</dora-button>
+  </view>
+</view>
