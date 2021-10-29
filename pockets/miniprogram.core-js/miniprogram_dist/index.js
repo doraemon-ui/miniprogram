@@ -1,9 +1,13 @@
 /**
  * @doraemon-ui/miniprogram.core-js.
  * © 2021 - 2021 Doraemon UI.
- * Built on 2021-09-25, 17:37:25.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.16.
+ * Built on 2021-10-29, 12:48:44.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.17.
  */
+
+function getDefaultExportFromCjs (x) {
+	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
+}
 
 //
 
@@ -111,6 +115,120 @@ var classnames = {exports: {}};
 }(classnames));
 
 var classNames = classnames.exports;
+
+var dist = {exports: {}};
+
+var objToString = {};
+
+var parsers = {};
+
+var createParser = {};
+
+(function (exports) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+function createParser(matcher, replacer) {
+  const regex = RegExp(matcher, 'g');
+  return string => {
+    // * throw an error if not a string
+    if (typeof string !== 'string') {
+      throw new TypeError("expected an argument of type string, but got ".concat(typeof styleObj));
+    } // * if no match between string and matcher
+
+
+    if (!string.match(regex)) {
+      return string;
+    } // * executes the replacer function for each match
+    // ? replacer can take any arguments valid for String.prototype.replace
+
+
+    return string.replace(regex, replacer);
+  };
+}
+
+var _default = createParser;
+exports["default"] = _default;
+}(createParser));
+
+Object.defineProperty(parsers, "__esModule", {
+  value: true
+});
+parsers.snakeToKebab = parsers.camelToKebab = void 0;
+
+var _createParser = _interopRequireDefault(createParser);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+const camelToKebab = (0, _createParser["default"])(/[A-Z]/, match => "-".concat(match.toLowerCase()));
+parsers.camelToKebab = camelToKebab;
+const snakeToKebab = (0, _createParser["default"])(/_/, () => '-'); // disabled to allow named exports while only one named export exists
+// eslint-disable-next-line
+
+parsers.snakeToKebab = snakeToKebab;
+
+(function (exports) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _parsers = parsers;
+
+function objToString(styleObj, parser = _parsers.camelToKebab) {
+  if (!styleObj || typeof styleObj !== 'object' || Array.isArray(styleObj)) {
+    throw new TypeError("expected an argument of type object, but got ".concat(typeof styleObj));
+  }
+
+  const lines = Object.keys(styleObj).map(property => "".concat(parser(property), ": ").concat(styleObj[property], ";"));
+  return lines.join('\n');
+}
+
+var _default = objToString;
+exports["default"] = _default;
+}(objToString));
+
+(function (module, exports) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "createParser", {
+  enumerable: true,
+  get: function get() {
+    return _createParser["default"];
+  }
+});
+exports.parsers = exports["default"] = void 0;
+
+var _objToString = _interopRequireDefault(objToString);
+
+var _createParser = _interopRequireDefault(createParser);
+
+var parsers$1 = _interopRequireWildcard(parsers);
+
+exports.parsers = parsers$1;
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var _default = _objToString["default"];
+exports["default"] = _default;
+module.exports = _objToString["default"];
+module.exports.createParser = _createParser["default"];
+module.exports.parsers = _objectSpread({}, parsers$1);
+}(dist, dist.exports));
+
+var styleToCssString = /*@__PURE__*/getDefaultExportFromCjs(dist.exports);
 
 const LIFECYCLE_HOOKS = [
     'beforeCreate',
@@ -343,6 +461,7 @@ class Doraemon {
         warn,
         shallowEqual: shallowequal,
         classNames,
+        styleToCssString,
     };
 }
 /**
@@ -963,6 +1082,15 @@ if (inMiniprogram) {
     };
 }
 
+function syncProps(cb) {
+    return Behavior({
+        definitionFilter(defFields) {
+            defFields.data = defFields.data || {};
+            defFields.data = Object.assign(defFields.data, cb(defFields.data));
+        },
+    });
+}
+
 function defineComponentHOC(externalOptions = {}) {
     return function (target) {
         mergeStaticProperty(externalOptions, target);
@@ -979,6 +1107,17 @@ function defineComponentHOC(externalOptions = {}) {
         const watch = initWatch(componentInstance, options.watch);
         const components = initComponents(componentInstance, options.components);
         const methods = initMethods(componentInstance, options.methods);
+        const syncBehavior = syncProps((props) => {
+            return Object.keys(options.computed).reduce((acc, key) => {
+                const userDef = options.computed[key];
+                const getter = typeof userDef === 'function' ? userDef : userDef.get;
+                if (getter) {
+                    const value = getter.call(props, props);
+                    return { ...acc, [key]: value };
+                }
+                return acc;
+            }, {});
+        });
         const componentConf = {
             options: {
                 multipleSlots: typeof externalOptions.multipleSlots !== 'undefined' ?
@@ -996,7 +1135,7 @@ function defineComponentHOC(externalOptions = {}) {
             },
             relations: components,
             behaviors: (Array.isArray(externalOptions.behaviors) ?
-                externalOptions.behaviors : []).concat(['wx://component-export']),
+                externalOptions.behaviors : []).concat(['wx://component-export', syncBehavior]),
             observers: {
                 ...watch,
                 ['**']: function defineComputed(newVal) {

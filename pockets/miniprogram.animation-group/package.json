@@ -1,9 +1,9 @@
 {
-  "name": "@doraemon-ui/miniprogram.core-js",
+  "name": "@doraemon-ui/miniprogram.animation-group",
   "private": false,
-  "version": "0.0.2-alpha.19",
-  "description": "corejs for doraemon-ui",
-  "author": "skyvow <724355924@qq.com>",
+  "version": "0.0.1-alpha.0",
+  "description": "miniprogram animation-group component for doraemon-ui",
+  "author": "skyvow",
   "homepage": "",
   "license": "MIT",
   "miniprogram": "miniprogram_dist",
@@ -14,23 +14,22 @@
   "keywords": [
     "doraemon-ui",
     "miniprogram",
-    "core-js"
+    "animation-group"
   ],
   "scripts": {
-    "build:dev": "cross-env NODE_ENV=development ts-node --transpile-only --skip-project build.ts",
-    "build": "cross-env NODE_ENV=production ts-node --transpile-only --skip-project build.ts",
+    "serve": "dora serve ./proscenium --open --build-npm",
+    "build:dev": "dora build --watch",
+    "build": "dora build",
     "test": "cross-env NODE_ENV=testing jest --coverage",
     "clean": "cross-env rimraf miniprogram_dist/* .coverage-report/*",
     "preversion": "npm run clean && npm run build && npm run test"
   },
   "dependencies": {
-    "classnames": "^2.3.1",
-    "shallowequal": "^1.1.0",
-    "style-object-to-css-string": "^1.0.1"
+    "@doraemon-ui/miniprogram.core-js": "^0.0.2-alpha.19",
+    "@doraemon-ui/style": "^0.0.1-alpha.5"
   },
   "devDependencies": {
-    "@doraemon-ui/miniprogram.tools": "^0.0.2-alpha.16",
-    "@types/shallowequal": "^1.1.1",
+    "@doraemon-ui/cli": "^0.0.2-alpha.12",
     "cross-env": "^7.0.3",
     "jest": "^27.0.6",
     "rimraf": "^3.0.2"

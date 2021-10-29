@@ -1,0 +1,11 @@
+<view
+  class="dora-class {{ wrapCls }} {{ animateCss }}"
+  bindtap="onClick"
+  catchtouchmove="{{ disableScroll ? 'onTouchMove' : '' }}"
+  bindtransitionend="onTransitionEnd"
+  bindanimationend="onAnimationEnd"
+  style="{{ extStyle }}"
+  wx:if="{{ show }}"
+>
+  <slot></slot>
+</view>

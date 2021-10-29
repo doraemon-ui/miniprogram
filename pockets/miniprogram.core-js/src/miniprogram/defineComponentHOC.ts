@@ -10,6 +10,7 @@ import { initProxy } from '../instance/proxy'
 import { initRefs } from '../instance/refs'
 import { initWatch } from '../instance/watch'
 import { setUpdatePerformance } from '../util/perf'
+import { syncProps } from './syncProps'
 
 export interface ComponentExternalOptions extends WechatMiniprogram.Component.ComponentOptions {
   /** 组件接受的外部样式类 */
@@ -40,6 +41,18 @@ export function defineComponentHOC (externalOptions: ComponentExternalOptions = 
     const components = initComponents(componentInstance, options.components)
     const methods = initMethods(componentInstance, options.methods)
 
+    const syncBehavior = syncProps((props: any) => {
+      return Object.keys(options.computed).reduce((acc, key) => {
+        const userDef = options.computed[key]
+        const getter = typeof userDef === 'function' ? userDef : userDef.get
+        if (getter) {
+          const value = getter.call(props, props)
+          return { ...acc, [key]: value }
+        }
+        return acc
+      }, {})
+    })
+
     const componentConf: WechatMiniprogram.Component.Options<any, any, any> = {
       options: {
         multipleSlots: typeof externalOptions.multipleSlots !== 'undefined' ?
@@ -59,7 +72,7 @@ export function defineComponentHOC (externalOptions: ComponentExternalOptions = 
       },
       relations: components,
       behaviors: (Array.isArray(externalOptions.behaviors) ?
-        externalOptions.behaviors : []).concat(['wx://component-export']),
+        externalOptions.behaviors : []).concat(['wx://component-export', syncBehavior]),
       observers: {
         ...watch,
         ['**']: function defineComputed (newVal) {

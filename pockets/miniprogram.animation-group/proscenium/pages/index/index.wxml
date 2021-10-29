@@ -1,0 +1,29 @@
+<view class="page" data-dora-theme="auto">
+  <view class="page__hd">
+    <view class="page__title">AnimationGroup</view>
+    <view class="page__desc">动画组</view>
+  </view>
+  <view class="page__bd">
+    <dora-list>
+      <block wx:for="{{ animations }}" wx:key="index">
+        <dora-list-item title="{{ item }}" isLink data-index="{{ index }}" bind:click="onClick" />
+      </block>
+    </dora-list>
+    <dora-animation-group
+      dora-class="example"
+      in="{{ example.in }}"
+      enter="{{ example.enter }}"
+      exit="{{ example.exit }}"
+      class-names="{{ example.classNames }}"
+      bind:enter="onEnter"
+      bind:entering="onEntering"
+      bind:entered="onEntered"
+      bind:exit="onExit"
+      bind:exiting="onExiting"
+      bind:exited="onExited"
+      bind:change="onChange"
+    >
+      {{ example.animation }}
+    </dora-animation-group>
+  </view>
+</view>

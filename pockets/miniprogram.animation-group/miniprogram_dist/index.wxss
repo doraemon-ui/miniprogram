@@ -1,0 +1,208 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+.dora-animate--fadeIn-enter {
+  transition: opacity .3s;
+  opacity: 0
+}
+.dora-animate--fadeIn-enter-active,
+.dora-animate--fadeIn-enter-done {
+  opacity: 1
+}
+.dora-animate--fadeIn-exit {
+  transition: opacity .3s;
+  opacity: 1
+}
+.dora-animate--fadeIn-exit-active,
+.dora-animate--fadeIn-exit-done {
+  opacity: 0
+}
+.dora-animate--fadeInDown-enter {
+  transition: opacity .3s,transform .3s;
+  opacity: 0;
+  transform: translate3d(0,-100%,0)
+}
+.dora-animate--fadeInDown-enter-active,
+.dora-animate--fadeInDown-enter-done {
+  opacity: 1;
+  transform: none
+}
+.dora-animate--fadeInDown-exit {
+  transition: opacity .3s,transform .3s;
+  opacity: 1;
+  transform: none
+}
+.dora-animate--fadeInDown-exit-active,
+.dora-animate--fadeInDown-exit-done {
+  opacity: 0;
+  transform: translate3d(0,-100%,0)
+}
+.dora-animate--fadeInLeft-enter {
+  transition: opacity .3s,transform .3s;
+  opacity: 0;
+  transform: translate3d(-100%,0,0)
+}
+.dora-animate--fadeInLeft-enter-active,
+.dora-animate--fadeInLeft-enter-done {
+  opacity: 1;
+  transform: none
+}
+.dora-animate--fadeInLeft-exit {
+  transition: opacity .3s,transform .3s;
+  opacity: 1;
+  transform: none
+}
+.dora-animate--fadeInLeft-exit-active,
+.dora-animate--fadeInLeft-exit-done {
+  opacity: 0;
+  transform: translate3d(-100%,0,0)
+}
+.dora-animate--fadeInRight-enter {
+  transition: opacity .3s,transform .3s;
+  opacity: 0;
+  transform: translate3d(100%,0,0)
+}
+.dora-animate--fadeInRight-enter-active,
+.dora-animate--fadeInRight-enter-done {
+  opacity: 1;
+  transform: none
+}
+.dora-animate--fadeInRight-exit {
+  transition: opacity .3s,transform .3s;
+  opacity: 1;
+  transform: none
+}
+.dora-animate--fadeInRight-exit-active,
+.dora-animate--fadeInRight-exit-done {
+  opacity: 0;
+  transform: translate3d(100%,0,0)
+}
+.dora-animate--fadeInUp-enter {
+  transition: opacity .3s,transform .3s;
+  opacity: 0;
+  transform: translate3d(0,100%,0)
+}
+.dora-animate--fadeInUp-enter-active,
+.dora-animate--fadeInUp-enter-done {
+  opacity: 1;
+  transform: none
+}
+.dora-animate--fadeInUp-exit {
+  transition: opacity .3s,transform .3s;
+  opacity: 1;
+  transform: none
+}
+.dora-animate--fadeInUp-exit-active,
+.dora-animate--fadeInUp-exit-done {
+  opacity: 0;
+  transform: translate3d(0,100%,0)
+}
+.dora-animate--slideInUp-enter {
+  transition: transform .3s;
+  transform: translate3d(0,100%,0);
+  visibility: visible
+}
+.dora-animate--slideInUp-enter-active,
+.dora-animate--slideInUp-enter-done {
+  transform: translateZ(0)
+}
+.dora-animate--slideInUp-exit {
+  transition: transform .3s;
+  transform: translateZ(0)
+}
+.dora-animate--slideInUp-exit-active,
+.dora-animate--slideInUp-exit-done {
+  transform: translate3d(0,100%,0);
+  visibility: visible
+}
+.dora-animate--slideInDown-enter {
+  transition: transform .3s;
+  transform: translate3d(0,-100%,0);
+  visibility: visible
+}
+.dora-animate--slideInDown-enter-active,
+.dora-animate--slideInDown-enter-done {
+  transform: translateZ(0)
+}
+.dora-animate--slideInDown-exit {
+  transition: transform .3s;
+  transform: translateZ(0)
+}
+.dora-animate--slideInDown-exit-active,
+.dora-animate--slideInDown-exit-done {
+  transform: translate3d(0,-100%,0);
+  visibility: visible
+}
+.dora-animate--slideInLeft-enter {
+  transition: transform .3s;
+  transform: translate3d(-100%,0,0);
+  visibility: visible
+}
+.dora-animate--slideInLeft-enter-active,
+.dora-animate--slideInLeft-enter-done {
+  transform: translateZ(0)
+}
+.dora-animate--slideInLeft-exit {
+  transition: transform .3s;
+  transform: translateZ(0)
+}
+.dora-animate--slideInLeft-exit-active,
+.dora-animate--slideInLeft-exit-done {
+  transform: translate3d(-100%,0,0);
+  visibility: visible
+}
+.dora-animate--slideInRight-enter {
+  transition: transform .3s;
+  transform: translate3d(100%,0,0);
+  visibility: visible
+}
+.dora-animate--slideInRight-enter-active,
+.dora-animate--slideInRight-enter-done {
+  transform: none
+}
+.dora-animate--slideInRight-exit {
+  transition: transform .3s;
+  transform: none
+}
+.dora-animate--slideInRight-exit-active,
+.dora-animate--slideInRight-exit-done {
+  transform: translate3d(100%,0,0);
+  visibility: visible
+}
+.dora-animate--zoom-enter {
+  transition: all .3s cubic-bezier(.215,.61,.355,1);
+  opacity: .01;
+  transform: scale(.75)
+}
+.dora-animate--zoom-enter-active,
+.dora-animate--zoom-enter-done {
+  opacity: 1;
+  transform: none
+}
+.dora-animate--zoom-exit {
+  transition: all .25s linear;
+  transform: none
+}
+.dora-animate--zoom-exit-active,
+.dora-animate--zoom-exit-done {
+  opacity: .01;
+  transform: scale(.75)
+}
+.dora-animate--punch-enter {
+  transition: all .3s cubic-bezier(.215,.61,.355,1);
+  opacity: .01;
+  transform: scale(1.35)
+}
+.dora-animate--punch-enter-active,
+.dora-animate--punch-enter-done {
+  opacity: 1;
+  transform: none
+}
+.dora-animate--punch-exit {
+  transition: all .25s linear;
+  transform: none
+}
+.dora-animate--punch-exit-active,
+.dora-animate--punch-exit-done {
+  opacity: .01;
+  transform: scale(1.35)
+}
