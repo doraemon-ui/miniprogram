@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.button.
  * © 2021 - 2021 Doraemon UI.
- * Built on 2021-09-25, 17:37:52.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.14.
+ * Built on 2021-10-29, 13:44:16.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.17.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
