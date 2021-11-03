@@ -1,0 +1,15 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+.dora-backdrop {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: var(--dora-backdrop-background-color,rgba(var(--dora-black-rgb),.4));
+  background: var(--dora-backdrop-background-color,rgba(var(--dora-black-rgb),.4))
+}
+.dora-backdrop--transparent {
+  background: 0 0
+}

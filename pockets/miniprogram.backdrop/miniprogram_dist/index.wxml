@@ -1,0 +1,8 @@
+<dora-animation-group
+  dora-class="{{ classes.wrap }}"
+  in="{{ visible }}"
+  classNames="{{ classNames }}"
+  bind:click="onClick"
+  wrapStyle="{{ { zIndex } }}"
+  disableScroll
+/>

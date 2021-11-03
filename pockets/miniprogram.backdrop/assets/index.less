@@ -1,0 +1,17 @@
+@import "./variables.less";
+
+// Backdrop styles
+// -----------------------------
+.@{backdrop-prefix-cls} {
+  position: fixed;
+  z-index: @backdrop-z-index;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: @backdrop-background;
+
+  &--transparent {
+    background: @backdrop-background-inverse;
+  }
+}

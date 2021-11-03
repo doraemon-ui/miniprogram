@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "miniprogram.backdrop",
+  "usingComponents": {
+    "dora-backdrop": "@doraemon-ui/miniprogram.backdrop/index"
+  }
+}
