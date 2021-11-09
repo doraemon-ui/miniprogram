@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "miniprogram.popup",
+  "usingComponents": {
+    "dora-popup": "@doraemon-ui/miniprogram.popup/index"
+  }
+}

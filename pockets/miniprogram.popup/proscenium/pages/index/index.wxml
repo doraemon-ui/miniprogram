@@ -1,0 +1,90 @@
+<dora-popup
+  position="left"
+  bodyStyle="{{ { minWidth: '60vw' } }}"
+  visible="{{ visible1 }}"
+  bind:close="onClose1"
+  bind:closed="onClosed1"
+>
+  miniprogram.popup
+</dora-popup>
+
+<dora-popup
+  position="right"
+  bodyStyle="{{ { minWidth: '60vw' } }}"
+  visible="{{ visible2 }}"
+  bind:close="onClose2"
+  bind:closed="onClosed2"
+>
+  miniprogram.popup
+</dora-popup>
+
+<dora-popup
+  position="top"
+  bodyStyle="{{ { minHeight: '40vw' } }}"
+  visible="{{ visible3 }}"
+  bind:close="onClose3"
+  bind:closed="onClosed3"
+>
+  miniprogram.popup
+</dora-popup>
+
+<dora-popup
+  position="bottom"
+  bodyStyle="{{ { minHeight: '40vw' } }}"
+  visible="{{ visible4 }}"
+  bind:close="onClose4"
+  bind:closed="onClosed4"
+>
+  miniprogram.popup
+</dora-popup>
+
+<dora-popup
+  position="center"
+  bodyStyle="{{ { minWidth: '75vw', minHeight: '120px' } }}"
+  visible="{{ visible5 }}"
+  bind:close="onClose5"
+  bind:closed="onClosed5"
+>
+  miniprogram.popup
+</dora-popup>
+
+<dora-popup
+  position="bottom"
+  visible="{{ visible6 }}"
+  bind:close="onClose6"
+  bind:closed="onClosed6"
+>
+  <scroll-view scroll-y="true" style="height: 30vh">
+    <view style="margin: 10px 0">miniprogram.popup</view>
+    <view style="margin: 10px 0">miniprogram.popup</view>
+    <view style="margin: 10px 0">miniprogram.popup</view>
+    <view style="margin: 10px 0">miniprogram.popup</view>
+    <view style="margin: 10px 0">miniprogram.popup</view>
+    <view style="margin: 10px 0">miniprogram.popup</view>
+    <view style="margin: 10px 0">miniprogram.popup</view>
+    <view style="margin: 10px 0">miniprogram.popup</view>
+    <view style="margin: 10px 0">miniprogram.popup</view>
+    <view style="margin: 10px 0">miniprogram.popup</view>
+    <view style="margin: 10px 0">miniprogram.popup</view>
+    <view style="margin: 10px 0">miniprogram.popup</view>
+    <view style="margin: 10px 0">miniprogram.popup</view>
+    <view style="margin: 10px 0">miniprogram.popup</view>
+  </scroll-view>
+</dora-popup>
+
+<view class="page" data-dora-theme="auto">
+  <view class="page__hd">
+    <view class="page__title">Popup</view>
+    <view class="page__desc">弹出框</view>
+  </view>
+  <view class="page__bd page__bd--spacing">
+    <view class="btn-area">
+      <button bindtap="onOpen1">左侧弹出</button>
+      <button bindtap="onOpen2">右侧弹出</button>
+      <button bindtap="onOpen3">顶部弹出</button>
+      <button bindtap="onOpen4">低部弹出</button>
+      <button bindtap="onOpen5">居中弹出</button>
+      <button bindtap="onOpen6">内容超长滚动</button>
+    </view>
+  </view>
+</view>

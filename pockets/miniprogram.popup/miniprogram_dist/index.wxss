@@ -1,0 +1,37 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+.dora-popup {
+  position: fixed;
+  z-index: 1000
+}
+.dora-popup-body {
+  position: fixed;
+  z-index: 1000;
+  background-color: #fff;
+  background-color: var(--dora-component-background-color)
+}
+.dora-popup--position-center .dora-popup-body {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%)
+}
+.dora-popup--position-top .dora-popup-body {
+  width: 100%;
+  top: 0;
+  left: 0
+}
+.dora-popup--position-right .dora-popup-body {
+  height: 100%;
+  right: 0;
+  top: 0
+}
+.dora-popup--position-bottom .dora-popup-body {
+  width: 100%;
+  bottom: 0;
+  left: 0
+}
+.dora-popup--position-left .dora-popup-body {
+  height: 100%;
+  top: 0;
+  left: 0
+}

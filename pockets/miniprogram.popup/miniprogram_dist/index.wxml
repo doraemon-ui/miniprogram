@@ -1,0 +1,19 @@
+<dora-backdrop
+  id="dora-backdrop"
+  wx:if="{{ mask }}"
+  bind:click="onMaskClick"
+  zIndex="{{ zIndex }}"
+/>
+<view class="dora-class {{ classes.wrap }}">
+  <dora-animation-group
+    dora-class="{{ classes.body }}"
+    in="{{ popupVisible }}"
+    classNames="{{ transitionName }}"
+    bind:exited="onExited"
+    wrapStyle="{{ extStyle }}"
+    mountOnEnter="{{ mountOnEnter }}"
+    unmountOnExit="{{ unmountOnExit }}"
+  >
+    <slot />
+  </dora-animation-group>
+</view>
