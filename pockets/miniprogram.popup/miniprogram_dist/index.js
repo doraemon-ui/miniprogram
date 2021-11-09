@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.popup.
  * © 2021 - 2021 Doraemon UI.
- * Built on 2021-11-09, 19:21:28.
+ * Built on 2021-11-09, 22:30:22.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.17.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -12,6 +12,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js';
 const { classNames } = Doraemon.util;
+/**
+ * 弹出的位置
+ *
+ * @enum {number}
+ */
 var PositionEnum;
 (function (PositionEnum) {
     PositionEnum["TOP"] = "top";
