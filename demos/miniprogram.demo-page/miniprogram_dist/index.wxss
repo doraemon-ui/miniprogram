@@ -14,10 +14,10 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale
 }
-.dora-demo-page__iconfont-light:before {
+.dora-demo-page__iconfont-light::before {
   content: "\e705"
 }
-.dora-demo-page__iconfont-dark:before {
+.dora-demo-page__iconfont-dark::before {
   content: "\e501"
 }
 .dora-demo-page {

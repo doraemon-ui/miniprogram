@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.demo-page.
  * © 2021 - 2021 Doraemon UI.
- * Built on 2021-11-16, 13:24:12.
+ * Built on 2021-11-18, 13:45:27.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.17.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -117,16 +117,22 @@ let DemoPage = class DemoPage extends Doraemon {
             this.curTheme = curTheme;
         }
     }
-    onThemeChange() {
+    onThemeChange(theme) {
         if (this.isRegister) {
             return;
         }
-        wx.onThemeChange(({ theme }) => {
+        const cb = ({ theme }) => {
             this.sysTheme = theme;
             this.isRegister = true;
             this.isManual = false;
             this.setTheme(DarkMode.AUTO);
-        });
+        };
+        if (wx.onThemeChange) {
+            wx.onThemeChange(cb);
+        }
+        else if (theme) {
+            cb({ theme });
+        }
     }
     onDarkmodeChange(darkmode) {
         const isAuto = darkmode === DarkMode.AUTO;
