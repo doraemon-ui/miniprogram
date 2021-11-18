@@ -1,0 +1,66 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@font-face {
+  font-family: 'DemoPage iconfont';
+  src: url('data:font/woff2;charset=utf-8;base64,d09GMgABAAAAAAQAAA0AAAAACRQAAAOqAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP0ZGVE0cGh4GYACCShEICoVkhHMLDAABNgIkAxIEIAWFAgdEG7AHUVRvumQ/Eso2r7RiEGXYjNoU4oYaUflu3zMRVGv/9uzu3QPaj6AwKsKTAwIXoSOBdZSNkVGgsXxU6nzIv+xNcvjaPUnxVyD9WWHmYHVGeS7dBa7OKLe7mx8Uz/+9e20sfFkgEzuBRJ0Qb7e5aE6aw8bSMYHSKFs0aVLR1sA62cfP+pH/QrtqSfpCB56EgK8XJgnAj3tn54rXJhhjGSQhK0JBQimIDxrSy/QKvLe+H3/NDQGSJkN+u3NP9Ho8fRs/m7yp20T+bhMCALsIMjI2EXBCtMCmbg5AqwipEU8XAUIbaXCEYI8WvomRQEL+8wTkVdFFJNCAIRbAf+I4AAoAhgKiYldshE0Z0M9ZZiuTfmzTcVnee3LziaLjhnFg7olIcMDmnIrsWPLeQXmkPR4yIZu1IFRb+ZX1rDCt2lNYUd6AIqcxh3tPfoOCbCpoRPYWNSObC5sc5XuamjhKc7N5Z5zGRnnvpDsNw8DF8U4p4UIVNoYjHh8rbSCljaS0mVzQ1MSPF0j6dUoGS/5v2q+zH12Z2Z9iRbtvVv8g+tsO/Uask0gpov6vxRSpj460MgBQkT7sYhKLxfp3uixuHFvVUTiG9kcNI3ljlNMF/TumVq7OMyZrkydpU4yLIuMkXZtkTLkETH4EY75c0yYbk3Ona0xVmb5snrPM2HssRk9iTNWHbPu2Kg33D5uGCNfq9b4pXK/XTj7T64Oa31lQr83lg248HysBnjRPT6+flf61fox4jdAOYsD4aXIs4bg+iBWKZtz/lCRc7ycL8XzDcT3yT4Hrei3Y3YB2cHcIuz7TI9qckF4wWtLCqhreLQLTsYupSQwAAL8fgEDwfO2Mu7OYv325G+aY3YRuZ/6fVwD6Egjmhcm3CiD/o5KgFPu/RKHvPoLGG0OQMDREB2BeFwhgwWQEhL4zCEh6niIg63shQNH3WYDGyBcBWn3fQMDQsYgBASMLcUgWRQR7wFBDFUNNpq5SsyqALvg91Mayi9RW9Zw6dMWbZSN74YQqzFKDi8z1Rqu1mt2lToAf7eLwuAOuO3BdbIACkvituMDisJxXjTD8067Y/MWj7FdYwhhX4WhzzDQbLsPDz5k5uyz69Gg/S3iK5zArOMzFcdRoVFiAz2hGHYssXl4BowWTP3Gz1OFmwqOUaLbCMZdzen2Gbw3Dfaz4/8o/BzzDcUFLzTILbdg8U12XKpxvVLQ0PB5IVp5mDMlLGoQUUSRaZk7LzyxfgDldcshV4wEAAA==') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap
+}
+.dora-demo-page__iconfont {
+  font-family: "DemoPage iconfont"!important;
+  font-size: 32rpx;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale
+}
+.dora-demo-page__iconfont-light:before {
+  content: "\e705"
+}
+.dora-demo-page__iconfont-dark:before {
+  content: "\e501"
+}
+.dora-demo-page {
+  position: relative;
+  min-height: 100%;
+  color: rgba(0,0,0,.85);
+  color: rgba(var(--dora-text-color-rgb),.85);
+  background-color: #fff;
+  background-color: var(--dora-background-color)
+}
+.dora-demo-page__hd {
+  position: relative;
+  padding: 80rpx
+}
+.dora-demo-page__bd {
+  padding-bottom: 80rpx
+}
+.dora-demo-page__bd--spacing {
+  padding-left: 30rpx;
+  padding-right: 30rpx
+}
+.dora-demo-page__ft {
+  padding-bottom: 20rpx;
+  text-align: center
+}
+.dora-demo-page__title {
+  text-align: left;
+  font-size: 40rpx;
+  font-weight: 400
+}
+.dora-demo-page__desc {
+  margin-top: 10rpx;
+  color: rgba(0,0,0,.45);
+  color: rgba(var(--dora-text-color-rgb),.45);
+  text-align: left;
+  font-size: 28rpx
+}
+.dora-demo-page__darkmode {
+  position: absolute;
+  right: 24rpx;
+  top: 24rpx;
+  width: 48rpx;
+  height: 48rpx;
+  font-size: 48rpx;
+  line-height: 48rpx
+}

@@ -1,0 +1,50 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+.dora-demo-block__hd {
+  padding: 30rpx 30rpx 18rpx;
+  font-size: 28rpx;
+  color: rgba(0,0,0,.65);
+  color: rgba(var(--dora-text-color-rgb),.65);
+  width: 100%;
+  box-sizing: border-box
+}
+.dora-demo-block__bd {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  background-color: #fff;
+  background-color: var(--dora-background-color);
+  padding: 24rpx;
+  box-sizing: border-box
+}
+.dora-demo-block__bd--bordered.dora-demo-block__bd::after {
+  content: " ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  transform: scale(.5);
+  transform-origin: 0 0;
+  pointer-events: none;
+  box-sizing: border-box;
+  border: 0 solid var(--dora-border-color,var(--dora-color-step-10));
+  border: 0 solid var(--dora-border-color,var(--dora-color-step-10));
+  border-top-width: var(--dora-border-width,1PX);
+  border-top-width: var(--dora-border-width,1PX);
+  border-bottom-width: var(--dora-border-width,1PX);
+  border-bottom-width: var(--dora-border-width,1PX)
+}
+.dora-demo-block__bd > button,
+.dora-demo-block__bd__button {
+  margin: 0;
+  margin-bottom: 20rpx
+}
+.dora-demo-block__bd > button:last-child,
+.dora-demo-block__bd__button:last-child {
+  margin-bottom: 0
+}

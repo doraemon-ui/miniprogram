@@ -1,0 +1,42 @@
+@import "./variables.less";
+
+// DemoBlock styles
+// -----------------------------
+.@{demo-block-prefix-cls} {
+  &__hd {
+    padding: 15px 15px 9px;
+    font-size: 14px;
+    color: rgba(var(--dora-text-color-rgb), .65);
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  &__bd {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: var(--dora-background-color);
+    padding: 12px;
+    box-sizing: border-box;
+
+    &--bordered&::after {
+      .hairline(@border-color-base);
+
+      border-top-width: @border-width-base;
+      border-bottom-width: @border-width-base;
+    }
+
+    &__button,
+    > button {
+      margin: 0;
+      margin-bottom: 10px;
+    }
+
+    &__button:last-child,
+    > button:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+

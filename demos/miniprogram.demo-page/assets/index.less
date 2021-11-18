@@ -1,0 +1,53 @@
+@import "./variables.less";
+@import "./iconfont.less";
+
+// DemoPage styles
+// -----------------------------
+.@{demo-page-prefix-cls} {
+  position: relative;
+  min-height: 100%;
+  color: rgba(var(--dora-text-color-rgb), .85);
+  background-color: var(--dora-background-color);
+
+  &__hd {
+    position: relative;
+    padding: 40px;
+  }
+
+  &__bd {
+    padding-bottom: 40px;
+
+    &--spacing {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
+
+  &__ft {
+    padding-bottom: 10px;
+    text-align: center;
+  }
+
+  &__title {
+    text-align: left;
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+  &__desc {
+    margin-top: 5px;
+    color: rgba(var(--dora-text-color-rgb), .45);
+    text-align: left;
+    font-size: 14px;
+  }
+
+  &__darkmode {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+    line-height: 24px;
+  }
+}

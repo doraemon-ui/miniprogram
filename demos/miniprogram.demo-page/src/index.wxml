@@ -1,0 +1,12 @@
+<view class="{{ classes.wrap }}" data-dora-theme="{{ curTheme }}">
+  <view class="{{ classes.hd }}" wx:if="{{ title || desc }}">
+    <view class="{{ classes.title }}" wx:if="{{ title }}">{{ title }}</view>
+    <view class="{{ classes.desc }}" wx:if="{{ desc }}">{{ desc }}</view>
+    <block wx:if="{{ isAuto }}">
+      <view class="{{ classes.darkmode }}" bindtap="onIconClick"></view>
+    </block>
+  </view>
+  <view class="{{ classes.bd }}">
+    <slot />
+  </view>
+</view>
