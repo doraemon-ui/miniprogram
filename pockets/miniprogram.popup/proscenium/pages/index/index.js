@@ -1,24 +1,17 @@
 Page({
-  data: {
-    visible1: false,
-    visible2: false,
-    visible3: false,
-    visible4: false,
-    visible5: false,
-    visible6: false,
-  },
   onLoad () {
-    [1, 2, 3, 4, 5, 6].forEach((key) => {
-      this[`onOpen${key}`] = () => {
-        console.log(`onOpen${key}`)
-        this.setData({ [`visible${key}`]: true })
+    [...Array(7).keys()].forEach((key) => {
+      this.setData({ [`visible${key + 1}`]: false })
+      this[`onOpen${key + 1}`] = () => {
+        console.log(`onOpen${key + 1}`)
+        this.setData({ [`visible${key + 1}`]: true })
       }
-      this[`onClose${key}`] = () => {
-        console.log(`onClose${key}`)
-        this.setData({ [`visible${key}`]: false })
+      this[`onClose${key + 1}`] = () => {
+        console.log(`onClose${key + 1}`)
+        this.setData({ [`visible${key + 1}`]: false })
       }
-      this[`onClosed${key}`] = () => {
-        console.log(`onClosed${key}`)
+      this[`onClosed${key + 1}`] = () => {
+        console.log(`onClosed${key + 1}`)
       }
     })
   },

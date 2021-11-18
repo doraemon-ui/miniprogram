@@ -1,90 +1,114 @@
-<dora-popup
-  position="left"
-  bodyStyle="{{ { minWidth: '60vw' } }}"
-  visible="{{ visible1 }}"
-  bind:close="onClose1"
-  bind:closed="onClosed1"
+<demo-page
+  darkmode="auto"
+  title="Popup"
+  desc="弹出框"
+  clickable
 >
-  miniprogram.popup
-</dora-popup>
-
-<dora-popup
-  position="right"
-  bodyStyle="{{ { minWidth: '60vw' } }}"
-  visible="{{ visible2 }}"
-  bind:close="onClose2"
-  bind:closed="onClosed2"
->
-  miniprogram.popup
-</dora-popup>
-
-<dora-popup
-  position="top"
-  bodyStyle="{{ { minHeight: '40vw' } }}"
-  visible="{{ visible3 }}"
-  bind:close="onClose3"
-  bind:closed="onClosed3"
->
-  miniprogram.popup
-</dora-popup>
-
-<dora-popup
-  position="bottom"
-  bodyStyle="{{ { minHeight: '40vw' } }}"
-  visible="{{ visible4 }}"
-  bind:close="onClose4"
-  bind:closed="onClosed4"
->
-  miniprogram.popup
-</dora-popup>
-
-<dora-popup
-  position="center"
-  bodyStyle="{{ { minWidth: '75vw', minHeight: '120px' } }}"
-  visible="{{ visible5 }}"
-  bind:close="onClose5"
-  bind:closed="onClosed5"
->
-  miniprogram.popup
-</dora-popup>
-
-<dora-popup
-  position="bottom"
-  visible="{{ visible6 }}"
-  bind:close="onClose6"
-  bind:closed="onClosed6"
->
-  <scroll-view scroll-y="true" style="height: 30vh">
-    <view style="margin: 10px 0">miniprogram.popup</view>
-    <view style="margin: 10px 0">miniprogram.popup</view>
-    <view style="margin: 10px 0">miniprogram.popup</view>
-    <view style="margin: 10px 0">miniprogram.popup</view>
-    <view style="margin: 10px 0">miniprogram.popup</view>
-    <view style="margin: 10px 0">miniprogram.popup</view>
-    <view style="margin: 10px 0">miniprogram.popup</view>
-    <view style="margin: 10px 0">miniprogram.popup</view>
-    <view style="margin: 10px 0">miniprogram.popup</view>
-    <view style="margin: 10px 0">miniprogram.popup</view>
-    <view style="margin: 10px 0">miniprogram.popup</view>
-    <view style="margin: 10px 0">miniprogram.popup</view>
-    <view style="margin: 10px 0">miniprogram.popup</view>
-    <view style="margin: 10px 0">miniprogram.popup</view>
-  </scroll-view>
-</dora-popup>
-
-<view class="page" data-dora-theme="auto">
-  <view class="page__hd">
-    <view class="page__title">Popup</view>
-    <view class="page__desc">弹出框</view>
-  </view>
-  <view class="page__bd page__bd--spacing">
-    <view class="btn-area">
+  <demo-block title="不同位置">
+    <block>
       <button bindtap="onOpen1">左侧弹出</button>
+      <dora-popup
+        position="left"
+        bodyStyle="{{ { minWidth: '75vw' } }}"
+        visible="{{ visible1 }}"
+        bind:close="onClose1"
+        bind:closed="onClosed1"
+      >
+        miniprogram.popup
+      </dora-popup>
+    </block>
+
+    <block>
       <button bindtap="onOpen2">右侧弹出</button>
+      <dora-popup
+        position="right"
+        bodyStyle="{{ { minWidth: '75vw' } }}"
+        visible="{{ visible2 }}"
+        bind:close="onClose2"
+        bind:closed="onClosed2"
+      >
+        miniprogram.popup
+      </dora-popup>
+    </block>
+
+    <block>
       <button bindtap="onOpen3">顶部弹出</button>
+      <dora-popup
+        position="top"
+        bodyStyle="{{ { minHeight: '40vh' } }}"
+        visible="{{ visible3 }}"
+        bind:close="onClose3"
+        bind:closed="onClosed3"
+      >
+        miniprogram.popup
+      </dora-popup>
+    </block>
+
+    <block>
       <button bindtap="onOpen4">低部弹出</button>
+      <dora-popup
+        position="bottom"
+        bodyStyle="{{ { minHeight: '40vh' } }}"
+        visible="{{ visible4 }}"
+        bind:close="onClose4"
+        bind:closed="onClosed4"
+      >
+        miniprogram.popup
+      </dora-popup>
+    </block>
+
+    <block>
       <button bindtap="onOpen5">居中弹出</button>
+      <dora-popup
+        position="center"
+        bodyStyle="{{ { minWidth: '75vw', minHeight: '25vh' } }}"
+        visible="{{ visible5 }}"
+        bind:close="onClose5"
+        bind:closed="onClosed5"
+      >
+        miniprogram.popup
+      </dora-popup>
+    </block>
+  </demo-block>
+
+  <demo-block title="自定义样式">
+    <block>
       <button bindtap="onOpen6">内容超长滚动</button>
-    </view>
-  </view>
-</view>
+      <dora-popup
+        position="bottom"
+        visible="{{ visible6 }}"
+        bind:close="onClose6"
+        bind:closed="onClosed6"
+      >
+        <scroll-view scroll-y="true" style="height: 30vh">
+          <view style="margin: 10px 0">miniprogram.popup</view>
+          <view style="margin: 10px 0">miniprogram.popup</view>
+          <view style="margin: 10px 0">miniprogram.popup</view>
+          <view style="margin: 10px 0">miniprogram.popup</view>
+          <view style="margin: 10px 0">miniprogram.popup</view>
+          <view style="margin: 10px 0">miniprogram.popup</view>
+          <view style="margin: 10px 0">miniprogram.popup</view>
+          <view style="margin: 10px 0">miniprogram.popup</view>
+          <view style="margin: 10px 0">miniprogram.popup</view>
+          <view style="margin: 10px 0">miniprogram.popup</view>
+          <view style="margin: 10px 0">miniprogram.popup</view>
+          <view style="margin: 10px 0">miniprogram.popup</view>
+          <view style="margin: 10px 0">miniprogram.popup</view>
+          <view style="margin: 10px 0">miniprogram.popup</view>
+        </scroll-view>
+      </dora-popup>
+    </block>
+    <block>
+      <button bindtap="onOpen7">圆角的弹出层</button>
+      <dora-popup
+        position="bottom"
+        bodyStyle="{{ { borderTopLeftRadius: '12px', borderTopRightRadius: '12px', minHeight: '40vh' } }}"
+        visible="{{ visible7 }}"
+        bind:close="onClose7"
+        bind:closed="onClosed7"
+      >
+        miniprogram.popup
+      </dora-popup>
+    </block>
+  </demo-block>
+</demo-page>
