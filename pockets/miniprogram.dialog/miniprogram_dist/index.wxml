@@ -1,0 +1,80 @@
+<dora-popup
+  position="center"
+  bodyStyle="{{ { minWidth: '75vw', backgroundColor: 'unset', ...bodyStyle } }}"
+  mask="{{ mask }}"
+  maskClosable="{{ maskClosable }}"
+  visible="{{ popupVisible }}"
+  zIndex="{{ zIndex }}"
+  bind:close="onPopupClose"
+  bind:closed="onPopupClosed"
+>
+  <view class="dora-class {{ classes.wrap }}">
+    <view class="{{ classes.hd }}" wx:if="{{ image || closable }}">
+      <view class="{{ classes.image }}" wx:if="{{ image }}">
+        <image mode="widthFix" src="{{ image }}" class="{{ classes.img }}" />
+      </view>
+      <view class="{{ classes.close }}" wx:if="{{ closable }}" bindtap="onXClose">
+        <text class="{{ classes.x }}"></text>
+      </view>
+    </view>
+    <view class="{{ classes.bd }}">
+      <view class="{{ classes.title }}" wx:if="{{ title }}">{{ title }}</view>
+      <view class="{{ classes.content }}" wx:if="{{ content }}">{{ content }}</view>
+      <slot />
+    </view>
+    <view class="{{ classes.ft }}">
+      <view class="{{ classes.buttons }}" wx:if="{{ buttons.length > 0 }}">
+        <block wx:for="{{ buttons }}" wx:for-item="button" wx:key="index">
+            <button
+              class="{{ common.getClassName(button, prefixCls) }}"
+              disabled="{{ button.disabled }}"
+              open-type="{{ button.openType }}"
+              hover-class="{{ common.getHoverClass(button, prefixCls) }}"
+              hover-stop-propagation="{{ button.hoverStopPropagation }}"
+              hover-start-time="{{ button.hoverStartTime || 20 }}"
+              hover-stay-time="{{ button.hoverStayTime || 70 }}"
+              lang="{{ button.lang || 'en' }}"
+              bindgetuserinfo="onGetUserInfo"
+              session-from="{{ button.sessionFrom }}"
+              send-message-title="{{ button.sendMessageTitle }}"
+              send-message-path="{{ button.sendMessagePath }}"
+              send-message-img="{{ button.sendMessageImg }}"
+              show-message-card="{{ button.showMessageCard }}"
+              bindcontact="onContact"
+              bindgetphonenumber="onGetPhoneNumber"
+              app-parameter="{{ button.appParameter }}"
+              bindlaunchapp="onLaunchApp"
+              binderror="onError"
+              bindopensetting="onOpenSetting"
+              data-index="{{ index }}"
+              bindtap="onClick"
+            >
+              {{ button.text }}
+            </button>
+        </block>
+      </view>
+    </view>
+  </view>
+</dora-popup>
+<wxs module="common">
+  module.exports.getClassName = function(button, prefixCls) {
+    var cls = [prefixCls + '__button']
+    if (button.type) {
+      cls.push(prefixCls + '__button--' + button.type)
+    }
+    if (button.bold) {
+      cls.push(prefixCls + '__button--bold')
+    }
+    if (button.disabled) {
+      cls.push(prefixCls + '__button--disabled')
+    }
+    if (button.className) {
+      cls.push(button.className)
+    }
+    return cls.join(' ')
+  }
+  module.exports.getHoverClass = function(button, prefixCls) {
+    if (button.disabled) { return 'none' }
+    return button.hoverClass && button.hoverClass !== 'default' ? button.hoverClass : prefixCls + '__button--hover'
+  }
+</wxs>

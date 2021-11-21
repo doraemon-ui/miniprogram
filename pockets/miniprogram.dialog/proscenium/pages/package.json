@@ -1,0 +1,28 @@
+{
+  "name": "@doraemon-ui/miniprogram.dialog-proscenium",
+  "private": true,
+  "version": "0.0.1",
+  "description": "miniprogram dialog component demo for doraemon-ui",
+  "author": "skyvow",
+  "homepage": "",
+  "license": "MIT",
+  "main": "app.js",
+  "keywords": [
+    "doraemon-ui",
+    "miniprogram",
+    "dialog"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@doraemon-ui/miniprogram.animation-group": "^0.0.1-alpha.1",
+    "@doraemon-ui/miniprogram.backdrop": "^0.0.1-alpha.1",
+    "@doraemon-ui/miniprogram.core-js": "^0.0.2-alpha.6",
+    "@doraemon-ui/miniprogram.demo-block": "^0.0.1-alpha.1",
+    "@doraemon-ui/miniprogram.demo-page": "^0.0.1-alpha.1",
+    "@doraemon-ui/miniprogram.dialog": "^0.0.1-alpha.0",
+    "@doraemon-ui/miniprogram.popup": "^0.0.1-alpha.1",
+    "@doraemon-ui/style": "^0.0.1-alpha.6"
+  }
+}

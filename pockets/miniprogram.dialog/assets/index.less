@@ -1,0 +1,145 @@
+@import "./variables.less";
+
+// Dialog styles
+// -----------------------------
+.@{dialog-prefix-cls} {
+  position: relative;
+  background-color: @dialog-content-bg;
+  border: 0;
+  background-clip: padding-box;
+  height: 100%;
+  text-align: center;
+  overflow: hidden;
+  border-radius: @border-radius-lg;
+
+  &__title {
+    font-weight: 700;
+    font-size: @dialog-title-font-size;
+    color: @dialog-color;
+    margin-bottom: 12px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__bd {
+    font-size: @dialog-bd-font-size;
+    line-height: 1.4;
+    word-wrap: break-word;
+    word-break: break-all;
+    color: @text-color-secondary;
+    padding: @dialog-bd-padding;
+  }
+
+  &__ft {
+    position: relative;
+    line-height: 56px;
+    font-size: @dialog-title-font-size;
+    display: flex;
+
+    &:after {
+      .setTopLine(@border-color-split);
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    &-img {
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+      display: block;
+    }
+  }
+
+  &__close {
+    border: 0;
+    padding: 3px;
+    background-color: transparent;
+    outline: none;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    height: 21px;
+    width: 21px;
+  }
+
+  &__close-x {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .encoded-svg-background(delete);
+  }
+
+  &__buttons {
+    display: flex;
+    flex: 1;
+
+    &--horizontal {
+      .@{dialog-prefix-cls}__button {
+        &::after {
+          .setLeftLine(@border-color-split);
+        }
+
+        &:first-child::after {
+          display: none;
+        }
+      }
+    }
+
+    &--vertical {
+      display: block;
+      height: auto;
+
+      .@{dialog-prefix-cls}__button {
+        &::after {
+          .setTopLine(@border-color-split);
+        }
+      }
+    }
+  }
+
+  &__button {
+    .button-reset();
+
+    display: block;
+    flex: 1;
+    color: @dark !important;
+    position: relative;
+
+    .dialog-button-style(light, @light);
+    .dialog-button-style(stable, @stable);
+    .dialog-button-style(positive, @positive);
+    .dialog-button-style(calm, @calm);
+    .dialog-button-style(assertive, @assertive);
+    .dialog-button-style(balanced, @balanced);
+    .dialog-button-style(energized, @energized);
+    .dialog-button-style(royal, @royal);
+    .dialog-button-style(dark, @dark);
+
+    &--bold {
+      font-weight: 700 !important;
+    }
+
+    &--hover {
+      background-color: @active-state-bg !important;
+    }
+
+    &--disabled {
+      opacity: @disabled-opacity;
+    }
+  }
+}
+
+.dialog-button-style(@theme, @color) {
+  &--@{theme} {
+    color: @color !important;
+  }
+}
