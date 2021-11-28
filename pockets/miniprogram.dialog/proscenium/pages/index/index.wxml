@@ -46,7 +46,7 @@
   </demo-block>  
   <demo-block title="声明式">
     <block>
-      <button bindtap="onOpen1">最简单的小对话框</button>
+      <button bindtap="onOpen1">最简单的对话框</button>
       <dora-dialog
         title="天气箱"
         buttonClosable
@@ -99,7 +99,7 @@
     <block>
       <button bindtap="onOpen5">超长文本</button>
       <dora-dialog
-        title="注意"
+        title="哆啦A梦生气了"
         buttonClosable
         buttons="{{ [{ text: '哇嘎哒' }] }}"
         visible="{{ visible5 }}"
@@ -107,20 +107,9 @@
         bind:closed="onClosed5"
       >
         <scroll-view scroll-y="true" style="height: 30vh">
-          <view style="margin: 10px 0">miniprogram.dialog</view>
-          <view style="margin: 10px 0">miniprogram.dialog</view>
-          <view style="margin: 10px 0">miniprogram.dialog</view>
-          <view style="margin: 10px 0">miniprogram.dialog</view>
-          <view style="margin: 10px 0">miniprogram.dialog</view>
-          <view style="margin: 10px 0">miniprogram.dialog</view>
-          <view style="margin: 10px 0">miniprogram.dialog</view>
-          <view style="margin: 10px 0">miniprogram.dialog</view>
-          <view style="margin: 10px 0">miniprogram.dialog</view>
-          <view style="margin: 10px 0">miniprogram.dialog</view>
-          <view style="margin: 10px 0">miniprogram.dialog</view>
-          <view style="margin: 10px 0">miniprogram.dialog</view>
-          <view style="margin: 10px 0">miniprogram.dialog</view>
-          <view style="margin: 10px 0">miniprogram.dialog</view>
+          <block wx:for="{{ content5 }}" wx:key="index">
+            <view style="margin: 10px 0; text-align: left;">{{ item }}</view>
+          </block>
         </scroll-view>
       </dora-dialog>
     </block>

@@ -1,10 +1,14 @@
 import { dialog } from '@doraemon-ui/miniprogram.dialog'
+import { doraProp, doraQuote, dogShit } from '@doraemon-ui/miniprogram.demo-shared'
 
 Page({
+  data: {
+    content5: dogShit('哆啦A梦生气了', 300, 3).split('\n'),
+  },
   open () {
     dialog.open({
-      title: '竹蜻蜓',
-      content: '头戴竹蜻蜓的哆啦A梦',
+      title: '哆啦A梦常用道具',
+      content: doraProp.medium(),
       buttonClosable: true,
       buttons: [{
         text: '哇嘎哒',
@@ -19,8 +23,8 @@ Page({
   },
   alert () {
     dialog.alert({
-      title: '时光机',
-      content: '大雄的书桌抽屉',
+      title: '哆啦A梦经典语录',
+      content: doraQuote(),
     }, '#dora-dialog-alert')
   },
   confirm () {
