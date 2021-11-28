@@ -1,0 +1,36 @@
+{
+  "name": "@doraemon-ui/miniprogram.shared",
+  "private": false,
+  "version": "0.0.1-alpha.0",
+  "description": "miniprogram shared lib for doraemon-ui",
+  "author": "skyvow",
+  "homepage": "",
+  "license": "MIT",
+  "miniprogram": "miniprogram_dist",
+  "main": "miniprogram_dist/index.js",
+  "module": "miniprogram_dist/index.js",
+  "devMain": "src/index.ts",
+  "types": "index.d.ts",
+  "keywords": [
+    "doraemon-ui",
+    "miniprogram",
+    "shared"
+  ],
+  "scripts": {
+    "build:dev": "cross-env NODE_ENV=development ts-node --transpile-only --skip-project build.ts",
+    "build": "cross-env NODE_ENV=production ts-node --transpile-only --skip-project build.ts",
+    "test": "cross-env NODE_ENV=testing jest --coverage",
+    "clean": "cross-env rimraf miniprogram_dist/* .coverage-report/*",
+    "preversion": "npm run clean && npm run build && npm run test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@doraemon-ui/miniprogram.tools": "^0.0.2-alpha.12",
+    "cross-env": "^7.0.3",
+    "jest": "^27.0.6",
+    "rimraf": "^3.0.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
