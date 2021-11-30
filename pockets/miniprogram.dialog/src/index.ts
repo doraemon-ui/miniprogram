@@ -1,6 +1,7 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch, Event } from '@doraemon-ui/miniprogram.core-js'
+import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+import { NativeButtonHandle } from '@doraemon-ui/miniprogram.shared'
+import { DialogButton } from './dialog'
 const { classNames } = Doraemon.util
-import { DialogButton, DialogButtonHandle } from './dialog'
 
 @Component({
   props: {
@@ -104,7 +105,7 @@ class Dialog extends Doraemon {
   buttons: DialogButton[]
 
   get classes () {
-    const { prefixCls, verticalButtons } = this
+    const { prefixCls, verticalButtons, buttons: _buttons } = this
     const wrap = classNames(prefixCls)
     const hd = `${prefixCls}__hd`
     const title = `${prefixCls}__title`
@@ -118,7 +119,20 @@ class Dialog extends Doraemon {
     const buttons = classNames(`${prefixCls}__buttons`, {
       [`${prefixCls}__buttons--${verticalButtons ? 'vertical' : 'horizontal'}`]: true,
     })
-    const button = `${prefixCls}__button`
+    const button = _buttons.map((button) => {
+      const wrap = classNames(`${prefixCls}__button`, {
+        [`${prefixCls}__button--${button.type || 'dark'}`]: button.type || 'dark',
+        [`${prefixCls}__button--bold`]: button.bold,
+        [`${prefixCls}__button--disabled`]: button.disabled,
+        [`${button.className}`]: button.className,
+      })
+      const hover = button.hoverClass && button.hoverClass !== 'default' ? button.hoverClass : `${prefixCls}__button--hover`
+
+      return {
+        wrap,
+        hover,
+      }
+    })
 
     return {
       wrap,
@@ -171,7 +185,7 @@ class Dialog extends Doraemon {
     this.setPopupVisible(this.visible)
   }
 
-  async onAction (e, method: keyof DialogButtonHandle, closable: boolean = false) {
+  async onAction (e, method: keyof NativeButtonHandle<DialogButton>, closable: boolean = false) {
     const { index } = e.currentTarget.dataset
     const button = this.buttons[index]
     if (!button.disabled) {

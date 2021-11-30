@@ -10,7 +10,7 @@
 
 ### 示例代码
 
-[在开发者工具中预览效果](https://developers.weixin.qq.com/s/dNPW79mm7hvL)
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/KiqHdcmu70vw)
 
 <!-- tabs:start -->
 

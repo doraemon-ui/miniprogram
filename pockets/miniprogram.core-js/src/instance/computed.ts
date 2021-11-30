@@ -1,5 +1,5 @@
-import shallowEqual from 'shallowequal'
 import { isDev } from '../util/env'
+import { isEqual } from '../util/isEqual'
 import { warn } from '../util/warn'
 
 export function initComputed (vm, forceUpdate: boolean = false) {
@@ -20,7 +20,7 @@ export function initComputed (vm, forceUpdate: boolean = false) {
           if (isDev) {
             warn(`The computed property "${key}" is already defined as a prop.`, vm)
           }
-        } else if (!shallowEqual(vm._renderProxy.data[key], value)) {
+        } else if (!isEqual(vm._renderProxy.data[key], value)) {
           vm._renderProxy.setData({
             [key]: value,
           })

@@ -1,32 +1,13 @@
 import { Doraemon } from '@doraemon-ui/miniprogram.core-js'
-
-/**
- * 原生按钮组件的类型
- *
- * @interface NativeButtonProps
- */
-interface NativeButtonProps {
-  size?: 'default' | 'mini'
-  type?: 'default' | 'primary' | 'warn'
-  plain?: boolean
-  disabled?: boolean
-  loading?: boolean
-  formType?: 'submit' | 'reset'
-  openType?: 'contact' | 'share' | 'getPhoneNumber' | 'getUserInfo' | 'launchApp' | 'openSetting' | 'feedback'
-  hoverClass?: string
-  hoverStopPropagation?: boolean
-  hoverStartTime?: number
-  hoverStayTime?: number
-  lang?: 'en' | 'zh_CN' | 'zh_TW'
-  sessionFrom?: string
-  sendMessageTitle?: string
-  sendMessagePath?: string
-  sendMessageImg?: string
-  appParameter?: string
-  showMessageCard?: boolean
-}
-
-type GlobalTheme = 'light' | 'stable' | 'positive' | 'calm' | 'balanced' | 'energized' | 'assertive' | 'royal' | 'dark'
+import {
+  getCurrentDOM,
+  findComponentNode,
+  NativeButtonProps,
+  PresetColor,
+  DefaultButtonHandle,
+  NativeButtonHandle,
+  MPInst,
+} from '@doraemon-ui/miniprogram.shared'
 
 /**
  * 操作按钮的类型
@@ -41,45 +22,12 @@ export type DialogButton = Omit<
   /** 标题 */
   text?: string
   /** 按钮类型 */
-  type?: GlobalTheme
+  type?: PresetColor
   /** 是否文字加粗 */
   bold?: boolean
   /** 类名 */
   className?: string
-} & DialogButtonHandle
-
-/**
- * 默认事件类型
- *
- * @export
- */
-export type DefaultHandle<Detail = Record<string, any>> = (
-  button?: DialogButton,
-  index?: number,
-  detail?: Detail
-) => void | Promise<void>
-
-/**
- * 按钮事件的类型
- *
- * @export
- */
-export type DialogButtonHandle = {
-  /** 点击事件 */
-  onClick?: DefaultHandle<WechatMiniprogram.CustomEvent>
-  /** 获取用户信息回调 */
-  onGetUserInfo?: DefaultHandle<WechatMiniprogram.ButtonGetUserInfo>
-  /** 客服消息回调 */
-  onContact?: DefaultHandle<WechatMiniprogram.ButtonContact>
-  /** 获取用户手机号回调 */
-  onGetPhoneNumber?: DefaultHandle<WechatMiniprogram.ButtonGetPhoneNumber>
-  /** 打开 APP 成功的回调 */
-  onLaunchApp?: DefaultHandle<WechatMiniprogram.ButtonLaunchApp>
-  /** 当使用开放能力时，发生错误的回调 */
-  onError?: DefaultHandle<WechatMiniprogram.ButtonError>
-  /** 在打开授权设置页后回调 */
-  onOpenSetting?: DefaultHandle<WechatMiniprogram.ButtonOpenSetting>
-}
+} & NativeButtonHandle<DialogButton>
 
 /**
  * 对话框对应参数的类型
@@ -125,7 +73,7 @@ export type DialogOpenOptions = {
   /** 组件的选择器 */
   selector?: string,
   /** 页面的实例 */
-  inst?: DialogPageInst
+  inst?: MPInst
 }
 
 /**
@@ -143,22 +91,12 @@ export type DialogOpenProps = Omit<
   onClosed?: () => void
 }
 
-/**
- * 页面的实例
- *
- * @export
- */
-export type DialogPageInst = WechatMiniprogram.Page.Instance<
-  WechatMiniprogram.IAnyObject,
-  WechatMiniprogram.IAnyObject
->
-
 function open (props?: DialogOpenProps, options?: DialogOpenOptions): () => void
-function open (props?: DialogOpenProps, selector?: string, inst?: DialogPageInst): () => void
-function open (props?: DialogOpenProps, selector?: DialogOpenOptions | string, inst?: DialogPageInst): () => void {
+function open (props?: DialogOpenProps, selector?: string, inst?: MPInst): () => void
+function open (props?: DialogOpenProps, selector?: DialogOpenOptions | string, inst?: MPInst): () => void {
   let opts: DialogOpenOptions = {
     selector: '#dora-dialog',
-    inst: getCurrentPages()[getCurrentPages().length - 1],
+    inst: getCurrentDOM(),
   }
   if (typeof selector === 'string') {
     opts.selector = selector as string
@@ -171,7 +109,7 @@ function open (props?: DialogOpenProps, selector?: DialogOpenOptions | string, i
       ...selector as DialogOpenOptions,
     }
   }
-  const comp = opts.inst.selectComponent(opts.selector) as unknown as Doraemon
+  const comp = findComponentNode<Doraemon>(opts.selector, opts.inst)
   const vm = comp._renderProxy
   const { onClose, onClosed, ...restProps } = props
   vm.setData({ ...restProps, visible: true })
@@ -199,14 +137,14 @@ export type DialogAlertProps = Omit<
   /** 确定按钮的文字 */
   confirmText?: string
   /** 确定按钮的类型 */
-  confirmType?: GlobalTheme
+  confirmType?: PresetColor
   /** 确定按钮的点击事件 */
-  onConfirm?: DefaultHandle
+  onConfirm?: DefaultButtonHandle<DialogButton>
 }
 
 function alert (props?: DialogAlertProps, options?: DialogOpenOptions): Promise<void>
-function alert (props?: DialogAlertProps, selector?: string, inst?: DialogPageInst): Promise<void>
-function alert (props?: DialogAlertProps, selector?: DialogOpenOptions | string, inst?: DialogPageInst): Promise<void> {
+function alert (props?: DialogAlertProps, selector?: string, inst?: MPInst): Promise<void>
+function alert (props?: DialogAlertProps, selector?: DialogOpenOptions | string, inst?: MPInst): Promise<void> {
   const { confirmText, confirmType, onConfirm, ...restProps } = props
   return new Promise<void>((resolve) => {
     open.call(null, {
@@ -235,21 +173,21 @@ export type DialogConfirmProps = DialogAlertProps & {
   /** 取消按钮的文字 */
   cancelText?: string
   /** 取消按钮的类型 */
-  cancelType?: GlobalTheme
+  cancelType?: PresetColor
   /** 取消按钮的点击事件 */
-  onCancel?: DefaultHandle
+  onCancel?: DefaultButtonHandle<DialogButton>
 }
 
 function confirm (props?: DialogConfirmProps, options?: DialogOpenOptions): Promise<boolean>
-function confirm (props?: DialogConfirmProps, selector?: string, inst?: DialogPageInst): Promise<boolean>
-function confirm (props?: DialogConfirmProps, selector?: DialogOpenOptions | string, inst?: DialogPageInst): Promise<boolean> {
+function confirm (props?: DialogConfirmProps, selector?: string, inst?: MPInst): Promise<boolean>
+function confirm (props?: DialogConfirmProps, selector?: DialogOpenOptions | string, inst?: MPInst): Promise<boolean> {
   const { confirmText, confirmType, onConfirm, cancelText, cancelType, onCancel, ...restProps } = props
   return new Promise<boolean>((resolve) => {
     open.call(null, {
       ...restProps,
       buttonClosable: true,
       buttons: [{
-        type: cancelType ?? 'xxxxxxx',
+        type: cancelType ?? 'dark',
         text: cancelText ?? '取消',
         async onClick (...args) {
           await onCancel?.(...args)

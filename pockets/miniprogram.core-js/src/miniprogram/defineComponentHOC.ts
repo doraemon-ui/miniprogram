@@ -10,7 +10,7 @@ import { initProxy } from '../instance/proxy'
 import { initRefs } from '../instance/refs'
 import { initWatch } from '../instance/watch'
 import { setUpdatePerformance } from '../util/perf'
-import { syncProps } from './syncProps'
+import { syncPropsToData } from './syncPropsToData'
 
 export interface ComponentExternalOptions extends WechatMiniprogram.Component.ComponentOptions {
   /** 组件接受的外部样式类 */
@@ -36,22 +36,11 @@ export function defineComponentHOC (externalOptions: ComponentExternalOptions = 
     options.methods = options.methods || {}
     options.mixins = options.mixins || []
 
-    const props = initProps(componentInstance, options.props)
+    const defaultProps = initProps(componentInstance, options.props)
+    const defaultData = Object.keys(defaultProps).reduce((acc, name) => ({ ...acc, [name]: (defaultProps[name] as any).value }), {})
     const watch = initWatch(componentInstance, options.watch)
     const components = initComponents(componentInstance, options.components)
     const methods = initMethods(componentInstance, options.methods)
-
-    const syncBehavior = syncProps((props: any) => {
-      return Object.keys(options.computed).reduce((acc, key) => {
-        const userDef = options.computed[key]
-        const getter = typeof userDef === 'function' ? userDef : userDef.get
-        if (getter) {
-          const value = getter.call(props, props)
-          return { ...acc, [key]: value }
-        }
-        return acc
-      }, {})
-    })
 
     const componentConf: WechatMiniprogram.Component.Options<any, any, any> = {
       options: {
@@ -72,15 +61,15 @@ export function defineComponentHOC (externalOptions: ComponentExternalOptions = 
       },
       relations: components,
       behaviors: (Array.isArray(externalOptions.behaviors) ?
-        externalOptions.behaviors : []).concat(['wx://component-export', syncBehavior]),
+        externalOptions.behaviors : []).concat(['wx://component-export', syncPropsToData(options.computed)]),
       observers: {
         ...watch,
         ['**']: function defineComputed (newVal) {
           initComputed(this.$component)
         },
       },
-      properties: props,
-      data: {},
+      properties: defaultProps,
+      data: defaultData,
       methods,
       lifetimes: {
         created: function beforeCreate(this: ComponentRenderProxy<Doraemon>) {

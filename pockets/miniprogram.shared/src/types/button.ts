@@ -56,7 +56,7 @@ export interface NativeButtonProps {
  *
  * @export
  */
-export type DefaultHandle<Button = NativeButtonProps, Detail = Record<string, any>> = (
+export type DefaultButtonHandle<Button = NativeButtonProps, Detail = Record<string, any>> = (
   /** 按钮组件 */
   button?: Button,
   /** 索引值 */
@@ -74,17 +74,17 @@ export type DefaultHandle<Button = NativeButtonProps, Detail = Record<string, an
  */
 export interface NativeButtonHandle<Button = NativeButtonProps> {
   /** 点击事件 */
-  onClick?: DefaultHandle<Button, WechatMiniprogram.CustomEvent>
+  onClick?: DefaultButtonHandle<Button, WechatMiniprogram.CustomEvent>
   /** 获取用户信息回调 */
-  onGetUserInfo?: DefaultHandle<Button, WechatMiniprogram.ButtonGetUserInfo>
+  onGetUserInfo?: DefaultButtonHandle<Button, WechatMiniprogram.ButtonGetUserInfo>
   /** 客服消息回调 */
-  onContact?: DefaultHandle<Button, WechatMiniprogram.ButtonContact>
+  onContact?: DefaultButtonHandle<Button, WechatMiniprogram.ButtonContact>
   /** 获取用户手机号回调 */
-  onGetPhoneNumber?: DefaultHandle<Button, WechatMiniprogram.ButtonGetPhoneNumber>
+  onGetPhoneNumber?: DefaultButtonHandle<Button, WechatMiniprogram.ButtonGetPhoneNumber>
   /** 打开 APP 成功的回调 */
-  onLaunchApp?: DefaultHandle<Button, WechatMiniprogram.ButtonLaunchApp>
+  onLaunchApp?: DefaultButtonHandle<Button, WechatMiniprogram.ButtonLaunchApp>
   /** 当使用开放能力时，发生错误的回调 */
-  onError?: DefaultHandle<Button, WechatMiniprogram.ButtonError>
+  onError?: DefaultButtonHandle<Button, WechatMiniprogram.ButtonError>
   /** 在打开授权设置页后回调 */
-  onOpenSetting?: DefaultHandle<Button, WechatMiniprogram.ButtonOpenSetting>
+  onOpenSetting?: DefaultButtonHandle<Button, WechatMiniprogram.ButtonOpenSetting>
 }

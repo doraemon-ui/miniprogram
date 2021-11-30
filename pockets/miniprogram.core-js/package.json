@@ -25,12 +25,10 @@
   },
   "dependencies": {
     "classnames": "^2.3.1",
-    "shallowequal": "^1.1.0",
     "style-object-to-css-string": "^1.0.1"
   },
   "devDependencies": {
     "@doraemon-ui/miniprogram.tools": "^0.0.2-alpha.16",
-    "@types/shallowequal": "^1.1.1",
     "cross-env": "^7.0.3",
     "jest": "^27.0.6",
     "rimraf": "^3.0.2"

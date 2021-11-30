@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.shared.
  * © 2021 - 2021 Doraemon UI.
- * Built on 2021-11-28, 16:59:03.
+ * Built on 2021-11-30, 15:00:21.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.17.
  */
 
@@ -9,11 +9,10 @@
  * 判断小程序环境
  *
  * @export
- * @param {string} [api='wx']
  * @return {*}  {boolean}
  */
-function canUseMP(api = 'wx') {
-    return typeof self[api] !== 'undefined';
+function canUseMP() {
+    return typeof wx !== 'undefined' && typeof getCurrentPages !== 'undefined';
 }
 
 /**
@@ -23,7 +22,7 @@ function canUseMP(api = 'wx') {
  * @return {*}  {(MPInst | null)}
  */
 function getCurrentDOM() {
-    return canUseMP('getCurrentPages') ? getCurrentPages()[getCurrentPages().length - 1] : null;
+    return canUseMP() ? getCurrentPages()[getCurrentPages().length - 1] : null;
 }
 
 /**

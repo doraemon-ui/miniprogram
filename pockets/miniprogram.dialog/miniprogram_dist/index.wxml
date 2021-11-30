@@ -26,10 +26,10 @@
       <view class="{{ classes.buttons }}" wx:if="{{ buttons.length > 0 }}">
         <block wx:for="{{ buttons }}" wx:for-item="button" wx:key="index">
             <button
-              class="{{ common.getClassName(button, prefixCls) }}"
+              class="{{ classes.button[index].wrap }}"
               disabled="{{ button.disabled }}"
               open-type="{{ button.openType }}"
-              hover-class="{{ common.getHoverClass(button, prefixCls) }}"
+              hover-class="{{ !button.disabled ? classes.button[index].hover : 'none' }}"
               hover-stop-propagation="{{ button.hoverStopPropagation }}"
               hover-start-time="{{ button.hoverStartTime || 20 }}"
               hover-stay-time="{{ button.hoverStayTime || 70 }}"
@@ -56,25 +56,3 @@
     </view>
   </view>
 </dora-popup>
-<wxs module="common">
-  module.exports.getClassName = function(button, prefixCls) {
-    var cls = [prefixCls + '__button']
-    if (button.type) {
-      cls.push(prefixCls + '__button--' + button.type)
-    }
-    if (button.bold) {
-      cls.push(prefixCls + '__button--bold')
-    }
-    if (button.disabled) {
-      cls.push(prefixCls + '__button--disabled')
-    }
-    if (button.className) {
-      cls.push(button.className)
-    }
-    return cls.join(' ')
-  }
-  module.exports.getHoverClass = function(button, prefixCls) {
-    if (button.disabled) { return 'none' }
-    return button.hoverClass && button.hoverClass !== 'default' ? button.hoverClass : prefixCls + '__button--hover'
-  }
-</wxs>

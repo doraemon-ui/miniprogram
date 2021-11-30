@@ -1,13 +1,14 @@
 /**
  * @doraemon-ui/miniprogram.dialog.
  * © 2021 - 2021 Doraemon UI.
- * Built on 2021-11-21, 21:20:54.
+ * Built on 2021-11-30, 15:05:17.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.17.
  */
+import { getCurrentDOM, findComponentNode, } from '@doraemon-ui/miniprogram.shared';
 function open(props, selector, inst) {
     let opts = {
         selector: '#dora-dialog',
-        inst: getCurrentPages()[getCurrentPages().length - 1],
+        inst: getCurrentDOM(),
     };
     if (typeof selector === 'string') {
         opts.selector = selector;
@@ -21,7 +22,7 @@ function open(props, selector, inst) {
             ...selector,
         };
     }
-    const comp = opts.inst.selectComponent(opts.selector);
+    const comp = findComponentNode(opts.selector, opts.inst);
     const vm = comp._renderProxy;
     const { onClose, onClosed, ...restProps } = props;
     vm.setData({ ...restProps, visible: true });
@@ -64,7 +65,7 @@ function confirm(props, selector, inst) {
             ...restProps,
             buttonClosable: true,
             buttons: [{
-                    type: cancelType ?? 'xxxxxxx',
+                    type: cancelType ?? 'dark',
                     text: cancelText ?? '取消',
                     async onClick(...args) {
                         await onCancel?.(...args);

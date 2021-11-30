@@ -8,5 +8,5 @@ import { canUseMP } from './canUseMP'
  * @return {*}  {(MPInst | null)}
  */
 export function getCurrentDOM (): MPInst | null {
-  return canUseMP('getCurrentPages') ? getCurrentPages()[getCurrentPages().length - 1] : null
+  return canUseMP() ? getCurrentPages()[getCurrentPages().length - 1] : null
 }

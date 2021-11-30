@@ -1,60 +1,13 @@
 /**
  * @doraemon-ui/miniprogram.core-js.
  * © 2021 - 2021 Doraemon UI.
- * Built on 2021-10-29, 13:43:33.
+ * Built on 2021-11-30, 14:19:58.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.17.
  */
 
 function getDefaultExportFromCjs (x) {
 	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
 }
-
-//
-
-var shallowequal = function shallowEqual(objA, objB, compare, compareContext) {
-  var ret = compare ? compare.call(compareContext, objA, objB) : void 0;
-
-  if (ret !== void 0) {
-    return !!ret;
-  }
-
-  if (objA === objB) {
-    return true;
-  }
-
-  if (typeof objA !== "object" || !objA || typeof objB !== "object" || !objB) {
-    return false;
-  }
-
-  var keysA = Object.keys(objA);
-  var keysB = Object.keys(objB);
-
-  if (keysA.length !== keysB.length) {
-    return false;
-  }
-
-  var bHasOwnProperty = Object.prototype.hasOwnProperty.bind(objB);
-
-  // Test for A's keys different from B.
-  for (var idx = 0; idx < keysA.length; idx++) {
-    var key = keysA[idx];
-
-    if (!bHasOwnProperty(key)) {
-      return false;
-    }
-
-    var valueA = objA[key];
-    var valueB = objB[key];
-
-    ret = compare ? compare.call(compareContext, valueA, valueB, key) : void 0;
-
-    if (ret === false || (ret === void 0 && valueA !== valueB)) {
-      return false;
-    }
-  }
-
-  return true;
-};
 
 var classnames = {exports: {}};
 
@@ -381,6 +334,29 @@ function initProxy(vm) {
     }
 }
 
+function isEqual(x, y) {
+    if (x === y) {
+        return true;
+    }
+    if (!(typeof x == 'object' && x != null) || !(typeof y == 'object' && y != null)) {
+        return false;
+    }
+    if (Object.keys(x).length != Object.keys(y).length) {
+        return false;
+    }
+    for (var prop in x) {
+        if (y.hasOwnProperty(prop)) {
+            if (!isEqual(x[prop], y[prop])) {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
+    }
+    return true;
+}
+
 let uid = 0;
 let cid = 1;
 class Doraemon {
@@ -459,7 +435,7 @@ class Doraemon {
      */
     static util = {
         warn,
-        shallowEqual: shallowequal,
+        isEqual,
         classNames,
         styleToCssString,
     };
@@ -851,7 +827,7 @@ function initComputed(vm, forceUpdate = false) {
             if (getter) {
                 const value = getter.call(vm, vm);
                 if (vm.$options.props && key in vm.$options.props) ;
-                else if (!shallowequal(vm._renderProxy.data[key], value)) {
+                else if (!isEqual(vm._renderProxy.data[key], value)) {
                     vm._renderProxy.setData({
                         [key]: value,
                     });
@@ -1082,11 +1058,22 @@ if (inMiniprogram) {
     };
 }
 
-function syncProps(cb) {
+function syncPropsToData(computed) {
+    const sync = (data) => {
+        return Object.keys(computed).reduce((acc, key) => {
+            const userDef = computed[key];
+            const getter = typeof userDef === 'function' ? userDef : userDef.get;
+            if (getter) {
+                const value = getter.call(data, data);
+                return { ...acc, [key]: value };
+            }
+            return acc;
+        }, {});
+    };
     return Behavior({
         definitionFilter(defFields) {
             defFields.data = defFields.data || {};
-            defFields.data = Object.assign(defFields.data, cb(defFields.data));
+            defFields.data = Object.assign(defFields.data, sync(defFields.data));
         },
     });
 }
@@ -1103,21 +1090,11 @@ function defineComponentHOC(externalOptions = {}) {
         options.components = options.components || {};
         options.methods = options.methods || {};
         options.mixins = options.mixins || [];
-        const props = initProps(componentInstance, options.props);
+        const defaultProps = initProps(componentInstance, options.props);
+        const defaultData = Object.keys(defaultProps).reduce((acc, name) => ({ ...acc, [name]: defaultProps[name].value }), {});
         const watch = initWatch(componentInstance, options.watch);
         const components = initComponents(componentInstance, options.components);
         const methods = initMethods(componentInstance, options.methods);
-        const syncBehavior = syncProps((props) => {
-            return Object.keys(options.computed).reduce((acc, key) => {
-                const userDef = options.computed[key];
-                const getter = typeof userDef === 'function' ? userDef : userDef.get;
-                if (getter) {
-                    const value = getter.call(props, props);
-                    return { ...acc, [key]: value };
-                }
-                return acc;
-            }, {});
-        });
         const componentConf = {
             options: {
                 multipleSlots: typeof externalOptions.multipleSlots !== 'undefined' ?
@@ -1135,15 +1112,15 @@ function defineComponentHOC(externalOptions = {}) {
             },
             relations: components,
             behaviors: (Array.isArray(externalOptions.behaviors) ?
-                externalOptions.behaviors : []).concat(['wx://component-export', syncBehavior]),
+                externalOptions.behaviors : []).concat(['wx://component-export', syncPropsToData(options.computed)]),
             observers: {
                 ...watch,
                 ['**']: function defineComputed(newVal) {
                     initComputed(this.$component);
                 },
             },
-            properties: props,
-            data: {},
+            properties: defaultProps,
+            data: defaultData,
             methods,
             lifetimes: {
                 created: function beforeCreate() {

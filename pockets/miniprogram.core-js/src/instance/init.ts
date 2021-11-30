@@ -1,4 +1,3 @@
-import shallowEqual from 'shallowequal'
 import classNames from 'classnames'
 import styleToCssString from 'style-object-to-css-string'
 import { warn } from '../util/warn'
@@ -8,6 +7,7 @@ import { eventsMixin, renderMixin, stateMixin } from './mixin'
 import { proxy } from './proxy'
 import { config } from './config'
 import { isDev } from '../util/env'
+import { isEqual } from '../util/isEqual'
 
 let uid: number = 0
 let cid: number = 1
@@ -104,7 +104,7 @@ class Doraemon {
    */
   static util = {
     warn,
-    shallowEqual,
+    isEqual,
     classNames,
     styleToCssString,
   }

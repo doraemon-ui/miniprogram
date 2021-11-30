@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.dialog.
  * © 2021 - 2021 Doraemon UI.
- * Built on 2021-11-21, 21:20:54.
+ * Built on 2021-11-30, 15:05:17.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.17.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -40,7 +40,7 @@ let Dialog = class Dialog extends Doraemon {
     content;
     buttons;
     get classes() {
-        const { prefixCls, verticalButtons } = this;
+        const { prefixCls, verticalButtons, buttons: _buttons } = this;
         const wrap = classNames(prefixCls);
         const hd = `${prefixCls}__hd`;
         const title = `${prefixCls}__title`;
@@ -54,7 +54,19 @@ let Dialog = class Dialog extends Doraemon {
         const buttons = classNames(`${prefixCls}__buttons`, {
             [`${prefixCls}__buttons--${verticalButtons ? 'vertical' : 'horizontal'}`]: true,
         });
-        const button = `${prefixCls}__button`;
+        const button = _buttons.map((button) => {
+            const wrap = classNames(`${prefixCls}__button`, {
+                [`${prefixCls}__button--${button.type || 'dark'}`]: button.type || 'dark',
+                [`${prefixCls}__button--bold`]: button.bold,
+                [`${prefixCls}__button--disabled`]: button.disabled,
+                [`${button.className}`]: button.className,
+            });
+            const hover = button.hoverClass && button.hoverClass !== 'default' ? button.hoverClass : `${prefixCls}__button--hover`;
+            return {
+                wrap,
+                hover,
+            };
+        });
         return {
             wrap,
             hd,
