@@ -1,0 +1,6 @@
+<view
+  class="dora-class {{ classes.wrap }}"
+  style="{{ extStyle }}"
+  hidden="{{ hidden }}"
+  bindtap="onClick"
+/>

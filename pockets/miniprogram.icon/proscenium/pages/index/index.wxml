@@ -1,0 +1,17 @@
+<demo-page
+  darkmode="auto"
+  title="Icon"
+  desc="图标"
+  clickable
+>
+  <demo-block title="Basic">
+    <view class="grid">
+      <block wx:for="{{ icons }}" wx:for-item="icon" wx:key="index">
+        <view class="grid__item">
+          <dora-icon type="{{ icon }}" />
+          <view class="grid__label">{{ icon }}</view>
+        </view>
+      </block>
+    </view>
+  </demo-block>
+</demo-page>
