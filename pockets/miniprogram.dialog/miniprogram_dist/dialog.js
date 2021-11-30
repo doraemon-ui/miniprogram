@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.dialog.
  * © 2021 - 2021 Doraemon UI.
- * Built on 2021-11-30, 15:16:27.
+ * Built on 2021-11-30, 15:22:19.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.17.
  */
 import { getCurrentDOM, findComponentNode, } from '@doraemon-ui/miniprogram.shared';
