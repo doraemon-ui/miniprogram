@@ -29,7 +29,7 @@
     "@doraemon-ui/style": "^0.0.1-alpha.6"
   },
   "devDependencies": {
-    "@doraemon-ui/cli": "^0.0.2-alpha.12",
+    "@doraemon-ui/cli": "^0.0.2-alpha.35",
     "cross-env": "^7.0.3",
     "jest": "^27.0.6",
     "rimraf": "^3.0.2"
