@@ -9,7 +9,7 @@
   height: 100%;
   text-align: center;
   overflow: hidden;
-  border-radius: 12rpx
+  border-radius: 24rpx
 }
 .dora-dialog__title {
   font-weight: 700;

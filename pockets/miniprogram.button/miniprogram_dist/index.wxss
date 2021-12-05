@@ -2,7 +2,6 @@
 
 .dora-button {
   padding: 0;
-  border-radius: 0;
   color: inherit!important;
   background: 0 0!important;
   font-size: inherit;
@@ -22,7 +21,7 @@
   min-width: 104rpx;
   min-height: 88rpx!important;
   border: none;
-  border-radius: 8rpx;
+  border-radius: 0;
   vertical-align: middle;
   text-align: center;
   text-overflow: ellipsis;
@@ -59,6 +58,15 @@
 }
 .dora-button--bordered {
   border: 2rpx solid transparent
+}
+.dora-button--border-radius {
+  border-radius: 16rpx
+}
+.dora-button--large.dora-button--border-radius {
+  border-radius: 24rpx
+}
+.dora-button--small.dora-button--border-radius {
+  border-radius: 8rpx
 }
 .dora-button--disabled {
   opacity: .4!important

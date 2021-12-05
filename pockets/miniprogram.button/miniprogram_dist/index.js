@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.button.
  * © 2021 - 2021 Doraemon UI.
- * Built on 2021-11-30, 15:15:10.
+ * Built on 2021-12-05, 20:13:40.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.17.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -28,7 +28,7 @@ let Button = class Button extends Doraemon {
      */
     darkmode;
     get classes() {
-        const { prefixCls, hoverClass, type, size, block, full, clear, outline, bordered, disabled } = this;
+        const { prefixCls, hoverClass, type, size, block, full, clear, outline, bordered, borderRadius, disabled } = this;
         const wrap = classNames(prefixCls, {
             [`${prefixCls}--${type}`]: type,
             [`${prefixCls}--${size}`]: size,
@@ -37,6 +37,7 @@ let Button = class Button extends Doraemon {
             [`${prefixCls}--clear`]: clear,
             [`${prefixCls}--outline`]: outline,
             [`${prefixCls}--bordered`]: bordered,
+            [`${prefixCls}--border-radius`]: borderRadius,
             [`${prefixCls}--disabled`]: disabled,
         });
         const hover = hoverClass && hoverClass !== 'default' ? hoverClass : `${prefixCls}--hover`;
@@ -118,6 +119,10 @@ Button = __decorate([
                 default: false,
             },
             bordered: {
+                type: Boolean,
+                default: true,
+            },
+            borderRadius: {
                 type: Boolean,
                 default: true,
             },

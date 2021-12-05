@@ -10,7 +10,7 @@
   min-width: 192rpx;
   width: -moz-fit-content;
   width: fit-content;
-  border-radius: 8rpx;
+  border-radius: 16rpx;
   color: #fff;
   color: var(--dora-white)
 }

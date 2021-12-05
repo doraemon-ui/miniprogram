@@ -14,7 +14,7 @@
   min-width: (@button-padding-base * 3) + @button-font-size-base;
   min-height: @button-height-base !important;
   border: none;
-  border-radius: @button-border-radius;
+  border-radius: 0;
   vertical-align: middle;
   text-align: center;
   text-overflow: ellipsis;
@@ -40,6 +40,18 @@
 
   &--bordered {
     border: 1px solid transparent;
+  }
+
+  &--border-radius {
+    border-radius: @button-border-radius-base;
+  }
+
+  &--large&--border-radius {
+    border-radius: @button-border-radius-lg;
+  }
+
+  &--small&--border-radius {
+    border-radius: @button-border-radius-sm;
   }
 
   &--disabled {

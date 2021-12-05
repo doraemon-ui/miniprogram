@@ -35,6 +35,10 @@ const { classNames } = Doraemon.util
       type: Boolean,
       default: true,
     },
+    borderRadius: {
+      type: Boolean,
+      default: true,
+    },
     size: {
       type: String,
       default: 'default',
@@ -119,7 +123,7 @@ class Button extends Doraemon {
   darkmode!: string
 
   get classes () {
-    const { prefixCls, hoverClass, type, size, block, full, clear, outline, bordered, disabled } = this as any
+    const { prefixCls, hoverClass, type, size, block, full, clear, outline, bordered, borderRadius, disabled } = this as any
     const wrap = classNames(prefixCls, {
       [`${prefixCls}--${type}`]: type,
       [`${prefixCls}--${size}`]: size,
@@ -128,6 +132,7 @@ class Button extends Doraemon {
       [`${prefixCls}--clear`]: clear,
       [`${prefixCls}--outline`]: outline,
       [`${prefixCls}--bordered`]: bordered,
+      [`${prefixCls}--border-radius`]: borderRadius,
       [`${prefixCls}--disabled`]: disabled,
     })
     const hover = hoverClass && hoverClass !== 'default' ? hoverClass : `${prefixCls}--hover`

@@ -2,6 +2,18 @@
 
 按钮组件用于响应用户点击行为，触发相应的业务逻辑，预设 9 种颜色 `light`, `stable`, `positive`, `calm`, `assertive`, `balanced`, `energized`, `royal`, `dark` 可选用。
 
+## 安装
+
+我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
+
+```bash
+npm install --save @doraemon-ui/miniprogram.button
+# or
+yarn add @doraemon-ui/miniprogram.button
+```
+
+如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
+
 ## 使用指南
 
 ### 在 page.json 中引入组件
@@ -10,7 +22,7 @@
 
 ### 示例代码
 
-[在开发者工具中预览效果](https://developers.weixin.qq.com/s/rqGGc5ma7rsz)
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/CJmXSkmM7dvX)
 
 !> 目前，设置了 form-type 的 button 只会对当前组件中的 form 有效。因而，将 button 封装在自定义组件中，而 form 在自定义组件外，将会使这个 button 的 form-type 失效。
 
@@ -44,6 +56,7 @@
 | full | `boolean` | 是否通栏 | false |
 | outline | `boolean` | 是否镂空 | false |
 | bordered | `boolean` | 是否带边框 | true |
+| borderRadius | `boolean` | 是否带圆角 | true |
 | size | `string` | 按钮的大小，可选值为 small、default、large | default |
 | disabled | `boolean` | 是否禁用 | false |
 | loading | `boolean` | 名称前是否带 loading 图标 | false |

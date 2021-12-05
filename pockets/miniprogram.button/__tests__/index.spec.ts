@@ -47,6 +47,12 @@ describe('Button', () => {
     expect(wrapper.querySelectorAll('.dora-button--bordered').length).toBe(0)
   })
 
+  test('should support to change border radius', () => {
+    const wrapper = simulate.render(id, { borderRadius: false })
+    wrapper.attach(document.createElement('parent-wrapper'))
+    expect(wrapper.querySelectorAll('.dora-button--border-radius').length).toBe(0)
+  })
+
   test('should support to change loading', () => {
     const wrapper = simulate.render(id, { loading: true })
     wrapper.attach(document.createElement('parent-wrapper'))
