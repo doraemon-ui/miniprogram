@@ -22,7 +22,7 @@ yarn add @doraemon-ui/miniprogram.backdrop
 
 ### 示例代码
 
-[在开发者工具中预览效果](https://developers.weixin.qq.com/s/Nhg5JxmQ75ub)
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/52pqFkmm7XvC)
 
 <!-- tabs:start -->
 

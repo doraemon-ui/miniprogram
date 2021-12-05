@@ -14,82 +14,6 @@ page {
   -webkit-tap-highlight-color: transparent;
 }
 
-.page {
-  color: rgba(0, 0, 0, .85);
-  color: rgba(var(--dora-text-color-rgb), .85);
-  background-color: #fff;
-  background-color: var(--dora-background-color);
-}
-
-.page__hd {
-  padding: 40px;
-}
-
-.page__bd {
-  padding-bottom: 40px;
-}
-
-.page__bd--spacing {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-.page__ft {
-  padding-bottom: 10px;
-  text-align: center;
-}
-
-.page__title {
-  text-align: left;
-  font-size: 20px;
-  font-weight: 400;
-}
-
-.page__desc {
-  margin-top: 5px;
-  color: rgba(0, 0, 0, .45);
-  color: rgba(var(--dora-text-color-rgb), .45);
-  text-align: left;
-  font-size: 14px;
-}
-
-.page__placeholder {
-  background-color: #ebebef;
-  color: #bbb;
-  text-align: center;
-  height: 30px;
-  line-height: 30px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.page__sub-title {
-  padding: 30rpx 30rpx 18rpx;
-  font-size: 28rpx;
-  color: rgba(0, 0, 0, .65);
-  color: rgba(var(--dora-text-color-rgb), .65);
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.button-sp-area {
-  margin: 20px auto 0;
-  width: 80%;
-  text-align: center;
-}
-
-.btn-area {
-  margin: 1.17647059em 15px 0.3em;
-}
-
-.btn-area button {
-  margin-bottom: 10px;
-}
-
-.btn-area button:last-child {
-  margin-bottom: 0;
-}
-
 .text-left {
   text-align: left;
 }
@@ -100,10 +24,4 @@ page {
 
 .text-right {
   text-align: right;
-}
-
-.btn-group {
-  position: relative;
-  z-index: 1010;
-  margin-bottom: 50px;
 }

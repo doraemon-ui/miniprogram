@@ -2,6 +2,18 @@
 
 可以折叠/展开的内容区域。
 
+## 安装
+
+我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
+
+```bash
+npm install --save @doraemon-ui/miniprogram.accordion
+# or
+yarn add @doraemon-ui/miniprogram.accordion
+```
+
+如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
+
 ## 使用指南
 
 ### 在 page.json 中引入组件
@@ -10,7 +22,7 @@
 
 ### 示例代码
 
-[在开发者工具中预览效果](https://developers.weixin.qq.com/s/rqGGc5ma7rsz)
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/psq5Wkmp7qvo)
 
 <!-- tabs:start -->
 

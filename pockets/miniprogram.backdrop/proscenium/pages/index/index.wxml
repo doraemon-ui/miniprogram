@@ -1,15 +1,15 @@
-<dora-backdrop id="dora-backdrop" bind:afterShow="afterShow" bind:afterClose="afterClose" />
-
-<view class="page" data-dora-theme="auto">
-  <view class="page__hd">
-    <view class="page__title">Backdrop</view>
-    <view class="page__desc">背景幕</view>
-  </view>
-  <view class="page__bd page__bd--spacing">
-    <view class="btn-area btn-group">
-      <button bindtap="retain">保持背景幕 retain</button>
-      <button bindtap="release">释放背景幕 release</button>
-    </view>
-    <view class="text-center">背景幕锁：{{ locks }}</view>
-  </view>
-</view>
+<demo-page
+  darkmode="auto"
+  title="Backdrop"
+  desc="背景幕"
+  clickable
+>
+  <demo-block title="Basic">
+    <block>
+      <button bindtap="retain" style="z-index: 1010;">保持背景幕 retain</button>
+      <button bindtap="release" style="z-index: 1010;">释放背景幕 release</button>
+      <button style="z-index: 1010;">背景幕锁：{{ locks }}</button>
+      <dora-backdrop id="dora-backdrop" bind:afterShow="afterShow" bind:afterClose="afterClose" />
+    </block>
+  </demo-block>
+</demo-page>

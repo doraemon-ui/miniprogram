@@ -1,6 +1,8 @@
 {
   "navigationBarTitleText": "List",
   "usingComponents": {
+    "demo-page": "@doraemon-ui/miniprogram.demo-page/index",
+    "demo-block": "@doraemon-ui/miniprogram.demo-block/index",
     "dora-list": "@doraemon-ui/miniprogram.list/index",
     "dora-list-item": "@doraemon-ui/miniprogram.list/item"
   }

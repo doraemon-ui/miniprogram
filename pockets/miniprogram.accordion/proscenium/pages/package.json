@@ -14,6 +14,8 @@
   "author": "skyvow <724355924@qq.com>",
   "license": "MIT",
   "dependencies": {
-    "@doraemon-ui/miniprogram.accordion": "0.0.2-alpha.16"
+    "@doraemon-ui/miniprogram.accordion": "0.0.2-alpha.26",
+    "@doraemon-ui/miniprogram.demo-block": "^0.0.1-alpha.2",
+    "@doraemon-ui/miniprogram.demo-page": "^0.0.1-alpha.2"
   }
 }

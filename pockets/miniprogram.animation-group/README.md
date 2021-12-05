@@ -11,6 +11,18 @@
 - `-exit-active`: 离开过渡的结束状态，在过渡过程完成之后移除
 - `-exit-done`: 离开过渡的完成状态
 
+## 安装
+
+我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
+
+```bash
+npm install --save @doraemon-ui/miniprogram.animation-group
+# or
+yarn add @doraemon-ui/miniprogram.animation-group
+```
+
+如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
+
 ## 使用指南
 
 ### 在 page.json 中引入组件

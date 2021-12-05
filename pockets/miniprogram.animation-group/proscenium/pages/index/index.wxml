@@ -1,14 +1,13 @@
-<view class="page" data-dora-theme="auto">
-  <view class="page__hd">
-    <view class="page__title">AnimationGroup</view>
-    <view class="page__desc">动画组</view>
-  </view>
-  <view class="page__bd">
-    <dora-list>
-      <block wx:for="{{ animations }}" wx:key="index">
-        <dora-list-item title="{{ item }}" isLink data-index="{{ index }}" bind:click="onClick" />
-      </block>
-    </dora-list>
+<demo-page
+  darkmode="auto"
+  title="AnimationGroup"
+  desc="动画组"
+  clickable
+>
+  <demo-block title="Basic">
+    <block wx:for="{{ animations }}" wx:key="index">
+      <button data-index="{{ index }}" bindtap="onClick">{{ item }}</button>
+    </block>
     <dora-animation-group
       dora-class="example"
       in="{{ example.in }}"
@@ -25,5 +24,5 @@
     >
       {{ example.animation }}
     </dora-animation-group>
-  </view>
-</view>
+  </demo-block>
+</demo-page>  
