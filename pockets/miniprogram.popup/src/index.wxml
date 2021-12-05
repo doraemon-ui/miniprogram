@@ -2,6 +2,8 @@
   id="dora-backdrop"
   wx:if="{{ mask }}"
   bind:click="onMaskClick"
+  transparent="{{ maskTransparent }}"
+  wrapStyle="{{ maskStyle }}"
   zIndex="{{ zIndex }}"
 />
 <view class="dora-class {{ classes.wrap }}">

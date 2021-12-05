@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.backdrop.
  * © 2021 - 2021 Doraemon UI.
- * Built on 2021-11-30, 15:15:53.
+ * Built on 2021-12-04, 23:08:45.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.17.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -23,6 +23,7 @@ let Backdrop = class Backdrop extends Doraemon {
     transparent;
     zIndex;
     classNames;
+    wrapStyle;
     get classes() {
         const { prefixCls, transparent } = this;
         const wrap = classNames(prefixCls, {
@@ -31,6 +32,15 @@ let Backdrop = class Backdrop extends Doraemon {
         return {
             wrap,
         };
+    }
+    /**
+     * 组件样式
+     *
+     * @readonly
+     * @memberof Popup
+     */
+    get extStyle() {
+        return this.wrapStyle ? { ...this.wrapStyle, zIndex: this.zIndex } : { zIndex: this.zIndex };
     }
     /**
      * 是否显示蒙层
@@ -98,6 +108,12 @@ __decorate([
         default: 'dora-animate--fadeIn',
     })
 ], Backdrop.prototype, "classNames", void 0);
+__decorate([
+    Prop({
+        type: Object,
+        default: null,
+    })
+], Backdrop.prototype, "wrapStyle", void 0);
 __decorate([
     Watch('visible')
 ], Backdrop.prototype, "onVisibleChange", null);

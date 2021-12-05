@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.popup.
  * © 2021 - 2021 Doraemon UI.
- * Built on 2021-11-30, 15:16:10.
+ * Built on 2021-12-04, 23:08:56.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.17.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -38,6 +38,8 @@ let Popup = class Popup extends Doraemon {
     bodyStyle;
     mask;
     maskClosable;
+    maskTransparent;
+    maskStyle;
     visible;
     zIndex;
     /**
@@ -172,6 +174,18 @@ __decorate([
         default: true,
     })
 ], Popup.prototype, "maskClosable", void 0);
+__decorate([
+    Prop({
+        type: Boolean,
+        default: false,
+    })
+], Popup.prototype, "maskTransparent", void 0);
+__decorate([
+    Prop({
+        type: Object,
+        default: null,
+    })
+], Popup.prototype, "maskStyle", void 0);
 __decorate([
     Prop({
         type: Boolean,

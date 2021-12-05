@@ -69,7 +69,7 @@ export interface DialogProps {
  *
  * @export
  */
-export type DialogOpenOptions = {
+export type DialogShowOptions = {
   /** 组件的选择器 */
   selector?: string,
   /** 页面的实例 */
@@ -81,7 +81,7 @@ export type DialogOpenOptions = {
  *
  * @export
  */
-export type DialogOpenProps = Omit<
+export type DialogShowProps = Omit<
   DialogProps,
   'visible'
 > & {
@@ -91,10 +91,10 @@ export type DialogOpenProps = Omit<
   onClosed?: () => void
 }
 
-function open (props?: DialogOpenProps, options?: DialogOpenOptions): () => void
-function open (props?: DialogOpenProps, selector?: string, inst?: MPInst): () => void
-function open (props?: DialogOpenProps, selector?: DialogOpenOptions | string, inst?: MPInst): () => void {
-  let opts: DialogOpenOptions = {
+function show (props?: DialogShowProps, options?: DialogShowOptions): () => void
+function show (props?: DialogShowProps, selector?: string, inst?: MPInst): () => void
+function show (props?: DialogShowProps, selector?: DialogShowOptions | string, inst?: MPInst): () => void {
+  let opts: DialogShowOptions = {
     selector: '#dora-dialog',
     inst: getCurrentDOM(),
   }
@@ -106,7 +106,7 @@ function open (props?: DialogOpenProps, selector?: DialogOpenOptions | string, i
   } else if (typeof selector === 'object') {
     opts = {
       ...opts,
-      ...selector as DialogOpenOptions,
+      ...selector as DialogShowOptions,
     }
   }
   const comp = findComponentNode<Doraemon>(opts.selector, opts.inst)
@@ -131,7 +131,7 @@ function open (props?: DialogOpenProps, selector?: DialogOpenOptions | string, i
  * @export
  */
 export type DialogAlertProps = Omit<
-  DialogOpenProps,
+  DialogShowProps,
   'buttonClosable' | 'buttons'
 > & {
   /** 确定按钮的文字 */
@@ -142,12 +142,12 @@ export type DialogAlertProps = Omit<
   onConfirm?: DefaultButtonHandle<DialogButton>
 }
 
-function alert (props?: DialogAlertProps, options?: DialogOpenOptions): Promise<void>
+function alert (props?: DialogAlertProps, options?: DialogShowOptions): Promise<void>
 function alert (props?: DialogAlertProps, selector?: string, inst?: MPInst): Promise<void>
-function alert (props?: DialogAlertProps, selector?: DialogOpenOptions | string, inst?: MPInst): Promise<void> {
+function alert (props?: DialogAlertProps, selector?: DialogShowOptions | string, inst?: MPInst): Promise<void> {
   const { confirmText, confirmType, onConfirm, ...restProps } = props
   return new Promise<void>((resolve) => {
-    open.call(null, {
+    show.call(null, {
       ...restProps,
       buttonClosable: true,
       buttons: [{
@@ -178,12 +178,12 @@ export type DialogConfirmProps = DialogAlertProps & {
   onCancel?: DefaultButtonHandle<DialogButton>
 }
 
-function confirm (props?: DialogConfirmProps, options?: DialogOpenOptions): Promise<boolean>
+function confirm (props?: DialogConfirmProps, options?: DialogShowOptions): Promise<boolean>
 function confirm (props?: DialogConfirmProps, selector?: string, inst?: MPInst): Promise<boolean>
-function confirm (props?: DialogConfirmProps, selector?: DialogOpenOptions | string, inst?: MPInst): Promise<boolean> {
+function confirm (props?: DialogConfirmProps, selector?: DialogShowOptions | string, inst?: MPInst): Promise<boolean> {
   const { confirmText, confirmType, onConfirm, cancelText, cancelType, onCancel, ...restProps } = props
   return new Promise<boolean>((resolve) => {
-    open.call(null, {
+    show.call(null, {
       ...restProps,
       buttonClosable: true,
       buttons: [{
@@ -210,7 +210,7 @@ function confirm (props?: DialogConfirmProps, selector?: DialogOpenOptions | str
 }
 
 export {
-  open,
+  show,
   alert,
   confirm,
 }

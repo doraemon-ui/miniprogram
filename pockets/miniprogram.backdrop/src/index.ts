@@ -36,6 +36,12 @@ class Backdrop extends Doraemon {
   })
   classNames: string
 
+  @Prop({
+    type: Object,
+    default: null,
+  })
+  wrapStyle: object
+
   get classes () {
     const { prefixCls, transparent } = this
     const wrap = classNames(prefixCls, {
@@ -45,6 +51,16 @@ class Backdrop extends Doraemon {
     return {
       wrap,
     }
+  }
+
+  /**
+   * 组件样式
+   *
+   * @readonly
+   * @memberof Popup
+   */
+  get extStyle () {
+    return this.wrapStyle ? { ...this.wrapStyle, zIndex: this.zIndex } : { zIndex: this.zIndex }
   }
 
   /**

@@ -1,0 +1,34 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+.dora-toast {
+  background: var(--dora-toast-background-color,rgba(var(--dora-black-rgb),.7));
+  background: var(--dora-toast-background-color,rgba(var(--dora-black-rgb),.7));
+  font-size: 28rpx;
+  line-height: 1.5;
+  text-align: center;
+  word-break: break-all;
+  min-width: 192rpx;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 8rpx;
+  color: #fff;
+  color: var(--dora-white)
+}
+.dora-toast__content {
+  padding: 24rpx;
+  box-sizing: border-box
+}
+.dora-toast__content--has-icon {
+  padding: 32rpx 64rpx
+}
+.dora-toast__content--has-icon .dora-toast__text {
+  margin-top: 16rpx
+}
+.dora-toast__icon {
+  margin: 0;
+  display: inline-block
+}
+.dora-toast__img {
+  width: 96rpx;
+  height: auto
+}

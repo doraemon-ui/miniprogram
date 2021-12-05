@@ -1,0 +1,38 @@
+@import "./variables.less";
+
+// Toast styles
+// -----------------------------
+.@{toast-prefix-cls} {
+  background: @toast-bg;
+  font-size: @font-size-base;
+  line-height: @line-height-base;
+  text-align: center;
+  word-break: break-all;
+  min-width: 96px;
+  width: fit-content;
+  border-radius: @border-radius-base;
+  color: @text-color-inverse;
+
+  &__content {
+    padding: 12px;
+    box-sizing: border-box;
+
+    &--has-icon {
+      padding: 16px 32px;
+    }
+  }
+
+  &__content--has-icon &__text {
+    margin-top: 8px;
+  }
+
+  &__icon {
+    margin: 0;
+    display: inline-block;
+  }
+
+  &__img {
+    width: 48px;
+    height: auto;
+  }
+}

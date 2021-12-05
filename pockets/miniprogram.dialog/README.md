@@ -10,7 +10,7 @@
 
 ### 示例代码
 
-[在开发者工具中预览效果](https://developers.weixin.qq.com/s/KiqHdcmu70vw)
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/tfYqxjmP7jvu)
 
 <!-- tabs:start -->
 
@@ -90,9 +90,9 @@
 | --- | --- |
 | dora-class | 根节点样式类 |
 
-### Dialog.open
+### Dialog.show
 
-可以通过调用 `Dialog` 上的 `open` 方法直接打开对话框，其中 `props` 参数的类型同上表，但不支持传入 `visible` 属性。
+可以通过调用 `Dialog` 上的 `show` 方法直接打开对话框，其中 `props` 参数的类型同上表，但不支持传入 `visible` 属性。
 
 当对话框被关闭后，组件实例会自动销毁。
 
@@ -103,16 +103,16 @@
 | onClose | `function` | 点击关闭按钮或蒙层的回调函数 | - |
 | onClosed | `function` | 关闭后的回调函数 | - |
 
-> `open` 方法的调用后，会返回一个引用，可以通过该引用手动关闭对话框
+> `show` 方法的调用后，会返回一个引用，可以通过该引用手动关闭对话框
 
 ```
-const hideDialog = Dialog.open()
+const hideDialog = Dialog.show()
 hideDialog()
 ```
 
 ### Dialog.alert
 
-`alert` 接受的参数同 `open`，但不支持 `buttonClosable` `buttons` 属性，它的返回值不是一个控制器对象，而是 `Promise<void>`。
+`alert` 接受的参数同 `show`，但不支持 `buttonClosable` `buttons` 属性，它的返回值不是一个控制器对象，而是 `Promise<void>`。
 
 此外，它还额外支持以下属性：
 
@@ -124,7 +124,7 @@ hideDialog()
 
 ### Dialog.confirm
 
-`confirm` 接受的参数同 `open`，但不支持 `buttonClosable` `buttons` 属性，它的返回值不是一个控制器对象，而是 `Promise<boolean>`。
+`confirm` 接受的参数同 `show`，但不支持 `buttonClosable` `buttons` 属性，它的返回值不是一个控制器对象，而是 `Promise<boolean>`。
 
 此外，它还额外支持以下属性：
 

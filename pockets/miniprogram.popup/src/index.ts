@@ -65,6 +65,18 @@ class Popup extends Doraemon {
     type: Boolean,
     default: false,
   })
+  maskTransparent: boolean
+  
+  @Prop({
+    type: Object,
+    default: null,
+  })
+  maskStyle: object
+
+  @Prop({
+    type: Boolean,
+    default: false,
+  })
   visible: boolean
 
   @Prop({

@@ -1,0 +1,54 @@
+<demo-page
+  darkmode="auto"
+  title="Toast"
+  desc="轻提示"
+  clickable
+>
+  <demo-block title="Basic">
+    <block>
+      <button bindtap="show">轻提示</button>
+      <dora-toast id="dora-toast-show" />
+    </block>
+  </demo-block>
+  <demo-block title="With icon">
+     <block>
+      <button bindtap="success">成功</button>
+      <dora-toast id="dora-toast-success" />
+    </block>
+    <block>
+      <button bindtap="error">失败</button>
+      <dora-toast id="dora-toast-error" />
+    </block>
+    <block>
+      <button bindtap="warn">警告</button>
+      <dora-toast id="dora-toast-warn" />
+    </block>
+  </demo-block>
+  <demo-block title="More">
+    <block>
+      <button bindtap="top">顶部提示</button>
+      <dora-toast id="dora-toast-top" />
+    </block>
+    <block>
+      <button bindtap="bottom">底部提示</button>
+      <dora-toast id="dora-toast-bottom" />
+    </block>
+    <block>
+      <button bindtap="image">自定义图片</button>
+      <dora-toast id="dora-toast-image" />
+    </block>
+    <block>
+      <button bindtap="mask">不允许背景点击</button>
+      <dora-toast id="dora-toast-mask" />
+    </block>
+  </demo-block>
+  <demo-block title="Clear">
+    <block>
+      <button bindtap="noclear">显示</button>
+      <dora-toast id="dora-toast-noclear" />
+    </block>
+    <block>
+      <button bindtap="clear">清除</button>
+    </block>
+  </demo-block>
+</demo-page>

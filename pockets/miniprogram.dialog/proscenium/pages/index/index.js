@@ -5,8 +5,8 @@ Page({
   data: {
     content5: dogShit('哆啦A梦生气了', 300, 3).split('\n'),
   },
-  open () {
-    dialog.open({
+  show () {
+    dialog.show({
       title: '哆啦A梦常用道具',
       content: doraProp.medium(),
       buttonClosable: true,
@@ -19,7 +19,7 @@ Page({
       onClosed () {
         console.log('onClosed')
       },
-    }, '#dora-dialog-open')
+    }, '#dora-dialog-show')
   },
   alert () {
     dialog.alert({
@@ -41,7 +41,7 @@ Page({
     }, '#dora-dialog-confirm')
   },
   custom () {
-    const hide = dialog.open({
+    const hide = dialog.show({
       title: '四次元口袋',
       content: '机器人专用四次元空间内藏秘密道具收藏口袋',
       buttons: [{
@@ -57,7 +57,7 @@ Page({
     }, '#dora-dialog-custom')
   },
   getUserInfo () {
-    const hide = dialog.open({
+    const hide = dialog.show({
       title: '微信开放能力',
       content: '获取用户信息',
       buttons: [{
@@ -74,7 +74,7 @@ Page({
     }, '#dora-dialog-getUserInfo')
   },
   getPhoneNumber () {
-    const hide = dialog.open({
+    const hide = dialog.show({
       title: '微信开放能力',
       content: '获取用户手机号',
       buttons: [{
@@ -91,7 +91,7 @@ Page({
     }, '#dora-dialog-getPhoneNumber')
   },
   contact () {
-    const hide = dialog.open({
+    const hide = dialog.show({
       title: '微信开放能力',
       content: '打开客服会话',
       buttons: [{
@@ -108,7 +108,7 @@ Page({
     }, '#dora-dialog-contact')
   },
   openSetting () {
-    const hide = dialog.open({
+    const hide = dialog.show({
       title: '微信开放能力',
       content: '打开授权设置页',
       buttons: [{
@@ -125,7 +125,7 @@ Page({
     }, '#dora-dialog-openSetting')
   },
   launchApp () {
-    const hide = dialog.open({
+    const hide = dialog.show({
       title: '微信开放能力',
       content: '打开 APP',
       buttons: [{
@@ -151,8 +151,8 @@ Page({
   onLoad () {
     [...Array(6).keys()].forEach((key) => {
       this.setData({ [`visible${key + 1}`]: false })
-      this[`onOpen${key + 1}`] = () => {
-        console.log(`onOpen${key + 1}`)
+      this[`onShow${key + 1}`] = () => {
+        console.log(`onShow${key + 1}`)
         this.setData({ [`visible${key + 1}`]: true })
       }
       this[`onClose${key + 1}`] = () => {

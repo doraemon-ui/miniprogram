@@ -2,6 +2,18 @@
 
 用于显示弹出框。
 
+## 安装
+
+我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
+
+```bash
+npm install --save @doraemon-ui/miniprogram.popup
+# or
+yarn add @doraemon-ui/miniprogram.popup
+```
+
+如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
+
 ## 使用指南
 
 ### 在 page.json 中引入组件
@@ -40,6 +52,8 @@
 | bodyStyle | `object` | 自定义 body 样式 | - |
 | mask | `boolean` | 是否显示蒙层 | true |
 | maskClosable | `boolean` | 点击蒙层是否允许关闭 | true |
+| maskTransparent | `boolean` | 是否显示透明蒙层 | false |
+| maskStyle | `object` | 蒙层的样式 | - |
 | visible | `boolean` | 是否可见 | false |
 | zIndex | `number` | 设置蒙层的 z-index | 1000 |
 | mountOnEnter | `boolean` | 首次进入过渡时是否懒挂载组件 | true |

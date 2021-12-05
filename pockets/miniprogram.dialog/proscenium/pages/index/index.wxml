@@ -6,8 +6,8 @@
 >
   <demo-block title="基础用法">
     <block>
-      <button bindtap="open">显示对话框</button>
-      <dora-dialog id="dora-dialog-open" />
+      <button bindtap="show">显示对话框</button>
+      <dora-dialog id="dora-dialog-show" />
     </block>
     <block>
       <button bindtap="alert">显示警告框</button>
@@ -46,7 +46,7 @@
   </demo-block>  
   <demo-block title="声明式">
     <block>
-      <button bindtap="onOpen1">最简单的对话框</button>
+      <button bindtap="onShow1">最简单的对话框</button>
       <dora-dialog
         title="天气箱"
         buttonClosable
@@ -57,7 +57,7 @@
       />
     </block>
     <block>
-      <button bindtap="onOpen2">只显示内容</button>
+      <button bindtap="onShow2">只显示内容</button>
       <dora-dialog
         content="打开就下雨的☔️"
         buttonClosable
@@ -68,7 +68,7 @@
       />
     </block>
     <block>
-      <button bindtap="onOpen3">自定义内容区域</button>
+      <button bindtap="onShow3">自定义内容区域</button>
       <dora-dialog
         title="注意"
         buttonClosable
@@ -84,7 +84,7 @@
       </dora-dialog>
     </block>
     <block>
-      <button bindtap="onOpen4">有标题和图片</button>
+      <button bindtap="onShow4">有标题和图片</button>
       <dora-dialog
         image="http://cdn.skyvow.cn/ilove/static/wx_mini_qrcode.jpg"
         title="iLove恋爱小事"
@@ -97,7 +97,7 @@
       />
     </block>
     <block>
-      <button bindtap="onOpen5">超长文本</button>
+      <button bindtap="onShow5">超长文本</button>
       <dora-dialog
         title="哆啦A梦生气了"
         buttonClosable
@@ -114,7 +114,7 @@
       </dora-dialog>
     </block>
     <block>
-      <button bindtap="onOpen6">垂直按钮</button>
+      <button bindtap="onShow6">垂直按钮</button>
       <dora-dialog
         title="哆啦A梦常用道具"
         content="所有道具中明确出现次数最多的是哪一款？"

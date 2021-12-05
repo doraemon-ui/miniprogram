@@ -3,6 +3,6 @@
   in="{{ visible }}"
   classNames="{{ classNames }}"
   bind:click="onClick"
-  wrapStyle="{{ { zIndex } }}"
+  wrapStyle="{{ extStyle }}"
   disableScroll
 />

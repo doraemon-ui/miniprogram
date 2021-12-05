@@ -1,0 +1,22 @@
+<dora-popup
+  position="center"
+  bodyStyle="{{ bodyStyle }}"
+  mask="{{ mask }}"
+  maskClosable="{{ false }}"
+  maskTransparent
+  maskStyle="{{ maskStyle }}"
+  visible="{{ popupVisible }}"
+  zIndex="{{ zIndex }}"
+  bind:close="onPopupClose"
+  bind:closed="onPopupClosed"
+>
+  <view class="dora-class {{ classes.wrap }}">
+    <view class="{{ classes.content }}">
+      <image class="{{ classes.img }}" src="{{ image }}" mode="widthFix" wx:if="{{ image }}" />
+      <block wx:else>
+        <dora-icon dora-class="{{ classes.icon }}" type="{{ iconType }}" size="48" color="{{ iconColor }}" wx:if="{{ iconType }}" />
+      </block>
+      <view class="{{ classes.text }}">{{ text }}</view>
+    </view>
+  </view>
+</dora-popup>

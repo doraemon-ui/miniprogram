@@ -1,11 +1,11 @@
 /**
  * @doraemon-ui/miniprogram.dialog.
  * © 2021 - 2021 Doraemon UI.
- * Built on 2021-11-30, 15:22:19.
+ * Built on 2021-12-05, 14:17:41.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.17.
  */
 import { getCurrentDOM, findComponentNode, } from '@doraemon-ui/miniprogram.shared';
-function open(props, selector, inst) {
+function show(props, selector, inst) {
     let opts = {
         selector: '#dora-dialog',
         inst: getCurrentDOM(),
@@ -42,7 +42,7 @@ function open(props, selector, inst) {
 function alert(props, selector, inst) {
     const { confirmText, confirmType, onConfirm, ...restProps } = props;
     return new Promise((resolve) => {
-        open.call(null, {
+        show.call(null, {
             ...restProps,
             buttonClosable: true,
             buttons: [{
@@ -61,7 +61,7 @@ function alert(props, selector, inst) {
 function confirm(props, selector, inst) {
     const { confirmText, confirmType, onConfirm, cancelText, cancelType, onCancel, ...restProps } = props;
     return new Promise((resolve) => {
-        open.call(null, {
+        show.call(null, {
             ...restProps,
             buttonClosable: true,
             buttons: [{
@@ -86,4 +86,4 @@ function confirm(props, selector, inst) {
         }, selector, inst);
     });
 }
-export { open, alert, confirm, };
+export { show, alert, confirm, };
