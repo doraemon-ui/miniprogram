@@ -1,4 +1,6 @@
 const icons = [
+  'loading-outline',
+  'loading-3-quarters-outline',
   'dora-bell',
   'dora-hopter',
   'dora-avatar',
