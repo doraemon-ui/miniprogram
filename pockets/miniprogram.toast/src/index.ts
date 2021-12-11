@@ -1,5 +1,5 @@
 import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
-import { ToastIcon, ToastIconRecord, ToastPosition } from './toast'
+import { ToastIcon, ToastPosition, presetIconRecord } from './toast'
 const { classNames } = Doraemon.util
 
 @Component({
@@ -98,7 +98,9 @@ class Toast extends Doraemon {
       [`${prefixCls}__content--has-icon`]: hasIcon !== '' || image !== '',
     })
     const img = `${prefixCls}__img`
-    const icon = `${prefixCls}__icon`
+    const icon = classNames(`${prefixCls}__icon`, {
+      [`${prefixCls}__icon--${this.icon}`]: this.icon,
+    })
     const text = `${prefixCls}__text`
 
     return {
@@ -117,7 +119,7 @@ class Toast extends Doraemon {
   }
 
   get iconType (): string {
-    return ToastIconRecord[this.icon] ?? ''
+    return presetIconRecord[this.icon] ?? this.icon ?? ''
   }
 
   get bodyStyle (): Partial<CSSStyleDeclaration> {

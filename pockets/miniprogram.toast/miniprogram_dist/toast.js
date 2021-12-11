@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.toast.
  * © 2021 - 2021 Doraemon UI.
- * Built on 2021-12-05, 21:45:39.
+ * Built on 2021-12-11, 16:10:14.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.17.
  */
 import { getCurrentDOM, findComponentNode, isObject, isString, isTrue, } from '@doraemon-ui/miniprogram.shared';
@@ -10,10 +10,11 @@ import { getCurrentDOM, findComponentNode, isObject, isString, isTrue, } from '@
  *
  * @export
  */
-export const ToastIconRecord = {
+export const presetIconRecord = {
     success: 'checkmark-circle-outline',
     error: 'close-circle-outline',
-    warn: 'alert',
+    warning: 'alert',
+    loading: 'loading-outline',
 };
 /**
  * 默认属性
@@ -110,12 +111,12 @@ function success(p, selector, inst) {
         }, selector, inst);
     });
 }
-function warn(p, selector, inst) {
+function warning(p, selector, inst) {
     const props = mergeProps(p);
     return new Promise((resolve) => {
         show.call(null, {
             ...props,
-            icon: 'warn',
+            icon: 'warning',
             onClose: () => {
                 resolve();
             },
@@ -146,4 +147,16 @@ function info(p, selector, inst) {
         }, selector, inst);
     });
 }
-export { show, success, warn, error, info, clear, };
+function loading(p, selector, inst) {
+    const props = mergeProps(p);
+    return new Promise((resolve) => {
+        show.call(null, {
+            ...props,
+            icon: 'loading',
+            onClose: () => {
+                resolve();
+            },
+        }, selector, inst);
+    });
+}
+export { show, success, warning, error, info, loading, clear, };

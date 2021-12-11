@@ -29,10 +29,20 @@
   &__icon {
     margin: 0;
     display: inline-block;
+
+    &--loading {
+      animation: loadingCircle 1s infinite linear;
+    }
   }
 
   &__img {
     width: 48px;
     height: auto;
+  }
+}
+
+@keyframes loadingCircle {
+  to {
+    transform: rotate(360deg);
   }
 }

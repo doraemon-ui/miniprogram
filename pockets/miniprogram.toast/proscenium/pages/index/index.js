@@ -9,18 +9,23 @@ Page({
   },
   success () {
     toast.success({
-      text: doraProp.high(),
+      text: '成功',
     }, '#dora-toast-success')
   },
   error () {
     toast.error({
-      text: doraProp.high(),
+      text: '失败',
     }, '#dora-toast-error')
   },
-  warn () {
-    toast.warn({
-      text: doraProp.high(),
-    }, '#dora-toast-warn')
+  warning () {
+    toast.warning({
+      text: '警告',
+    }, '#dora-toast-warning')
+  },
+  loading () {
+    toast.loading({
+      text: '加载中...',
+    }, '#dora-toast-loading')
   },
   top () {
     toast.show({
@@ -45,6 +50,12 @@ Page({
       maskClickable: false,
       text: '请耐心等待, 不要退出',
     }, '#dora-toast-mask')
+  },
+  custom () {
+    toast.show({
+      icon: 'alert-circle-outline',
+      text: 'custom',
+    }, '#dora-toast-custom')
   },
   noclear () {
     toast.show({

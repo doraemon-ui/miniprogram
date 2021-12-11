@@ -22,7 +22,7 @@ yarn add @doraemon-ui/miniprogram.toast
 
 ### 示例代码
 
-[在开发者工具中预览效果](https://developers.weixin.qq.com/s/viXGtjmv7jvh)
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/HWdsztmj7IvO)
 
 <!-- tabs:start -->
 
@@ -52,7 +52,7 @@ yarn add @doraemon-ui/miniprogram.toast
 | --- | --- | --- | --- |
 | prefixCls | `string` | 自定义类名前缀 | dora-toast |
 | image | `string` | 自定义图片，image 的优先级高于 icon | - |
-| icon | `string` | 图标，可选值为 success、error、warn | - |
+| icon | `string` | 图标，可选值为 success、error、warning、loading | - |
 | iconColor | `string` | 图标的颜色 | - |
 | text | `string` | 提示文本 | - |
 | position | `string` | 垂直方向显示位置，可选值为 top、bottom、center | - |
@@ -80,9 +80,10 @@ hideToast()
 
 此外，还有如下更多的方法：
 
-- Toast.warn
+- Toast.warning
 - Toast.error
 - Toast.info
+- Toast.loading
 
 ### Toast.clear
 

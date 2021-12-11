@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.toast.
  * © 2021 - 2021 Doraemon UI.
- * Built on 2021-12-05, 21:45:39.
+ * Built on 2021-12-11, 16:10:14.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.17.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -11,7 +11,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js';
-import { ToastIconRecord } from './toast';
+import { presetIconRecord } from './toast';
 const { classNames } = Doraemon.util;
 let Toast = class Toast extends Doraemon {
     /**
@@ -45,7 +45,9 @@ let Toast = class Toast extends Doraemon {
             [`${prefixCls}__content--has-icon`]: hasIcon !== '' || image !== '',
         });
         const img = `${prefixCls}__img`;
-        const icon = `${prefixCls}__icon`;
+        const icon = classNames(`${prefixCls}__icon`, {
+            [`${prefixCls}__icon--${this.icon}`]: this.icon,
+        });
         const text = `${prefixCls}__text`;
         return {
             wrap,
@@ -61,7 +63,7 @@ let Toast = class Toast extends Doraemon {
         };
     }
     get iconType() {
-        return ToastIconRecord[this.icon] ?? '';
+        return presetIconRecord[this.icon] ?? this.icon ?? '';
     }
     get bodyStyle() {
         const getTop = (position) => {

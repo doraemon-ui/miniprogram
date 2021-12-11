@@ -9,11 +9,18 @@ import {
 } from '@doraemon-ui/miniprogram.shared'
 
 /**
+ * 预设的图标的类型
+ *
+ * @export
+ */
+export type ToastPresetIcon = 'success' | 'error' | 'warning' | 'loading'
+
+/**
  * 图标的类型
  *
  * @export
  */
-export type ToastIcon = 'success' | 'error' | 'warn'
+export type ToastIcon = ToastPresetIcon | string
 
 /**
  * 显示位置的类型
@@ -33,7 +40,7 @@ export interface ToastProps {
   prefixCls?: string
   /** 自定义图片，image 的优先级高于 icon */
   image?: string
-  /** 图标，可选值为 success、error、warn */
+  /** 图标，可选值为 success、error、warning、loading */
   icon?: ToastIcon
   /** 图标的颜色 */
   iconColor?: string
@@ -43,7 +50,7 @@ export interface ToastProps {
   position?: ToastPosition
   /** 是否显示蒙层 */
   mask?: boolean
-  /*** 是否允许背景点击 */
+  /** 是否允许背景点击 */
   maskClickable?: boolean
   /** 是否可见 */
   visible?: boolean
@@ -56,12 +63,13 @@ export interface ToastProps {
  *
  * @export
  */
-export const ToastIconRecord: {
-  [T in ToastIcon]: string
+export const presetIconRecord: {
+  [T in ToastPresetIcon]: string
 } = {
   success: 'checkmark-circle-outline',
   error: 'close-circle-outline',
-  warn: 'alert',
+  warning: 'alert',
+  loading: 'loading-outline',
 }
 
 /**
@@ -185,19 +193,19 @@ function show (p: ToastShowProps | string, selector?: ToastShowOptions | string,
 }
 
 /**
- * 外部指令式方法对应参数的类型
+ * 指令式方法对应参数的类型
  *
  * @export
  */
-export type ToastExternalProps = Omit<
+export type ToastInternalProps = Omit<
   ToastShowProps,
   'image' | 'icon' | 'iconColor'
 >
 
-function success (p: ToastExternalProps | string, options?: ToastShowOptions): Promise<void>
-function success (p: ToastExternalProps | string, selector?: string, inst?: MPInst): Promise<void>
-function success (p: ToastExternalProps | string, selector?: ToastShowOptions | string, inst?: MPInst): Promise<void>  {
-  const props = mergeProps<ToastExternalProps>(p)
+function success (p: ToastInternalProps | string, options?: ToastShowOptions): Promise<void>
+function success (p: ToastInternalProps | string, selector?: string, inst?: MPInst): Promise<void>
+function success (p: ToastInternalProps | string, selector?: ToastShowOptions | string, inst?: MPInst): Promise<void>  {
+  const props = mergeProps<ToastInternalProps>(p)
   return new Promise<void>((resolve) => {
     show.call(null, {
       ...props,
@@ -209,14 +217,14 @@ function success (p: ToastExternalProps | string, selector?: ToastShowOptions | 
   })
 }
 
-function warn (p: ToastExternalProps | string, options?: ToastShowOptions): Promise<void>
-function warn (p: ToastExternalProps | string, selector?: string, inst?: MPInst): Promise<void>
-function warn (p: ToastExternalProps | string, selector?: ToastShowOptions | string, inst?: MPInst): Promise<void>  {
-  const props = mergeProps<ToastExternalProps>(p)
+function warning (p: ToastInternalProps | string, options?: ToastShowOptions): Promise<void>
+function warning (p: ToastInternalProps | string, selector?: string, inst?: MPInst): Promise<void>
+function warning (p: ToastInternalProps | string, selector?: ToastShowOptions | string, inst?: MPInst): Promise<void>  {
+  const props = mergeProps<ToastInternalProps>(p)
   return new Promise<void>((resolve) => {
     show.call(null, {
       ...props,
-      icon: 'warn',
+      icon: 'warning',
       onClose: () => {
         resolve()
       },
@@ -224,10 +232,10 @@ function warn (p: ToastExternalProps | string, selector?: ToastShowOptions | str
   })
 }
 
-function error (p: ToastExternalProps | string, options?: ToastShowOptions): Promise<void>
-function error (p: ToastExternalProps | string, selector?: string, inst?: MPInst): Promise<void>
-function error (p: ToastExternalProps | string, selector?: ToastShowOptions | string, inst?: MPInst): Promise<void>  {
-  const props = mergeProps<ToastExternalProps>(p)
+function error (p: ToastInternalProps | string, options?: ToastShowOptions): Promise<void>
+function error (p: ToastInternalProps | string, selector?: string, inst?: MPInst): Promise<void>
+function error (p: ToastInternalProps | string, selector?: ToastShowOptions | string, inst?: MPInst): Promise<void>  {
+  const props = mergeProps<ToastInternalProps>(p)
   return new Promise<void>((resolve) => {
     show.call(null, {
       ...props,
@@ -239,10 +247,10 @@ function error (p: ToastExternalProps | string, selector?: ToastShowOptions | st
   })
 }
 
-function info (p: ToastExternalProps | string, options?: ToastShowOptions): Promise<void>
-function info (p: ToastExternalProps | string, selector?: string, inst?: MPInst): Promise<void>
-function info (p: ToastExternalProps | string, selector?: ToastShowOptions | string, inst?: MPInst): Promise<void>  {
-  const props = mergeProps<ToastExternalProps>(p)
+function info (p: ToastInternalProps | string, options?: ToastShowOptions): Promise<void>
+function info (p: ToastInternalProps | string, selector?: string, inst?: MPInst): Promise<void>
+function info (p: ToastInternalProps | string, selector?: ToastShowOptions | string, inst?: MPInst): Promise<void>  {
+  const props = mergeProps<ToastInternalProps>(p)
   return new Promise<void>((resolve) => {
     show.call(null, {
       ...props,
@@ -254,11 +262,27 @@ function info (p: ToastExternalProps | string, selector?: ToastShowOptions | str
   })
 }
 
+function loading (p: ToastInternalProps | string, options?: ToastShowOptions): Promise<void>
+function loading (p: ToastInternalProps | string, selector?: string, inst?: MPInst): Promise<void>
+function loading (p: ToastInternalProps | string, selector?: ToastShowOptions | string, inst?: MPInst): Promise<void>  {
+  const props = mergeProps<ToastInternalProps>(p)
+  return new Promise<void>((resolve) => {
+    show.call(null, {
+      ...props,
+      icon: 'loading',
+      onClose: () => {
+        resolve()
+      },
+    } as ToastShowProps, selector, inst)
+  })
+}
+
 export {
   show,
   success,
-  warn,
+  warning,
   error,
   info,
+  loading,
   clear,
 }

@@ -28,7 +28,15 @@
   margin: 0;
   display: inline-block
 }
+.dora-toast__icon--loading {
+  animation: loadingCircle 1s infinite linear
+}
 .dora-toast__img {
   width: 96rpx;
   height: auto
+}
+@keyframes loadingCircle {
+  to {
+    transform: rotate(360deg)
+  }
 }

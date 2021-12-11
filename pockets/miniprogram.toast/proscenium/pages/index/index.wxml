@@ -20,8 +20,12 @@
       <dora-toast id="dora-toast-error" />
     </block>
     <block>
-      <button bindtap="warn">警告</button>
-      <dora-toast id="dora-toast-warn" />
+      <button bindtap="warning">警告</button>
+      <dora-toast id="dora-toast-warning" />
+    </block>
+    <block>
+      <button bindtap="loading">加载中</button>
+      <dora-toast id="dora-toast-loading" />
     </block>
   </demo-block>
   <demo-block title="More">
@@ -40,6 +44,10 @@
     <block>
       <button bindtap="mask">不允许背景点击</button>
       <dora-toast id="dora-toast-mask" />
+    </block>
+    <block>
+      <button bindtap="custom">更多图标</button>
+      <dora-toast id="dora-toast-custom" />
     </block>
   </demo-block>
   <demo-block title="Clear">
