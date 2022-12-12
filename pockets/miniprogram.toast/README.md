@@ -22,7 +22,7 @@ yarn add @doraemon-ui/miniprogram.toast
 
 ### 示例代码
 
-[在开发者工具中预览效果](https://developers.weixin.qq.com/s/HWdsztmj7IvO)
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/gPsmLWmr7DwJ)
 
 <!-- tabs:start -->
 
@@ -88,3 +88,12 @@ hideToast()
 ### Toast.clear
 
 关闭所有显示中的 `Toast`。
+
+## CSS Variables
+
+| 属性 | 描述 | 默认值 | 全局变量 |
+| --- | --- | --- | --- |
+| --text-color | 文字颜色 | `#fff` | `--dora-toast-text-color` |
+| --background-color | 背景颜色 | `rgba(0, 0, 0, 0.7)` | `--dora-toast-background-color` |
+| --border-radius | 圆角大小 | `var(--dora-border-radius, 8px)` | `--dora-toast-border-radius` |
+| --min-width | 最小宽度 | `96px` | `--dora-toast-min-width` |

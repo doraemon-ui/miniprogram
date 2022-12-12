@@ -22,7 +22,7 @@ yarn add @doraemon-ui/miniprogram.accordion
 
 ### 示例代码
 
-[在开发者工具中预览效果](https://developers.weixin.qq.com/s/psq5Wkmp7qvo)
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/5kNhvumI7Hv2)
 
 <!-- tabs:start -->
 

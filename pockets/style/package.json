@@ -14,7 +14,7 @@
     "style"
   ],
   "scripts": {
-    "build": "lessc lib/var.less miniprogram_dist/var.wxss",
+    "build": "lessc lib/var.less miniprogram_dist/var.wxss && lessc lib/color.less miniprogram_dist/color.wxss",
     "test": "cross-env NODE_ENV=testing jest --coverage",
     "clean": "cross-env rimraf miniprogram_dist/* .coverage-report/*",
     "preversion": "npm run clean && npm run build && npm run test"

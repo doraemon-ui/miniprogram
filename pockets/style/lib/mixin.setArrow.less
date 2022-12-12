@@ -35,7 +35,7 @@
 
 // Set Arrow Icon
 // Direction - top|right|down|left
-._setArrow(@size: 15px, @color: #c7c7cc) {
+._setArrow(@size: 16px, @color: #c7c7cc) {
   display: inline-block;
   width: @size;
   height: @size;
@@ -47,25 +47,25 @@
   background-position: 50% 50%;
 }
 
-.setArrow(@direction, @size: 15px, @color: #c7c7cc) when (@direction = top) {
+.setArrow(@direction, @size: 16px, @color: #c7c7cc) when (@direction = top) {
   ._setArrow(@size, @color);
 
   transform: rotate(270deg);
 }
 
-.setArrow(@direction, @size: 15px, @color: #c7c7cc) when (@direction = right) {
+.setArrow(@direction, @size: 16px, @color: #c7c7cc) when (@direction = right) {
   ._setArrow(@size, @color);
 
   transform: rotate(0);
 }
 
-.setArrow(@direction, @size: 15px, @color: #c7c7cc) when (@direction = down) {
+.setArrow(@direction, @size: 16px, @color: #c7c7cc) when (@direction = down) {
   ._setArrow(@size, @color);
 
   transform: rotate(90deg);
 }
 
-.setArrow(@direction, @size: 15px, @color: #c7c7cc) when (@direction = left) {
+.setArrow(@direction, @size: 16px, @color: #c7c7cc) when (@direction = left) {
   ._setArrow(@size, @color);
 
   transform: rotate(180deg);

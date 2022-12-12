@@ -1,17 +1,22 @@
 @import "./variables.less";
 
 // Backdrop styles
+// @prop --z-index: The z-index of the backdrop
+// @prop --background-color: Background color of the backdrop
 // -----------------------------
 .@{backdrop-prefix-cls} {
+  --z-index: @backdrop-z-index;
+  --background-color: @backdrop-background-color;
+
   position: fixed;
-  z-index: @backdrop-z-index;
+  z-index: var(--z-index);
   top: 0;
   right: 0;
   left: 0;
   bottom: 0;
-  background: @backdrop-background;
+  background-color: var(--background-color);
 
   &--transparent {
-    background: @backdrop-background-inverse;
+    --background-color: transparent;
   }
 }

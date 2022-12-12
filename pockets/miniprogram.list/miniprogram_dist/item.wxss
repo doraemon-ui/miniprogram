@@ -16,7 +16,7 @@
   width: auto!important;
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
-  padding: 20rpx 30rpx;
+  padding: 32rpx;
   position: relative;
   display: -ms-flexbox;
   display: flex;
@@ -50,7 +50,7 @@
   color: var(--dora-border-color-split,var(--dora-color-step-15));
   transform-origin: 0 100%;
   transform: scaleY(.5);
-  left: 30rpx
+  left: 32rpx
 }
 .dora-list-item--has-line.dora-list-item--last::after {
   display: none
@@ -67,7 +67,7 @@
   width: 40rpx;
   height: 40rpx;
   display: block;
-  margin-right: 10rpx
+  margin-right: 12rpx
 }
 .dora-list-item__bd {
   -ms-flex: 1;
@@ -89,14 +89,14 @@
   color: rgba(var(--dora-text-color-rgb),.45)
 }
 .dora-list-item--access .dora-list-item__ft {
-  padding-right: 34rpx;
+  padding-right: 32rpx;
   position: relative
 }
 .dora-list-item--access .dora-list-item__ft::after {
   content: " ";
   display: inline-block;
-  width: 30rpx;
-  height: 30rpx;
+  width: 32rpx;
+  height: 32rpx;
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2216%22%20height%3D%2226%22%20viewBox%3D%220%200%2016%2026%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M2%200L0%202l11.5%2011L0%2024l2%202%2014-13z%22%20fill%3D%22%23c7c7cc%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E");
   background-size: contain;
   background-repeat: no-repeat;

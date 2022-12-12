@@ -2,10 +2,13 @@
 
 .dora-accordion {
   position: relative;
-  border: none
+  border: none;
+  font-size: 32rpx;
+  line-height: 1.5;
+  overflow: hidden
 }
 .dora-accordion__hd {
-  padding: 30rpx 30rpx 18rpx;
+  padding: 32rpx 32rpx 16rpx;
   font-size: 28rpx;
   color: rgba(0,0,0,.45);
   color: rgba(var(--dora-text-color-rgb),.45);
@@ -36,7 +39,7 @@
   border-bottom-width: var(--dora-border-width,1PX)
 }
 .dora-accordion__ft {
-  padding: 18rpx 30rpx 30rpx;
+  padding: 16rpx 32rpx 32rpx;
   font-size: 28rpx;
   color: rgba(0,0,0,.45);
   color: rgba(var(--dora-text-color-rgb),.45)

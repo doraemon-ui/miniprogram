@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.button.
- * © 2021 - 2021 Doraemon UI.
- * Built on 2021-12-05, 21:44:30.
+ * © 2021 - 2022 Doraemon UI.
+ * Built on 2022-02-09, 13:38:32.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.17.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -28,19 +28,22 @@ let Button = class Button extends Doraemon {
      */
     darkmode;
     get classes() {
-        const { prefixCls, hoverClass, type, size, block, full, clear, outline, bordered, borderRadius, disabled } = this;
+        const { prefixCls, hoverClass, color, size, fill, expand, shape, strong, disabled } = this;
+        const finalSize = ['small', 'large'].includes(size) ? size : '';
+        const finalFill = ['solid', 'outline', 'clear'].includes(fill) ? fill : '';
+        const finalExpand = ['block', 'full'].includes(expand) ? expand : '';
+        const finalShape = ['rounded', 'rectangular'].includes(shape) ? shape : '';
         const wrap = classNames(prefixCls, {
-            [`${prefixCls}--${type}`]: type,
-            [`${prefixCls}--${size}`]: size,
-            [`${prefixCls}--block`]: block,
-            [`${prefixCls}--full`]: full,
-            [`${prefixCls}--clear`]: clear,
-            [`${prefixCls}--outline`]: outline,
-            [`${prefixCls}--bordered`]: bordered,
-            [`${prefixCls}--border-radius`]: borderRadius,
+            ['dora-color']: color,
+            [`dora-color--${color}`]: color,
+            [`${prefixCls}--${size}`]: finalSize,
+            [`${prefixCls}--${fill}`]: finalFill,
+            [`${prefixCls}--${expand}`]: finalExpand,
+            [`${prefixCls}--${shape}`]: finalShape,
+            [`${prefixCls}--strong`]: strong,
             [`${prefixCls}--disabled`]: disabled,
         });
-        const hover = hoverClass && hoverClass !== 'default' ? hoverClass : `${prefixCls}--hover`;
+        const hover = hoverClass && hoverClass !== 'default' ? hoverClass : `${prefixCls}--activated`;
         return {
             wrap,
             hover,
@@ -98,37 +101,29 @@ Button = __decorate([
                 type: String,
                 default: Doraemon.config.darkmode,
             },
-            type: {
+            color: {
                 type: String,
-                default: 'stable',
+                default: 'positive',
             },
-            clear: {
-                type: Boolean,
-                default: false,
+            fill: {
+                type: String,
+                default: 'solid',
             },
-            block: {
-                type: Boolean,
-                default: false,
+            expand: {
+                type: String,
+                default: '',
             },
-            full: {
-                type: Boolean,
-                default: false,
-            },
-            outline: {
-                type: Boolean,
-                default: false,
-            },
-            bordered: {
-                type: Boolean,
-                default: true,
-            },
-            borderRadius: {
-                type: Boolean,
-                default: true,
+            shape: {
+                type: String,
+                default: '',
             },
             size: {
                 type: String,
                 default: 'default',
+            },
+            strong: {
+                type: Boolean,
+                default: false,
             },
             disabled: {
                 type: Boolean,

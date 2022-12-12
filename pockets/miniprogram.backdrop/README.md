@@ -22,7 +22,7 @@ yarn add @doraemon-ui/miniprogram.backdrop
 
 ### 示例代码
 
-[在开发者工具中预览效果](https://developers.weixin.qq.com/s/52pqFkmm7XvC)
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/y4kTFWmZ7Vw0)
 
 <!-- tabs:start -->
 
@@ -57,3 +57,10 @@ yarn add @doraemon-ui/miniprogram.backdrop
 
 - Backdrop.retain
 - Backdrop.release
+
+## CSS Variables
+
+| 属性 | 描述 | 默认值 | 全局变量 |
+| --- | --- | --- | --- |
+| --z-index | 蒙层的 `z-index` | `var(--dora-component-z-index, 1000)` | `--dora-backdrop-z-index` |
+| --background-color | 蒙层的背景颜色 | `rgba(0, 0, 0, 0.4)` | `--dora-backdrop-background-color` |

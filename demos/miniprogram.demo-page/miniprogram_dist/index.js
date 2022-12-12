@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.demo-page.
  * © 2021 - 2021 Doraemon UI.
- * Built on 2021-12-05, 21:44:05.
+ * Built on 2021-12-12, 17:12:04.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.17.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -14,15 +14,15 @@ import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-
 const { classNames } = Doraemon.util;
 const themeJSON = {
     'light': {
-        'backgroundColor': '#ffffff',
+        'backgroundColor': '#fafafa',
         'backgroundTextStyle': 'light',
-        'navigationBarBackgroundColor': '#ffffff',
+        'navigationBarBackgroundColor': '#fafafa',
         'navigationBarTextStyle': 'black',
     },
     'dark': {
-        'backgroundColor': '#000000',
+        'backgroundColor': '#0d0d0d',
         'backgroundTextStyle': 'dark',
-        'navigationBarBackgroundColor': '#000000',
+        'navigationBarBackgroundColor': '#0d0d0d',
         'navigationBarTextStyle': 'white',
     },
 };

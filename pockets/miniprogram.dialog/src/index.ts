@@ -121,7 +121,8 @@ class Dialog extends Doraemon {
     })
     const button = _buttons.map((button) => {
       const wrap = classNames(`${prefixCls}__button`, {
-        [`${prefixCls}__button--${button.type || 'dark'}`]: button.type || 'dark',
+        ['dora-color']: button.type,
+        [`dora-color--${button.type}`]: button.type ?? 'dark',
         [`${prefixCls}__button--bold`]: button.bold,
         [`${prefixCls}__button--disabled`]: button.disabled,
         [`${button.className}`]: button.className,

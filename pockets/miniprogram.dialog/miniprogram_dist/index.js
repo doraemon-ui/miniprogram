@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.dialog.
- * © 2021 - 2021 Doraemon UI.
- * Built on 2021-12-05, 21:45:55.
+ * © 2021 - 2022 Doraemon UI.
+ * Built on 2022-05-09, 16:05:29.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.17.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -56,7 +56,8 @@ let Dialog = class Dialog extends Doraemon {
         });
         const button = _buttons.map((button) => {
             const wrap = classNames(`${prefixCls}__button`, {
-                [`${prefixCls}__button--${button.type || 'dark'}`]: button.type || 'dark',
+                ['dora-color']: button.type,
+                [`dora-color--${button.type}`]: button.type ?? 'dark',
                 [`${prefixCls}__button--bold`]: button.bold,
                 [`${prefixCls}__button--disabled`]: button.disabled,
                 [`${button.className}`]: button.className,

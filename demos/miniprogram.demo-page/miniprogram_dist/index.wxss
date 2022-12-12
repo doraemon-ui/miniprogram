@@ -25,7 +25,7 @@
   min-height: 100%;
   color: rgba(0,0,0,.85);
   color: rgba(var(--dora-text-color-rgb),.85);
-  background-color: #fff;
+  background-color: #fafafa;
   background-color: var(--dora-background-color)
 }
 .dora-demo-page__hd {

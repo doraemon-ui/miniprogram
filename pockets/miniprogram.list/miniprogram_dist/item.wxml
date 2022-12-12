@@ -16,6 +16,7 @@
   bindcontact="onContact"
   bindgetphonenumber="onGetPhoneNumber"
   app-parameter="{{ appParameter }}"
+  bindlaunchapp="onLaunchApp"
   binderror="onError"
   bindopensetting="onOpenSetting"
   bindtap="onClick"

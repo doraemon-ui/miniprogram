@@ -3,15 +3,15 @@ const { classNames } = Doraemon.util
 
 const themeJSON = {
   'light': {
-    'backgroundColor': '#ffffff',
+    'backgroundColor': '#fafafa',
     'backgroundTextStyle': 'light',
-    'navigationBarBackgroundColor': '#ffffff',
+    'navigationBarBackgroundColor': '#fafafa',
     'navigationBarTextStyle': 'black',
   },
   'dark': {
-    'backgroundColor': '#000000',
+    'backgroundColor': '#0d0d0d',
     'backgroundTextStyle': 'dark',
-    'navigationBarBackgroundColor': '#000000',
+    'navigationBarBackgroundColor': '#0d0d0d',
     'navigationBarTextStyle': 'white',
   },
 }

@@ -4,13 +4,15 @@
   color: @color !important;
 }
 
-.button-hover(@active-bg-color, @active-color: #fff) {
+.button-hover(@active-bg-color, @active-border-color: transparent, @active-color: #fff) {
+  border-color: @active-border-color !important;
   background-color: @active-bg-color !important;
   color: @active-color !important;
 }
 
-.button-clear(@color) {
-  background-color: transparent !important;
+.button-clear(@color, @bg-color: transparent) {
+  border-color: @bg-color !important;
+  background-color: @bg-color !important;
   color: @color !important;
 }
 

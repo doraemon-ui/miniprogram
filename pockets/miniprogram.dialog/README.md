@@ -22,7 +22,7 @@ yarn add @doraemon-ui/miniprogram.dialog
 
 ### 示例代码
 
-[在开发者工具中预览效果](https://developers.weixin.qq.com/s/tfYqxjmP7jvu)
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/VeRO57mC7FzF)
 
 <!-- tabs:start -->
 
@@ -148,3 +148,11 @@ hideDialog()
 | cancelText | `string` | 取消按钮的文字 | 取消 |
 | cancelType | `string` | 取消按钮的类型，可选值为 light、stable、positive、calm、assertive、balanced、energized、royal、dark | dark |
 | onCancel | `function` | 取消按钮的点击事件 | - |
+
+## CSS Variables
+
+| 属性 | 描述 | 默认值 | 全局变量 |
+| --- | --- | --- | --- |
+| --font-size | 文字字号 | `17px` | `--dora-dialog-font-size` |
+| --title-font-size | 标题的字号 | `18px` | `--dora-dialog-title-font-size` |
+| --button-text-color | 按钮的文字颜色 | `#222428` | `--dora-color-dark` |

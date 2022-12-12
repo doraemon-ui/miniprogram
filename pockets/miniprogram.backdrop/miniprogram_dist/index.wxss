@@ -1,15 +1,18 @@
 @import '../../@doraemon-ui/style/var.wxss';
 
+@import '../../@doraemon-ui/style/color.wxss';
+
 .dora-backdrop {
+  --z-index: var(--dora-backdrop-z-index, var(--dora-component-z-index, 1000));
+  --background-color: var(--dora-backdrop-background-color, rgba(0, 0, 0, 0.4));
   position: fixed;
-  z-index: 1000;
+  z-index: var(--z-index);
   top: 0;
   right: 0;
   left: 0;
   bottom: 0;
-  background: var(--dora-backdrop-background-color,rgba(var(--dora-black-rgb),.4));
-  background: var(--dora-backdrop-background-color,rgba(var(--dora-black-rgb),.4))
+  background-color: var(--background-color)
 }
 .dora-backdrop--transparent {
-  background: 0 0
+  --background-color: transparent
 }

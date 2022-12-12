@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.list.
  * © 2021 - 2021 Doraemon UI.
- * Built on 2021-12-05, 21:44:42.
+ * Built on 2021-12-12, 17:16:20.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.17.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -55,6 +55,9 @@ let ListItem = class ListItem extends Doraemon {
     onGetPhoneNumber(e) {
         return e.target;
     }
+    onLaunchApp(e) {
+        return e.target;
+    }
     onOpenSetting(e) {
         return e.target;
     }
@@ -103,6 +106,10 @@ __decorate([
     Event(),
     Emit('getphonenumber')
 ], ListItem.prototype, "onGetPhoneNumber", null);
+__decorate([
+    Event(),
+    Emit('launchapp')
+], ListItem.prototype, "onLaunchApp", null);
 __decorate([
     Event(),
     Emit('opensetting')

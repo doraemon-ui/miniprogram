@@ -1,6 +1,24 @@
 @import "./variables.less";
 
 // Button styles
+// @prop --text-color: Text color of the button
+// @prop --activated-text-color: Text color of the button when pressed
+// @prop --background-color: Background color of the button
+// @prop --activated-background-color: Background color of the button when pressed
+// @prop --border-radius: Border radius of the button
+// @prop --border-width: Border width of the button
+// @prop --border-style: Border style of the button
+// @prop --border-color: Border color of the button
+// @prop --activated-border-color: Border color of the button when pressed
+// @prop --padding-start: Left padding of the button
+// @prop --padding-end: Right padding of the button
+// @prop --height: Height of the button
+// @prop --font-size: Font size of the button
+// @prop --opacity: Opacity of the button background
+// @prop --activated-opacity: Opacity of the button background when pressed
+// @prop --disabled-opacity: Opacity of the button background when disabled
+// @prop --block-margin-top: Margin top of the button when at full-width
+// @prop --block-margin-bottom: Margin bottom of the button when at full-width
 // -----------------------------
 .@{button-prefix-cls} {
   .button-reset();
@@ -10,17 +28,19 @@
   box-sizing: border-box;
 
   margin: 0;
-  padding: 0 @button-padding-base;
-  min-width: (@button-padding-base * 3) + @button-font-size-base;
-  min-height: @button-height-base !important;
+  padding: 0;
+  min-width: auto;
+  min-height: auto;
   border: none;
   border-radius: 0;
   vertical-align: middle;
   text-align: center;
   text-overflow: ellipsis;
-  font-size: @button-font-size-base;
-  line-height: @button-height-base - 2px;
+  font-size: initial;
+  line-height: initial;
   cursor: pointer;
+
+  .button-native();
 
   &::after {
     content: " ";
@@ -38,47 +58,49 @@
     border-radius: 0;
   }
 
-  &--bordered {
-    border: 1px solid transparent;
+  // Button fills
+  // --------------------------------------------------
+  &--clear {
+    --activated-opacity: @button-clear-activated-opacity;
+    .button-color(
+      transparent, transparent, #get-color(positive, active)[]
+    );
+  }
+  
+  &--outline {
+    .button-color(
+      transparent, #get-color(positive)[],
+      #get-color(positive)[], #get-color(positive, contrast)[],
+      #get-color(positive)[], #get-color(positive)[]
+    );
   }
 
-  &--border-radius {
-    border-radius: @button-border-radius-base;
-  }
-
-  &--large&--border-radius {
-    border-radius: @button-border-radius-lg;
-  }
-
-  &--small&--border-radius {
-    border-radius: @button-border-radius-sm;
-  }
-
-  &--disabled {
-    opacity: @button-opacity-disabled !important;
-  }
-
+  // Button Sizes
+  // --------------------------------------------------
   &--small {
-    padding: 2px @button-padding-sm 1px;
-    min-width: @button-height-sm - 2px;
-    min-height: @button-height-sm !important;
-    font-size: @button-font-size-sm;
-    line-height: @button-height-sm - 4px;
+    .button-size(@button-border-radius-sm, @button-font-size-sm, @button-height-sm, @button-padding-sm);
   }
 
   &--large {
-    padding: 0 @button-padding-lg;
-    min-width: (@button-padding-lg * 3) + @button-font-size-lg;
-    min-height: @button-height-lg !important;
-    font-size: @button-font-size-lg;
-    line-height: @button-height-lg - 6px;
+    .button-size(@button-border-radius-lg, @button-font-size-lg, @button-height-lg, @button-padding-lg);
   }
 
+  // Strong Button
+  &--strong {
+    font-weight: @button-strong-font-weight !important;
+  }
+
+  // Block/Full Button
+  // --------------------------------------------------
   &--block,
   &--full {
+    --block-margin-top: @button-block-margin;
+    --block-margin-bottom: @button-block-margin;
+    
     width: 100% !important;
-    margin-top: @button-block-margin;
-    margin-bottom: @button-block-margin;
+    contain: content !important;
+    margin-top: var(--block-margin-top);
+    margin-bottom: var(--block-margin-bottom);
   }
 
   &--block {
@@ -94,47 +116,106 @@
     display: block;
     margin-right: 0 !important;
     margin-left: 0 !important;
+  }
+
+  &--full:not(&--rounded) {
     border-right-width: 0;
     border-left-width: 0;
     border-radius: 0;
   }
 
-  .button(light, @button-light-bg, @button-default-border, @button-light-active-bg, @button-light-text);
-  .button(stable, @button-stable-bg, @button-default-border, @button-stable-active-bg, @button-stable-text);
-  .button(positive, @button-positive-bg, @button-default-border, @button-positive-active-bg, @button-positive-text);
-  .button(calm, @button-calm-bg, @button-default-border, @button-calm-active-bg, @button-calm-text);
-  .button(assertive, @button-assertive-bg, @button-default-border, @button-assertive-active-bg, @button-assertive-text);
-  .button(balanced, @button-balanced-bg, @button-default-border, @button-balanced-active-bg, @button-balanced-text);
-  .button(energized, @button-energized-bg, @button-default-border, @button-energized-active-bg, @button-energized-text);
-  .button(royal, @button-royal-bg, @button-default-border, @button-royal-active-bg, @button-royal-text);
-  .button(dark, @button-dark-bg, @button-default-border, @button-dark-active-bg, @button-dark-text);
+  // Button Shapes
+  // --------------------------------------------------
+  &--rounded {
+    --border-radius: var(--height);
+  }
+
+  &--rectangular {
+    --border-radius: 0;
+  }
+
+  // Button Disabled
+  // --------------------------------------------------
+  &--disabled {
+    cursor: default;
+    opacity: var(--disabled-opacity) !important;
+    pointer-events: none;
+  }
+
+  // Button Activated
+  // --------------------------------------------------
+  &--activated {
+    opacity: var(--activated-opacity) !important;
+    .button-hover(var(--activated-background-color), var(--activated-border-color), var(--activated-text-color));
+  }
+
+  // Button Colors
+  &.@{dora-prefix}-color {
+    .button-color(#current-color(base)[], #current-color(active)[], #current-color(contrast)[]);
+  }
+
+  &:is(&--clear).@{dora-prefix}-color {
+    .button-color(
+      transparent, transparent, #current-color(active)[]
+    );
+  }
+
+  &:is(&--outline).@{dora-prefix}-color {
+    .button-color(
+      transparent, #current-color(base)[],
+      #current-color(base)[], #current-color(contrast)[],
+      #current-color(base)[], #current-color(base)[]
+    );
+  }
 }
 
-.button(@theme, @bg-color, @border-color, @active-bg-color, @color) {
-  &--@{theme},
-  &--@{theme}--disabled {
-    .button-style(@bg-color, @border-color, @color);
-  }
+.button-color(
+  @bg-color, @active-bg-color,
+  @color, @active-color: @color,
+  @border-color: @bg-color, @active-border-color:  @active-bg-color
+) {
+  --text-color: @color;
+  --activated-text-color: @active-color;
+  --background-color: @bg-color;
+  --activated-background-color: @active-bg-color;
+  --border-color: @border-color;
+  --activated-border-color: @active-border-color;
+}
 
-  &--@{theme}&--hover {
-    .button-hover(@active-bg-color, @color);
-  }
+.button-size(@border-radius, @font-size, @height, @padding) {
+  --border-radius: @border-radius;
+  --font-size: @font-size;
+  --height: @height;
+  --padding-start: @padding;
+  --padding-end: @padding;
+}
 
-  &--@{theme}&--outline,
-  &--@{theme}&--outline&--disabled {
-    .button-outline(@bg-color);
-  }
+.button-native() {
+  --opacity: 1;
+  --activated-opacity: 1;
+  --disabled-opacity: @button-disabled-opacity;
+  --border-width: @button-border-width;
+  --border-style: @button-border-style;
+  --border-color: @button-border-color;
 
-  &--@{theme}&--outline&--hover {
-    .button-hover(@bg-color, @color);
-  }
-
-  &--@{theme}&--clear,
-  &--@{theme}&--clear&--disabled {
-    .button-clear(@active-bg-color);
-  }
-
-  &--@{theme}&--clear&--hover {
-    opacity: @button-opacity-hover !important;
-  }
+  // Set default color
+  .button-color(#get-color(positive)[], #get-color(positive, active)[], #get-color(positive, contrast)[]);
+  
+  // Set default size
+  .button-size(@button-border-radius-base, @button-font-size-base, @button-height-base, @button-padding-base);
+  
+  padding-top: unset;
+  padding-bottom: unset;
+  padding-left: var(--padding-start);
+  padding-right: var(--padding-end);
+  min-width: calc((var(--padding-start) * 1.5) + (var(--padding-end) * 1.5) + var(--font-size));
+  min-height: var(--height) !important;
+  font-size: var(--font-size);
+  line-height: calc(var(--height) - var(--border-width) * 2);
+  opacity: var(--opacity);
+  border-radius: var(--border-radius);
+  border: var(--border-width) var(--border-style) var(--border-color);
+  border-color: var(--border-color) !important;
+  background-color: var(--background-color) !important;
+  color: var(--text-color) !important;
 }

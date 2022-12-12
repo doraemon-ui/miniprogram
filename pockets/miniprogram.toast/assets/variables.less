@@ -3,4 +3,21 @@
 // Toast themes
 // -----------------------------
 @toast-prefix-cls: ~'@{dora-prefix}-toast';
-@toast-bg: var(--dora-toast-background-color, rgba(var(--dora-black-rgb), .7));
+@toast-bg: var(--dora-toast-background-color, rgba(@black-rgb-value, .7));
+@toast-color: var(--dora-toast-text-color, @white-value);
+@toast-min-width: var(--dora-toast-min-width, 96px);
+@toast-border-radius: var(--dora-toast-border-radius, @border-radius-base);
+@toast-font-size: @font-size-base;
+@toast-line-height: @line-height-base;
+
+@toast-content-padding-top: @spacing-lg;
+@toast-content-padding-end: @toast-content-padding-top;
+@toast-content-padding-bottom: @toast-content-padding-top;
+@toast-content-padding-start: @toast-content-padding-end;
+
+@toast-icon-content-padding-top: @spacing-xl;
+@toast-icon-content-padding-end: @toast-icon-content-padding-top * 2;
+@toast-icon-content-padding-bottom: @toast-icon-content-padding-top;
+@toast-icon-content-padding-start: @toast-icon-content-padding-end;
+
+@toast-icon-margin-bottom: @margin-component-lg;

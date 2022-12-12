@@ -156,6 +156,12 @@ class ListItem extends Doraemon {
   }
 
   @Event()
+  @Emit('launchapp')
+  onLaunchApp (e) {
+    return e.target
+  }
+
+  @Event()
   @Emit('opensetting')
   onOpenSetting (e) {
     return e.target

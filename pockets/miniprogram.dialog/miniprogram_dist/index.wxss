@@ -1,9 +1,13 @@
 @import '../../@doraemon-ui/style/var.wxss';
 
+@import '../../@doraemon-ui/style/color.wxss';
+
 .dora-dialog {
+  --font-size: var(--dora-dialog-font-size, 34rpx);
+  --title-font-size: var(--dora-dialog-title-font-size, 36rpx);
+  --button-text-color: var(--dora-color-dark, #222428);
   position: relative;
-  background-color: #fff;
-  background-color: var(--dora-component-background-color);
+  background-color: var(--dora-component-background-color,#fff);
   border: 0;
   background-clip: padding-box;
   height: 100%;
@@ -13,27 +17,25 @@
 }
 .dora-dialog__title {
   font-weight: 700;
-  font-size: 36rpx;
-  color: #000;
-  color: var(--dora-black);
+  font-size: var(--title-font-size);
+  color: var(--dora-black,#000);
   margin-bottom: 24rpx
 }
 .dora-dialog__title:last-child {
   margin-bottom: 0
 }
 .dora-dialog__bd {
-  font-size: 34rpx;
+  font-size: var(--font-size);
   line-height: 1.4;
   word-wrap: break-word;
   word-break: break-all;
-  color: rgba(0,0,0,.45);
-  color: rgba(var(--dora-text-color-rgb),.45);
+  color: rgba(var(--dora-text-color-rgb,0,0,0),.45);
   padding: 48rpx 24rpx
 }
 .dora-dialog__ft {
   position: relative;
   line-height: 112rpx;
-  font-size: 36rpx;
+  font-size: var(--title-font-size);
   display: -ms-flexbox;
   display: flex
 }
@@ -44,10 +46,8 @@
   top: 0;
   right: 0;
   height: 1PX;
-  border-top: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15));
-  border-top: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15));
-  color: var(--dora-border-color-split,var(--dora-color-step-15));
-  color: var(--dora-border-color-split,var(--dora-color-step-15));
+  border-top: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  color: var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
   transform-origin: 0 0;
   transform: scaleY(.5)
 }
@@ -95,10 +95,8 @@
   top: 0;
   width: 1PX;
   bottom: 0;
-  border-left: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15));
-  border-left: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15));
-  color: var(--dora-border-color-split,var(--dora-color-step-15));
-  color: var(--dora-border-color-split,var(--dora-color-step-15));
+  border-left: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  color: var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
   transform-origin: 0 0;
   transform: scaleX(.5)
 }
@@ -116,10 +114,8 @@
   top: 0;
   right: 0;
   height: 1PX;
-  border-top: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15));
-  border-top: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15));
-  color: var(--dora-border-color-split,var(--dora-color-step-15));
-  color: var(--dora-border-color-split,var(--dora-color-step-15));
+  border-top: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  color: var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
   transform-origin: 0 0;
   transform: scaleY(.5)
 }
@@ -142,8 +138,7 @@
   display: block;
   -ms-flex: 1;
   flex: 1;
-  color: #222428!important;
-  color: var(--dora-color-dark)!important;
+  color: var(--button-text-color)!important;
   position: relative
 }
 .dora-dialog__button::after {
@@ -158,50 +153,15 @@
   transform: none;
   transform-origin: 0 0
 }
-.dora-dialog__button--light {
-  color: #f4f5f8!important;
-  color: var(--dora-color-light)!important
-}
-.dora-dialog__button--stable {
-  color: #92949c!important;
-  color: var(--dora-color-stable)!important
-}
-.dora-dialog__button--positive {
-  color: #3880ff!important;
-  color: var(--dora-color-positive)!important
-}
-.dora-dialog__button--calm {
-  color: #3dc2ff!important;
-  color: var(--dora-color-calm)!important
-}
-.dora-dialog__button--assertive {
-  color: #eb445a!important;
-  color: var(--dora-color-assertive)!important
-}
-.dora-dialog__button--balanced {
-  color: #2dd36f!important;
-  color: var(--dora-color-balanced)!important
-}
-.dora-dialog__button--energized {
-  color: #ffc409!important;
-  color: var(--dora-color-energized)!important
-}
-.dora-dialog__button--royal {
-  color: #8a63d2!important;
-  color: var(--dora-color-royal)!important
-}
-.dora-dialog__button--dark {
-  color: #222428!important;
-  color: var(--dora-color-dark)!important
+.dora-dialog__button.dora-color {
+  --button-text-color: var(--dora-color-base)
 }
 .dora-dialog__button--bold {
   font-weight: 700!important
 }
 .dora-dialog__button--hover {
-  background-color: var(--dora-active-state-bg,var(--dora-color-step-10))!important;
-  background-color: var(--dora-active-state-bg,var(--dora-color-step-10))!important
+  background-color: var(--dora-active-state-bg,var(--dora-color-step-10,#e6e6e6))!important
 }
 .dora-dialog__button--disabled {
-  opacity: var(--dora-disabled-opacity,.3);
   opacity: var(--dora-disabled-opacity,.3)
 }

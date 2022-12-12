@@ -3,4 +3,5 @@
 // Backdrop themes
 // -----------------------------
 @backdrop-prefix-cls: ~'@{dora-prefix}-backdrop';
-@backdrop-z-index: 1000;
+@backdrop-z-index: var(--dora-backdrop-z-index, @component-z-index);
+@backdrop-background-color: var(--dora-backdrop-background-color, rgba(@black-rgb-value, .4));

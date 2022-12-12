@@ -1,28 +1,53 @@
 @import '../../@doraemon-ui/style/var.wxss';
 
+@import '../../@doraemon-ui/style/color.wxss';
+
 .dora-toast {
-  background: var(--dora-toast-background-color,rgba(var(--dora-black-rgb),.7));
-  background: var(--dora-toast-background-color,rgba(var(--dora-black-rgb),.7));
+  --text-color: var(--dora-toast-text-color, #fff);
+  --background-color: var(--dora-toast-background-color, rgba(0, 0, 0, 0.7));
+  --border-radius: var(--dora-toast-border-radius, var(--dora-border-radius, 16rpx));
+  --min-width: var(--dora-toast-min-width, 192rpx);
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  background-color: var(--background-color);
   font-size: 28rpx;
   line-height: 1.5;
-  text-align: center;
   word-break: break-all;
-  min-width: 192rpx;
+  min-width: var(--min-width);
   width: -moz-fit-content;
   width: fit-content;
-  border-radius: 16rpx;
-  color: #fff;
-  color: var(--dora-white)
+  border-radius: var(--border-radius);
+  color: var(--text-color)
 }
 .dora-toast__content {
-  padding: 24rpx;
-  box-sizing: border-box
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex: 1;
+  flex: 1;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding-top: 24rpx;
+  padding-bottom: 24rpx;
+  padding-left: 24rpx;
+  padding-right: 24rpx
 }
 .dora-toast__content--has-icon {
-  padding: 32rpx 64rpx
+  padding-top: 32rpx;
+  padding-bottom: 32rpx;
+  padding-left: 64rpx;
+  padding-right: 64rpx
 }
 .dora-toast__content--has-icon .dora-toast__text {
-  margin-top: 16rpx
+  margin-top: 18rpx;
+  margin-bottom: unset
 }
 .dora-toast__icon {
   margin: 0;

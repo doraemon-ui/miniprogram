@@ -1,8 +1,15 @@
 @import "./variables.less";
 
 // Dialog styles
+// @prop --font-size: Font size of the dialog
+// @prop --title-font-size: Font size of the dialog title
+// @prop --button-text-color: Button text color of the dialog
 // -----------------------------
 .@{dialog-prefix-cls} {
+  --font-size: @dialog-bd-font-size;
+  --title-font-size: @dialog-title-font-size;
+  --button-text-color: #get-color(dark)[];
+
   position: relative;
   background-color: @dialog-content-bg;
   border: 0;
@@ -14,7 +21,7 @@
 
   &__title {
     font-weight: 700;
-    font-size: @dialog-title-font-size;
+    font-size: var(--title-font-size);
     color: @dialog-color;
     margin-bottom: 12px;
 
@@ -24,7 +31,7 @@
   }
 
   &__bd {
-    font-size: @dialog-bd-font-size;
+    font-size: var(--font-size);
     line-height: 1.4;
     word-wrap: break-word;
     word-break: break-all;
@@ -35,7 +42,7 @@
   &__ft {
     position: relative;
     line-height: 56px;
-    font-size: @dialog-title-font-size;
+    font-size: var(--title-font-size);
     display: flex;
 
     &:after {
@@ -111,18 +118,12 @@
 
     display: block;
     flex: 1;
-    color: @dark !important;
+    color: var(--button-text-color) !important;
     position: relative;
 
-    .dialog-button-style(light, @light);
-    .dialog-button-style(stable, @stable);
-    .dialog-button-style(positive, @positive);
-    .dialog-button-style(calm, @calm);
-    .dialog-button-style(assertive, @assertive);
-    .dialog-button-style(balanced, @balanced);
-    .dialog-button-style(energized, @energized);
-    .dialog-button-style(royal, @royal);
-    .dialog-button-style(dark, @dark);
+    &.@{dora-prefix}-color {
+      --button-text-color: #current-color(base)[];
+    }
 
     &--bold {
       font-weight: 700 !important;
@@ -135,11 +136,5 @@
     &--disabled {
       opacity: @disabled-opacity;
     }
-  }
-}
-
-.dialog-button-style(@theme, @color) {
-  &--@{theme} {
-    color: @color !important;
   }
 }

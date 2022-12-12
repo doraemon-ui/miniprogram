@@ -1,29 +1,51 @@
 @import "./variables.less";
 
 // Toast styles
+// @prop --text-color: Text color of the toast
+// @prop --background-color: Background color of the toast
+// @prop --border-radius: Border radius of the toast
+// @prop --min-width: Minimum width of the toast
 // -----------------------------
 .@{toast-prefix-cls} {
-  background: @toast-bg;
-  font-size: @font-size-base;
-  line-height: @line-height-base;
-  text-align: center;
+  --text-color: @toast-color;
+  --background-color: @toast-bg;
+  --border-radius: @toast-border-radius;
+  --min-width: @toast-min-width;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background-color);
+  font-size: @toast-font-size;
+  line-height: @toast-line-height;
   word-break: break-all;
-  min-width: 96px;
+  min-width: var(--min-width);
   width: fit-content;
-  border-radius: @border-radius-base;
-  color: @text-color-inverse;
+  border-radius: var(--border-radius);
+  color: var(--text-color);
 
   &__content {
-    padding: 12px;
-    box-sizing: border-box;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: @toast-content-padding-top;
+    padding-bottom: @toast-content-padding-bottom;
+    padding-left: @toast-content-padding-start;
+    padding-right: @toast-content-padding-end;
 
     &--has-icon {
-      padding: 16px 32px;
+      padding-top: @toast-icon-content-padding-top;
+      padding-bottom: @toast-icon-content-padding-bottom;
+      padding-left: @toast-icon-content-padding-start;
+      padding-right: @toast-icon-content-padding-end;
     }
   }
 
   &__content--has-icon &__text {
-    margin-top: 8px;
+    margin-top: @toast-icon-margin-bottom;
+    margin-bottom: unset;
   }
 
   &__icon {

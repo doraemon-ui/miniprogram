@@ -1,7 +1,4 @@
-<view
-  data-dora-theme="{{ darkmode }}"
-  class="dora-class {{ classes.wrap }}"
->
+<view class="dora-class {{ classes.wrap }}">
   <view class="{{ classes.hd }}" wx:if="{{ title }}">{{ title }}</view>
   <view class="{{ classes.bd }}">
     <slot></slot>

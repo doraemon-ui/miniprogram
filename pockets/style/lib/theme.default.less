@@ -1,37 +1,68 @@
 // The prefix to use on all css classes from doraemon-ui.
 @dora-prefix: dora;
 
-// -------- Colors -----------
-@light: var(--dora-color-light);
-@stable: var(--dora-color-stable);
-@positive: var(--dora-color-positive);
-@calm: var(--dora-color-calm);
-@balanced: var(--dora-color-balanced);
-@energized: var(--dora-color-energized);
-@assertive: var(--dora-color-assertive);
-@royal: var(--dora-color-royal);
-@dark: var(--dora-color-dark);
+// Preset Colors
+// -------------------------------------------------------------------------------------------
+@light: #get-color(light)[];
+@stable: #get-color(stable)[];
+@positive: #get-color(positive)[];
+@calm: #get-color(calm)[];
+@balanced: #get-color(balanced)[];
+@energized: #get-color(energized)[];
+@assertive: #get-color(assertive)[];
+@royal: #get-color(royal)[];
+@dark: #get-color(dark)[];
 
-// @light-inverse: #ddd;
-// @stable-inverse: #b2b2b2;
+// Default Foreground and Background Colors
+// -------------------------------------------------------------------------------------------
+@white-value: #fff;
+@white-rgb-value: .colorToRGB(#fff)[@list];
+@black-value: #000;
+@black-rgb-value: .colorToRGB(#000)[@list];
 
-@white: var(--dora-white);
-@black: var(--dora-black);
+// Step Colors
+// -------------------------------------------------------------------------------------------
+@color-step-95: var(--dora-color-step-95, mix(@black-value, @white-value, 95%));
+@color-step-90: var(--dora-color-step-90, mix(@black-value, @white-value, 90%));
+@color-step-85: var(--dora-color-step-85, mix(@black-value, @white-value, 85%));
+@color-step-80: var(--dora-color-step-80, mix(@black-value, @white-value, 80%));
+@color-step-75: var(--dora-color-step-75, mix(@black-value, @white-value, 75%));
+@color-step-70: var(--dora-color-step-70, mix(@black-value, @white-value, 70%));
+@color-step-65: var(--dora-color-step-65, mix(@black-value, @white-value, 65%));
+@color-step-60: var(--dora-color-step-60, mix(@black-value, @white-value, 60%));
+@color-step-55: var(--dora-color-step-55, mix(@black-value, @white-value, 55%));
+@color-step-50: var(--dora-color-step-50, mix(@black-value, @white-value, 50%));
+@color-step-45: var(--dora-color-step-45, mix(@black-value, @white-value, 45%));
+@color-step-40: var(--dora-color-step-40, mix(@black-value, @white-value, 40%));
+@color-step-35: var(--dora-color-step-35, mix(@black-value, @white-value, 35%));
+@color-step-30: var(--dora-color-step-30, mix(@black-value, @white-value, 30%));
+@color-step-25: var(--dora-color-step-25, mix(@black-value, @white-value, 25%));
+@color-step-20: var(--dora-color-step-20, mix(@black-value, @white-value, 20%));
+@color-step-15: var(--dora-color-step-15, mix(@black-value, @white-value, 15%));
+@color-step-10: var(--dora-color-step-10, mix(@black-value, @white-value, 10%));
+@color-step-5: var(--dora-color-step-5, mix(@black-value, @white-value, 5%));
+
+@white: var(--dora-white, @white-value);
+@white-rgb: var(--dora-white-rgb, @white-rgb-value);
+@black: var(--dora-black, @black-value);
+@black-rgb: var(--dora-black-rgb, @black-rgb-value);
 
 // Base Scaffolding Variables
 // ---
 
 // Background color for `<body>`
-// @body-background: var(--dora-background-color);
+@body-background: var(--dora-background-color, #fafafa);
+@body-background-rgb: var(--dora-background-color-rgb, .colorToRGB(#fafafa)[@list]);
 // Base background color for most components
-@component-background: var(--dora-component-background-color);
+@component-background: var(--dora-component-background-color, @white-value);
+@component-z-index: var(--dora-component-z-index, 1000);
 // @font-family: var(--dora-font-family);
-@text-color: rgba(var(--dora-text-color-rgb), .65);
-@text-color-secondary: rgba(var(--dora-text-color-rgb), .45);
+@text-color: rgba(var(--dora-text-color-rgb, @black-rgb-value), .65);
+@text-color-secondary: rgba(var(--dora-text-color-rgb, @black-rgb-value), .45);
 @text-color-inverse: @white;
-@heading-color: rgba(var(--dora-text-color-rgb), .55);
+@heading-color: rgba(var(--dora-text-color-rgb, @black-rgb-value), .55);
 // @heading-color-dark: rgba(var(--dora-white-rgb), 1);
-@text-color-dark: rgba(var(--dora-white-rgb), .85);
+@text-color-dark: rgba(var(--dora-white-rgb, @white-rgb-value), .85);
 // @text-color-secondary-dark: rgba(var(--dora-white-rgb), .65);
 @font-variant-base: tabular-nums;
 @font-feature-settings-base: 'tnum';
@@ -41,9 +72,9 @@
 @line-height-base: 1.5;
 @line-height-lg: 2;
 @line-height-sm: 1;
-@border-radius-base: 8px;
-@border-radius-lg: 12px;
-@border-radius-sm: 4px;
+@border-radius-base: var(--dora-border-radius, 8px);
+@border-radius-lg: var(--dora-border-radius-lg, 12px);
+@border-radius-sm: var(--dora-border-radius-sm, 4px);
 
 // SafeArea
 @safe-area-inset-top: 44px;
@@ -52,46 +83,43 @@
 @safe-area-inset-left: 0;
 
 // Spacing
-@spacing-base: 10px;
-@spacing-xl: 20px;
-@spacing-lg: 15px;
-@spacing-sm: 5px;
+@spacing-base: 8px;
+@spacing-xl: 16px;
+@spacing-lg: 12px;
+@spacing-sm: 4px;
 
 // Margin
-@margin-component-base: 5px;
-@margin-component-lg: 10px;
-@margin-component-sm: 2px;
+@margin-component-base: 6px;
+@margin-component-xl: 12px;
+@margin-component-lg: 9px;
+@margin-component-sm: 3px;
 
 // Disabled states
 @disabled-opacity: var(--dora-disabled-opacity, .3);
 
-// Backdrop
-@backdrop-background: var(--dora-backdrop-background-color, rgba(var(--dora-black-rgb), .4));
-@backdrop-background-inverse: transparent;
-
-@background-color-base: var(--dora-color-step-10);
-@background-color-light: var(--dora-color-step-5);
+@background-color-base: @color-step-10;
+@background-color-light: @color-step-5;
 
 // Icon
 // Base background color for small icons. eg: dots
-@icon-color-base: var(--dora-color-step-20);
-@icon-color-active: var(--dora-color-step-45);
+@icon-color-base: @color-step-20;
+@icon-color-active: @color-step-45;
 
 // Scroll view max height
 @scroll-view-size: 270px;
 
 // The background color for active state
 // buttons & cells and so on
-@active-state-bg: var(--dora-active-state-bg, var(--dora-color-step-10));
+@active-state-bg: var(--dora-active-state-bg, @color-step-10);
 
 // Border color
-@border-color-base: var(--dora-border-color, var(--dora-color-step-10)); // base border outline a component
-@border-color-split: var(--dora-border-color-split, var(--dora-color-step-15)); // split border inside a component
+@border-color-base: var(--dora-border-color, @color-step-10); // base border outline a component
+@border-color-split: var(--dora-border-color-split, @color-step-15); // split border inside a component
 @border-color-inverse: @white;
 @border-width-base: var(--dora-border-width, 1PX); // width of the border for a component
 @border-style-base: var(--dora-border-style, solid); // style of a components border
 
 // Shadow
-@shadow-color: var(--dora-box-shadow-color, rgba(var(--dora-black-rgb), .15));
+@shadow-color: var(--dora-box-shadow-color, rgba(var(--dora-black-rgb, @black-rgb-value), .15));
 @shadow-color-inverse: @white;
 @box-shadow-base: 0 2px 8px @shadow-color;

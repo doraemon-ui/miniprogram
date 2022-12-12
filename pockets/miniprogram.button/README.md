@@ -22,7 +22,7 @@ yarn add @doraemon-ui/miniprogram.button
 
 ### 示例代码
 
-[在开发者工具中预览效果](https://developers.weixin.qq.com/s/CJmXSkmM7dvX)
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/Dak78WmI76ww)
 
 !> 目前，设置了 form-type 的 button 只会对当前组件中的 form 有效。因而，将 button 封装在自定义组件中，而 form 在自定义组件外，将会使这个 button 的 form-type 失效。
 
@@ -50,14 +50,12 @@ yarn add @doraemon-ui/miniprogram.button
 | --- | --- | --- | --- |
 | prefixCls | `string` | 自定义类名前缀 | dora-button |
 | darkmode | `string` | 当前的主题 | auto，可选值为 auto、dark、light |
-| type | `string` | 按钮类型，可选值为 light、stable、positive、calm、assertive、balanced、energized、royal、dark | stable |
-| clear | `boolean` | 是否清除样式 | false |
-| block | `boolean` | 是否块级元素 | false |
-| full | `boolean` | 是否通栏 | false |
-| outline | `boolean` | 是否镂空 | false |
-| bordered | `boolean` | 是否带边框 | true |
-| borderRadius | `boolean` | 是否带圆角 | true |
+| color | `string` | 按钮颜色，可选值为 light、stable、positive、calm、assertive、balanced、energized、royal、dark | positive |
+| fill | `string` | 填充模式，可选值为 solid、outline、clear | solid |
+| expand | `string` | 扩展模式，可选值为 block、full | - |
 | size | `string` | 按钮的大小，可选值为 small、default、large | default |
+| shape | `string` | 按钮的形状，可选值为 rounded、rectangular | - |
+| strong | `boolean` | 是否粗体字体 | false |
 | disabled | `boolean` | 是否禁用 | false |
 | loading | `boolean` | 名称前是否带 loading 图标 | false |
 | formType | `string` | ~~用于 `<form/>` 组件，点击分别会触发 `<form/>` 组件的 submit/reset 事件~~ | - |
@@ -94,3 +92,24 @@ yarn add @doraemon-ui/miniprogram.button
 | --- | --- |
 | dora-class | 根节点样式类 |
 | dora-hover-class | 按钮按下去的样式类 |
+
+## CSS Variables
+
+| 属性 | 描述 | 默认值 | 全局变量 |
+| --- | --- | --- | --- |
+| --text-color | 文字颜色 | `#fff` | `--dora-color-positive-contrast` |
+| --background-color | 背景颜色 | `#3880ff` | `--dora-color-positive` |
+| --activated-background-color | 激活态的背景颜色 | `#055fff` | `--dora-color-positive-active` |
+| --border-radius | 圆角大小 | `var(--dora-border-radius, 8px)` | `--dora-button-border-radius` |
+| --border-width | 边框宽度 | `var(--dora-border-width, 1PX)` | `--dora-button-border-width` |
+| --border-style | 边框样式 | `var(--dora-border-style, solid)` | `--dora-button-border-style` |
+| --border-color | 边框颜色 | `#3880ff` | `--dora-color-positive` |
+| --activated-border-color | 激活态的边框颜色 | `#055fff` | `--dora-color-positive-active` |
+| --padding-start | 左内边距 | `12px` | - |
+| --padding-end | 右内边距 | `12px` | - |
+| --height | 按钮高度 | `48px` | - |
+| --font-size | 字体大小 | `16px` | - |
+| --block-margin-top | 全宽时的上外边距 | `9px` | - |
+| --block-margin-bottom | 全宽时的下外边距 | `9px` | - |
+| --activated-opacity | 激活时按钮背景的不透明度 | `0.4` | `--dora-button-clear-activated-opacity` |
+| --disabled-opacity | 禁用时按钮背景的不透明度 | `0.5` | `--dora-button-disabled-opacity` |

@@ -1,7 +1,7 @@
 /*! inject:wxss:../../@doraemon-ui/style/var.wxss */
 page {
-  --dora-background-color: #fff;
-  --dora-background-color-rgb: 255, 255, 255;
+  --dora-background-color: #fafafa;
+  --dora-background-color-rgb: 250, 250, 250;
   --dora-text-color: #000;
   --dora-text-color-rgb: 0, 0, 0;
   --dora-white: #fff;
@@ -10,6 +10,8 @@ page {
   --dora-black-rgb: 0, 0, 0;
   --dora-component-background-color: #fff;
   --dora-component-background-color-rgb: 255, 255, 255;
+  --dora-active-state-bg: #e6e6e6;
+  --dora-active-state-bg-rgb: 230, 230, 230;
   --dora-color-step-95: #0d0d0d;
   --dora-color-step-90: #191919;
   --dora-color-step-85: #262626;
@@ -60,16 +62,18 @@ page {
 @media (prefers-color-scheme: dark) {
   page [data-dora-theme="auto"],
   page [data-dora-theme="dark"] {
-    --dora-background-color: #000;
-    --dora-background-color-rgb: 0, 0, 0;
+    --dora-background-color: #0d0d0d;
+    --dora-background-color-rgb: 13, 13, 13;
     --dora-text-color: #fff;
     --dora-text-color-rgb: 255, 255, 255;
     --dora-white: #000;
     --dora-white-rgb: 0, 0, 0;
     --dora-black: #fff;
     --dora-black-rgb: 255, 255, 255;
-    --dora-component-background-color: #000;
-    --dora-component-background-color-rgb: 0, 0, 0;
+    --dora-component-background-color: #191919;
+    --dora-component-background-color-rgb: 25, 25, 25;
+    --dora-active-state-bg: #333;
+    --dora-active-state-bg-rgb: 51, 51, 51;
     --dora-color-step-95: #f2f2f2;
     --dora-color-step-90: #e6e6e6;
     --dora-color-step-85: #d9d9d9;
@@ -119,16 +123,18 @@ page {
   }
 }
 page [data-dora-theme="dark"] {
-  --dora-background-color: #000;
-  --dora-background-color-rgb: 0, 0, 0;
+  --dora-background-color: #0d0d0d;
+  --dora-background-color-rgb: 13, 13, 13;
   --dora-text-color: #fff;
   --dora-text-color-rgb: 255, 255, 255;
   --dora-white: #000;
   --dora-white-rgb: 0, 0, 0;
   --dora-black: #fff;
   --dora-black-rgb: 255, 255, 255;
-  --dora-component-background-color: #000;
-  --dora-component-background-color-rgb: 0, 0, 0;
+  --dora-component-background-color: #191919;
+  --dora-component-background-color-rgb: 25, 25, 25;
+  --dora-active-state-bg: #333;
+  --dora-active-state-bg-rgb: 51, 51, 51;
   --dora-color-step-95: #f2f2f2;
   --dora-color-step-90: #e6e6e6;
   --dora-color-step-85: #d9d9d9;

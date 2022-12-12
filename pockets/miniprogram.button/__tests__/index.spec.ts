@@ -28,6 +28,15 @@ describe('Button', () => {
   mountTest(getId)
   mountTest(getId, { size: 'large' })
   mountTest(getId, { size: 'small' })
+  mountTest(getId, { shap: 'rounded' })
+  mountTest(getId, { shap: 'rectangular' })
+  mountTest(getId, { fill: 'clear' })
+  mountTest(getId, { fill: 'solid' })
+  mountTest(getId, { fill: 'outline' })
+  mountTest(getId, { expand: 'block' })
+  mountTest(getId, { expand: 'full' })
+  mountTest(getId, { color: '' })
+  mountTest(getId, { color: 'stable' })
 
   test('mount correctly', () => {
     const wrapper = simulate.render(id)
@@ -41,18 +50,6 @@ describe('Button', () => {
     expect(wrapper.querySelectorAll('.dora-btn').length).toBe(1)
   })
 
-  test('should support to change bordered', () => {
-    const wrapper = simulate.render(id, { bordered: false })
-    wrapper.attach(document.createElement('parent-wrapper'))
-    expect(wrapper.querySelectorAll('.dora-button--bordered').length).toBe(0)
-  })
-
-  test('should support to change border radius', () => {
-    const wrapper = simulate.render(id, { borderRadius: false })
-    wrapper.attach(document.createElement('parent-wrapper'))
-    expect(wrapper.querySelectorAll('.dora-button--border-radius').length).toBe(0)
-  })
-
   test('should support to change loading', () => {
     const wrapper = simulate.render(id, { loading: true })
     wrapper.attach(document.createElement('parent-wrapper'))
@@ -60,6 +57,15 @@ describe('Button', () => {
     expect($comp.loading).toBe(true)
     $comp.loading = false
     expect($comp.loading).toBe(false)
+  })
+
+  test('should support to change strong', () => {
+    const wrapper = simulate.render(id, { strong: true })
+    wrapper.attach(document.createElement('parent-wrapper'))
+    const $comp = wrapper.instance.$component as any
+    expect(wrapper.querySelectorAll('.dora-button--strong').length).toBe(1)
+    $comp.strong = false
+    expect(wrapper.querySelectorAll('.dora-button--strong').length).toBe(0)
   })
 
   test('should support to change disabled', () => {

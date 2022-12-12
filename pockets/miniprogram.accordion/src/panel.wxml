@@ -1,7 +1,4 @@
-<view
-  data-dora-theme="{{ darkmode }}"
-  class="dora-class {{ classes.wrap }}"
->
+<view class="dora-class {{ classes.wrap }}">
   <view class="{{ classes.hd }}" bindtap="onClick">
     <block wx:if="{{ thumb }}">
       <image class="{{ classes.thumb }}" src="{{ thumb }}" />
