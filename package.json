@@ -16,7 +16,7 @@
     "@babel/core": "^7.14.6",
     "@babel/preset-env": "^7.14.7",
     "@babel/preset-typescript": "^7.14.5",
-    "@types/jest": "^26.0.24",
+    "@types/jest": "^27.0.3",
     "@types/node": "^16.3.3",
     "@typescript-eslint/parser": "^4.28.3",
     "babel-jest": "^27.0.6",
@@ -25,11 +25,11 @@
     "eslint-plugin-import": "^2.23.4",
     "husky": "^6.0.0",
     "jest": "^27.0.6",
-    "lerna": "^4.0.0",
     "lint-staged": "^11.1.2",
     "micromatch": "^4.0.4",
     "miniprogram-api-typings": "^3.4.3",
     "miniprogram-simulate": "^1.4.2",
+    "pnpm": "^7.11.0",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^22.0.0",
     "ts-jest": "^27.0.3",
@@ -41,8 +41,8 @@
     "eslint:fix": "eslint {pockets,demos}/** --ext js,ts --fix",
     "stylelint": "stylelint \"{pockets,demos}/**/*.less\" --syntax less",
     "stylelint:fix": "stylelint \"{pockets,demos}/**/*.less\" --syntax less --fix",
-    "lint": "npm run eslint && npm run stylelint",
-    "lint:fix": "npm run eslint:fix && npm run stylelint:fix",
+    "lint": "pnpm run eslint && pnpm run stylelint",
+    "lint:fix": "pnpm run eslint:fix && pnpm run stylelint:fix",
     "prepare": "husky install",
     "pre-commit": "lint-staged",
     "changed": "lerna changed --include-merged-tags",
@@ -50,11 +50,12 @@
     "publish:beta": "lerna publish prerelease --include-merged-tags --allow-branch '**' --pre-dist-tag beta --preid beta --force-git-tag",
     "publish:omega": "lerna publish prerelease --include-merged-tags --allow-branch '**' --pre-dist-tag omega --preid omega --force-git-tag",
     "release": "lerna publish --conventional-commits --conventional-graduate --include-merged-tags --changelog-preset angular",
-    "postinstall": "lerna bootstrap"
+    "preinstall": "npx only-allow pnpm"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run pre-commit"
+      "pre-commit": "pnpm run pre-commit"
     }
-  }
+  },
+  "packageManager": "pnpm@7.11.0"
 }

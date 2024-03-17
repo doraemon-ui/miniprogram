@@ -21,7 +21,7 @@
     "build": "cross-env NODE_ENV=production ts-node --transpile-only --skip-project build.ts",
     "test": "cross-env NODE_ENV=testing jest --coverage",
     "clean": "cross-env rimraf miniprogram_dist/* .coverage-report/*",
-    "preversion": "npm run clean && npm run build && npm run test"
+    "preversion": "pnpm run clean && pnpm run build && pnpm run test"
   },
   "devDependencies": {
     "@doraemon-ui/miniprogram.tools": "^0.0.2-alpha.12",
