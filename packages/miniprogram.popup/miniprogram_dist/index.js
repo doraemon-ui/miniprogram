@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.popup.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-20, 18:19:07.
+ * Built on 2024-03-20, 21:49:15.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.18.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -11,7 +11,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js';
-const { classNames } = Doraemon.util;
+import { findComponentNode } from '@doraemon-ui/miniprogram.shared';
+const { classNames, getCurrentInstance } = Doraemon.util;
 /**
  * 弹出的位置
  *
@@ -136,7 +137,8 @@ let Popup = class Popup extends Doraemon {
     }
     created() {
         if (this.mask) {
-            this._wuxBackdrop = this._renderProxy.selectComponent('#dora-backdrop');
+            const instance = getCurrentInstance(this);
+            this._wuxBackdrop = findComponentNode('#dora-backdrop', instance);
         }
     }
     mounted() {

@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.button.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-20, 18:17:44.
+ * Built on 2024-03-20, 21:48:04.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.18.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -20,13 +20,6 @@ let Button = class Button extends Doraemon {
      * @memberof Button
      */
     prefixCls;
-    /**
-     * 当前的主题
-     *
-     * @type {string}
-     * @memberof Button
-     */
-    darkmode;
     get classes() {
         const { prefixCls, hoverClass, color, size, fill, expand, shape, strong, disabled } = this;
         const finalSize = ['small', 'large'].includes(size) ? size : '';
@@ -96,10 +89,6 @@ Button = __decorate([
             prefixCls: {
                 type: String,
                 default: 'dora-button',
-            },
-            darkmode: {
-                type: String,
-                default: Doraemon.config.darkmode,
             },
             color: {
                 type: String,

@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.dialog.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-20, 18:19:28.
+ * Built on 2024-03-20, 21:49:33.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.18.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -20,13 +20,6 @@ let Dialog = class Dialog extends Doraemon {
      * @memberof Dialog
      */
     prefixCls;
-    /**
-     * 当前的主题
-     *
-     * @type {string}
-     * @memberof Dialog
-     */
-    darkmode;
     bodyStyle;
     mask;
     maskClosable;
@@ -222,10 +215,6 @@ Dialog = __decorate([
             prefixCls: {
                 type: String,
                 default: 'dora-dialog',
-            },
-            darkmode: {
-                type: String,
-                default: Doraemon.config.darkmode,
             },
         },
     })

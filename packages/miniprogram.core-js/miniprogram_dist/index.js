@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.core-js.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-20, 18:15:34.
+ * Built on 2024-03-20, 21:46:33.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.18.
  */
 
@@ -357,6 +357,12 @@ class Doraemon {
         isEqual,
         classNames,
         styleToCssString: c,
+        getCurrentInstance: (vm) => {
+            if (vm._isDoraemon) {
+                return vm._renderProxy;
+            }
+            return null;
+        }
     };
 }
 /**
@@ -833,6 +839,26 @@ function callHook(vm, hook) {
     }
 }
 
+function initExposed(vm) {
+    const expose = vm.$options.expose || {};
+    if (Array.isArray(expose)) {
+        if (expose.length) {
+            const exposed = {};
+            expose.forEach((key) => {
+                Object.defineProperty(exposed, key, {
+                    get: (...args) => {
+                        return typeof this.$component[key] === 'function'
+                            ? this.$component[key].call(this.$component, ...args)
+                            : this.$component[key];
+                    },
+                });
+            });
+            return exposed;
+        }
+    }
+    return {};
+}
+
 function initMethods(vm, methods) {
     const methodProxy = {};
     vm.$options.props;
@@ -1014,6 +1040,7 @@ function defineComponentHOC(externalOptions = {}) {
         const watch = initWatch(componentInstance, options.watch);
         const components = initComponents(componentInstance, options.components);
         const methods = initMethods(componentInstance, options.methods);
+        const exposed = initExposed(componentInstance);
         const componentConf = {
             options: {
                 multipleSlots: typeof externalOptions.multipleSlots !== 'undefined' ?
@@ -1024,6 +1051,9 @@ function defineComponentHOC(externalOptions = {}) {
             externalClasses: ['dora-class', 'dora-hover-class'].concat(Array.isArray(externalOptions.externalClasses) ?
                 externalOptions.externalClasses : []),
             ['export']() {
+                if (Object.keys(exposed).length) {
+                    return exposed;
+                }
                 if (externalOptions['export']) {
                     return externalOptions['export'].call(this);
                 }
@@ -1034,7 +1064,7 @@ function defineComponentHOC(externalOptions = {}) {
                 externalOptions.behaviors : []).concat(['wx://component-export', syncPropsToData(options.computed)]),
             observers: {
                 ...watch,
-                ['**']: function defineComputed(newVal) {
+                ['**']: function defineComputed() {
                     initComputed(this.$component);
                 },
             },

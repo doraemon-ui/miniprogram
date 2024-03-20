@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.accordion.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-20, 18:17:08.
+ * Built on 2024-03-20, 21:47:12.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.18.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -19,13 +19,6 @@ let Accordion = class Accordion extends Doraemon {
      * @memberof Button
      */
     prefixCls;
-    /**
-     * 当前的主题
-     *
-     * @type {string}
-     * @memberof Button
-     */
-    darkmode;
     get classes() {
         const { prefixCls } = this;
         const wrap = prefixCls;
@@ -113,10 +106,6 @@ Accordion = __decorate([
             prefixCls: {
                 type: String,
                 default: 'dora-accordion',
-            },
-            darkmode: {
-                type: String,
-                default: Doraemon.config.darkmode,
             },
             defaultCurrent: {
                 type: Array,

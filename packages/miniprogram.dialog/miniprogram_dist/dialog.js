@@ -1,14 +1,16 @@
 /**
  * @doraemon-ui/miniprogram.dialog.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-20, 18:19:28.
+ * Built on 2024-03-20, 21:49:33.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.18.
  */
-import { getCurrentDOM, findComponentNode, } from '@doraemon-ui/miniprogram.shared';
+import { Doraemon } from '@doraemon-ui/miniprogram.core-js';
+import { getCurrentPage, findComponentNode, } from '@doraemon-ui/miniprogram.shared';
+const { getCurrentInstance } = Doraemon.util;
 function show(props, selector, inst) {
     let opts = {
         selector: '#dora-dialog',
-        inst: getCurrentDOM(),
+        inst: getCurrentPage(),
     };
     if (typeof selector === 'string') {
         opts.selector = selector;
@@ -23,14 +25,14 @@ function show(props, selector, inst) {
         };
     }
     const comp = findComponentNode(opts.selector, opts.inst);
-    const vm = comp._renderProxy;
+    const instance = getCurrentInstance(comp);
     const { onClose, onClosed, ...restProps } = props;
-    vm.setData({ ...restProps, visible: true });
+    instance.setData({ ...restProps, visible: true });
     comp.onClose = function handleClose() {
-        if (!vm.data.visible) {
+        if (!instance.data.visible) {
             return;
         }
-        vm.setData({ visible: false }, () => {
+        instance.setData({ visible: false }, () => {
             onClose?.();
         });
     };

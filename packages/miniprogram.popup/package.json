@@ -1,7 +1,7 @@
 {
   "name": "@doraemon-ui/miniprogram.popup",
   "private": false,
-  "version": "0.0.1-alpha.6",
+  "version": "0.0.1-alpha.7",
   "description": "miniprogram popup component for doraemon-ui",
   "author": "skyvow",
   "homepage": "",
@@ -25,10 +25,10 @@
     "preversion": "pnpm run clean && pnpm run build && pnpm run test"
   },
   "dependencies": {
-    "@doraemon-ui/miniprogram.animation-group": "^0.0.1-alpha.5",
-    "@doraemon-ui/miniprogram.backdrop": "^0.0.1-alpha.6",
-    "@doraemon-ui/miniprogram.core-js": "^0.0.2-alpha.23",
-    "@doraemon-ui/miniprogram.shared": "^0.0.1-alpha.4",
+    "@doraemon-ui/miniprogram.animation-group": "^0.0.1-alpha.6",
+    "@doraemon-ui/miniprogram.backdrop": "^0.0.1-alpha.7",
+    "@doraemon-ui/miniprogram.core-js": "^0.0.2-alpha.24",
+    "@doraemon-ui/miniprogram.shared": "^0.0.1-alpha.5",
     "@doraemon-ui/style": "^0.0.1-alpha.9"
   },
   "devDependencies": {

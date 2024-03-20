@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.toast.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-20, 18:19:52.
+ * Built on 2024-03-20, 21:49:53.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.18.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -21,13 +21,6 @@ let Toast = class Toast extends Doraemon {
      * @memberof Toast
      */
     prefixCls;
-    /**
-     * 当前的主题
-     *
-     * @type {string}
-     * @memberof Toast
-     */
-    darkmode;
     image;
     icon;
     iconColor;
@@ -174,10 +167,6 @@ Toast = __decorate([
             prefixCls: {
                 type: String,
                 default: 'dora-toast',
-            },
-            darkmode: {
-                type: String,
-                default: Doraemon.config.darkmode,
             },
         },
     })

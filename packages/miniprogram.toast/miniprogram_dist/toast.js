@@ -1,10 +1,12 @@
 /**
  * @doraemon-ui/miniprogram.toast.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-20, 18:19:52.
+ * Built on 2024-03-20, 21:49:53.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.18.
  */
-import { getCurrentDOM, findComponentNode, isObject, isString, isTrue, } from '@doraemon-ui/miniprogram.shared';
+import { Doraemon } from '@doraemon-ui/miniprogram.core-js';
+import { getCurrentPage, findComponentNode, isObject, isString, isTrue, } from '@doraemon-ui/miniprogram.shared';
+const { getCurrentInstance } = Doraemon.util;
 /**
  * 预设的图标
  *
@@ -28,7 +30,7 @@ const mergeProps = (p) => {
 const mergeOptions = (selector, inst) => {
     let opts = {
         selector: '#dora-toast',
-        inst: getCurrentDOM(),
+        inst: getCurrentPage(),
     };
     if (isString(selector)) {
         opts.selector = selector;
@@ -55,7 +57,7 @@ const containers = [];
  * @param {() => void} [callback] 卸载后的回调函数
  */
 function unmount(container, callback) {
-    const unmountResult = container._renderProxy;
+    const unmountResult = getCurrentInstance(container);
     if (unmountResult && isTrue(unmountResult.data.visible)) {
         unmountResult.setData({ visible: false }, () => {
             callback?.();
@@ -82,7 +84,8 @@ function show(p, selector, inst) {
     // always clear containers
     clear();
     containers.push(comp);
-    comp._renderProxy.setData({ ...restProps, visible: true });
+    const instance = getCurrentInstance(comp);
+    instance.setData({ ...restProps, visible: true });
     comp.onClose = function handleClose() {
         unmount(comp, onClose);
     };
