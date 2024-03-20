@@ -1,3 +1,5 @@
+import { miniprogramThis } from './global'
+
 /**
  * 判断小程序环境
  *
@@ -5,5 +7,5 @@
  * @return {*}  {boolean}
  */
 export function canUseMP (): boolean {
-  return typeof wx !== 'undefined' && typeof getCurrentPages !== 'undefined'
+  return miniprogramThis && typeof getCurrentPages !== 'undefined'
 }

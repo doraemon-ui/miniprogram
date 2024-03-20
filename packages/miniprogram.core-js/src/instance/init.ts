@@ -107,6 +107,12 @@ class Doraemon {
     isEqual,
     classNames,
     styleToCssString,
+    getCurrentInstance: (vm: Doraemon) => {
+      if (vm._isDoraemon) {
+        return vm._renderProxy
+      }
+      return null
+    }
   }
 }
 

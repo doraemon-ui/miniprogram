@@ -1,5 +1,7 @@
 import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
-const { classNames } = Doraemon.util
+import { findComponentNode } from '@doraemon-ui/miniprogram.shared'
+
+const { classNames, getCurrentInstance } = Doraemon.util
 
 /**
  * 弹出的位置
@@ -202,7 +204,8 @@ class Popup extends Doraemon {
 
   created() {
     if (this.mask) {
-      this._wuxBackdrop = this._renderProxy.selectComponent('#dora-backdrop')
+      const instance = getCurrentInstance(this)
+      this._wuxBackdrop = findComponentNode('#dora-backdrop', instance)
     }
   }
 

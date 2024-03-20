@@ -1,12 +1,14 @@
 import { Doraemon } from '@doraemon-ui/miniprogram.core-js'
 import {
-  getCurrentDOM,
+  getCurrentPage,
   findComponentNode,
   isObject,
   isString,
   isTrue,
-  MPInst,
+  type MPInst,
 } from '@doraemon-ui/miniprogram.shared'
+
+const { getCurrentInstance } = Doraemon.util
 
 /**
  * 预设的图标的类型
@@ -115,7 +117,7 @@ const mergeProps = <T extends ToastShowProps>(p: Partial<T> | string): T => {
 const mergeOptions = <T extends ToastShowOptions>(selector?: Partial<T> | string, inst?: MPInst): T => {
   let opts = {
     selector: '#dora-toast',
-    inst: getCurrentDOM(),
+    inst: getCurrentPage(),
   } as T
   if (isString(selector)) {
     opts.selector = selector as string
@@ -143,7 +145,7 @@ const containers: Doraemon[] = []
  * @param {() => void} [callback] 卸载后的回调函数
  */
 function unmount (container: Doraemon, callback?: () => void) {
-  const unmountResult = container._renderProxy
+  const unmountResult = getCurrentInstance(container)
   if (unmountResult && isTrue(unmountResult.data.visible)) {
     unmountResult.setData({ visible: false }, () => {
       callback?.()
@@ -174,7 +176,8 @@ function show (p: ToastShowProps | string, selector?: ToastShowOptions | string,
   // always clear containers
   clear()
   containers.push(comp)
-  comp._renderProxy.setData({ ...restProps, visible: true })
+  const instance = getCurrentInstance(comp)
+  instance.setData({ ...restProps, visible: true })
   ;(comp as any).onClose = function handleClose () {
     unmount(comp, onClose)
   }

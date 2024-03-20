@@ -1,22 +1,34 @@
 export * from './canUseMP'
 export * from './findComponentNode'
-export * from './getBoundingClientRect'
-export * from './getCurrentDOM'
-export * from './querySelector'
-export * from './querySelectorAll'
+export * from './getCurrentPage'
+export * from './useDOM'
 
 import { canUseMP } from './canUseMP'
 import { findComponentNode } from './findComponentNode'
-import { getBoundingClientRect } from './getBoundingClientRect'
-import { getCurrentDOM } from './getCurrentDOM'
-import { querySelector } from './querySelector'
-import { querySelectorAll } from './querySelectorAll'
+import { getCurrentPage } from './getCurrentPage'
+import {
+  useQuery,
+  useSelector,
+  useSelectorAll,
+  useRef,
+  useRefAll,
+  useRect,
+  useRectAll,
+  useScrollOffset,
+  useComputedStyle
+} from './useDOM'
 
 export default {
   canUseMP,
   findComponentNode,
-  getBoundingClientRect,
-  getCurrentDOM,
-  querySelector,
-  querySelectorAll,
+  getCurrentPage,
+  useQuery,
+  useSelector,
+  useSelectorAll,
+  useRef,
+  useRefAll,
+  useRect,
+  useRectAll,
+  useScrollOffset,
+  useComputedStyle
 }

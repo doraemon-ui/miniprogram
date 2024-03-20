@@ -13,10 +13,6 @@ const { classNames } = Doraemon.util
       type: String,
       default: 'dora-accordion-panel',
     },
-    darkmode: {
-      type: String,
-      default: Doraemon.config.darkmode,
-    },
     key: {
       type: String,
       default: '',
@@ -51,14 +47,6 @@ class Panel extends Doraemon {
    * @memberof Button
    */
   prefixCls!: string
-
-  /**
-   * 当前的主题
-   *
-   * @type {string}
-   * @memberof Button
-   */
-  darkmode!: string
 
   get classes () {
     const { prefixCls, current, disabled } = this as any

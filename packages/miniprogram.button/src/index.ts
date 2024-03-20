@@ -7,10 +7,6 @@ const { classNames } = Doraemon.util
       type: String,
       default: 'dora-button',
     },
-    darkmode: {
-      type: String,
-      default: Doraemon.config.darkmode,
-    },
     color: {
       type: String,
       default: 'positive',
@@ -105,14 +101,6 @@ class Button extends Doraemon {
    * @memberof Button
    */
   prefixCls!: string
-
-  /**
-   * 当前的主题
-   *
-   * @type {string}
-   * @memberof Button
-   */
-  darkmode!: string
 
   get classes () {
     const { prefixCls, hoverClass, color, size, fill, expand, shape, strong, disabled } = this as any

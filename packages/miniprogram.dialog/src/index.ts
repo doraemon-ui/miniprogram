@@ -1,5 +1,5 @@
 import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
-import { NativeButtonHandle } from '@doraemon-ui/miniprogram.shared'
+import { type NativeButtonHandle } from '@doraemon-ui/miniprogram.shared'
 import { DialogButton } from './dialog'
 const { classNames } = Doraemon.util
 
@@ -8,10 +8,6 @@ const { classNames } = Doraemon.util
     prefixCls: {
       type: String,
       default: 'dora-dialog',
-    },
-    darkmode: {
-      type: String,
-      default: Doraemon.config.darkmode,
     },
   },
 })
@@ -23,14 +19,6 @@ class Dialog extends Doraemon {
    * @memberof Dialog
    */
   prefixCls!: string
-
-  /**
-   * 当前的主题
-   *
-   * @type {string}
-   * @memberof Dialog
-   */
-  darkmode!: string
 
   @Prop({
     type: Object,

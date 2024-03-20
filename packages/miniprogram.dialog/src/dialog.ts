@@ -1,13 +1,15 @@
 import { Doraemon } from '@doraemon-ui/miniprogram.core-js'
 import {
-  getCurrentDOM,
+  getCurrentPage,
   findComponentNode,
-  NativeButtonProps,
-  PresetColor,
-  DefaultButtonHandle,
-  NativeButtonHandle,
-  MPInst,
+  type NativeButtonProps,
+  type PresetColor,
+  type DefaultButtonHandle,
+  type NativeButtonHandle,
+  type MPInst,
 } from '@doraemon-ui/miniprogram.shared'
+
+const { getCurrentInstance } = Doraemon.util
 
 /**
  * 操作按钮的类型
@@ -96,7 +98,7 @@ function show (props?: DialogShowProps, selector?: string, inst?: MPInst): () =>
 function show (props?: DialogShowProps, selector?: DialogShowOptions | string, inst?: MPInst): () => void {
   let opts: DialogShowOptions = {
     selector: '#dora-dialog',
-    inst: getCurrentDOM(),
+    inst: getCurrentPage(),
   }
   if (typeof selector === 'string') {
     opts.selector = selector as string
@@ -110,12 +112,12 @@ function show (props?: DialogShowProps, selector?: DialogShowOptions | string, i
     }
   }
   const comp = findComponentNode<Doraemon>(opts.selector, opts.inst)
-  const vm = comp._renderProxy
+  const instance = getCurrentInstance(comp)
   const { onClose, onClosed, ...restProps } = props
-  vm.setData({ ...restProps, visible: true })
+  instance.setData({ ...restProps, visible: true })
   ;(comp as any).onClose = function handleClose () {
-    if (!vm.data.visible) { return }
-    vm.setData({ visible: false }, () => {
+    if (!instance.data.visible) { return }
+    instance.setData({ visible: false }, () => {
       onClose?.()
     })
   }

@@ -1,5 +1,4 @@
 <button
-  data-dora-theme="{{ darkmode }}"
   class="dora-class {{ classes.wrap }}"
   disabled="{{ disabled }}"
   loading="{{ loading }}"

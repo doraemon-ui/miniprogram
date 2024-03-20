@@ -7,6 +7,7 @@ export * from './isTrue'
 export * from './isUndef'
 export * from './noop'
 export * from './omit'
+export * from './pxToNumber'
 export * from './sleep'
 
 import { isDef } from './isDef'
@@ -18,6 +19,7 @@ import { isTrue } from './isTrue'
 import { isUndef } from './isUndef'
 import { noop } from './noop'
 import { omit } from './omit'
+import { pxToNumber } from './pxToNumber'
 import { sleep } from './sleep'
 
 export default {
@@ -30,5 +32,6 @@ export default {
   isUndef,
   noop,
   omit,
+  pxToNumber,
   sleep,
 }

@@ -8,6 +8,7 @@ const { classNames } = Doraemon.util
       default: 'dora-backdrop',
     },
   },
+  expose: ['backdropHolds', 'retain', 'release']
 })
 class Backdrop extends Doraemon {
   /**

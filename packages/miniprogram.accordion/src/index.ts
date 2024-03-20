@@ -13,10 +13,6 @@ import { defineComponentHOC, Doraemon, Component, Emit, Watch } from '@doraemon-
       type: String,
       default: 'dora-accordion',
     },
-    darkmode: {
-      type: String,
-      default: Doraemon.config.darkmode,
-    },
     defaultCurrent: {
       type: Array,
       default: [],
@@ -51,14 +47,6 @@ class Accordion extends Doraemon {
    * @memberof Button
    */
   prefixCls!: string
-
-  /**
-   * 当前的主题
-   *
-   * @type {string}
-   * @memberof Button
-   */
-  darkmode!: string
 
   get classes () {
     const { prefixCls } = this as any

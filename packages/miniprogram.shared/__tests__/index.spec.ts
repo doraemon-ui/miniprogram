@@ -1,9 +1,15 @@
 import {
   canUseMP,
-  getCurrentDOM,
-  querySelector,
-  querySelectorAll,
-  getBoundingClientRect,
+  getCurrentPage,
+  useQuery,
+  useSelector,
+  useSelectorAll,
+  useRef,
+  useRefAll,
+  useRect,
+  useRectAll,
+  useScrollOffset,
+  useComputedStyle,
   findComponentNode,
   isDef,
   isFalse,
@@ -14,6 +20,7 @@ import {
   isUndef,
   noop,
   omit,
+  pxToNumber,
   sleep,
 } from '../src'
 
@@ -21,10 +28,20 @@ describe('Shared', () => {
   describe('Core', () => {
     test('call dom func', () => {
       expect(canUseMP()).toBe(false)
-      expect(getCurrentDOM()).toBeNull()
-      expect(querySelector('#dora')).toBeNull()
-      expect(querySelectorAll('.dora')).toBeNull()
-      expect(getBoundingClientRect(querySelector('#dora'))).toBeDefined()
+      expect(getCurrentPage()).toBeNull()
+      expect(useQuery()).toBeNull()
+      expect(useSelector('#dora')).toBeNull()
+      expect(useSelectorAll('.dora')).toBeNull()
+      expect(useRef('#dora')).toBeDefined()
+      expect(useRef(['#dora'])).toBeDefined()
+      expect(useRefAll('#dora')).toBeDefined()
+      expect(useRefAll(['#dora'])).toBeDefined()
+      expect(useRect('#dora')).toBeDefined()
+      expect(useRect(['#dora'])).toBeDefined()
+      expect(useRectAll('#dora')).toBeDefined()
+      expect(useRectAll(['#dora'])).toBeDefined()
+      expect(useScrollOffset()).toBeDefined()
+      expect(useComputedStyle('#dora')).toBeDefined()
       expect(findComponentNode('#dora')).toBeNull()
     })
   })
@@ -77,6 +94,11 @@ describe('Shared', () => {
       expect(omit(obj, [])).toEqual({ a: 1, b: 2, c: 3 })
       expect(omit(obj, ['c'])).toEqual({ a: 1, b: 2 })
       expect(omit(obj, ['b', 'c'])).toEqual({ a: 1 })
+    })
+    test('call pxToNumber', () => {
+      expect(pxToNumber(undefined)).toBe(0)
+      expect(pxToNumber(1)).toBe(1)
+      expect(pxToNumber('1')).toBe(1)
     })
     test('call sleep', async () => {
       jest.setTimeout(3000)

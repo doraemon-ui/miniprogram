@@ -8,10 +8,6 @@ const { classNames } = Doraemon.util
       type: String,
       default: 'dora-toast',
     },
-    darkmode: {
-      type: String,
-      default: Doraemon.config.darkmode,
-    },
   },
 })
 class Toast extends Doraemon {
@@ -22,14 +18,6 @@ class Toast extends Doraemon {
    * @memberof Toast
    */
   prefixCls!: string
-
-  /**
-   * 当前的主题
-   *
-   * @type {string}
-   * @memberof Toast
-   */
-  darkmode!: string
 
   @Prop({
     type: String,

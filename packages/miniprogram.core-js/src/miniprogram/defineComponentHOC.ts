@@ -4,6 +4,7 @@ import { config } from '../instance/config'
 import { initData } from '../instance/data'
 import { ComponentRenderProxy, Doraemon, DoraemonClass } from '../instance/init'
 import { callHook, initLifecycle } from '../instance/lifecycle'
+import { initExposed } from '../instance/expose'
 import { initMethods } from '../instance/methods'
 import { initProps } from '../instance/props'
 import { initProxy } from '../instance/proxy'
@@ -41,6 +42,7 @@ export function defineComponentHOC (externalOptions: ComponentExternalOptions = 
     const watch = initWatch(componentInstance, options.watch)
     const components = initComponents(componentInstance, options.components)
     const methods = initMethods(componentInstance, options.methods)
+    const exposed = initExposed(componentInstance)
 
     const componentConf: WechatMiniprogram.Component.Options<any, any, any> = {
       options: {
@@ -54,6 +56,9 @@ export function defineComponentHOC (externalOptions: ComponentExternalOptions = 
           externalOptions.externalClasses : []
       ),
       ['export'] (this: ComponentRenderProxy<Doraemon>) {
+        if (Object.keys(exposed).length) {
+          return exposed
+        }
         if (externalOptions['export']) {
           return externalOptions['export'].call(this)
         }
@@ -64,7 +69,7 @@ export function defineComponentHOC (externalOptions: ComponentExternalOptions = 
         externalOptions.behaviors : []).concat(['wx://component-export', syncPropsToData(options.computed)]),
       observers: {
         ...watch,
-        ['**']: function defineComputed (newVal) {
+        ['**']: function defineComputed () {
           initComputed(this.$component)
         },
       },

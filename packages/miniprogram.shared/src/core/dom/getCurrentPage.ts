@@ -7,6 +7,6 @@ import { canUseMP } from './canUseMP'
  * @export
  * @return {*}  {(MPInst | null)}
  */
-export function getCurrentDOM (): MPInst | null {
+export function getCurrentPage (): MPInst | null {
   return canUseMP() ? getCurrentPages()[getCurrentPages().length - 1] : null
 }

@@ -54,6 +54,7 @@ export interface ComponentOptions<
 
   mixins?: (ComponentOptions<Doraemon> | typeof Doraemon)[]
   name?: string
+  expose?: string[]
 }
 
 export type Prop<T> = { (): T } | { new(...args: never[]): T & object } | { new(...args: string[]): Function }
