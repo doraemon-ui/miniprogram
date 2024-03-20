@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.dialog.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-20, 16:59:59.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.17.
+ * Built on 2024-03-20, 18:19:28.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.18.
  */
 import { getCurrentDOM, findComponentNode, } from '@doraemon-ui/miniprogram.shared';
 function show(props, selector, inst) {

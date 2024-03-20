@@ -1,52 +1,7 @@
 @import '../../@doraemon-ui/style/var.wxss';
 
-/*! inject:wxss:../../@doraemon-ui/style/color.wxss */
-.dora-color--light {
-  --dora-color-base: var(--dora-color-light, #f4f5f8)!important;
-  --dora-color-active: var(--dora-color-light-active, #d5d9e4)!important;
-  --dora-color-contrast: var(--dora-color-light-contrast, #000)!important
-}
-.dora-color--stable {
-  --dora-color-base: var(--dora-color-stable, #92949c)!important;
-  --dora-color-active: var(--dora-color-stable-active, #777a84)!important;
-  --dora-color-contrast: var(--dora-color-stable-contrast, #fff)!important
-}
-.dora-color--positive {
-  --dora-color-base: var(--dora-color-positive, #3880ff)!important;
-  --dora-color-active: var(--dora-color-positive-active, #055fff)!important;
-  --dora-color-contrast: var(--dora-color-positive-contrast, #fff)!important
-}
-.dora-color--calm {
-  --dora-color-base: var(--dora-color-calm, #3dc2ff)!important;
-  --dora-color-active: var(--dora-color-calm-active, #0ab2ff)!important;
-  --dora-color-contrast: var(--dora-color-calm-contrast, #fff)!important
-}
-.dora-color--balanced {
-  --dora-color-base: var(--dora-color-balanced, #2dd36f)!important;
-  --dora-color-active: var(--dora-color-balanced-active, #24a959)!important;
-  --dora-color-contrast: var(--dora-color-balanced-contrast, #fff)!important
-}
-.dora-color--energized {
-  --dora-color-base: var(--dora-color-energized, #ffc409)!important;
-  --dora-color-active: var(--dora-color-energized-active, #d5a200)!important;
-  --dora-color-contrast: var(--dora-color-energized-contrast, #000)!important
-}
-.dora-color--assertive {
-  --dora-color-base: var(--dora-color-assertive, #eb445a)!important;
-  --dora-color-active: var(--dora-color-assertive-active, #e41833)!important;
-  --dora-color-contrast: var(--dora-color-assertive-contrast, #fff)!important
-}
-.dora-color--royal {
-  --dora-color-base: var(--dora-color-royal, #8a63d2)!important;
-  --dora-color-active: var(--dora-color-royal-active, #6c3bc7)!important;
-  --dora-color-contrast: var(--dora-color-royal-contrast, #fff)!important
-}
-.dora-color--dark {
-  --dora-color-base: var(--dora-color-dark, #222428)!important;
-  --dora-color-active: var(--dora-color-dark-active, #0b0b0c)!important;
-  --dora-color-contrast: var(--dora-color-dark-contrast, #fff)!important
-}
-/*! endinject */
+@import '../../@doraemon-ui/style/color.wxss';
+
 .dora-toast {
   --text-color: var(--dora-toast-text-color, #fff);
   --background-color: var(--dora-toast-background-color, rgba(0, 0, 0, 0.7));

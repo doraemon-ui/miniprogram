@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.core-js.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-20, 16:56:54.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.17.
+ * Built on 2024-03-20, 18:15:34.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.18.
  */
 
 var classnames = {exports: {}};
