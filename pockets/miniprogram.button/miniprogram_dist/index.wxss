@@ -1,7 +1,52 @@
 @import '../../@doraemon-ui/style/var.wxss';
 
-@import '../../@doraemon-ui/style/color.wxss';
-
+/*! inject:wxss:../../@doraemon-ui/style/color.wxss */
+.dora-color--light {
+  --dora-color-base: var(--dora-color-light, #f4f5f8)!important;
+  --dora-color-active: var(--dora-color-light-active, #d5d9e4)!important;
+  --dora-color-contrast: var(--dora-color-light-contrast, #000)!important
+}
+.dora-color--stable {
+  --dora-color-base: var(--dora-color-stable, #92949c)!important;
+  --dora-color-active: var(--dora-color-stable-active, #777a84)!important;
+  --dora-color-contrast: var(--dora-color-stable-contrast, #fff)!important
+}
+.dora-color--positive {
+  --dora-color-base: var(--dora-color-positive, #3880ff)!important;
+  --dora-color-active: var(--dora-color-positive-active, #055fff)!important;
+  --dora-color-contrast: var(--dora-color-positive-contrast, #fff)!important
+}
+.dora-color--calm {
+  --dora-color-base: var(--dora-color-calm, #3dc2ff)!important;
+  --dora-color-active: var(--dora-color-calm-active, #0ab2ff)!important;
+  --dora-color-contrast: var(--dora-color-calm-contrast, #fff)!important
+}
+.dora-color--balanced {
+  --dora-color-base: var(--dora-color-balanced, #2dd36f)!important;
+  --dora-color-active: var(--dora-color-balanced-active, #24a959)!important;
+  --dora-color-contrast: var(--dora-color-balanced-contrast, #fff)!important
+}
+.dora-color--energized {
+  --dora-color-base: var(--dora-color-energized, #ffc409)!important;
+  --dora-color-active: var(--dora-color-energized-active, #d5a200)!important;
+  --dora-color-contrast: var(--dora-color-energized-contrast, #000)!important
+}
+.dora-color--assertive {
+  --dora-color-base: var(--dora-color-assertive, #eb445a)!important;
+  --dora-color-active: var(--dora-color-assertive-active, #e41833)!important;
+  --dora-color-contrast: var(--dora-color-assertive-contrast, #fff)!important
+}
+.dora-color--royal {
+  --dora-color-base: var(--dora-color-royal, #8a63d2)!important;
+  --dora-color-active: var(--dora-color-royal-active, #6c3bc7)!important;
+  --dora-color-contrast: var(--dora-color-royal-contrast, #fff)!important
+}
+.dora-color--dark {
+  --dora-color-base: var(--dora-color-dark, #222428)!important;
+  --dora-color-active: var(--dora-color-dark-active, #0b0b0c)!important;
+  --dora-color-contrast: var(--dora-color-dark-contrast, #fff)!important
+}
+/*! endinject */
 .dora-button {
   color: inherit!important;
   background: 0 0!important;
@@ -41,7 +86,7 @@
   --activated-background-color: var(--dora-color-positive-active, #055fff);
   --border-color: var(--dora-color-positive, #3880ff);
   --activated-border-color: var(--dora-color-positive-active, #055fff);
-  --border-radius: var(--dora-button-border-radius, 16rpx);
+  --border-radius: var(--dora-button-border-radius, var(--dora-border-radius, 16rpx));
   --font-size: 32rpx;
   --height: 96rpx;
   --padding-start: 24rpx;
@@ -49,16 +94,28 @@
   padding-top: unset;
   padding-bottom: unset;
   padding-left: var(--padding-start);
+  padding-left: var(--padding-start);
+  padding-right: var(--padding-end);
   padding-right: var(--padding-end);
   min-width: calc((var(--padding-start) * 1.5) + (var(--padding-end) * 1.5) + var(--font-size));
+  min-width: calc((var(--padding-start) * 1.5) + (var(--padding-end) * 1.5) + var(--font-size));
+  min-height: var(--height)!important;
   min-height: var(--height)!important;
   font-size: var(--font-size);
+  font-size: var(--font-size);
+  line-height: calc(var(--height) - var(--border-width) * 2);
   line-height: calc(var(--height) - var(--border-width) * 2);
   opacity: var(--opacity);
+  opacity: var(--opacity);
+  border-radius: var(--border-radius);
   border-radius: var(--border-radius);
   border: var(--border-width) var(--border-style) var(--border-color);
+  border: var(--border-width) var(--border-style) var(--border-color);
+  border-color: var(--border-color)!important;
   border-color: var(--border-color)!important;
   background-color: var(--background-color)!important;
+  background-color: var(--background-color)!important;
+  color: var(--text-color)!important;
   color: var(--text-color)!important
 }
 .dora-button::after {
@@ -106,14 +163,14 @@
   --activated-border-color: var(--dora-color-positive, #3880ff)
 }
 .dora-button--small {
-  --border-radius: 8rpx;
+  --border-radius: var(--dora-border-radius-sm, 8rpx);
   --font-size: 24rpx;
   --height: 64rpx;
   --padding-start: 8rpx;
   --padding-end: 8rpx
 }
 .dora-button--large {
-  --border-radius: 24rpx;
+  --border-radius: var(--dora-border-radius-lg, 24rpx);
   --font-size: 40rpx;
   --height: 112rpx;
   --padding-start: 32rpx;
@@ -129,6 +186,8 @@
   width: 100%!important;
   contain: content!important;
   margin-top: var(--block-margin-top);
+  margin-top: var(--block-margin-top);
+  margin-bottom: var(--block-margin-bottom);
   margin-bottom: var(--block-margin-bottom)
 }
 .dora-button--block {
@@ -157,12 +216,17 @@
 .dora-button--disabled {
   cursor: default;
   opacity: var(--disabled-opacity)!important;
+  opacity: var(--disabled-opacity)!important;
   pointer-events: none
 }
 .dora-button--activated {
   opacity: var(--activated-opacity)!important;
+  opacity: var(--activated-opacity)!important;
+  border-color: var(--activated-border-color)!important;
   border-color: var(--activated-border-color)!important;
   background-color: var(--activated-background-color)!important;
+  background-color: var(--activated-background-color)!important;
+  color: var(--activated-text-color)!important;
   color: var(--activated-text-color)!important
 }
 .dora-button.dora-color {

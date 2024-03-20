@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.demo-page.
- * © 2021 - 2021 Doraemon UI.
- * Built on 2021-12-12, 17:12:04.
+ * © 2021 - 2024 Doraemon UI.
+ * Built on 2024-03-20, 16:57:49.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.17.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -28,16 +28,18 @@ const themeJSON = {
 };
 const darkmodeSync = (darkmode) => {
     const theme = themeJSON[darkmode];
-    wx.setBackgroundTextStyle({
-        textStyle: theme.backgroundTextStyle,
-    });
-    wx.setBackgroundColor({
-        backgroundColor: theme.backgroundColor,
-    });
-    wx.setNavigationBarColor({
-        frontColor: theme.navigationBarTextStyle === 'black' ? '#000000' : '#ffffff',
-        backgroundColor: theme.navigationBarBackgroundColor,
-    });
+    if (typeof wx !== 'undefined') {
+        wx.setBackgroundTextStyle({
+            textStyle: theme.backgroundTextStyle,
+        });
+        wx.setBackgroundColor({
+            backgroundColor: theme.backgroundColor,
+        });
+        wx.setNavigationBarColor({
+            frontColor: theme.navigationBarTextStyle === 'black' ? '#000000' : '#ffffff',
+            backgroundColor: theme.navigationBarBackgroundColor,
+        });
+    }
 };
 var DarkMode;
 (function (DarkMode) {
@@ -127,7 +129,7 @@ let DemoPage = class DemoPage extends Doraemon {
             this.isManual = false;
             this.setTheme(DarkMode.AUTO);
         };
-        if (wx.onThemeChange) {
+        if (typeof wx !== 'undefined' && wx.onThemeChange) {
             wx.onThemeChange(cb);
         }
         else if (theme) {
@@ -139,7 +141,7 @@ let DemoPage = class DemoPage extends Doraemon {
         if (isAuto) {
             this.onThemeChange();
         }
-        else {
+        else if (typeof wx !== 'undefined' && wx.offThemeChange) {
             wx.offThemeChange();
         }
         this.isAuto = isAuto;

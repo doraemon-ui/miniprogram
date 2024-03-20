@@ -1,23 +1,72 @@
 @import '../../@doraemon-ui/style/var.wxss';
 
-@import '../../@doraemon-ui/style/color.wxss';
-
+/*! inject:wxss:../../@doraemon-ui/style/color.wxss */
+.dora-color--light {
+  --dora-color-base: var(--dora-color-light, #f4f5f8)!important;
+  --dora-color-active: var(--dora-color-light-active, #d5d9e4)!important;
+  --dora-color-contrast: var(--dora-color-light-contrast, #000)!important
+}
+.dora-color--stable {
+  --dora-color-base: var(--dora-color-stable, #92949c)!important;
+  --dora-color-active: var(--dora-color-stable-active, #777a84)!important;
+  --dora-color-contrast: var(--dora-color-stable-contrast, #fff)!important
+}
+.dora-color--positive {
+  --dora-color-base: var(--dora-color-positive, #3880ff)!important;
+  --dora-color-active: var(--dora-color-positive-active, #055fff)!important;
+  --dora-color-contrast: var(--dora-color-positive-contrast, #fff)!important
+}
+.dora-color--calm {
+  --dora-color-base: var(--dora-color-calm, #3dc2ff)!important;
+  --dora-color-active: var(--dora-color-calm-active, #0ab2ff)!important;
+  --dora-color-contrast: var(--dora-color-calm-contrast, #fff)!important
+}
+.dora-color--balanced {
+  --dora-color-base: var(--dora-color-balanced, #2dd36f)!important;
+  --dora-color-active: var(--dora-color-balanced-active, #24a959)!important;
+  --dora-color-contrast: var(--dora-color-balanced-contrast, #fff)!important
+}
+.dora-color--energized {
+  --dora-color-base: var(--dora-color-energized, #ffc409)!important;
+  --dora-color-active: var(--dora-color-energized-active, #d5a200)!important;
+  --dora-color-contrast: var(--dora-color-energized-contrast, #000)!important
+}
+.dora-color--assertive {
+  --dora-color-base: var(--dora-color-assertive, #eb445a)!important;
+  --dora-color-active: var(--dora-color-assertive-active, #e41833)!important;
+  --dora-color-contrast: var(--dora-color-assertive-contrast, #fff)!important
+}
+.dora-color--royal {
+  --dora-color-base: var(--dora-color-royal, #8a63d2)!important;
+  --dora-color-active: var(--dora-color-royal-active, #6c3bc7)!important;
+  --dora-color-contrast: var(--dora-color-royal-contrast, #fff)!important
+}
+.dora-color--dark {
+  --dora-color-base: var(--dora-color-dark, #222428)!important;
+  --dora-color-active: var(--dora-color-dark-active, #0b0b0c)!important;
+  --dora-color-contrast: var(--dora-color-dark-contrast, #fff)!important
+}
+/*! endinject */
 .dora-dialog {
   --font-size: var(--dora-dialog-font-size, 34rpx);
   --title-font-size: var(--dora-dialog-title-font-size, 36rpx);
   --button-text-color: var(--dora-color-dark, #222428);
   position: relative;
   background-color: var(--dora-component-background-color,#fff);
+  background-color: var(--dora-component-background-color,#fff);
   border: 0;
   background-clip: padding-box;
   height: 100%;
   text-align: center;
   overflow: hidden;
-  border-radius: 24rpx
+  border-radius: var(--dora-border-radius-lg,24rpx);
+  border-radius: var(--dora-border-radius-lg,24rpx)
 }
 .dora-dialog__title {
   font-weight: 700;
   font-size: var(--title-font-size);
+  font-size: var(--title-font-size);
+  color: var(--dora-black,#000);
   color: var(--dora-black,#000);
   margin-bottom: 24rpx
 }
@@ -26,15 +75,18 @@
 }
 .dora-dialog__bd {
   font-size: var(--font-size);
+  font-size: var(--font-size);
   line-height: 1.4;
   word-wrap: break-word;
   word-break: break-all;
+  color: rgba(var(--dora-text-color-rgb,0,0,0),.45);
   color: rgba(var(--dora-text-color-rgb,0,0,0),.45);
   padding: 48rpx 24rpx
 }
 .dora-dialog__ft {
   position: relative;
   line-height: 112rpx;
+  font-size: var(--title-font-size);
   font-size: var(--title-font-size);
   display: -ms-flexbox;
   display: flex
@@ -47,6 +99,8 @@
   right: 0;
   height: 1PX;
   border-top: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  border-top: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  color: var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
   color: var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
   transform-origin: 0 0;
   transform: scaleY(.5)
@@ -59,7 +113,6 @@
 .dora-dialog__image-img {
   width: 100%;
   height: 100%;
-  -o-object-fit: fill;
   object-fit: fill;
   display: block
 }
@@ -96,6 +149,8 @@
   width: 1PX;
   bottom: 0;
   border-left: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  border-left: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  color: var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
   color: var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
   transform-origin: 0 0;
   transform: scaleX(.5)
@@ -115,6 +170,8 @@
   right: 0;
   height: 1PX;
   border-top: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  border-top: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  color: var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
   color: var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
   transform-origin: 0 0;
   transform: scaleY(.5)
@@ -139,6 +196,7 @@
   -ms-flex: 1;
   flex: 1;
   color: var(--button-text-color)!important;
+  color: var(--button-text-color)!important;
   position: relative
 }
 .dora-dialog__button::after {
@@ -160,8 +218,10 @@
   font-weight: 700!important
 }
 .dora-dialog__button--hover {
+  background-color: var(--dora-active-state-bg,var(--dora-color-step-10,#e6e6e6))!important;
   background-color: var(--dora-active-state-bg,var(--dora-color-step-10,#e6e6e6))!important
 }
 .dora-dialog__button--disabled {
+  opacity: var(--dora-disabled-opacity,.3);
   opacity: var(--dora-disabled-opacity,.3)
 }

@@ -1,20 +1,16 @@
 /**
  * @doraemon-ui/miniprogram.core-js.
- * © 2021 - 2021 Doraemon UI.
- * Built on 2021-11-30, 15:13:44.
+ * © 2021 - 2024 Doraemon UI.
+ * Built on 2024-03-20, 16:56:54.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.17.
  */
-
-function getDefaultExportFromCjs (x) {
-	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
-}
 
 var classnames = {exports: {}};
 
 /*!
-  Copyright (c) 2018 Jed Watson.
-  Licensed under the MIT License (MIT), see
-  http://jedwatson.github.io/classnames
+	Copyright (c) 2018 Jed Watson.
+	Licensed under the MIT License (MIT), see
+	http://jedwatson.github.io/classnames
 */
 
 (function (module) {
@@ -24,38 +20,57 @@ var classnames = {exports: {}};
 
 	var hasOwn = {}.hasOwnProperty;
 
-	function classNames() {
-		var classes = [];
+	function classNames () {
+		var classes = '';
 
 		for (var i = 0; i < arguments.length; i++) {
 			var arg = arguments[i];
-			if (!arg) continue;
-
-			var argType = typeof arg;
-
-			if (argType === 'string' || argType === 'number') {
-				classes.push(arg);
-			} else if (Array.isArray(arg)) {
-				if (arg.length) {
-					var inner = classNames.apply(null, arg);
-					if (inner) {
-						classes.push(inner);
-					}
-				}
-			} else if (argType === 'object') {
-				if (arg.toString === Object.prototype.toString) {
-					for (var key in arg) {
-						if (hasOwn.call(arg, key) && arg[key]) {
-							classes.push(key);
-						}
-					}
-				} else {
-					classes.push(arg.toString());
-				}
+			if (arg) {
+				classes = appendClass(classes, parseValue(arg));
 			}
 		}
 
-		return classes.join(' ');
+		return classes;
+	}
+
+	function parseValue (arg) {
+		if (typeof arg === 'string' || typeof arg === 'number') {
+			return arg;
+		}
+
+		if (typeof arg !== 'object') {
+			return '';
+		}
+
+		if (Array.isArray(arg)) {
+			return classNames.apply(null, arg);
+		}
+
+		if (arg.toString !== Object.prototype.toString && !arg.toString.toString().includes('[native code]')) {
+			return arg.toString();
+		}
+
+		var classes = '';
+
+		for (var key in arg) {
+			if (hasOwn.call(arg, key) && arg[key]) {
+				classes = appendClass(classes, key);
+			}
+		}
+
+		return classes;
+	}
+
+	function appendClass (value, newClass) {
+		if (!newClass) {
+			return value;
+		}
+	
+		if (value) {
+			return value + ' ' + newClass;
+		}
+	
+		return value + newClass;
 	}
 
 	if (module.exports) {
@@ -69,119 +84,23 @@ var classnames = {exports: {}};
 
 var classNames = classnames.exports;
 
-var dist = {exports: {}};
-
-var objToString = {};
-
-var parsers = {};
-
-var createParser = {};
-
-(function (exports) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-
-function createParser(matcher, replacer) {
-  const regex = RegExp(matcher, 'g');
-  return string => {
-    // * throw an error if not a string
-    if (typeof string !== 'string') {
-      throw new TypeError("expected an argument of type string, but got ".concat(typeof styleObj));
-    } // * if no match between string and matcher
-
-
-    if (!string.match(regex)) {
-      return string;
-    } // * executes the replacer function for each match
-    // ? replacer can take any arguments valid for String.prototype.replace
-
-
-    return string.replace(regex, replacer);
+function a(t, o) {
+  const r = RegExp(t, "g");
+  return (e) => {
+    if (typeof e != "string")
+      throw new TypeError(`expected an argument of type string, but got ${typeof e}`);
+    return e.match(r) ? e.replace(r, o) : e;
   };
 }
 
-var _default = createParser;
-exports["default"] = _default;
-}(createParser));
+const r = a(/[A-Z]/, (o) => `-${o.toLowerCase()}`);
 
-Object.defineProperty(parsers, "__esModule", {
-  value: true
-});
-parsers.snakeToKebab = parsers.camelToKebab = void 0;
-
-var _createParser = _interopRequireDefault(createParser);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-const camelToKebab = (0, _createParser["default"])(/[A-Z]/, match => "-".concat(match.toLowerCase()));
-parsers.camelToKebab = camelToKebab;
-const snakeToKebab = (0, _createParser["default"])(/_/, () => '-'); // disabled to allow named exports while only one named export exists
-// eslint-disable-next-line
-
-parsers.snakeToKebab = snakeToKebab;
-
-(function (exports) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-
-var _parsers = parsers;
-
-function objToString(styleObj, parser = _parsers.camelToKebab) {
-  if (!styleObj || typeof styleObj !== 'object' || Array.isArray(styleObj)) {
-    throw new TypeError("expected an argument of type object, but got ".concat(typeof styleObj));
-  }
-
-  const lines = Object.keys(styleObj).map(property => "".concat(parser(property), ": ").concat(styleObj[property], ";"));
-  return lines.join('\n');
+function c(o, r$1 = r) {
+  if (!o || typeof o != "object" || Array.isArray(o))
+    throw new TypeError(`expected an argument of type object, but got ${typeof o}`);
+  return Object.keys(o).map((e) => `${r$1(e)}: ${o[e]};`).join(`
+`);
 }
-
-var _default = objToString;
-exports["default"] = _default;
-}(objToString));
-
-(function (module, exports) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-Object.defineProperty(exports, "createParser", {
-  enumerable: true,
-  get: function get() {
-    return _createParser["default"];
-  }
-});
-exports.parsers = exports["default"] = void 0;
-
-var _objToString = _interopRequireDefault(objToString);
-
-var _createParser = _interopRequireDefault(createParser);
-
-var parsers$1 = _interopRequireWildcard(parsers);
-
-exports.parsers = parsers$1;
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var _default = _objToString["default"];
-exports["default"] = _default;
-module.exports = _objToString["default"];
-module.exports.createParser = _createParser["default"];
-module.exports.parsers = _objectSpread({}, parsers$1);
-}(dist, dist.exports));
-
-var styleToCssString = /*@__PURE__*/getDefaultExportFromCjs(dist.exports);
 
 const LIFECYCLE_HOOKS = [
     'beforeCreate',
@@ -437,7 +356,7 @@ class Doraemon {
         warn,
         isEqual,
         classNames,
-        styleToCssString,
+        styleToCssString: c,
     };
 }
 /**

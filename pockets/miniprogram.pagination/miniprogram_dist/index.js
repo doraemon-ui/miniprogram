@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.pagination.
- * © 2021 - 2021 Doraemon UI.
- * Built on 2021-12-05, 21:44:55.
+ * © 2021 - 2024 Doraemon UI.
+ * Built on 2024-03-20, 16:59:19.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.17.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
