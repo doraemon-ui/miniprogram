@@ -18,16 +18,18 @@ const themeJSON = {
 
 const darkmodeSync = (darkmode: SysThemeType) => {
   const theme = themeJSON[darkmode]
-  wx.setBackgroundTextStyle({
-    textStyle: theme.backgroundTextStyle as SysThemeType,
-  })
-  wx.setBackgroundColor({
-    backgroundColor: theme.backgroundColor,
-  })
-  wx.setNavigationBarColor({
-    frontColor: theme.navigationBarTextStyle === 'black' ? '#000000' : '#ffffff',
-    backgroundColor: theme.navigationBarBackgroundColor,
-  })
+  if (typeof wx !== 'undefined') {
+    wx.setBackgroundTextStyle({
+      textStyle: theme.backgroundTextStyle as SysThemeType,
+    })
+    wx.setBackgroundColor({
+      backgroundColor: theme.backgroundColor,
+    })
+    wx.setNavigationBarColor({
+      frontColor: theme.navigationBarTextStyle === 'black' ? '#000000' : '#ffffff',
+      backgroundColor: theme.navigationBarBackgroundColor,
+    })
+  }
 }
 
 enum DarkMode {
@@ -161,7 +163,7 @@ class DemoPage extends Doraemon {
       this.isManual = false
       this.setTheme(DarkMode.AUTO)
     }
-    if (wx.onThemeChange) {
+    if (typeof wx !== 'undefined' && wx.onThemeChange) {
       wx.onThemeChange(cb)
     } else if (theme) {
       cb({ theme })
@@ -172,7 +174,7 @@ class DemoPage extends Doraemon {
     const isAuto = darkmode === DarkMode.AUTO
     if (isAuto) {
       this.onThemeChange()
-    } else {
+    } else if (typeof wx !== 'undefined' && wx.offThemeChange) {
       wx.offThemeChange()
     }
     this.isAuto = isAuto
