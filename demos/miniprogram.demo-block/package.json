@@ -17,7 +17,7 @@
     "demo-block"
   ],
   "scripts": {
-    "serve": "dora serve ./proscenium --open --build-npm",
+    "serve": "dora serve ./playground --open --build-npm",
     "build:dev": "dora build --watch",
     "build": "dora build",
     "test": "cross-env NODE_ENV=testing jest --coverage",

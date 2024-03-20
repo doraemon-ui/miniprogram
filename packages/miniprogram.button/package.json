@@ -1,9 +1,9 @@
 {
-  "name": "@doraemon-ui/miniprogram.demo-page",
+  "name": "@doraemon-ui/miniprogram.button",
   "private": false,
-  "version": "0.0.1-alpha.4",
-  "description": "miniprogram demo-page component for doraemon-ui",
-  "author": "skyvow",
+  "version": "0.0.2-alpha.29",
+  "description": "button component for doraemon-ui",
+  "author": "skyvow <724355924@qq.com>",
   "homepage": "",
   "license": "MIT",
   "miniprogram": "miniprogram_dist",
@@ -14,7 +14,7 @@
   "keywords": [
     "doraemon-ui",
     "miniprogram",
-    "demo-page"
+    "button"
   ],
   "scripts": {
     "serve": "dora serve ./playground --open --build-npm",
@@ -22,14 +22,14 @@
     "build": "dora build",
     "test": "cross-env NODE_ENV=testing jest --coverage",
     "clean": "cross-env rimraf miniprogram_dist/* .coverage-report/*",
-    "preversion": "npm run clean && npm run build && npm run test"
+    "preversion": "pnpm run clean && pnpm run build && pnpm run test"
   },
   "dependencies": {
     "@doraemon-ui/miniprogram.core-js": "^0.0.2-alpha.22",
     "@doraemon-ui/style": "^0.0.1-alpha.8"
   },
   "devDependencies": {
-    "@doraemon-ui/cli": "^0.0.2-alpha.35",
+    "@doraemon-ui/cli": "^0.0.2-alpha.36",
     "cross-env": "^7.0.3",
     "jest": "^27.0.6",
     "rimraf": "^3.0.2"

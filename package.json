@@ -4,8 +4,8 @@
   "workspaces": {
     "packages": [
       "demos/*",
-      "pockets/*",
-      "proscenium/**"
+      "packages/*",
+      "playground/**"
     ],
     "nohoist": [
       "**@doraemon-ui/style**"
@@ -37,10 +37,10 @@
     "typescript": "^4.1.2"
   },
   "scripts": {
-    "eslint": "eslint {pockets,demos}/** --ext js,ts",
-    "eslint:fix": "eslint {pockets,demos}/** --ext js,ts --fix",
-    "stylelint": "stylelint \"{pockets,demos}/**/*.less\" --syntax less",
-    "stylelint:fix": "stylelint \"{pockets,demos}/**/*.less\" --syntax less --fix",
+    "eslint": "eslint {packages,demos}/** --ext js,ts",
+    "eslint:fix": "eslint {packages,demos}/** --ext js,ts --fix",
+    "stylelint": "stylelint \"{packages,demos}/**/*.less\" --syntax less",
+    "stylelint:fix": "stylelint \"{packages,demos}/**/*.less\" --syntax less --fix",
     "lint": "pnpm run eslint && pnpm run stylelint",
     "lint:fix": "pnpm run eslint:fix && pnpm run stylelint:fix",
     "prepare": "husky install",

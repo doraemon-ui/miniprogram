@@ -1,4 +1,4 @@
 packages:
   - demos/*
-  - pockets/*
-  - proscenium/**
+  - packages/*
+  - playground/**

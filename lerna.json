@@ -4,8 +4,8 @@
   "useWorkspaces": true,
   "packages": [
     "demos/*",
-    "pockets/*",
-    "proscenium/**"
+    "packages/*",
+    "playground/**"
   ],
   "command": {
     "publish": {
@@ -17,7 +17,7 @@
     }
   },
   "ignoreChanges": [
-    "proscenium/**",
+    "playground/**",
     "**/package-lock.json",
     "**/*.md",
     "**/.*",
@@ -29,7 +29,7 @@
     "**/dist/**",
     "**/demo/**",
     "**/miniprogram_dist/**",
-    "**/proscenium/**"
+    "**/playground/**"
   ],
   "version": "independent"
 }
