@@ -1,6 +1,6 @@
 {
   "granularPathspec": false,
-  "npmClient": "yarn",
+  "npmClient": "pnpm",
   "useWorkspaces": true,
   "packages": [
     "demos/*",

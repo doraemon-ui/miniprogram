@@ -92,6 +92,7 @@ class MyComp extends Doraemon {
   created () {}
   mounted () {}
   destroyed () {}
+  unmounted () {}
   errorCaptured () {}
 
   error () {

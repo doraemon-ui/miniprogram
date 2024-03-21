@@ -6,4 +6,4 @@ export { Watch } from './decorators/Watch'
 
 export { Doraemon } from './instance/init'
 
-export { defineComponentHOC } from './miniprogram/defineComponentHOC'
+export { defineComponentHOC, toNative } from './miniprogram/defineComponentHOC'

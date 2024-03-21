@@ -8,7 +8,7 @@ export function initComponents(vm, components): {
     const { module: componentName, type = 'child', observer = noop } = getData(components[key])
     const linkCb = function () {
       if (typeof observer === 'string') {
-        return this[observer]()
+        return this.$component[observer]?.()
       } else if (typeof observer === 'function') {
         return observer()
       }

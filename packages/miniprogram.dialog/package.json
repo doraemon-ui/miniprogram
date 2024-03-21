@@ -31,7 +31,8 @@
     "@doraemon-ui/style": "^0.0.1-alpha.9"
   },
   "devDependencies": {
-    "@doraemon-ui/cli": "^0.0.2-alpha.36",
+    "@doraemon-ui/miniprogram.cli": "^0.0.2-alpha.40",
+    "@types/node": "^16.3.3",
     "cross-env": "^7.0.3",
     "jest": "^27.0.6",
     "rimraf": "^3.0.2"

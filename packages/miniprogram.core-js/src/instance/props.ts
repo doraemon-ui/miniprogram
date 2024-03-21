@@ -10,7 +10,10 @@ export function initProps (vm, propsOptions: object): WechatMiniprogram.Componen
     const propOptions = propsOptions[key]
     const type = propOptions.type || NULL_PROP
     const value = validateProp(key, propsOptions, {}, vm)
-    properties[key] = { type, value }
+    // 属性的类型（可以指定多个）
+    properties[key] = Array.isArray(type)
+      ? { optionalTypes: type, type, value }
+      : { type, value }
   }
   return properties
 }

@@ -4,7 +4,7 @@ import { config } from '../instance/config'
 import { initData } from '../instance/data'
 import { ComponentRenderProxy, Doraemon, DoraemonClass } from '../instance/init'
 import { callHook, initLifecycle } from '../instance/lifecycle'
-import { initExposed } from '../instance/expose'
+import { initExposed, getPublicInstance } from '../instance/expose'
 import { initMethods } from '../instance/methods'
 import { initProps } from '../instance/props'
 import { initProxy } from '../instance/proxy'
@@ -17,7 +17,7 @@ export interface ComponentExternalOptions extends WechatMiniprogram.Component.Co
   /** 组件接受的外部样式类 */
   externalClasses?: string[]
   /** 组件自定义导出 */
-  ['export']?: () => WechatMiniprogram.IAnyObject
+  expose?: () => WechatMiniprogram.IAnyObject
   /** 组件间代码共享 */
   behaviors?: WechatMiniprogram.Behavior.BehaviorIdentifier[]
 }
@@ -42,7 +42,6 @@ export function defineComponentHOC (externalOptions: ComponentExternalOptions = 
     const watch = initWatch(componentInstance, options.watch)
     const components = initComponents(componentInstance, options.components)
     const methods = initMethods(componentInstance, options.methods)
-    const exposed = initExposed(componentInstance)
 
     const componentConf: WechatMiniprogram.Component.Options<any, any, any> = {
       options: {
@@ -51,18 +50,21 @@ export function defineComponentHOC (externalOptions: ComponentExternalOptions = 
         addGlobalClass: typeof externalOptions.addGlobalClass !== 'undefined' ?
           externalOptions.addGlobalClass : true,
       },
-      externalClasses: ['dora-class', 'dora-hover-class'].concat(
+      externalClasses: [
+        'dora-class',
+        'dora-class-a',
+        'dora-class-b',
+        'dora-class-c',
+        'dora-hover-class'
+      ].concat(
         Array.isArray(externalOptions.externalClasses) ?
           externalOptions.externalClasses : []
       ),
       ['export'] (this: ComponentRenderProxy<Doraemon>) {
-        if (Object.keys(exposed).length) {
-          return exposed
+        if (externalOptions.expose) {
+          return externalOptions.expose.call(this)
         }
-        if (externalOptions['export']) {
-          return externalOptions['export'].call(this)
-        }
-        return this.$component ? this.$component : this
+        return getPublicInstance(this.$component)
       },
       relations: components,
       behaviors: (Array.isArray(externalOptions.behaviors) ?
@@ -84,6 +86,7 @@ export function defineComponentHOC (externalOptions: ComponentExternalOptions = 
           initLifecycle(this.$component, options)
           initRefs(this.$component)
           callHook(this.$component, 'beforeCreate')
+          initExposed(this.$component)
         },
         attached: function created(this: ComponentRenderProxy<Doraemon>) {
           initData(this.$component)
@@ -105,6 +108,7 @@ export function defineComponentHOC (externalOptions: ComponentExternalOptions = 
             this.$component._isDestroyed = true
           }
           callHook(this.$component, 'destroyed')
+          callHook(this.$component, 'unmounted')
         },
         error: function errorCaptured(this: ComponentRenderProxy<Doraemon>) {
           callHook(this.$component, 'errorCaptured')
@@ -114,6 +118,10 @@ export function defineComponentHOC (externalOptions: ComponentExternalOptions = 
 
     return Component(componentConf)
   }
+}
+
+export function toNative (target: DoraemonClass<Doraemon>) {
+  return defineComponentHOC()(target)
 }
 
 function mergeStaticProperty(config: ComponentExternalOptions, target: DoraemonClass<Doraemon>) {

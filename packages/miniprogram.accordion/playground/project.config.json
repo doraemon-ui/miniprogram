@@ -1,9 +1,6 @@
 {
   "description": "项目配置文件",
   "miniprogramRoot": "pages/",
-  "packOptions": {
-    "ignore": []
-  },
   "setting": {
     "urlCheck": true,
     "es6": true,
@@ -24,8 +21,6 @@
     "compileHotReLoad": false,
     "lazyloadPlaceholderEnable": false,
     "useMultiFrameRuntime": true,
-    "useApiHook": true,
-    "useApiHostProcess": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -37,38 +32,22 @@
     "packNpmManually": false,
     "packNpmRelationList": [],
     "minifyWXSS": true,
-    "showES6CompileOption": false
+    "showES6CompileOption": false,
+    "ignoreUploadUnusedFiles": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.19.2",
-  "appid": "wx958ccbebf60d68f3",
-  "projectname": "miniprogram.accordion",
-  "debugOptions": {
-    "hidedInDevtools": []
-  },
-  "scripts": {
-    "beforeCompile": ""
-  },
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
-  "condition": {
-    "search": {
-      "list": []
-    },
-    "conversation": {
-      "list": []
-    },
-    "game": {
-      "list": []
-    },
-    "plugin": {
-      "list": []
-    },
-    "gamePlugin": {
-      "list": []
-    },
-    "miniprogram": {
-      "list": []
-    }
+  "condition": {},
+  "srcMiniprogramRoot": "pages/",
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
+  },
+  "appid": "wx958ccbebf60d68f3",
+  "libVersion": "2.19.2",
+  "packOptions": {
+    "ignore": [],
+    "include": []
   }
 }

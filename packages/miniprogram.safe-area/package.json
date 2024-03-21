@@ -1,0 +1,42 @@
+{
+  "name": "@doraemon-ui/miniprogram.safe-area",
+  "private": false,
+  "version": "0.0.1-alpha.0",
+  "description": "miniprogram safe-area component for doraemon-ui",
+  "author": "skyvow",
+  "homepage": "",
+  "license": "MIT",
+  "miniprogram": "miniprogram_dist",
+  "main": "miniprogram_dist/index.js",
+  "module": "miniprogram_dist/index.js",
+  "devMain": "src/index.ts",
+  "types": "index.d.ts",
+  "keywords": [
+    "doraemon-ui",
+    "miniprogram",
+    "safe-area"
+  ],
+  "scripts": {
+    "serve": "dora serve ./playground --open --build-npm",
+    "build:dev": "dora build --watch",
+    "build": "dora build",
+    "test": "cross-env NODE_ENV=testing jest --coverage",
+    "clean": "cross-env rimraf miniprogram_dist/* .coverage-report/*",
+    "preversion": "npm run clean && npm run build && npm run test"
+  },
+  "dependencies": {
+    "@doraemon-ui/miniprogram.core-js": "^0.0.2-alpha.6",
+    "@doraemon-ui/miniprogram.shared": "workspace:0.0.1-alpha.5",
+    "@doraemon-ui/style": "^0.0.1-alpha.1"
+  },
+  "devDependencies": {
+    "@doraemon-ui/miniprogram.cli": "^0.0.2-alpha.12",
+    "@types/node": "^16.3.3",
+    "cross-env": "^7.0.3",
+    "jest": "^27.0.6",
+    "rimraf": "^3.0.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

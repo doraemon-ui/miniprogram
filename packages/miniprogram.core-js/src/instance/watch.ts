@@ -5,7 +5,7 @@ export function initWatch (vm, watch) {
     const oldVal = this.data[key]
     const handler = Array.isArray(watch[key]) ? watch[key] : [ watch[key] ]
     handler.forEach(h => {
-      this[h.handler](newVal, oldVal)
+      this.$component[h.handler](newVal, oldVal)
     })
   } }), {})
 }

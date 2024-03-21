@@ -1,0 +1,11 @@
+<demo-page
+  darkmode="auto"
+  title="miniprogram.safe-area"
+  desc="miniprogram.safe-area"
+  clickable
+  spacing
+>
+  <demo-block title="Basic">
+    <dora-safe-area>miniprogram.safe-area</dora-safe-area>
+  </demo-block>
+</demo-page>

@@ -11,10 +11,12 @@
     dora-class="{{ classes.body }}"
     in="{{ popupVisible }}"
     classNames="{{ transitionName }}"
-    bind:exited="onExited"
-    wrapStyle="{{ extStyle }}"
     mountOnEnter="{{ mountOnEnter }}"
     unmountOnExit="{{ unmountOnExit }}"
+    wrapStyle="{{ extStyle }}"
+    bind:enter="onEnter"
+    bind:entered="onEntered"
+    bind:exited="onExited"
   >
     <slot />
   </dora-animation-group>

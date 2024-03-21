@@ -8,7 +8,7 @@ const { classNames, getCurrentInstance } = Doraemon.util
  *
  * @enum {number}
  */
-enum PositionEnum {
+enum EPosition {
   TOP = 'top',
   BOTTOM = 'bottom',
   LEFT = 'left',
@@ -33,54 +33,108 @@ class Popup extends Doraemon {
    */
   prefixCls!: string
 
+  /**
+   * 自定义 animation 类名前缀
+   *
+   * @type {string}
+   * @memberof Popup
+   */
   @Prop({
     type: String,
     default: 'dora-animate',
   })
   animationPrefixCls: string
 
+  /**
+   * 弹出层位置信息，可选值为 center、top、right、bottom、left
+   *
+   * @type {EPosition}
+   * @memberof Popup
+   */
   @Prop({
     type: String,
-    default: PositionEnum.CENTER,
+    default: EPosition.CENTER,
   })
-  position: PositionEnum
+  position: EPosition
 
+  /**
+   * 自定义 body 样式
+   *
+   * @type {object}
+   * @memberof Popup
+   */
   @Prop({
     type: Object,
     default: null,
   })
   bodyStyle: object
 
+  /**
+   * 是否显示蒙层
+   *
+   * @type {boolean}
+   * @memberof Popup
+   */
   @Prop({
     type: Boolean,
     default: true,
   })
   mask: boolean
 
+  /**
+   * 点击蒙层是否允许关闭
+   *
+   * @type {boolean}
+   * @memberof Popup
+   */
   @Prop({
     type: Boolean,
     default: true,
   })
   maskClosable: boolean
 
+  /**
+   * 蒙层是否透明
+   *
+   * @type {boolean}
+   * @memberof Popup
+   */
   @Prop({
     type: Boolean,
     default: false,
   })
   maskTransparent: boolean
   
+  /**
+   * 自定义蒙层样式
+   *
+   * @type {object}
+   * @memberof Popup
+   */
   @Prop({
     type: Object,
     default: null,
   })
   maskStyle: object
 
+  /**
+   * 是否可见
+   *
+   * @type {boolean}
+   * @memberof Popup
+   */
   @Prop({
     type: Boolean,
     default: false,
   })
   visible: boolean
 
+  /**
+   * 设置蒙层的 z-index
+   *
+   * @type {number}
+   * @memberof Popup
+   */
   @Prop({
     type: Number,
     default: 1000,
@@ -140,7 +194,7 @@ class Popup extends Doraemon {
   }
 
   @Watch('position')
-  onPositionChange(position: PositionEnum) {
+  onPositionChange(position: EPosition) {
     this.getTransitionName(position)
   }
 
@@ -165,34 +219,60 @@ class Popup extends Doraemon {
   popupVisible: boolean = false
   _wuxBackdrop: any
 
+  /**
+   * 点击关闭按钮事件
+   */
   close() {
     this.$emit('close')
   }
 
+  /**
+   * 点击蒙层事件
+   */
   onMaskClick() {
     if (this.maskClosable) {
       this.close()
     }
   }
 
+  /**
+   * 开始展示前触发
+   */
+  onEnter() {
+    this.$emit('show')
+  }
+
+  /**
+   * 完全展示后触发
+   */
+  onEntered() {
+    this.$emit('showed')
+  }
+
+  /**
+   * 完全关闭后触发
+   */
   onExited() {
     this.$emit('closed')
   }
 
-  getTransitionName(value: PositionEnum) {
+  /**
+   * 获取过渡的类名
+   */
+  getTransitionName(value: EPosition) {
     const { animationPrefixCls } = this
     let transitionName = ''
     switch (value) {
-        case PositionEnum.TOP:
+        case EPosition.TOP:
           transitionName = `${animationPrefixCls}--slideInDown`
           break
-        case PositionEnum.RIGHT:
+        case EPosition.RIGHT:
           transitionName = `${animationPrefixCls}--slideInRight`
           break
-        case PositionEnum.BOTTOM:
+        case EPosition.BOTTOM:
           transitionName = `${animationPrefixCls}--slideInUp`
           break
-        case PositionEnum.LEFT:
+        case EPosition.LEFT:
           transitionName = `${animationPrefixCls}--slideInLeft`
           break
         default:

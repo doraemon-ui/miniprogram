@@ -16,7 +16,9 @@ class Doraemon {
   _isDoraemon: boolean = false
   _isMounted: boolean = false
   _isDestroyed: boolean = false
+  _hasHookEvent: boolean = false
   _renderProxy: ComponentRenderProxy<Doraemon>
+  _exposed: Record<string, any> | null
   _uid: number
   _self: this
   $options: ComponentOptions<Doraemon>

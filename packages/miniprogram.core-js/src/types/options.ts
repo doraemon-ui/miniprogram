@@ -46,8 +46,9 @@ export interface ComponentOptions<
 
   beforeCreate?(this: D): void
   created?(): void
-  destroyed?(): void
   mounted?(): void
+  destroyed?(): void
+  unmounted?(): void
   errorCaptured?(): void
 
   components?: DefaultComponents

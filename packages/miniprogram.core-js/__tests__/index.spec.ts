@@ -129,6 +129,7 @@ describe('CoreJs', () => {
     const created = jest.fn()
     const mounted = jest.fn()
     const destroyed = jest.fn()
+    const unmounted = jest.fn()
     const wrapper = simulate.render(
       simulate.load({
         usingComponents: {
@@ -141,6 +142,7 @@ describe('CoreJs', () => {
             bind:hook:created="created"
             bind:hook:mounted="mounted"
             bind:hook:destroyed="destroyed"
+            bind:hook:unmounted="unmounted"
           />
         `,
         methods: {
@@ -148,6 +150,7 @@ describe('CoreJs', () => {
           created,
           mounted,
           destroyed,
+          unmounted,
         },
       })
     )
@@ -158,7 +161,7 @@ describe('CoreJs', () => {
 
     await simulate.sleep(0)
     wrapper.detach()
-    expect(destroyed).toHaveBeenCalledTimes(1)
+    expect(unmounted).toHaveBeenCalledTimes(1)
   })
 
   test('components', async () => {
