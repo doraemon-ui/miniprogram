@@ -1,3 +1,3 @@
-declare module 'style-object-to-css-string' {
-  export default function styleToCssString (styleObj: any, parser?: any): string
+declare module 'react-style-object-to-css' {
+  export default function styleToCssString (rules: string | Record<string, any>): string
 }

@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import styleToCssString from 'style-object-to-css-string'
+import styleToCssString from 'react-style-object-to-css'
 import { warn } from '../util/warn'
 import { ComponentOptions } from '../types/options'
 import { nextTick } from '../util/nextTick'
