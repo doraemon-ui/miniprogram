@@ -1,7 +1,7 @@
 {
   "name": "@doraemon-ui/miniprogram.pagination",
   "private": false,
-  "version": "0.0.2-alpha.30",
+  "version": "0.0.2-alpha.31",
   "description": "pagination component for doraemon-ui",
   "author": "skyvow <724355924@qq.com>",
   "homepage": "",
@@ -25,9 +25,9 @@
     "preversion": "pnpm run clean && pnpm run build && pnpm run test"
   },
   "dependencies": {
-    "@doraemon-ui/miniprogram.button": "^0.0.2-alpha.31",
-    "@doraemon-ui/miniprogram.core-js": "^0.0.2-alpha.24",
-    "@doraemon-ui/style": "^0.0.1-alpha.9"
+    "@doraemon-ui/miniprogram.button": "^0.0.2-alpha.32",
+    "@doraemon-ui/miniprogram.core-js": "^0.0.2-alpha.25",
+    "@doraemon-ui/style": "^0.0.1-alpha.10"
   },
   "devDependencies": {
     "@doraemon-ui/miniprogram.cli": "^0.0.2-alpha.40",

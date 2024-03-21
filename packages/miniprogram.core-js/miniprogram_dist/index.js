@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.core-js.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-20, 21:46:33.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.18.
+ * Built on 2024-03-21, 23:50:50.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.20.
  */
 
 var classnames = {exports: {}};
@@ -107,6 +107,7 @@ const LIFECYCLE_HOOKS = [
     'created',
     'mounted',
     'destroyed',
+    'unmounted',
     'errorCaptured',
 ];
 
@@ -282,7 +283,9 @@ class Doraemon {
     _isDoraemon = false;
     _isMounted = false;
     _isDestroyed = false;
+    _hasHookEvent = false;
     _renderProxy;
+    _exposed;
     _uid;
     _self;
     $options;
@@ -701,7 +704,7 @@ function initComponents(vm, components) {
         const { module: componentName, type = 'child', observer = noop } = getData$1(components[key]);
         const linkCb = function () {
             if (typeof observer === 'string') {
-                return this[observer]();
+                return this.$component[observer]?.();
             }
             else if (typeof observer === 'function') {
                 return observer();
@@ -843,20 +846,25 @@ function initExposed(vm) {
     const expose = vm.$options.expose || {};
     if (Array.isArray(expose)) {
         if (expose.length) {
-            const exposed = {};
+            const exposed = vm._exposed || (vm._exposed = {});
             expose.forEach((key) => {
                 Object.defineProperty(exposed, key, {
-                    get: (...args) => {
-                        return typeof this.$component[key] === 'function'
-                            ? this.$component[key].call(this.$component, ...args)
-                            : this.$component[key];
-                    },
+                    get: () => vm[key],
+                    set: (val) => (vm[key] = val)
                 });
             });
             return exposed;
         }
+        else if (!vm._exposed) {
+            vm._exposed = {};
+        }
     }
-    return {};
+}
+function getPublicInstance(vm) {
+    if (vm._exposed) {
+        return vm._exposed;
+    }
+    return vm;
 }
 
 function initMethods(vm, methods) {
@@ -878,7 +886,10 @@ function initProps(vm, propsOptions) {
         const propOptions = propsOptions[key];
         const type = propOptions.type || NULL_PROP;
         const value = validateProp(key, propsOptions, {}, vm);
-        properties[key] = { type, value };
+        // 属性的类型（可以指定多个）
+        properties[key] = Array.isArray(type)
+            ? { optionalTypes: type, type, value }
+            : { type, value };
     }
     return properties;
 }
@@ -977,7 +988,7 @@ function initWatch(vm, watch) {
             const oldVal = this.data[key];
             const handler = Array.isArray(watch[key]) ? watch[key] : [watch[key]];
             handler.forEach(h => {
-                this[h.handler](newVal, oldVal);
+                this.$component[h.handler](newVal, oldVal);
             });
         } }), {});
 }
@@ -1040,7 +1051,6 @@ function defineComponentHOC(externalOptions = {}) {
         const watch = initWatch(componentInstance, options.watch);
         const components = initComponents(componentInstance, options.components);
         const methods = initMethods(componentInstance, options.methods);
-        const exposed = initExposed(componentInstance);
         const componentConf = {
             options: {
                 multipleSlots: typeof externalOptions.multipleSlots !== 'undefined' ?
@@ -1048,16 +1058,19 @@ function defineComponentHOC(externalOptions = {}) {
                 addGlobalClass: typeof externalOptions.addGlobalClass !== 'undefined' ?
                     externalOptions.addGlobalClass : true,
             },
-            externalClasses: ['dora-class', 'dora-hover-class'].concat(Array.isArray(externalOptions.externalClasses) ?
+            externalClasses: [
+                'dora-class',
+                'dora-class-a',
+                'dora-class-b',
+                'dora-class-c',
+                'dora-hover-class'
+            ].concat(Array.isArray(externalOptions.externalClasses) ?
                 externalOptions.externalClasses : []),
             ['export']() {
-                if (Object.keys(exposed).length) {
-                    return exposed;
+                if (externalOptions.expose) {
+                    return externalOptions.expose.call(this);
                 }
-                if (externalOptions['export']) {
-                    return externalOptions['export'].call(this);
-                }
-                return this.$component ? this.$component : this;
+                return getPublicInstance(this.$component);
             },
             relations: components,
             behaviors: (Array.isArray(externalOptions.behaviors) ?
@@ -1078,6 +1091,7 @@ function defineComponentHOC(externalOptions = {}) {
                     initLifecycle(this.$component, options);
                     initRefs(this.$component);
                     callHook(this.$component, 'beforeCreate');
+                    initExposed(this.$component);
                 },
                 attached: function created() {
                     initData(this.$component);
@@ -1099,6 +1113,7 @@ function defineComponentHOC(externalOptions = {}) {
                         this.$component._isDestroyed = true;
                     }
                     callHook(this.$component, 'destroyed');
+                    callHook(this.$component, 'unmounted');
                 },
                 error: function errorCaptured() {
                     callHook(this.$component, 'errorCaptured');
@@ -1107,6 +1122,9 @@ function defineComponentHOC(externalOptions = {}) {
         };
         return Component(componentConf);
     };
+}
+function toNative(target) {
+    return defineComponentHOC()(target);
 }
 function mergeStaticProperty(config, target) {
     for (const key in target) {
@@ -1121,4 +1139,4 @@ function mergeStaticProperty(config, target) {
     });
 }
 
-export { Component$1 as Component, Doraemon, Emit, Event, Prop, Watch, defineComponentHOC };
+export { Component$1 as Component, Doraemon, Emit, Event, Prop, Watch, defineComponentHOC, toNative };

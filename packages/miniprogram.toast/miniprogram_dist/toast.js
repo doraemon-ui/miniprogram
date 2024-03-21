@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.toast.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-20, 21:49:53.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.18.
+ * Built on 2024-03-21, 23:54:36.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.20.
  */
 import { Doraemon } from '@doraemon-ui/miniprogram.core-js';
 import { getCurrentPage, findComponentNode, isObject, isString, isTrue, } from '@doraemon-ui/miniprogram.shared';
