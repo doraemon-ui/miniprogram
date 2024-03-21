@@ -1,13 +1,9 @@
 /**
  * @doraemon-ui/miniprogram.core-js.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-22, 00:13:36.
+ * Built on 2024-03-22, 00:57:02.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.20.
  */
-
-function getDefaultExportFromCjs (x) {
-	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
-}
 
 var classnames = {exports: {}};
 
@@ -88,119 +84,201 @@ var classnames = {exports: {}};
 
 var classNames = classnames.exports;
 
-var dist = {exports: {}};
+/**
+ * CSS properties which accept numbers but are not in units of "px".
+ */
+var isUnitlessNumber$1 = {
+  boxFlex: true,
+  boxFlexGroup: true,
+  columnCount: true,
+  flex: true,
+  flexGrow: true,
+  flexPositive: true,
+  flexShrink: true,
+  flexNegative: true,
+  fontWeight: true,
+  lineClamp: true,
+  lineHeight: true,
+  opacity: true,
+  order: true,
+  orphans: true,
+  widows: true,
+  zIndex: true,
+  zoom: true,
 
-var objToString = {};
+  // SVG-related properties
+  fillOpacity: true,
+  strokeDashoffset: true,
+  strokeOpacity: true,
+  strokeWidth: true
+};
 
-var parsers = {};
-
-var createParser = {};
-
-(function (exports) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-
-function createParser(matcher, replacer) {
-  const regex = RegExp(matcher, 'g');
-  return string => {
-    // * throw an error if not a string
-    if (typeof string !== 'string') {
-      throw new TypeError("expected an argument of type string, but got ".concat(typeof styleObj));
-    } // * if no match between string and matcher
-
-
-    if (!string.match(regex)) {
-      return string;
-    } // * executes the replacer function for each match
-    // ? replacer can take any arguments valid for String.prototype.replace
-
-
-    return string.replace(regex, replacer);
-  };
+/**
+ * @param {string} prefix vendor-specific prefix, eg: Webkit
+ * @param {string} key style name, eg: transitionDuration
+ * @return {string} style name prefixed with `prefix`, properly camelCased, eg:
+ * WebkitTransitionDuration
+ */
+function prefixKey(prefix, key) {
+  return prefix + key.charAt(0).toUpperCase() + key.substring(1);
 }
 
-var _default = createParser;
-exports["default"] = _default;
-}(createParser));
+/**
+ * Support style names that may come passed in prefixed by adding permutations
+ * of vendor prefixes.
+ */
+var prefixes = ['Webkit', 'ms', 'Moz', 'O'];
 
-Object.defineProperty(parsers, "__esModule", {
-  value: true
+// Using Object.keys here, or else the vanilla for-in loop makes IE8 go into an
+// infinite loop, because it iterates over the newly added props too.
+Object.keys(isUnitlessNumber$1).forEach(function(prop) {
+  prefixes.forEach(function(prefix) {
+    isUnitlessNumber$1[prefixKey(prefix, prop)] = isUnitlessNumber$1[prop];
+  });
 });
-parsers.snakeToKebab = parsers.camelToKebab = void 0;
 
-var _createParser = _interopRequireDefault(createParser);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-const camelToKebab = (0, _createParser["default"])(/[A-Z]/, match => "-".concat(match.toLowerCase()));
-parsers.camelToKebab = camelToKebab;
-const snakeToKebab = (0, _createParser["default"])(/_/, () => '-'); // disabled to allow named exports while only one named export exists
-// eslint-disable-next-line
-
-parsers.snakeToKebab = snakeToKebab;
-
-(function (exports) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-
-var _parsers = parsers;
-
-function objToString(styleObj, parser = _parsers.camelToKebab) {
-  if (!styleObj || typeof styleObj !== 'object' || Array.isArray(styleObj)) {
-    throw new TypeError("expected an argument of type object, but got ".concat(typeof styleObj));
+/**
+ * Most style properties can be unset by doing .style[prop] = '' but IE8
+ * doesn't like doing that with shorthand properties so for the properties that
+ * IE8 breaks on, which are listed here, we instead unset each of the
+ * individual properties. See http://bugs.jquery.com/ticket/12385.
+ * The 4-value 'clock' properties like margin, padding, border-width seem to
+ * behave without any problems. Curiously, list-style works too without any
+ * special prodding.
+ */
+var shorthandPropertyExpansions = {
+  background: {
+    backgroundImage: true,
+    backgroundPosition: true,
+    backgroundRepeat: true,
+    backgroundColor: true
+  },
+  border: {
+    borderWidth: true,
+    borderStyle: true,
+    borderColor: true
+  },
+  borderBottom: {
+    borderBottomWidth: true,
+    borderBottomStyle: true,
+    borderBottomColor: true
+  },
+  borderLeft: {
+    borderLeftWidth: true,
+    borderLeftStyle: true,
+    borderLeftColor: true
+  },
+  borderRight: {
+    borderRightWidth: true,
+    borderRightStyle: true,
+    borderRightColor: true
+  },
+  borderTop: {
+    borderTopWidth: true,
+    borderTopStyle: true,
+    borderTopColor: true
+  },
+  font: {
+    fontStyle: true,
+    fontVariant: true,
+    fontWeight: true,
+    fontSize: true,
+    lineHeight: true,
+    fontFamily: true
   }
+};
 
-  const lines = Object.keys(styleObj).map(property => "".concat(parser(property), ": ").concat(styleObj[property], ";"));
-  return lines.join('\n');
+var CSSProperty = {
+  isUnitlessNumber: isUnitlessNumber$1,
+  shorthandPropertyExpansions: shorthandPropertyExpansions
+};
+
+var CSSProperty_1 = CSSProperty;
+
+var msPattern = /^ms-/;
+
+var _uppercasePattern = /([A-Z])/g;
+
+/**
+ * Hyphenates a camelcased string, for example:
+ *
+ *   > hyphenate('backgroundColor')
+ *   < "background-color"
+ *
+ * For CSS style names, use `hyphenateStyleName` instead which works properly
+ * with all vendor prefixes, including `ms`.
+ *
+ * @param {string} string
+ * @return {string}
+ */
+function hyphenate$1(string) {
+  return string.replace(_uppercasePattern, '-$1').toLowerCase();
 }
 
-var _default = objToString;
-exports["default"] = _default;
-}(objToString));
+/**
+ * Hyphenates a camelcased CSS property name, for example:
+ *
+ *   > hyphenateStyleName('backgroundColor')
+ *   < "background-color"
+ *   > hyphenateStyleName('MozTransition')
+ *   < "-moz-transition"
+ *   > hyphenateStyleName('msTransition')
+ *   < "-ms-transition"
+ *
+ * As Modernizr suggests (http://modernizr.com/docs/#prefixed), an `ms` prefix
+ * is converted to `-ms-`.
+ *
+ * @param {string} string
+ * @return {string}
+ */
+function hyphenateStyleName$1(string) {
+  return hyphenate$1(string).replace(msPattern, '-ms-');
+}
 
-(function (module, exports) {
+var hyphenateStyleName_1 = hyphenateStyleName$1;
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-Object.defineProperty(exports, "createParser", {
-  enumerable: true,
-  get: function get() {
-    return _createParser["default"];
+var isUnitlessNumber = CSSProperty_1.isUnitlessNumber;
+var hyphenateStyleName = hyphenateStyleName_1;
+var isArray = Array.isArray;
+var keys = Object.keys;
+// Follows syntax at https://developer.mozilla.org/en-US/docs/Web/CSS/content,
+// including multiple space separated values.
+var unquotedContentValueRegex = /^(normal|none|(\b(url\([^)]*\)|chapter_counter|attr\([^)]*\)|(no-)?(open|close)-quote|inherit)((\b\s*)|$|\s+))+)$/;
+
+function buildRule(key, value) {
+  if (!isUnitlessNumber[key] && typeof value === 'number') {
+    value = '' + value + 'px';
   }
-});
-exports.parsers = exports["default"] = void 0;
+  else if (key === 'content' && !unquotedContentValueRegex.test(value)) {
+    value = "'" + value.replace(/'/g, "\\'") + "'";
+  }
 
-var _objToString = _interopRequireDefault(objToString);
+  return hyphenateStyleName(key) + ': ' + value + ';  ';
+}
 
-var _createParser = _interopRequireDefault(createParser);
+function styleToCssString(rules) {
+  var result = '';
+  if (!rules || keys(rules).length === 0) {
+    return result;
+  }
+  var styleKeys = keys(rules);
+  for (var j = 0, l = styleKeys.length; j < l; j++) {
+    var styleKey = styleKeys[j];
+    var value = rules[styleKey];
 
-var parsers$1 = _interopRequireWildcard(parsers);
+    if (isArray(value)) {
+      for (var i = 0, len = value.length; i < len; i++) {
+        result += buildRule(styleKey, value[i]);
+      }
+    }
+    else {
+      result += buildRule(styleKey, value);
+    }
+  }
+  return result;
+}
 
-exports.parsers = parsers$1;
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var _default = _objToString["default"];
-exports["default"] = _default;
-module.exports = _objToString["default"];
-module.exports.createParser = _createParser["default"];
-module.exports.parsers = _objectSpread({}, parsers$1);
-}(dist, dist.exports));
-
-var styleToCssString = /*@__PURE__*/getDefaultExportFromCjs(dist.exports);
+var reactStyleObjectToCss = styleToCssString;
 
 const LIFECYCLE_HOOKS = [
     'beforeCreate',
@@ -459,7 +537,7 @@ class Doraemon {
         warn,
         isEqual,
         classNames,
-        styleToCssString,
+        styleToCssString: reactStyleObjectToCss,
         getCurrentInstance: (vm) => {
             if (vm._isDoraemon) {
                 return vm._renderProxy;
