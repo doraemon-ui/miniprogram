@@ -24,7 +24,7 @@
     "preversion": "pnpm run clean && pnpm run build && pnpm run test"
   },
   "devDependencies": {
-    "@doraemon-ui/miniprogram.core-js": "workspace:0.0.2-alpha.27",
+    "@doraemon-ui/miniprogram.core-js": "^0.0.2-alpha.27",
     "@doraemon-ui/miniprogram.tools": "^0.0.2-alpha.12",
     "@types/node": "^16.3.3",
     "cross-env": "^7.0.3",
