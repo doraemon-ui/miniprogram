@@ -1,6 +1,5 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
-import { type NativeButtonHandle } from '@doraemon-ui/miniprogram.shared'
-import { DialogButton } from './dialog'
+import { type CustomEvent, defineComponentHOC, Doraemon, Component, Prop, Watch, Event } from '@doraemon-ui/miniprogram.core-js'
+import type { DialogButton, NativeButtonHandle } from './dialog'
 const { classNames } = Doraemon.util
 
 @Component({
@@ -157,13 +156,17 @@ class Dialog extends Doraemon {
   }
 
   onPopupClosed () {
-    this.$emit('closed')
+    this.onClosed()
   }
 
   onXClose () {
     if (this.closable) {
       this.onClose()
     }
+  }
+
+  onClosed () {
+    this.$emit('closed')
   }
 
   onClose () {
@@ -174,7 +177,7 @@ class Dialog extends Doraemon {
     this.setPopupVisible(this.visible)
   }
 
-  async onAction (e, method: keyof NativeButtonHandle<DialogButton>, closable: boolean = false) {
+  async onAction (e: CustomEvent, method: keyof NativeButtonHandle<DialogButton>, closable: boolean = false) {
     const { index } = e.currentTarget.dataset
     const button = this.buttons[index]
     if (!button.disabled) {
@@ -185,34 +188,42 @@ class Dialog extends Doraemon {
     }
   }
 
-  async onClick (e) {
+  @Event()
+  async onClick (e: CustomEvent) {
     await this.onAction(e, 'onClick', this.buttonClosable)
   }
 
-  async onGetUserInfo (e) {
+  @Event()
+  async onGetUserInfo (e: CustomEvent) {
     await this.onAction(e, 'onGetUserInfo')
   }
 
-  async onContact (e) {
+  @Event()
+  async onContact (e: CustomEvent) {
     await this.onAction(e, 'onContact')
   }
 
-  async onGetPhoneNumber (e) {
+  @Event()
+  async onGetPhoneNumber (e: CustomEvent) {
     await this.onAction(e, 'onGetPhoneNumber')
   }
 
-  async onLaunchApp (e) {
+  @Event()
+  async onLaunchApp (e: CustomEvent) {
     await this.onAction(e, 'onLaunchApp')
   }
 
-  async onError (e) {
+  @Event()
+  async onError (e: CustomEvent) {
     await this.onAction(e, 'onError')
   }
 
-  async onOpenSetting (e) {
+  @Event()
+  async onOpenSetting (e: CustomEvent) {
     await this.onAction(e, 'onOpenSetting')
   }
 }
 
+export type DialogInstance = Dialog
 export default defineComponentHOC()(Dialog)
 export * as dialog from './dialog'

@@ -53,28 +53,74 @@ yarn add @doraemon-ui/miniprogram.animation-group
 
 ### AnimationGroup props
 
+```ts
+enum AnimateStatus {
+  /** 进场动画的开始状态 */
+  ENTER = 'enter',
+  /** 进场动画的结束状态 */
+  ENTERING = 'entering',
+  /** 进场动画的完成状态 */
+  ENTERED = 'entered',
+  /** 离场动画的开始状态 */
+  EXIT = 'exit',
+  /** 离场动画的结束状态 */
+  EXITING = 'exiting',
+  /** 离场动画的完成状态 */
+  EXITED = 'exited',
+  /** 组件已卸载 */
+  UNMOUNTED = 'unmounted',
+}
+
+enum AnimateType {
+  /** 过渡效果 */
+  TRANSITION = 'transition',
+  /** 动画效果 */
+  ANIMATION = 'animation',
+}
+
+type ClassNames = string | {
+  /** 进场动画的开始状态，在动画完成之后移除 */
+  enter?: string
+  /** 进场动画的结束状态，在动画完成之后移除 */
+  enterActive?: string
+  /** 进场动画的完成状态 */
+  enterDone?: string
+  /** 离场动画的开始状态，在动画完成之后移除 */
+  exit?: string
+  /** 离场动画的结束状态，在动画完成之后移除 */
+  exitActive?: string
+  /** 离场动画的完成状态 */
+  exitDone?: string
+}
+
+type Duration = number | {
+  enter?: number
+  exit?: number
+}
+```
+
 | 参数 | 类型 | 描述 | 默认值 |
 | --- | --- | --- | --- |
 | in | `boolean` | 触发组件进入或离开过渡的状态 | false |
-| classNames | `any` | 过渡的类名 | - |
-| duration | `any` | 过渡持续时间 | - |
-| type | `string` | 过渡动效的类型 | transition |
+| classNames | `ClassNames` | 过渡的类名 | - |
+| duration | `Duration` | 过渡持续时间 | - |
+| type | `AnimateType` | 过渡动效的类型 | transition |
 | appear | `boolean` | 首次挂载时是否触发进入过渡 | false |
 | enter | `boolean` | 是否启用进入过渡 | true |
 | exit | `boolean` | 是否启用离开过渡 | true |
 | mountOnEnter | `boolean` | 首次进入过渡时是否懒挂载组件 | true |
 | unmountOnExit | `boolean` | 离开过渡完成时是否卸载组件 | true |
 | wrapCls | `string` | 自定义类名 | - |
-| wrapStyle | `string,object` | 自定义样式 | - |
+| wrapStyle | `object` | 自定义样式 | - |
 | disableScroll | `boolean` | 阻止移动触摸 | false |
-| bind:click | `function` | 点击组件时触发的回调函数 | - |
-| bind:enter | `function` | 进入过渡的开始状态时触发的回调函数 | - |
-| bind:entering | `function` | 进入过渡的结束状态时触发的回调函数 | - |
-| bind:entered | `function` | 进入过渡的完成状态时触发的回调函数 | - |
-| bind:exit | `function` | 离开过渡的开始状态时触发的回调函数 | - |
-| bind:exiting | `function` | 离开过渡的结束状态时触发的回调函数 | - |
-| bind:exited | `function` | 离开过渡的完成状态时触发的回调函数 | - |
-| bind:change | `function` | 监听状态变化的回调函数 | - |
+| bind:click | `() => void` | 点击组件时触发的回调函数 | - |
+| bind:enter | `(event: CustomEvent<{ isAppearing: boolean }>) => void` | 进入过渡的开始状态时触发的回调函数 | - |
+| bind:entering | `(event: CustomEvent<{ isAppearing: boolean }>) => void` | 进入过渡的结束状态时触发的回调函数 | - |
+| bind:entered | `(event: CustomEvent<{ isAppearing: boolean }>) => void` | 进入过渡的完成状态时触发的回调函数 | - |
+| bind:exit | `() => void` | 离开过渡的开始状态时触发的回调函数 | - |
+| bind:exiting | `() => void` | 离开过渡的结束状态时触发的回调函数 | - |
+| bind:exited | `() => void` | 离开过渡的完成状态时触发的回调函数 | - |
+| bind:change | `(event: CustomEvent<{ animateStatus: AnimateStatus }>) => void` | 监听状态变化的回调函数 | - |
 
 ### AnimationGroup slot
 

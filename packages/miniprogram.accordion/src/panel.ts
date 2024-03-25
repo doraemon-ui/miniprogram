@@ -44,7 +44,7 @@ class Panel extends Doraemon {
    * 自定义类名前缀
    *
    * @type {string}
-   * @memberof Button
+   * @memberof Panel
    */
   prefixCls!: string
 

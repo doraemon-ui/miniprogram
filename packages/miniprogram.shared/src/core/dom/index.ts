@@ -4,6 +4,7 @@ export * from './getCurrentPage'
 export * from './global'
 export * from './useDOM'
 export * from './useNativeAPI'
+export * from './usePopupStateHOC'
 
 import { canUseMP } from './canUseMP'
 import { findComponentNode } from './findComponentNode'
@@ -24,6 +25,7 @@ import {
   getSystemInfoSync,
   getMenuButtonBoundingClientRectSync
 } from './useNativeAPI'
+import { usePopupStateHOC } from './usePopupStateHOC'
 
 export default {
   canUseMP,
@@ -40,5 +42,6 @@ export default {
   useScrollOffset,
   useComputedStyle,
   getSystemInfoSync,
-  getMenuButtonBoundingClientRectSync
+  getMenuButtonBoundingClientRectSync,
+  usePopupStateHOC
 }

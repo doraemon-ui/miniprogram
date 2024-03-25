@@ -44,7 +44,7 @@ class Accordion extends Doraemon {
    * 自定义类名前缀
    *
    * @type {string}
-   * @memberof Button
+   * @memberof Accordion
    */
   prefixCls!: string
 

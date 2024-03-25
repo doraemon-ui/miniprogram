@@ -1,26 +1,47 @@
-export type MPPageInst =  WechatMiniprogram.Page.Instance<
-  WechatMiniprogram.IAnyObject,
-  WechatMiniprogram.IAnyObject
+export type MiniprogramIAnyObject = WechatMiniprogram.IAnyObject
+
+export type MiniprogramPageInstance =  WechatMiniprogram.Page.Instance<
+  MiniprogramIAnyObject,
+  MiniprogramIAnyObject
 >
 
-export type MPComponentInst = WechatMiniprogram.Component.Instance<
-  WechatMiniprogram.IAnyObject,
-  WechatMiniprogram.IAnyObject,
-  WechatMiniprogram.IAnyObject,
-  WechatMiniprogram.IAnyObject
+export type MiniprogramComponentInstance = WechatMiniprogram.Component.Instance<
+  MiniprogramIAnyObject,
+  MiniprogramIAnyObject,
+  MiniprogramIAnyObject,
+  MiniprogramIAnyObject
 >
 
-export type MPInst = MPPageInst | MPComponentInst
+export type MiniprogramPublicInstance = MiniprogramPageInstance | MiniprogramComponentInstance
 
-export type MPElement = WechatMiniprogram.NodesRef
+export type MiniprogramElement = WechatMiniprogram.NodesRef
+
+export type MiniprogramCustomEvent<
+  Detail extends MiniprogramIAnyObject = MiniprogramIAnyObject,
+  Mark extends MiniprogramIAnyObject = MiniprogramIAnyObject,
+  CurrentTargetDataset extends MiniprogramIAnyObject = MiniprogramIAnyObject,
+  TargetDataset extends MiniprogramIAnyObject = CurrentTargetDataset
+> = WechatMiniprogram.CustomEvent<
+  Detail,
+  Mark,
+  CurrentTargetDataset,
+  TargetDataset
+>
+
+export type MiniprogramButtonGetUserInfo = WechatMiniprogram.ButtonGetUserInfo['detail']
+export type MiniprogramButtonContact = WechatMiniprogram.ButtonContact['detail']
+export type MiniprogramButtonGetPhoneNumber = WechatMiniprogram.ButtonGetPhoneNumber['detail']
+export type MiniprogramButtonError = WechatMiniprogram.ButtonError['detail']
+export type MiniprogramButtonOpenSetting = WechatMiniprogram.ButtonOpenSetting['detail']
+export type MiniprogramButtonLaunchApp = WechatMiniprogram.ButtonLaunchApp['detail']
 
 /**
  * 矩形对象的类型
  *
  * @export
- * @interface MPDOMRect
+ * @interface MiniprogramDOMRect
  */
-export interface MPDOMRect {
+export interface MiniprogramDOMRect {
   /** 节点的宽度 */
   width: number
   /** 节点的高度 */

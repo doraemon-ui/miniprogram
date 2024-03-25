@@ -49,9 +49,9 @@ yarn add @doraemon-ui/miniprogram.backdrop
 | transparent | `boolean` | 是否显示透明蒙层 | false |
 | wrapStyle | `object` | 蒙层的样式 | - |
 | zIndex | `number` | 设置蒙层的 z-index | 1000 |
-| bind:click | `function` | 点击事件 | - |
-| bind:afterShow | `function` | 完全显示后触发 | - |
-| bind:afterClose | `function` | 完全关闭后触发 | - |
+| bind:click | `() => void` | 点击事件 | - |
+| bind:afterShow | `() => void` | 完全显示后触发 | - |
+| bind:afterClose | `() => void` | 完全关闭后触发 | - |
 
 ### Backdrop.method
 

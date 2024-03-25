@@ -2,6 +2,9 @@ import { toast } from '@doraemon-ui/miniprogram.toast'
 import { doraProp } from '@doraemon-ui/miniprogram.demo-shared'
 
 Page({
+  onclose(e) {
+    console.log('onclose', e)
+  },
   show () {
     toast.show({
       text: doraProp.high(),
@@ -65,6 +68,6 @@ Page({
     }, '#dora-toast-noclear')
   },
   clear () {
-    toast.clear()
+    toast.destroyAll()
   },
 })

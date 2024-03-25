@@ -1,29 +1,39 @@
-import { Doraemon } from '../Doraemon'
+import type { Doraemon } from '../instance/init'
+
+export type ExtractComputedReturns<T extends any> = {
+  [key in keyof T]: T[key] extends { get: (...args: any[]) => infer TReturn }
+    ? TReturn
+    : T[key] extends (...args: any[]) => infer TReturn
+      ? TReturn
+      : never
+}
+
+export type ComputedGetter<T> = () => T
+export type ComputedSetter<T> = (newValue: T) => void
 
 export interface ComputedOptions<T> {
-  get?(): T
-  set?(value: T): void
+  get: ComputedGetter<T>
+  set: ComputedSetter<T>
 }
 
-export type Accessors<T> = {
-  [K in keyof T]: (() => T[K]) | ComputedOptions<T[K]>
-}
+export type DefaultData<D> =  object | ((this: D) => object)
+export type DefaultProps = Record<string, any>
+export type DefaultMethods<D> =  { [key: string]: (this: D, ...args: any[]) => any }
+export type DefaultComputed = Record<
+  string,
+  ComputedGetter<any> | ComputedOptions<any>
+>
 
-type DefaultData<D> =  object | ((this: D) => object)
-type DefaultProps = Record<string, any>
-type DefaultMethods<D> =  { [key: string]: (this: D, ...args: any[]) => any }
-type DefaultComputed = { [key: string]: any }
+// export type Component<
+//   Data=DefaultData<never>,
+//   Methods=DefaultMethods<never>,
+//   Computed=DefaultComputed,
+//   Props=DefaultProps
+// > =
+//   | typeof Doraemon
+//   | ComponentOptions<never, Data, Methods, Computed, Props>
 
-export type Component<
-  Data=DefaultData<never>,
-  Methods=DefaultMethods<never>,
-  Computed=DefaultComputed,
-  Props=DefaultProps
-> =
-  | typeof Doraemon
-  | ComponentOptions<never, Data, Methods, Computed, Props>
-
-type DefaultComponents<T = {
+export type DefaultComponents<T = {
   ['module']?: string
   type?: 'ancestor' | 'parent' | 'child' | 'descendant'
   observer?: string | Function
@@ -40,13 +50,14 @@ export interface ComponentOptions<
 > {
   data?: Data
   props?: PropsDef
-  computed?: Accessors<Computed>
+  computed?: Computed
   methods?: Methods
   watch?: Record<string, WatchOptionsWithHandler<any> | WatchHandler<any>>
 
   beforeCreate?(this: D): void
   created?(): void
   mounted?(): void
+  /** @deprecated use `unmounted` instead */
   destroyed?(): void
   unmounted?(): void
   errorCaptured?(): void

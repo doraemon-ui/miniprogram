@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.core-js.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-22, 00:57:02.
+ * Built on 2024-03-25, 12:35:37.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.20.
  */
 
@@ -256,7 +256,7 @@ function buildRule(key, value) {
   return hyphenateStyleName(key) + ': ' + value + ';  ';
 }
 
-function styleToCssString(rules) {
+function styleToCssString$1(rules) {
   var result = '';
   if (!rules || keys(rules).length === 0) {
     return result;
@@ -278,7 +278,7 @@ function styleToCssString(rules) {
   return result;
 }
 
-var reactStyleObjectToCss = styleToCssString;
+var reactStyleObjectToCss = styleToCssString$1;
 
 const LIFECYCLE_HOOKS = [
     'beforeCreate',
@@ -340,6 +340,29 @@ function nextTick(callback) {
     else {
         setTimeout(callback, 0);
     }
+}
+
+function isEqual(x, y) {
+    if (x === y) {
+        return true;
+    }
+    if (!(typeof x == 'object' && x != null) || !(typeof y == 'object' && y != null)) {
+        return false;
+    }
+    if (Object.keys(x).length != Object.keys(y).length) {
+        return false;
+    }
+    for (var prop in x) {
+        if (y.hasOwnProperty(prop)) {
+            if (!isEqual(x[prop], y[prop])) {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
+    }
+    return true;
 }
 
 /**
@@ -432,29 +455,13 @@ function initProxy(vm) {
     }
 }
 
-function isEqual(x, y) {
-    if (x === y) {
-        return true;
+const styleToCssString = (rules) => {
+    if (typeof rules === 'string') {
+        rules = rules.trim();
+        return rules.slice(-1) === ';' ? `${rules} ` : `${rules}; `;
     }
-    if (!(typeof x == 'object' && x != null) || !(typeof y == 'object' && y != null)) {
-        return false;
-    }
-    if (Object.keys(x).length != Object.keys(y).length) {
-        return false;
-    }
-    for (var prop in x) {
-        if (y.hasOwnProperty(prop)) {
-            if (!isEqual(x[prop], y[prop])) {
-                return false;
-            }
-        }
-        else {
-            return false;
-        }
-    }
-    return true;
-}
-
+    return reactStyleObjectToCss(rules);
+};
 let uid = 0;
 let cid = 1;
 class Doraemon {
@@ -537,7 +544,7 @@ class Doraemon {
         warn,
         isEqual,
         classNames,
-        styleToCssString: reactStyleObjectToCss,
+        styleToCssString,
         getCurrentInstance: (vm) => {
             if (vm._isDoraemon) {
                 return vm._renderProxy;
@@ -1039,10 +1046,38 @@ function initExposed(vm) {
     }
 }
 function getPublicInstance(vm) {
+    if (!vm)
+        return null;
+    return getExposeProxy(vm) || vm;
+}
+const publicPropertiesMap = {
+    $data: (vm) => vm.$data,
+    $props: (vm) => vm.$props,
+    $refs: (vm) => vm.$refs,
+    $parent: (vm) => vm.$parent,
+    $root: (vm) => vm.$root,
+    $children: (vm) => vm.$children,
+    $options: (vm) => vm.$options,
+    $emit: (vm) => vm.$emit,
+    $nextTick: (vm) => vm.$nextTick,
+};
+function getExposeProxy(vm) {
     if (vm._exposed) {
-        return vm._exposed;
+        return (vm._exposeProxy ||
+            (vm._exposeProxy = new Proxy(vm._exposed, {
+                get(target, key) {
+                    if (key in target) {
+                        return target[key];
+                    }
+                    else if (key in publicPropertiesMap) {
+                        return publicPropertiesMap[key](vm);
+                    }
+                },
+                has(target, key) {
+                    return key in target || key in publicPropertiesMap;
+                },
+            })));
     }
-    return vm;
 }
 
 function initMethods(vm, methods) {

@@ -1,5 +1,5 @@
-import { PropOptions } from '../types/options'
 import { hasOwn } from '../util/hasOwn'
+import type { PropOptions } from '../types/options'
 
 const NULL_PROP = null
 

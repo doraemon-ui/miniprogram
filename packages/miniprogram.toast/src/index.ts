@@ -1,5 +1,5 @@
 import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
-import { ToastIcon, ToastPosition, presetIconRecord } from './toast'
+import { type ToastIcon, type ToastPosition, presetIconRecord } from './toast'
 const { classNames } = Doraemon.util
 
 @Component({
@@ -8,7 +8,7 @@ const { classNames } = Doraemon.util
       type: String,
       default: 'dora-toast',
     },
-  },
+  }
 })
 class Toast extends Doraemon {
   /**
@@ -147,6 +147,10 @@ class Toast extends Doraemon {
   }
 
   onPopupClosed () {
+    this.onClosed()
+  }
+
+  onClosed () {
     this.$emit('closed')
   }
 
@@ -159,5 +163,6 @@ class Toast extends Doraemon {
   }
 }
 
+export type ToastInstance = Toast
 export default defineComponentHOC()(Toast)
 export * as toast from './toast'

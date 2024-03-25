@@ -1,5 +1,5 @@
-import { MPComponentInst, MPInst } from '../../types'
 import { getCurrentPage } from './getCurrentPage'
+import type { MiniprogramComponentInstance, MiniprogramPublicInstance } from '../../types'
 
 /**
  * 获取自定义组件的实例
@@ -7,9 +7,9 @@ import { getCurrentPage } from './getCurrentPage'
  * @export
  * @template T
  * @param {string} selector
- * @param {MPInst} [dom=getCurrentPage()]
+ * @param {MiniprogramPublicInstance} [instance=getCurrentPage()]
  * @return {*}  {(T | null)}
  */
-export function findComponentNode<T = MPComponentInst> (selector: string, dom: MPInst = getCurrentPage()): T | null {
-  return (dom?.selectComponent(selector) as unknown) as T || null
+export function findComponentNode<T = MiniprogramComponentInstance> (selector: string, instance: MiniprogramPublicInstance = getCurrentPage()): T | null {
+  return (instance?.selectComponent(selector) as unknown) as T || null
 }

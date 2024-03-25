@@ -1,4 +1,4 @@
-import { defineComponentHOC, Doraemon, Component, Event, Emit } from '@doraemon-ui/miniprogram.core-js'
+import { type CustomEvent, defineComponentHOC, Doraemon, Component, Event, Emit } from '@doraemon-ui/miniprogram.core-js'
 const { classNames } = Doraemon.util
 
 @Component({
@@ -134,31 +134,31 @@ class Button extends Doraemon {
 
   @Event()
   @Emit('getuserinfo')
-  onGetUserInfo (e) {
+  onGetUserInfo (e: CustomEvent) {
     return e.target
   }
 
   @Event()
   @Emit('contact')
-  onContact (e) {
+  onContact (e: CustomEvent) {
     return e.target
   }
 
   @Event()
   @Emit('getphonenumber')
-  onGetPhoneNumber (e) {
+  onGetPhoneNumber (e: CustomEvent) {
     return e.target
   }
 
   @Event()
   @Emit('opensetting')
-  onOpenSetting (e) {
+  onOpenSetting (e: CustomEvent) {
     return e.target
   }
 
   @Event()
   @Emit('error')
-  onError (e) {
+  onError (e: CustomEvent) {
     return e.target
   }
 }

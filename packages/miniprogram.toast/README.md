@@ -60,8 +60,8 @@ yarn add @doraemon-ui/miniprogram.toast
 | maskClickable | `boolean` | 是否允许背景点击 | true |
 | zIndex | `number` | 设置蒙层的 z-index | 1000 |
 | duration | `number` | 提示的延迟时间，若小于等于 0 则不会自动关闭 | 1500 |
-| onClose | `function` | 点击关闭按钮或蒙层的回调函数 | - |
-| onClosed | `function` | 关闭后的回调函数 | - |
+| onClose | `() => void` | 点击关闭按钮或蒙层的回调函数 | - |
+| onClosed | `() => void` | 关闭后的回调函数 | - |
 
 !> 同一时间只允许弹出一个轻提示，新出现的 `Toast` 会将之前正在显示中的 `Toast` 挤掉。
 

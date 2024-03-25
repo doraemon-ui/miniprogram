@@ -7,7 +7,7 @@
   <demo-block title="Basic">
     <block>
       <button bindtap="show">轻提示</button>
-      <dora-toast id="dora-toast-show" />
+      <dora-toast id="dora-toast-show" bind:close="onclose" />
     </block>
   </demo-block>
   <demo-block title="With icon">

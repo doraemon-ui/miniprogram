@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "miniprogram.safe-area",
+  "navigationStyle": "custom",
   "usingComponents": {
     "demo-page": "@doraemon-ui/miniprogram.demo-page",
     "demo-block": "@doraemon-ui/miniprogram.demo-block",

@@ -1,14 +1,14 @@
-import { Doraemon } from '@doraemon-ui/miniprogram.core-js'
 import {
   getCurrentPage,
   findComponentNode,
+  usePopupStateHOC,
   isObject,
   isString,
   isTrue,
-  type MPInst,
+  isFalse,
+  type MiniprogramPublicInstance,
 } from '@doraemon-ui/miniprogram.shared'
-
-const { getCurrentInstance } = Doraemon.util
+import type { ToastInstance } from '.'
 
 /**
  * 预设的图标的类型
@@ -100,7 +100,7 @@ export type ToastShowOptions = {
   /** 组件的选择器 */
   selector?: string,
   /** 页面的实例 */
-  inst?: MPInst
+  instance?: MiniprogramPublicInstance
 }
 
 /**
@@ -114,15 +114,15 @@ const mergeProps = <T extends ToastShowProps>(p: Partial<T> | string): T => {
   return Object.assign({}, defaultProps, typeof p === 'string' ? { text: p } : p) as T
 }
 
-const mergeOptions = <T extends ToastShowOptions>(selector?: Partial<T> | string, inst?: MPInst): T => {
+const mergeOptions = <T extends ToastShowOptions>(selector?: Partial<T> | string, instance?: MiniprogramPublicInstance): T => {
   let opts = {
     selector: '#dora-toast',
-    inst: getCurrentPage(),
+    instance: getCurrentPage(),
   } as T
   if (isString(selector)) {
     opts.selector = selector as string
-    if (inst) {
-      opts.inst = inst
+    if (instance) {
+      opts.instance = instance
     }
   } else if (isObject(selector)) {
     opts = {
@@ -133,66 +133,70 @@ const mergeOptions = <T extends ToastShowOptions>(selector?: Partial<T> | string
   return opts
 }
 
-/**
- * 缓存组件的实例对象
- */
-const containers: Doraemon[] = []
+const destroyFns = new Map<Function, boolean>()
 
-/**
- * 卸载指定的组件
- *
- * @param {Doraemon} container 组件的实例对象
- * @param {() => void} [callback] 卸载后的回调函数
- */
-function unmount (container: Doraemon, callback?: () => void) {
-  const unmountResult = getCurrentInstance(container)
-  if (unmountResult && isTrue(unmountResult.data.visible)) {
-    unmountResult.setData({ visible: false }, () => {
-      callback?.()
-    })
+function clear() {
+  for (const [close] of destroyFns) {
+    close()
+    destroyFns.delete(close)
   }
 }
 
-/**
- * 卸载所有的组件
- */
-function clear () {
-  while (containers.length > 0) {
-    const container = containers.pop()
-    if (!container) break
-    unmount(container)
+function mountComponent(
+  props: ToastShowProps,
+  container: ToastInstance,
+  statePropName: string = 'visible'
+) {
+  const { render, destroy, update } = usePopupStateHOC<ToastInstance>(statePropName)(container)
+  const close = () => {
+    if (isTrue(container[statePropName])) {
+      destroy(props.onClose)
+      if (destroyFns.has(close)) {
+        destroyFns.delete(close)
+      }
+    }
+  }
+
+  // always clear destroyFns
+  clear()
+  destroyFns.set(close, true)
+
+  if (isFalse(container[statePropName])) {
+    render(props)
+  }
+
+  // rewrite close
+  container.onClose = () => {
+    close()
+  }
+  container.onClosed = () => {
+    props.onClosed?.()
+  }
+
+  return {
+    destroy: close,
+    update,
   }
 }
 
 let _toast = null
 
 function show (p: ToastShowProps | string, options?: ToastShowOptions): () => void
-function show (p: ToastShowProps | string, selector?: string, inst?: MPInst): () => void
-function show (p: ToastShowProps | string, selector?: ToastShowOptions | string, inst?: MPInst): () => void  {
+function show (p: ToastShowProps | string, selector?: string, instance?: MiniprogramPublicInstance): () => void
+function show (p: ToastShowProps | string, selector?: ToastShowOptions | string, instance?: MiniprogramPublicInstance): () => void  {
   const props = mergeProps<ToastShowProps>(p)
-  const options = mergeOptions<ToastShowOptions>(selector, inst)
-  const comp = findComponentNode<Doraemon>(options.selector, options.inst)
-  const { onClose, onClosed, ...restProps } = props
-  // always clear containers
-  clear()
-  containers.push(comp)
-  const instance = getCurrentInstance(comp)
-  instance.setData({ ...restProps, visible: true })
-  ;(comp as any).onClose = function handleClose () {
-    unmount(comp, onClose)
-  }
-  ;(comp as any).onPopupClosed = function handleClosed () {
-    onClosed?.()
-  }
+  const options = mergeOptions<ToastShowOptions>(selector, instance)
+  const comp = findComponentNode<ToastInstance>(options.selector, options.instance)
+  const { destroy } = mountComponent(props, comp)
   // set auto close
   if (_toast) {
     clearTimeout(_toast)
     _toast = null
   }
   if (props.duration > 0) {
-    _toast = setTimeout(() => unmount(comp, onClose), props.duration)
+    _toast = setTimeout(() => destroy(), props.duration)
   }
-  return () => unmount(comp, onClose)
+  return () => destroy()
 }
 
 /**
@@ -206,8 +210,8 @@ export type ToastInternalProps = Omit<
 >
 
 function success (p: ToastInternalProps | string, options?: ToastShowOptions): Promise<void>
-function success (p: ToastInternalProps | string, selector?: string, inst?: MPInst): Promise<void>
-function success (p: ToastInternalProps | string, selector?: ToastShowOptions | string, inst?: MPInst): Promise<void>  {
+function success (p: ToastInternalProps | string, selector?: string, instance?: MiniprogramPublicInstance): Promise<void>
+function success (p: ToastInternalProps | string, selector?: ToastShowOptions | string, instance?: MiniprogramPublicInstance): Promise<void>  {
   const props = mergeProps<ToastInternalProps>(p)
   return new Promise<void>((resolve) => {
     show.call(null, {
@@ -216,13 +220,13 @@ function success (p: ToastInternalProps | string, selector?: ToastShowOptions | 
       onClose: () => {
         resolve()
       },
-    } as ToastShowProps, selector, inst)
+    } as ToastShowProps, selector, instance)
   })
 }
 
 function warning (p: ToastInternalProps | string, options?: ToastShowOptions): Promise<void>
-function warning (p: ToastInternalProps | string, selector?: string, inst?: MPInst): Promise<void>
-function warning (p: ToastInternalProps | string, selector?: ToastShowOptions | string, inst?: MPInst): Promise<void>  {
+function warning (p: ToastInternalProps | string, selector?: string, instance?: MiniprogramPublicInstance): Promise<void>
+function warning (p: ToastInternalProps | string, selector?: ToastShowOptions | string, instance?: MiniprogramPublicInstance): Promise<void>  {
   const props = mergeProps<ToastInternalProps>(p)
   return new Promise<void>((resolve) => {
     show.call(null, {
@@ -231,13 +235,13 @@ function warning (p: ToastInternalProps | string, selector?: ToastShowOptions | 
       onClose: () => {
         resolve()
       },
-    } as ToastShowProps, selector, inst)
+    } as ToastShowProps, selector, instance)
   })
 }
 
 function error (p: ToastInternalProps | string, options?: ToastShowOptions): Promise<void>
-function error (p: ToastInternalProps | string, selector?: string, inst?: MPInst): Promise<void>
-function error (p: ToastInternalProps | string, selector?: ToastShowOptions | string, inst?: MPInst): Promise<void>  {
+function error (p: ToastInternalProps | string, selector?: string, instance?: MiniprogramPublicInstance): Promise<void>
+function error (p: ToastInternalProps | string, selector?: ToastShowOptions | string, instance?: MiniprogramPublicInstance): Promise<void>  {
   const props = mergeProps<ToastInternalProps>(p)
   return new Promise<void>((resolve) => {
     show.call(null, {
@@ -246,13 +250,13 @@ function error (p: ToastInternalProps | string, selector?: ToastShowOptions | st
       onClose: () => {
         resolve()
       },
-    } as ToastShowProps, selector, inst)
+    } as ToastShowProps, selector, instance)
   })
 }
 
 function info (p: ToastInternalProps | string, options?: ToastShowOptions): Promise<void>
-function info (p: ToastInternalProps | string, selector?: string, inst?: MPInst): Promise<void>
-function info (p: ToastInternalProps | string, selector?: ToastShowOptions | string, inst?: MPInst): Promise<void>  {
+function info (p: ToastInternalProps | string, selector?: string, instance?: MiniprogramPublicInstance): Promise<void>
+function info (p: ToastInternalProps | string, selector?: ToastShowOptions | string, instance?: MiniprogramPublicInstance): Promise<void>  {
   const props = mergeProps<ToastInternalProps>(p)
   return new Promise<void>((resolve) => {
     show.call(null, {
@@ -261,13 +265,13 @@ function info (p: ToastInternalProps | string, selector?: ToastShowOptions | str
       onClose: () => {
         resolve()
       },
-    } as ToastShowProps, selector, inst)
+    } as ToastShowProps, selector, instance)
   })
 }
 
 function loading (p: ToastInternalProps | string, options?: ToastShowOptions): Promise<void>
-function loading (p: ToastInternalProps | string, selector?: string, inst?: MPInst): Promise<void>
-function loading (p: ToastInternalProps | string, selector?: ToastShowOptions | string, inst?: MPInst): Promise<void>  {
+function loading (p: ToastInternalProps | string, selector?: string, instance?: MiniprogramPublicInstance): Promise<void>
+function loading (p: ToastInternalProps | string, selector?: ToastShowOptions | string, instance?: MiniprogramPublicInstance): Promise<void>  {
   const props = mergeProps<ToastInternalProps>(p)
   return new Promise<void>((resolve) => {
     show.call(null, {
@@ -276,7 +280,7 @@ function loading (p: ToastInternalProps | string, selector?: ToastShowOptions | 
       onClose: () => {
         resolve()
       },
-    } as ToastShowProps, selector, inst)
+    } as ToastShowProps, selector, instance)
   })
 }
 

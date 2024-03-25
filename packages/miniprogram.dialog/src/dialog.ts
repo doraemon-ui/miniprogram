@@ -1,15 +1,18 @@
-import { Doraemon } from '@doraemon-ui/miniprogram.core-js'
 import {
   getCurrentPage,
   findComponentNode,
+  usePopupStateHOC,
+  isTrue,
+  isFalse,
   type NativeButtonProps,
   type PresetColor,
   type DefaultButtonHandle,
   type NativeButtonHandle,
-  type MPInst,
+  type MiniprogramPublicInstance,
 } from '@doraemon-ui/miniprogram.shared'
+import type { DialogInstance } from '.'
 
-const { getCurrentInstance } = Doraemon.util
+export type { NativeButtonHandle }
 
 /**
  * 操作按钮的类型
@@ -75,7 +78,7 @@ export type DialogShowOptions = {
   /** 组件的选择器 */
   selector?: string,
   /** 页面的实例 */
-  inst?: MPInst
+  instance?: MiniprogramPublicInstance
 }
 
 /**
@@ -93,17 +96,61 @@ export type DialogShowProps = Omit<
   onClosed?: () => void
 }
 
+const destroyFns = new Map<Function, boolean>()
+
+function clear() {
+  for (const [close] of destroyFns) {
+    close()
+    destroyFns.delete(close)
+  }
+}
+
+function mountComponent(
+  props: DialogShowProps,
+  container: DialogInstance,
+  statePropName: string = 'visible'
+) {
+  const { render, destroy, update } = usePopupStateHOC<DialogInstance>(statePropName)(container)
+  const close = () => {
+    if (isTrue(container[statePropName])) {
+      destroy(props.onClose)
+      if (destroyFns.has(close)) {
+        destroyFns.delete(close)
+      }
+    }
+  }
+
+  destroyFns.set(close, true)
+
+  if (isFalse(container[statePropName])) {
+    render(props)
+  }
+
+  // rewrite close
+  container.onClose = () => {
+    close()
+  }
+  container.onClosed = () => {
+    props.onClosed?.()
+  }
+
+  return {
+    destroy: close,
+    update,
+  }
+}
+
 function show (props?: DialogShowProps, options?: DialogShowOptions): () => void
-function show (props?: DialogShowProps, selector?: string, inst?: MPInst): () => void
-function show (props?: DialogShowProps, selector?: DialogShowOptions | string, inst?: MPInst): () => void {
+function show (props?: DialogShowProps, selector?: string, instance?: MiniprogramPublicInstance): () => void
+function show (props?: DialogShowProps, selector?: DialogShowOptions | string, instance?: MiniprogramPublicInstance): () => void {
   let opts: DialogShowOptions = {
     selector: '#dora-dialog',
-    inst: getCurrentPage(),
+    instance: getCurrentPage(),
   }
   if (typeof selector === 'string') {
     opts.selector = selector as string
-    if (inst) {
-      opts.inst = inst
+    if (instance) {
+      opts.instance = instance
     }
   } else if (typeof selector === 'object') {
     opts = {
@@ -111,20 +158,10 @@ function show (props?: DialogShowProps, selector?: DialogShowOptions | string, i
       ...selector as DialogShowOptions,
     }
   }
-  const comp = findComponentNode<Doraemon>(opts.selector, opts.inst)
-  const instance = getCurrentInstance(comp)
-  const { onClose, onClosed, ...restProps } = props
-  instance.setData({ ...restProps, visible: true })
-  ;(comp as any).onClose = function handleClose () {
-    if (!instance.data.visible) { return }
-    instance.setData({ visible: false }, () => {
-      onClose?.()
-    })
-  }
-  ;(comp as any).onPopupClosed = function handleClosed () {
-    onClosed?.()
-  }
-  return (comp as any).onClose.bind(comp)
+  const comp = findComponentNode<DialogInstance>(opts.selector, opts.instance)
+  const { destroy } = mountComponent(props, comp)
+  
+  return () => destroy()
 }
 
 /**
@@ -145,8 +182,8 @@ export type DialogAlertProps = Omit<
 }
 
 function alert (props?: DialogAlertProps, options?: DialogShowOptions): Promise<void>
-function alert (props?: DialogAlertProps, selector?: string, inst?: MPInst): Promise<void>
-function alert (props?: DialogAlertProps, selector?: DialogShowOptions | string, inst?: MPInst): Promise<void> {
+function alert (props?: DialogAlertProps, selector?: string, instance?: MiniprogramPublicInstance): Promise<void>
+function alert (props?: DialogAlertProps, selector?: DialogShowOptions | string, instance?: MiniprogramPublicInstance): Promise<void> {
   const { confirmText, confirmType, onConfirm, ...restProps } = props
   return new Promise<void>((resolve) => {
     show.call(null, {
@@ -162,7 +199,7 @@ function alert (props?: DialogAlertProps, selector?: DialogShowOptions | string,
       onClose: () => {
         resolve()
       },
-    } as DialogProps, selector, inst)
+    } as DialogProps, selector, instance)
   })
 }
 
@@ -181,8 +218,8 @@ export type DialogConfirmProps = DialogAlertProps & {
 }
 
 function confirm (props?: DialogConfirmProps, options?: DialogShowOptions): Promise<boolean>
-function confirm (props?: DialogConfirmProps, selector?: string, inst?: MPInst): Promise<boolean>
-function confirm (props?: DialogConfirmProps, selector?: DialogShowOptions | string, inst?: MPInst): Promise<boolean> {
+function confirm (props?: DialogConfirmProps, selector?: string, instance?: MiniprogramPublicInstance): Promise<boolean>
+function confirm (props?: DialogConfirmProps, selector?: DialogShowOptions | string, instance?: MiniprogramPublicInstance): Promise<boolean> {
   const { confirmText, confirmType, onConfirm, cancelText, cancelType, onCancel, ...restProps } = props
   return new Promise<boolean>((resolve) => {
     show.call(null, {
@@ -207,7 +244,7 @@ function confirm (props?: DialogConfirmProps, selector?: DialogShowOptions | str
         restProps.onClose?.()
         resolve(false)
       },
-    } as DialogProps, selector, inst)
+    } as DialogProps, selector, instance)
   })
 }
 
@@ -215,4 +252,5 @@ export {
   show,
   alert,
   confirm,
+  clear,
 }

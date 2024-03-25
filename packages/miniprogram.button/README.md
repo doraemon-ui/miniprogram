@@ -49,34 +49,34 @@ yarn add @doraemon-ui/miniprogram.button
 | 参数 | 类型 | 描述 | 默认值 |
 | --- | --- | --- | --- |
 | prefixCls | `string` | 自定义类名前缀 | dora-button |
-| darkmode | `string` | 当前的主题 | auto，可选值为 auto、dark、light |
-| color | `string` | 按钮颜色，可选值为 light、stable、positive、calm、assertive、balanced、energized、royal、dark | positive |
-| fill | `string` | 填充模式，可选值为 solid、outline、clear | solid |
-| expand | `string` | 扩展模式，可选值为 block、full | - |
-| size | `string` | 按钮的大小，可选值为 small、default、large | default |
-| shape | `string` | 按钮的形状，可选值为 rounded、rectangular | - |
+| color | `'light' \| 'stable' \| 'positive' \| 'calm' \| 'assertive' \| 'balanced' \| 'energized' \| 'royal' \| 'dark'` | 按钮颜色 | positive |
+| fill | `'solid' \| 'outline' \| 'clear'` | 填充模式 | solid |
+| expand | `'block' \| 'full'` | 扩展模式 | - |
+| size | `'small' \| 'default' \| 'large'` | 按钮的大小 | default |
+| shape | `'rounded' \| 'rectangular'` | 按钮的形状 | - |
 | strong | `boolean` | 是否粗体字体 | false |
 | disabled | `boolean` | 是否禁用 | false |
 | loading | `boolean` | 名称前是否带 loading 图标 | false |
 | formType | `string` | ~~用于 `<form/>` 组件，点击分别会触发 `<form/>` 组件的 submit/reset 事件~~ | - |
-| openType | `string` | 微信开放能力，可选值为 contact、share、getUserInfo、getPhoneNumber | - |
+| openType | `'contact' \| 'share' \| 'getUserInfo' \| 'getPhoneNumber'` | 微信开放能力 | - |
 | hoverClass | `string` | 指定按钮按下去的样式类。当 hover-class="none" 时，没有点击态效果 | default |
 | hoverStopPropagation | `boolean` | 指定是否阻止本节点的祖先节点出现点击态 | false |
 | hoverStartTime | `number` | 按住后多久出现点击态，单位毫秒 | 20 |
 | hoverStayTime | `number` | 手指松开后点击态保留时间，单位毫秒 | 70 |
-| lang | `string` | 指定返回用户信息的语言，zh_CN 简体中文，zh_TW 繁体中文，en 英文。 | en |
+| lang | `'zh_CN' \| 'zh_TW' \| 'en'` | 指定返回用户信息的语言，zh_CN 简体中文，zh_TW 繁体中文，en 英文。 | en |
 | sessionFrom | `string` | 会话来源 | - |
 | sendMessageTitle | `string` | 会话内消息卡片标题 | 当前标题 |
 | sendMessagePath | `string` | 会话内消息卡片点击跳转小程序路径 | 当前分享路径 |
 | sendMessageImg | `string` | 会话内消息卡片图片 | 截图 |
 | showMessageCard | `boolean` | 显示会话内消息卡片 | false |
 | appParameter | `string` | 打开 APP 时，向 APP 传递的参数 | - |
-| bind:click | `function` | 点击事件 | - |
-| bind:getuserinfo | `function` | 用户点击该按钮时，会返回获取到的用户信息，回调的detail数据与wx.getUserInfo返回的一致 | - |
-| bind:contact | `function` | 客服消息回调 | - |
-| bind:getphonenumber | `function` | 获取用户手机号回调 | - |
-| bind:error | `function` | 当使用开放能力时，发生错误的回调 | - |
-| bind:opensetting | `function` | 在打开授权设置页后回调 | - |
+| bind:click | `() => void` | 点击事件 | - |
+| bind:getuserinfo | `(event: ButtonGetUserInfo) => void` | 用户点击该按钮时，会返回获取到的用户信息，回调的detail数据与wx.getUserInfo返回的一致 | - |
+| bind:contact | `(event: ButtonContact) => void` | 客服消息回调 | - |
+| bind:getphonenumber | `(event: ButtonGetPhoneNumber) => void` | 获取用户手机号回调 | - |
+| bind:launchApp | `(event: ButtonLaunchApp) => void` | 打开 APP 成功的回调 | - |
+| bind:error | `(event: ButtonError) => void` | 当使用开放能力时，发生错误的回调 | - |
+| bind:opensetting | `(event: ButtonOpenSetting) => void` | 在打开授权设置页后回调 | - |
 
 > 更多参数说明请参考微信官方的表单组件 [Button](https://developers.weixin.qq.com/miniprogram/dev/component/button.html)。
 

@@ -1,5 +1,5 @@
 import { createDecorator } from './Component'
-import { WatchOptions } from '../types/options'
+import type { WatchOptions } from '../types/options'
 
 /**
  * decorator of a watch function

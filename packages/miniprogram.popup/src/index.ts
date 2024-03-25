@@ -1,20 +1,14 @@
 import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import { findComponentNode } from '@doraemon-ui/miniprogram.shared'
+import { type SafeAreaProp, defaultSafeArea } from '@doraemon-ui/miniprogram.safe-area'
+import type { BackdropInstance } from '@doraemon-ui/miniprogram.backdrop'
 
-const { classNames, getCurrentInstance } = Doraemon.util
+const { classNames } = Doraemon.util
 
 /**
  * 弹出的位置
- *
- * @enum {number}
  */
-enum EPosition {
-  TOP = 'top',
-  BOTTOM = 'bottom',
-  LEFT = 'left',
-  RIGHT = 'right',
-  CENTER = 'center',
-}
+export type Position = 'bottom' | 'top' | 'left' | 'right' | 'center'
 
 @Component({
   props: {
@@ -46,16 +40,16 @@ class Popup extends Doraemon {
   animationPrefixCls: string
 
   /**
-   * 弹出层位置信息，可选值为 center、top、right、bottom、left
+   * 指定弹出的位置
    *
-   * @type {EPosition}
+   * @type {Position}
    * @memberof Popup
    */
   @Prop({
     type: String,
-    default: EPosition.CENTER,
+    default: 'center',
   })
-  position: EPosition
+  position: Position
 
   /**
    * 自定义 body 样式
@@ -165,6 +159,18 @@ class Popup extends Doraemon {
   })
   unmountOnExit: boolean
 
+  /**
+   * 是否开启安全区适配，关于 `SafeAreaProp` 的类型定义，请参考 `SafeArea` 的文档
+   *
+   * @type {SafeAreaProp}
+   * @memberof Popup
+   */
+  @Prop({
+    type: [Boolean, String, Object],
+    default: () => ({ ...defaultSafeArea }),
+  })
+  safeArea: SafeAreaProp
+
   get classes () {
     const { prefixCls, position } = this
     const wrap = classNames(prefixCls, {
@@ -194,7 +200,7 @@ class Popup extends Doraemon {
   }
 
   @Watch('position')
-  onPositionChange(position: EPosition) {
+  onPositionChange(position: Position) {
     this.getTransitionName(position)
   }
 
@@ -206,18 +212,18 @@ class Popup extends Doraemon {
   }
 
   setBackdropVisible(visible: boolean) {
-    if (this.mask && this._wuxBackdrop) {
+    if (this.mask && this._backdrop) {
       if (visible) {
-        this._wuxBackdrop.retain()
+        this._backdrop.retain()
       } else {
-        this._wuxBackdrop.release()
+        this._backdrop.release()
       }
     }
   }
 
   transitionName: string = ''
   popupVisible: boolean = false
-  _wuxBackdrop: any
+  _backdrop?: BackdropInstance
 
   /**
    * 点击关闭按钮事件
@@ -259,20 +265,20 @@ class Popup extends Doraemon {
   /**
    * 获取过渡的类名
    */
-  getTransitionName(value: EPosition) {
+  getTransitionName(value: Position) {
     const { animationPrefixCls } = this
     let transitionName = ''
     switch (value) {
-        case EPosition.TOP:
+        case 'top':
           transitionName = `${animationPrefixCls}--slideInDown`
           break
-        case EPosition.RIGHT:
+        case 'right':
           transitionName = `${animationPrefixCls}--slideInRight`
           break
-        case EPosition.BOTTOM:
+        case 'bottom':
           transitionName = `${animationPrefixCls}--slideInUp`
           break
-        case EPosition.LEFT:
+        case 'left':
           transitionName = `${animationPrefixCls}--slideInLeft`
           break
         default:
@@ -284,8 +290,7 @@ class Popup extends Doraemon {
 
   created() {
     if (this.mask) {
-      const instance = getCurrentInstance(this)
-      this._wuxBackdrop = findComponentNode('#dora-backdrop', instance)
+      this._backdrop = findComponentNode('#dora-backdrop', this._renderProxy)
     }
   }
 

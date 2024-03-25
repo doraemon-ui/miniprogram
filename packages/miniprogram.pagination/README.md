@@ -53,9 +53,9 @@ yarn add @doraemon-ui/miniprogram.pagination
 | controlled | `boolean` | 是否受控 [说明文档](controlled.md) | false |
 | total | `number` | 总页数 | 0 |
 | simple | `boolean` | 是否隐藏数值 | false |
-| bind:change | `function` | change 事件触发的回调函数 | - |
-| bind:prev | `function` | 左侧按钮点击事件 | - |
-| bind:next | `function` | 右侧按钮点击事件 | - |
+| bind:change | `(event: CustomEvent<{ current: number; type: 'prev' \| 'next' }>) => void` | change 事件触发的回调函数 | - |
+| bind:prev | `(event: CustomEvent<{ current: number }>) => void` | 左侧按钮点击事件 | - |
+| bind:next | `(event: CustomEvent<{ current: number }>) => void` | 右侧按钮点击事件 | - |
 
 ### Pagination slot
 

@@ -2,13 +2,13 @@ import { miniprogramThis } from './global'
 import { pxToNumber } from '../util'
 import { canUseMP } from './canUseMP'
 import { getCurrentPage } from './getCurrentPage'
-import { type MPElement, type MPInst } from '../../types'
+import type { MiniprogramElement, MiniprogramPublicInstance } from '../../types'
 
-export const useQuery = (dom: MPInst = getCurrentPage()) => {
+export const useQuery = (instance: MiniprogramPublicInstance = getCurrentPage()) => {
   if (!canUseMP()) {
     return null
   }
-  return !!dom ? miniprogramThis?.createSelectorQuery?.().in(dom) : miniprogramThis?.createSelectorQuery?.()
+  return !!instance ? miniprogramThis?.createSelectorQuery?.().in(instance) : miniprogramThis?.createSelectorQuery?.()
 }
 
 /**
@@ -16,11 +16,11 @@ export const useQuery = (dom: MPInst = getCurrentPage()) => {
  *
  * @export
  * @param {string} selector
- * @param {MPInst} dom
- * @return {*}  {(MPElement | null)}
+ * @param {MiniprogramPublicInstance} instance
+ * @return {*}  {(MiniprogramElement | null)}
  */
-export function useSelector (selector: string, dom?: MPInst): MPElement | null {
-  return canUseMP() ? useQuery(dom).select(selector) : null
+export function useSelector (selector: string, instance?: MiniprogramPublicInstance): MiniprogramElement | null {
+  return canUseMP() ? useQuery(instance).select(selector) : null
 }
 
 /**
@@ -28,11 +28,11 @@ export function useSelector (selector: string, dom?: MPInst): MPElement | null {
  *
  * @export
  * @param {string} selector
- * @param {MPInst} dom
- * @return {*}  {(MPElement | null)}
+ * @param {MiniprogramPublicInstance} instance
+ * @return {*}  {(MiniprogramElement | null)}
  */
-export function useSelectorAll (selector: string, dom?: MPInst): MPElement | null {
-  return canUseMP() ? useQuery(dom).selectAll(selector) : null
+export function useSelectorAll (selector: string, instance?: MiniprogramPublicInstance): MiniprogramElement | null {
+  return canUseMP() ? useQuery(instance).selectAll(selector) : null
 }
 
 const makeFields = () => ({
@@ -114,9 +114,9 @@ const makeNodeRef = (node: NodeRef) => {
   }
 }
 
-export const useRef = (selector: string | string[], dom?: MPInst) => {
+export const useRef = (selector: string | string[], instance?: MiniprogramPublicInstance) => {
   return new Promise((resolve) => {
-      const query = useQuery(dom)
+      const query = useQuery(instance)
       const isArray = Array.isArray(selector)
       const classList = isArray ? selector : [selector]
       if (query) {
@@ -136,9 +136,9 @@ export const useRef = (selector: string | string[], dom?: MPInst) => {
   })
 }
 
-export const useRefAll = (selector: string | string[], dom?: MPInst) => {
+export const useRefAll = (selector: string | string[], instance?: MiniprogramPublicInstance) => {
   return new Promise((resolve) => {
-      const query = useQuery(dom)
+      const query = useQuery(instance)
       const isArray = Array.isArray(selector)
       const classList = isArray ? selector : [selector]
       if (query) {
@@ -158,9 +158,9 @@ export const useRefAll = (selector: string | string[], dom?: MPInst) => {
   })
 }
 
-export const useRect = (selector: string | string[], dom?: MPInst) => {
+export const useRect = (selector: string | string[], instance?: MiniprogramPublicInstance) => {
   return new Promise((resolve) => {
-      const query = useQuery(dom)
+      const query = useQuery(instance)
       const isArray = Array.isArray(selector)
       const classList = isArray ? selector : [selector]
       if (query) {
@@ -176,9 +176,9 @@ export const useRect = (selector: string | string[], dom?: MPInst) => {
   })
 }
 
-export const useRectAll = (selector: string | string[], dom?: MPInst) => {
+export const useRectAll = (selector: string | string[], instance?: MiniprogramPublicInstance) => {
   return new Promise((resolve) => {
-      const query = useQuery(dom)
+      const query = useQuery(instance)
       const isArray = Array.isArray(selector)
       const classList = isArray ? selector : [selector]
       if (query) {
@@ -194,9 +194,9 @@ export const useRectAll = (selector: string | string[], dom?: MPInst) => {
   })
 }
 
-export const useScrollOffset = (dom?: MPInst) => {
+export const useScrollOffset = (instance?: MiniprogramPublicInstance) => {
   return new Promise((resolve) => {
-      const query = useQuery(dom)
+      const query = useQuery(instance)
       if (query) {
       query
           .selectViewport()
@@ -210,9 +210,9 @@ export const useScrollOffset = (dom?: MPInst) => {
 
 export const useComputedStyle = (selector: string, ...args: any[]) => {
   const computedStyle = args.length === 2 ? args[0] : ['width', 'height']
-  const dom = args.length === 2 ? args[1] : args[0]
+  const instance = args.length === 2 ? args[1] : args[0]
   return new Promise((resolve) => {
-      const query = useQuery(dom)
+      const query = useQuery(instance)
       if (query) {
       query
           .select(selector)

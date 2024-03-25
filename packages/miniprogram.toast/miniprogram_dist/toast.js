@@ -1,23 +1,10 @@
 /**
  * @doraemon-ui/miniprogram.toast.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-22, 01:00:32.
+ * Built on 2024-03-24, 21:43:17.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.20.
  */
-import { Doraemon } from '@doraemon-ui/miniprogram.core-js';
-import { getCurrentPage, findComponentNode, isObject, isString, isTrue, } from '@doraemon-ui/miniprogram.shared';
-const { getCurrentInstance } = Doraemon.util;
-/**
- * 预设的图标
- *
- * @export
- */
-export const presetIconRecord = {
-    success: 'checkmark-circle-outline',
-    error: 'close-circle-outline',
-    warning: 'alert',
-    loading: 'loading-outline',
-};
+import { getCurrentPage, findComponentNode, usePopupStateHOC, isObject, isString, isTrue, isFalse, } from '@doraemon-ui/miniprogram.shared';
 /**
  * 默认属性
  */
@@ -27,15 +14,15 @@ const defaultProps = {
 const mergeProps = (p) => {
     return Object.assign({}, defaultProps, typeof p === 'string' ? { text: p } : p);
 };
-const mergeOptions = (selector, inst) => {
+const mergeOptions = (selector, instance) => {
     let opts = {
         selector: '#dora-toast',
-        inst: getCurrentPage(),
+        instance: getCurrentPage(),
     };
     if (isString(selector)) {
         opts.selector = selector;
-        if (inst) {
-            opts.inst = inst;
+        if (instance) {
+            opts.instance = instance;
         }
     }
     else if (isObject(selector)) {
@@ -46,63 +33,58 @@ const mergeOptions = (selector, inst) => {
     }
     return opts;
 };
-/**
- * 缓存组件的实例对象
- */
-const containers = [];
-/**
- * 卸载指定的组件
- *
- * @param {Doraemon} container 组件的实例对象
- * @param {() => void} [callback] 卸载后的回调函数
- */
-function unmount(container, callback) {
-    const unmountResult = getCurrentInstance(container);
-    if (unmountResult && isTrue(unmountResult.data.visible)) {
-        unmountResult.setData({ visible: false }, () => {
-            callback?.();
-        });
+const destroyFns = new Map();
+function clear() {
+    for (const [close] of destroyFns) {
+        close();
+        destroyFns.delete(close);
     }
 }
-/**
- * 卸载所有的组件
- */
-function clear() {
-    while (containers.length > 0) {
-        const container = containers.pop();
-        if (!container)
-            break;
-        unmount(container);
+function mountComponent(props, container, statePropName = 'visible') {
+    const { render, destroy, update } = usePopupStateHOC(statePropName)(container);
+    const close = () => {
+        if (isTrue(container[statePropName])) {
+            destroy(props.onClose);
+            if (destroyFns.has(close)) {
+                destroyFns.delete(close);
+            }
+        }
+    };
+    // always clear destroyFns
+    clear();
+    destroyFns.set(close, true);
+    if (isFalse(container[statePropName])) {
+        render(props);
     }
+    // rewrite close
+    container.onClose = () => {
+        close();
+    };
+    container.onClosed = () => {
+        props.onClosed?.();
+    };
+    return {
+        destroy: close,
+        update,
+    };
 }
 let _toast = null;
-function show(p, selector, inst) {
+function show(p, selector, instance) {
     const props = mergeProps(p);
-    const options = mergeOptions(selector, inst);
-    const comp = findComponentNode(options.selector, options.inst);
-    const { onClose, onClosed, ...restProps } = props;
-    // always clear containers
-    clear();
-    containers.push(comp);
-    const instance = getCurrentInstance(comp);
-    instance.setData({ ...restProps, visible: true });
-    comp.onClose = function handleClose() {
-        unmount(comp, onClose);
-    };
-    comp.onPopupClosed = function handleClosed() {
-        onClosed?.();
-    };
+    const options = mergeOptions(selector, instance);
+    const comp = findComponentNode(options.selector, options.instance);
+    const { destroy } = mountComponent(props, comp);
     // set auto close
     if (_toast) {
         clearTimeout(_toast);
         _toast = null;
     }
     if (props.duration > 0) {
-        _toast = setTimeout(() => unmount(comp, onClose), props.duration);
+        _toast = setTimeout(() => destroy(), props.duration);
     }
-    return () => unmount(comp, onClose);
+    return () => destroy();
 }
-function success(p, selector, inst) {
+function success(p, selector, instance) {
     const props = mergeProps(p);
     return new Promise((resolve) => {
         show.call(null, {
@@ -111,10 +93,10 @@ function success(p, selector, inst) {
             onClose: () => {
                 resolve();
             },
-        }, selector, inst);
+        }, selector, instance);
     });
 }
-function warning(p, selector, inst) {
+function warning(p, selector, instance) {
     const props = mergeProps(p);
     return new Promise((resolve) => {
         show.call(null, {
@@ -123,10 +105,10 @@ function warning(p, selector, inst) {
             onClose: () => {
                 resolve();
             },
-        }, selector, inst);
+        }, selector, instance);
     });
 }
-function error(p, selector, inst) {
+function error(p, selector, instance) {
     const props = mergeProps(p);
     return new Promise((resolve) => {
         show.call(null, {
@@ -135,10 +117,10 @@ function error(p, selector, inst) {
             onClose: () => {
                 resolve();
             },
-        }, selector, inst);
+        }, selector, instance);
     });
 }
-function info(p, selector, inst) {
+function info(p, selector, instance) {
     const props = mergeProps(p);
     return new Promise((resolve) => {
         show.call(null, {
@@ -147,10 +129,10 @@ function info(p, selector, inst) {
             onClose: () => {
                 resolve();
             },
-        }, selector, inst);
+        }, selector, instance);
     });
 }
-function loading(p, selector, inst) {
+function loading(p, selector, instance) {
     const props = mergeProps(p);
     return new Promise((resolve) => {
         show.call(null, {
@@ -159,7 +141,7 @@ function loading(p, selector, inst) {
             onClose: () => {
                 resolve();
             },
-        }, selector, inst);
+        }, selector, instance);
     });
 }
 export { show, success, warning, error, info, loading, clear, };

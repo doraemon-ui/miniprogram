@@ -1,9 +1,9 @@
-import { Doraemon, DoraemonClass } from '../instance/init'
-import { ComponentOptions } from '../types/options'
+import { Doraemon, type DoraemonClass } from '../instance/init'
 import { LIFECYCLE_HOOKS } from '../util/constants'
 import { hasOwn } from '../util/hasOwn'
 import { hasProto } from '../util/hasProto'
 import { isPrimitive } from '../util/isPrimitive'
+import type { ComponentOptions } from '../types/options'
 
 type DecoratedClass = { new (...args: any[]) } & {
   __decorators__?: any

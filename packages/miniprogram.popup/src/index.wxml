@@ -19,5 +19,9 @@
     bind:exited="onExited"
   >
     <slot />
+    <dora-safe-area
+      safeArea="{{ safeArea }}"
+      wx:if="{{ safeArea && position === 'bottom' }}"
+    />
   </dora-animation-group>
 </view>

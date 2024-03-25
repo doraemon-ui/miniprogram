@@ -1,13 +1,21 @@
 import classNames from 'classnames'
-import styleToCssString from 'react-style-object-to-css'
+import reactStyleObjectToCss from 'react-style-object-to-css'
 import { warn } from '../util/warn'
-import { ComponentOptions } from '../types/options'
 import { nextTick } from '../util/nextTick'
+import { isDev } from '../util/env'
+import { isEqual } from '../util/isEqual'
 import { eventsMixin, renderMixin, stateMixin } from './mixin'
 import { proxy } from './proxy'
 import { config } from './config'
-import { isDev } from '../util/env'
-import { isEqual } from '../util/isEqual'
+import type { ComponentOptions } from '../types/options'
+
+const styleToCssString = (rules: string | Record<string, any>): string => {
+  if (typeof rules === 'string') {
+    rules = rules.trim()
+    return rules.slice(-1) === ';' ? `${rules} ` : `${rules}; `
+  }
+  return reactStyleObjectToCss(rules)
+}
 
 let uid: number = 0
 let cid: number = 1
@@ -17,8 +25,19 @@ class Doraemon {
   _isMounted: boolean = false
   _isDestroyed: boolean = false
   _hasHookEvent: boolean = false
+
+  /**
+   * miniprogram component instance
+   *
+   * @type {ComponentRenderProxy<Doraemon>}
+   * @memberof Doraemon
+   */
   _renderProxy: ComponentRenderProxy<Doraemon>
+
+  // exposed properties via expose()
   _exposed: Record<string, any> | null
+  _exposeProxy: Record<string, any> | null
+
   _uid: number
   _self: this
   $options: ComponentOptions<Doraemon>
@@ -74,7 +93,7 @@ class Doraemon {
   }
 
   /**
-   * proxy miniprogram instance.
+   * proxy miniprogram component instance.
    *
    * @param {ComponentRenderProxy<Doraemon>} vm
    * @memberof Doraemon
@@ -108,13 +127,7 @@ class Doraemon {
     warn,
     isEqual,
     classNames,
-    styleToCssString,
-    getCurrentInstance: (vm: Doraemon) => {
-      if (vm._isDoraemon) {
-        return vm._renderProxy
-      }
-      return null
-    }
+    styleToCssString
   }
 }
 

@@ -3,4 +3,5 @@
 // Popup themes
 // -----------------------------
 @popup-prefix-cls: ~'@{dora-prefix}-popup';
-@popup-z-index: 1000;
+@popup-z-index: var(--dora-popup-z-index, @component-z-index);
+@popup-background-color: @component-background;

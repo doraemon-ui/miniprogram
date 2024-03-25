@@ -71,7 +71,7 @@ export function defineComponentHOC (externalOptions: ComponentExternalOptions = 
         externalOptions.behaviors : []).concat(['wx://component-export', syncPropsToData(options.computed)]),
       observers: {
         ...watch,
-        ['**']: function defineComputed () {
+        ['**']: function defineComputed (this: ComponentRenderProxy<Doraemon>) {
           initComputed(this.$component)
         },
       },
@@ -103,7 +103,7 @@ export function defineComponentHOC (externalOptions: ComponentExternalOptions = 
           }
           callHook(this.$component, 'mounted')
         },
-        detached: function destroyed(this: ComponentRenderProxy<Doraemon>) {
+        detached: function unmounted(this: ComponentRenderProxy<Doraemon>) {
           if (!this.$component._isDestroyed) {
             this.$component._isDestroyed = true
           }

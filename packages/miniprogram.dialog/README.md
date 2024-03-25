@@ -59,36 +59,36 @@ yarn add @doraemon-ui/miniprogram.dialog
 | visible | `boolean` | 是否可见 | false |
 | zIndex | `number` | 设置蒙层的 z-index | 1000 |
 | buttons | `array` | 操作按钮列表，更多参数见下 `Button props` | [] |
-| bind:close | `function` | 点击关闭按钮或蒙层的回调函数 | - |
-| bind:closed | `function` | 关闭后的回调函数 | - |
+| bind:close | `() => void` | 点击关闭按钮或蒙层的回调函数 | - |
+| bind:closed | `() => void` | 关闭后的回调函数 | - |
 
 #### Button props
 
 | 参数 | 类型 | 描述 | 默认值 |
 | --- | --- | --- | --- |
 | text | `string` | 按钮的文本 | - |
-| type | `string` | 按钮的类型，可选值为 light、stable、positive、calm、assertive、balanced、energized、royal、dark | dark |
+| type | `'light' \| 'stable' \| 'positive' \| 'calm' \| 'assertive' \| 'balanced' \| 'energized' \| 'royal' \| 'dark'` | 按钮的类型 | - |
 | bold | `boolean` | 是否加粗按钮的文字 | - |
 | disabled | `boolean` | 是否禁用 | false |
-| openType | `string` | 微信开放能力，可选值为 contact、share、getUserInfo、getPhoneNumber、launchApp、openSetting、feedback | - |
+| openType | `'contact' \| 'share' \| 'getUserInfo' \| 'getPhoneNumber'` | 微信开放能力| - |
 | hoverClass | `string` | 指定按下去的样式类。当 hover-class="none" 时，没有点击态效果 | default |
 | hoverStopPropagation | `boolean` | 指定是否阻止本节点的祖先节点出现点击态 | false |
 | hoverStartTime | `number` | 按住后多久出现点击态，单位毫秒 | 20 |
 | hoverStayTime | `number` | 手指松开后点击态保留时间，单位毫秒 | 70 |
-| lang | `string` | 指定返回用户信息的语言，zh_CN 简体中文，zh_TW 繁体中文，en 英文。 | en |
+| lang | `'zh_CN' \| 'zh_TW' \| 'en'` | 指定返回用户信息的语言，zh_CN 简体中文，zh_TW 繁体中文，en 英文。 | en |
 | sessionFrom | `string` | 会话来源 | - |
 | sendMessageTitle | `string` | 会话内消息卡片标题 | 当前标题 |
 | sendMessagePath | `string` | 会话内消息卡片点击跳转小程序路径 | 当前分享路径 |
 | sendMessageImg | `string` | 会话内消息卡片图片 | 截图 |
 | showMessageCard | `boolean` | 显示会话内消息卡片 | false |
 | appParameter | `string` | 打开 APP 时，向 APP 传递的参数 | - |
-| onClick | `function` | 按钮的点击事件 | - |
-| onGetUserInfo | `function` | 用户点击该按钮时，会返回获取到的用户信息，回调的detail数据与wx.getUserInfo返回的一致 | - 
-| onContact | `function` | 客服消息回调 | - |
-| onGotPhoneNumber | `function` | 获取用户手机号回调 | - |
-| onLaunchApp | `function` | 打开 APP 成功的回调 | - |
-| onError | `function` | 当使用开放能力时，发生错误的回调 | - |
-| onOpenSetting | `function` | 在打开授权设置页后回调 | - |
+| onClick | `() => void` | 按钮的点击事件 | - |
+| onGetUserInfo | `(event: ButtonGetUserInfo) => void` | 用户点击该按钮时，会返回获取到的用户信息，回调的detail数据与wx.getUserInfo返回的一致 | - |
+| onContact | `(event: ButtonContact) => void` | 客服消息回调 | - |
+| onGotPhoneNumber | `(event: ButtonGetPhoneNumber) => void` | 获取用户手机号回调 | - |
+| onLaunchApp | `(event: ButtonLaunchApp) => void` | 打开 APP 成功的回调 | - |
+| onError | `(event: ButtonError) => void` | 当使用开放能力时，发生错误的回调 | - |
+| onOpenSetting | `(event: ButtonOpenSetting) => void` | 在打开授权设置页后回调 | - |
 
 ### Dialog slot
 
@@ -112,8 +112,8 @@ yarn add @doraemon-ui/miniprogram.dialog
 
 | 参数 | 类型 | 描述 | 默认值 |
 | --- | --- | --- | --- |
-| onClose | `function` | 点击关闭按钮或蒙层的回调函数 | - |
-| onClosed | `function` | 关闭后的回调函数 | - |
+| onClose | `() => void` | 点击关闭按钮或蒙层的回调函数 | - |
+| onClosed | `() => void` | 关闭后的回调函数 | - |
 
 > `show` 方法的调用后，会返回一个引用，可以通过该引用手动关闭对话框
 
@@ -131,8 +131,8 @@ hideDialog()
 | 参数 | 类型 | 描述 | 默认值 |
 | --- | --- | --- | --- |
 | confirmText | `string` | 确定按钮的文字 | 确定 |
-| confirmType | `string` | 确定按钮的类型，可选值为 light、stable、positive、calm、assertive、balanced、energized、royal、dark | balanced |
-| onConfirm | `function` | 确定按钮的点击事件 | - |
+| confirmType | `'light' \| 'stable' \| 'positive' \| 'calm' \| 'assertive' \| 'balanced' \| 'energized' \| 'royal' \| 'dark'` | 确定按钮的类型 | balanced |
+| onConfirm | `(button: Button, index: number, detail: Detail) => void \| Promise<void>` | 确定按钮的点击事件 | - |
 
 ### Dialog.confirm
 
@@ -143,11 +143,11 @@ hideDialog()
 | 参数 | 类型 | 描述 | 默认值 |
 | --- | --- | --- | --- |
 | confirmText | `string` | 确定按钮的文字 | 确定 |
-| confirmType | `string` | 确定按钮的类型，可选值为 light、stable、positive、calm、assertive、balanced、energized、royal、dark | balanced |
-| onConfirm | `function` | 确定按钮的点击事件 | - |
+| confirmType | `'light' \| 'stable' \| 'positive' \| 'calm' \| 'assertive' \| 'balanced' \| 'energized' \| 'royal' \| 'dark'` | 确定按钮的类型 | balanced |
+| onConfirm | `(button: Button, index: number, detail: Detail) => void \| Promise<void>` | 确定按钮的点击事件 | - |
 | cancelText | `string` | 取消按钮的文字 | 取消 |
-| cancelType | `string` | 取消按钮的类型，可选值为 light、stable、positive、calm、assertive、balanced、energized、royal、dark | dark |
-| onCancel | `function` | 取消按钮的点击事件 | - |
+| cancelType | `'light' \| 'stable' \| 'positive' \| 'calm' \| 'assertive' \| 'balanced' \| 'energized' \| 'royal' \| 'dark'` | 取消按钮的类型 | dark |
+| onCancel | `(button: Button, index: number, detail: Detail) => void \| Promise<void>` | 取消按钮的点击事件 | - |
 
 ## CSS Variables
 
