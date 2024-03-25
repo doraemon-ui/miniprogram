@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.shared.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-21, 23:51:05.
+ * Built on 2024-03-25, 14:57:31.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.20.
  */
 
@@ -24,7 +24,7 @@ function canUseMP() {
  * 获取当前页面的实例
  *
  * @export
- * @return {*}  {(MPInst | null)}
+ * @return {*}  {(MiniprogramPublicInstance | null)}
  */
 function getCurrentPage() {
     return canUseMP() ? getCurrentPages()[getCurrentPages().length - 1] : null;
@@ -36,11 +36,11 @@ function getCurrentPage() {
  * @export
  * @template T
  * @param {string} selector
- * @param {MPInst} [dom=getCurrentPage()]
+ * @param {MiniprogramPublicInstance} [instance=getCurrentPage()]
  * @return {*}  {(T | null)}
  */
-function findComponentNode(selector, dom = getCurrentPage()) {
-    return dom?.selectComponent(selector) || null;
+function findComponentNode(selector, instance = getCurrentPage()) {
+    return instance?.selectComponent(selector) || null;
 }
 
 function isDef(v) {
@@ -112,33 +112,33 @@ var util = {
     sleep,
 };
 
-const useQuery = (dom = getCurrentPage()) => {
+const useQuery = (instance = getCurrentPage()) => {
     if (!canUseMP()) {
         return null;
     }
-    return !!dom ? miniprogramThis?.createSelectorQuery?.().in(dom) : miniprogramThis?.createSelectorQuery?.();
+    return !!instance ? miniprogramThis?.createSelectorQuery?.().in(instance) : miniprogramThis?.createSelectorQuery?.();
 };
 /**
  * 获取匹配指定选择器的第一个元素
  *
  * @export
  * @param {string} selector
- * @param {MPInst} dom
- * @return {*}  {(MPElement | null)}
+ * @param {MiniprogramPublicInstance} instance
+ * @return {*}  {(MiniprogramElement | null)}
  */
-function useSelector(selector, dom) {
-    return canUseMP() ? useQuery(dom).select(selector) : null;
+function useSelector(selector, instance) {
+    return canUseMP() ? useQuery(instance).select(selector) : null;
 }
 /**
  * 获取匹配指定选择器的所有元素
  *
  * @export
  * @param {string} selector
- * @param {MPInst} dom
- * @return {*}  {(MPElement | null)}
+ * @param {MiniprogramPublicInstance} instance
+ * @return {*}  {(MiniprogramElement | null)}
  */
-function useSelectorAll(selector, dom) {
-    return canUseMP() ? useQuery(dom).selectAll(selector) : null;
+function useSelectorAll(selector, instance) {
+    return canUseMP() ? useQuery(instance).selectAll(selector) : null;
 }
 const makeFields = () => ({
     id: true,
@@ -191,9 +191,9 @@ const makeNodeRef = (node) => {
         node: node.node,
     };
 };
-const useRef = (selector, dom) => {
+const useRef = (selector, instance) => {
     return new Promise((resolve) => {
-        const query = useQuery(dom);
+        const query = useQuery(instance);
         const isArray = Array.isArray(selector);
         const classList = isArray ? selector : [selector];
         if (query) {
@@ -210,9 +210,9 @@ const useRef = (selector, dom) => {
         }
     });
 };
-const useRefAll = (selector, dom) => {
+const useRefAll = (selector, instance) => {
     return new Promise((resolve) => {
-        const query = useQuery(dom);
+        const query = useQuery(instance);
         const isArray = Array.isArray(selector);
         const classList = isArray ? selector : [selector];
         if (query) {
@@ -229,9 +229,9 @@ const useRefAll = (selector, dom) => {
         }
     });
 };
-const useRect = (selector, dom) => {
+const useRect = (selector, instance) => {
     return new Promise((resolve) => {
-        const query = useQuery(dom);
+        const query = useQuery(instance);
         const isArray = Array.isArray(selector);
         const classList = isArray ? selector : [selector];
         if (query) {
@@ -246,9 +246,9 @@ const useRect = (selector, dom) => {
         }
     });
 };
-const useRectAll = (selector, dom) => {
+const useRectAll = (selector, instance) => {
     return new Promise((resolve) => {
-        const query = useQuery(dom);
+        const query = useQuery(instance);
         const isArray = Array.isArray(selector);
         const classList = isArray ? selector : [selector];
         if (query) {
@@ -263,9 +263,9 @@ const useRectAll = (selector, dom) => {
         }
     });
 };
-const useScrollOffset = (dom) => {
+const useScrollOffset = (instance) => {
     return new Promise((resolve) => {
-        const query = useQuery(dom);
+        const query = useQuery(instance);
         if (query) {
             query
                 .selectViewport()
@@ -278,9 +278,9 @@ const useScrollOffset = (dom) => {
 };
 const useComputedStyle = (selector, ...args) => {
     const computedStyle = args.length === 2 ? args[0] : ['width', 'height'];
-    const dom = args.length === 2 ? args[1] : args[0];
+    const instance = args.length === 2 ? args[1] : args[0];
     return new Promise((resolve) => {
-        const query = useQuery(dom);
+        const query = useQuery(instance);
         if (query) {
             query
                 .select(selector)
@@ -448,6 +448,30 @@ function nextTick(cb) {
     }
 }
 
+function usePopupStateHOC(statePropName = 'visible') {
+    return (container) => {
+        const render = (props, callback) => {
+            Object.assign(container, props);
+            container.$nextTick(() => callback?.());
+        };
+        const update = (props, callback) => {
+            if (props[statePropName] !== undefined) {
+                delete props[statePropName];
+            }
+            render(props, callback);
+        };
+        const open = (props, callback) => {
+            render({ ...props, [statePropName]: true }, callback);
+        };
+        const close = (callback) => render({ [statePropName]: false }, callback);
+        return {
+            render: open,
+            destroy: close,
+            update
+        };
+    };
+}
+
 var dom = {
     canUseMP,
     findComponentNode,
@@ -463,7 +487,8 @@ var dom = {
     useScrollOffset,
     useComputedStyle,
     getSystemInfoSync,
-    getMenuButtonBoundingClientRectSync
+    getMenuButtonBoundingClientRectSync,
+    usePopupStateHOC
 };
 
 var index = {
@@ -473,4 +498,4 @@ var index = {
     ...util,
 };
 
-export { canUseMP, chooseMedia, index as default, dom, findComponentNode, getCurrentPage, getMenuButtonBoundingClientRectSync, getSystemInfoSync, isDef, isFalse, isObject, isPromise, isString, isTrue, isUndef, miniprogramThis, nextTick, noop, omit, pxToNumber, sleep, uploadFile, useComputedStyle, useQuery, useRect, useRectAll, useRef, useRefAll, useScrollOffset, useSelector, useSelectorAll, util, vibrateShort };
+export { canUseMP, chooseMedia, index as default, dom, findComponentNode, getCurrentPage, getMenuButtonBoundingClientRectSync, getSystemInfoSync, isDef, isFalse, isObject, isPromise, isString, isTrue, isUndef, miniprogramThis, nextTick, noop, omit, pxToNumber, sleep, uploadFile, useComputedStyle, usePopupStateHOC, useQuery, useRect, useRectAll, useRef, useRefAll, useScrollOffset, useSelector, useSelectorAll, util, vibrateShort };

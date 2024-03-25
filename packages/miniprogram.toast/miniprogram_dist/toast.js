@@ -1,10 +1,21 @@
 /**
  * @doraemon-ui/miniprogram.toast.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-24, 21:43:17.
+ * Built on 2024-03-25, 14:59:29.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.20.
  */
 import { getCurrentPage, findComponentNode, usePopupStateHOC, isObject, isString, isTrue, isFalse, } from '@doraemon-ui/miniprogram.shared';
+/**
+ * 预设的图标
+ *
+ * @export
+ */
+export const presetIconRecord = {
+    success: 'checkmark-circle-outline',
+    error: 'close-circle-outline',
+    warning: 'alert',
+    loading: 'loading-outline',
+};
 /**
  * 默认属性
  */

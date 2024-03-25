@@ -1,7 +1,7 @@
 {
   "name": "@doraemon-ui/miniprogram.list",
   "private": false,
-  "version": "0.0.2-alpha.32",
+  "version": "0.0.2-alpha.33",
   "description": "list component for doraemon-ui",
   "author": "skyvow <724355924@qq.com>",
   "homepage": "",
@@ -25,7 +25,7 @@
     "preversion": "pnpm run clean && pnpm run build && pnpm run test"
   },
   "dependencies": {
-    "@doraemon-ui/miniprogram.core-js": "^0.0.2-alpha.27",
+    "@doraemon-ui/miniprogram.core-js": "^0.0.2-alpha.28",
     "@doraemon-ui/style": "^0.0.1-alpha.10"
   },
   "devDependencies": {

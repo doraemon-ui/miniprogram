@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.accordion.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-22, 00:57:35.
+ * Built on 2024-03-25, 14:56:19.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.20.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -16,7 +16,7 @@ let Accordion = class Accordion extends Doraemon {
      * 自定义类名前缀
      *
      * @type {string}
-     * @memberof Button
+     * @memberof Accordion
      */
     prefixCls;
     get classes() {

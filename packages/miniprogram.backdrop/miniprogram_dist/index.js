@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.backdrop.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-22, 00:59:19.
+ * Built on 2024-03-25, 14:57:48.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.20.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -37,7 +37,7 @@ let Backdrop = class Backdrop extends Doraemon {
      * 组件样式
      *
      * @readonly
-     * @memberof Popup
+     * @memberof Backdrop
      */
     get extStyle() {
         return this.wrapStyle ? { ...this.wrapStyle, zIndex: this.zIndex } : { zIndex: this.zIndex };

@@ -3,12 +3,13 @@
 @import '../../@doraemon-ui/style/color.wxss';
 
 .dora-popup {
-  position: fixed;
-  z-index: 1000
+  --z-index: var(--dora-popup-z-index, var(--dora-component-z-index, 1000));
+  position: fixed
 }
 .dora-popup-body {
   position: fixed;
-  z-index: 1000;
+  z-index: var(--z-index);
+  z-index: var(--z-index);
   background-color: var(--dora-component-background-color,#fff);
   background-color: var(--dora-component-background-color,#fff)
 }

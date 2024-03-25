@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.toast.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-24, 21:43:17.
+ * Built on 2024-03-25, 14:59:29.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.20.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -11,18 +11,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js';
+import { presetIconRecord } from './toast';
 const { classNames } = Doraemon.util;
-/**
- * 预设的图标
- *
- * @export
- */
-export const presetIconRecord = {
-    success: 'checkmark-circle-outline',
-    error: 'close-circle-outline',
-    warning: 'alert',
-    loading: 'loading-outline',
-};
 let Toast = class Toast extends Doraemon {
     /**
      * 自定义类名前缀
@@ -94,6 +84,12 @@ let Toast = class Toast extends Doraemon {
         if (this.popupVisible !== popupVisible) {
             this.popupVisible = popupVisible;
         }
+    }
+    onPopupClose() {
+        this.onClose();
+    }
+    onPopupClosed() {
+        this.onClosed();
     }
     onClosed() {
         this.$emit('closed');
@@ -175,8 +171,7 @@ Toast = __decorate([
                 type: String,
                 default: 'dora-toast',
             },
-        },
-        expose: ['onClose', 'onClosed']
+        }
     })
 ], Toast);
 export default defineComponentHOC()(Toast);

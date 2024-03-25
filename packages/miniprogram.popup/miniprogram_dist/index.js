@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.popup.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-22, 00:59:51.
+ * Built on 2024-03-25, 14:58:43.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.20.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -12,20 +12,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js';
 import { findComponentNode } from '@doraemon-ui/miniprogram.shared';
-const { classNames, getCurrentInstance } = Doraemon.util;
-/**
- * 弹出的位置
- *
- * @enum {number}
- */
-var EPosition;
-(function (EPosition) {
-    EPosition["TOP"] = "top";
-    EPosition["BOTTOM"] = "bottom";
-    EPosition["LEFT"] = "left";
-    EPosition["RIGHT"] = "right";
-    EPosition["CENTER"] = "center";
-})(EPosition || (EPosition = {}));
+import { defaultSafeArea } from '@doraemon-ui/miniprogram.safe-area';
+const { classNames } = Doraemon.util;
 let Popup = class Popup extends Doraemon {
     /**
      * 自定义类名前缀
@@ -42,9 +30,9 @@ let Popup = class Popup extends Doraemon {
      */
     animationPrefixCls;
     /**
-     * 弹出层位置信息，可选值为 center、top、right、bottom、left
+     * 指定弹出的位置
      *
-     * @type {EPosition}
+     * @type {Position}
      * @memberof Popup
      */
     position;
@@ -111,6 +99,13 @@ let Popup = class Popup extends Doraemon {
      * @memberof Popup
      */
     unmountOnExit;
+    /**
+     * 是否开启安全区适配，关于 `SafeAreaProp` 的类型定义，请参考 `SafeArea` 的文档
+     *
+     * @type {SafeAreaProp}
+     * @memberof Popup
+     */
+    safeArea;
     get classes() {
         const { prefixCls, position } = this;
         const wrap = classNames(prefixCls, {
@@ -144,18 +139,18 @@ let Popup = class Popup extends Doraemon {
         }
     }
     setBackdropVisible(visible) {
-        if (this.mask && this._wuxBackdrop) {
+        if (this.mask && this._backdrop) {
             if (visible) {
-                this._wuxBackdrop.retain();
+                this._backdrop.retain();
             }
             else {
-                this._wuxBackdrop.release();
+                this._backdrop.release();
             }
         }
     }
     transitionName = '';
     popupVisible = false;
-    _wuxBackdrop;
+    _backdrop;
     /**
      * 点击关闭按钮事件
      */
@@ -195,16 +190,16 @@ let Popup = class Popup extends Doraemon {
         const { animationPrefixCls } = this;
         let transitionName = '';
         switch (value) {
-            case EPosition.TOP:
+            case 'top':
                 transitionName = `${animationPrefixCls}--slideInDown`;
                 break;
-            case EPosition.RIGHT:
+            case 'right':
                 transitionName = `${animationPrefixCls}--slideInRight`;
                 break;
-            case EPosition.BOTTOM:
+            case 'bottom':
                 transitionName = `${animationPrefixCls}--slideInUp`;
                 break;
-            case EPosition.LEFT:
+            case 'left':
                 transitionName = `${animationPrefixCls}--slideInLeft`;
                 break;
             default:
@@ -215,8 +210,7 @@ let Popup = class Popup extends Doraemon {
     }
     created() {
         if (this.mask) {
-            const instance = getCurrentInstance(this);
-            this._wuxBackdrop = findComponentNode('#dora-backdrop', instance);
+            this._backdrop = findComponentNode('#dora-backdrop', this._renderProxy);
         }
     }
     mounted() {
@@ -233,7 +227,7 @@ __decorate([
 __decorate([
     Prop({
         type: String,
-        default: EPosition.CENTER,
+        default: 'center',
     })
 ], Popup.prototype, "position", void 0);
 __decorate([
@@ -290,6 +284,12 @@ __decorate([
         default: true,
     })
 ], Popup.prototype, "unmountOnExit", void 0);
+__decorate([
+    Prop({
+        type: [Boolean, String, Object],
+        default: () => ({ ...defaultSafeArea }),
+    })
+], Popup.prototype, "safeArea", void 0);
 __decorate([
     Watch('visible')
 ], Popup.prototype, "onVisibleChange", null);

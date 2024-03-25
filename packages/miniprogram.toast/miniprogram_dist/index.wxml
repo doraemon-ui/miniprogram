@@ -7,8 +7,8 @@
   maskStyle="{{ maskStyle }}"
   visible="{{ popupVisible }}"
   zIndex="{{ zIndex }}"
-  bind:close="onClose"
-  bind:closed="onClosed"
+  bind:close="onPopupClose"
+  bind:closed="onPopupClosed"
 >
   <view class="dora-class {{ classes.wrap }}">
     <view class="{{ classes.content }}">

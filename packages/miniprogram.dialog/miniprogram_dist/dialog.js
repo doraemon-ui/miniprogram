@@ -1,21 +1,52 @@
 /**
  * @doraemon-ui/miniprogram.dialog.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-22, 01:00:10.
+ * Built on 2024-03-25, 14:59:00.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.20.
  */
-import { Doraemon } from '@doraemon-ui/miniprogram.core-js';
-import { getCurrentPage, findComponentNode, } from '@doraemon-ui/miniprogram.shared';
-const { getCurrentInstance } = Doraemon.util;
-function show(props, selector, inst) {
+import { getCurrentPage, findComponentNode, usePopupStateHOC, isTrue, isFalse, } from '@doraemon-ui/miniprogram.shared';
+const destroyFns = new Map();
+function clear() {
+    for (const [close] of destroyFns) {
+        close();
+        destroyFns.delete(close);
+    }
+}
+function mountComponent(props, container, statePropName = 'visible') {
+    const { render, destroy, update } = usePopupStateHOC(statePropName)(container);
+    const close = () => {
+        if (isTrue(container[statePropName])) {
+            destroy(props.onClose);
+            if (destroyFns.has(close)) {
+                destroyFns.delete(close);
+            }
+        }
+    };
+    destroyFns.set(close, true);
+    if (isFalse(container[statePropName])) {
+        render(props);
+    }
+    // rewrite close
+    container.onClose = () => {
+        close();
+    };
+    container.onClosed = () => {
+        props.onClosed?.();
+    };
+    return {
+        destroy: close,
+        update,
+    };
+}
+function show(props, selector, instance) {
     let opts = {
         selector: '#dora-dialog',
-        inst: getCurrentPage(),
+        instance: getCurrentPage(),
     };
     if (typeof selector === 'string') {
         opts.selector = selector;
-        if (inst) {
-            opts.inst = inst;
+        if (instance) {
+            opts.instance = instance;
         }
     }
     else if (typeof selector === 'object') {
@@ -24,24 +55,11 @@ function show(props, selector, inst) {
             ...selector,
         };
     }
-    const comp = findComponentNode(opts.selector, opts.inst);
-    const instance = getCurrentInstance(comp);
-    const { onClose, onClosed, ...restProps } = props;
-    instance.setData({ ...restProps, visible: true });
-    comp.onClose = function handleClose() {
-        if (!instance.data.visible) {
-            return;
-        }
-        instance.setData({ visible: false }, () => {
-            onClose?.();
-        });
-    };
-    comp.onPopupClosed = function handleClosed() {
-        onClosed?.();
-    };
-    return comp.onClose.bind(comp);
+    const comp = findComponentNode(opts.selector, opts.instance);
+    const { destroy } = mountComponent(props, comp);
+    return () => destroy();
 }
-function alert(props, selector, inst) {
+function alert(props, selector, instance) {
     const { confirmText, confirmType, onConfirm, ...restProps } = props;
     return new Promise((resolve) => {
         show.call(null, {
@@ -57,10 +75,10 @@ function alert(props, selector, inst) {
             onClose: () => {
                 resolve();
             },
-        }, selector, inst);
+        }, selector, instance);
     });
 }
-function confirm(props, selector, inst) {
+function confirm(props, selector, instance) {
     const { confirmText, confirmType, onConfirm, cancelText, cancelType, onCancel, ...restProps } = props;
     return new Promise((resolve) => {
         show.call(null, {
@@ -85,7 +103,7 @@ function confirm(props, selector, inst) {
                 restProps.onClose?.();
                 resolve(false);
             },
-        }, selector, inst);
+        }, selector, instance);
     });
 }
-export { show, alert, confirm, };
+export { show, alert, confirm, clear, };

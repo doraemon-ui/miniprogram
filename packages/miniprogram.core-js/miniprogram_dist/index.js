@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.core-js.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-25, 12:35:37.
+ * Built on 2024-03-25, 14:55:25.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.20.
  */
 
@@ -469,8 +469,16 @@ class Doraemon {
     _isMounted = false;
     _isDestroyed = false;
     _hasHookEvent = false;
+    /**
+     * miniprogram component instance
+     *
+     * @type {ComponentRenderProxy<Doraemon>}
+     * @memberof Doraemon
+     */
     _renderProxy;
+    // exposed properties via expose()
     _exposed;
+    _exposeProxy;
     _uid;
     _self;
     $options;
@@ -517,7 +525,7 @@ class Doraemon {
         vm._self = vm;
     }
     /**
-     * proxy miniprogram instance.
+     * proxy miniprogram component instance.
      *
      * @param {ComponentRenderProxy<Doraemon>} vm
      * @memberof Doraemon
@@ -544,13 +552,7 @@ class Doraemon {
         warn,
         isEqual,
         classNames,
-        styleToCssString,
-        getCurrentInstance: (vm) => {
-            if (vm._isDoraemon) {
-                return vm._renderProxy;
-            }
-            return null;
-        }
+        styleToCssString
     };
 }
 /**
@@ -1321,7 +1323,7 @@ function defineComponentHOC(externalOptions = {}) {
                     }
                     callHook(this.$component, 'mounted');
                 },
-                detached: function destroyed() {
+                detached: function unmounted() {
                     if (!this.$component._isDestroyed) {
                         this.$component._isDestroyed = true;
                     }

@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.dialog.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-22, 01:00:10.
+ * Built on 2024-03-25, 14:59:00.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.20.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js';
+import { defineComponentHOC, Doraemon, Component, Prop, Watch, Event } from '@doraemon-ui/miniprogram.core-js';
 const { classNames } = Doraemon.util;
 let Dialog = class Dialog extends Doraemon {
     /**
@@ -89,12 +89,15 @@ let Dialog = class Dialog extends Doraemon {
         this.onClose();
     }
     onPopupClosed() {
-        this.$emit('closed');
+        this.onClosed();
     }
     onXClose() {
         if (this.closable) {
             this.onClose();
         }
+    }
+    onClosed() {
+        this.$emit('closed');
     }
     onClose() {
         this.$emit('close');
@@ -209,6 +212,27 @@ __decorate([
 __decorate([
     Watch('visible')
 ], Dialog.prototype, "onVisibleChange", null);
+__decorate([
+    Event()
+], Dialog.prototype, "onClick", null);
+__decorate([
+    Event()
+], Dialog.prototype, "onGetUserInfo", null);
+__decorate([
+    Event()
+], Dialog.prototype, "onContact", null);
+__decorate([
+    Event()
+], Dialog.prototype, "onGetPhoneNumber", null);
+__decorate([
+    Event()
+], Dialog.prototype, "onLaunchApp", null);
+__decorate([
+    Event()
+], Dialog.prototype, "onError", null);
+__decorate([
+    Event()
+], Dialog.prototype, "onOpenSetting", null);
 Dialog = __decorate([
     Component({
         props: {

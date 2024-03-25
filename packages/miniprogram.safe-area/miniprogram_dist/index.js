@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.safe-area.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-22, 00:59:01.
+ * Built on 2024-03-25, 14:58:26.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.20.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -13,15 +13,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import { defineComponentHOC, Doraemon, Component, Prop } from '@doraemon-ui/miniprogram.core-js';
 import { getSystemInfoSync, getMenuButtonBoundingClientRectSync } from '@doraemon-ui/miniprogram.shared';
 const { classNames, styleToCssString } = Doraemon.util;
-export var ESafeAreaStyle;
-(function (ESafeAreaStyle) {
-    ESafeAreaStyle["DEFAULT"] = "default";
-    ESafeAreaStyle["NAVBAR"] = "navBar";
-    ESafeAreaStyle["STATUSBAR"] = "statusBar";
-})(ESafeAreaStyle || (ESafeAreaStyle = {}));
-export function getSafeAreaInset(safeAreaStyle = ESafeAreaStyle.DEFAULT) {
+export function getSafeAreaInset(safeAreaStyle = 'default') {
     // StatusBar & NavBar
-    const isDefault = [ESafeAreaStyle.DEFAULT, ESafeAreaStyle.NAVBAR].includes(safeAreaStyle);
+    const isDefault = ['default', 'navBar'].includes(safeAreaStyle);
     // iPhoneX 竖屏安全区域
     const safeAreaInset = {
         top: isDefault ? 88 : 44,
@@ -59,7 +53,7 @@ export const defaultSafeArea = {
     top: false,
     bottom: false,
 };
-export const getSafeArea = (params) => {
+export const getSafeAreaConfig = (params) => {
     if (typeof params === 'boolean') {
         return Object.assign({}, defaultSafeArea, {
             top: params,
@@ -85,14 +79,14 @@ let SafeArea = class SafeArea extends Doraemon {
      */
     prefixCls;
     /**
-     * 是否适配刘海屏
+     * 是否开启安全区适配
      *
-     * @type {(boolean | string | ISafeArea)}
+     * @type {SafeAreaProp}
      * @memberof SafeArea
      */
     safeArea;
     /**
-     * 安全区的范围，可选值为 default、navBar、statusBar，当其值为 default 或 navBar，顶部计算的安全区包含 StatusBar & NavBar
+     * 安全区的范围，当其值为 default 或 navBar，顶部计算的安全区包含 StatusBar & NavBar
      *
      * @type {ESafeAreaStyle}
      * @memberof SafeArea
@@ -127,20 +121,21 @@ let SafeArea = class SafeArea extends Doraemon {
      */
     get extStyle() {
         const { safeArea, safeAreaStyle, forceRender, supports, wrapStyle, isIPhoneX } = this;
-        const safeAreaConfig = getSafeArea(safeArea);
+        const safeAreaConfig = getSafeAreaConfig(safeArea);
         const position = safeAreaConfig.bottom ? 'bottom' : safeAreaConfig.top ? 'top' : 'none';
         let varStyle = '';
         if ((forceRender || isIPhoneX) &&
             !supports &&
             ['bottom', 'top'].includes(position)) {
             const safeAreaInset = getSafeAreaInset(safeAreaStyle);
-            varStyle = `--safe-area-inset-${position}: ${safeAreaInset[position]}PX;`;
+            varStyle = `--inset-top: ${safeAreaInset.top}PX;`;
+            varStyle += `--inset-bottom: ${safeAreaInset.bottom}PX;`;
         }
         return styleToCssString(varStyle + styleToCssString(wrapStyle));
     }
     get classes() {
         const { prefixCls, forceRender, supports, safeArea, isIPhoneX } = this;
-        const safeAreaConfig = getSafeArea(safeArea);
+        const safeAreaConfig = getSafeAreaConfig(safeArea);
         const wrap = classNames(prefixCls, {
             [`${prefixCls}--position-bottom`]: (forceRender || isIPhoneX) && safeAreaConfig.bottom,
             [`${prefixCls}--position-top`]: (forceRender || isIPhoneX) && !safeAreaConfig.bottom,
@@ -170,7 +165,7 @@ __decorate([
 __decorate([
     Prop({
         type: String,
-        default: ESafeAreaStyle.DEFAULT,
+        default: 'default',
     })
 ], SafeArea.prototype, "safeAreaStyle", void 0);
 __decorate([
