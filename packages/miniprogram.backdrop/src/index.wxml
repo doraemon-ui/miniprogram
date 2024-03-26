@@ -4,5 +4,5 @@
   classNames="{{ classNames }}"
   bind:click="onClick"
   wrapStyle="{{ containerStyle }}"
-  disableScroll="{{ disableScroll }}
+  disableScroll="{{ disableScroll }}"
 />
