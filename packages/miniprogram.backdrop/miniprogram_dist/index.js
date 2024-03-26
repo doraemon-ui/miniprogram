@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.backdrop.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-25, 14:57:48.
+ * Built on 2024-03-26, 20:12:15.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.20.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -22,6 +22,13 @@ let Backdrop = class Backdrop extends Doraemon {
     prefixCls;
     transparent;
     zIndex;
+    /**
+     * 阻止移动触摸
+     *
+     * @type {boolean}
+     * @memberof Backdrop
+     */
+    disableScroll;
     classNames;
     wrapStyle;
     get classes() {
@@ -34,13 +41,22 @@ let Backdrop = class Backdrop extends Doraemon {
         };
     }
     /**
+     * 元素的 z-index。优先级高于 css 设置的 var(--z-index)。
+     *
+     * @readonly
+     * @memberof Backdrop
+     */
+    get indexStyle() {
+        return this.zIndex !== null ? { zIndex: this.zIndex } : null;
+    }
+    /**
      * 组件样式
      *
      * @readonly
      * @memberof Backdrop
      */
-    get extStyle() {
-        return this.wrapStyle ? { ...this.wrapStyle, zIndex: this.zIndex } : { zIndex: this.zIndex };
+    get containerStyle() {
+        return this.wrapStyle ? { ...this.wrapStyle, ...this.indexStyle } : { ...this.indexStyle };
     }
     /**
      * 是否显示蒙层
@@ -99,9 +115,15 @@ __decorate([
 __decorate([
     Prop({
         type: Number,
-        default: 1000,
+        default: null,
     })
 ], Backdrop.prototype, "zIndex", void 0);
+__decorate([
+    Prop({
+        type: Boolean,
+        default: true,
+    })
+], Backdrop.prototype, "disableScroll", void 0);
 __decorate([
     Prop({
         type: null,

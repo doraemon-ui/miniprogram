@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.animation-group.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-25, 14:56:33.
+ * Built on 2024-03-26, 20:11:43.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.20.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -451,7 +451,7 @@ let AnimationGroup = class AnimationGroup extends Doraemon {
      * @readonly
      * @memberof AnimationGroup
      */
-    get extStyle() {
+    get containerStyle() {
         return this.wrapStyle ? styleToCssString(this.wrapStyle) : '';
     }
     /**

@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.icon.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-25, 14:57:02.
+ * Built on 2024-03-26, 20:11:27.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.20.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -33,7 +33,7 @@ let Icon = class Icon extends Doraemon {
             wrap,
         };
     }
-    get extStyle() {
+    get containerStyle() {
         const getFontSize = (size) => {
             let fontSize = size;
             if (typeof size === 'number') {

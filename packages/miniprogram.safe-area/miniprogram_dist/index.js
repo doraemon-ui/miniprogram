@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.safe-area.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-25, 14:58:26.
+ * Built on 2024-03-26, 20:11:57.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.20.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -119,7 +119,7 @@ let SafeArea = class SafeArea extends Doraemon {
      * @readonly
      * @memberof SafeArea
      */
-    get extStyle() {
+    get containerStyle() {
         const { safeArea, safeAreaStyle, forceRender, supports, wrapStyle, isIPhoneX } = this;
         const safeAreaConfig = getSafeAreaConfig(safeArea);
         const position = safeAreaConfig.bottom ? 'bottom' : safeAreaConfig.top ? 'top' : 'none';

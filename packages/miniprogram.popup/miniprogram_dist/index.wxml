@@ -1,27 +1,27 @@
-<dora-backdrop
-  id="dora-backdrop"
-  wx:if="{{ mask }}"
-  bind:click="onMaskClick"
-  transparent="{{ maskTransparent }}"
-  wrapStyle="{{ maskStyle }}"
-  zIndex="{{ zIndex }}"
-/>
-<view class="dora-class {{ classes.wrap }}">
+<view class="dora-class {{ classes.wrap }}" style="{{ containerStyle }}">
+  <dora-backdrop
+    id="dora-backdrop"
+    wx:if="{{ mask }}"
+    bind:click="onMaskClick"
+    transparent="{{ maskTransparent }}"
+    wrapStyle="{{ maskStyle }}"
+    zIndex="{{ zIndex }}"
+  />
   <dora-animation-group
     dora-class="{{ classes.body }}"
     in="{{ popupVisible }}"
     classNames="{{ transitionName }}"
     mountOnEnter="{{ mountOnEnter }}"
     unmountOnExit="{{ unmountOnExit }}"
-    wrapStyle="{{ extStyle }}"
-    bind:enter="onEnter"
-    bind:entered="onEntered"
-    bind:exited="onExited"
+    wrapStyle="{{ wrapStyle }}"
+    bind:enter="onShow"
+    bind:entered="onShowed"
+    bind:exited="onClosed"
   >
     <slot />
     <dora-safe-area
       safeArea="{{ safeArea }}"
-      wx:if="{{ safeArea && position === 'bottom' }}"
+      wx:if="{{ (safeArea === true || safeArea === 'bottom' || safeArea && safeArea.bottom) && position === 'bottom' }}"
     />
   </dora-animation-group>
 </view>

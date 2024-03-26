@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.toast.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-25, 14:59:29.
+ * Built on 2024-03-26, 20:13:08.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.20.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -91,11 +91,11 @@ let Toast = class Toast extends Doraemon {
     onPopupClosed() {
         this.onClosed();
     }
-    onClosed() {
-        this.$emit('closed');
-    }
     onClose() {
         this.$emit('close');
+    }
+    onClosed() {
+        this.$emit('closed');
     }
     mounted() {
         this.setPopupVisible(this.visible);
@@ -158,7 +158,7 @@ __decorate([
 __decorate([
     Prop({
         type: Number,
-        default: 1000,
+        default: null,
     })
 ], Toast.prototype, "zIndex", void 0);
 __decorate([
