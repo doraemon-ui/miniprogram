@@ -57,7 +57,7 @@ yarn add @doraemon-ui/miniprogram.dialog
 | mask | `boolean` | 是否显示蒙层 | true |
 | maskClosable | `boolean` | 点击蒙层是否允许关闭 | true |
 | visible | `boolean` | 是否可见 | false |
-| zIndex | `number` | 设置蒙层的 z-index | 1000 |
+| zIndex | `number` | 设置蒙层的 z-index。优先级高于 css 设置的 var(--z-index)。 | - |
 | buttons | `array` | 操作按钮列表，更多参数见下 `Button props` | [] |
 | bind:close | `() => void` | 点击关闭按钮或蒙层的回调函数 | - |
 | bind:closed | `() => void` | 关闭后的回调函数 | - |

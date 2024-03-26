@@ -6,10 +6,11 @@
 .@{popup-prefix-cls} {
   --z-index: @popup-z-index;
   position: fixed;
+  z-index: var(--z-index);
 
   &-body {
     position: fixed;
-    z-index: var(--z-index);
+    z-index: calc(var(--z-index) + 10);
     background-color: @popup-background-color;
   }
 

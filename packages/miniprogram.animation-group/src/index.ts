@@ -579,7 +579,7 @@ class AnimationGroup extends Doraemon {
    * @readonly
    * @memberof AnimationGroup
    */
-  get extStyle () {
+  get containerStyle () {
     return this.wrapStyle ? styleToCssString(this.wrapStyle) : ''
   }
 

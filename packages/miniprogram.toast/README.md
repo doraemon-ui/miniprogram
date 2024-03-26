@@ -52,13 +52,13 @@ yarn add @doraemon-ui/miniprogram.toast
 | --- | --- | --- | --- |
 | prefixCls | `string` | 自定义类名前缀 | dora-toast |
 | image | `string` | 自定义图片，image 的优先级高于 icon | - |
-| icon | `string` | 图标，可选值为 success、error、warning、loading | - |
+| icon | `'success' \| 'error' \| 'warning' \| 'loading'` | 图标 | - |
 | iconColor | `string` | 图标的颜色 | - |
 | text | `string` | 提示文本 | - |
-| position | `string` | 垂直方向显示位置，可选值为 top、bottom、center | - |
+| position | `'top' \| 'bottom' \| 'center'` | 垂直方向显示位置 | - |
 | mask | `boolean` | 是否显示蒙层 | true |
 | maskClickable | `boolean` | 是否允许背景点击 | true |
-| zIndex | `number` | 设置蒙层的 z-index | 1000 |
+| zIndex | `number` | 设置蒙层的 z-index。优先级高于 css 设置的 var(--z-index)。 | - |
 | duration | `number` | 提示的延迟时间，若小于等于 0 则不会自动关闭 | 1500 |
 | onClose | `() => void` | 点击关闭按钮或蒙层的回调函数 | - |
 | onClosed | `() => void` | 关闭后的回调函数 | - |

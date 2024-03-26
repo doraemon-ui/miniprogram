@@ -1,9 +1,9 @@
 import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import { findComponentNode } from '@doraemon-ui/miniprogram.shared'
-import { type SafeAreaProp, defaultSafeArea } from '@doraemon-ui/miniprogram.safe-area'
+import type { SafeAreaProp } from '@doraemon-ui/miniprogram.safe-area'
 import type { BackdropInstance } from '@doraemon-ui/miniprogram.backdrop'
 
-const { classNames } = Doraemon.util
+const { classNames, styleToCssString } = Doraemon.util
 
 /**
  * 弹出的位置
@@ -131,7 +131,7 @@ class Popup extends Doraemon {
    */
   @Prop({
     type: Number,
-    default: 1000,
+    default: null,
   })
   zIndex: number
 
@@ -167,7 +167,7 @@ class Popup extends Doraemon {
    */
   @Prop({
     type: [Boolean, String, Object],
-    default: () => ({ ...defaultSafeArea }),
+    default: false,
   })
   safeArea: SafeAreaProp
 
@@ -185,13 +185,38 @@ class Popup extends Doraemon {
   }
 
   /**
-   * 组件样式
+   * 元素的 z-index。优先级高于 css 设置的 var(--z-index)。
    *
    * @readonly
    * @memberof Popup
    */
-  get extStyle () {
-    return this.bodyStyle ? { ...this.bodyStyle, zIndex: this.zIndex } : { zIndex: this.zIndex }
+  get indexStyle() {
+    return this.zIndex !== null ? { zIndex: this.zIndex } : null
+  }
+
+  /**
+   * 容器样式
+   *
+   * @readonly
+   * @memberof Popup
+   */
+  get containerStyle () {
+    return styleToCssString({
+      ...this.indexStyle,
+      touchAction: ['top', 'bottom'].includes(this.position)
+        ? 'none'
+        : 'auto'
+    })
+  }
+
+  /**
+   * body 组件样式
+   *
+   * @readonly
+   * @memberof Popup
+   */
+  get wrapStyle () {
+    return this.bodyStyle ? { ...this.bodyStyle, ...this.indexStyle } : { ...this.indexStyle }
   }
 
   @Watch('visible')
@@ -226,39 +251,39 @@ class Popup extends Doraemon {
   _backdrop?: BackdropInstance
 
   /**
-   * 点击关闭按钮事件
-   */
-  close() {
-    this.$emit('close')
-  }
-
-  /**
    * 点击蒙层事件
    */
   onMaskClick() {
     if (this.maskClosable) {
-      this.close()
+      this.onClose()
     }
   }
 
   /**
    * 开始展示前触发
    */
-  onEnter() {
+  onShow() {
     this.$emit('show')
   }
 
   /**
    * 完全展示后触发
    */
-  onEntered() {
+  onShowed() {
     this.$emit('showed')
+  }
+
+  /**
+   * 开始关闭前触发
+   */
+  onClose() {
+    this.$emit('close')
   }
 
   /**
    * 完全关闭后触发
    */
-  onExited() {
+  onClosed() {
     this.$emit('closed')
   }
 

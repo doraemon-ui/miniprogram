@@ -47,9 +47,21 @@ class Backdrop extends Doraemon {
 
   @Prop({
     type: Number,
-    default: 1000,
+    default: null,
   })
   zIndex: number
+
+  /**
+   * 阻止移动触摸
+   *
+   * @type {boolean}
+   * @memberof Backdrop
+   */
+  @Prop({
+    type: Boolean,
+    default: true,
+  })
+  disableScroll: boolean
 
   @Prop({
     type: null,
@@ -75,13 +87,23 @@ class Backdrop extends Doraemon {
   }
 
   /**
+   * 元素的 z-index。优先级高于 css 设置的 var(--z-index)。
+   *
+   * @readonly
+   * @memberof Backdrop
+   */
+  get indexStyle() {
+    return this.zIndex !== null ? { zIndex: this.zIndex } : null
+  }
+
+  /**
    * 组件样式
    *
    * @readonly
    * @memberof Backdrop
    */
-  get extStyle () {
-    return this.wrapStyle ? { ...this.wrapStyle, zIndex: this.zIndex } : { zIndex: this.zIndex }
+  get containerStyle () {
+    return this.wrapStyle ? { ...this.wrapStyle, ...this.indexStyle } : { ...this.indexStyle }
   }
 
   /**

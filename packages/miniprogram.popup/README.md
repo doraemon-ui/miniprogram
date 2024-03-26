@@ -59,7 +59,7 @@ export type Position = 'bottom' | 'top' | 'left' | 'right' | 'center'
 | maskTransparent | `boolean` | 是否显示透明蒙层 | false |
 | maskStyle | `object` | 蒙层的样式 | - |
 | visible | `boolean` | 是否可见 | false |
-| zIndex | `number` | 设置蒙层的 z-index | 1000 |
+| zIndex | `number` | 设置蒙层的 z-index。优先级高于 css 设置的 var(--z-index)。 | - |
 | mountOnEnter | `boolean` | 首次进入过渡时是否懒挂载组件 | true |
 | unmountOnExit | `boolean` | 离开过渡完成时是否卸载组件 | true |
 | safeArea | `SafeAreaProp` | 是否开启安全区适配，关于 `SafeAreaProp` 的类型定义，请参考 `SafeArea` 的文档 | false |

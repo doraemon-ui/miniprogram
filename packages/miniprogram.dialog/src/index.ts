@@ -45,7 +45,7 @@ class Dialog extends Doraemon {
 
   @Prop({
     type: Number,
-    default: 1000,
+    default: null,
   })
   zIndex: number
 
@@ -165,12 +165,12 @@ class Dialog extends Doraemon {
     }
   }
 
-  onClosed () {
-    this.$emit('closed')
-  }
-
   onClose () {
     this.$emit('close')
+  }
+
+  onClosed () {
+    this.$emit('closed')
   }
 
   mounted () {

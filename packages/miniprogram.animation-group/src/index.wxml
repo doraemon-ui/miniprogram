@@ -4,7 +4,7 @@
   catchtouchmove="{{ disableScroll ? 'onTouchMove' : '' }}"
   bindtransitionend="onTransitionEnd"
   bindanimationend="onAnimationEnd"
-  style="{{ extStyle }}"
+  style="{{ containerStyle }}"
   wx:if="{{ show }}"
 >
   <slot></slot>

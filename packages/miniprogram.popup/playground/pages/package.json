@@ -16,8 +16,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@doraemon-ui/miniprogram.demo-block": "^0.0.1-alpha.4",
-    "@doraemon-ui/miniprogram.demo-page": "^0.0.1-alpha.4",
-    "@doraemon-ui/miniprogram.popup": "^0.0.1-alpha.7"
+    "@doraemon-ui/miniprogram.demo-block": "^0.0.1-alpha.10",
+    "@doraemon-ui/miniprogram.demo-page": "^0.0.1-alpha.10",
+    "@doraemon-ui/miniprogram.popup": "^0.0.1-alpha.11"
   }
 }

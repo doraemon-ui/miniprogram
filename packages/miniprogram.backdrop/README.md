@@ -48,7 +48,7 @@ yarn add @doraemon-ui/miniprogram.backdrop
 | classNames | `any` | 过渡的类名，更多内置过渡效果请参考 [AnimationGroup](animation-group.md) | dora-animate--fadeIn |
 | transparent | `boolean` | 是否显示透明蒙层 | false |
 | wrapStyle | `object` | 蒙层的样式 | - |
-| zIndex | `number` | 设置蒙层的 z-index | 1000 |
+| zIndex | `number` | 设置蒙层的 z-index。优先级高于 css 设置的 var(--z-index)。 | - |
 | bind:click | `() => void` | 点击事件 | - |
 | bind:afterShow | `() => void` | 完全显示后触发 | - |
 | bind:afterClose | `() => void` | 完全关闭后触发 | - |

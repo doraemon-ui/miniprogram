@@ -160,7 +160,7 @@ class SafeArea extends Doraemon {
    * @readonly
    * @memberof SafeArea
    */
-  get extStyle () {
+  get containerStyle () {
     const { safeArea, safeAreaStyle, forceRender, supports, wrapStyle, isIPhoneX } = this
     const safeAreaConfig = getSafeAreaConfig(safeArea)
     const position = safeAreaConfig.bottom ? 'bottom' : safeAreaConfig.top ? 'top' : 'none'

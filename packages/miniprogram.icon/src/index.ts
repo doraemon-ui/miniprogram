@@ -52,7 +52,7 @@ class Icon extends Doraemon {
     }
   }
 
-  get extStyle () {
+  get containerStyle () {
     const getFontSize = (size: string | number): string => {
       let fontSize = size
       if (typeof size === 'number') {
