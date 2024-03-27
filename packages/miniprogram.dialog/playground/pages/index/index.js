@@ -32,10 +32,10 @@ Page({
       title: '任意门',
       content: '任意门经常会在使用时机正好坏掉/送修/摧毁吗？',
       closable: true,
-      onConfirm (button, index) {
+      onConfirm ({ button, index }) {
         console.log('onConfirm', button, index)
       },
-      onCancel (button, index) {
+      onCancel ({ button, index }) {
         console.log('onCancel', button, index)
       },
     }, '#dora-dialog-confirm')
@@ -63,7 +63,7 @@ Page({
       buttons: [{
         text: '允许',
         openType: 'getUserInfo',
-        onGetUserInfo (button, index, detail) {
+        onGetUserInfo ({ button, index, detail }) {
           if (detail.errMsg === 'getUserInfo:ok') {
             hide()
             wx.showToast({ title: detail.errMsg, icon: 'none' })
@@ -80,7 +80,7 @@ Page({
       buttons: [{
         text: '允许',
         openType: 'getPhoneNumber',
-        onGetPhoneNumber (button, index, detail) {
+        onGetPhoneNumber ({ button, index, detail }) {
           if (detail.errMsg === 'getPhoneNumber:ok') {
             hide()
             wx.showToast({ title: detail.errMsg, icon: 'none' })
@@ -97,7 +97,7 @@ Page({
       buttons: [{
         text: '允许',
         openType: 'contact',
-        onContact (button, index, detail) {
+        onContact ({ button, index, detail }) {
           if (detail.errMsg === 'enterContact:ok') {
             hide()
             wx.showToast({ title: detail.errMsg, icon: 'none' })
@@ -114,7 +114,7 @@ Page({
       buttons: [{
         text: '允许',
         openType: 'openSetting',
-        onOpenSetting (button, index, detail) {
+        onOpenSetting ({ button, index, detail }) {
           if (detail.errMsg === 'openSetting:ok') {
             hide()
             wx.showToast({ title: detail.errMsg, icon: 'none' })
@@ -132,14 +132,14 @@ Page({
         text: '允许',
         openType: 'launchApp',
         appParameter: 'wechat',
-        onLaunchApp (button, index, detail) {
+        onLaunchApp ({ button, index, detail }) {
           if (detail.errMsg === 'launchApp:ok') {
             hide()
             wx.showToast({ title: detail.errMsg, icon: 'none' })
           }
           console.log('onLaunchApp', button, index, detail)
         },
-        onError (button, index, detail) {
+        onError ({ button, index, detail }) {
           if (detail.errMsg) {
             wx.showToast({ title: detail.errMsg, icon: 'none' })
           }
@@ -161,6 +161,10 @@ Page({
       }
       this[`onClosed${key + 1}`] = () => {
         console.log(`onClosed${key + 1}`)
+      }
+      this[`onAction${key + 1}`] = (e) => {
+        const { method, button, index, detail } = e.detail
+        console.log(`onAction${key + 1}`, method, button, index, detail)
       }
     })
   },

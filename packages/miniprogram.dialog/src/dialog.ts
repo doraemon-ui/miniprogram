@@ -5,6 +5,7 @@ import {
   isTrue,
   isFalse,
   type NativeButtonProps,
+  type NativeButtonEvent,
   type PresetColor,
   type DefaultButtonHandle,
   type NativeButtonHandle,
@@ -12,7 +13,7 @@ import {
 } from '@doraemon-ui/miniprogram.shared'
 import type { DialogInstance } from '.'
 
-export type { NativeButtonHandle }
+export type { NativeButtonHandle, NativeButtonEvent }
 
 /**
  * 操作按钮的类型

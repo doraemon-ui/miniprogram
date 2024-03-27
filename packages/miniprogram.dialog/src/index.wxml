@@ -1,6 +1,7 @@
 <dora-popup
   position="center"
   bodyStyle="{{ { minWidth: '75vw', backgroundColor: 'unset', ...bodyStyle } }}"
+  closable="{{ closable }}"
   mask="{{ mask }}"
   maskClosable="{{ maskClosable }}"
   visible="{{ popupVisible }}"
@@ -9,12 +10,9 @@
   bind:closed="onPopupClosed"
 >
   <view class="dora-class {{ classes.wrap }}">
-    <view class="{{ classes.hd }}" wx:if="{{ image || closable }}">
+    <view class="{{ classes.hd }}" wx:if="{{ image }}">
       <view class="{{ classes.image }}" wx:if="{{ image }}">
         <image mode="widthFix" src="{{ image }}" class="{{ classes.img }}" />
-      </view>
-      <view class="{{ classes.close }}" wx:if="{{ closable }}" bindtap="onXClose">
-        <text class="{{ classes.x }}"></text>
       </view>
     </view>
     <view class="{{ classes.bd }}">
@@ -40,14 +38,19 @@
               send-message-path="{{ button.sendMessagePath }}"
               send-message-img="{{ button.sendMessageImg }}"
               show-message-card="{{ button.showMessageCard }}"
+              phone-number-no-quota-toast="{{ phoneNumberNoQuotaToast }}"
               bindcontact="onContact"
               bindgetphonenumber="onGetPhoneNumber"
               app-parameter="{{ button.appParameter }}"
               bindlaunchapp="onLaunchApp"
               binderror="onError"
               bindopensetting="onOpenSetting"
-              data-index="{{ index }}"
+              bindchooseavatar="onChooseAvatar"
+              bindcreateliveactivity="onCreateLiveActivity"
+              bindgetrealtimephonenumber="onGetRealtimePhoneNumber"
+              bindagreeprivacyauthorization="onAgreePrivacyAuthorization"
               bindtap="onClick"
+              data-index="{{ index }}"
             >
               {{ button.text }}
             </button>

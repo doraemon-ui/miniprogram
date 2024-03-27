@@ -18,6 +18,9 @@
     bind:entered="onShowed"
     bind:exited="onClosed"
   >
+    <view class="{{ classes.close }}" wx:if="{{ closable }}" bindtap="onXClose">
+      <text class="{{ classes.x }}"></text>
+    </view>
     <slot />
     <dora-safe-area
       safeArea="{{ safeArea }}"

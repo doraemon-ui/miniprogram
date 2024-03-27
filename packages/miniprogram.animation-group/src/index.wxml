@@ -1,5 +1,5 @@
 <view
-  class="dora-class {{ wrapCls }} {{ animateCss }}"
+  class="dora-class dora-class-a dora-class-b dora-class-c {{ wrapCls }} {{ animateCss }}"
   bindtap="onClick"
   catchtouchmove="{{ disableScroll ? 'onTouchMove' : '' }}"
   bindtransitionend="onTransitionEnd"

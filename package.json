@@ -27,7 +27,7 @@
     "jest": "^27.0.6",
     "lint-staged": "^11.1.2",
     "micromatch": "^4.0.4",
-    "miniprogram-api-typings": "^3.4.3",
+    "miniprogram-api-typings": "^3.12.2",
     "miniprogram-simulate": "^1.4.2",
     "pnpm": "^7.11.0",
     "stylelint": "^13.13.1",

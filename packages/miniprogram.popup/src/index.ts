@@ -160,6 +160,18 @@ class Popup extends Doraemon {
   unmountOnExit: boolean
 
   /**
+   * 是否显示关闭按钮
+   *
+   * @type {boolean}
+   * @memberof Popup
+   */
+  @Prop({
+    type: Boolean,
+    default: false,
+  })
+  closable: boolean
+
+  /**
    * 是否开启安全区适配，关于 `SafeAreaProp` 的类型定义，请参考 `SafeArea` 的文档
    *
    * @type {SafeAreaProp}
@@ -176,11 +188,15 @@ class Popup extends Doraemon {
     const wrap = classNames(prefixCls, {
       [`${prefixCls}--position-${position}`]: position,
     })
-    const body = `${prefixCls}-body`
+    const body = `${prefixCls}__body`
+    const close = `${prefixCls}__close`
+    const x = `${prefixCls}__close-x`
 
     return {
       wrap,
       body,
+      close,
+      x,
     }
   }
 
@@ -191,7 +207,7 @@ class Popup extends Doraemon {
    * @memberof Popup
    */
   get indexStyle() {
-    return this.zIndex !== null ? { zIndex: this.zIndex } : null
+    return this.zIndex ? { zIndex: this.zIndex } : null
   }
 
   /**
@@ -255,6 +271,15 @@ class Popup extends Doraemon {
    */
   onMaskClick() {
     if (this.maskClosable) {
+      this.onClose()
+    }
+  }
+
+  /**
+   * 点击关闭按钮
+   */
+  onXClose () {
+    if (this.closable) {
       this.onClose()
     }
   }

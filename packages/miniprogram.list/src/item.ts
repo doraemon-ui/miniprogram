@@ -1,4 +1,5 @@
-import { defineComponentHOC, Doraemon, Component, Emit, Event} from '@doraemon-ui/miniprogram.core-js'
+import { type CustomEvent, defineComponentHOC, Doraemon, Component, Emit, Event, Prop} from '@doraemon-ui/miniprogram.core-js'
+import { type NativeButtonOpenType, type NativeRouteOpenType, useNativeRoute, NATIVE_ROUTES } from '@doraemon-ui/miniprogram.shared'
 const { classNames } = Doraemon.util
 
 @Component({
@@ -57,51 +58,93 @@ const { classNames } = Doraemon.util
       type: Boolean,
       default: false,
     },
+    phoneNumberNoQuotaToast: {
+      type: Boolean,
+      default: true,
+    },
     appParameter: {
       type: String,
       default: '',
     },
-    thumb: {
-      type: String,
-      default: '',
-    },
-    title: {
-      type: String,
-      default: '',
-    },
-    label: {
-      type: String,
-      default: '',
-    },
-    extra: {
-      type: String,
-      default: '',
-    },
-    hasLine: {
-      type: Boolean,
-      default: true,
-    },
-    isLink: {
-      type: Boolean,
-      default: false,
-    },
-    openType: {
-      type: String,
-      default: 'navigateTo',
-    },
-    url: {
-      type: String,
-      default: '',
-    },
-    delta: {
-      type: Number,
-      default: 1,
-    },
   },
 })
 class ListItem extends Doraemon {
+  /**
+   * 自定义类名前缀
+   *
+   * @type {string}
+   * @memberof Button
+   */
+  prefixCls!: string
+
+  @Prop({
+    type: String,
+    default: ''
+  })
+  thumb: string
+
+  @Prop({
+    type: String,
+    default: ''
+  })
+  title: string
+
+  @Prop({
+    type: String,
+    default: ''
+  })
+  label: string
+
+  @Prop({
+    type: String,
+    default: ''
+  })
+  extra: string
+
+  @Prop({
+    type: Boolean,
+    default: true
+  })
+  hasLine: boolean
+
+  @Prop({
+    type: Boolean,
+    default: false
+  })
+  isLink: boolean
+
+  @Prop({
+    type: String,
+    default: ''
+  })
+  url: string
+
+  @Prop({
+    type: Number,
+    default: 1
+  })
+  delta: number
+  
+  // native button props
+  // @see https://developers.weixin.qq.com/miniprogram/dev/component/button.html
+  disabled!: boolean
+  // openType!: NativeButtonOpenType
+  openType!: NativeButtonOpenType | NativeRouteOpenType
+  hoverClass!: string
+  hoverStopPropagation!: boolean
+  hoverStartTime!: number
+  hoverStayTime!: number
+  lang!: 'en' | 'zh_CN' | 'zh_TW'
+  sessionFrom!: string
+  sendMessageTitle!: string
+  sendMessagePath!: string
+  sendMessageImg!: string
+  showMessageCard!: boolean
+  phoneNumberNoQuotaToast!: boolean
+  appParameter!: string
+  
   get classes () {
-    const { prefixCls, hoverClass, isLast, hasLine, isLink, disabled } = this as any
+    const { prefixCls, hoverClass, isLast, hasLine, isLink, disabled } = this
     const wrap = classNames(prefixCls, {
       [`${prefixCls}--last`]: isLast,
       [`${prefixCls}--has-line`]: hasLine,
@@ -131,7 +174,7 @@ class ListItem extends Doraemon {
   isLast: boolean = false
 
   onClick () {
-    if (!(this as any).disabled) {
+    if (!this.disabled) {
       this.$emit('click')
       this.linkTo()
     }
@@ -139,61 +182,76 @@ class ListItem extends Doraemon {
 
   @Event()
   @Emit('getuserinfo')
-  onGetUserInfo (e) {
+  onGetUserInfo (e: CustomEvent) {
     return e.target
   }
 
   @Event()
   @Emit('contact')
-  onContact (e) {
+  onContact (e: CustomEvent) {
     return e.target
   }
 
   @Event()
   @Emit('getphonenumber')
-  onGetPhoneNumber (e) {
+  onGetPhoneNumber (e: CustomEvent) {
     return e.target
   }
 
   @Event()
   @Emit('launchapp')
-  onLaunchApp (e) {
+  onLaunchApp (e: CustomEvent) {
+    return e.target
+  }
+
+  @Event()
+  @Emit('chooseavatar')
+  onChooseAvatar (e: CustomEvent) {
     return e.target
   }
 
   @Event()
   @Emit('opensetting')
-  onOpenSetting (e) {
+  onOpenSetting (e: CustomEvent) {
+    return e.target
+  }
+
+  @Event()
+  @Emit('createliveactivity')
+  onCreateLiveActivity (e: CustomEvent) {
+    return e.target
+  }
+
+  @Event()
+  @Emit('getrealtimephonenumber')
+  onGetRealtimePhoneNumber (e: CustomEvent) {
+    return e.target
+  }
+
+  @Event()
+  @Emit('agreeprivacyauthorization')
+  onAgreePrivacyAuthorization (e: CustomEvent) {
     return e.target
   }
 
   @Event()
   @Emit('error')
-  onError (e) {
+  onError (e: CustomEvent) {
     return e.target
   }
 
   linkTo() {
-    const { url, isLink, openType, delta } = this as any
-    const navigate = [
-      'navigateTo',
-      'redirectTo',
-      'switchTab',
-      'navigateBack',
-      'reLaunch',
-    ]
-
-    // openType 属性可选值为 navigateTo、redirectTo、switchTab、navigateBack、reLaunch
-    if (!isLink || !url || !navigate.includes(openType)) {
-      return false
-    } else if (openType === 'navigateBack') {
-      return wx[openType].call(wx, {
-        delta,
-      })
-    } else {
-      return wx[openType].call(wx, {
-        url,
-      })
+    const { url, isLink, openType: _ot, delta } = this
+    const openType = (NATIVE_ROUTES.includes(_ot as unknown as NativeRouteOpenType) ? _ot : 'navigateTo') as NativeRouteOpenType
+    if (isLink && url) {
+      useNativeRoute(
+        {
+          url,
+          openType,
+          delta,
+        },
+        this._renderProxy
+      )
     }
   }
 

@@ -58,9 +58,10 @@ yarn add @doraemon-ui/miniprogram.dialog
 | maskClosable | `boolean` | 点击蒙层是否允许关闭 | true |
 | visible | `boolean` | 是否可见 | false |
 | zIndex | `number` | 设置蒙层的 z-index。优先级高于 css 设置的 var(--z-index)。 | - |
-| buttons | `array` | 操作按钮列表，更多参数见下 `Button props` | [] |
+| buttons | `Button[]` | 操作按钮列表，更多参数见下 `Button props` | [] |
 | bind:close | `() => void` | 点击关闭按钮或蒙层的回调函数 | - |
 | bind:closed | `() => void` | 关闭后的回调函数 | - |
+| bind:action | `(event: CustomEvent<{ method: string, button: Button, index: number, detail: Detail }>) => void` | 关闭后的回调函数 | - |
 
 #### Button props
 
@@ -81,14 +82,16 @@ yarn add @doraemon-ui/miniprogram.dialog
 | sendMessagePath | `string` | 会话内消息卡片点击跳转小程序路径 | 当前分享路径 |
 | sendMessageImg | `string` | 会话内消息卡片图片 | 截图 |
 | showMessageCard | `boolean` | 显示会话内消息卡片 | false |
+| phoneNumberNoQuotaToast | `boolean` | 手机号快速验证或手机号实时验证额度用尽时，是否对用户展示“申请获取你的手机号，但该功能使用次数已达当前小程序上限，暂时无法使用”的提示 | true |
 | appParameter | `string` | 打开 APP 时，向 APP 传递的参数 | - |
-| onClick | `() => void` | 按钮的点击事件 | - |
-| onGetUserInfo | `(event: ButtonGetUserInfo) => void` | 用户点击该按钮时，会返回获取到的用户信息，回调的detail数据与wx.getUserInfo返回的一致 | - |
-| onContact | `(event: ButtonContact) => void` | 客服消息回调 | - |
-| onGotPhoneNumber | `(event: ButtonGetPhoneNumber) => void` | 获取用户手机号回调 | - |
-| onLaunchApp | `(event: ButtonLaunchApp) => void` | 打开 APP 成功的回调 | - |
-| onError | `(event: ButtonError) => void` | 当使用开放能力时，发生错误的回调 | - |
-| onOpenSetting | `(event: ButtonOpenSetting) => void` | 在打开授权设置页后回调 | - |
+| onClick | `(event: CustomEvent) => void` | 按钮的点击事件 | - |
+| onGetUserInfo | `(event: CustomEvent<ButtonGetUserInfo>) => void` | 用户点击该按钮时，会返回获取到的用户信息，回调的detail数据与wx.getUserInfo返回的一致 | - |
+| onContact | `(event: CustomEvent<ButtonContact>) => void` | 客服消息回调 | - |
+| onGotPhoneNumber | `(event: CustomEvent<ButtonGetPhoneNumber>) => void` | 获取用户手机号回调 | - |
+| onLaunchApp | `(event: CustomEvent<ButtonLaunchApp>) => void` | 打开 APP 成功的回调 | - |
+| onError | `(event: CustomEvent<ButtonError>) => void` | 当使用开放能力时，发生错误的回调 | - |
+| onOpenSetting | `(event: CustomEvent<ButtonOpenSetting>) => void` | 在打开授权设置页后回调 | - |
+| onChooseAvatar | `(event: CustomEvent<ButtonChooseAvatar>) => void` | 获取用户头像回调 | - |
 
 ### Dialog slot
 
@@ -132,7 +135,7 @@ hideDialog()
 | --- | --- | --- | --- |
 | confirmText | `string` | 确定按钮的文字 | 确定 |
 | confirmType | `'light' \| 'stable' \| 'positive' \| 'calm' \| 'assertive' \| 'balanced' \| 'energized' \| 'royal' \| 'dark'` | 确定按钮的类型 | balanced |
-| onConfirm | `(button: Button, index: number, detail: Detail) => void \| Promise<void>` | 确定按钮的点击事件 | - |
+| onConfirm | `({ method: string, button: Button, index: number, detail: Detail }) => void \| Promise<void>` | 确定按钮的点击事件 | - |
 
 ### Dialog.confirm
 
@@ -144,10 +147,14 @@ hideDialog()
 | --- | --- | --- | --- |
 | confirmText | `string` | 确定按钮的文字 | 确定 |
 | confirmType | `'light' \| 'stable' \| 'positive' \| 'calm' \| 'assertive' \| 'balanced' \| 'energized' \| 'royal' \| 'dark'` | 确定按钮的类型 | balanced |
-| onConfirm | `(button: Button, index: number, detail: Detail) => void \| Promise<void>` | 确定按钮的点击事件 | - |
+| onConfirm | `({ method: string, button: Button, index: number, detail: Detail }) => void \| Promise<void>` | 确定按钮的点击事件 | - |
 | cancelText | `string` | 取消按钮的文字 | 取消 |
 | cancelType | `'light' \| 'stable' \| 'positive' \| 'calm' \| 'assertive' \| 'balanced' \| 'energized' \| 'royal' \| 'dark'` | 取消按钮的类型 | dark |
-| onCancel | `(button: Button, index: number, detail: Detail) => void \| Promise<void>` | 取消按钮的点击事件 | - |
+| onCancel | `({ method: string, button: Button, index: number, detail: Detail }) => void \| Promise<void>` | 取消按钮的点击事件 | - |
+
+### Dialog.clear
+
+可以通过调用 `Dialog` 上的 `clear` 方法关闭所有打开的对话框，通常用于路由监听中，处理路由前进、后退不能关闭对话框的问题。
 
 ## CSS Variables
 

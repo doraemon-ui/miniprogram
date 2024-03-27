@@ -5,8 +5,9 @@ import type { MiniprogramCustomEvent } from './mp'
  *
  * @export
  */
-export type NativeButtonOpenType = 'contact' | 'share' | 'getPhoneNumber' | 'getUserInfo' |
-  'launchApp' | 'openSetting' | 'feedback'
+export type NativeButtonOpenType = 'contact' | 'liveActivity' | 'share' | 'getPhoneNumber' |
+  'getRealtimePhoneNumber' | 'getUserInfo' | 'launchApp' | 'openSetting' | 'feedback' |
+  'chooseAvatar' | 'agreePrivacyAuthorization'
 
 /**
  * 原生按钮组件的类型
@@ -51,20 +52,37 @@ export interface NativeButtonProps {
   appParameter?: string
   /** 是否显示会话内消息卡片，设置此参数为 true，用户进入客服会话会在右下角显示"可能要发送的小程序"提示，用户点击后可以快速发送小程序消息，open-type="contact"时有效 */
   showMessageCard?: boolean
+  /** 当手机号快速验证或手机号实时验证额度用尽时，是否对用户展示“申请获取你的手机号，但该功能使用次数已达当前小程序上限，暂时无法使用”的提示，默认展示，open-type="getPhoneNumber" 或 open-type="getRealtimePhoneNumber" 时有效 */
+  phoneNumberNoQuotaToast?: boolean
 }
+
+/**
+ * 按钮的事件
+ */
+export type NativeButtonEvent = 'click' | 'getuserinfo' | 'contact' | 'createliveactivity' |
+  'getphonenumber' | 'getrealtimephonenumber' | 'error' | 'opensetting' | 'launchapp' |
+  'chooseavatar' | 'agreeprivacyauthorization'
 
 /**
  * 默认事件的类型
  *
  * @export
  */
-export type DefaultButtonHandle<Button = NativeButtonProps, Detail = MiniprogramCustomEvent['detail']> = (
-  /** 按钮组件 */
-  button?: Button,
-  /** 索引值 */
-  index?: number,
-  /** 回调的 detail 数据 */
-  detail?: Detail
+export type DefaultButtonHandle<
+  Button = NativeButtonProps,
+  Detail = MiniprogramCustomEvent['detail'],
+  Method = NativeButtonEvent
+> = (
+  event: {
+    /** 触发事件的方法 */
+    method?: Method
+    /** 按钮组件 */
+    button?: Button,
+    /** 索引值 */
+    index?: number,
+    /** 回调的 detail 数据 */
+    detail?: Detail
+  }
 ) => void | Promise<void>
 
 /**
@@ -76,17 +94,25 @@ export type DefaultButtonHandle<Button = NativeButtonProps, Detail = Miniprogram
  */
 export interface NativeButtonHandle<Button = NativeButtonProps> {
   /** 点击事件 */
-  onClick?: DefaultButtonHandle<Button, MiniprogramCustomEvent['detail']>
+  onClick?: DefaultButtonHandle<Button>
   /** 获取用户信息回调 */
-  onGetUserInfo?: DefaultButtonHandle<Button, MiniprogramCustomEvent['detail']>
+  onGetUserInfo?: DefaultButtonHandle<Button>
   /** 客服消息回调 */
-  onContact?: DefaultButtonHandle<Button, MiniprogramCustomEvent['detail']>
+  onContact?: DefaultButtonHandle<Button>
   /** 获取用户手机号回调 */
-  onGetPhoneNumber?: DefaultButtonHandle<Button, MiniprogramCustomEvent['detail']>
+  onGetPhoneNumber?: DefaultButtonHandle<Button>
   /** 打开 APP 成功的回调 */
-  onLaunchApp?: DefaultButtonHandle<Button, MiniprogramCustomEvent['detail']>
+  onLaunchApp?: DefaultButtonHandle<Button>
   /** 当使用开放能力时，发生错误的回调 */
-  onError?: DefaultButtonHandle<Button, MiniprogramCustomEvent['detail']>
+  onError?: DefaultButtonHandle<Button>
   /** 在打开授权设置页后回调 */
-  onOpenSetting?: DefaultButtonHandle<Button, MiniprogramCustomEvent['detail']>
+  onOpenSetting?: DefaultButtonHandle<Button>
+  /** 获取用户头像回调 */
+  onChooseAvatar?: DefaultButtonHandle<Button>
+  /** 新的一次性订阅消息下发机制回调 */
+  onCreateLiveActivity?: DefaultButtonHandle<Button>
+  /** 手机号实时验证回调 */
+  onGetRealtimePhoneNumber?: DefaultButtonHandle<Button>
+  /** 用户同意隐私协议事件回调 */
+  onAgreePrivacyAuthorization?: DefaultButtonHandle<Button>
 }

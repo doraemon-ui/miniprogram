@@ -73,6 +73,7 @@ yarn add @doraemon-ui/miniprogram.list
 | sendMessagePath | `string` | 会话内消息卡片点击跳转小程序路径 | 当前分享路径 |
 | sendMessageImg | `string` | 会话内消息卡片图片 | 截图 |
 | showMessageCard | `boolean` | 显示会话内消息卡片 | false |
+| phoneNumberNoQuotaToast | `boolean` | 手机号快速验证或手机号实时验证额度用尽时，是否对用户展示“申请获取你的手机号，但该功能使用次数已达当前小程序上限，暂时无法使用”的提示 | true |
 | appParameter | `string` | 打开 APP 时，向 APP 传递的参数 | - |
 | thumb | `string` | 左侧缩略图 | - |
 | title | `string` | 左侧标题 | - |
@@ -82,13 +83,14 @@ yarn add @doraemon-ui/miniprogram.list
 | isLink | `boolean` | 是否展示右侧箭头并开启尝试以 url 跳转 | - |
 | url | `string` | 跳转链接 | - |
 | delta | `number` | 当 open-type 为 'navigateBack' 时有效，表示回退的层数 | 1 |
-| bind:click | `() => void` | 点击事件 | - |
-| bind:getuserinfo | `(event: ButtonGetUserInfo) => void` | 用户点击该按钮时，会返回获取到的用户信息，回调的detail数据与wx.getUserInfo返回的一致 | - |
-| bind:contact | `(event: ButtonContact) => void` | 客服消息回调 | - |
-| bind:getphonenumber | `(event: ButtonGetPhoneNumber) => void` | 获取用户手机号回调 | - |
-| bind:launchApp | `(event: ButtonLaunchApp) => void` | 打开 APP 成功的回调 | - |
-| bind:error | `(event: ButtonError) => void` | 当使用开放能力时，发生错误的回调 | - |
-| bind:opensetting | `(event: ButtonOpenSetting) => void` | 在打开授权设置页后回调 | - |
+| bind:click | `(event: CustomEvent) => void` | 点击事件 | - |
+| bind:getuserinfo | `(event: CustomEvent<ButtonGetUserInfo>) => void` | 用户点击该按钮时，会返回获取到的用户信息，回调的detail数据与wx.getUserInfo返回的一致 | - |
+| bind:contact | `(event: CustomEvent<ButtonContact>) => void` | 客服消息回调 | - |
+| bind:getphonenumber | `(event: CustomEvent<ButtonGetPhoneNumber>) => void` | 获取用户手机号回调 | - |
+| bind:launchApp | `(event: CustomEvent<ButtonLaunchApp>) => void` | 打开 APP 成功的回调 | - |
+| bind:error | `(event: CustomEvent<ButtonError>) => void` | 当使用开放能力时，发生错误的回调 | - |
+| bind:opensetting | `(event: CustomEvent<ButtonOpenSetting>) => void` | 在打开授权设置页后回调 | - |
+| bind:chooseavatar | `(event: CustomEvent<ButtonChooseAvatar>) => void` | 获取用户头像回调 | - |
 
 > 更多参数说明请参考微信官方的表单组件 [Button](https://developers.weixin.qq.com/miniprogram/dev/component/button.html)。
 

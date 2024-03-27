@@ -11,6 +11,10 @@ export interface BackdropProps {
   prefixCls: string
   transparent: boolean
   zIndex: number
+  disableScroll: boolean
+  mountOnEnter: boolean
+  unmountOnExit: boolean
+  visible: boolean
   classNames: string
   wrapStyle: object
 }
@@ -39,17 +43,53 @@ class Backdrop extends Doraemon {
    */
   prefixCls!: string
 
+  /**
+   * 是否显示透明蒙层
+   *
+   * @type {boolean}
+   * @memberof Backdrop
+   */
   @Prop({
     type: Boolean,
     default: false,
   })
   transparent: boolean
 
+  /**
+   * 设置蒙层的 z-index
+   *
+   * @type {number}
+   * @memberof Backdrop
+   */
   @Prop({
     type: Number,
     default: null,
   })
   zIndex: number
+
+  /**
+   * 首次进场动画时是否懒挂载组件
+   *
+   * @type {boolean}
+   * @memberof Backdrop
+   */
+  @Prop({
+    type: Boolean,
+    default: true,
+  })
+  mountOnEnter: boolean
+
+  /**
+   * 离场动画完成时是否卸载组件
+   *
+   * @type {boolean}
+   * @memberof Backdrop
+   */
+  @Prop({
+    type: Boolean,
+    default: true,
+  })
+  unmountOnExit: boolean
 
   /**
    * 阻止移动触摸
@@ -63,12 +103,36 @@ class Backdrop extends Doraemon {
   })
   disableScroll: boolean
 
+  /**
+   * 是否可见
+   *
+   * @type {boolean}
+   * @memberof Backdrop
+   */
+  @Prop({
+    type: Boolean,
+    default: false,
+  })
+  visible: boolean
+
+  /**
+   * 过渡的类名
+   *
+   * @type {string}
+   * @memberof Backdrop
+   */
   @Prop({
     type: null,
     default: 'dora-animate--fadeIn',
   })
   classNames: string
 
+  /**
+   * 自定义样式
+   *
+   * @type {object}
+   * @memberof Backdrop
+   */
   @Prop({
     type: Object,
     default: null,
@@ -93,7 +157,7 @@ class Backdrop extends Doraemon {
    * @memberof Backdrop
    */
   get indexStyle() {
-    return this.zIndex !== null ? { zIndex: this.zIndex } : null
+    return this.zIndex ? { zIndex: this.zIndex } : null
   }
 
   /**
@@ -112,14 +176,14 @@ class Backdrop extends Doraemon {
    * @type {boolean}
    * @memberof Backdrop
    */
-  visible: boolean = false
+  innerVisible: boolean = false
 
   @Watch('visible')
   onVisibleChange (visible: boolean) {
-    if (visible) {
-      this.$emit('afterShow')
-    } else {
-      this.$emit('afterClose')
+    this.innerVisible = visible
+    if (!visible) {
+      this.backdropHolds = 0
+      this.onClose()
     }
   }
 
@@ -139,7 +203,7 @@ class Backdrop extends Doraemon {
   retain() {
     this.backdropHolds = this.backdropHolds + 1
     if (this.backdropHolds === 1) {
-      this.visible = true
+      this.innerVisible = true
     }
   }
 
@@ -150,11 +214,43 @@ class Backdrop extends Doraemon {
    */
   release() {
     if (this.backdropHolds === 1) {
-      this.visible = false
+      this.innerVisible = false
+      this.onClose()
     }
     this.backdropHolds = Math.max(0, this.backdropHolds - 1)
   }
 
+  /**
+   * 开始展示前触发
+   */
+  onShow() {
+    this.$emit('show')
+  }
+
+  /**
+   * 完全展示后触发
+   */
+  onShowed() {
+    this.$emit('showed')
+  }
+
+  /**
+   * 开始关闭前触发
+   */
+  onClose() {
+    this.$emit('close')
+  }
+
+  /**
+   * 完全关闭后触发
+   */
+  onClosed() {
+    this.$emit('closed')
+  }
+
+  /**
+   * 点击事件
+   */
   onClick () {
     this.$emit('click')
   }

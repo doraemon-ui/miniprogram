@@ -1,4 +1,5 @@
-import { type CustomEvent, defineComponentHOC, Doraemon, Component, Event, Emit } from '@doraemon-ui/miniprogram.core-js'
+import { type CustomEvent, defineComponentHOC, Doraemon, Component, Event, Emit, Prop } from '@doraemon-ui/miniprogram.core-js'
+import type { PresetColor, NativeButtonOpenType } from '@doraemon-ui/miniprogram.shared'
 const { classNames } = Doraemon.util
 
 @Component({
@@ -6,30 +7,6 @@ const { classNames } = Doraemon.util
     prefixCls: {
       type: String,
       default: 'dora-button',
-    },
-    color: {
-      type: String,
-      default: 'positive',
-    },
-    fill: {
-      type: String,
-      default: 'solid',
-    },
-    expand: {
-      type: String,
-      default: '',
-    },
-    shape: {
-      type: String,
-      default: '',
-    },
-    size: {
-      type: String,
-      default: 'default',
-    },
-    strong: {
-      type: Boolean,
-      default: false,
     },
     disabled: {
       type: Boolean,
@@ -87,6 +64,10 @@ const { classNames } = Doraemon.util
       type: Boolean,
       default: false,
     },
+    phoneNumberNoQuotaToast: {
+      type: Boolean,
+      default: true,
+    },
     appParameter: {
       type: String,
       default: '',
@@ -102,8 +83,99 @@ class Button extends Doraemon {
    */
   prefixCls!: string
 
+  /**
+   * 按钮颜色
+   *
+   * @type {PresetColor}
+   * @memberof Button
+   */
+  @Prop({
+    type: String,
+    default: 'positive'
+  })
+  color: PresetColor
+
+  /**
+   * 填充模式
+   *
+   * @type {('solid' | 'outline' | 'clear')}
+   * @memberof Button
+   */
+  @Prop({
+    type: String,
+    default: 'solid'
+  })
+  fill: 'solid' | 'outline' | 'clear'
+
+  /**
+   * 扩展模式
+   *
+   * @type {('block' | 'full')}
+   * @memberof Button
+   */
+  @Prop({
+    type: String,
+    default: ''
+  })
+  expand: 'block' | 'full'
+
+  /**
+   * 按钮的形状
+   *
+   * @type {('rounded' | 'rectangular')}
+   * @memberof Button
+   */
+  @Prop({
+    type: String,
+    default: ''
+  })
+  shape: 'rounded' | 'rectangular'
+
+  /**
+   * 按钮的大小
+   *
+   * @type {('small' | 'default' | 'large')}
+   * @memberof Button
+   */
+  @Prop({
+    type: String,
+    default: 'default'
+  })
+  size: 'small' | 'default' | 'large'
+
+  /**
+   * 是否粗体字体
+   *
+   * @type {boolean}
+   * @memberof Button
+   */
+  @Prop({
+    type: Boolean,
+    default: false
+  })
+  strong: boolean
+
+  // native button props
+  // @see https://developers.weixin.qq.com/miniprogram/dev/component/button.html
+  disabled!: boolean
+  loading!: boolean
+  formType!: 'submit' | 'reset'
+  openType!: NativeButtonOpenType
+  hoverClass!: string
+  hoverStopPropagation!: boolean
+  hoverStartTime!: number
+  hoverStayTime!: number
+  lang!: 'en' | 'zh_CN' | 'zh_TW'
+  sessionFrom!: string
+  sendMessageTitle!: string
+  sendMessagePath!: string
+  sendMessageImg!: string
+  showMessageCard!: boolean
+  phoneNumberNoQuotaToast!: boolean
+  appParameter!: string
+
   get classes () {
-    const { prefixCls, hoverClass, color, size, fill, expand, shape, strong, disabled } = this as any
+    const { prefixCls, hoverClass, color, size, fill, expand, shape, strong, disabled } = this
     const finalSize = ['small', 'large'].includes(size) ? size : ''
     const finalFill = ['solid', 'outline', 'clear'].includes(fill) ? fill : ''
     const finalExpand = ['block', 'full'].includes(expand) ? expand : ''
@@ -127,7 +199,7 @@ class Button extends Doraemon {
   }
 
   onClick () {
-    if (!(this as any).disabled && !(this as any).loading) {
+    if (!this.disabled && !this.loading) {
       this.$emit('click')
     }
   }
@@ -151,8 +223,38 @@ class Button extends Doraemon {
   }
 
   @Event()
+  @Emit('launchapp')
+  onLaunchApp (e: CustomEvent) {
+    return e.target
+  }
+
+  @Event()
+  @Emit('chooseavatar')
+  onChooseAvatar (e: CustomEvent) {
+    return e.target
+  }
+
+  @Event()
   @Emit('opensetting')
   onOpenSetting (e: CustomEvent) {
+    return e.target
+  }
+
+  @Event()
+  @Emit('createliveactivity')
+  onCreateLiveActivity (e: CustomEvent) {
+    return e.target
+  }
+
+  @Event()
+  @Emit('getrealtimephonenumber')
+  onGetRealtimePhoneNumber (e: CustomEvent) {
+    return e.target
+  }
+
+  @Event()
+  @Emit('agreeprivacyauthorization')
+  onAgreePrivacyAuthorization (e: CustomEvent) {
     return e.target
   }
 

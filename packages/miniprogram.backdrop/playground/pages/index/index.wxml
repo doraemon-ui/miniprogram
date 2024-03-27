@@ -9,7 +9,7 @@
       <button bindtap="retain" style="z-index: 1010;">保持背景幕 retain</button>
       <button bindtap="release" style="z-index: 1010;">释放背景幕 release</button>
       <button style="z-index: 1010;">背景幕锁：{{ locks }}</button>
-      <dora-backdrop id="dora-backdrop" bind:afterShow="afterShow" bind:afterClose="afterClose" />
+      <dora-backdrop id="dora-backdrop" bind:showed="showed" bind:closed="closed" />
     </block>
   </demo-block>
 </demo-page>

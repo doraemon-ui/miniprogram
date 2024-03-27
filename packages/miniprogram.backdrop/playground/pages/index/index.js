@@ -3,24 +3,24 @@ Page({
     locks: 0,
   },
   onLoad() {
-    this.$wuxBackdrop = this.selectComponent('#dora-backdrop')
+    this.backdrop = this.selectComponent('#dora-backdrop')
   },
   retain() {
-    this.$wuxBackdrop.retain()
+    this.backdrop.retain()
     this.setData({
-      locks: this.$wuxBackdrop.backdropHolds,
+      locks: this.backdrop.backdropHolds,
     })
   },
   release() {
-    this.$wuxBackdrop.release()
+    this.backdrop.release()
     this.setData({
-      locks: this.$wuxBackdrop.backdropHolds,
+      locks: this.backdrop.backdropHolds,
     })
   },
-  afterShow() {
-    console.log('afterShow')
+  showed() {
+    console.log('showed')
   },
-  afterClose() {
-    console.log('afterClose')
+  closed() {
+    console.log('closed')
   },
 })

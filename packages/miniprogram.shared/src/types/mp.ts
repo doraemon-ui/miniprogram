@@ -34,6 +34,7 @@ export type MiniprogramButtonGetPhoneNumber = WechatMiniprogram.ButtonGetPhoneNu
 export type MiniprogramButtonError = WechatMiniprogram.ButtonError['detail']
 export type MiniprogramButtonOpenSetting = WechatMiniprogram.ButtonOpenSetting['detail']
 export type MiniprogramButtonLaunchApp = WechatMiniprogram.ButtonLaunchApp['detail']
+export type MiniprogramButtonChooseAvatar = WechatMiniprogram.CustomEvent['detail']
 
 /**
  * 矩形对象的类型

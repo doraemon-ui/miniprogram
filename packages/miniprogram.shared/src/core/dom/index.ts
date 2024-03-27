@@ -4,6 +4,7 @@ export * from './getCurrentPage'
 export * from './global'
 export * from './useDOM'
 export * from './useNativeAPI'
+export * from './useNativeRoute'
 export * from './usePopupStateHOC'
 
 import { canUseMP } from './canUseMP'
@@ -25,6 +26,7 @@ import {
   getSystemInfoSync,
   getMenuButtonBoundingClientRectSync
 } from './useNativeAPI'
+import { useNativeRoute } from './useNativeRoute'
 import { usePopupStateHOC } from './usePopupStateHOC'
 
 export default {
@@ -43,5 +45,6 @@ export default {
   useComputedStyle,
   getSystemInfoSync,
   getMenuButtonBoundingClientRectSync,
+  useNativeRoute,
   usePopupStateHOC
 }

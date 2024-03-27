@@ -54,6 +54,7 @@ export type Position = 'bottom' | 'top' | 'left' | 'right' | 'center'
 | animationPrefixCls | `string` | 自定义 animation 类名前缀 | dora-animate |
 | position | `Position` | 指定弹出的位置 | center |
 | bodyStyle | `object` | 自定义 body 样式 | - |
+| closable | `boolean` | 是否显示关闭按钮 | false |
 | mask | `boolean` | 是否显示蒙层 | true |
 | maskClosable | `boolean` | 点击蒙层是否允许关闭 | true |
 | maskTransparent | `boolean` | 是否显示透明蒙层 | false |
@@ -63,10 +64,10 @@ export type Position = 'bottom' | 'top' | 'left' | 'right' | 'center'
 | mountOnEnter | `boolean` | 首次进入过渡时是否懒挂载组件 | true |
 | unmountOnExit | `boolean` | 离开过渡完成时是否卸载组件 | true |
 | safeArea | `SafeAreaProp` | 是否开启安全区适配，关于 `SafeAreaProp` 的类型定义，请参考 `SafeArea` 的文档 | false |
-| bind:close | `() => void` | 点击关闭按钮或蒙层的回调函数 | - |
-| bind:closed | `() => void` | 完全关闭后触 | - |
 | bind:show | `() => void` | 开始展示前触发 | - |
 | bind:showed | `() => void` | 完全展示后触发 | - |
+| bind:close | `() => void` | 点击关闭按钮或蒙层的回调函数 | - |
+| bind:closed | `() => void` | 完全关闭后触 | - |
 
 ### Popup slot
 

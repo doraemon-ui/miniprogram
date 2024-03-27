@@ -110,5 +110,110 @@
         miniprogram.popup
       </dora-popup>
     </block>
+    <block>
+      <button bindtap="onOpen8">显示关闭按钮</button>
+      <dora-popup
+        position="bottom"
+        closable
+        bodyStyle="{{ { padding: '40px 20px 20px', minHeight: '40vh' } }}"
+        visible="{{ visible8 }}"
+        bind:close="onClose8"
+        bind:closed="onClosed8"
+      >
+        miniprogram.popup
+      </dora-popup>
+    </block>
+    <block>
+      <button bindtap="onOpen9">显示右侧弹出关闭按钮</button>
+      <dora-popup
+        position="right"
+        closable
+        bodyStyle="{{ { padding: '40px 20px 20px', minWidth: '100vw' } }}"
+        visible="{{ visible9 }}"
+        bind:close="onClose9"
+        bind:closed="onClosed9"
+      >
+        miniprogram.popup
+      </dora-popup>
+    </block>
+  </demo-block>
+
+  <demo-block title="安全区适配">
+    <block>
+      <button bindtap="onOpen10">开启适配</button>
+      <dora-popup
+        position="bottom"
+        safeArea
+        bodyStyle="{{ { padding: '40px 20px 0', minHeight: '40vh' } }}"
+        visible="{{ visible10 }}"
+        bind:close="onClose10"
+        bind:closed="onClosed10"
+      >
+        <view style="margin: 10px 0">miniprogram.popup</view>
+        <view style="margin: 10px 0">miniprogram.popup</view>
+        <view style="margin: 10px 0">miniprogram.popup</view>
+        <view style="margin: 10px 0">miniprogram.popup</view>
+        <view style="margin: 10px 0">miniprogram.popup</view>
+        <view style="margin: 10px 0">miniprogram.popup</view>
+        <view style="margin: 10px 0">miniprogram.popup</view>
+        <view style="margin: 10px 0">miniprogram.popup</view>
+        <view style="margin: 10px 0">miniprogram.popup</view>
+        <view style="margin: 10px 0">miniprogram.popup</view>
+        <view style="margin: 10px 0">miniprogram.popup</view>
+        <view style="margin: 10px 0">miniprogram.popup</view>
+        <view style="margin: 10px 0">miniprogram.popup</view>
+        <view style="margin: 10px 0">miniprogram.popup</view>
+      </dora-popup>
+    </block>
+    <block>
+      <button bindtap="onOpen11">未开启适配</button>
+      <dora-popup
+        position="bottom"
+        bodyStyle="{{ { padding: '40px 20px 0', minHeight: '40vh' } }}"
+        visible="{{ visible11 }}"
+        bind:close="onClose11"
+        bind:closed="onClosed11"
+      >
+        <view style="margin: 10px 0">miniprogram.popup</view>
+        <view style="margin: 10px 0">miniprogram.popup</view>
+        <view style="margin: 10px 0">miniprogram.popup</view>
+        <view style="margin: 10px 0">miniprogram.popup</view>
+        <view style="margin: 10px 0">miniprogram.popup</view>
+        <view style="margin: 10px 0">miniprogram.popup</view>
+        <view style="margin: 10px 0">miniprogram.popup</view>
+        <view style="margin: 10px 0">miniprogram.popup</view>
+        <view style="margin: 10px 0">miniprogram.popup</view>
+        <view style="margin: 10px 0">miniprogram.popup</view>
+        <view style="margin: 10px 0">miniprogram.popup</view>
+        <view style="margin: 10px 0">miniprogram.popup</view>
+        <view style="margin: 10px 0">miniprogram.popup</view>
+        <view style="margin: 10px 0">miniprogram.popup</view>
+      </dora-popup>
+    </block>
+  </demo-block>
+
+  <demo-block title="多层堆叠">
+    <block>
+      <button bindtap="onOpen12">展开第一个弹出层</button>
+      <dora-popup
+        position="bottom"
+        bodyStyle="{{ { padding: '40px 20px 20px', minHeight: '40vh' } }}"
+        visible="{{ visible12 }}"
+        bind:close="onClose12"
+        bind:closed="onClosed12"
+      >
+        <view>这是弹出层1</view>
+        <button bindtap="onOpen13">展开第二个弹出层</button>
+      </dora-popup>
+      <dora-popup
+        position="bottom"
+        bodyStyle="{{ { padding: '40px 20px 20px', minHeight: '20vh' } }}"
+        visible="{{ visible13 }}"
+        bind:close="onClose13"
+        bind:closed="onClosed13"
+      >
+        <view>这是弹出层2</view>
+      </dora-popup>
+    </block>
   </demo-block>
 </demo-page>

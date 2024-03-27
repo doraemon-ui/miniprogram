@@ -1,5 +1,5 @@
 import { type CustomEvent, defineComponentHOC, Doraemon, Component, Prop, Watch, Event } from '@doraemon-ui/miniprogram.core-js'
-import type { DialogButton, NativeButtonHandle } from './dialog'
+import type { DialogButton, NativeButtonHandle, NativeButtonEvent } from './dialog'
 const { classNames } = Doraemon.util
 
 @Component({
@@ -159,12 +159,6 @@ class Dialog extends Doraemon {
     this.onClosed()
   }
 
-  onXClose () {
-    if (this.closable) {
-      this.onClose()
-    }
-  }
-
   onClose () {
     this.$emit('close')
   }
@@ -180,8 +174,12 @@ class Dialog extends Doraemon {
   async onAction (e: CustomEvent, method: keyof NativeButtonHandle<DialogButton>, closable: boolean = false) {
     const { index } = e.currentTarget.dataset
     const button = this.buttons[index]
+    const eventName = method.replace(/^on/, '').toLowerCase() as NativeButtonEvent
     if (!button.disabled) {
-      await button[method]?.(button, index, { ...e.detail })
+      await Promise.all([
+        button[method]?.({ method: eventName, button, index, detail: e.detail }),
+        this.$emit('action', { method: eventName, button, index, detail: e.detail }),
+      ])
       if (closable) {
         this.onClose()
       }
@@ -221,6 +219,26 @@ class Dialog extends Doraemon {
   @Event()
   async onOpenSetting (e: CustomEvent) {
     await this.onAction(e, 'onOpenSetting')
+  }
+
+  @Event()
+  async onChooseAvatar (e: CustomEvent) {
+    await this.onAction(e, 'onChooseAvatar')
+  }
+
+  @Event()
+  async onCreateLiveActivity (e: CustomEvent) {
+    await this.onAction(e, 'onCreateLiveActivity')
+  }
+
+  @Event()
+  async onGetRealtimePhoneNumber (e: CustomEvent) {
+    await this.onAction(e, 'onGetRealtimePhoneNumber')
+  }
+
+  @Event()
+  async onAgreePrivacyAuthorization (e: CustomEvent) {
+    await this.onAction(e, 'onAgreePrivacyAuthorization')
   }
 }
 
