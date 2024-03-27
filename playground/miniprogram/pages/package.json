@@ -1,7 +1,7 @@
 {
   "name": "@doraemon-ui/miniprogram",
   "private": false,
-  "version": "0.0.2-alpha.33",
+  "version": "0.0.2-alpha.34",
   "description": "miniprogram for doraemon-ui",
   "main": "app.js",
   "scripts": {
@@ -15,9 +15,9 @@
   "license": "MIT",
   "dependencies": {
     "@doraemon-ui/miniprogram.accordion": "^0.0.2-alpha.34",
-    "@doraemon-ui/miniprogram.button": "^0.0.2-alpha.35",
-    "@doraemon-ui/miniprogram.list": "^0.0.2-alpha.33",
-    "@doraemon-ui/miniprogram.pagination": "^0.0.2-alpha.34"
+    "@doraemon-ui/miniprogram.button": "^0.0.2-alpha.36",
+    "@doraemon-ui/miniprogram.list": "^0.0.2-alpha.34",
+    "@doraemon-ui/miniprogram.pagination": "^0.0.2-alpha.35"
   },
   "publishConfig": {
     "access": "public"

@@ -8,34 +8,65 @@
   z-index: var(--z-index);
   z-index: var(--z-index)
 }
-.dora-popup-body {
+.dora-popup__body {
   position: fixed;
   z-index: calc(var(--z-index) + 10);
   z-index: calc(var(--z-index) + 10);
   background-color: var(--dora-component-background-color,#fff);
-  background-color: var(--dora-component-background-color,#fff)
+  background-color: var(--dora-component-background-color,#fff);
+  box-sizing: border-box
 }
-.dora-popup--position-center .dora-popup-body {
+.dora-popup__close {
+  border: 0;
+  background-color: transparent;
+  outline: 0;
+  position: absolute;
+  top: 16rpx;
+  right: 16rpx;
+  height: 48rpx;
+  width: 48rpx;
+  padding: 8rpx;
+  box-sizing: border-box;
+  z-index: 100
+}
+.dora-popup__close-x {
+  display: inline-block;
+  width: 32rpx;
+  height: 32rpx;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2230%22%20height%3D%2230%22%20viewBox%3D%220%200%2030%2030%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22%23888%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M1.414%200l28.284%2028.284-1.414%201.414L0%201.414z%22%2F%3E%3Cpath%20d%3D%22M28.284%200L0%2028.284l1.414%201.414L29.698%201.414z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
+}
+.dora-popup--position-center .dora-popup__body {
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%)
 }
-.dora-popup--position-top .dora-popup-body {
+.dora-popup--position-top .dora-popup__body {
   width: 100%;
   top: 0;
   left: 0
 }
-.dora-popup--position-right .dora-popup-body {
+.dora-popup--position-top .dora-popup__close {
+  top: unset;
+  bottom: 16rpx
+}
+.dora-popup--position-right .dora-popup__body {
   height: 100%;
   right: 0;
   top: 0
 }
-.dora-popup--position-bottom .dora-popup-body {
+.dora-popup--position-right .dora-popup__close {
+  left: 16rpx;
+  top: 16rpx;
+  right: unset
+}
+.dora-popup--position-bottom .dora-popup__body {
   width: 100%;
   bottom: 0;
   left: 0
 }
-.dora-popup--position-left .dora-popup-body {
+.dora-popup--position-left .dora-popup__body {
   height: 100%;
   top: 0;
   left: 0

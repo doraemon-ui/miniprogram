@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.shared.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-25, 14:57:31.
+ * Built on 2024-03-28, 00:13:15.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.20.
  */
 
@@ -448,6 +448,42 @@ function nextTick(cb) {
     }
 }
 
+/**
+ * openType 属性可选值为 navigateTo、redirectTo、switchTab、navigateBack、reLaunch
+ */
+const NATIVE_ROUTES = [
+    'navigateTo',
+    'redirectTo',
+    'switchTab',
+    'navigateBack',
+    'reLaunch',
+];
+function useNativeRoute(props, vm) {
+    const { url, openType = 'navigateTo', delta = 1 } = props;
+    const promisify = (method, params) => {
+        return new Promise((resolve, reject) => {
+            miniprogramThis[method].call(miniprogramThis, {
+                ...params,
+                success: resolve,
+                fail: reject,
+            });
+        });
+    };
+    if (!url) {
+        return Promise.reject(`Invalid value of prop "url" of "${vm.is}": Expected an Non-empty String.`);
+    }
+    else if (!NATIVE_ROUTES.includes(openType)) {
+        return Promise.reject(`Invalid value of prop "openType" of "${vm.is}": expected "${NATIVE_ROUTES.join(',')}", ` +
+            `but got ${openType}.`);
+    }
+    else if (openType === 'navigateBack') {
+        return promisify(openType, { delta });
+    }
+    else {
+        return promisify(openType, { url });
+    }
+}
+
 function usePopupStateHOC(statePropName = 'visible') {
     return (container) => {
         const render = (props, callback) => {
@@ -488,6 +524,7 @@ var dom = {
     useComputedStyle,
     getSystemInfoSync,
     getMenuButtonBoundingClientRectSync,
+    useNativeRoute,
     usePopupStateHOC
 };
 
@@ -498,4 +535,4 @@ var index = {
     ...util,
 };
 
-export { canUseMP, chooseMedia, index as default, dom, findComponentNode, getCurrentPage, getMenuButtonBoundingClientRectSync, getSystemInfoSync, isDef, isFalse, isObject, isPromise, isString, isTrue, isUndef, miniprogramThis, nextTick, noop, omit, pxToNumber, sleep, uploadFile, useComputedStyle, usePopupStateHOC, useQuery, useRect, useRectAll, useRef, useRefAll, useScrollOffset, useSelector, useSelectorAll, util, vibrateShort };
+export { NATIVE_ROUTES, canUseMP, chooseMedia, index as default, dom, findComponentNode, getCurrentPage, getMenuButtonBoundingClientRectSync, getSystemInfoSync, isDef, isFalse, isObject, isPromise, isString, isTrue, isUndef, miniprogramThis, nextTick, noop, omit, pxToNumber, sleep, uploadFile, useComputedStyle, useNativeRoute, usePopupStateHOC, useQuery, useRect, useRectAll, useRef, useRefAll, useScrollOffset, useSelector, useSelectorAll, util, vibrateShort };

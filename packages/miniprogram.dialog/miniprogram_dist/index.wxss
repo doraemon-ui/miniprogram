@@ -71,25 +71,6 @@
   object-fit: fill;
   display: block
 }
-.dora-dialog__close {
-  border: 0;
-  padding: 6rpx;
-  background-color: transparent;
-  outline: 0;
-  position: absolute;
-  top: 12rpx;
-  right: 12rpx;
-  height: 42rpx;
-  width: 42rpx
-}
-.dora-dialog__close-x {
-  display: inline-block;
-  width: 30rpx;
-  height: 30rpx;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2230%22%20height%3D%2230%22%20viewBox%3D%220%200%2030%2030%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22%23888%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M1.414%200l28.284%2028.284-1.414%201.414L0%201.414z%22%2F%3E%3Cpath%20d%3D%22M28.284%200L0%2028.284l1.414%201.414L29.698%201.414z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
-}
 .dora-dialog__buttons {
   display: -ms-flexbox;
   display: flex;

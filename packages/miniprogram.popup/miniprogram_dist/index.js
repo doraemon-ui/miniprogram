@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.popup.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-26, 20:12:32.
+ * Built on 2024-03-28, 00:14:47.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.20.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -99,6 +99,13 @@ let Popup = class Popup extends Doraemon {
      */
     unmountOnExit;
     /**
+     * 是否显示关闭按钮
+     *
+     * @type {boolean}
+     * @memberof Popup
+     */
+    closable;
+    /**
      * 是否开启安全区适配，关于 `SafeAreaProp` 的类型定义，请参考 `SafeArea` 的文档
      *
      * @type {SafeAreaProp}
@@ -110,10 +117,14 @@ let Popup = class Popup extends Doraemon {
         const wrap = classNames(prefixCls, {
             [`${prefixCls}--position-${position}`]: position,
         });
-        const body = `${prefixCls}-body`;
+        const body = `${prefixCls}__body`;
+        const close = `${prefixCls}__close`;
+        const x = `${prefixCls}__close-x`;
         return {
             wrap,
             body,
+            close,
+            x,
         };
     }
     /**
@@ -123,7 +134,7 @@ let Popup = class Popup extends Doraemon {
      * @memberof Popup
      */
     get indexStyle() {
-        return this.zIndex !== null ? { zIndex: this.zIndex } : null;
+        return this.zIndex ? { zIndex: this.zIndex } : null;
     }
     /**
      * 容器样式
@@ -178,6 +189,14 @@ let Popup = class Popup extends Doraemon {
      */
     onMaskClick() {
         if (this.maskClosable) {
+            this.onClose();
+        }
+    }
+    /**
+     * 点击关闭按钮
+     */
+    onXClose() {
+        if (this.closable) {
             this.onClose();
         }
     }
@@ -306,6 +325,12 @@ __decorate([
         default: true,
     })
 ], Popup.prototype, "unmountOnExit", void 0);
+__decorate([
+    Prop({
+        type: Boolean,
+        default: false,
+    })
+], Popup.prototype, "closable", void 0);
 __decorate([
     Prop({
         type: [Boolean, String, Object],

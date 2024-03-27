@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.dialog.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-26, 20:12:48.
+ * Built on 2024-03-28, 00:15:04.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.20.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -91,11 +91,6 @@ let Dialog = class Dialog extends Doraemon {
     onPopupClosed() {
         this.onClosed();
     }
-    onXClose() {
-        if (this.closable) {
-            this.onClose();
-        }
-    }
     onClose() {
         this.$emit('close');
     }
@@ -108,8 +103,12 @@ let Dialog = class Dialog extends Doraemon {
     async onAction(e, method, closable = false) {
         const { index } = e.currentTarget.dataset;
         const button = this.buttons[index];
+        const eventName = method.replace(/^on/, '').toLowerCase();
         if (!button.disabled) {
-            await button[method]?.(button, index, { ...e.detail });
+            await Promise.all([
+                button[method]?.({ method: eventName, button, index, detail: e.detail }),
+                this.$emit('action', { method: eventName, button, index, detail: e.detail }),
+            ]);
             if (closable) {
                 this.onClose();
             }
@@ -135,6 +134,18 @@ let Dialog = class Dialog extends Doraemon {
     }
     async onOpenSetting(e) {
         await this.onAction(e, 'onOpenSetting');
+    }
+    async onChooseAvatar(e) {
+        await this.onAction(e, 'onChooseAvatar');
+    }
+    async onCreateLiveActivity(e) {
+        await this.onAction(e, 'onCreateLiveActivity');
+    }
+    async onGetRealtimePhoneNumber(e) {
+        await this.onAction(e, 'onGetRealtimePhoneNumber');
+    }
+    async onAgreePrivacyAuthorization(e) {
+        await this.onAction(e, 'onAgreePrivacyAuthorization');
     }
 };
 __decorate([
@@ -233,6 +244,18 @@ __decorate([
 __decorate([
     Event()
 ], Dialog.prototype, "onOpenSetting", null);
+__decorate([
+    Event()
+], Dialog.prototype, "onChooseAvatar", null);
+__decorate([
+    Event()
+], Dialog.prototype, "onCreateLiveActivity", null);
+__decorate([
+    Event()
+], Dialog.prototype, "onGetRealtimePhoneNumber", null);
+__decorate([
+    Event()
+], Dialog.prototype, "onAgreePrivacyAuthorization", null);
 Dialog = __decorate([
     Component({
         props: {

@@ -15,11 +15,17 @@
   send-message-path="{{ sendMessagePath }}"
   send-message-img="{{ sendMessageImg }}"
   show-message-card="{{ showMessageCard }}"
+	phone-number-no-quota-toast="{{ phoneNumberNoQuotaToast }}"
   bindcontact="onContact"
   bindgetphonenumber="onGetPhoneNumber"
   app-parameter="{{ appParameter }}"
+  bindlaunchapp="onLaunchApp"
   binderror="onError"
   bindopensetting="onOpenSetting"
+  bindchooseavatar="onChooseAvatar"
+  bindcreateliveactivity="onCreateLiveActivity"
+  bindgetrealtimephonenumber="onGetRealtimePhoneNumber"
+  bindagreeprivacyauthorization="onAgreePrivacyAuthorization"
   bindtap="onClick"
 >
   <slot></slot>

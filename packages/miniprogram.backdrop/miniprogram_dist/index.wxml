@@ -2,7 +2,12 @@
   dora-class="{{ classes.wrap }}"
   in="{{ visible }}"
   classNames="{{ classNames }}"
-  bind:click="onClick"
   wrapStyle="{{ containerStyle }}"
-  disableScroll="{{ disableScroll }}
+  mountOnEnter="{{ mountOnEnter }}"
+  unmountOnExit="{{ unmountOnExit }}"
+  disableScroll="{{ disableScroll }}"
+  bind:click="onClick"
+  bind:enter="onShow"
+  bind:entered="onShowed"
+  bind:exited="onClosed"
 />
