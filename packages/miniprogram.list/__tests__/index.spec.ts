@@ -131,7 +131,7 @@ describe('List', () => {
     expect(listItem.querySelectorAll('.dora-list-item--access').length).toBe(1)
     expect(listItem.querySelectorAll('.dora-list-item--disabled').length).toBe(1)
     expect(listItem.querySelectorAll('.dora-list-item__thumb').length).toBe(1)
-    expect(listItem.querySelectorAll('.dora-list-item__desc').length).toBe(1)
+    expect(listItem.querySelectorAll('.dora-list-item__description').length).toBe(1)
     expect(listItem.querySelectorAll('.dora-list-item__ft').length).toBe(1)
   })
 })

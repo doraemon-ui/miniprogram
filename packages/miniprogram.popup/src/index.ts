@@ -52,16 +52,28 @@ class Popup extends Doraemon {
   position: Position
 
   /**
-   * 自定义 body 样式
+   * 自定义样式
    *
-   * @type {object}
+   * @type {Partial<CSSStyleDeclaration>}
    * @memberof Popup
    */
   @Prop({
     type: Object,
     default: null,
   })
-  bodyStyle: object
+  wrapStyle: Partial<CSSStyleDeclaration>
+
+  /**
+   * 自定义 body 样式
+   *
+   * @type {Partial<CSSStyleDeclaration>}
+   * @memberof Popup
+   */
+  @Prop({
+    type: Object,
+    default: null,
+  })
+  bodyStyle: Partial<CSSStyleDeclaration>
 
   /**
    * 是否显示蒙层
@@ -102,14 +114,14 @@ class Popup extends Doraemon {
   /**
    * 自定义蒙层样式
    *
-   * @type {object}
+   * @type {Partial<CSSStyleDeclaration>}
    * @memberof Popup
    */
   @Prop({
     type: Object,
     default: null,
   })
-  maskStyle: object
+  maskStyle: Partial<CSSStyleDeclaration>
 
   /**
    * 是否可见
@@ -206,8 +218,8 @@ class Popup extends Doraemon {
    * @readonly
    * @memberof Popup
    */
-  get indexStyle() {
-    return this.zIndex ? { zIndex: this.zIndex } : null
+  get indexStyle(): Partial<CSSStyleDeclaration> | null {
+    return this.zIndex ? { zIndex: this.zIndex } as unknown as Partial<CSSStyleDeclaration> : null
   }
 
   /**
@@ -218,6 +230,7 @@ class Popup extends Doraemon {
    */
   get containerStyle () {
     return styleToCssString({
+      ...this.wrapStyle,
       ...this.indexStyle,
       touchAction: ['top', 'bottom'].includes(this.position)
         ? 'none'
@@ -231,7 +244,7 @@ class Popup extends Doraemon {
    * @readonly
    * @memberof Popup
    */
-  get wrapStyle () {
+  get internalBodyStyle (): Partial<CSSStyleDeclaration> {
     return this.bodyStyle ? { ...this.bodyStyle, ...this.indexStyle } : { ...this.indexStyle }
   }
 
@@ -319,21 +332,21 @@ class Popup extends Doraemon {
     const { animationPrefixCls } = this
     let transitionName = ''
     switch (value) {
-        case 'top':
-          transitionName = `${animationPrefixCls}--slideInDown`
-          break
-        case 'right':
-          transitionName = `${animationPrefixCls}--slideInRight`
-          break
-        case 'bottom':
-          transitionName = `${animationPrefixCls}--slideInUp`
-          break
-        case 'left':
-          transitionName = `${animationPrefixCls}--slideInLeft`
-          break
-        default:
-          transitionName = `${animationPrefixCls}--fadeIn`
-          break
+      case 'top':
+        transitionName = `${animationPrefixCls}--slideInDown`
+        break
+      case 'right':
+        transitionName = `${animationPrefixCls}--slideInRight`
+        break
+      case 'bottom':
+        transitionName = `${animationPrefixCls}--slideInUp`
+        break
+      case 'left':
+        transitionName = `${animationPrefixCls}--slideInLeft`
+        break
+      default:
+        transitionName = `${animationPrefixCls}--fadeIn`
+        break
     }
     this.transitionName = transitionName
   }

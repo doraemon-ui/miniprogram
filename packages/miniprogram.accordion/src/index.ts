@@ -1,4 +1,5 @@
-import { defineComponentHOC, Doraemon, Component, Emit, Watch } from '@doraemon-ui/miniprogram.core-js'
+import { defineComponentHOC, Doraemon, Component, Emit, Watch, Prop } from '@doraemon-ui/miniprogram.core-js'
+import type { PanelInstance } from './panel'
 
 @Component({
   components: {
@@ -13,30 +14,6 @@ import { defineComponentHOC, Doraemon, Component, Emit, Watch } from '@doraemon-
       type: String,
       default: 'dora-accordion',
     },
-    defaultCurrent: {
-      type: Array,
-      default: [],
-    },
-    current: {
-      type: Array,
-      default: [],
-    },
-    controlled: {
-      type: Boolean,
-      default: false,
-    },
-    accordion: {
-      type: Boolean,
-      default: false,
-    },
-    title: {
-      type: String,
-      default: '',
-    },
-    label: {
-      type: String,
-      default: '',
-    },
   },
 })
 class Accordion extends Doraemon {
@@ -48,8 +25,80 @@ class Accordion extends Doraemon {
    */
   prefixCls!: string
 
+  /**
+   * 默认激活 tab 面板的 key，当 `controlled` 为 `false` 时才生效
+   *
+   * @type {string[]}
+   * @memberof Accordion
+   */
+  @Prop({
+    type: Array,
+    default: []
+  })
+  defaultCurrent: string[]
+
+  /**
+   * 用于手动激活 tab 面板的 key，当 `controlled` 为 `true` 时才生效
+   *
+   * @type {string[]}
+   * @memberof Accordion
+   */
+  @Prop({
+    type: Array,
+    default: []
+  })
+  current: string[]
+
+  /**
+   * 是否受控
+   *
+   * @type {boolean}
+   * @memberof Accordion
+   */
+  @Prop({
+    type: Boolean,
+    default: false
+  })
+  controlled: boolean
+
+  /**
+   * 是否手风琴模式
+   *
+   * @type {boolean}
+   * @memberof Accordion
+   */
+  @Prop({
+    type: Boolean,
+    default: false
+  })
+  accordion: boolean
+
+  /**
+   * 标题
+   *
+   * @type {string}
+   * @memberof Accordion
+   */
+  @Prop({
+    type: String,
+    default: ''
+  })
+  title: string
+
+  /**
+   * 描述
+   *
+   * @type {string}
+   * @memberof Accordion
+   */
+  @Prop({
+    type: String,
+    default: ''
+  })
+  label: string
+
   get classes () {
-    const { prefixCls } = this as any
+    const { prefixCls } = this
     const wrap = prefixCls
     const hd = `${prefixCls}__hd`
     const bd = `${prefixCls}__bd`
@@ -64,11 +113,11 @@ class Accordion extends Doraemon {
   }
 
   activeKey: string[] = []
-  keys: any[] = []
+  keys: Record<string, any>[] = []
 
   @Watch('current')
   watchCurrent (newVal: string[]) {
-    if ((this as any).controlled) {
+    if (this.controlled) {
       this.updated(newVal)
     }
   }
@@ -78,20 +127,20 @@ class Accordion extends Doraemon {
       this.activeKey = activeKey
     }
 
-    this.changeCurrent(activeKey)
+    this.updateCurrentAndIndex(activeKey)
   }
 
-  changeCurrent (activeKey: string[]) {
-    const elements = this.$children
+  updateCurrentAndIndex (activeKey: string[]) {
+    const elements = this.$children as PanelInstance[]
 
     if (elements.length > 0) {
       elements.forEach((element, index) => {
-        const key = (element as any).key || String(index)
-        const current = (this as any).accordion ?
+        const key = element.key || String(index)
+        const current = this.accordion ?
           activeKey[0] === key :
           activeKey.indexOf(key) !== -1
-
-        this.$nextTick(() => (element as any).changeCurrent(current, key))
+        
+          element.updateCurrentAndIndex(current, key)
       })
     }
 
@@ -102,11 +151,11 @@ class Accordion extends Doraemon {
 
   @Emit('change')
   setActiveKey (activeKey: string[]) {
-    if (!(this as any).controlled) {
+    if (!this.controlled) {
       this.updated(activeKey)
     }
     return {
-      key: (this as any).accordion ? activeKey[0] : activeKey,
+      key: this.accordion ? activeKey[0] : activeKey,
       keys: this.keys,
     }
   }
@@ -114,7 +163,7 @@ class Accordion extends Doraemon {
   onClickItem (key: string) {
     let activeKey = [...this.activeKey]
 
-    if ((this as any).accordion) {
+    if (this.accordion) {
       activeKey = activeKey[0] === key ? [] : [key]
     } else {
       activeKey = activeKey.indexOf(key) !== -1 ?
@@ -126,11 +175,12 @@ class Accordion extends Doraemon {
   }
 
   mounted () {
-    const { defaultCurrent, current, controlled } = this as any
+    const { defaultCurrent, current, controlled } = this
     const activeKey = controlled ? current : defaultCurrent
 
     this.updated(activeKey)
   }
 }
 
+export type AccordionInstance = Accordion
 export default defineComponentHOC({ multipleSlots: false })(Accordion)

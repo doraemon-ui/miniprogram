@@ -37,6 +37,7 @@ export type DefaultComponents<T = {
   ['module']?: string
   type?: 'ancestor' | 'parent' | 'child' | 'descendant'
   observer?: string | Function
+  throttle?: number | boolean | object
 }> = {
   [key: string]: string | Partial<T> | (() => (Partial<T>))
 }

@@ -5,11 +5,19 @@
 .@{list-prefix-cls}-item {
   .button-reset();
 
-  padding: @list-padding;
+  padding: @list-item-padding;
   position: relative;
   display: flex;
   align-items: center;
   background: @list-bg;
+
+  &--align-flex-start {
+    align-items: flex-start;
+  }
+
+  &--align-center {
+    align-items: center;
+  }
 
   &--has-line&::after {
     .setBottomLine(@border-color-split);
@@ -29,22 +37,27 @@
     opacity: @disabled-opacity;
   }
 
+  &__hd:not(:empty) {
+    width: var(--header-width);
+    flex: none;
+    margin-right: @margin-component-base;
+  }
+
   &__thumb {
-    .square(@list-icon-size);
+    .square(var(--thumb-size));
 
     display: block;
-    margin-right: @margin-component-base;
   }
 
   &__bd {
     flex: 1;
   }
 
-  &__text {
+  &__title:not(:empty) {
     text-align: left;
   }
 
-  &__desc {
+  &__description:not(:empty) {
     text-align: left;
     line-height: 1.2;
     font-size: @font-size-sm;
@@ -52,12 +65,21 @@
   }
 
   &__ft {
+    display: flex;
+    align-self: center;
     text-align: right;
     color: @text-color-secondary;
   }
 
-  &--access &__ft {
-    padding-right: @spacing-xl;
+  &__arrow:not(:empty) {
+    flex: none;
+    display: flex;
+    align-items: center;
+    margin-left: @margin-component-base;
+  }
+
+  &--access > &__ft {
+    padding-right: @spacing-xl + @margin-component-base;
     position: relative;
 
     &::after {

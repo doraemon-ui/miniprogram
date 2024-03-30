@@ -59,4 +59,8 @@ export interface MiniprogramDOMRect {
   x: number
   /** 同 top */
   y: number
+  /** 节点的 ID */
+  id: string
+  /** 节点的 dataset */
+  dataset: Record<string, any>
 }

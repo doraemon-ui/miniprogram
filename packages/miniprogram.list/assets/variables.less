@@ -4,7 +4,13 @@
 // -----------------------------
 @list-prefix-cls: ~'@{dora-prefix}-list';
 @list-bg: @component-background;
-@list-icon-size: 20px;
-@list-padding: @spacing-xl;
+@list-font-size: var(--dora-list-font-size, @font-size-lg);
+@list-hd-font-size: var(--dora-list-header-font-size, @font-size-base);
 @list-hd-padding: @spacing-xl @spacing-xl @spacing-base;
 @list-ft-padding: @spacing-base @spacing-xl @spacing-xl;
+
+// ListItem themes
+// -----------------------------
+@list-item-padding: @spacing-xl;
+@list-item-hd-width: var(--dora-list-item-header-width, auto);
+@list-item-thumb-size: var(--dora-list-item-thumb-size, 20px);

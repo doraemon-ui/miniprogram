@@ -16,7 +16,7 @@ export interface BackdropProps {
   unmountOnExit: boolean
   visible: boolean
   classNames: string
-  wrapStyle: object
+  wrapStyle: Partial<CSSStyleDeclaration>
 }
 
 export type BackdropInstance = ComponentPublicInstance<
@@ -130,14 +130,14 @@ class Backdrop extends Doraemon {
   /**
    * 自定义样式
    *
-   * @type {object}
+   * @type {Partial<CSSStyleDeclaration>}
    * @memberof Backdrop
    */
   @Prop({
     type: Object,
     default: null,
   })
-  wrapStyle: object
+  wrapStyle: Partial<CSSStyleDeclaration>
 
   get classes () {
     const { prefixCls, transparent } = this
@@ -156,8 +156,8 @@ class Backdrop extends Doraemon {
    * @readonly
    * @memberof Backdrop
    */
-  get indexStyle() {
-    return this.zIndex ? { zIndex: this.zIndex } : null
+  get indexStyle(): Partial<CSSStyleDeclaration> | null {
+    return this.zIndex ? { zIndex: this.zIndex } as unknown as Partial<CSSStyleDeclaration> : null
   }
 
   /**
@@ -166,7 +166,7 @@ class Backdrop extends Doraemon {
    * @readonly
    * @memberof Backdrop
    */
-  get containerStyle () {
+  get containerStyle (): Partial<CSSStyleDeclaration> {
     return this.wrapStyle ? { ...this.wrapStyle, ...this.indexStyle } : { ...this.indexStyle }
   }
 

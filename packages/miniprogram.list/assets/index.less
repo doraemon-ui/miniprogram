@@ -1,16 +1,24 @@
 @import "./variables.less";
 
 // List styles
+// @prop --font-size: Font size of the list
+// @prop --header-font-size: Font size of the list header
+// @prop --header-width: Width of the list header
+// @prop --thumb-size: Thumb size of the list
 // -----------------------------
 .@{list-prefix-cls} {
+  --font-size: @list-font-size;
+  --header-font-size: @list-hd-font-size;
+  --header-width: @list-item-hd-width;
+  --thumb-size: @list-item-thumb-size;
   position: relative;
-  font-size: @font-size-lg;
+  font-size: var(--font-size);
   line-height: @line-height-base;
   overflow: hidden;
 
   &__hd {
     padding: @list-hd-padding;
-    font-size: @font-size-base;
+    font-size: var(--header-font-size);
     color: @text-color-secondary;
     width: 100%;
     box-sizing: border-box;
@@ -19,18 +27,37 @@
   &__bd {
     position: relative;
     background-color: @list-bg;
+    overflow: hidden;
+  }
 
-    &::after {
-      .hairline(@border-color-split);
+  &--has-line > &__bd::after {
+    .hairline(@border-color-split);
 
-      border-top-width: @border-width-base;
-      border-bottom-width: @border-width-base;
-    }
+    border-top-width: @border-width-base;
+    border-bottom-width: @border-width-base;
   }
 
   &__ft {
     padding: @list-ft-padding;
     font-size: @font-size-base;
     color: @text-color-secondary;
+  }
+
+  &--card {
+    margin: @spacing-xl;
+  }
+
+  &--card > &__hd {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  &--card > &__bd,
+  &--card > &__ft {
+    border-radius: @border-radius-base;
+
+    &::after {
+      display: none !important;
+    }
   }
 }

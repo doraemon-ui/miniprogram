@@ -1,4 +1,7 @@
-export function syncPropsToData (computed: object) {
+export function syncPropsToData (props: object, computed: object) {
+  const defaultData = Object.keys(props).reduce((acc, name) => ({
+    ...acc, [name]: (props[name] as any).value
+  }), {})
   const sync = (data: object) => {
     return Object.keys(computed).reduce((acc, key) => {
       const userDef = computed[key]
@@ -13,7 +16,7 @@ export function syncPropsToData (computed: object) {
   return Behavior({
     definitionFilter(defFields) {
       defFields.data = defFields.data || {}
-      defFields.data = Object.assign(defFields.data, sync(defFields.data))
+      defFields.data = Object.assign(defFields.data, sync({ ...defaultData, ...defFields.data }))
     },
   })
 }

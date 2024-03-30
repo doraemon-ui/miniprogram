@@ -49,6 +49,9 @@ yarn add @doraemon-ui/miniprogram.list
 | prefixCls | `string` | 自定义类名前缀 | dora-list |
 | title | `string` | 标题 | - |
 | label | `string` | 描述 | - |
+| mode | `'default' \| 'card'` | 支持默认和卡片两种模式 | default |
+| hasLine | `boolean` | 是否有底部横线 | true |
+| bodyStyle | `object` | 自定义 body 样式 | - |
 
 ### List externalClasses
 
@@ -58,11 +61,19 @@ yarn add @doraemon-ui/miniprogram.list
 
 ### ListItem props
 
+```ts
+export type NativeButtonOpenType = 'contact' | 'liveActivity' | 'share' | 'getPhoneNumber' |
+  'getRealtimePhoneNumber' | 'getUserInfo' | 'launchApp' | 'openSetting' | 'feedback' |
+  'chooseAvatar' | 'agreePrivacyAuthorization'
+
+export type NativeRouteOpenType = 'navigateTo' | 'redirectTo' | 'switchTab' | 'navigateBack' | 'reLaunch'
+```
+
 | 参数 | 类型 | 描述 | 默认值 |
 | --- | --- | --- | --- |
 | prefixCls | `string` | 自定义类名前缀 | dora-list-item |
 | disabled | `boolean` | 是否禁用 | false |
-| openType | `string` | 跳转方式，可选值为 navigateTo、redirectTo、switchTab、navigateBack、reLaunch；微信开放能力，可选值为 contact、share、getUserInfo、getPhoneNumber、launchApp、openSetting、feedback | navigateTo |
+| openType | `NativeButtonOpenType \| NativeRouteOpenType` | 微信开放能力或跳转方式 | - |
 | hoverClass | `string` | 指定按下去的样式类。当 hover-class="none" 时，没有点击态效果 | default |
 | hoverStopPropagation | `boolean` | 指定是否阻止本节点的祖先节点出现点击态 | false |
 | hoverStartTime | `number` | 按住后多久出现点击态，单位毫秒 | 20 |
@@ -81,16 +92,22 @@ yarn add @doraemon-ui/miniprogram.list
 | extra | `string` | 右侧内容 | - |
 | hasLine | `boolean` | 是否有底部横线 | true |
 | isLink | `boolean` | 是否展示右侧箭头并开启尝试以 url 跳转 | - |
+| align | `'flex-start' \| 'center'` | 对齐方式 | center |
+| wrapStyle | `object` | 自定义样式 | - |
 | url | `string` | 跳转链接 | - |
+| urlParams | `object` | 拼接到 url 路径后的参数 | - |
 | delta | `number` | 当 open-type 为 'navigateBack' 时有效，表示回退的层数 | 1 |
 | bind:click | `(event: CustomEvent) => void` | 点击事件 | - |
 | bind:getuserinfo | `(event: CustomEvent<ButtonGetUserInfo>) => void` | 用户点击该按钮时，会返回获取到的用户信息，回调的detail数据与wx.getUserInfo返回的一致 | - |
 | bind:contact | `(event: CustomEvent<ButtonContact>) => void` | 客服消息回调 | - |
 | bind:getphonenumber | `(event: CustomEvent<ButtonGetPhoneNumber>) => void` | 获取用户手机号回调 | - |
-| bind:launchApp | `(event: CustomEvent<ButtonLaunchApp>) => void` | 打开 APP 成功的回调 | - |
+| bind:launchapp | `(event: CustomEvent<ButtonLaunchApp>) => void` | 打开 APP 成功的回调 | - |
 | bind:error | `(event: CustomEvent<ButtonError>) => void` | 当使用开放能力时，发生错误的回调 | - |
 | bind:opensetting | `(event: CustomEvent<ButtonOpenSetting>) => void` | 在打开授权设置页后回调 | - |
 | bind:chooseavatar | `(event: CustomEvent<ButtonChooseAvatar>) => void` | 获取用户头像回调 | - |
+| bind:createliveactivity | `(event: CustomEvent) => void` | 新的一次性订阅消息下发机制回调 | - |
+| bind:getrealtimephonenumber | `(event: CustomEvent) => void` | 手机号实时验证回调 | - |
+| bind:agreeprivacyauthorization | `(event: CustomEvent) => void` | 用户同意隐私协议事件回调 | - |
 
 > 更多参数说明请参考微信官方的表单组件 [Button](https://developers.weixin.qq.com/miniprogram/dev/component/button.html)。
 
@@ -100,10 +117,22 @@ yarn add @doraemon-ui/miniprogram.list
 | --- | --- |
 | - | 自定义标题或描述 |
 | header | 自定义左侧缩略图 |
+| title | 自定义左侧标题 |
+| label | 自定义标题下方的描述信息|
 | footer | 自定义右侧内容 |
+| arrow | 自定义右侧箭头图标 |
 
 ### ListItem externalClasses
 
 | 名称 | 描述 |
 | --- | --- |
 | dora-class | 根节点样式类 |
+
+## CSS Variables
+
+| 属性 | 描述 | 默认值 | 全局变量 |
+| --- | --- | --- | --- |
+| --font-size | Body 内容的字体大小 | `16px` | - |
+| --header-font-size | 头部的字体大小 | `14px` | - |
+| --header-width | 列表项 header 部分的宽度 | `auto` | - |
+| --thumb-size | 列表项 thumb 图片的大小 | `20px` | - |

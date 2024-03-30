@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import reactStyleObjectToCss from 'react-style-object-to-css'
+import { styleToCssString } from '../util/styleToCssString'
 import { warn } from '../util/warn'
 import { nextTick } from '../util/nextTick'
 import { isDev } from '../util/env'
@@ -8,14 +8,6 @@ import { eventsMixin, renderMixin, stateMixin } from './mixin'
 import { proxy } from './proxy'
 import { config } from './config'
 import type { ComponentOptions } from '../types/options'
-
-const styleToCssString = (rules: string | Record<string, any>): string => {
-  if (typeof rules === 'string') {
-    rules = rules.trim()
-    return rules.slice(-1) === ';' ? `${rules} ` : `${rules}; `
-  }
-  return reactStyleObjectToCss(rules)
-}
 
 let uid: number = 0
 let cid: number = 1

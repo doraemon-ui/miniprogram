@@ -1,4 +1,5 @@
-import { defineComponentHOC, Doraemon, Component } from '@doraemon-ui/miniprogram.core-js'
+import { defineComponentHOC, Doraemon, Component, Prop } from '@doraemon-ui/miniprogram.core-js'
+import type { AccordionInstance } from '.'
 const { classNames } = Doraemon.util
 
 @Component({
@@ -13,30 +14,6 @@ const { classNames } = Doraemon.util
       type: String,
       default: 'dora-accordion-panel',
     },
-    key: {
-      type: String,
-      default: '',
-    },
-    thumb: {
-      type: String,
-      default: '',
-    },
-    title: {
-      type: String,
-      default: '',
-    },
-    content: {
-      type: String,
-      default: '',
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    showArrow: {
-      type: Boolean,
-      default: true,
-    },
   },
 })
 class Panel extends Doraemon {
@@ -48,8 +25,80 @@ class Panel extends Doraemon {
    */
   prefixCls!: string
 
+  /**
+   * 当前激活 tab 索引
+   *
+   * @type {string}
+   * @memberof Panel
+   */
+  @Prop({
+    type: String,
+    default: ''
+  })
+  key: string
+
+  /**
+   * 左侧缩略图
+   *
+   * @type {string}
+   * @memberof Panel
+   */
+  @Prop({
+    type: String,
+    default: ''
+  })
+  thumb: string
+
+  /**
+   * 左侧标题
+   *
+   * @type {string}
+   * @memberof Panel
+   */
+  @Prop({
+    type: String,
+    default: ''
+  })
+  title: string
+
+  /**
+   * 面板内容
+   *
+   * @type {string}
+   * @memberof Panel
+   */
+  @Prop({
+    type: String,
+    default: ''
+  })
+  content: string
+
+  /**
+   * 是否禁用
+   *
+   * @type {boolean}
+   * @memberof Panel
+   */
+  @Prop({
+    type: Boolean,
+    default: false
+  })
+  disabled: boolean
+
+  /**
+   * 是否显示箭头图标
+   *
+   * @type {boolean}
+   * @memberof Panel
+   */
+  @Prop({
+    type: Boolean,
+    default: true
+  })
+  showArrow: boolean
+
   get classes () {
-    const { prefixCls, current, disabled } = this as any
+    const { prefixCls, current, disabled } = this
     const wrap = classNames(prefixCls, {
       [`${prefixCls}--current`]: current,
       [`${prefixCls}--disabled`]: disabled,
@@ -72,20 +121,36 @@ class Panel extends Doraemon {
     }
   }
 
+  /**
+   * 是否激动当前面板
+   *
+   * @type {boolean}
+   * @memberof Panel
+   */
   current: boolean = false
+
+  /**
+   * 对应 Key 值。如果没有设置 key，默认取 index 索引值
+   *
+   * @type {string}
+   * @memberof Panel
+   */
   index: string = '0'
 
-  changeCurrent (current: boolean, index: string) {
-    this.current = current
-    this.index = index
+  updateCurrentAndIndex (current: boolean, index: string) {
+    this.$nextTick(() => {
+      this.current = current
+      this.index = index
+    })
   }
 
   onClick () {
-    const { index, disabled } = this as any
-    if (!disabled && this.$parent) {
-      (this.$parent as any).onClickItem(index)
+    const { index, disabled } = this
+    if (!disabled) {
+      (this.$parent as AccordionInstance)?.onClickItem(index)
     }
   }
 }
 
+export type PanelInstance = Panel
 export default defineComponentHOC()(Panel)

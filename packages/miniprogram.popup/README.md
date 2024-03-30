@@ -53,6 +53,7 @@ export type Position = 'bottom' | 'top' | 'left' | 'right' | 'center'
 | prefixCls | `string` | 自定义类名前缀 | dora-popup |
 | animationPrefixCls | `string` | 自定义 animation 类名前缀 | dora-animate |
 | position | `Position` | 指定弹出的位置 | center |
+| wrapStyle | `object` | 自定义样式 | - |
 | bodyStyle | `object` | 自定义 body 样式 | - |
 | closable | `boolean` | 是否显示关闭按钮 | false |
 | mask | `boolean` | 是否显示蒙层 | true |
@@ -86,3 +87,4 @@ export type Position = 'bottom' | 'top' | 'left' | 'right' | 'center'
 | 属性 | 描述 | 默认值 | 全局变量 |
 | --- | --- | --- | --- |
 | --z-index | 弹窗的 `z-index` | `var(--dora-component-z-index, 1000)` | `--dora-popup-z-index` |
+| --background-color | 弹层的背景色 | `var(--dora-component-background-color, #fff)` | `--dora-popup-background-color` |

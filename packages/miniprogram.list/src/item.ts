@@ -1,6 +1,6 @@
 import { type CustomEvent, defineComponentHOC, Doraemon, Component, Emit, Event, Prop} from '@doraemon-ui/miniprogram.core-js'
 import { type NativeButtonOpenType, type NativeRouteOpenType, useNativeRoute, NATIVE_ROUTES } from '@doraemon-ui/miniprogram.shared'
-const { classNames } = Doraemon.util
+const { classNames, styleToCssString } = Doraemon.util
 
 @Component({
   components: {
@@ -14,9 +14,25 @@ const { classNames } = Doraemon.util
       type: String,
       default: 'dora-list-item',
     },
+    url: {
+      type: String,
+      default: '',
+    },
+    urlParams: {
+      type: Object,
+      default: null,
+    },
+    delta: {
+      type: Number,
+      default: 1,
+    },
     disabled: {
       type: Boolean,
       default: false,
+    },
+    openType: {
+      type: String,
+      default: '',
     },
     hoverClass: {
       type: String,
@@ -67,6 +83,7 @@ const { classNames } = Doraemon.util
       default: '',
     },
   },
+  expose: ['updateIsLast']
 })
 class ListItem extends Doraemon {
   /**
@@ -77,59 +94,112 @@ class ListItem extends Doraemon {
    */
   prefixCls!: string
 
+  /**
+   * 左侧缩略图
+   *
+   * @type {string}
+   * @memberof ListItem
+   */
   @Prop({
     type: String,
     default: ''
   })
   thumb: string
 
+  /**
+   * 左侧标题
+   *
+   * @type {string}
+   * @memberof ListItem
+   */
   @Prop({
     type: String,
     default: ''
   })
   title: string
 
+  /**
+   * 标题下方的描述信息
+   *
+   * @type {string}
+   * @memberof ListItem
+   */
   @Prop({
     type: String,
     default: ''
   })
   label: string
 
+  /**
+   * 右侧内容
+   *
+   * @type {string}
+   * @memberof ListItem
+   */
   @Prop({
     type: String,
     default: ''
   })
   extra: string
 
+  /**
+   * 是否有底部横线
+   *
+   * @type {boolean}
+   * @memberof ListItem
+   */
   @Prop({
     type: Boolean,
     default: true
   })
   hasLine: boolean
 
+  /**
+   * 是否展示右侧箭头并开启尝试以 url 跳转
+   *
+   * @type {boolean}
+   * @memberof ListItem
+   */
   @Prop({
     type: Boolean,
     default: false
   })
   isLink: boolean
 
+  /**
+   * 对齐方式
+   *
+   * @type {('flex-start' | 'center')}
+   * @memberof ListItem
+   */
   @Prop({
     type: String,
-    default: ''
+    default: 'center'
   })
-  url: string
+  align: 'flex-start' | 'center'
 
+  /**
+   * 自定义样式
+   *
+   * @type {Partial<CSSStyleDeclaration>}
+   * @memberof ListItem
+   */
   @Prop({
-    type: Number,
-    default: 1
+    type: Object,
+    default: null,
   })
-  delta: number
-  
+  wrapStyle: Partial<CSSStyleDeclaration>
+
+  // native route props
+  url!: string
+  urlParams!: object
+  delta!: number
+  openType!: NativeButtonOpenType | NativeRouteOpenType
+
   // native button props
   // @see https://developers.weixin.qq.com/miniprogram/dev/component/button.html
   disabled!: boolean
   // openType!: NativeButtonOpenType
-  openType!: NativeButtonOpenType | NativeRouteOpenType
   hoverClass!: string
   hoverStopPropagation!: boolean
   hoverStartTime!: number
@@ -144,19 +214,21 @@ class ListItem extends Doraemon {
   appParameter!: string
   
   get classes () {
-    const { prefixCls, hoverClass, isLast, hasLine, isLink, disabled } = this
+    const { prefixCls, hoverClass, isLast, hasLine, isLink, align, disabled } = this
     const wrap = classNames(prefixCls, {
       [`${prefixCls}--last`]: isLast,
       [`${prefixCls}--has-line`]: hasLine,
       [`${prefixCls}--access`]: isLink,
+      [`${prefixCls}--align-${align}`]: align,
       [`${prefixCls}--disabled`]: disabled,
     })
     const hd = `${prefixCls}__hd`
     const thumb = `${prefixCls}__thumb`
     const bd = `${prefixCls}__bd`
-    const text = `${prefixCls}__text`
-    const desc = `${prefixCls}__desc`
+    const title = `${prefixCls}__title`
+    const description = `${prefixCls}__description`
     const ft = `${prefixCls}__ft`
+    const arrow = `${prefixCls}__arrow`
     const hover = hoverClass && hoverClass !== 'default' ? hoverClass : `${prefixCls}--hover`
   
     return {
@@ -164,11 +236,16 @@ class ListItem extends Doraemon {
       hd,
       thumb,
       bd,
-      text,
-      desc,
+      title,
+      description,
       ft,
+      arrow,
       hover,
     }
+  }
+
+  get containerStyle () {
+    return this.wrapStyle ? styleToCssString(this.wrapStyle) : ''
   }
 
   isLast: boolean = false
@@ -241,12 +318,13 @@ class ListItem extends Doraemon {
   }
 
   linkTo() {
-    const { url, isLink, openType: _ot, delta } = this
+    const { url, urlParams, isLink, openType: _ot, delta } = this
     const openType = (NATIVE_ROUTES.includes(_ot as unknown as NativeRouteOpenType) ? _ot : 'navigateTo') as NativeRouteOpenType
     if (isLink && url) {
       useNativeRoute(
         {
           url,
+          urlParams,
           openType,
           delta,
         },
@@ -255,11 +333,14 @@ class ListItem extends Doraemon {
     }
   }
 
-  updateIsLastElement(isLast: boolean) {
-    if (isLast !== this.isLast) {
-      this.isLast = isLast
-    }
+  updateIsLast(isLast: boolean) {
+    this.$nextTick(() => {
+      if (isLast !== this.isLast) {
+        this.isLast = isLast
+      }
+    })
   }
 }
 
+export type ListItemInstance = ListItem
 export default defineComponentHOC()(ListItem)

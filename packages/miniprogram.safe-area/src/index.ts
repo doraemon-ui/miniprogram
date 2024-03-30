@@ -145,14 +145,14 @@ class SafeArea extends Doraemon {
   /**
    * 自定义样式
    *
-   * @type {object}
+   * @type {Partial<CSSStyleDeclaration>}
    * @memberof SafeArea
    */
   @Prop({
     type: Object,
     default: null,
   })
-  wrapStyle: object
+  wrapStyle: Partial<CSSStyleDeclaration>
 
   /**
    * 组件样式

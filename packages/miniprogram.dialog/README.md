@@ -61,17 +61,17 @@ yarn add @doraemon-ui/miniprogram.dialog
 | buttons | `Button[]` | 操作按钮列表，更多参数见下 `Button props` | [] |
 | bind:close | `() => void` | 点击关闭按钮或蒙层的回调函数 | - |
 | bind:closed | `() => void` | 关闭后的回调函数 | - |
-| bind:action | `(event: CustomEvent<{ method: string, button: Button, index: number, detail: Detail }>) => void` | 关闭后的回调函数 | - |
+| bind:action | `(event: CustomEvent<{ method: string, button: Button, index: number, detail: Detail }>) => void` | 点击操作按钮时触发 | - |
 
 #### Button props
 
 | 参数 | 类型 | 描述 | 默认值 |
 | --- | --- | --- | --- |
 | text | `string` | 按钮的文本 | - |
-| type | `'light' \| 'stable' \| 'positive' \| 'calm' \| 'assertive' \| 'balanced' \| 'energized' \| 'royal' \| 'dark'` | 按钮的类型 | - |
+| type | `PresetColor` | 按钮的类型 | - |
 | bold | `boolean` | 是否加粗按钮的文字 | - |
 | disabled | `boolean` | 是否禁用 | false |
-| openType | `'contact' \| 'share' \| 'getUserInfo' \| 'getPhoneNumber'` | 微信开放能力| - |
+| openType | `NativeButtonOpenType` | 微信开放能力| - |
 | hoverClass | `string` | 指定按下去的样式类。当 hover-class="none" 时，没有点击态效果 | default |
 | hoverStopPropagation | `boolean` | 指定是否阻止本节点的祖先节点出现点击态 | false |
 | hoverStartTime | `number` | 按住后多久出现点击态，单位毫秒 | 20 |
@@ -92,6 +92,9 @@ yarn add @doraemon-ui/miniprogram.dialog
 | onError | `(event: CustomEvent<ButtonError>) => void` | 当使用开放能力时，发生错误的回调 | - |
 | onOpenSetting | `(event: CustomEvent<ButtonOpenSetting>) => void` | 在打开授权设置页后回调 | - |
 | onChooseAvatar | `(event: CustomEvent<ButtonChooseAvatar>) => void` | 获取用户头像回调 | - |
+| onCreateLiveActivity | `(event: CustomEvent) => void` | 新的一次性订阅消息下发机制回调 | - |
+| onGetRealtimePhoneNumber | `(event: CustomEvent) => void` | 手机号实时验证回调 | - |
+| onAgreePrivacyAuthorization | `(event: CustomEvent) => void` | 用户同意隐私协议事件回调 | - |
 
 ### Dialog slot
 
@@ -134,7 +137,7 @@ hideDialog()
 | 参数 | 类型 | 描述 | 默认值 |
 | --- | --- | --- | --- |
 | confirmText | `string` | 确定按钮的文字 | 确定 |
-| confirmType | `'light' \| 'stable' \| 'positive' \| 'calm' \| 'assertive' \| 'balanced' \| 'energized' \| 'royal' \| 'dark'` | 确定按钮的类型 | balanced |
+| confirmType | `PresetColor` | 确定按钮的类型 | balanced |
 | onConfirm | `({ method: string, button: Button, index: number, detail: Detail }) => void \| Promise<void>` | 确定按钮的点击事件 | - |
 
 ### Dialog.confirm
@@ -146,10 +149,10 @@ hideDialog()
 | 参数 | 类型 | 描述 | 默认值 |
 | --- | --- | --- | --- |
 | confirmText | `string` | 确定按钮的文字 | 确定 |
-| confirmType | `'light' \| 'stable' \| 'positive' \| 'calm' \| 'assertive' \| 'balanced' \| 'energized' \| 'royal' \| 'dark'` | 确定按钮的类型 | balanced |
+| confirmType | `PresetColor` | 确定按钮的类型 | balanced |
 | onConfirm | `({ method: string, button: Button, index: number, detail: Detail }) => void \| Promise<void>` | 确定按钮的点击事件 | - |
 | cancelText | `string` | 取消按钮的文字 | 取消 |
-| cancelType | `'light' \| 'stable' \| 'positive' \| 'calm' \| 'assertive' \| 'balanced' \| 'energized' \| 'royal' \| 'dark'` | 取消按钮的类型 | dark |
+| cancelType | `PresetColor` | 取消按钮的类型 | dark |
 | onCancel | `({ method: string, button: Button, index: number, detail: Detail }) => void \| Promise<void>` | 取消按钮的点击事件 | - |
 
 ### Dialog.clear

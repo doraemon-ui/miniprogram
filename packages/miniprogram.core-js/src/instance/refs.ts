@@ -1,4 +1,5 @@
 import { getData } from './components'
+import { getPublicInstance } from './expose'
 
 export function initRefs (vm) {
   const components = vm.$options.components || {}
@@ -58,7 +59,7 @@ export function initRefs (vm) {
 function find (vm, path: string) {
   const nodes = vm._renderProxy.getRelationNodes(path)
   if (nodes && nodes.length > 0) {
-    return nodes.map((v) => v.$component)
+    return nodes.map((v) => getPublicInstance(v.$component))
   }
   return []
 }

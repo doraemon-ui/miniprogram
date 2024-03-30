@@ -214,14 +214,14 @@ class AnimationGroup extends Doraemon {
   /**
    * 自定义样式
    *
-   * @type {object}
+   * @type {Partial<CSSStyleDeclaration>}
    * @memberof AnimationGroup
    */
   @Prop({
     type: Object,
     default: null,
   })
-  wrapStyle: object
+  wrapStyle: Partial<CSSStyleDeclaration>
 
   /**
    * 阻止移动触摸

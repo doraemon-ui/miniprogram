@@ -1,3 +1,5 @@
+export * from './buildURL'
+export * from './isDate'
 export * from './isDef'
 export * from './isFalse'
 export * from './isObject'
@@ -10,6 +12,8 @@ export * from './omit'
 export * from './pxToNumber'
 export * from './sleep'
 
+import { buildURL } from './buildURL'
+import { isDate } from './isDate'
 import { isDef } from './isDef'
 import { isFalse } from './isFalse'
 import { isObject } from './isObject'
@@ -23,6 +27,8 @@ import { pxToNumber } from './pxToNumber'
 import { sleep } from './sleep'
 
 export default {
+  buildURL,
+  isDate,
   isDef,
   isFalse,
   isObject,

@@ -1,4 +1,4 @@
-import { initComponents } from '../instance/components'
+import { initComponents, useThrottle } from '../instance/components'
 import { initComputed } from '../instance/computed'
 import { config } from '../instance/config'
 import { initData } from '../instance/data'
@@ -38,7 +38,6 @@ export function defineComponentHOC (externalOptions: ComponentExternalOptions = 
     options.mixins = options.mixins || []
 
     const defaultProps = initProps(componentInstance, options.props)
-    const defaultData = Object.keys(defaultProps).reduce((acc, name) => ({ ...acc, [name]: (defaultProps[name] as any).value }), {})
     const watch = initWatch(componentInstance, options.watch)
     const components = initComponents(componentInstance, options.components)
     const methods = initMethods(componentInstance, options.methods)
@@ -66,18 +65,22 @@ export function defineComponentHOC (externalOptions: ComponentExternalOptions = 
         }
         return getPublicInstance(this.$component)
       },
-      relations: components,
+      relations: { ...components },
       behaviors: (Array.isArray(externalOptions.behaviors) ?
-        externalOptions.behaviors : []).concat(['wx://component-export', syncPropsToData(options.computed)]),
+        externalOptions.behaviors : []).concat([
+          'wx://component-export',
+          useThrottle(),
+          syncPropsToData(defaultProps, options.computed)
+        ]),
       observers: {
         ...watch,
         ['**']: function defineComputed (this: ComponentRenderProxy<Doraemon>) {
           initComputed(this.$component)
         },
       },
-      properties: defaultProps,
-      data: defaultData,
-      methods,
+      properties: { ...defaultProps },
+      data: {},
+      methods: { ...methods },
       lifetimes: {
         created: function beforeCreate(this: ComponentRenderProxy<Doraemon>) {
           this.$component = new target()

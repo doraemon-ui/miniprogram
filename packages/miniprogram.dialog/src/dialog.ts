@@ -45,7 +45,7 @@ export interface DialogProps {
   /** 自定义类名前缀 */
   prefixCls?: string
   /** 弹窗对应的自定义样式 */
-  bodyStyle?: CSSStyleDeclaration
+  bodyStyle?: Partial<CSSStyleDeclaration>
   /** 是否显示蒙层 */
   mask?: boolean
   /** 点击蒙层是否允许关闭 */

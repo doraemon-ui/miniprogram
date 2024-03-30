@@ -4,7 +4,7 @@ import { isPlainObject } from '../util/isPlainObject'
 import { isReserved } from '../util/isReserved'
 import { warn } from '../util/warn'
 
-export function initData (vm) {
+export function getDefaultData(vm) {
   let data = vm.$options.data || {}
   data = typeof data === 'function'
     ? getData(data, vm)
@@ -15,6 +15,11 @@ export function initData (vm) {
     ...data,
     ...instData,
   }
+  return data
+}
+
+export function initData (vm) {
+  const data = getDefaultData(vm)
   vm._renderProxy.setData(data)
 }
 

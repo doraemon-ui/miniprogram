@@ -100,7 +100,7 @@ class Toast extends Doraemon {
     }
   }
 
-  get maskStyle () {
+  get maskStyle (): Partial<CSSStyleDeclaration> {
     return {
       pointerEvents: this.maskClickable ? 'none' : 'auto',
     }

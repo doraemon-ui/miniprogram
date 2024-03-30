@@ -23,7 +23,7 @@ class Dialog extends Doraemon {
     type: Object,
     default: null,
   })
-  bodyStyle: CSSStyleDeclaration
+  bodyStyle: Partial<CSSStyleDeclaration>
 
   @Prop({
     type: Boolean,

@@ -46,10 +46,19 @@ yarn add @doraemon-ui/miniprogram.button
 
 ### Button props
 
+```ts
+export type PresetColor = 'light' | 'stable' | 'positive' | 'calm' |
+  'balanced' | 'energized' | 'assertive' | 'royal' | 'dark'
+
+export type NativeButtonOpenType = 'contact' | 'liveActivity' | 'share' | 'getPhoneNumber' |
+  'getRealtimePhoneNumber' | 'getUserInfo' | 'launchApp' | 'openSetting' | 'feedback' |
+  'chooseAvatar' | 'agreePrivacyAuthorization'
+```
+
 | 参数 | 类型 | 描述 | 默认值 |
 | --- | --- | --- | --- |
 | prefixCls | `string` | 自定义类名前缀 | dora-button |
-| color | `'light' \| 'stable' \| 'positive' \| 'calm' \| 'assertive' \| 'balanced' \| 'energized' \| 'royal' \| 'dark'` | 按钮颜色 | positive |
+| color | `PresetColor` | 按钮颜色 | positive |
 | fill | `'solid' \| 'outline' \| 'clear'` | 填充模式 | solid |
 | expand | `'block' \| 'full'` | 扩展模式 | - |
 | size | `'small' \| 'default' \| 'large'` | 按钮的大小 | default |
@@ -58,7 +67,7 @@ yarn add @doraemon-ui/miniprogram.button
 | disabled | `boolean` | 是否禁用 | false |
 | loading | `boolean` | 名称前是否带 loading 图标 | false |
 | formType | `string` | ~~用于 `<form/>` 组件，点击分别会触发 `<form/>` 组件的 submit/reset 事件~~ | - |
-| openType | `'contact' \| 'share' \| 'getUserInfo' \| 'getPhoneNumber'` | 微信开放能力 | - |
+| openType | `NativeButtonOpenType` | 微信开放能力 | - |
 | hoverClass | `string` | 指定按钮按下去的样式类。当 hover-class="none" 时，没有点击态效果 | default |
 | hoverStopPropagation | `boolean` | 指定是否阻止本节点的祖先节点出现点击态 | false |
 | hoverStartTime | `number` | 按住后多久出现点击态，单位毫秒 | 20 |
@@ -75,10 +84,13 @@ yarn add @doraemon-ui/miniprogram.button
 | bind:getuserinfo | `(event: CustomEvent<ButtonGetUserInfo>) => void` | 用户点击该按钮时，会返回获取到的用户信息，回调的detail数据与wx.getUserInfo返回的一致 | - |
 | bind:contact | `(event: CustomEvent<ButtonContact>) => void` | 客服消息回调 | - |
 | bind:getphonenumber | `(event: CustomEvent<ButtonGetPhoneNumber>) => void` | 获取用户手机号回调 | - |
-| bind:launchApp | `(event: CustomEvent<ButtonLaunchApp>) => void` | 打开 APP 成功的回调 | - |
+| bind:launchapp | `(event: CustomEvent<ButtonLaunchApp>) => void` | 打开 APP 成功的回调 | - |
 | bind:error | `(event: CustomEvent<ButtonError>) => void` | 当使用开放能力时，发生错误的回调 | - |
 | bind:opensetting | `(event: CustomEvent<ButtonOpenSetting>) => void` | 在打开授权设置页后回调 | - |
 | bind:chooseavatar | `(event: CustomEvent<ButtonChooseAvatar>) => void` | 获取用户头像回调 | - |
+| bind:createliveactivity | `(event: CustomEvent) => void` | 新的一次性订阅消息下发机制回调 | - |
+| bind:getrealtimephonenumber | `(event: CustomEvent) => void` | 手机号实时验证回调 | - |
+| bind:agreeprivacyauthorization | `(event: CustomEvent) => void` | 用户同意隐私协议事件回调 | - |
 
 > 更多参数说明请参考微信官方的表单组件 [Button](https://developers.weixin.qq.com/miniprogram/dev/component/button.html)。
 

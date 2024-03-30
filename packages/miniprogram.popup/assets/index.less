@@ -2,16 +2,18 @@
 
 // Popup styles
 // @prop --z-index: The z-index of the popup
+// @prop --background-color: Background color of the popup
 // -----------------------------
 .@{popup-prefix-cls} {
   --z-index: @popup-z-index;
+  --background-color: @popup-background-color;
   position: fixed;
   z-index: var(--z-index);
 
   &__body {
     position: fixed;
     z-index: calc(var(--z-index) + 10);
-    background-color: @popup-background-color;
+    background-color: var(--background-color);
     box-sizing: border-box;
   }
 

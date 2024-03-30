@@ -47,8 +47,8 @@ yarn add @doraemon-ui/miniprogram.accordion
 | 参数 | 类型 | 描述 | 默认值 |
 | --- | --- | --- | --- |
 | prefixCls | `string` | 自定义类名前缀 | dora-accordion |
-| defaultCurrent | `array` | 默认激活 tab 面板的 key，当 `controlled` 为 `false` 时才生效 | - |
-| current | `array` | 用于手动激活 tab 面板的 key，当 `controlled` 为 `true` 时才生效 | - |
+| defaultCurrent | `string[]` | 默认激活 tab 面板的 key，当 `controlled` 为 `false` 时才生效 | - |
+| current | `string[]` | 用于手动激活 tab 面板的 key，当 `controlled` 为 `true` 时才生效 | - |
 | controlled | `boolean` | 是否受控 [说明文档](controlled.md) | false |
 | accordion | `boolean` | 是否手风琴模式 | false |
 | title | `string` | 标题 | - |
