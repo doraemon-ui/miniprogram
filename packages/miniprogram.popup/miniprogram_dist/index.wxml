@@ -13,7 +13,7 @@
     classNames="{{ transitionName }}"
     mountOnEnter="{{ mountOnEnter }}"
     unmountOnExit="{{ unmountOnExit }}"
-    wrapStyle="{{ wrapStyle }}"
+    wrapStyle="{{ internalBodyStyle }}"
     bind:enter="onShow"
     bind:entered="onShowed"
     bind:exited="onClosed"

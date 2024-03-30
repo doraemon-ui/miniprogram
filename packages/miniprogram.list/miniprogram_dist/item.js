@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.list.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-28, 00:14:03.
+ * Built on 2024-03-31, 01:24:46.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.20.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -12,7 +12,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { defineComponentHOC, Doraemon, Component, Emit, Event, Prop } from '@doraemon-ui/miniprogram.core-js';
 import { useNativeRoute, NATIVE_ROUTES } from '@doraemon-ui/miniprogram.shared';
-const { classNames } = Doraemon.util;
+const { classNames, styleToCssString } = Doraemon.util;
 let ListItem = class ListItem extends Doraemon {
     /**
      * 自定义类名前缀
@@ -21,19 +21,71 @@ let ListItem = class ListItem extends Doraemon {
      * @memberof Button
      */
     prefixCls;
+    /**
+     * 左侧缩略图
+     *
+     * @type {string}
+     * @memberof ListItem
+     */
     thumb;
+    /**
+     * 左侧标题
+     *
+     * @type {string}
+     * @memberof ListItem
+     */
     title;
+    /**
+     * 标题下方的描述信息
+     *
+     * @type {string}
+     * @memberof ListItem
+     */
     label;
+    /**
+     * 右侧内容
+     *
+     * @type {string}
+     * @memberof ListItem
+     */
     extra;
+    /**
+     * 是否有底部横线
+     *
+     * @type {boolean}
+     * @memberof ListItem
+     */
     hasLine;
+    /**
+     * 是否展示右侧箭头并开启尝试以 url 跳转
+     *
+     * @type {boolean}
+     * @memberof ListItem
+     */
     isLink;
+    /**
+     * 对齐方式
+     *
+     * @type {('flex-start' | 'center')}
+     * @memberof ListItem
+     */
+    align;
+    /**
+     * 自定义样式
+     *
+     * @type {Partial<CSSStyleDeclaration>}
+     * @memberof ListItem
+     */
+    wrapStyle;
+    // native route props
     url;
+    urlParams;
     delta;
+    openType;
     // native button props
     // @see https://developers.weixin.qq.com/miniprogram/dev/component/button.html
     disabled;
     // openType!: NativeButtonOpenType
-    openType;
     hoverClass;
     hoverStopPropagation;
     hoverStartTime;
@@ -47,30 +99,36 @@ let ListItem = class ListItem extends Doraemon {
     phoneNumberNoQuotaToast;
     appParameter;
     get classes() {
-        const { prefixCls, hoverClass, isLast, hasLine, isLink, disabled } = this;
+        const { prefixCls, hoverClass, isLast, hasLine, isLink, align, disabled } = this;
         const wrap = classNames(prefixCls, {
             [`${prefixCls}--last`]: isLast,
             [`${prefixCls}--has-line`]: hasLine,
             [`${prefixCls}--access`]: isLink,
+            [`${prefixCls}--align-${align}`]: align,
             [`${prefixCls}--disabled`]: disabled,
         });
         const hd = `${prefixCls}__hd`;
         const thumb = `${prefixCls}__thumb`;
         const bd = `${prefixCls}__bd`;
-        const text = `${prefixCls}__text`;
-        const desc = `${prefixCls}__desc`;
+        const title = `${prefixCls}__title`;
+        const description = `${prefixCls}__description`;
         const ft = `${prefixCls}__ft`;
+        const arrow = `${prefixCls}__arrow`;
         const hover = hoverClass && hoverClass !== 'default' ? hoverClass : `${prefixCls}--hover`;
         return {
             wrap,
             hd,
             thumb,
             bd,
-            text,
-            desc,
+            title,
+            description,
             ft,
+            arrow,
             hover,
         };
+    }
+    get containerStyle() {
+        return this.wrapStyle ? styleToCssString(this.wrapStyle) : '';
     }
     isLast = false;
     onClick() {
@@ -110,20 +168,23 @@ let ListItem = class ListItem extends Doraemon {
         return e.target;
     }
     linkTo() {
-        const { url, isLink, openType: _ot, delta } = this;
+        const { url, urlParams, isLink, openType: _ot, delta } = this;
         const openType = (NATIVE_ROUTES.includes(_ot) ? _ot : 'navigateTo');
         if (isLink && url) {
             useNativeRoute({
                 url,
+                urlParams,
                 openType,
                 delta,
             }, this._renderProxy);
         }
     }
-    updateIsLastElement(isLast) {
-        if (isLast !== this.isLast) {
-            this.isLast = isLast;
-        }
+    updateIsLast(isLast) {
+        this.$nextTick(() => {
+            if (isLast !== this.isLast) {
+                this.isLast = isLast;
+            }
+        });
     }
 };
 __decorate([
@@ -165,15 +226,15 @@ __decorate([
 __decorate([
     Prop({
         type: String,
-        default: ''
+        default: 'center'
     })
-], ListItem.prototype, "url", void 0);
+], ListItem.prototype, "align", void 0);
 __decorate([
     Prop({
-        type: Number,
-        default: 1
+        type: Object,
+        default: null,
     })
-], ListItem.prototype, "delta", void 0);
+], ListItem.prototype, "wrapStyle", void 0);
 __decorate([
     Event(),
     Emit('getuserinfo')
@@ -227,9 +288,25 @@ ListItem = __decorate([
                 type: String,
                 default: 'dora-list-item',
             },
+            url: {
+                type: String,
+                default: '',
+            },
+            urlParams: {
+                type: Object,
+                default: null,
+            },
+            delta: {
+                type: Number,
+                default: 1,
+            },
             disabled: {
                 type: Boolean,
                 default: false,
+            },
+            openType: {
+                type: String,
+                default: '',
             },
             hoverClass: {
                 type: String,
@@ -280,6 +357,7 @@ ListItem = __decorate([
                 default: '',
             },
         },
+        expose: ['updateIsLast']
     })
 ], ListItem);
 export default defineComponentHOC()(ListItem);

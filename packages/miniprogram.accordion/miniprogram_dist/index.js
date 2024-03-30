@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.accordion.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-25, 14:56:19.
+ * Built on 2024-03-31, 01:23:00.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.20.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { defineComponentHOC, Doraemon, Component, Emit, Watch } from '@doraemon-ui/miniprogram.core-js';
+import { defineComponentHOC, Doraemon, Component, Emit, Watch, Prop } from '@doraemon-ui/miniprogram.core-js';
 let Accordion = class Accordion extends Doraemon {
     /**
      * 自定义类名前缀
@@ -19,6 +19,48 @@ let Accordion = class Accordion extends Doraemon {
      * @memberof Accordion
      */
     prefixCls;
+    /**
+     * 默认激活 tab 面板的 key，当 `controlled` 为 `false` 时才生效
+     *
+     * @type {string[]}
+     * @memberof Accordion
+     */
+    defaultCurrent;
+    /**
+     * 用于手动激活 tab 面板的 key，当 `controlled` 为 `true` 时才生效
+     *
+     * @type {string[]}
+     * @memberof Accordion
+     */
+    current;
+    /**
+     * 是否受控
+     *
+     * @type {boolean}
+     * @memberof Accordion
+     */
+    controlled;
+    /**
+     * 是否手风琴模式
+     *
+     * @type {boolean}
+     * @memberof Accordion
+     */
+    accordion;
+    /**
+     * 标题
+     *
+     * @type {string}
+     * @memberof Accordion
+     */
+    title;
+    /**
+     * 描述
+     *
+     * @type {string}
+     * @memberof Accordion
+     */
+    label;
     get classes() {
         const { prefixCls } = this;
         const wrap = prefixCls;
@@ -43,9 +85,9 @@ let Accordion = class Accordion extends Doraemon {
         if (this.activeKey !== activeKey) {
             this.activeKey = activeKey;
         }
-        this.changeCurrent(activeKey);
+        this.updateCurrentAndIndex(activeKey);
     }
-    changeCurrent(activeKey) {
+    updateCurrentAndIndex(activeKey) {
         const elements = this.$children;
         if (elements.length > 0) {
             elements.forEach((element, index) => {
@@ -53,7 +95,7 @@ let Accordion = class Accordion extends Doraemon {
                 const current = this.accordion ?
                     activeKey[0] === key :
                     activeKey.indexOf(key) !== -1;
-                this.$nextTick(() => element.changeCurrent(current, key));
+                element.updateCurrentAndIndex(current, key);
             });
         }
         if (this.keys.length !== elements.length) {
@@ -88,6 +130,42 @@ let Accordion = class Accordion extends Doraemon {
     }
 };
 __decorate([
+    Prop({
+        type: Array,
+        default: []
+    })
+], Accordion.prototype, "defaultCurrent", void 0);
+__decorate([
+    Prop({
+        type: Array,
+        default: []
+    })
+], Accordion.prototype, "current", void 0);
+__decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
+], Accordion.prototype, "controlled", void 0);
+__decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
+], Accordion.prototype, "accordion", void 0);
+__decorate([
+    Prop({
+        type: String,
+        default: ''
+    })
+], Accordion.prototype, "title", void 0);
+__decorate([
+    Prop({
+        type: String,
+        default: ''
+    })
+], Accordion.prototype, "label", void 0);
+__decorate([
     Watch('current')
 ], Accordion.prototype, "watchCurrent", null);
 __decorate([
@@ -106,30 +184,6 @@ Accordion = __decorate([
             prefixCls: {
                 type: String,
                 default: 'dora-accordion',
-            },
-            defaultCurrent: {
-                type: Array,
-                default: [],
-            },
-            current: {
-                type: Array,
-                default: [],
-            },
-            controlled: {
-                type: Boolean,
-                default: false,
-            },
-            accordion: {
-                type: Boolean,
-                default: false,
-            },
-            title: {
-                type: String,
-                default: '',
-            },
-            label: {
-                type: String,
-                default: '',
             },
         },
     })

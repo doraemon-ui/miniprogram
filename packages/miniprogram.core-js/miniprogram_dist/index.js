@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.core-js.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-25, 14:55:25.
+ * Built on 2024-03-31, 01:22:08.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.20.
  */
 
@@ -231,54 +231,58 @@ function hyphenate$1(string) {
  * @param {string} string
  * @return {string}
  */
-function hyphenateStyleName$1(string) {
+function hyphenateStyleName(string) {
   return hyphenate$1(string).replace(msPattern, '-ms-');
 }
 
-var hyphenateStyleName_1 = hyphenateStyleName$1;
+var hyphenateStyleName_1 = hyphenateStyleName;
 
-var isUnitlessNumber = CSSProperty_1.isUnitlessNumber;
-var hyphenateStyleName = hyphenateStyleName_1;
-var isArray = Array.isArray;
-var keys = Object.keys;
+/** @ts-ignore */
+const isUnitlessNumber = CSSProperty_1.isUnitlessNumber;
+const isArray = Array.isArray;
+const keys = Object.keys;
 // Follows syntax at https://developer.mozilla.org/en-US/docs/Web/CSS/content,
 // including multiple space separated values.
-var unquotedContentValueRegex = /^(normal|none|(\b(url\([^)]*\)|chapter_counter|attr\([^)]*\)|(no-)?(open|close)-quote|inherit)((\b\s*)|$|\s+))+)$/;
-
-function buildRule(key, value) {
-  if (!isUnitlessNumber[key] && typeof value === 'number') {
-    value = '' + value + 'px';
-  }
-  else if (key === 'content' && !unquotedContentValueRegex.test(value)) {
-    value = "'" + value.replace(/'/g, "\\'") + "'";
-  }
-
-  return hyphenateStyleName(key) + ': ' + value + ';  ';
+const unquotedContentValueRegex = /^(normal|none|(\b(url\([^)]*\)|chapter_counter|attr\([^)]*\)|(no-)?(open|close)-quote|inherit)((\b\s*)|$|\s+))+)$/;
+function buildRule(key, value, exclude) {
+    if ((key.toString().match(exclude) === null) && !isUnitlessNumber[key] && typeof value === 'number') {
+        value = '' + value + 'px';
+    }
+    else if (key === 'content' && !unquotedContentValueRegex.test(value)) {
+        value = "'" + value.replace(/'/g, "\\'") + "'";
+    }
+    return hyphenateStyleName_1(key) + ': ' + value + ';  ';
 }
-
-function styleToCssString$1(rules) {
-  var result = '';
-  if (!rules || keys(rules).length === 0) {
+// css var prefix
+const cssVarPattern = /^--/;
+function styleToCssString(rules, options = {
+    exclude: cssVarPattern
+}) {
+    const exclude = options ? options.exclude : null;
+    if (typeof rules === 'string') {
+        rules = rules.trim();
+        return rules.slice(-1) === ';' ? `${rules} ` : `${rules}; `;
+    }
+    let result = '';
+    if (!rules || keys(rules).length === 0) {
+        return result;
+    }
+    const styleKeys = keys(rules);
+    for (let j = 0, l = styleKeys.length; j < l; j++) {
+        const styleKey = styleKeys[j];
+        const value = rules[styleKey];
+        if (isArray(value)) {
+            for (let i = 0, len = value.length; i < len; i++) {
+                result += buildRule(styleKey, value[i], exclude);
+            }
+        }
+        else {
+            result += buildRule(styleKey, value, exclude);
+        }
+    }
     return result;
-  }
-  var styleKeys = keys(rules);
-  for (var j = 0, l = styleKeys.length; j < l; j++) {
-    var styleKey = styleKeys[j];
-    var value = rules[styleKey];
-
-    if (isArray(value)) {
-      for (var i = 0, len = value.length; i < len; i++) {
-        result += buildRule(styleKey, value[i]);
-      }
-    }
-    else {
-      result += buildRule(styleKey, value);
-    }
-  }
-  return result;
 }
-
-var reactStyleObjectToCss = styleToCssString$1;
+/** @ts-ignore */
 
 const LIFECYCLE_HOOKS = [
     'beforeCreate',
@@ -455,13 +459,6 @@ function initProxy(vm) {
     }
 }
 
-const styleToCssString = (rules) => {
-    if (typeof rules === 'string') {
-        rules = rules.trim();
-        return rules.slice(-1) === ';' ? `${rules} ` : `${rules}; `;
-    }
-    return reactStyleObjectToCss(rules);
-};
 let uid = 0;
 let cid = 1;
 class Doraemon {
@@ -886,15 +883,176 @@ function isPlainObject(obj) {
     return Object.prototype.toString.call(obj) === '[object Object]';
 }
 
+function debounce(func, wait, options) {
+    let lastArgs, lastThis, maxWait, result, timerId, lastCallTime;
+    let lastInvokeTime = 0;
+    let leading = false;
+    let maxing = false;
+    let trailing = true;
+    if (typeof func !== 'function') {
+        throw new TypeError('Expected a function');
+    }
+    wait = +wait || 0;
+    if (isPlainObject(options)) {
+        leading = !!options.leading;
+        maxing = 'maxWait' in options;
+        maxWait = maxing ? Math.max(+options.maxWait || 0, wait) : maxWait;
+        trailing = 'trailing' in options ? !!options.trailing : trailing;
+    }
+    function invokeFunc(time) {
+        const args = lastArgs;
+        const thisArg = lastThis;
+        lastArgs = lastThis = undefined;
+        lastInvokeTime = time;
+        result = func.apply(thisArg, args);
+        return result;
+    }
+    function startTimer(pendingFunc, wait) {
+        return setTimeout(pendingFunc, wait);
+    }
+    function cancelTimer(id) {
+        clearTimeout(id);
+    }
+    function leadingEdge(time) {
+        // Reset any `maxWait` timer.
+        lastInvokeTime = time;
+        // Start the timer for the trailing edge.
+        timerId = startTimer(timerExpired, wait);
+        // Invoke the leading edge.
+        return leading ? invokeFunc(time) : result;
+    }
+    function remainingWait(time) {
+        const timeSinceLastCall = time - lastCallTime;
+        const timeSinceLastInvoke = time - lastInvokeTime;
+        const timeWaiting = wait - timeSinceLastCall;
+        return maxing
+            ? Math.min(timeWaiting, maxWait - timeSinceLastInvoke)
+            : timeWaiting;
+    }
+    function shouldInvoke(time) {
+        const timeSinceLastCall = time - lastCallTime;
+        const timeSinceLastInvoke = time - lastInvokeTime;
+        // Either this is the first call, activity has stopped and we're at the
+        // trailing edge, the system time has gone backwards and we're treating
+        // it as the trailing edge, or we've hit the `maxWait` limit.
+        return (lastCallTime === undefined || (timeSinceLastCall >= wait) ||
+            (timeSinceLastCall < 0) || (maxing && timeSinceLastInvoke >= maxWait));
+    }
+    function timerExpired() {
+        const time = Date.now();
+        if (shouldInvoke(time)) {
+            return trailingEdge(time);
+        }
+        // Restart the timer.
+        timerId = startTimer(timerExpired, remainingWait(time));
+    }
+    function trailingEdge(time) {
+        timerId = undefined;
+        // Only invoke if we have `lastArgs` which means `func` has been
+        // debounced at least once.
+        if (trailing && lastArgs) {
+            return invokeFunc(time);
+        }
+        lastArgs = lastThis = undefined;
+        return result;
+    }
+    function cancel() {
+        if (timerId !== undefined) {
+            cancelTimer(timerId);
+        }
+        lastInvokeTime = 0;
+        lastArgs = lastCallTime = lastThis = timerId = undefined;
+    }
+    function flush() {
+        return timerId === undefined ? result : trailingEdge(Date.now());
+    }
+    function pending() {
+        return timerId !== undefined;
+    }
+    function debounced(...args) {
+        const time = Date.now();
+        const isInvoking = shouldInvoke(time);
+        lastArgs = args;
+        lastThis = this;
+        lastCallTime = time;
+        if (isInvoking) {
+            if (timerId === undefined) {
+                return leadingEdge(lastCallTime);
+            }
+            if (maxing) {
+                // Handle invocations in a tight loop.
+                timerId = startTimer(timerExpired, wait);
+                return invokeFunc(lastCallTime);
+            }
+        }
+        if (timerId === undefined) {
+            timerId = startTimer(timerExpired, wait);
+        }
+        return result;
+    }
+    debounced.cancel = cancel;
+    debounced.flush = flush;
+    debounced.pending = pending;
+    return debounced;
+}
+
+let FUNC_ERROR_TEXT = 'Expected a function';
+function throttle(func, wait, options) {
+    let leading = true, trailing = true;
+    if (typeof func != 'function') {
+        throw new TypeError(FUNC_ERROR_TEXT);
+    }
+    if (isPlainObject(options)) {
+        leading = 'leading' in options ? !!options.leading : leading;
+        trailing = 'trailing' in options ? !!options.trailing : trailing;
+    }
+    return debounce(func, wait, {
+        'leading': leading,
+        'maxWait': wait,
+        'trailing': trailing,
+    });
+}
+
 function initComponents(vm, components) {
     return Object.keys(components).reduce((acc, key) => {
-        const { module: componentName, type = 'child', observer = noop } = getData$1(components[key]);
-        const linkCb = function () {
-            if (typeof observer === 'string') {
-                return this.$component[observer]?.();
+        const { module: componentName, type = 'child', observer = noop, throttle = true } = getData$1(components[key]);
+        const linkCb = function (...args) {
+            const oFn = function (...args) {
+                if (this.$component._isMounted) {
+                    if (typeof observer === 'string') {
+                        return this.$component[observer]?.(...args);
+                    }
+                    else if (typeof observer === 'function') {
+                        return observer.apply(this.$component, args);
+                    }
+                }
+            };
+            if (throttle !== undefined && throttle !== false) {
+                if (!this[`_${componentName}_linkCb`]) {
+                    let opts = {
+                        wait: 50,
+                        options: {
+                            trailing: true,
+                            leading: true,
+                        },
+                    };
+                    if (typeof throttle === 'number') {
+                        opts.wait = throttle;
+                    }
+                    else if (isPlainObject(throttle)) {
+                        opts = {
+                            ...opts,
+                            ...throttle
+                        };
+                    }
+                    const { wait, options } = opts;
+                    const { run } = this.useThrottleFn(oFn.bind(this), wait, options);
+                    this[`_${componentName}_linkCb`] = run;
+                }
+                this[`_${componentName}_linkCb`].apply(this, args);
             }
-            else if (typeof observer === 'function') {
-                return observer();
+            else {
+                return oFn.apply(this, args);
             }
         };
         const option = {
@@ -916,6 +1074,7 @@ function getData$1(comp) {
             ['module']: ret.module,
             type: ret.type,
             observer: ret.observer,
+            throttle: ret.throttle
         };
     }
     else if (typeof comp === 'string') {
@@ -928,9 +1087,36 @@ function getData$1(comp) {
             ['module']: comp.module,
             type: comp.type,
             observer: comp.observer,
+            throttle: comp.throttle
         };
     }
     return {};
+}
+function useThrottle() {
+    return Behavior({
+        lifetimes: {
+            created() {
+                this.useThrottleFn = function (fn, wait = 50, options) {
+                    const throttled = throttle(fn.bind(this), wait, options);
+                    this._throttledFns.push(throttled);
+                    return {
+                        run: throttled,
+                        cancel: throttled.cancel,
+                        flush: throttled.flush,
+                    };
+                };
+                this._throttledFns = [];
+            },
+            detached() {
+                if (this._throttledFns.length > 0) {
+                    this._throttledFns.forEach((throttled) => {
+                        throttled.cancel();
+                    });
+                    this._throttledFns = [];
+                }
+            },
+        },
+    });
 }
 
 function initComputed(vm, forceUpdate = false) {
@@ -952,7 +1138,7 @@ function initComputed(vm, forceUpdate = false) {
     }
 }
 
-function initData(vm) {
+function getDefaultData(vm) {
     let data = vm.$options.data || {};
     data = typeof data === 'function'
         ? getData(data, vm)
@@ -963,6 +1149,10 @@ function initData(vm) {
         ...data,
         ...instData,
     };
+    return data;
+}
+function initData(vm) {
+    const data = getDefaultData(vm);
     vm._renderProxy.setData(data);
 }
 function getData(data, vm) {
@@ -1189,7 +1379,7 @@ function initRefs(vm) {
 function find(vm, path) {
     const nodes = vm._renderProxy.getRelationNodes(path);
     if (nodes && nodes.length > 0) {
-        return nodes.map((v) => v.$component);
+        return nodes.map((v) => getPublicInstance(v.$component));
     }
     return [];
 }
@@ -1229,7 +1419,10 @@ if (inMiniprogram) {
     };
 }
 
-function syncPropsToData(computed) {
+function syncPropsToData(props, computed) {
+    const defaultData = Object.keys(props).reduce((acc, name) => ({
+        ...acc, [name]: props[name].value
+    }), {});
     const sync = (data) => {
         return Object.keys(computed).reduce((acc, key) => {
             const userDef = computed[key];
@@ -1244,7 +1437,7 @@ function syncPropsToData(computed) {
     return Behavior({
         definitionFilter(defFields) {
             defFields.data = defFields.data || {};
-            defFields.data = Object.assign(defFields.data, sync(defFields.data));
+            defFields.data = Object.assign(defFields.data, sync({ ...defaultData, ...defFields.data }));
         },
     });
 }
@@ -1262,7 +1455,6 @@ function defineComponentHOC(externalOptions = {}) {
         options.methods = options.methods || {};
         options.mixins = options.mixins || [];
         const defaultProps = initProps(componentInstance, options.props);
-        const defaultData = Object.keys(defaultProps).reduce((acc, name) => ({ ...acc, [name]: defaultProps[name].value }), {});
         const watch = initWatch(componentInstance, options.watch);
         const components = initComponents(componentInstance, options.components);
         const methods = initMethods(componentInstance, options.methods);
@@ -1287,18 +1479,22 @@ function defineComponentHOC(externalOptions = {}) {
                 }
                 return getPublicInstance(this.$component);
             },
-            relations: components,
+            relations: { ...components },
             behaviors: (Array.isArray(externalOptions.behaviors) ?
-                externalOptions.behaviors : []).concat(['wx://component-export', syncPropsToData(options.computed)]),
+                externalOptions.behaviors : []).concat([
+                'wx://component-export',
+                useThrottle(),
+                syncPropsToData(defaultProps, options.computed)
+            ]),
             observers: {
                 ...watch,
                 ['**']: function defineComputed() {
                     initComputed(this.$component);
                 },
             },
-            properties: defaultProps,
-            data: defaultData,
-            methods,
+            properties: { ...defaultProps },
+            data: {},
+            methods: { ...methods },
             lifetimes: {
                 created: function beforeCreate() {
                     this.$component = new target();

@@ -4,6 +4,7 @@
 
 .dora-popup {
   --z-index: var(--dora-popup-z-index, var(--dora-component-z-index, 1000));
+  --background-color: var(--dora-popup-background-color, var(--dora-component-background-color, #fff));
   position: fixed;
   z-index: var(--z-index);
   z-index: var(--z-index)
@@ -12,8 +13,8 @@
   position: fixed;
   z-index: calc(var(--z-index) + 10);
   z-index: calc(var(--z-index) + 10);
-  background-color: var(--dora-component-background-color,#fff);
-  background-color: var(--dora-component-background-color,#fff);
+  background-color: var(--background-color);
+  background-color: var(--background-color);
   box-sizing: border-box
 }
 .dora-popup__close {

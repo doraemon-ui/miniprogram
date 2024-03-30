@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.shared.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-28, 00:13:15.
+ * Built on 2024-03-31, 01:23:42.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.20.
  */
 
@@ -43,16 +43,83 @@ function findComponentNode(selector, instance = getCurrentPage()) {
     return instance?.selectComponent(selector) || null;
 }
 
+function isDate(obj) {
+    return obj instanceof Date;
+}
+
+function isObject(obj) {
+    return obj !== null && typeof obj === 'object';
+}
+
+function encode(val) {
+    // 对url进行编码并处理特殊字符
+    return encodeURIComponent(val)
+        //ig为全局查找，忽略大小写
+        .replace(/%40/g, '@')
+        .replace(/%3A/ig, ':')
+        .replace(/%24/g, '$')
+        .replace(/%2C/ig, ',')
+        .replace(/%20/g, '+')
+        .replace(/%5B/ig, '[')
+        .replace(/%5D/ig, ']');
+}
+function buildURL(url, params) {
+    // 没有 params 就直接返回 url，无需拼接
+    if (!params) {
+        return url;
+    }
+    const parts = [];
+    Object.keys(params).forEach((key) => {
+        // key 对应的是索引值，数组索引值默认从 0 开始，对象的索引值为 key
+        const val = params[key];
+        // 如果传入的 params 参数有 null 或者 undefined，那么就处理下一个参数
+        if (val === null || typeof val === 'undefined') {
+            // 此处的 return 不是退出循环，而是处理下一个参数
+            return;
+        }
+        let values = [];
+        // 如果这个参数是数组
+        if (Array.isArray(val)) {
+            values = val;
+            key += '[]';
+        }
+        else {
+            // 如果不是数组，那就把它统一变为数组
+            values = [val];
+        }
+        values.forEach((val) => {
+            if (isDate(val)) {
+                // toISOString() 方法返回一个 ISO（ISO 格式的字符串： YYYY-MM-DDTHH:mm:ss.sssZ。
+                val = val.toISOString();
+            }
+            else if (isObject(val)) {
+                val = JSON.stringify(val);
+            }
+            parts.push(`${encode(key)}=${encode(val)}`);
+        });
+    });
+    // 将参数以 & 进行连接
+    let serializedParams = parts.join('&');
+    // 如果 params 参数都为空，parts 是一个空数组
+    if (serializedParams) {
+        // 查找 url 中是否有 hash 的表示，即 #，因为需要忽略
+        const markIndex = url.indexOf('#');
+        if (markIndex !== -1) {
+            // 存在就需要删除
+            url = url.slice(0, markIndex);
+        }
+        // 在 params 参数之前需要一个 ?
+        url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams;
+    }
+    return url;
+}
+
 function isDef(v) {
     return v !== undefined && v !== null;
 }
 
 function isFalse(v) {
     return v === false;
-}
-
-function isObject(obj) {
-    return obj !== null && typeof obj === 'object';
 }
 
 function isPromise(val) {
@@ -99,6 +166,8 @@ function sleep(time) {
 }
 
 var util = {
+    buildURL,
+    isDate,
     isDef,
     isFalse,
     isObject,
@@ -112,18 +181,24 @@ var util = {
     sleep,
 };
 
-const useQuery = (instance = getCurrentPage()) => {
+/**
+ * 查询节点信息的对象
+ *
+ * @param {MiniprogramPublicInstance} [instance=getCurrentPage()] 小程序页面或组件的实例对象
+ * @return {*}
+ */
+function useQuery(instance = getCurrentPage()) {
     if (!canUseMP()) {
         return null;
     }
     return !!instance ? miniprogramThis?.createSelectorQuery?.().in(instance) : miniprogramThis?.createSelectorQuery?.();
-};
+}
 /**
  * 获取匹配指定选择器的第一个元素
  *
- * @export
- * @param {string} selector
- * @param {MiniprogramPublicInstance} instance
+ * @see https://developers.weixin.qq.com/miniprogram/dev/api/wxml/SelectorQuery.select.html
+ * @param {string} selector 在当前页面下选择第一个匹配选择器 selector 的节点
+ * @param {MiniprogramPublicInstance} instance 小程序页面或组件的实例对象
  * @return {*}  {(MiniprogramElement | null)}
  */
 function useSelector(selector, instance) {
@@ -132,9 +207,9 @@ function useSelector(selector, instance) {
 /**
  * 获取匹配指定选择器的所有元素
  *
- * @export
- * @param {string} selector
- * @param {MiniprogramPublicInstance} instance
+ * @see https://developers.weixin.qq.com/miniprogram/dev/api/wxml/SelectorQuery.selectAll.html
+ * @param {string} selector 在当前页面下选择匹配选择器 selector 的所有节点。
+ * @param {MiniprogramPublicInstance} instance 小程序页面或组件的实例对象
  * @return {*}  {(MiniprogramElement | null)}
  */
 function useSelectorAll(selector, instance) {
@@ -191,7 +266,15 @@ const makeNodeRef = (node) => {
         node: node.node,
     };
 };
-const useRef = (selector, instance) => {
+/**
+ * 获取第一个节点的相关信息
+ *
+ * @see https://developers.weixin.qq.com/miniprogram/dev/api/wxml/NodesRef.fields.html
+ * @param {(string | string[])} selector 在当前页面下选择第一个匹配选择器 selector 的节点。
+ * @param {MiniprogramPublicInstance} [instance] 小程序页面或组件的实例对象
+ * @return {*}  {(Promise<MiniprogramNodeRef | MiniprogramNodeRef[]>)}
+ */
+function useRef(selector, instance) {
     return new Promise((resolve) => {
         const query = useQuery(instance);
         const isArray = Array.isArray(selector);
@@ -209,8 +292,16 @@ const useRef = (selector, instance) => {
             });
         }
     });
-};
-const useRefAll = (selector, instance) => {
+}
+/**
+ * 获取所有节点的相关信息
+ *
+ * @see https://developers.weixin.qq.com/miniprogram/dev/api/wxml/NodesRef.fields.html
+ * @param {(string | string[])} selector 在当前页面下选择匹配选择器 selector 的所有节点。
+ * @param {MiniprogramPublicInstance} [instance] 小程序页面或组件的实例对象
+ * @return {*}  {(Promise<MiniprogramNodeRef[] | MiniprogramNodeRef[][]>)}
+ */
+function useRefAll(selector, instance) {
     return new Promise((resolve) => {
         const query = useQuery(instance);
         const isArray = Array.isArray(selector);
@@ -228,8 +319,16 @@ const useRefAll = (selector, instance) => {
             });
         }
     });
-};
-const useRect = (selector, instance) => {
+}
+/**
+ * 添加第一个节点的布局位置的查询请求
+ *
+ * @see https://developers.weixin.qq.com/miniprogram/dev/api/wxml/NodesRef.boundingClientRect.html
+ * @param {(string | string[])} selector 在当前页面下选择第一个匹配选择器 selector 的节点。
+ * @param {MiniprogramPublicInstance} [instance] 小程序页面或组件的实例对象
+ * @return {*}  {(Promise<MiniprogramDOMRect | MiniprogramDOMRect[]>)}
+ */
+function useRect(selector, instance) {
     return new Promise((resolve) => {
         const query = useQuery(instance);
         const isArray = Array.isArray(selector);
@@ -245,8 +344,15 @@ const useRect = (selector, instance) => {
             });
         }
     });
-};
-const useRectAll = (selector, instance) => {
+}
+/**
+ * 添加所有节点的布局位置的查询请求
+ *
+ * @param {(string | string[])} selector 在当前页面下选择匹配选择器 selector 的所有节点。
+ * @param {MiniprogramPublicInstance} [instance] 小程序页面或组件的实例对象
+ * @return {*}  {(Promise<MiniprogramDOMRect[] | MiniprogramDOMRect[][]>)}
+ */
+function useRectAll(selector, instance) {
     return new Promise((resolve) => {
         const query = useQuery(instance);
         const isArray = Array.isArray(selector);
@@ -262,8 +368,15 @@ const useRectAll = (selector, instance) => {
             });
         }
     });
-};
-const useScrollOffset = (instance) => {
+}
+/**
+ * 添加节点的滚动位置查询请求。以像素为单位。节点必须是 scroll-view 或者 viewport，返回 NodesRef 对应的 SelectorQuery。
+ *
+ * @see https://developers.weixin.qq.com/miniprogram/dev/api/wxml/NodesRef.scrollOffset.html
+ * @param {MiniprogramPublicInstance} [instance] 小程序页面或组件的实例对象
+ * @return {*}  {Promise<MiniprogramScrollOffset>}
+ */
+function useScrollOffset(instance) {
     return new Promise((resolve) => {
         const query = useQuery(instance);
         if (query) {
@@ -275,24 +388,39 @@ const useScrollOffset = (instance) => {
             });
         }
     });
-};
-const useComputedStyle = (selector, ...args) => {
-    const computedStyle = args.length === 2 ? args[0] : ['width', 'height'];
-    const instance = args.length === 2 ? args[1] : args[0];
+}
+/**
+ * 指定样式名列表，返回节点对应样式名的当前值
+ *
+ * @see https://developers.weixin.qq.com/miniprogram/dev/api/wxml/NodesRef.fields.html
+ * @param {string} selector 在当前页面下选择第一个匹配选择器 selector 的节点。
+ * @param {...any[]} args
+ * @return {*}  {Promise<{ [key in keyof Partial<CSSStyleDeclaration>]: any }>}
+ */
+function useComputedStyle(selector, ...args) {
+    const [computedStyle, instance] = args;
+    const opts = {
+        computedStyle,
+        instance,
+    };
+    if (instance === undefined) {
+        opts.computedStyle = ['width', 'height'];
+        opts.instance = computedStyle;
+    }
     return new Promise((resolve) => {
-        const query = useQuery(instance);
+        const query = useQuery(opts.instance);
         if (query) {
             query
                 .select(selector)
                 .fields({
-                computedStyle,
+                computedStyle: opts.computedStyle,
             });
             query.exec(([node]) => {
                 resolve(node);
             });
         }
     });
-};
+}
 
 const fakeMediaResult = (request, response) => {
     if ('type' in response) {
@@ -458,8 +586,16 @@ const NATIVE_ROUTES = [
     'navigateBack',
     'reLaunch',
 ];
+/**
+ * 跳转到指定的页面
+ *
+ * @export
+ * @param {NativeRouteProps} props 参数对象
+ * @param {*} vm 小程序页面或组件的实例对象
+ * @return {*}
+ */
 function useNativeRoute(props, vm) {
-    const { url, openType = 'navigateTo', delta = 1 } = props;
+    const { url, urlParams, openType = 'navigateTo', delta = 1 } = props;
     const promisify = (method, params) => {
         return new Promise((resolve, reject) => {
             miniprogramThis[method].call(miniprogramThis, {
@@ -480,7 +616,7 @@ function useNativeRoute(props, vm) {
         return promisify(openType, { delta });
     }
     else {
-        return promisify(openType, { url });
+        return promisify(openType, { url: buildURL(url, urlParams) });
     }
 }
 
@@ -535,4 +671,4 @@ var index = {
     ...util,
 };
 
-export { NATIVE_ROUTES, canUseMP, chooseMedia, index as default, dom, findComponentNode, getCurrentPage, getMenuButtonBoundingClientRectSync, getSystemInfoSync, isDef, isFalse, isObject, isPromise, isString, isTrue, isUndef, miniprogramThis, nextTick, noop, omit, pxToNumber, sleep, uploadFile, useComputedStyle, useNativeRoute, usePopupStateHOC, useQuery, useRect, useRectAll, useRef, useRefAll, useScrollOffset, useSelector, useSelectorAll, util, vibrateShort };
+export { NATIVE_ROUTES, buildURL, canUseMP, chooseMedia, index as default, dom, findComponentNode, getCurrentPage, getMenuButtonBoundingClientRectSync, getSystemInfoSync, isDate, isDef, isFalse, isObject, isPromise, isString, isTrue, isUndef, miniprogramThis, nextTick, noop, omit, pxToNumber, sleep, uploadFile, useComputedStyle, useNativeRoute, usePopupStateHOC, useQuery, useRect, useRectAll, useRef, useRefAll, useScrollOffset, useSelector, useSelectorAll, util, vibrateShort };

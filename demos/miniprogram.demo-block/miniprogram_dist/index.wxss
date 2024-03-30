@@ -43,6 +43,8 @@
 }
 .dora-demo-block__bd > button,
 .dora-demo-block__bd__button {
+  min-width: 368rpx;
+  width: auto;
   margin: 0;
   margin-bottom: 20rpx
 }

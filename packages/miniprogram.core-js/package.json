@@ -1,7 +1,7 @@
 {
   "name": "@doraemon-ui/miniprogram.core-js",
   "private": false,
-  "version": "0.0.2-alpha.28",
+  "version": "0.0.2-alpha.29",
   "description": "corejs for doraemon-ui",
   "author": "skyvow <724355924@qq.com>",
   "homepage": "",

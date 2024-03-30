@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.popup.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-28, 00:14:47.
+ * Built on 2024-03-31, 01:25:15.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.20.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -36,9 +36,16 @@ let Popup = class Popup extends Doraemon {
      */
     position;
     /**
+     * 自定义样式
+     *
+     * @type {Partial<CSSStyleDeclaration>}
+     * @memberof Popup
+     */
+    wrapStyle;
+    /**
      * 自定义 body 样式
      *
-     * @type {object}
+     * @type {Partial<CSSStyleDeclaration>}
      * @memberof Popup
      */
     bodyStyle;
@@ -66,7 +73,7 @@ let Popup = class Popup extends Doraemon {
     /**
      * 自定义蒙层样式
      *
-     * @type {object}
+     * @type {Partial<CSSStyleDeclaration>}
      * @memberof Popup
      */
     maskStyle;
@@ -144,6 +151,7 @@ let Popup = class Popup extends Doraemon {
      */
     get containerStyle() {
         return styleToCssString({
+            ...this.wrapStyle,
             ...this.indexStyle,
             touchAction: ['top', 'bottom'].includes(this.position)
                 ? 'none'
@@ -156,7 +164,7 @@ let Popup = class Popup extends Doraemon {
      * @readonly
      * @memberof Popup
      */
-    get wrapStyle() {
+    get internalBodyStyle() {
         return this.bodyStyle ? { ...this.bodyStyle, ...this.indexStyle } : { ...this.indexStyle };
     }
     onVisibleChange(visible) {
@@ -271,6 +279,12 @@ __decorate([
         default: 'center',
     })
 ], Popup.prototype, "position", void 0);
+__decorate([
+    Prop({
+        type: Object,
+        default: null,
+    })
+], Popup.prototype, "wrapStyle", void 0);
 __decorate([
     Prop({
         type: Object,

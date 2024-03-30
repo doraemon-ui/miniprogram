@@ -3,14 +3,20 @@
 @import '../../@doraemon-ui/style/color.wxss';
 
 .dora-list {
+  --font-size: var(--dora-list-font-size, 32rpx);
+  --header-font-size: var(--dora-list-header-font-size, 28rpx);
+  --header-width: var(--dora-list-item-header-width, auto);
+  --thumb-size: var(--dora-list-item-thumb-size, 40rpx);
   position: relative;
-  font-size: 32rpx;
+  font-size: var(--font-size);
+  font-size: var(--font-size);
   line-height: 1.5;
   overflow: hidden
 }
 .dora-list__hd {
   padding: 32rpx 32rpx 16rpx;
-  font-size: 28rpx;
+  font-size: var(--header-font-size);
+  font-size: var(--header-font-size);
   color: rgba(var(--dora-text-color-rgb,0,0,0),.45);
   color: rgba(var(--dora-text-color-rgb,0,0,0),.45);
   width: 100%;
@@ -19,9 +25,10 @@
 .dora-list__bd {
   position: relative;
   background-color: var(--dora-component-background-color,#fff);
-  background-color: var(--dora-component-background-color,#fff)
+  background-color: var(--dora-component-background-color,#fff);
+  overflow: hidden
 }
-.dora-list__bd::after {
+.dora-list--has-line > .dora-list__bd::after {
   content: " ";
   position: absolute;
   top: 0;
@@ -44,4 +51,20 @@
   font-size: 28rpx;
   color: rgba(var(--dora-text-color-rgb,0,0,0),.45);
   color: rgba(var(--dora-text-color-rgb,0,0,0),.45)
+}
+.dora-list--card {
+  margin: 32rpx
+}
+.dora-list--card > .dora-list__hd {
+  padding-left: 0;
+  padding-right: 0
+}
+.dora-list--card > .dora-list__bd,
+.dora-list--card > .dora-list__ft {
+  border-radius: var(--dora-border-radius,16rpx);
+  border-radius: var(--dora-border-radius,16rpx)
+}
+.dora-list--card > .dora-list__bd::after,
+.dora-list--card > .dora-list__ft::after {
+  display: none!important
 }
