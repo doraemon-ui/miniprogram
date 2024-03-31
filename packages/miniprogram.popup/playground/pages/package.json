@@ -1,7 +1,7 @@
 {
   "name": "miniprogram.popup",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.0.2-alpha.0",
   "description": "miniprogram popup component demo for doraemon-ui",
   "author": "skyvow",
   "homepage": "",
@@ -18,6 +18,6 @@
   "dependencies": {
     "@doraemon-ui/miniprogram.demo-block": "^0.0.1-alpha.10",
     "@doraemon-ui/miniprogram.demo-page": "^0.0.1-alpha.10",
-    "@doraemon-ui/miniprogram.popup": "^0.0.1-alpha.12"
+    "@doraemon-ui/miniprogram.popup": "^0.0.1-alpha.15"
   }
 }

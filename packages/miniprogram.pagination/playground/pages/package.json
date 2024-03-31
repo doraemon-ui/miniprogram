@@ -1,7 +1,7 @@
 {
   "name": "miniprogram.pagination",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.0.2-alpha.0",
   "description": "miniprogram pagination component for doraemon-ui",
   "main": "app.js",
   "scripts": {
@@ -16,6 +16,6 @@
   "dependencies": {
     "@doraemon-ui/miniprogram.demo-block": "^0.0.1-alpha.4",
     "@doraemon-ui/miniprogram.demo-page": "^0.0.1-alpha.4",
-    "@doraemon-ui/miniprogram.pagination": "^0.0.2-alpha.28"
+    "@doraemon-ui/miniprogram.pagination": "^0.0.2-alpha.37"
   }
 }
