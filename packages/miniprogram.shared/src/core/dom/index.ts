@@ -29,7 +29,7 @@ import {
   isEqualPoints,
   isNearbyPoints,
   getPointsDistance,
-  getTouchDirection
+  getSwipeDirection
 } from './useGesture'
 import {
   getSystemInfoSync,
@@ -57,7 +57,7 @@ export default {
   isEqualPoints,
   isNearbyPoints,
   getPointsDistance,
-  getTouchDirection,
+  getSwipeDirection,
   getSystemInfoSync,
   getMenuButtonBoundingClientRectSync,
   useNativeRoute,

@@ -1,5 +1,5 @@
 import { type TouchEvent, defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
-import { type TouchPoint, findComponentNode, getPointsNumber, getTouchDirection, getTouchPoints } from '@doraemon-ui/miniprogram.shared'
+import { type TouchPoint, findComponentNode, getPointsNumber, getSwipeDirection, getTouchPoints } from '@doraemon-ui/miniprogram.shared'
 import type { SafeAreaProp } from '@doraemon-ui/miniprogram.safe-area'
 import type { BackdropInstance } from '@doraemon-ui/miniprogram.backdrop'
 
@@ -387,7 +387,7 @@ class Popup extends Doraemon {
       return
     }
     this._move = getTouchPoints(e)
-    const direction = getTouchDirection(this._start.x, this._move.x, this._start.y, this._move.y)
+    const direction = getSwipeDirection(this._start.x, this._move.x, this._start.y, this._move.y)
     if (
       (this.position === 'bottom' && direction === 'Down') ||
       (this.position === 'top' && direction === 'Up')

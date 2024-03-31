@@ -49,11 +49,11 @@ export const getPointsDistance = (p1: TouchPoint, p2: TouchPoint): number => {
   return Math.sqrt(xMove * xMove + yMove * yMove)
 }
 
-export type TouchDirection = 'Left' | 'Right' | 'Up' | 'Down'
+export type SwipeDirection = 'Left' | 'Right' | 'Up' | 'Down'
 
 /**
 * 获取触摸移动方向
 */
-export const getTouchDirection = (x1: number, x2: number, y1: number, y2: number): TouchDirection => {
+export const getSwipeDirection = (x1: number, x2: number, y1: number, y2: number): SwipeDirection => {
   return Math.abs(x1 - x2) >= Math.abs(y1 - y2) ? (x1 - x2 > 0 ? 'Left' : 'Right') : (y1 - y2 > 0 ? 'Up' : 'Down')
 }
