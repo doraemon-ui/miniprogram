@@ -1,6 +1,6 @@
 <dora-animation-group
   dora-class="{{ classes.wrap }}"
-  in="{{ visible }}"
+  in="{{ internalVisible }}"
   classNames="{{ classNames }}"
   wrapStyle="{{ containerStyle }}"
   mountOnEnter="{{ mountOnEnter }}"

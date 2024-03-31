@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.backdrop.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-31, 14:39:07.
+ * Built on 2024-03-31, 15:02:31.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.20.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -109,9 +109,9 @@ let Backdrop = class Backdrop extends Doraemon {
      * @type {boolean}
      * @memberof Backdrop
      */
-    innerVisible = false;
+    internalVisible = false;
     onVisibleChange(visible) {
-        this.innerVisible = visible;
+        this.internalVisible = visible;
         if (!visible) {
             this.backdropHolds = 0;
             this.onClose();
@@ -132,7 +132,7 @@ let Backdrop = class Backdrop extends Doraemon {
     retain() {
         this.backdropHolds = this.backdropHolds + 1;
         if (this.backdropHolds === 1) {
-            this.innerVisible = true;
+            this.internalVisible = true;
         }
     }
     /**
@@ -142,7 +142,7 @@ let Backdrop = class Backdrop extends Doraemon {
      */
     release() {
         if (this.backdropHolds === 1) {
-            this.innerVisible = false;
+            this.internalVisible = false;
             this.onClose();
         }
         this.backdropHolds = Math.max(0, this.backdropHolds - 1);
