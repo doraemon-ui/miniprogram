@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.shared.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-31, 01:23:42.
+ * Built on 2024-03-31, 17:37:02.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.20.
  */
 
@@ -422,6 +422,51 @@ function useComputedStyle(selector, ...args) {
     });
 }
 
+/**
+ * 获取触摸点位置信息
+ */
+const getTouchPoints = (nativeEvent, index = 0) => {
+    const touches = nativeEvent.touches;
+    const changedTouches = nativeEvent.changedTouches;
+    const hasTouches = touches && touches.length > 0;
+    const hasChangedTouches = changedTouches && changedTouches.length > 0;
+    const points = !hasTouches && hasChangedTouches ? changedTouches[index] : touches[index];
+    return {
+        x: points.pageX,
+        y: points.pageY,
+    };
+};
+/**
+* 获取触摸点个数
+*/
+const getPointsNumber = (e) => e.touches?.length || e.changedTouches?.length || 0;
+/**
+* 判断是否为同一点
+*/
+const isEqualPoints = (p1, p2) => p1.x === p2.x && p1.y === p2.y;
+/**
+* 判断是否为相近的两点
+*/
+const isNearbyPoints = (p1, p2, DOUBLE_TAP_RADIUS = 25) => {
+    const xMove = Math.abs(p1.x - p2.x);
+    const yMove = Math.abs(p1.y - p2.y);
+    return xMove < DOUBLE_TAP_RADIUS && yMove < DOUBLE_TAP_RADIUS;
+};
+/**
+* 获取两点之间的距离
+*/
+const getPointsDistance = (p1, p2) => {
+    const xMove = Math.abs(p1.x - p2.x);
+    const yMove = Math.abs(p1.y - p2.y);
+    return Math.sqrt(xMove * xMove + yMove * yMove);
+};
+/**
+* 获取触摸移动方向
+*/
+const getSwipeDirection = (x1, x2, y1, y2) => {
+    return Math.abs(x1 - x2) >= Math.abs(y1 - y2) ? (x1 - x2 > 0 ? 'Left' : 'Right') : (y1 - y2 > 0 ? 'Up' : 'Down');
+};
+
 const fakeMediaResult = (request, response) => {
     if ('type' in response) {
         return response;
@@ -658,6 +703,12 @@ var dom = {
     useRectAll,
     useScrollOffset,
     useComputedStyle,
+    getTouchPoints,
+    getPointsNumber,
+    isEqualPoints,
+    isNearbyPoints,
+    getPointsDistance,
+    getSwipeDirection,
     getSystemInfoSync,
     getMenuButtonBoundingClientRectSync,
     useNativeRoute,
@@ -671,4 +722,4 @@ var index = {
     ...util,
 };
 
-export { NATIVE_ROUTES, buildURL, canUseMP, chooseMedia, index as default, dom, findComponentNode, getCurrentPage, getMenuButtonBoundingClientRectSync, getSystemInfoSync, isDate, isDef, isFalse, isObject, isPromise, isString, isTrue, isUndef, miniprogramThis, nextTick, noop, omit, pxToNumber, sleep, uploadFile, useComputedStyle, useNativeRoute, usePopupStateHOC, useQuery, useRect, useRectAll, useRef, useRefAll, useScrollOffset, useSelector, useSelectorAll, util, vibrateShort };
+export { NATIVE_ROUTES, buildURL, canUseMP, chooseMedia, index as default, dom, findComponentNode, getCurrentPage, getMenuButtonBoundingClientRectSync, getPointsDistance, getPointsNumber, getSwipeDirection, getSystemInfoSync, getTouchPoints, isDate, isDef, isEqualPoints, isFalse, isNearbyPoints, isObject, isPromise, isString, isTrue, isUndef, miniprogramThis, nextTick, noop, omit, pxToNumber, sleep, uploadFile, useComputedStyle, useNativeRoute, usePopupStateHOC, useQuery, useRect, useRectAll, useRef, useRefAll, useScrollOffset, useSelector, useSelectorAll, util, vibrateShort };

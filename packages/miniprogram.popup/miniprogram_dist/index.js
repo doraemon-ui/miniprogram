@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.popup.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-31, 15:02:50.
+ * Built on 2024-03-31, 17:38:30.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.20.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -11,7 +11,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js';
-import { findComponentNode } from '@doraemon-ui/miniprogram.shared';
+import { findComponentNode, getPointsNumber, getSwipeDirection, getTouchPoints } from '@doraemon-ui/miniprogram.shared';
 const { classNames, styleToCssString } = Doraemon.util;
 let Popup = class Popup extends Doraemon {
     /**
@@ -84,6 +84,13 @@ let Popup = class Popup extends Doraemon {
      * @memberof Popup
      */
     visible;
+    /**
+     * 是否支持向上/下滑动关闭
+     *
+     * @type {boolean}
+     * @memberof Popup
+     */
+    closeOnSwipe;
     /**
      * 设置蒙层的 z-index
      *
@@ -257,6 +264,42 @@ let Popup = class Popup extends Doraemon {
         }
         this.transitionName = transitionName;
     }
+    isMoved = false;
+    _start;
+    _move;
+    onTouchStart(e) {
+        if (!this.closeOnSwipe ||
+            !['top', 'bottom'].includes(this.position) ||
+            getPointsNumber(e) > 1) {
+            return;
+        }
+        this._start = getTouchPoints(e);
+    }
+    onTouchMove(e) {
+        if (!this.closeOnSwipe ||
+            !['top', 'bottom'].includes(this.position) ||
+            getPointsNumber(e) > 1) {
+            return;
+        }
+        this._move = getTouchPoints(e);
+        const direction = getSwipeDirection(this._start.x, this._move.x, this._start.y, this._move.y);
+        if ((this.position === 'bottom' && direction === 'Down') ||
+            (this.position === 'top' && direction === 'Up')) {
+            this.isMoved = true;
+        }
+    }
+    onTouchEnd(e) {
+        if (!this.closeOnSwipe ||
+            !['top', 'bottom'].includes(this.position) ||
+            getPointsNumber(e) > 1 ||
+            !this.isMoved) {
+            return;
+        }
+        this.isMoved = false;
+        this._start = null;
+        this._move = null;
+        this.onClose();
+    }
     created() {
         if (this.mask) {
             this._backdrop = findComponentNode('#dora-backdrop', this._renderProxy);
@@ -321,6 +364,12 @@ __decorate([
         default: false,
     })
 ], Popup.prototype, "visible", void 0);
+__decorate([
+    Prop({
+        type: Boolean,
+        default: false,
+    })
+], Popup.prototype, "closeOnSwipe", void 0);
 __decorate([
     Prop({
         type: Number,

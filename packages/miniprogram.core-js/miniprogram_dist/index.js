@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.core-js.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-03-31, 01:22:08.
+ * Built on 2024-03-31, 17:35:39.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.20.
  */
 

@@ -1,4 +1,10 @@
-<view class="dora-class {{ classes.wrap }}" style="{{ containerStyle }}">
+<view
+  class="dora-class {{ classes.wrap }}"
+  bindtouchstart="onTouchStart"
+  bindtouchmove="onTouchMove"
+  bindtouchend="onTouchEnd"
+  style="{{ containerStyle }}"
+>
   <dora-backdrop
     id="dora-backdrop"
     wx:if="{{ mask }}"
@@ -6,6 +12,7 @@
     transparent="{{ maskTransparent }}"
     wrapStyle="{{ maskStyle }}"
     zIndex="{{ zIndex }}"
+    disableScroll="{{ !closeOnSwipe }}"
   />
   <dora-animation-group
     dora-class="{{ classes.body }}"
