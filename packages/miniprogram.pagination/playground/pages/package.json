@@ -1,6 +1,6 @@
 {
   "name": "miniprogram.pagination",
-  "private": false,
+  "private": true,
   "version": "0.0.1",
   "description": "miniprogram pagination component for doraemon-ui",
   "main": "app.js",

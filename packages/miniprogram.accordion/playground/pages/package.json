@@ -1,6 +1,6 @@
 {
   "name": "miniprogram.accordion",
-  "private": false,
+  "private": true,
   "version": "0.0.1",
   "description": "miniprogram accordion component demo for doraemon-ui",
   "main": "app.js",

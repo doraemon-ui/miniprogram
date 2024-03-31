@@ -1,6 +1,6 @@
 {
   "name": "miniprogram.button",
-  "private": false,
+  "private": true,
   "version": "0.0.1",
   "description": "miniprogram button component for doraemon-ui",
   "main": "app.js",

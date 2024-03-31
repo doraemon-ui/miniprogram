@@ -1,6 +1,6 @@
 {
   "name": "miniprogram.popup",
-  "private": false,
+  "private": true,
   "version": "0.0.1",
   "description": "miniprogram popup component demo for doraemon-ui",
   "author": "skyvow",
