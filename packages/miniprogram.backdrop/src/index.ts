@@ -176,11 +176,11 @@ class Backdrop extends Doraemon {
    * @type {boolean}
    * @memberof Backdrop
    */
-  innerVisible: boolean = false
+  internalVisible: boolean = false
 
   @Watch('visible')
   onVisibleChange (visible: boolean) {
-    this.innerVisible = visible
+    this.internalVisible = visible
     if (!visible) {
       this.backdropHolds = 0
       this.onClose()
@@ -203,7 +203,7 @@ class Backdrop extends Doraemon {
   retain() {
     this.backdropHolds = this.backdropHolds + 1
     if (this.backdropHolds === 1) {
-      this.innerVisible = true
+      this.internalVisible = true
     }
   }
 
@@ -214,7 +214,7 @@ class Backdrop extends Doraemon {
    */
   release() {
     if (this.backdropHolds === 1) {
-      this.innerVisible = false
+      this.internalVisible = false
       this.onClose()
     }
     this.backdropHolds = Math.max(0, this.backdropHolds - 1)
