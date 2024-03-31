@@ -5,6 +5,7 @@
     "packages": [
       "demos/*",
       "packages/*",
+      "packages/**/playground/**",
       "playground/**"
     ],
     "nohoist": [
