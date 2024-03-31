@@ -17,7 +17,6 @@
     }
   },
   "ignoreChanges": [
-    "playground/**",
     "**/package-lock.json",
     "**/*.md",
     "**/.*",
@@ -26,10 +25,8 @@
     "**/*.spec.js",
     "**/*.tgz",
     "jest.config.js",
-    "**/dist/**",
-    "**/demo/**",
-    "**/miniprogram_dist/**",
-    "**/playground/**"
+    "**/lib/**",
+    "**/miniprogram_dist/**"
   ],
   "version": "independent"
 }
