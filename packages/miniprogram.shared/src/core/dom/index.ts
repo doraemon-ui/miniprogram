@@ -3,6 +3,7 @@ export * from './findComponentNode'
 export * from './getCurrentPage'
 export * from './global'
 export * from './useDOM'
+export * from './useGesture'
 export * from './useNativeAPI'
 export * from './useNativeRoute'
 export * from './usePopupStateHOC'
@@ -22,6 +23,14 @@ import {
   useScrollOffset,
   useComputedStyle
 } from './useDOM'
+import {
+  getTouchPoints,
+  getPointsNumber,
+  isEqualPoints,
+  isNearbyPoints,
+  getPointsDistance,
+  getTouchDirection
+} from './useGesture'
 import {
   getSystemInfoSync,
   getMenuButtonBoundingClientRectSync
@@ -43,6 +52,12 @@ export default {
   useRectAll,
   useScrollOffset,
   useComputedStyle,
+  getTouchPoints,
+  getPointsNumber,
+  isEqualPoints,
+  isNearbyPoints,
+  getPointsDistance,
+  getTouchDirection,
   getSystemInfoSync,
   getMenuButtonBoundingClientRectSync,
   useNativeRoute,

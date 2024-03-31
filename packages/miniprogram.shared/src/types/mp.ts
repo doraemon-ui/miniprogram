@@ -17,15 +17,15 @@ export type MiniprogramPublicInstance = MiniprogramPageInstance | MiniprogramCom
 export type MiniprogramElement = WechatMiniprogram.NodesRef
 
 export type MiniprogramCustomEvent<
-  Detail extends MiniprogramIAnyObject = MiniprogramIAnyObject,
-  Mark extends MiniprogramIAnyObject = MiniprogramIAnyObject,
-  CurrentTargetDataset extends MiniprogramIAnyObject = MiniprogramIAnyObject,
-  TargetDataset extends MiniprogramIAnyObject = CurrentTargetDataset
+  D extends MiniprogramIAnyObject = MiniprogramIAnyObject,
+  M extends MiniprogramIAnyObject = MiniprogramIAnyObject,
+  C extends MiniprogramIAnyObject = MiniprogramIAnyObject,
+  T extends MiniprogramIAnyObject = C
 > = WechatMiniprogram.CustomEvent<
-  Detail,
-  Mark,
-  CurrentTargetDataset,
-  TargetDataset
+  D,
+  M,
+  C,
+  T
 >
 
 export type MiniprogramButtonGetUserInfo = WechatMiniprogram.ButtonGetUserInfo['detail']

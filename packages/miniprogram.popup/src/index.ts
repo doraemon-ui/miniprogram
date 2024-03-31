@@ -1,5 +1,5 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
-import { findComponentNode } from '@doraemon-ui/miniprogram.shared'
+import { type TouchEvent, defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+import { type TouchPoint, findComponentNode, getPointsNumber, getTouchDirection, getTouchPoints } from '@doraemon-ui/miniprogram.shared'
 import type { SafeAreaProp } from '@doraemon-ui/miniprogram.safe-area'
 import type { BackdropInstance } from '@doraemon-ui/miniprogram.backdrop'
 
@@ -134,6 +134,18 @@ class Popup extends Doraemon {
     default: false,
   })
   visible: boolean
+
+  /**
+   * 是否支持向上/下滑动关闭
+   *
+   * @type {boolean}
+   * @memberof Popup
+   */
+  @Prop({
+    type: Boolean,
+    default: false,
+  })
+  closeOnSwipe: boolean
 
   /**
    * 设置蒙层的 z-index
@@ -349,6 +361,54 @@ class Popup extends Doraemon {
         break
     }
     this.transitionName = transitionName
+  }
+
+  isMoved: boolean = false
+  _start: TouchPoint
+  _move: TouchPoint
+
+  onTouchStart(e: TouchEvent) {
+    if (
+      !this.closeOnSwipe ||
+      !['top', 'bottom'].includes(this.position) ||
+      getPointsNumber(e) > 1
+    ) {
+      return
+    }
+    this._start = getTouchPoints(e)
+  }
+
+  onTouchMove(e: TouchEvent) {
+    if (
+      !this.closeOnSwipe ||
+      !['top', 'bottom'].includes(this.position) ||
+      getPointsNumber(e) > 1
+    ) {
+      return
+    }
+    this._move = getTouchPoints(e)
+    const direction = getTouchDirection(this._start.x, this._move.x, this._start.y, this._move.y)
+    if (
+      (this.position === 'bottom' && direction === 'Down') ||
+      (this.position === 'top' && direction === 'Up')
+    ) {
+      this.isMoved = true
+    }
+  }
+
+  onTouchEnd(e: TouchEvent) {
+    if (
+      !this.closeOnSwipe ||
+      !['top', 'bottom'].includes(this.position) ||
+      getPointsNumber(e) > 1 ||
+      !this.isMoved
+    ) {
+      return
+    }
+    this.isMoved = false
+    this._start = null
+    this._move = null
+    this.onClose()
   }
 
   created() {

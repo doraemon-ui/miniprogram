@@ -216,16 +216,45 @@
       </dora-popup>
     </block>
   </demo-block>
-  <demo-block title="CSS 变量">
-  <block>
-      <button bindtap="onOpen14">低部弹出</button>
+  <demo-block title="滑动关闭">
+    <block>
+      <button bindtap="onOpen14">顶部弹出</button>
       <dora-popup
-        position="bottom"
-        wrapStyle="{{ wrapStyle }}"
+        position="top"
+        closeOnSwipe
         bodyStyle="{{ { padding: '40px 20px 20px', minHeight: '40vh' } }}"
         visible="{{ visible14 }}"
         bind:close="onClose14"
         bind:closed="onClosed14"
+      >
+        支持向上滑动关闭
+      </dora-popup>
+    </block>
+
+    <block>
+      <button bindtap="onOpen15">低部弹出</button>
+      <dora-popup
+        position="bottom"
+        closeOnSwipe
+        bodyStyle="{{ { padding: '40px 20px 20px', minHeight: '40vh' } }}"
+        visible="{{ visible15 }}"
+        bind:close="onClose15"
+        bind:closed="onClosed15"
+      >
+        支持向下滑动关闭
+      </dora-popup>
+    </block>
+  </demo-block>
+  <demo-block title="CSS 变量">
+    <block>
+      <button bindtap="onOpen16">低部弹出</button>
+      <dora-popup
+        position="bottom"
+        wrapStyle="{{ wrapStyle }}"
+        bodyStyle="{{ { padding: '40px 20px 20px', minHeight: '40vh' } }}"
+        visible="{{ visible16 }}"
+        bind:close="onClose16"
+        bind:closed="onClosed16"
       >
         <view style="margin: 10px 0">弹窗的 `z-index` = 9999</view>
         <view style="margin: 10px 0">弹窗的 `background-color` = #3880ff</view>

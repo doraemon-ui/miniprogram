@@ -6,7 +6,7 @@ Page({
     },
   },
   onLoad () {
-    [...Array(14).keys()].forEach((key) => {
+    [...Array(16).keys()].forEach((key) => {
       this.setData({ [`visible${key + 1}`]: false })
       this[`onOpen${key + 1}`] = () => {
         console.log(`onOpen${key + 1}`)

@@ -13,8 +13,9 @@ export type { DoraemonDecorator } from './decorators/Component'
 export type {
   IAnyObject,
   Target,
-  BaseCustomEvent,
-  CustomEvent
+  BaseEvent,
+  CustomEvent,
+  TouchEvent,
 } from './decorators/Event'
 
 export type {
