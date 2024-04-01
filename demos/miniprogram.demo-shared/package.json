@@ -1,7 +1,7 @@
 {
   "name": "@doraemon-ui/miniprogram.demo-shared",
   "private": false,
-  "version": "0.0.1-alpha.2",
+  "version": "0.0.1-alpha.3",
   "description": "miniprogram demo-shared lib for doraemon-ui",
   "author": "skyvow",
   "homepage": "",

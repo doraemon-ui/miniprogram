@@ -1,7 +1,7 @@
 {
   "name": "@doraemon-ui/miniprogram.shared",
   "private": false,
-  "version": "0.0.1-alpha.10",
+  "version": "0.0.1-alpha.11",
   "description": "miniprogram shared lib for doraemon-ui",
   "author": "skyvow",
   "homepage": "",
@@ -24,7 +24,7 @@
     "preversion": "pnpm run clean && pnpm run build && pnpm run test"
   },
   "devDependencies": {
-    "@doraemon-ui/miniprogram.core-js": "^0.0.2-alpha.30",
+    "@doraemon-ui/miniprogram.core-js": "^0.0.2-alpha.31",
     "@doraemon-ui/miniprogram.tools": "^0.0.2-alpha.22",
     "@types/node": "^16.3.3",
     "cross-env": "^7.0.3",

@@ -3,7 +3,7 @@
 @import '../../@doraemon-ui/style/color.wxss';
 
 .dora-demo-block__hd {
-  padding: 30rpx 30rpx 18rpx;
+  padding: 32rpx 32rpx 16rpx;
   font-size: 28rpx;
   color: rgba(0,0,0,.65);
   color: rgba(var(--dora-text-color-rgb),.65);
@@ -41,14 +41,53 @@
   border-bottom-width: var(--dora-border-width,1PX);
   border-bottom-width: var(--dora-border-width,1PX)
 }
-.dora-demo-block__bd > button,
-.dora-demo-block__bd__button {
-  min-width: 368rpx;
-  width: auto;
+.dora-demo-block__bd .dora-demo-block__button,
+.dora-demo-block__bd > button {
+  padding: 0;
   margin: 0;
-  margin-bottom: 20rpx
+  border-radius: 0;
+  color: inherit!important;
+  background: 0 0!important;
+  font-size: inherit;
+  font-weight: 400;
+  line-height: inherit;
+  text-align: inherit;
+  text-decoration: none;
+  overflow: visible;
+  min-height: 0!important;
+  width: auto!important;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: var(--dora-white,#fff)!important;
+  background-color: var(--dora-white,#fff)!important;
+  color: var(--dora-black,#000)!important;
+  color: var(--dora-black,#000)!important;
+  min-width: calc((24rpx * 1.5 * 3) + (24rpx * 1.5 * 3) + 32rpx * 3);
+  min-height: 96rpx!important;
+  line-height: 96rpx;
+  border-radius: var(--dora-border-radius,16rpx);
+  border-radius: var(--dora-border-radius,16rpx);
+  font-size: 32rpx;
+  padding-left: 24rpx;
+  padding-right: 24rpx;
+  margin-bottom: 24rpx;
+  text-align: center;
+  text-overflow: ellipsis
 }
-.dora-demo-block__bd > button:last-child,
-.dora-demo-block__bd__button:last-child {
+.dora-demo-block__bd .dora-demo-block__button::after,
+.dora-demo-block__bd > button::after {
+  display: block;
+  position: static;
+  top: auto;
+  left: auto;
+  width: auto;
+  height: auto;
+  border: none;
+  border-radius: 0;
+  transform: none;
+  transform-origin: 0 0
+}
+.dora-demo-block__bd .dora-demo-block__button:last-child,
+.dora-demo-block__bd > button:last-child {
   margin-bottom: 0
 }

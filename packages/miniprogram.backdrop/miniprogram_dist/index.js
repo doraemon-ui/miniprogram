@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.backdrop.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-04-01, 14:35:32.
+ * Built on 2024-04-01, 22:55:39.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.22.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -81,8 +81,12 @@ let Backdrop = class Backdrop extends Doraemon {
         const wrap = classNames(prefixCls, {
             [`${prefixCls}--transparent`]: transparent,
         });
+        const bd = `${prefixCls}__bd`;
+        const ariaButton = `${prefixCls}__aria-button`;
         return {
             wrap,
+            bd,
+            ariaButton,
         };
     }
     /**
@@ -146,6 +150,14 @@ let Backdrop = class Backdrop extends Doraemon {
             this.onClose();
         }
         this.backdropHolds = Math.max(0, this.backdropHolds - 1);
+    }
+    /**
+     * 阻止冒泡
+     *
+     * @memberof Backdrop
+     */
+    onContentClick() {
+        /** Ignore */
     }
     /**
      * 开始展示前触发
