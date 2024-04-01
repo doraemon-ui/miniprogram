@@ -10,4 +10,14 @@
   bind:enter="onShow"
   bind:entered="onShowed"
   bind:exited="onClosed"
-/>
+>
+  <view
+    class="{{ classes.ariaButton }}"
+    role="button"
+    aria-label="backdrop"
+    catchtap="onClick"
+  />
+  <view class="{{ classes.bd }}" catchtap="onContentClick">
+    <slot></slot>
+  </view>
+</dora-animation-group>

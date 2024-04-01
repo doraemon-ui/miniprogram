@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@doraemon-ui/miniprogram.core-js": "^0.0.2-alpha.30",
+    "@doraemon-ui/miniprogram.shared": "workspace:0.0.1-alpha.10",
     "@doraemon-ui/style": "^0.0.1-alpha.10"
   },
   "devDependencies": {

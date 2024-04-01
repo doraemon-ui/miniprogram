@@ -144,9 +144,13 @@ class Backdrop extends Doraemon {
     const wrap = classNames(prefixCls, {
       [`${prefixCls}--transparent`]: transparent,
     })
+    const bd = `${prefixCls}__bd`
+    const ariaButton = `${prefixCls}__aria-button`
 
     return {
       wrap,
+      bd,
+      ariaButton,
     }
   }
 
@@ -218,6 +222,15 @@ class Backdrop extends Doraemon {
       this.onClose()
     }
     this.backdropHolds = Math.max(0, this.backdropHolds - 1)
+  }
+
+  /**
+   * 阻止冒泡
+   *
+   * @memberof Backdrop
+   */
+  onContentClick() {
+    /** Ignore */
   }
 
   /**

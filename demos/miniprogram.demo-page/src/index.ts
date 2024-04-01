@@ -1,36 +1,6 @@
 import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+import { miniprogramThis, canUseMP } from '@doraemon-ui/miniprogram.shared'
 const { classNames } = Doraemon.util
-
-const themeJSON = {
-  'light': {
-    'backgroundColor': '#fafafa',
-    'backgroundTextStyle': 'light',
-    'navigationBarBackgroundColor': '#fafafa',
-    'navigationBarTextStyle': 'black',
-  },
-  'dark': {
-    'backgroundColor': '#0d0d0d',
-    'backgroundTextStyle': 'dark',
-    'navigationBarBackgroundColor': '#0d0d0d',
-    'navigationBarTextStyle': 'white',
-  },
-}
-
-const darkmodeSync = (darkmode: SysThemeType) => {
-  const theme = themeJSON[darkmode]
-  if (typeof wx !== 'undefined') {
-    wx.setBackgroundTextStyle({
-      textStyle: theme.backgroundTextStyle as SysThemeType,
-    })
-    wx.setBackgroundColor({
-      backgroundColor: theme.backgroundColor,
-    })
-    wx.setNavigationBarColor({
-      frontColor: theme.navigationBarTextStyle === 'black' ? '#000000' : '#ffffff',
-      backgroundColor: theme.navigationBarBackgroundColor,
-    })
-  }
-}
 
 enum DarkMode {
   AUTO = 'auto',
@@ -43,11 +13,49 @@ type SysThemeType = DarkMode.LIGHT | DarkMode.DARK
 const getSysTheme = () => {
   let theme: SysThemeType
   try {
-    theme = wx.getSystemInfoSync().theme as SysThemeType
+    theme = miniprogramThis.getSystemInfoSync().theme as SysThemeType
   } catch (e) {
     theme = DarkMode.LIGHT
   }
   return theme
+}
+
+const presetThemeRecord: {
+  [x in SysThemeType]: {
+    backgroundColor: string
+    backgroundTextStyle: SysThemeType
+    navigationBarBackgroundColor: string
+    navigationBarTextStyle: 'black' | 'white'
+  }
+} = {
+  'light': {
+    'backgroundColor': '#fafafa',
+    'backgroundTextStyle': DarkMode.LIGHT,
+    'navigationBarBackgroundColor': '#fafafa',
+    'navigationBarTextStyle': 'black',
+  },
+  'dark': {
+    'backgroundColor': '#0d0d0d',
+    'backgroundTextStyle': DarkMode.DARK,
+    'navigationBarBackgroundColor': '#0d0d0d',
+    'navigationBarTextStyle': 'white',
+  },
+}
+
+const darkmodeSync = (darkmode: SysThemeType) => {
+  const theme = presetThemeRecord[darkmode]
+  if (canUseMP()) {
+    miniprogramThis.setBackgroundTextStyle({
+      textStyle: theme.backgroundTextStyle,
+    })
+    miniprogramThis.setBackgroundColor({
+      backgroundColor: theme.backgroundColor,
+    })
+    miniprogramThis.setNavigationBarColor({
+      frontColor: theme.navigationBarTextStyle === 'black' ? '#000000' : '#ffffff',
+      backgroundColor: theme.navigationBarBackgroundColor,
+    })
+  }
 }
 
 @Component({
@@ -163,8 +171,8 @@ class DemoPage extends Doraemon {
       this.isManual = false
       this.setTheme(DarkMode.AUTO)
     }
-    if (typeof wx !== 'undefined' && wx.onThemeChange) {
-      wx.onThemeChange(cb)
+    if (canUseMP()) {
+      miniprogramThis.onThemeChange(cb)
     } else if (theme) {
       cb({ theme })
     }
@@ -174,8 +182,8 @@ class DemoPage extends Doraemon {
     const isAuto = darkmode === DarkMode.AUTO
     if (isAuto) {
       this.onThemeChange()
-    } else if (typeof wx !== 'undefined' && wx.offThemeChange) {
-      wx.offThemeChange()
+    } else if (canUseMP()) {
+      miniprogramThis.offThemeChange()
     }
     this.isAuto = isAuto
     this.setTheme(DarkMode.AUTO)

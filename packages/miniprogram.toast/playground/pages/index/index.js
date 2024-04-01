@@ -61,13 +61,18 @@ Page({
     }, '#dora-toast-custom')
   },
   noclear () {
-    toast.show({
+    this.hide = toast.show({
       position: 'top',
       duration: 0,
       text: '这条提示不会自动消失',
     }, '#dora-toast-noclear')
   },
   clear () {
-    toast.destroyAll()
+    toast.clear()
   },
+  close() {
+    if (this.hide) {
+      this.hide()
+    }
+  }
 })

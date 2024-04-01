@@ -58,5 +58,8 @@
     <block>
       <button bindtap="clear">清除</button>
     </block>
+    <block>
+      <button bindtap="clear">关闭</button>
+    </block>
   </demo-block>
 </demo-page>
