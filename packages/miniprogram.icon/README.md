@@ -22,7 +22,7 @@ yarn add @doraemon-ui/miniprogram.icon
 
 ### 示例代码
 
-[在开发者工具中预览效果](https://developers.weixin.qq.com/s/7EdpJtm87Tv2)
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/4Qwnr8me7OQJ)
 
 <!-- tabs:start -->
 

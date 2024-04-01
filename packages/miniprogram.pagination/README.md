@@ -22,7 +22,7 @@ yarn add @doraemon-ui/miniprogram.pagination
 
 ### 示例代码
 
-[在开发者工具中预览效果](https://developers.weixin.qq.com/s/Q3MO7umK7Qvf)
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/zvv8l8mt7hQL)
 
 <!-- tabs:start -->
 

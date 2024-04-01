@@ -2,7 +2,8 @@
   "description": "项目配置文件",
   "miniprogramRoot": "pages/",
   "packOptions": {
-    "ignore": []
+    "ignore": [],
+    "include": []
   },
   "setting": {
     "urlCheck": true,
@@ -43,32 +44,12 @@
   "libVersion": "2.11.3",
   "appid": "wx958ccbebf60d68f3",
   "projectname": "miniprogram.icon",
-  "debugOptions": {
-    "hidedInDevtools": []
-  },
-  "scripts": {
-    "beforeCompile": ""
-  },
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
-  "condition": {
-    "search": {
-      "list": []
-    },
-    "conversation": {
-      "list": []
-    },
-    "game": {
-      "list": []
-    },
-    "plugin": {
-      "list": []
-    },
-    "gamePlugin": {
-      "list": []
-    },
-    "miniprogram": {
-      "list": []
-    }
+  "condition": {},
+  "srcMiniprogramRoot": "pages/",
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
   }
 }

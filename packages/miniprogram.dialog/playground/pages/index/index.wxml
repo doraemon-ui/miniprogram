@@ -6,47 +6,47 @@
 >
   <demo-block title="基础用法">
     <block>
-      <button bindtap="show">显示对话框</button>
+      <button class="button" bindtap="show">显示对话框</button>
       <dora-dialog id="dora-dialog-show" />
     </block>
     <block>
-      <button bindtap="alert">显示警告框</button>
+      <button class="button" bindtap="alert">显示警告框</button>
       <dora-dialog id="dora-dialog-alert" />
     </block>
     <block>
-      <button bindtap="confirm">显示确认框</button>
+      <button class="button" bindtap="confirm">显示确认框</button>
       <dora-dialog id="dora-dialog-confirm" />
     </block>
     <block>
-      <button bindtap="custom">自定义关闭操作</button>
+      <button class="button" bindtap="custom">自定义关闭操作</button>
       <dora-dialog id="dora-dialog-custom" />
     </block>
   </demo-block>
   <demo-block title="微信开放能力">
     <block>
-      <button bindtap="getUserInfo">获取用户信息</button>
+      <button class="button" bindtap="getUserInfo">获取用户信息</button>
       <dora-dialog id="dora-dialog-getUserInfo" />
     </block>
     <block>
-      <button bindtap="getPhoneNumber">获取用户手机号</button>
+      <button class="button" bindtap="getPhoneNumber">获取用户手机号</button>
       <dora-dialog id="dora-dialog-getPhoneNumber" />
     </block>
     <block>
-      <button bindtap="contact">打开客服会话</button>
+      <button class="button" bindtap="contact">打开客服会话</button>
       <dora-dialog id="dora-dialog-contact" />
     </block>
     <block>
-      <button bindtap="openSetting">打开授权设置页</button>
+      <button class="button" bindtap="openSetting">打开授权设置页</button>
       <dora-dialog id="dora-dialog-openSetting" />
     </block>
     <block>
-      <button bindtap="launchApp">打开 APP</button>
+      <button class="button" bindtap="launchApp">打开 APP</button>
       <dora-dialog id="dora-dialog-launchApp" />
     </block>
   </demo-block>  
   <demo-block title="声明式">
     <block>
-      <button bindtap="onShow1">最简单的对话框</button>
+      <button class="button" bindtap="onShow1">最简单的对话框</button>
       <dora-dialog
         title="天气箱"
         buttonClosable
@@ -57,7 +57,7 @@
       />
     </block>
     <block>
-      <button bindtap="onShow2">只显示内容</button>
+      <button class="button" bindtap="onShow2">只显示内容</button>
       <dora-dialog
         content="打开就下雨的☔️"
         buttonClosable
@@ -68,7 +68,7 @@
       />
     </block>
     <block>
-      <button bindtap="onShow3">自定义内容区域</button>
+      <button class="button" bindtap="onShow3">自定义内容区域</button>
       <dora-dialog
         title="注意"
         buttonClosable
@@ -84,7 +84,7 @@
       </dora-dialog>
     </block>
     <block>
-      <button bindtap="onShow4">有标题和图片</button>
+      <button class="button" bindtap="onShow4">有标题和图片</button>
       <dora-dialog
         image="http://cdn.skyvow.cn/ilove/static/wx_mini_qrcode.jpg"
         title="iLove恋爱小事"
@@ -97,7 +97,7 @@
       />
     </block>
     <block>
-      <button bindtap="onShow5">超长文本</button>
+      <button class="button" bindtap="onShow5">超长文本</button>
       <dora-dialog
         title="哆啦A梦生气了"
         buttonClosable
@@ -114,7 +114,7 @@
       </dora-dialog>
     </block>
     <block>
-      <button bindtap="onShow6">垂直按钮</button>
+      <button class="button" bindtap="onShow6">垂直按钮</button>
       <dora-dialog
         title="哆啦A梦常用道具"
         content="所有道具中明确出现次数最多的是哪一款？"

@@ -22,7 +22,7 @@ yarn add @doraemon-ui/miniprogram.toast
 
 ### 示例代码
 
-[在开发者工具中预览效果](https://developers.weixin.qq.com/s/gPsmLWmr7DwJ)
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/idwG68mH7yQz)
 
 <!-- tabs:start -->
 

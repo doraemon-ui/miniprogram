@@ -22,7 +22,7 @@ yarn add @doraemon-ui/miniprogram.dialog
 
 ### 示例代码
 
-[在开发者工具中预览效果](https://developers.weixin.qq.com/s/VeRO57mC7FzF)
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/Prvxx8mm70QC)
 
 <!-- tabs:start -->
 

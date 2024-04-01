@@ -6,7 +6,7 @@
 >
   <demo-block title="不同位置">
     <block>
-      <button bindtap="onOpen1">左侧弹出</button>
+      <button class="button" bindtap="onOpen1">左侧弹出</button>
       <dora-popup
         position="left"
         bodyStyle="{{ { minWidth: '75vw' } }}"
@@ -19,7 +19,7 @@
     </block>
 
     <block>
-      <button bindtap="onOpen2">右侧弹出</button>
+      <button class="button" bindtap="onOpen2">右侧弹出</button>
       <dora-popup
         position="right"
         bodyStyle="{{ { minWidth: '75vw' } }}"
@@ -32,7 +32,7 @@
     </block>
 
     <block>
-      <button bindtap="onOpen3">顶部弹出</button>
+      <button class="button" bindtap="onOpen3">顶部弹出</button>
       <dora-popup
         position="top"
         bodyStyle="{{ { minHeight: '40vh' } }}"
@@ -45,7 +45,7 @@
     </block>
 
     <block>
-      <button bindtap="onOpen4">低部弹出</button>
+      <button class="button" bindtap="onOpen4">低部弹出</button>
       <dora-popup
         position="bottom"
         bodyStyle="{{ { minHeight: '40vh' } }}"
@@ -58,7 +58,7 @@
     </block>
 
     <block>
-      <button bindtap="onOpen5">居中弹出</button>
+      <button class="button" bindtap="onOpen5">居中弹出</button>
       <dora-popup
         position="center"
         bodyStyle="{{ { minWidth: '75vw', minHeight: '25vh' } }}"
@@ -73,7 +73,7 @@
 
   <demo-block title="自定义样式">
     <block>
-      <button bindtap="onOpen6">内容超长滚动</button>
+      <button class="button" bindtap="onOpen6">内容超长滚动</button>
       <dora-popup
         position="bottom"
         visible="{{ visible6 }}"
@@ -99,7 +99,7 @@
       </dora-popup>
     </block>
     <block>
-      <button bindtap="onOpen7">圆角的弹出层</button>
+      <button class="button" bindtap="onOpen7">圆角的弹出层</button>
       <dora-popup
         position="bottom"
         bodyStyle="{{ { borderTopLeftRadius: '12px', borderTopRightRadius: '12px', minHeight: '40vh' } }}"
@@ -111,7 +111,7 @@
       </dora-popup>
     </block>
     <block>
-      <button bindtap="onOpen8">显示关闭按钮</button>
+      <button class="button" bindtap="onOpen8">显示关闭按钮</button>
       <dora-popup
         position="bottom"
         closable
@@ -124,7 +124,7 @@
       </dora-popup>
     </block>
     <block>
-      <button bindtap="onOpen9">显示右侧弹出关闭按钮</button>
+      <button class="button" bindtap="onOpen9">显示右侧弹出关闭按钮</button>
       <dora-popup
         position="right"
         closable
@@ -140,7 +140,7 @@
 
   <demo-block title="安全区适配">
     <block>
-      <button bindtap="onOpen10">开启适配</button>
+      <button class="button" bindtap="onOpen10">开启适配</button>
       <dora-popup
         position="bottom"
         safeArea
@@ -166,7 +166,7 @@
       </dora-popup>
     </block>
     <block>
-      <button bindtap="onOpen11">未开启适配</button>
+      <button class="button" bindtap="onOpen11">未开启适配</button>
       <dora-popup
         position="bottom"
         bodyStyle="{{ { padding: '40px 20px 0', minHeight: '40vh' } }}"
@@ -194,7 +194,7 @@
 
   <demo-block title="多层堆叠">
     <block>
-      <button bindtap="onOpen12">展开第一个弹出层</button>
+      <button class="button" bindtap="onOpen12">展开第一个弹出层</button>
       <dora-popup
         position="bottom"
         bodyStyle="{{ { padding: '40px 20px 20px', minHeight: '40vh' } }}"
@@ -203,7 +203,7 @@
         bind:closed="onClosed12"
       >
         <view>这是弹出层1</view>
-        <button bindtap="onOpen13">展开第二个弹出层</button>
+        <button class="button" bindtap="onOpen13">展开第二个弹出层</button>
       </dora-popup>
       <dora-popup
         position="bottom"
@@ -218,7 +218,7 @@
   </demo-block>
   <demo-block title="滑动关闭">
     <block>
-      <button bindtap="onOpen14">顶部弹出</button>
+      <button class="button" bindtap="onOpen14">顶部弹出</button>
       <dora-popup
         position="top"
         closeOnSwipe
@@ -232,7 +232,7 @@
     </block>
 
     <block>
-      <button bindtap="onOpen15">低部弹出</button>
+      <button class="button" bindtap="onOpen15">低部弹出</button>
       <dora-popup
         position="bottom"
         closeOnSwipe
@@ -247,7 +247,7 @@
   </demo-block>
   <demo-block title="CSS 变量">
     <block>
-      <button bindtap="onOpen16">低部弹出</button>
+      <button class="button" bindtap="onOpen16">低部弹出</button>
       <dora-popup
         position="bottom"
         wrapStyle="{{ wrapStyle }}"

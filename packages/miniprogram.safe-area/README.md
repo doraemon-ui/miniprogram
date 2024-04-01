@@ -22,7 +22,7 @@ yarn add @doraemon-ui/miniprogram.safe-area
 
 ### 示例代码
 
-[在开发者工具中预览效果](https://developers.weixin.qq.com/s/DoraemonUI)
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/5xwvg8m379Qi)
 
 <!-- tabs:start -->
 

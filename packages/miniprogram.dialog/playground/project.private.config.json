@@ -3,5 +3,6 @@
   "projectname": "miniprogram.dialog",
   "setting": {
     "compileHotReLoad": true
-  }
+  },
+  "libVersion": "3.3.5"
 }

@@ -6,7 +6,7 @@
 >
   <demo-block title="Basic">
     <block wx:for="{{ animations }}" wx:key="index">
-      <button data-index="{{ index }}" bindtap="onClick">{{ item }}</button>
+      <button class="button" data-index="{{ index }}" bindtap="onClick">{{ item }}</button>
     </block>
     <dora-animation-group
       dora-class="example"

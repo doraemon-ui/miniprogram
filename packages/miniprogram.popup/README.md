@@ -22,7 +22,7 @@ yarn add @doraemon-ui/miniprogram.popup
 
 ### 示例代码
 
-[在开发者工具中预览效果](https://developers.weixin.qq.com/s/ey5yRUmH7buy)
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/otvnS8mz7GQ3)
 
 <!-- tabs:start -->
 

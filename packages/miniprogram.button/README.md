@@ -22,7 +22,7 @@ yarn add @doraemon-ui/miniprogram.button
 
 ### 示例代码
 
-[在开发者工具中预览效果](https://developers.weixin.qq.com/s/Dak78WmI76ww)
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/FLuL88mL79Q8)
 
 !> 目前，设置了 form-type 的 button 只会对当前组件中的 form 有效。因而，将 button 封装在自定义组件中，而 form 在自定义组件外，将会使这个 button 的 form-type 失效。
 

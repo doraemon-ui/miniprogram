@@ -6,30 +6,30 @@
 >
   <demo-block title="声明式">
     <block>
-      <button bindtap="setVisible1">显示背景蒙层</button>
+      <button class="button" bindtap="setVisible1">显示背景蒙层</button>
       <dora-backdrop visible="{{ visible1 }}" bind:click="onMaskClick1" />
     </block>
     <block>
-      <button bindtap="setVisible2">显示透明的背景蒙层</button>
+      <button class="button" bindtap="setVisible2">显示透明的背景蒙层</button>
       <dora-backdrop transparent visible="{{ visible2 }}" bind:click="onMaskClick2" />
     </block>
     <block>
-      <button bindtap="setVisible3">显示带内容的背景蒙层</button>
+      <button class="button" bindtap="setVisible3">显示带内容的背景蒙层</button>
       <dora-backdrop visible="{{ visible3 }}" bind:click="onMaskClick3" bind:showed="onShowed3" bind:closed="onClosed3">
         <view class="custom-content">内容内容内容内容内容内容内容内容内容内容内容</view>
       </dora-backdrop>
     </block>
     <block>
-      <button bindtap="setVisible4">显示自定义颜色的背景蒙层</button>
+      <button class="button" bindtap="setVisible4">显示自定义颜色的背景蒙层</button>
       <dora-backdrop wrapStyle="{{ wrapStyle }}" visible="{{ visible4 }}" bind:click="onMaskClick4" />
     </block>
   </demo-block>
 
   <demo-block title="函数式">
     <block>
-      <button bindtap="retain" style="z-index: {{ zIndex }};">保持背景幕 retain</button>
-      <button bindtap="release" style="z-index: {{ zIndex }};">释放背景幕 release</button>
-      <button>背景幕锁：{{ locks }}</button>
+      <button class="button" bindtap="retain" style="z-index: {{ zIndex }};">保持背景幕 retain</button>
+      <button class="button" bindtap="release" style="z-index: {{ zIndex }};">释放背景幕 release</button>
+      <button class="button">背景幕锁：{{ locks }}</button>
       <dora-backdrop id="dora-backdrop" />
     </block>
   </demo-block>
