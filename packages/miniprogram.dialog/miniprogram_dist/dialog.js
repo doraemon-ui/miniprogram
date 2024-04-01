@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.dialog.
  * © 2021 - 2024 Doraemon UI.
- * Built on 2024-04-01, 22:57:20.
+ * Built on 2024-04-02, 00:42:42.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.22.
  */
 import { getCurrentPage, findComponentNode, usePopupStateHOC, isTrue, isFalse, } from '@doraemon-ui/miniprogram.shared';

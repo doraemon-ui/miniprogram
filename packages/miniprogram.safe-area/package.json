@@ -1,7 +1,7 @@
 {
   "name": "@doraemon-ui/miniprogram.safe-area",
   "private": false,
-  "version": "0.0.1-alpha.11",
+  "version": "0.0.1-alpha.12",
   "description": "miniprogram safe-area component for doraemon-ui",
   "author": "skyvow",
   "homepage": "",
