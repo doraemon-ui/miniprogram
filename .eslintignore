@@ -1,6 +1,7 @@
 .git
 .github
 .*.js
+demos
 packages
 dist
 lib

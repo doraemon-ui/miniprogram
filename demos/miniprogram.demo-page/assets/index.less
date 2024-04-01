@@ -11,20 +11,20 @@
 
   &__hd {
     position: relative;
-    padding: 40px;
+    padding: @spacing-xl * 2 + @spacing-base;
   }
 
   &__bd {
-    padding-bottom: 40px;
+    padding-bottom: @spacing-xl * 2 + @spacing-base;
 
     &--spacing {
-      padding-left: 15px;
-      padding-right: 15px;
+      padding-left: @spacing-xl;
+      padding-right: @spacing-xl;
     }
   }
 
   &__ft {
-    padding-bottom: 10px;
+    padding-bottom: @margin-component-xl;
     text-align: center;
   }
 
@@ -35,10 +35,10 @@
   }
 
   &__desc {
-    margin-top: 5px;
+    margin-top: @margin-component-base;
     color: rgba(var(--dora-text-color-rgb), .45);
     text-align: left;
-    font-size: 14px;
+    font-size: @font-size-base;
   }
 
   &__darkmode {
