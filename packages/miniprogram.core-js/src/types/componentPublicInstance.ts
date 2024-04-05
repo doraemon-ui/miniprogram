@@ -1,4 +1,4 @@
-import type { Doraemon } from '../instance/init'
+import type { Doraemon } from '../instance'
 import type { DefaultComputed, DefaultMethods, ExtractComputedReturns } from './options'
 
 // If the type T accepts type "any", output type Y, otherwise output type N.

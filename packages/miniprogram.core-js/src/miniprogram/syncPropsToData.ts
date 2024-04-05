@@ -1,8 +1,8 @@
-export function syncPropsToData (props: object, computed: object) {
+export function syncPropsToData (props: Record<string, any>, computed: Record<string, any>) {
   const defaultData = Object.keys(props).reduce((acc, name) => ({
     ...acc, [name]: (props[name] as any).value
   }), {})
-  const sync = (data: object) => {
+  const sync = (data: Record<string, any>) => {
     return Object.keys(computed).reduce((acc, key) => {
       const userDef = computed[key]
       const getter = typeof userDef === 'function' ? userDef : userDef.get

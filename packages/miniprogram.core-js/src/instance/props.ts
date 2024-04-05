@@ -1,9 +1,12 @@
+import type { Doraemon } from './init'
+import type { ComponentOptions } from '../types/options'
 import { hasOwn } from '../util/hasOwn'
 import type { PropOptions } from '../types/options'
 
+const isUndefinable = (val: any) => val === undefined 
 const NULL_PROP = null
 
-export function initProps (vm, propsOptions: object): WechatMiniprogram.Component.PropertyOption {
+export function initProps (vm: Doraemon, propsOptions: ComponentOptions<Doraemon>['props']): WechatMiniprogram.Component.PropertyOption {
   // miniprogram props
   const properties = {}
   for (const key in propsOptions) {
@@ -18,17 +21,17 @@ export function initProps (vm, propsOptions: object): WechatMiniprogram.Componen
   return properties
 }
 
-export function validateProp (key: string, propsOptions, propsData, vm) {
+export function validateProp (key: string, propsOptions: ComponentOptions<Doraemon>['props'], propsData: ComponentOptions<Doraemon>['data'], vm: Doraemon) {
   const prop = propsOptions[key]
   let value = propsData[key]
   // check default value
-  if (value === undefined) {
+  if (isUndefinable(value)) {
     value = getPropDefaultValue(vm, prop, key)
   }
   return value
 }
 
-function getPropDefaultValue (vm, prop: PropOptions, key: string) {
+function getPropDefaultValue (vm: Doraemon, prop: PropOptions, key: string) {
   // no default, return null
   if (!hasOwn(prop, 'default')) {
     return NULL_PROP
@@ -36,7 +39,7 @@ function getPropDefaultValue (vm, prop: PropOptions, key: string) {
   const def = prop.default
   let value = typeof def === 'function' ? def.call(vm) : def
   // fix undefined for miniprogram
-  if (value === undefined) {
+  if (isUndefinable(value)) {
     value = NULL_PROP
   }
   return value

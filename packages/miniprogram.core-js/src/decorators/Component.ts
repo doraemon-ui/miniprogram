@@ -1,4 +1,4 @@
-import { Doraemon, type DoraemonClass } from '../instance/init'
+import { Doraemon, type DoraemonClass } from '../instance'
 import { LIFECYCLE_HOOKS } from '../util/constants'
 import { hasOwn } from '../util/hasOwn'
 import { hasProto } from '../util/hasProto'

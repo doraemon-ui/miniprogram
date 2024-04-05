@@ -1,6 +1,26 @@
 import { isPlainObject } from './isPlainObject'
 
-export function debounce(func: Function, wait?: number, options?: { leading: boolean, trailing: boolean, maxWait: number }) {
+export type DebounceOptions = {
+  leading: boolean,
+  trailing: boolean,
+  maxWait: number,
+}
+
+interface NoReturn<T extends (...args: any[]) => any> {
+  (...args: Parameters<T>): any
+}
+
+export type DebounceReturn<T extends (...args: any[]) => any> = NoReturn<T> & {
+  cancel: () => void
+  flush: () => any
+  pending: () => boolean
+}
+
+export function debounce<T extends (...args: any[]) => any>(
+  func: T,
+  wait?: number,
+  options?: DebounceOptions
+): DebounceReturn<T> {
   let lastArgs,
     lastThis,
     maxWait,
@@ -109,7 +129,7 @@ export function debounce(func: Function, wait?: number, options?: { leading: boo
     return timerId !== undefined
   }
 
-  function debounced(...args) {
+  function debounced(...args: any[]) {
     const time = Date.now()
     const isInvoking = shouldInvoke(time)
 

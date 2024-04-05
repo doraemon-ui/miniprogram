@@ -4,7 +4,7 @@ export { Event } from './decorators/Event'
 export { Prop } from './decorators/Prop'
 export { Watch } from './decorators/Watch'
 
-export { Doraemon } from './instance/init'
+export { Doraemon } from './instance'
 
 export { defineComponentHOC, toNative } from './miniprogram/defineComponentHOC'
 
@@ -32,7 +32,7 @@ export type {
   DefaultProps,
   DefaultMethods,
   DefaultComputed,
-  DefaultComponents,
+  RelationComponent,
   ComponentOptions,
   PropOptions,
   WatchOptions

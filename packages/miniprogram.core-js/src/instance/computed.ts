@@ -1,8 +1,9 @@
+import type { Doraemon } from './init'
 import { isDev } from '../util/env'
 import { isEqual } from '../util/isEqual'
 import { warn } from '../util/warn'
 
-export function initComputed (vm, forceUpdate: boolean = false) {
+export function initComputed (vm: Doraemon, forceUpdate: boolean = false) {
   if (vm._isMounted || forceUpdate) {
     const computed = vm.$options.computed || {}
     Object.keys(computed).forEach(key => {

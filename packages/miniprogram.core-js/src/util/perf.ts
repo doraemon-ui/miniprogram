@@ -1,5 +1,5 @@
-import { ComponentRenderProxy, Doraemon } from '../instance/init'
 import { inMiniprogram } from './env'
+import type { ComponentRenderProxy, Doraemon } from '../instance'
 
 /**
  * 更新性能统计

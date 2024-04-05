@@ -1,16 +1,20 @@
+import type { Doraemon } from './init'
 import { isDev } from '../util/env'
 import { hasOwn } from '../util/hasOwn'
 import { isPlainObject } from '../util/isPlainObject'
 import { isReserved } from '../util/isReserved'
 import { warn } from '../util/warn'
 
-export function getDefaultData(vm) {
-  let data = vm.$options.data || {}
+export function getDefaultData(vm: Doraemon) {
+  let data: Record<string, any> = vm.$options.data || {}
   data = typeof data === 'function'
     ? getData(data, vm)
     : data || {}
   const mixins = vm.$options.mixins || []
-  const instData = mixins.reduce((acc, mixin) => ({ ...acc, ...getData(mixin.data, vm) }), {})
+  const instData = mixins.reduce((acc, mixin) => ({
+    ...acc,
+    ...getData((mixin as any).data, vm),
+  }), {})
   data = {
     ...data,
     ...instData,
@@ -18,14 +22,14 @@ export function getDefaultData(vm) {
   return data
 }
 
-export function initData (vm) {
+export function initData (vm: Doraemon) {
   const data = getDefaultData(vm)
   vm._renderProxy.setData(data)
 }
 
-function getData (data: Function, vm): any {
+function getData (data: Function, vm: Doraemon): Record<string, any> {
   try {
-    let ret = {}
+    let ret: Record<string, any> = {}
     data = data.call(vm, vm)
     if (!isPlainObject(data)) {
       data = {} as any

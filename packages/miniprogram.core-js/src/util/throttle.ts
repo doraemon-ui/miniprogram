@@ -1,9 +1,16 @@
-import { debounce } from './debounce'
+import { type DebounceOptions, type DebounceReturn, debounce } from './debounce'
 import { isPlainObject } from './isPlainObject'
+
+export type ThrottleOptions = Omit<DebounceOptions, 'maxWait'>
+export type ThrottleReturn<T extends (...args: any[]) => any> = DebounceReturn<T>
 
 let FUNC_ERROR_TEXT = 'Expected a function'
 
-export function throttle(func: Function, wait?: number, options?: { leading: boolean, trailing: boolean }) {
+export function throttle<T extends (...args: any[]) => any>(
+  func: T,
+  wait?: number,
+  options?: ThrottleOptions
+): ThrottleReturn<T> {
   let leading = true,
     trailing = true
 

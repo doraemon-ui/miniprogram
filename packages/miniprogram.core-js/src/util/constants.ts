@@ -1,4 +1,4 @@
-export const LIFECYCLE_HOOKS = [
+export const LIFECYCLE_HOOKS: string[] = [
   'beforeCreate',
   'created',
   'mounted',

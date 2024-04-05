@@ -1,13 +1,20 @@
+import type { Doraemon } from './init'
 import { isDev } from '../util/env'
 import { nextTick } from '../util/nextTick'
 import { toArray } from '../util/toArray'
 import { warn } from '../util/warn'
 
-export function stateMixin (Component) {
-  const dataDef: any = {}
-  dataDef.get = function () { return this._renderProxy ? this._renderProxy.data : undefined }
-  const propsDef: any = {}
-  propsDef.get = function () { return this._renderProxy ? this._renderProxy.properties : undefined }
+export function stateMixin (Component: typeof Doraemon) {
+  const dataDef: PropertyDescriptor = {}
+  dataDef.get = function () {
+    const vm: Doraemon = this
+    return vm._renderProxy ? vm._renderProxy.data : undefined
+  }
+  const propsDef: PropertyDescriptor = {}
+  propsDef.get = function () {
+    const vm: Doraemon = this
+    return vm._renderProxy ? vm._renderProxy.properties : undefined
+  }
   if (isDev) {
     dataDef.set = function () {
       warn(
@@ -24,18 +31,19 @@ export function stateMixin (Component) {
   Object.defineProperty(Component.prototype, '$props', propsDef)
 }
 
-export function renderMixin (Component) {
+export function renderMixin (Component: typeof Doraemon) {
   Component.prototype.$nextTick = function (fn) {
     return nextTick(fn)
   }
 }
 
-export function eventsMixin (Component) {
+export function eventsMixin (Component: typeof Doraemon) {
   Component.prototype.$emit = function (event) {
+    const vm: Doraemon = this
     const args = toArray(arguments, 1)
-    if (this._renderProxy) {
-      this._renderProxy.triggerEvent(event, ...args)
+    if (vm._renderProxy) {
+      vm._renderProxy.triggerEvent(event, ...args)
     }
-    return this
+    return vm
   }
 }

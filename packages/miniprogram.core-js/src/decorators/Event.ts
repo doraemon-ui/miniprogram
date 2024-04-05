@@ -1,4 +1,4 @@
-import { Doraemon } from '../instance/init'
+import type { Doraemon } from '../instance'
 
 export type IAnyObject = Record<string, any>
 export type Target<
@@ -82,7 +82,7 @@ export interface TouchEvent<
 export function Event(): MethodDecorator {
   return function (_target: Doraemon, propertyKey: string, descriptor: any) {
     const original = descriptor.value
-    descriptor.value = function dispatchEvent(e) {
+    descriptor.value = function dispatchEvent(e: any) {
       const event: CustomEvent = { ...e }
       if (event) {
         event.preventDefault = function () {}

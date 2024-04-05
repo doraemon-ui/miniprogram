@@ -2,7 +2,6 @@ import { initComponents, useThrottle } from '../instance/components'
 import { initComputed } from '../instance/computed'
 import { config } from '../instance/config'
 import { initData } from '../instance/data'
-import { ComponentRenderProxy, Doraemon, DoraemonClass } from '../instance/init'
 import { callHook, initLifecycle } from '../instance/lifecycle'
 import { initExposed, getPublicInstance } from '../instance/expose'
 import { initMethods } from '../instance/methods'
@@ -12,6 +11,7 @@ import { initRefs } from '../instance/refs'
 import { initWatch } from '../instance/watch'
 import { setUpdatePerformance } from '../util/perf'
 import { syncPropsToData } from './syncPropsToData'
+import type { ComponentRenderProxy, Doraemon, DoraemonClass } from '../instance'
 
 export interface ComponentExternalOptions extends WechatMiniprogram.Component.ComponentOptions {
   /** 组件接受的外部样式类 */
@@ -20,6 +20,8 @@ export interface ComponentExternalOptions extends WechatMiniprogram.Component.Co
   expose?: () => WechatMiniprogram.IAnyObject
   /** 组件间代码共享 */
   behaviors?: WechatMiniprogram.Behavior.BehaviorIdentifier[]
+  /** 组件的内部数据 */
+  data?: Record<string, any> | (() => Record<string, any>)
 }
 
 export function defineComponentHOC (externalOptions: ComponentExternalOptions = {}) {
@@ -79,7 +81,11 @@ export function defineComponentHOC (externalOptions: ComponentExternalOptions = 
         },
       },
       properties: { ...defaultProps },
-      data: {},
+      data: {
+        ...(typeof externalOptions.data === 'function'
+          ? (externalOptions.data() || {})
+          : (externalOptions.data || {}))
+      },
       methods: { ...methods },
       lifetimes: {
         created: function beforeCreate(this: ComponentRenderProxy<Doraemon>) {

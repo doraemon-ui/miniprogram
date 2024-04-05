@@ -1,27 +1,30 @@
+import type { Doraemon } from './init'
 import { hasOwn } from '../util/hasOwn'
 import { isReserved } from '../util/isReserved'
 import { noop } from '../util/noop'
 
-const sharedPropertyDefinition = {
+const sharedPropertyDefinition: PropertyDescriptor = {
   enumerable: true,
   configurable: true,
   get: noop,
   set: noop,
 }
 
-export function proxy (target, sourceKey, key) {
+export function proxy (target: object, sourceKey: string, key: string) {
   sharedPropertyDefinition.get = function proxyGetter () {
-    return this._renderProxy[sourceKey][key]
+    const vm: Doraemon = this
+    return vm._renderProxy[sourceKey][key]
   }
   sharedPropertyDefinition.set = function proxySetter (val) {
-    this._renderProxy.setData({
+    const vm: Doraemon = this
+    vm._renderProxy.setData({
       [key]: val,
     })
   }
   Object.defineProperty(target, key, sharedPropertyDefinition)
 }
 
-export function initProxy (vm) {
+export function initProxy (vm: Doraemon) {
   const props = vm.$options.props
   const keys = Object.keys(vm._renderProxy.data)
   let i = keys.length

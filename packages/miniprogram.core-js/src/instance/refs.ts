@@ -1,11 +1,12 @@
+import type { ComponentRenderProxy, Doraemon } from './init'
+import { type ComponentInternalInstance, getPublicInstance } from './expose'
 import { getData } from './components'
-import { getPublicInstance } from './expose'
 
-export function initRefs (vm) {
+export function initRefs (vm: Doraemon) {
   const components = vm.$options.components || {}
-  const parentNodes = []
-  const childrenNodes = []
-  const refNodes = []
+  const parentNodes: string[] = []
+  const childrenNodes: string[] = []
+  const refNodes: Array<{ ref: string, path: string }> = []
   for (const key in components) {
     const { module: componentName, type = 'child' } = getData(components[key])
     if (['ancestor', 'parent'].includes(type)) {
@@ -22,7 +23,7 @@ export function initRefs (vm) {
     get () {
       const nodes = parentNodes
         .slice(0, 1)
-        .reduce((acc, path) => ([
+        .reduce<ComponentInternalInstance[]>((acc, path) => ([
           ...acc,
           ...find(vm, path),
         ]), [])
@@ -31,13 +32,14 @@ export function initRefs (vm) {
   })
   Object.defineProperty(vm, '$root', {
     get () {
-      return this.$parent ? this.$parent.$root : vm
+      const i: ComponentInternalInstance = this
+      return i.$parent ? (i.$parent as ComponentInternalInstance).$root : vm
     },
   })
   Object.defineProperty(vm, '$children', {
     get () {
       const nodes = childrenNodes
-        .reduce((acc, path) => ([
+        .reduce<ComponentInternalInstance[]>((acc, path) => ([
           ...acc,
           ...find(vm, path),
         ]), [])
@@ -47,7 +49,7 @@ export function initRefs (vm) {
   Object.defineProperty(vm, '$refs', {
     get () {
       const nodes = refNodes
-        .reduce((acc, node) => ({
+        .reduce<{ [key: string]: ComponentInternalInstance }>((acc, node) => ({
           ...acc,
           [node.ref]: find(vm, node.path),
         }), {})
@@ -56,8 +58,8 @@ export function initRefs (vm) {
   })
 }
 
-function find (vm, path: string) {
-  const nodes = vm._renderProxy.getRelationNodes(path)
+function find (vm: Doraemon, path: string) {
+  const nodes = vm._renderProxy.getRelationNodes(path) as ComponentRenderProxy<Doraemon>[]
   if (nodes && nodes.length > 0) {
     return nodes.map((v) => getPublicInstance(v.$component))
   }

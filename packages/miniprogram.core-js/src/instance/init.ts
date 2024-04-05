@@ -1,18 +1,15 @@
-import classNames from 'classnames'
-import { styleToCssString } from '../util/styleToCssString'
 import { warn } from '../util/warn'
 import { nextTick } from '../util/nextTick'
 import { isDev } from '../util/env'
-import { isEqual } from '../util/isEqual'
-import { eventsMixin, renderMixin, stateMixin } from './mixin'
-import { proxy } from './proxy'
-import { config } from './config'
+import { util, extend } from '../global-api'
+import { type Config, config } from './config'
 import type { ComponentOptions } from '../types/options'
+import type { ComponentInternalInstance } from './expose'
 
 let uid: number = 0
-let cid: number = 1
 
 class Doraemon {
+  // private properties
   _isDoraemon: boolean = false
   _isMounted: boolean = false
   _isDestroyed: boolean = false
@@ -32,17 +29,19 @@ class Doraemon {
 
   _uid: number
   _self: this
+
+  // public properties
   $options: ComponentOptions<Doraemon>
-  get $root (): Doraemon {
+  get $root (): ComponentInternalInstance {
     return undefined
   }
-  get $parent (): Doraemon {
+  get $parent (): ComponentInternalInstance {
     return undefined
   }
-  get $children (): Doraemon[] {
+  get $children (): ComponentInternalInstance[] {
     return undefined
   }
-  get $refs (): { [key: string]: Doraemon | Doraemon[] | undefined } {
+  get $refs (): { [key: string]: ComponentInternalInstance | ComponentInternalInstance[] | undefined } {
     return undefined
   }
   get $data (): Record<string, any> {
@@ -52,7 +51,7 @@ class Doraemon {
     return undefined
   }
   $emit: (event: string, ...args: any[]) => this
-  $nextTick: (callback: (this: this) => void) => void
+  $nextTick: (fn: (this: this) => void) => void
 
   /**
    * Creates an instance of Doraemon.
@@ -94,11 +93,12 @@ class Doraemon {
     this._renderProxy = vm
   }
 
+  // constructor information
   static cid: number = 0
-  static options: ComponentOptions<Doraemon> = {}
-  static nextTick = nextTick
-  static extend = extend
-  static get config () {
+  static options: ComponentOptions<Doraemon> = Object.create(null)
+  static nextTick: typeof nextTick = nextTick
+  static extend: typeof extend = extend
+  static get config (): Config {
     return config
   }
   static set config (_) {
@@ -115,74 +115,8 @@ class Doraemon {
    * @static
    * @memberof Doraemon
    */
-  static util = {
-    warn,
-    isEqual,
-    classNames,
-    styleToCssString
-  }
+  static util: typeof util = util
 }
-
-/**
- * Class inheritance
- *
- * @param {ComponentOptions<Doraemon>} [extendOptions={}]
- * @returns
- */
-function extend (extendOptions: ComponentOptions<Doraemon> = {}) {
-  const Super = this as DoraemonClass<Doraemon>
-  const SuperId = Super.cid
-  const cachedCtors = (extendOptions as any)._Ctor || ((extendOptions as any)._Ctor = {})
-  if (cachedCtors[SuperId]) {
-    return cachedCtors[SuperId]
-  }
-  const Sub = function DoraemonComponent(options: ComponentOptions<Doraemon> = {}) {
-    this._init(options)
-  }
-  Sub.prototype = Object.create(Super.prototype)
-  Sub.prototype.constructor = Sub
-  Sub.cid = cid++
-  Sub.options = Object.assign({}, Super.options, extendOptions)
-  Sub.extend = Super.extend
-  Sub['super'] = Super
-
-  // 在这里 props & computed 定义在原型上
-  // 避免为每个创建的实例调用 Object.defineProperty
-  if (Sub.options.props) {
-    initProps(Sub)
-  }
-  if (Sub.options.computed) {
-    initComputed(Sub)
-  }
-
-  // keep a reference to the super options at extension time
-  Sub.superOptions = Super.options
-  Sub.extendOptions = extendOptions
-  Sub.sealedOptions = Object.assign({}, Sub.options)
-
-  // cache constructor
-  cachedCtors[SuperId] = Sub
-
-  return Sub
-}
-
-function initProps (Component) {
-  const props = Component.options.props || {}
-  for (const key in props) {
-    proxy(Component.prototype, 'data', key)
-  }
-}
-
-function initComputed (Component) {
-  const computed = Component.options.computed || {}
-  for (const key in computed) {
-    proxy(Component.prototype, 'data', key)
-  }
-}
-
-stateMixin(Doraemon)
-eventsMixin(Doraemon)
-renderMixin(Doraemon)
 
 export {
   Doraemon,

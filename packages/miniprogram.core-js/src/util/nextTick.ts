@@ -1,12 +1,12 @@
 import { inMiniprogram } from './env'
 
-export function nextTick (callback: (...args: any[]) => any): void {
+export function nextTick (fn: (...args: any[]) => any): void {
   if (
     inMiniprogram &&
     typeof wx.nextTick === 'function'
   ) {
-    wx.nextTick(callback)
+    wx.nextTick(fn)
   } else {
-    setTimeout(callback, 0)
+    setTimeout(fn, 0)
   }
 }

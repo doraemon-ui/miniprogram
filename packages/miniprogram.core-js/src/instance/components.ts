@@ -1,30 +1,37 @@
+import type { ComponentRenderProxy, Doraemon } from './init'
+import type { ComponentOptions, RelationComponent } from '../types/options'
+import { type ThrottleOptions, type ThrottleReturn, throttle } from '../util/throttle'
 import { isPlainObject } from '../util/isPlainObject'
 import { noop } from '../util/noop'
-import { throttle } from '../util/throttle'
 
-export function initComponents(vm, components): {
+export function initComponents(vm: Doraemon, components: ComponentOptions<Doraemon>['components']): {
   [componentName: string] : WechatMiniprogram.Component.RelationOption
 } {
   return Object.keys(components).reduce((acc, key) => {
     const {
       module: componentName,
       type = 'child',
-      observer = noop,
+      observer,
       throttle = true
     } = getData(components[key])
-    const linkCb = function (...args) {
-      const oFn = function (...args) {
-        if (this.$component._isMounted) {
+    const linkCb = function (this: ComponentRenderProxy<Doraemon>, target: ComponentRenderProxy<Doraemon>) {
+      const oName = `_${componentName.replace(/\./g, '').replace(/\//g, '_')}_throttled`
+      const oFn = function (target: ComponentRenderProxy<Doraemon>) {
+        const renderProxy: ComponentRenderProxy<Doraemon> = this
+        if (renderProxy.$component._isMounted) {
           if (typeof observer === 'string') {
-            return this.$component[observer]?.(...args)
+            return renderProxy.$component[observer]?.(target.$component)
           } else if (typeof observer === 'function') {
-            return observer.apply(this.$component, args)
+            return observer.call(renderProxy.$component, target.$component)
           }
         }
       }
       if (throttle !== undefined && throttle !== false) {
-        if (!this[`_${componentName}_linkCb`]) {
-          let opts = {
+        if (!this[oName]) {
+          let opts: {
+            wait: number,
+            options: ThrottleOptions
+          } = {
             wait: 50,
             options: {
               trailing: true,
@@ -33,7 +40,7 @@ export function initComponents(vm, components): {
           }
           if (typeof throttle === 'number') {
             opts.wait = throttle
-          } else if (isPlainObject(throttle)) {
+          } else if (isPlainObject(throttle) && throttle !== true) {
             opts = {
               ...opts,
               ...throttle
@@ -41,18 +48,18 @@ export function initComponents(vm, components): {
           }
           const { wait, options } = opts
           const { run } = this.useThrottleFn(oFn.bind(this), wait, options)
-          this[`_${componentName}_linkCb`] = run
+          this[oName] = run
         }
-        this[`_${componentName}_linkCb`].apply(this, args)
+        this[oName].call(this, target)
       } else {
-        return oFn.apply(this, args)
+        return oFn.call(this, target)
       }
     }
-    const option: WechatMiniprogram.Component.RelationOption = {
+    const option: Record<string, any> = {
       type,
-      linked: linkCb,
-      linkChanged: linkCb,
-      unlinked: linkCb,
+      linked: typeof observer === 'undefined' ? noop : linkCb,
+      linkChanged: typeof observer === 'undefined' ? noop : linkCb,
+      unlinked: typeof observer === 'undefined' ? noop : linkCb,
     }
     return {
       ...acc,
@@ -61,7 +68,9 @@ export function initComponents(vm, components): {
   }, {})
 }
 
-export function getData (comp) {
+export function getData (
+  comp: string | Partial<RelationComponent<Doraemon>> | (() => (Partial<RelationComponent<Doraemon>>))
+): RelationComponent<Doraemon> {
   if (typeof comp === 'function') {
     const ret = comp()
     return {
@@ -89,7 +98,7 @@ export function useThrottle () {
   return Behavior({
     lifetimes: {
       created() {
-        this.useThrottleFn = function (fn, wait = 50, options) {
+        this.useThrottleFn = function (fn: Function, wait = 50, options: ThrottleOptions) {
           const throttled = throttle(fn.bind(this), wait, options)
           this._throttledFns.push(throttled)
           return {
@@ -102,7 +111,7 @@ export function useThrottle () {
       },
       detached() {
         if (this._throttledFns.length > 0) {
-          this._throttledFns.forEach((throttled) => {
+          (this._throttledFns as ThrottleReturn<any>[]).forEach((throttled) => {
             throttled.cancel()
           })
           this._throttledFns = []

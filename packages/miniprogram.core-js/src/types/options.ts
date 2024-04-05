@@ -1,4 +1,5 @@
-import type { Doraemon } from '../instance/init'
+import type { Doraemon } from '../instance'
+import type { ThrottleOptions } from '../util/throttle'
 
 export type ExtractComputedReturns<T extends any> = {
   [key in keyof T]: T[key] extends { get: (...args: any[]) => infer TReturn }
@@ -24,22 +25,14 @@ export type DefaultComputed = Record<
   ComputedGetter<any> | ComputedOptions<any>
 >
 
-// export type Component<
-//   Data=DefaultData<never>,
-//   Methods=DefaultMethods<never>,
-//   Computed=DefaultComputed,
-//   Props=DefaultProps
-// > =
-//   | typeof Doraemon
-//   | ComponentOptions<never, Data, Methods, Computed, Props>
-
-export type DefaultComponents<T = {
+export type RelationComponent<D> = {
   ['module']?: string
   type?: 'ancestor' | 'parent' | 'child' | 'descendant'
-  observer?: string | Function
-  throttle?: number | boolean | object
-}> = {
-  [key: string]: string | Partial<T> | (() => (Partial<T>))
+  observer?: string | ((target: D) => void)
+  throttle?: number | boolean | {
+    wait?: number
+    options?: ThrottleOptions
+  }
 }
 
 export interface ComponentOptions<
@@ -63,7 +56,9 @@ export interface ComponentOptions<
   unmounted?(): void
   errorCaptured?(): void
 
-  components?: DefaultComponents
+  components?: {
+    [key: string]: string | Partial<RelationComponent<D>> | (() => (Partial<RelationComponent<D>>))
+  }
 
   mixins?: (ComponentOptions<Doraemon> | typeof Doraemon)[]
   name?: string

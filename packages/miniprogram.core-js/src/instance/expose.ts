@@ -1,4 +1,7 @@
-export function initExposed(vm) {
+import type { Doraemon } from './init'
+import type { ComponentPublicInstance } from '../types/componentPublicInstance'
+
+export function initExposed(vm: Doraemon) {
   const expose = vm.$options.expose || {}
   if (Array.isArray(expose)) {
     if (expose.length) {
@@ -16,14 +19,9 @@ export function initExposed(vm) {
   }
 }
 
-export function getPublicInstance(vm) {
-  if (!vm) return null
-  return getExposeProxy(vm) || vm
-}
-
 export type PublicPropertiesMap = Record<
   string,
-  (i) => any
+  (i: Doraemon) => any
 >
 
 export const publicPropertiesMap: PublicPropertiesMap = {
@@ -38,7 +36,7 @@ export const publicPropertiesMap: PublicPropertiesMap = {
   $nextTick: (vm) => vm.$nextTick,
 }
 
-export function getExposeProxy(vm) {
+export function getExposeProxy(vm: Doraemon) {
   if (vm._exposed) {
     return (
       vm._exposeProxy ||
@@ -57,3 +55,12 @@ export function getExposeProxy(vm) {
     )
   }
 }
+
+export function getPublicInstance(
+  vm: Doraemon
+): ComponentPublicInstance | Doraemon['_exposed'] | Doraemon | null {
+  if (!vm) return null
+  return getExposeProxy(vm) || vm
+}
+
+export type ComponentInternalInstance = ReturnType<typeof getPublicInstance>
