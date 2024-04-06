@@ -1,7 +1,7 @@
 {
   "name": "@doraemon-ui/miniprogram.dialog",
   "private": false,
-  "version": "0.0.1-alpha.21",
+  "version": "0.0.1-alpha.22",
   "description": "miniprogram dialog component for doraemon-ui",
   "author": "skyvow",
   "homepage": "",
@@ -25,9 +25,9 @@
     "preversion": "pnpm run clean && pnpm run build && pnpm run test"
   },
   "dependencies": {
-    "@doraemon-ui/miniprogram.core-js": "^0.0.2-alpha.31",
-    "@doraemon-ui/miniprogram.popup": "^0.0.1-alpha.20",
-    "@doraemon-ui/miniprogram.shared": "^0.0.1-alpha.11",
+    "@doraemon-ui/miniprogram.core-js": "^0.0.2-alpha.32",
+    "@doraemon-ui/miniprogram.popup": "^0.0.1-alpha.21",
+    "@doraemon-ui/miniprogram.shared": "^0.0.1-alpha.12",
     "@doraemon-ui/style": "^0.0.1-alpha.10"
   },
   "devDependencies": {

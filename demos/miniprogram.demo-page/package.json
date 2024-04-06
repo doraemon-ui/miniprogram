@@ -1,7 +1,7 @@
 {
   "name": "@doraemon-ui/miniprogram.demo-page",
   "private": false,
-  "version": "0.0.1-alpha.15",
+  "version": "0.0.1-alpha.16",
   "description": "miniprogram demo-page component for doraemon-ui",
   "author": "skyvow",
   "homepage": "",
@@ -25,8 +25,8 @@
     "preversion": "npm run clean && npm run build && npm run test"
   },
   "dependencies": {
-    "@doraemon-ui/miniprogram.core-js": "^0.0.2-alpha.31",
-    "@doraemon-ui/miniprogram.shared": "^0.0.1-alpha.11",
+    "@doraemon-ui/miniprogram.core-js": "^0.0.2-alpha.32",
+    "@doraemon-ui/miniprogram.shared": "^0.0.1-alpha.12",
     "@doraemon-ui/style": "^0.0.1-alpha.10"
   },
   "devDependencies": {
