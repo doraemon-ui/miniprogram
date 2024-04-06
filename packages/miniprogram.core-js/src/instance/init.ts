@@ -4,7 +4,7 @@ import { isDev } from '../util/env'
 import { util, extend } from '../global-api'
 import { type Config, config } from './config'
 import type { ComponentOptions } from '../types/options'
-import type { ComponentInternalInstance } from './expose'
+import type { ComponentPublicInstance } from '../types/componentPublicInstance'
 
 let uid: number = 0
 
@@ -32,16 +32,16 @@ class Doraemon {
 
   // public properties
   $options: ComponentOptions<Doraemon>
-  get $root (): ComponentInternalInstance {
+  get $root (): ComponentPublicInstance {
     return undefined
   }
-  get $parent (): ComponentInternalInstance {
+  get $parent (): ComponentPublicInstance {
     return undefined
   }
-  get $children (): ComponentInternalInstance[] {
+  get $children (): ComponentPublicInstance[] {
     return undefined
   }
-  get $refs (): { [key: string]: ComponentInternalInstance | ComponentInternalInstance[] | undefined } {
+  get $refs (): { [key: string]: ComponentPublicInstance | ComponentPublicInstance[] | undefined } {
     return undefined
   }
   get $data (): Record<string, any> {

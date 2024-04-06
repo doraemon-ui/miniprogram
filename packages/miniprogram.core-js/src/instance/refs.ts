@@ -1,5 +1,5 @@
 import type { ComponentRenderProxy, Doraemon } from './init'
-import { type ComponentInternalInstance, getPublicInstance } from './expose'
+import { getPublicInstance } from './expose'
 import { getData } from './components'
 
 export function initRefs (vm: Doraemon) {
@@ -23,7 +23,7 @@ export function initRefs (vm: Doraemon) {
     get () {
       const nodes = parentNodes
         .slice(0, 1)
-        .reduce<ComponentInternalInstance[]>((acc, path) => ([
+        .reduce((acc, path) => ([
           ...acc,
           ...find(vm, path),
         ]), [])
@@ -32,14 +32,13 @@ export function initRefs (vm: Doraemon) {
   })
   Object.defineProperty(vm, '$root', {
     get () {
-      const i: ComponentInternalInstance = this
-      return i.$parent ? (i.$parent as ComponentInternalInstance).$root : vm
+      return this.$parent ? this.$parent.$root : vm
     },
   })
   Object.defineProperty(vm, '$children', {
     get () {
       const nodes = childrenNodes
-        .reduce<ComponentInternalInstance[]>((acc, path) => ([
+        .reduce((acc, path) => ([
           ...acc,
           ...find(vm, path),
         ]), [])
@@ -49,7 +48,7 @@ export function initRefs (vm: Doraemon) {
   Object.defineProperty(vm, '$refs', {
     get () {
       const nodes = refNodes
-        .reduce<{ [key: string]: ComponentInternalInstance }>((acc, node) => ({
+        .reduce((acc, node) => ({
           ...acc,
           [node.ref]: find(vm, node.path),
         }), {})

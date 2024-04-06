@@ -62,5 +62,3 @@ export function getPublicInstance(
   if (!vm) return null
   return getExposeProxy(vm) || vm
 }
-
-export type ComponentInternalInstance = ReturnType<typeof getPublicInstance>
