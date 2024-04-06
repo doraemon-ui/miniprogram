@@ -3,12 +3,11 @@ import { nextTick } from '../util/nextTick'
 import { isDev } from '../util/env'
 import { util, extend } from '../global-api'
 import { type Config, config } from './config'
-import type { ComponentOptions } from '../types/options'
-import type { ComponentPublicInstance } from '../types/componentPublicInstance'
+import type { ComponentOptions, DefaultComputed, DefaultMethods, ExtractComputedReturns } from '../types/options'
 
 let uid: number = 0
 
-class Doraemon {
+export class Doraemon implements ComponentInternalInstance {
   // private properties
   _isDoraemon: boolean = false
   _isMounted: boolean = false
@@ -118,10 +117,6 @@ class Doraemon {
   static util: typeof util = util
 }
 
-export {
-  Doraemon,
-}
-
 export type DoraemonClass<D> = { new (...args: any[]): D & Doraemon } & typeof Doraemon
 
 export type ComponentRenderProxy<
@@ -134,3 +129,63 @@ export type ComponentRenderProxy<
     $component: D
   }
 >
+
+// If the type T accepts type "any", output type Y, otherwise output type N.
+// https://stackoverflow.com/questions/49927523/disallow-call-with-any/49928360#49928360
+export type IfAny<T, Y, N> = 0 extends 1 & T ? Y : N
+export type Prettify<T> = { [K in keyof T]: T[K] } & {}
+export interface ComponentCustomProperties {}
+export type ComponentPublicInstance<
+  D extends Doraemon = Doraemon,
+  Props = {},
+  RawBindings = {},
+  Data = {},
+  Computed extends DefaultComputed = {},
+  Methods extends DefaultMethods<D> = {},
+  PublicProps = Props
+> = {
+  $options: ComponentOptions<D>
+  $root: ComponentPublicInstance | undefined
+  $parent: ComponentPublicInstance | undefined
+  $children: ComponentPublicInstance[]
+  $refs: { [key: string]: ComponentPublicInstance | ComponentPublicInstance[] | undefined }
+  $data: Data
+  $props: Prettify<Props> & PublicProps
+  $emit: (event: string, ...args: any[]) => ComponentPublicInstance
+  $nextTick: (fn: (this: ComponentPublicInstance) => void) => void
+
+} & IfAny<Props, Props, Omit<Props, keyof RawBindings>> &
+  RawBindings &
+  ExtractComputedReturns<Computed> &
+  Methods &
+  ComponentCustomProperties
+
+export interface ComponentInternalInstance<
+  D extends Doraemon = Doraemon
+> extends ComponentPublicInstance<D> {
+  // private properties
+  _isDoraemon: boolean
+  _isMounted: boolean
+  _isDestroyed: boolean
+  _hasHookEvent: boolean
+
+  // miniprogram component instance
+  _renderProxy: ComponentRenderProxy<D>
+
+  // exposed properties via expose()
+  _exposed: Record<string, any> | null
+  _exposeProxy: Record<string, any> | null
+
+  _uid: number
+  _self: this
+
+  /**
+   * init.
+   */
+  _init: (options?: ComponentOptions<D>) => void
+
+  /**
+   * proxy miniprogram component instance.
+   */
+  _render: (vm: ComponentRenderProxy<D>) => void
+}

@@ -4,7 +4,14 @@ export { Event } from './decorators/Event'
 export { Prop } from './decorators/Prop'
 export { Watch } from './decorators/Watch'
 
-export { Doraemon } from './instance'
+export {
+  Doraemon,
+  type DoraemonClass,
+  type ComponentRenderProxy,
+  type ComponentPublicInstance,
+  type ComponentCustomProperties,
+  type ComponentInternalInstance
+} from './instance'
 
 export { defineComponentHOC, toNative } from './miniprogram/defineComponentHOC'
 
@@ -17,11 +24,6 @@ export type {
   CustomEvent,
   TouchEvent,
 } from './decorators/Event'
-
-export type {
-  ComponentPublicInstance,
-  ComponentCustomProperties
-} from './types/componentPublicInstance'
 
 export type {
   ExtractComputedReturns,

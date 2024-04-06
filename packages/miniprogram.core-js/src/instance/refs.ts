@@ -1,4 +1,4 @@
-import type { ComponentRenderProxy, Doraemon } from './init'
+import type { ComponentPublicInstance, ComponentRenderProxy, Doraemon } from './init'
 import { getPublicInstance } from './expose'
 import { getData } from './components'
 
@@ -23,7 +23,7 @@ export function initRefs (vm: Doraemon) {
     get () {
       const nodes = parentNodes
         .slice(0, 1)
-        .reduce((acc, path) => ([
+        .reduce<ComponentPublicInstance[]>((acc, path) => ([
           ...acc,
           ...find(vm, path),
         ]), [])
@@ -32,13 +32,13 @@ export function initRefs (vm: Doraemon) {
   })
   Object.defineProperty(vm, '$root', {
     get () {
-      return this.$parent ? this.$parent.$root : vm
+      return (this as ComponentPublicInstance).$parent ? (this.$parent as ComponentPublicInstance).$root : vm
     },
   })
   Object.defineProperty(vm, '$children', {
     get () {
       const nodes = childrenNodes
-        .reduce((acc, path) => ([
+        .reduce<ComponentPublicInstance[]>((acc, path) => ([
           ...acc,
           ...find(vm, path),
         ]), [])
@@ -48,7 +48,7 @@ export function initRefs (vm: Doraemon) {
   Object.defineProperty(vm, '$refs', {
     get () {
       const nodes = refNodes
-        .reduce((acc, node) => ({
+        .reduce<{ [key: string]: ComponentPublicInstance | ComponentPublicInstance[] }>((acc, node) => ({
           ...acc,
           [node.ref]: find(vm, node.path),
         }), {})
@@ -60,7 +60,7 @@ export function initRefs (vm: Doraemon) {
 function find (vm: Doraemon, path: string) {
   const nodes = vm._renderProxy.getRelationNodes(path) as ComponentRenderProxy<Doraemon>[]
   if (nodes && nodes.length > 0) {
-    return nodes.map((v) => getPublicInstance(v.$component))
+    return nodes.map((v) => getPublicInstance(v.$component)) as unknown as ComponentPublicInstance[]
   }
   return []
 }

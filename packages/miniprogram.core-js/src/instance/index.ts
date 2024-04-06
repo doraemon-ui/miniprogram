@@ -13,4 +13,7 @@ export {
 export type {
   DoraemonClass,
   ComponentRenderProxy,
+  ComponentPublicInstance,
+  ComponentCustomProperties,
+  ComponentInternalInstance
 } from './init'
