@@ -1,7 +1,13 @@
+const check =  (it: any) => {
+  return it && typeof it.env && it
+}
+
+export const miniprogramThis = check(typeof wx === 'object' && wx)
+
 /**
  * miniporgram environment sniffing
  */
-export const inMiniprogram = typeof wx !== 'undefined'
+export const inMiniprogram = !!miniprogramThis
 
 /**
  * development mode

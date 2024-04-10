@@ -3,9 +3,23 @@ import type { ComponentOptions, RelationComponent } from '../types/options'
 import { type ThrottleOptions, type ThrottleReturn, throttle } from '../util/throttle'
 import { isPlainObject } from '../util/isPlainObject'
 import { noop } from '../util/noop'
+import { isDef } from '../util/isDef'
+
+interface RelationOption {
+  /** 目标组件的相对关系 */
+  type: 'parent' | 'child' | 'ancestor' | 'descendant'
+  /** 关系生命周期函数，当关系被建立在页面节点树中时触发，触发时机在组件attached生命周期之后 */
+  linked?(target: ComponentRenderProxy<Doraemon>): void
+  /** 关系生命周期函数，当关系在页面节点树中发生改变时触发，触发时机在组件moved生命周期之后 */
+  linkChanged?(target: ComponentRenderProxy<Doraemon>): void
+  /** 关系生命周期函数，当关系脱离页面节点树时触发，触发时机在组件detached生命周期之后 */
+  unlinked?(target: ComponentRenderProxy<Doraemon>): void
+  /** 如果这一项被设置，则它表示关联的目标节点所应具有的behavior，所有拥有这一behavior的组件节点都会被关联 */
+  target?: string
+}
 
 export function initComponents(vm: Doraemon, components: ComponentOptions<Doraemon>['components']): {
-  [componentName: string] : WechatMiniprogram.Component.RelationOption
+  [componentName: string]: RelationOption
 } {
   return Object.keys(components).reduce((acc, key) => {
     const {
@@ -57,9 +71,9 @@ export function initComponents(vm: Doraemon, components: ComponentOptions<Doraem
     }
     const option: Record<string, any> = {
       type,
-      linked: typeof observer === 'undefined' ? noop : linkCb,
-      linkChanged: typeof observer === 'undefined' ? noop : linkCb,
-      unlinked: typeof observer === 'undefined' ? noop : linkCb,
+      linked: !isDef(observer) ? noop : linkCb,
+      linkChanged: !isDef(observer) ? noop : linkCb,
+      unlinked: !isDef(observer) ? noop : linkCb,
     }
     return {
       ...acc,

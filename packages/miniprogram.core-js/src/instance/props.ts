@@ -6,9 +6,9 @@ import type { PropOptions } from '../types/options'
 const isUndefinable = (val: any) => val === undefined 
 const NULL_PROP = null
 
-export function initProps (vm: Doraemon, propsOptions: ComponentOptions<Doraemon>['props']): WechatMiniprogram.Component.PropertyOption {
+export function initProps (vm: Doraemon, propsOptions: ComponentOptions<Doraemon>['props']) {
   // miniprogram props
-  const properties = {}
+  const properties: Record<string, any> = {}
   for (const key in propsOptions) {
     const propOptions = propsOptions[key]
     const type = propOptions.type || NULL_PROP

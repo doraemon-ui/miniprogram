@@ -1,11 +1,11 @@
-import { inMiniprogram } from './env'
+import { inMiniprogram, miniprogramThis } from './env'
 
 export function nextTick (fn: (...args: any[]) => any): void {
   if (
     inMiniprogram &&
-    typeof wx.nextTick === 'function'
+    typeof miniprogramThis.nextTick === 'function'
   ) {
-    wx.nextTick(fn)
+    miniprogramThis.nextTick(fn)
   } else {
     setTimeout(fn, 0)
   }

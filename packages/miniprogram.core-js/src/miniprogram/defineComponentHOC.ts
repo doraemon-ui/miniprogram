@@ -9,6 +9,7 @@ import { initProps } from '../instance/props'
 import { initProxy } from '../instance/proxy'
 import { initRefs } from '../instance/refs'
 import { initWatch } from '../instance/watch'
+import { isDef } from '../util/isDef'
 import { setUpdatePerformance } from '../util/perf'
 import { syncPropsToData } from './syncPropsToData'
 import type { ComponentRenderProxy, Doraemon, DoraemonClass } from '../instance'
@@ -39,16 +40,18 @@ export function defineComponentHOC (externalOptions: ComponentExternalOptions = 
     options.methods = options.methods || {}
     options.mixins = options.mixins || []
 
-    const defaultProps = initProps(componentInstance, options.props)
+    const defaultProps = initProps(componentInstance, options.props) as
+      WechatMiniprogram.Component.PropertyOption
     const watch = initWatch(componentInstance, options.watch)
-    const components = initComponents(componentInstance, options.components)
+    const components = initComponents(componentInstance, options.components) as
+      { [componentName: string]: WechatMiniprogram.Component.RelationOption }
     const methods = initMethods(componentInstance, options.methods)
 
     const componentConf: WechatMiniprogram.Component.Options<any, any, any> = {
       options: {
-        multipleSlots: typeof externalOptions.multipleSlots !== 'undefined' ?
+        multipleSlots: isDef(externalOptions.multipleSlots) ?
           externalOptions.multipleSlots : true,
-        addGlobalClass: typeof externalOptions.addGlobalClass !== 'undefined' ?
+        addGlobalClass: isDef(externalOptions.addGlobalClass) ?
           externalOptions.addGlobalClass : true,
       },
       externalClasses: [
@@ -84,7 +87,7 @@ export function defineComponentHOC (externalOptions: ComponentExternalOptions = 
       data: {
         ...(typeof externalOptions.data === 'function'
           ? (externalOptions.data() || {})
-          : (externalOptions.data || {}))
+          : (externalOptions.data || {})) as Record<string, any>
       },
       methods: { ...methods },
       lifetimes: {

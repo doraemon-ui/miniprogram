@@ -13,7 +13,17 @@ export function stateMixin (Component: typeof Doraemon) {
   const propsDef: PropertyDescriptor = {}
   propsDef.get = function () {
     const vm: Doraemon = this
-    return vm._renderProxy ? vm._renderProxy.properties : undefined
+    if (vm._renderProxy) {
+      const ret: Record<string, any> = {}
+      const props = vm.$options.props
+      if (props) {
+        for (const key in props) {
+          ret[key] = vm._renderProxy.properties[key]
+        }
+      }
+      return ret
+    }
+    return undefined
   }
   if (isDev) {
     dataDef.set = function () {

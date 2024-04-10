@@ -115,6 +115,11 @@ export class Doraemon implements ComponentInternalInstance {
    * @memberof Doraemon
    */
   static util: typeof util = util
+
+  static super: typeof Doraemon
+  static superOptions: ComponentOptions<Doraemon>
+  static extendOptions: ComponentOptions<Doraemon>
+  static sealedOptions: ComponentOptions<Doraemon>
 }
 
 export type DoraemonClass<D> = { new (...args: any[]): D & Doraemon } & typeof Doraemon

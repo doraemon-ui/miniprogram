@@ -1,5 +1,7 @@
 import type { Doraemon, ComponentPublicInstance, ComponentInternalInstance } from './init'
 
+const hasProxy = typeof Proxy !== 'undefined'
+
 export function initExposed(vm: Doraemon) {
   const expose = vm.$options.expose || {}
   if (Array.isArray(expose)) {
@@ -7,6 +9,7 @@ export function initExposed(vm: Doraemon) {
       const exposed = vm._exposed || (vm._exposed = {})
       expose.forEach((key) => {
         Object.defineProperty(exposed, key, {
+          enumerable: !hasProxy,
           get: () => vm[key],
           set: (val) => (vm[key] = val)
         })
@@ -37,21 +40,40 @@ export const publicPropertiesMap: PublicPropertiesMap = {
 
 export function getExposeProxy(vm: ComponentInternalInstance) {
   if (vm._exposed) {
-    return (
-      vm._exposeProxy ||
-      (vm._exposeProxy = new Proxy(vm._exposed, {
-        get(target, key: string) {
-          if (key in target) {
-            return target[key]
-          } else if (key in publicPropertiesMap) {
+    if (hasProxy) {
+      return (
+        vm._exposeProxy ||
+        (vm._exposeProxy = new Proxy(vm._exposed, {
+          get(target, key: string) {
+            if (key in target) {
+              return target[key]
+            } else if (key in publicPropertiesMap) {
+              return publicPropertiesMap[key](vm)
+            }
+          },
+          has(target, key: string) {
+            return key in target || key in publicPropertiesMap
+          },
+        }))
+      )
+    } else {
+      vm._exposeProxy = Object.create(null)
+      for (const key in vm._exposed) {
+        Object.defineProperty(vm._exposeProxy, key, {
+          get() {
+            return vm._exposed[key]
+          }
+        })
+      }
+      for (const key in publicPropertiesMap) {
+        Object.defineProperty(vm._exposeProxy, key, {
+          get() {
             return publicPropertiesMap[key](vm)
           }
-        },
-        has(target, key: string) {
-          return key in target || key in publicPropertiesMap
-        },
-      }))
-    )
+        })
+      }
+      return vm._exposeProxy
+    }
   }
 }
 
