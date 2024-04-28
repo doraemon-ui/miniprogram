@@ -1,4 +1,5 @@
 <dora-animation-group
+  id="dora-animation-group"
   dora-class="{{ classes.wrap }}"
   in="{{ internalVisible }}"
   classNames="{{ classNames }}"

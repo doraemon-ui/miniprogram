@@ -19,72 +19,144 @@ class Dialog extends Doraemon {
    */
   prefixCls!: string
 
+  /**
+   * 弹窗对应的自定义样式
+   *
+   * @type {Partial<CSSStyleDeclaration>}
+   * @memberof Dialog
+   */
   @Prop({
     type: Object,
     default: null,
   })
   bodyStyle: Partial<CSSStyleDeclaration>
 
+  /**
+   * 是否显示蒙层
+   *
+   * @type {boolean}
+   * @memberof Dialog
+   */
   @Prop({
     type: Boolean,
     default: true,
   })
   mask: boolean
 
+  /**
+   * 点击蒙层是否允许关闭
+   *
+   * @type {boolean}
+   * @memberof Dialog
+   */
   @Prop({
     type: Boolean,
     default: true,
   })
   maskClosable: boolean
 
+  /**
+   * 是否可见
+   *
+   * @type {boolean}
+   * @memberof Dialog
+   */
   @Prop({
     type: Boolean,
     default: false,
   })
   visible: boolean
 
+  /**
+   * 设置蒙层的 z-index
+   *
+   * @type {number}
+   * @memberof Dialog
+   */
   @Prop({
     type: Number,
     default: null,
   })
   zIndex: number
 
+  /**
+   * 是否显示关闭按钮
+   *
+   * @type {boolean}
+   * @memberof Dialog
+   */
   @Prop({
     type: Boolean,
     default: false,
   })
   closable: boolean
 
+  /**
+   * 点击操作按钮后后是否关闭
+   *
+   * @type {boolean}
+   * @memberof Dialog
+   */
   @Prop({
     type: Boolean,
     default: false,
   })
   buttonClosable: boolean
 
+  /**
+   * 是否显示垂直按钮布局
+   *
+   * @type {boolean}
+   * @memberof Dialog
+   */
   @Prop({
     type: Boolean,
     default: false,
   })
   verticalButtons: boolean
 
+  /**
+   * 图片
+   *
+   * @type {string}
+   * @memberof Dialog
+   */
   @Prop({
     type: String,
     default: '',
   })
   image: string
 
+  /**
+   * 提示标题
+   *
+   * @type {string}
+   * @memberof Dialog
+   */
   @Prop({
     type: String,
     default: '',
   })
   title: string
 
+  /**
+   * 提示文本
+   *
+   * @type {string}
+   * @memberof Dialog
+   */
   @Prop({
     type: String,
     default: '',
   })
   content: string
 
+  /**
+   * 操作按钮列表
+   *
+   * @type {DialogButton[]}
+   * @memberof Dialog
+   */
   @Prop({
     type: Array,
     default: [],

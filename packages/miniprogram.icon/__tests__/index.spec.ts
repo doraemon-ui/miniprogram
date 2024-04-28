@@ -1,7 +1,7 @@
 import path from 'path'
 import simulate from 'miniprogram-simulate'
 
-function mountTest (id: string | (() => string) ,defaultProps = {}) {
+function mountTest (id: string | (() => string), defaultProps = {}) {
   describe('mount and unmount', () => {
     it('component could be updated and unmounted without errors', () => {
       const wrapper = simulate.render(typeof id === 'function' ? id() : id, defaultProps)
@@ -22,7 +22,7 @@ function getId () {
 
 describe('Icon', () => {
   beforeAll(() => {
-    id = simulate.load(path.resolve(__dirname, '../src/index'), 'dora-icon')
+    id = simulate.load(path.resolve(__dirname, '../src/index'), 'dora-icon', { less: true })
   })
 
   mountTest(getId)
@@ -30,4 +30,12 @@ describe('Icon', () => {
   mountTest(getId, { size: 24 })
   mountTest(getId, { size: '24' })
   mountTest(getId, { color: 'currentColor' })
+  mountTest(getId, { hidden: true })
+
+  test('mount correctly', () => {
+    const wrapper = simulate.render(id)
+    wrapper.attach(document.createElement('parent-wrapper'))
+    expect(wrapper.querySelectorAll('.doraicons').length).toBe(1)
+    expect(wrapper.toJSON()).toMatchSnapshot()
+  })
 })

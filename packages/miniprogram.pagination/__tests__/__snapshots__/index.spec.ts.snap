@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pagination mount correctly 1`] = `
+<dora-pagination>
+  <wx-view
+    class="dora-class dora-pagination"
+  >
+    <wx-view
+      class="dora-pagination__prev"
+    >
+      <dora-button
+        disabled="{{true}}"
+        doraClass="dora-pagination__button"
+        type="light"
+        bind:click="onPrev"
+      />
+    </wx-view>
+    <wx-view
+      class="dora-pagination__number"
+    >
+      <wx-view
+        class="dora-pagination__active"
+      >
+        1
+      </wx-view>
+      /0
+  
+    </wx-view>
+    <wx-view
+      class="dora-pagination__next"
+    >
+      <dora-button
+        disabled="{{true}}"
+        doraClass="dora-pagination__button"
+        type="light"
+        bind:click="onNext"
+      />
+    </wx-view>
+  </wx-view>
+</dora-pagination>
+`;

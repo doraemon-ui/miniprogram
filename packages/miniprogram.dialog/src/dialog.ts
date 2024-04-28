@@ -2,6 +2,8 @@ import {
   getCurrentPage,
   findComponentNode,
   usePopupStateHOC,
+  isObject,
+  isString,
   isTrue,
   isFalse,
   type NativeButtonProps,
@@ -97,6 +99,25 @@ export type DialogShowProps = Omit<
   onClosed?: () => void
 }
 
+const mergeOptions = <T extends DialogShowOptions>(selector?: Partial<T> | string, instance?: MiniprogramPublicInstance): T => {
+  let opts = {
+    selector: '#dora-dialog',
+    instance: getCurrentPage(),
+  } as T
+  if (isString(selector)) {
+    opts.selector = selector as string
+    if (instance) {
+      opts.instance = instance
+    }
+  } else if (isObject(selector)) {
+    opts = {
+      ...opts,
+      ...selector as DialogShowOptions,
+    }
+  }
+  return opts
+}
+
 const destroyFns = new Map<Function, boolean>()
 
 function clear() {
@@ -144,22 +165,8 @@ function mountComponent(
 function show (props?: DialogShowProps, options?: DialogShowOptions): () => void
 function show (props?: DialogShowProps, selector?: string, instance?: MiniprogramPublicInstance): () => void
 function show (props?: DialogShowProps, selector?: DialogShowOptions | string, instance?: MiniprogramPublicInstance): () => void {
-  let opts: DialogShowOptions = {
-    selector: '#dora-dialog',
-    instance: getCurrentPage(),
-  }
-  if (typeof selector === 'string') {
-    opts.selector = selector as string
-    if (instance) {
-      opts.instance = instance
-    }
-  } else if (typeof selector === 'object') {
-    opts = {
-      ...opts,
-      ...selector as DialogShowOptions,
-    }
-  }
-  const comp = findComponentNode<DialogInstance>(opts.selector, opts.instance)
+  const options = mergeOptions<DialogShowOptions>(selector, instance)
+  const comp = findComponentNode<DialogInstance>(options.selector, options.instance)
   const { destroy } = mountComponent(props, comp)
   
   return () => destroy()

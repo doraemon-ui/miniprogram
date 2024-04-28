@@ -169,5 +169,6 @@ describe('CoreJs', () => {
     wrapper.attach(document.createElement('parent-wrapper'))
     const testComp = wrapper.querySelectorAll('.test-comp')
     expect(testComp.length).toBe(1)
+    expect(wrapper.toJSON()).toMatchSnapshot()
   })
 })

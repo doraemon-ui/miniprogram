@@ -123,7 +123,7 @@ yarn add @doraemon-ui/miniprogram.dialog
 
 > `show` 方法的调用后，会返回一个引用，可以通过该引用手动关闭对话框
 
-```
+```ts
 const hideDialog = Dialog.show()
 hideDialog()
 ```

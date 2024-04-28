@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Popup mount correctly 1`] = `
+<dora-popup>
+  <wx-view
+    class="dora-class dora-popup dora-popup--position-center"
+    style="touch-action: auto;  "
+    bind:touchend="onTouchEnd"
+    bind:touchmove="onTouchMove"
+    bind:touchstart="onTouchStart"
+  >
+    <dora-backdrop
+      disableScroll="{{true}}"
+      id="dora-backdrop"
+      transparent="{{false}}"
+      wrapStyle="{{null}}"
+      zIndex="{{null}}"
+      bind:click="onMaskClick"
+    />
+    <dora-animation-group
+      classNames="dora-animate--fadeIn"
+      doraClass="dora-popup__body"
+      id="dora-animation-group"
+      in="{{false}}"
+      mountOnEnter="{{true}}"
+      unmountOnExit="{{true}}"
+      wrapStyle="{{Object {}}}"
+      bind:enter="onShow"
+      bind:entered="onShowed"
+      bind:exited="onClosed"
+    />
+  </wx-view>
+</dora-popup>
+`;

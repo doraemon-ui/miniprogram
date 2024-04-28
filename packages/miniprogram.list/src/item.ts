@@ -194,7 +194,7 @@ class ListItem extends Doraemon {
   url!: string
   urlParams!: object
   delta!: number
-  openType!: NativeButtonOpenType | NativeRouteOpenType
+  // openType!: NativeRouteOpenType
 
   // native button props
   // @see https://developers.weixin.qq.com/miniprogram/dev/component/button.html
@@ -212,6 +212,8 @@ class ListItem extends Doraemon {
   showMessageCard!: boolean
   phoneNumberNoQuotaToast!: boolean
   appParameter!: string
+
+  openType!: NativeButtonOpenType | NativeRouteOpenType
   
   get classes () {
     const { prefixCls, hoverClass, isLast, hasLine, isLink, align, disabled } = this

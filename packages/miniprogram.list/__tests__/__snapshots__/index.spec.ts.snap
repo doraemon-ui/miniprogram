@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`List mount correctly 1`] = `
+<main>
+  <dora-list
+    id="dora-list"
+  >
+    <wx-view
+      class="dora-class dora-list dora-list--has-line"
+      style=""
+    >
+      <wx-view
+        class="dora-list__hd"
+      >
+        带说明的列表项
+      </wx-view>
+      <wx-view
+        class="dora-list__bd"
+        style=""
+      >
+        <dora-list-item
+          id="dora-list-item"
+        >
+          <wx-button
+            appParameter=""
+            class="dora-class dora-list-item dora-list-item--has-line dora-list-item--align-center"
+            disabled="{{false}}"
+            hoverClass="dora-list-item--hover"
+            hoverStartTime="{{20}}"
+            hoverStayTime="{{70}}"
+            hoverStopPropagation="{{false}}"
+            lang="en"
+            openType=""
+            phoneNumberNoQuotaToast="{{true}}"
+            sendMessageImg=""
+            sendMessagePath=""
+            sendMessageTitle=""
+            sessionFrom=""
+            showMessageCard="{{false}}"
+            style=""
+            bind:agreeprivacyauthorization="onAgreePrivacyAuthorization"
+            bind:chooseavatar="onChooseAvatar"
+            bind:contact="onContact"
+            bind:createliveactivity="onCreateLiveActivity"
+            bind:error="onError"
+            bind:getphonenumber="onGetPhoneNumber"
+            bind:getrealtimephonenumber="onGetRealtimePhoneNumber"
+            bind:getuserinfo="onGetUserInfo"
+            bind:launchapp="onLaunchApp"
+            bind:opensetting="onOpenSetting"
+            bind:tap="onClick"
+          >
+            <wx-view
+              class="dora-list-item__hd"
+            />
+            <wx-view
+              class="dora-list-item__bd"
+            >
+              <wx-view
+                class="dora-list-item__title"
+              >
+                标题文字
+              </wx-view>
+              <wx-view
+                class="dora-list-item__description"
+              />
+            </wx-view>
+            <wx-view
+              class="dora-list-item__ft"
+            >
+              <wx-view
+                class="dora-list-item__arrow"
+              />
+            </wx-view>
+          </wx-button>
+        </dora-list-item>
+      </wx-view>
+    </wx-view>
+  </dora-list>
+</main>
+`;

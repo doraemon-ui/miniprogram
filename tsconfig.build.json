@@ -3,7 +3,7 @@
     "target": "esnext",
     "module": "es2015",
     "allowJs": false,
-    "types": ["miniprogram-api-typings", "@types/jest", "@types/node"],
+    "types": ["miniprogram-api-typings", "jest", "node"],
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,    
     "experimentalDecorators": true,

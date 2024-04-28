@@ -47,7 +47,7 @@ yarn add @doraemon-ui/miniprogram.pagination
 | 参数 | 类型 | 描述 | 默认值 |
 | --- | --- | --- | --- |
 | prefixCls | `string` | 自定义类名前缀 | dora-pagination |
-| mode | `string` | 形态，可选值为 button、number、pointer | button |
+| mode | `'button' \| 'number' \| 'pointer'` | 形态 | button |
 | defaultCurrent | `number` | 默认页号，当 `controlled` 为 `false` 时才生效 | 1 |
 | current | `number` | 当前页号，当 `controlled` 为 `true` 时才生效 | 1 |
 | controlled | `boolean` | 是否受控 [说明文档](controlled.md) | false |

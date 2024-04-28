@@ -49,12 +49,12 @@ const makeFields = () => ({
   // size: true,
   scrollOffset: true,
   computedStyle: [
-      'width',
-      'height',
-      'borderTopWidth',
-      'borderRightWidth',
-      'borderBottomWidth',
-      'borderLeftWidth',
+    'width',
+    'height',
+    'borderTopWidth',
+    'borderRightWidth',
+    'borderBottomWidth',
+    'borderLeftWidth',
   ],
   node: true,
 })
@@ -118,32 +118,32 @@ const makeNodeRef = (node: NodeRef): MiniprogramNodeRef => {
   const offsetHeight = clientHeight + borderTopWidth + borderBottomWidth
 
   return {
-      id: node.id,
-      dataset: node.dataset,
-      mark: node.mark,
+    id: node.id,
+    dataset: node.dataset,
+    mark: node.mark,
 
-      top: node.top,
-      right: node.right,
-      bottom: node.bottom,
-      left: node.left,
-      width: offsetWidth,
-      height: offsetHeight,
-      x: node.left,
-      y: node.top,
-  
-      offsetWidth,
-      offsetHeight,
-      clientLeft: borderLeftWidth,
-      clientTop: borderTopWidth,
-      clientWidth,
-      clientHeight,
+    top: node.top,
+    right: node.right,
+    bottom: node.bottom,
+    left: node.left,
+    width: offsetWidth,
+    height: offsetHeight,
+    x: node.left,
+    y: node.top,
 
-      scrollHeight: node.scrollHeight,
-      scrollLeft: node.scrollLeft,
-      scrollTop: node.scrollTop,
-      scrollWidth: node.scrollWidth,
+    offsetWidth,
+    offsetHeight,
+    clientLeft: borderLeftWidth,
+    clientTop: borderTopWidth,
+    clientWidth,
+    clientHeight,
 
-      node: node.node,
+    scrollHeight: node.scrollHeight,
+    scrollLeft: node.scrollLeft,
+    scrollTop: node.scrollTop,
+    scrollWidth: node.scrollWidth,
+
+    node: node.node,
   }
 }
 
@@ -160,23 +160,23 @@ function useRef(selector: string[], instance?: MiniprogramPublicInstance): Promi
  */
 function useRef (selector: string | string[], instance?: MiniprogramPublicInstance): Promise<MiniprogramNodeRef | MiniprogramNodeRef[]> {
   return new Promise((resolve) => {
-      const query = useQuery(instance)
-      const isArray = Array.isArray(selector)
-      const classList = isArray ? selector : [selector]
-      if (query) {
-        classList.forEach((s) => {
-            query
-                .select(s)
-                .fields(makeFields())
-        })
-        query.exec((nodes) => {
-            resolve(
-                isArray
-                    ? nodes.map((node) => makeNodeRef(node))
-                    : makeNodeRef(nodes[0])
-            )
-        })
-      }
+    const query = useQuery(instance)
+    const isArray = Array.isArray(selector)
+    const classList = isArray ? selector : [selector]
+    if (query) {
+      classList.forEach((s) => {
+        query
+          .select(s)
+          .fields(makeFields())
+      })
+      query.exec((nodes) => {
+        resolve(
+          isArray
+            ? nodes.map((node) => makeNodeRef(node))
+            : makeNodeRef(nodes[0])
+        )
+      })
+    }
   })
 }
 
@@ -193,21 +193,21 @@ function useRefAll(selector: string[], instance?: MiniprogramPublicInstance): Pr
  */
 function useRefAll (selector: string | string[], instance?: MiniprogramPublicInstance): Promise<MiniprogramNodeRef[] | MiniprogramNodeRef[][]> {
   return new Promise((resolve) => {
-      const query = useQuery(instance)
-      const isArray = Array.isArray(selector)
-      const classList = isArray ? selector : [selector]
-      if (query) {
+    const query = useQuery(instance)
+    const isArray = Array.isArray(selector)
+    const classList = isArray ? selector : [selector]
+    if (query) {
       classList.forEach((s) => {
-          query
-              .selectAll(s)
-              .fields(makeFields())
+        query
+          .selectAll(s)
+          .fields(makeFields())
       })
       query.exec((nodesList) => {
-          resolve(
-              isArray
-                  ? nodesList.map((nodes) => nodes.map((node) => makeNodeRef(node)))
-                  : nodesList[0].map((node) => makeNodeRef(node))
-          )
+        resolve(
+          isArray
+            ? nodesList.map((nodes) => nodes.map((node) => makeNodeRef(node)))
+            : nodesList[0].map((node) => makeNodeRef(node))
+        )
       })
     }
   })
@@ -226,17 +226,17 @@ function useRect(selector: string[], instance?: MiniprogramPublicInstance): Prom
  */
 function useRect (selector: string | string[], instance?: MiniprogramPublicInstance): Promise<MiniprogramDOMRect | MiniprogramDOMRect[]> {
   return new Promise((resolve) => {
-      const query = useQuery(instance)
-      const isArray = Array.isArray(selector)
-      const classList = isArray ? selector : [selector]
-      if (query) {
+    const query = useQuery(instance)
+    const isArray = Array.isArray(selector)
+    const classList = isArray ? selector : [selector]
+    if (query) {
       classList.forEach((s) => {
-          query
-              .select(s)
-              .boundingClientRect()
+        query
+          .select(s)
+          .boundingClientRect()
       })
       query.exec((nodes) => {
-          resolve(isArray ? nodes : nodes[0])
+        resolve(isArray ? nodes : nodes[0])
       })
     }
   })
@@ -255,16 +255,16 @@ function useRectAll(selector: string[], instance?: MiniprogramPublicInstance): P
 function useRectAll (selector: string | string[], instance?: MiniprogramPublicInstance): Promise<MiniprogramDOMRect[] | MiniprogramDOMRect[][]> {
   return new Promise((resolve) => {
       const query = useQuery(instance)
-      const isArray = Array.isArray(selector)
-      const classList = isArray ? selector : [selector]
-      if (query) {
+    const isArray = Array.isArray(selector)
+    const classList = isArray ? selector : [selector]
+    if (query) {
       classList.forEach((s) => {
-          query
-              .selectAll(s)
-              .boundingClientRect()
+        query
+          .selectAll(s)
+          .boundingClientRect()
       })
       query.exec((nodesList) => {
-          resolve(isArray ? nodesList : nodesList[0])
+        resolve(isArray ? nodesList : nodesList[0])
       })
     }
   })
@@ -279,13 +279,13 @@ function useRectAll (selector: string | string[], instance?: MiniprogramPublicIn
  */
 function useScrollOffset (instance?: MiniprogramPublicInstance): Promise<MiniprogramScrollOffset> {
   return new Promise((resolve) => {
-      const query = useQuery(instance)
-      if (query) {
+    const query = useQuery(instance)
+    if (query) {
       query
-          .selectViewport()
-          .scrollOffset()
+        .selectViewport()
+        .scrollOffset()
       query.exec(([node]) => {
-          resolve(node)
+        resolve(node)
       })
     }
   })
@@ -317,15 +317,15 @@ function useComputedStyle (selector: string, ...args: any[]): Promise<{ [key in 
   }
 
   return new Promise((resolve) => {
-      const query = useQuery(opts.instance)
-      if (query) {
+    const query = useQuery(opts.instance)
+    if (query) {
       query
-          .select(selector)
-          .fields({
-              computedStyle: opts.computedStyle as unknown as string[],
-          })
+        .select(selector)
+        .fields({
+          computedStyle: opts.computedStyle as unknown as string[],
+        })
       query.exec(([node]) => {
-          resolve(node)
+        resolve(node)
       })
     }
   })

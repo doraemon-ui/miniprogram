@@ -44,6 +44,13 @@ yarn add @doraemon-ui/miniprogram.toast
 
 !> `Toast` 只支持指令式调用。
 
+```ts
+export type ToastPresetIcon = 'success' | 'error' | 'warning' | 'loading'
+export type ToastIcon = ToastPresetIcon | string
+
+export type ToastPosition = 'top' | 'bottom' | 'center'
+```
+
 ### Toast.show
 
 `show` 方法支持传入一个 `props` 对象，它包含了以下这些属性：
@@ -52,12 +59,13 @@ yarn add @doraemon-ui/miniprogram.toast
 | --- | --- | --- | --- |
 | prefixCls | `string` | 自定义类名前缀 | dora-toast |
 | image | `string` | 自定义图片，image 的优先级高于 icon | - |
-| icon | `'success' \| 'error' \| 'warning' \| 'loading'` | 图标 | - |
+| icon | `ToastIcon` | 图标 | - |
 | iconColor | `string` | 图标的颜色 | - |
 | text | `string` | 提示文本 | - |
-| position | `'top' \| 'bottom' \| 'center'` | 垂直方向显示位置 | - |
+| position | `ToastPosition` | 垂直方向显示位置 | - |
 | mask | `boolean` | 是否显示蒙层 | true |
-| maskClickable | `boolean` | 是否允许背景点击 | true |
+| maskClosable | `boolean` | 点击蒙层是否允许关闭 | true |
+| visible | `boolean` | 是否可见 | false |
 | zIndex | `number` | 设置蒙层的 z-index。优先级高于 css 设置的 var(--z-index)。 | - |
 | duration | `number` | 提示的延迟时间，若小于等于 0 则不会自动关闭 | 1500 |
 | onClose | `() => void` | 点击关闭按钮或蒙层的回调函数 | - |
@@ -67,7 +75,7 @@ yarn add @doraemon-ui/miniprogram.toast
 
 当然，也支持手动关闭一个轻提示。
 
-```
+```ts
 const hideToast = Toast.show()
 hideToast()
 ```
@@ -88,6 +96,14 @@ hideToast()
 ### Toast.clear
 
 关闭所有显示中的 `Toast`。
+
+### Toast.config
+
+全局配置，支持配置 `duration`、`position` 和 `maskClosable`。配置方法如下：
+
+```ts
+Toast.config({ duration: 1000, position: 'top' })
+```
 
 ## CSS Variables
 

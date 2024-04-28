@@ -51,6 +51,7 @@ yarn add @doraemon-ui/miniprogram.list
 | label | `string` | 描述 | - |
 | mode | `'default' \| 'card'` | 支持默认和卡片两种模式 | default |
 | hasLine | `boolean` | 是否有底部横线 | true |
+| wrapStyle | `object` | 自定义样式 | - |
 | bodyStyle | `object` | 自定义 body 样式 | - |
 
 ### List externalClasses

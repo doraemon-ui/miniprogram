@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CoreJs components 1`] = `
+<my-comp>
+  <wx-view
+    class="my-comp"
+  >
+    1
+  </wx-view>
+  <test-comp
+    class="test-comp"
+  >
+    <wx-view
+      class="test-comp"
+    />
+  </test-comp>
+</my-comp>
+`;

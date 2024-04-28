@@ -37,11 +37,15 @@ export function useNativeRoute(props: NativeRouteProps, vm) {
   const { url, urlParams, openType = 'navigateTo', delta = 1 } = props
   const promisify = (method: string, params: NativeRouteProps) => {
     return new Promise((resolve, reject) => {
-      miniprogramThis[method].call(miniprogramThis, {
-        ...params,
-        success: resolve,
-        fail: reject,
-      })
+      try {
+        miniprogramThis[method]?.call(miniprogramThis, {
+          ...params,
+          success: resolve,
+          fail: reject,
+        })
+      } catch (e) {
+        reject(e)
+      }
     })
   }
   if (!url) {

@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Icon mount correctly 1`] = `
+<dora-icon>
+  <wx-view
+    class="dora-class doraicons"
+    hidden="{{false}}"
+    style="font-size: 32px;  color: unset;  "
+    bind:tap="onClick"
+  />
+</dora-icon>
+`;

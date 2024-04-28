@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AnimationGroup should support to trigger event 1`] = `
+<main>
+  <dora-animation-group
+    id="dora-animation-group"
+    bind:change="onChange"
+    bind:enter="onEnter"
+    bind:entered="onEntered"
+    bind:entering="onEntering"
+    bind:exit="onExit"
+    bind:exited="onExited"
+    bind:exiting="onExiting"
+  >
+    <wx-view
+      class="dora-class dora-class-a dora-class-b dora-class-c dora-animation-group dora-animate--fadeIn-enter-done"
+      style=""
+      bind:animationend=""
+      bind:tap="onClick"
+      catch:touchmove=""
+      bind:transitionend="onTransitionEnd"
+    >
+      dora-animation-group
+    </wx-view>
+  </dora-animation-group>
+</main>
+`;

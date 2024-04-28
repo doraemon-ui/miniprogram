@@ -1,6 +1,9 @@
 import {
   canUseMP,
+  findComponentNode,
   getCurrentPage,
+  miniprogramThis,
+
   useQuery,
   useSelector,
   useSelectorAll,
@@ -10,7 +13,19 @@ import {
   useRectAll,
   useScrollOffset,
   useComputedStyle,
-  findComponentNode,
+
+  getTouchPoints,
+  getPointsNumber,
+  isEqualPoints,
+  isNearbyPoints,
+  getPointsDistance,
+  getSwipeDirection,
+
+  useNativeRoute,
+  usePopupStateHOC,
+
+  buildURL,
+  isDate,
   isDef,
   isFalse,
   isObject,
@@ -24,11 +39,22 @@ import {
   sleep,
 } from '../src'
 
+const fakeTouchEvent = (pageX: number, pageY: number) => ({
+  touches: [{ pageX, pageY }],
+  changedTouches: [],
+})
+
+const fakeTouchPoint = (pageX: number, pageY: number) =>
+  getTouchPoints(fakeTouchEvent(pageX, pageY) as any)
+
 describe('Shared', () => {
   describe('Core', () => {
     test('call dom func', () => {
       expect(canUseMP()).toBe(false)
+      expect(findComponentNode('#dora')).toBeNull()
       expect(getCurrentPage()).toBeNull()
+      expect(miniprogramThis).toBeFalsy()
+
       expect(useQuery()).toBeNull()
       expect(useSelector('#dora')).toBeNull()
       expect(useSelectorAll('.dora')).toBeNull()
@@ -42,10 +68,32 @@ describe('Shared', () => {
       expect(useRectAll(['#dora'])).toBeDefined()
       expect(useScrollOffset()).toBeDefined()
       expect(useComputedStyle('#dora')).toBeDefined()
-      expect(findComponentNode('#dora')).toBeNull()
+      
+      expect(getTouchPoints(fakeTouchEvent(10, 20) as any)).toEqual({ x: 10, y: 20 })
+      expect(getPointsNumber(fakeTouchEvent(10, 20) as any)).toBe(1)
+      expect(isEqualPoints(fakeTouchPoint(10, 20) as any, fakeTouchPoint(10, 20) as any)).toBeTruthy()
+      expect(isNearbyPoints(fakeTouchPoint(10, 20) as any, fakeTouchPoint(30, 40) as any)).toBeTruthy()
+      expect(getPointsDistance(fakeTouchPoint(10, 20) as any, fakeTouchPoint(10, 20) as any)).toBe(0)
+      expect(getSwipeDirection(20, 10, 0, 0)).toBe('Left')
+      expect(getSwipeDirection(10, 20, 0, 0)).toBe('Right')
+      expect(getSwipeDirection(0, 0, 20, 10)).toBe('Up')
+      expect(getSwipeDirection(0, 0, 10, 20)).toBe('Down')
+
+      expect(useNativeRoute({ url: '/' }, { is: 'test' })).toBeDefined()
+      expect(usePopupStateHOC()({} as any)).toBeDefined()
     })
   })
   describe('Utils', () => {
+    test('call buildURL', () => {
+      expect(buildURL('/')).toBe('/')
+      expect(buildURL('/', { name: 123 })).toBe('/?name=123')
+      expect(buildURL('/?age=45', { name: 123 })).toBe('/?age=45&name=123')
+    })
+    test('call isDate', () => {
+      expect(isDate(undefined)).toBe(false)
+      expect(isDate(null)).toBe(false)
+      expect(isDate(new Date)).toBe(true)
+    })
     test('call isDef', () => {
       expect(isDef(undefined)).toBe(false)
       expect(isDef(null)).toBe(false)

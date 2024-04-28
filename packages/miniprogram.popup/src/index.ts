@@ -280,9 +280,9 @@ class Popup extends Doraemon {
   setBackdropVisible(visible: boolean) {
     if (this.mask && this._backdrop) {
       if (visible) {
-        this._backdrop.retain()
+        this._backdrop.retain?.()
       } else {
-        this._backdrop.release()
+        this._backdrop.release?.()
       }
     }
   }

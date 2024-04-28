@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button mount correctly 1`] = `
+<dora-button>
+  <wx-button
+    appParameter=""
+    class="dora-class dora-button dora-color dora-color--positive dora-button--solid"
+    disabled="{{false}}"
+    formType=""
+    hoverClass="dora-hover-class dora-button--activated"
+    hoverStartTime="{{20}}"
+    hoverStayTime="{{70}}"
+    hoverStopPropagation="{{false}}"
+    lang="en"
+    loading="{{false}}"
+    openType=""
+    phoneNumberNoQuotaToast="{{true}}"
+    sendMessageImg=""
+    sendMessagePath=""
+    sendMessageTitle=""
+    sessionFrom=""
+    showMessageCard="{{false}}"
+    bind:agreeprivacyauthorization="onAgreePrivacyAuthorization"
+    bind:chooseavatar="onChooseAvatar"
+    bind:contact="onContact"
+    bind:createliveactivity="onCreateLiveActivity"
+    bind:error="onError"
+    bind:getphonenumber="onGetPhoneNumber"
+    bind:getrealtimephonenumber="onGetRealtimePhoneNumber"
+    bind:getuserinfo="onGetUserInfo"
+    bind:launchapp="onLaunchApp"
+    bind:opensetting="onOpenSetting"
+    bind:tap="onClick"
+  />
+</dora-button>
+`;

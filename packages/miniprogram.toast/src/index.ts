@@ -19,60 +19,120 @@ class Toast extends Doraemon {
    */
   prefixCls!: string
 
+  /**
+   * 自定义图片，image 的优先级高于 icon
+   *
+   * @type {string}
+   * @memberof Toast
+   */
   @Prop({
     type: String,
     default: '',
   })
   image: string
 
+  /**
+   * 图标
+   *
+   * @type {ToastIcon}
+   * @memberof Toast
+   */
   @Prop({
     type: String,
     default: '',
   })
   icon: ToastIcon
 
+  /**
+   * 图标的颜色
+   *
+   * @type {string}
+   * @memberof Toast
+   */
   @Prop({
     type: String,
     default: '',
   })
   iconColor: string
 
+  /**
+   * 提示文本
+   *
+   * @type {string}
+   * @memberof Toast
+   */
   @Prop({
     type: String,
     default: '',
   })
   text: string
 
+  /**
+   * 提示的延迟时间，若小于等于 0 则不会自动关闭
+   *
+   * @type {number}
+   * @memberof Toast
+   */
   @Prop({
     type: Number,
     default: 1500,
   })
   duration: number
 
+  /**
+   * 垂直方向显示位置
+   *
+   * @type {ToastPosition}
+   * @memberof Toast
+   */
   @Prop({
     type: String,
     default: 'center',
   })
   position: ToastPosition
 
+  /**
+   * 是否显示蒙层
+   *
+   * @type {boolean}
+   * @memberof Toast
+   */
   @Prop({
     type: Boolean,
     default: true,
   })
   mask: boolean
 
+  /**
+   * 点击蒙层是否允许关闭
+   *
+   * @type {boolean}
+   * @memberof Toast
+   */
   @Prop({
     type: Boolean,
     default: true,
   })
-  maskClickable: boolean
+  maskClosable: boolean
 
+  /**
+   * 是否可见
+   *
+   * @type {boolean}
+   * @memberof Toast
+   */
   @Prop({
     type: Boolean,
     default: false,
   })
   visible: boolean
 
+  /**
+   * 设置蒙层的 z-index
+   *
+   * @type {number}
+   * @memberof Toast
+   */
   @Prop({
     type: Number,
     default: null,
@@ -102,7 +162,7 @@ class Toast extends Doraemon {
 
   get maskStyle (): Partial<CSSStyleDeclaration> {
     return {
-      pointerEvents: this.maskClickable ? 'none' : 'auto',
+      pointerEvents: this.maskClosable ? 'none' : 'auto',
     }
   }
 

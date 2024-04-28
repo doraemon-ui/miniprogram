@@ -52,8 +52,8 @@ export interface ToastProps {
   position?: ToastPosition
   /** 是否显示蒙层 */
   mask?: boolean
-  /** 是否允许背景点击 */
-  maskClickable?: boolean
+  /** 点击蒙层是否允许关闭 */
+  maskClosable?: boolean
   /** 是否可见 */
   visible?: boolean
   /** 设置蒙层的 z-index */
@@ -108,6 +108,22 @@ export type ToastShowOptions = {
  */
 const defaultProps: ToastShowProps = {
   duration: 1500,
+  position: 'center',
+  maskClosable: true,
+}
+
+function config(
+  val: Pick<ToastShowProps, 'duration' | 'position' | 'maskClosable'>
+) {
+  if (val.duration !== undefined) {
+    defaultProps.duration = val.duration
+  }
+  if (val.position !== undefined) {
+    defaultProps.position = val.position
+  }
+  if (val.maskClosable !== undefined) {
+    defaultProps.maskClosable = val.maskClosable
+  }
 }
 
 const mergeProps = <T extends ToastShowProps>(p: Partial<T> | string): T => {
@@ -285,6 +301,7 @@ function loading (p: ToastInternalProps | string, selector?: ToastShowOptions | 
 }
 
 export {
+  config,
   show,
   success,
   warning,

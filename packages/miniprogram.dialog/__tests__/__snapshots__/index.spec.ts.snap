@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dialog mount correctly 1`] = `
+<dora-dialog>
+  <dora-popup
+    bodyStyle="{{
+      Object {
+        "backgroundColor": "unset",
+        "minWidth": "75vw",
+      }
+    }}"
+    closable="{{false}}"
+    mask="{{true}}"
+    maskClosable="{{true}}"
+    position="center"
+    visible="{{false}}"
+    zIndex="{{null}}"
+    bind:close="onPopupClose"
+    bind:closed="onPopupClosed"
+  >
+    <wx-view
+      class="dora-class dora-dialog"
+    >
+      <wx-view
+        class="dora-dialog__bd"
+      />
+      <wx-view
+        class="dora-dialog__ft"
+      />
+    </wx-view>
+  </dora-popup>
+</dora-dialog>
+`;
