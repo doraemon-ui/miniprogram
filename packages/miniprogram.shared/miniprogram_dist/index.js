@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.shared.
- * © 2021 - 2024 Doraemon UI.
- * Built on 2024-04-06, 22:36:01.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.22.
+ * © 2021 - 2026 Doraemon UI.
+ * Built on 2026-02-19, 23:49:07.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
  */
 
 const check = (it) => {
@@ -559,7 +559,7 @@ function getSystemInfoSync(keys = ['window', 'device', 'appBase']) {
 }
 function vibrateShort(options) {
     if (getSystemInfoSync(['window', 'device']).platform === 'devtools') {
-        return;
+        return Promise.resolve();
     }
     return miniprogramThis.vibrateShort(options);
 }
@@ -643,11 +643,16 @@ function useNativeRoute(props, vm) {
     const { url, urlParams, openType = 'navigateTo', delta = 1 } = props;
     const promisify = (method, params) => {
         return new Promise((resolve, reject) => {
-            miniprogramThis[method].call(miniprogramThis, {
-                ...params,
-                success: resolve,
-                fail: reject,
-            });
+            try {
+                miniprogramThis[method]?.call(miniprogramThis, {
+                    ...params,
+                    success: resolve,
+                    fail: reject,
+                });
+            }
+            catch (e) {
+                reject(e);
+            }
         });
     };
     if (!url) {

@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.dialog.
- * © 2021 - 2024 Doraemon UI.
- * Built on 2024-04-06, 22:37:55.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.22.
+ * © 2021 - 2026 Doraemon UI.
+ * Built on 2026-02-19, 23:51:25.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -20,17 +20,89 @@ let Dialog = class Dialog extends Doraemon {
      * @memberof Dialog
      */
     prefixCls;
+    /**
+     * 弹窗对应的自定义样式
+     *
+     * @type {Partial<CSSStyleDeclaration>}
+     * @memberof Dialog
+     */
     bodyStyle;
+    /**
+     * 是否显示蒙层
+     *
+     * @type {boolean}
+     * @memberof Dialog
+     */
     mask;
+    /**
+     * 点击蒙层是否允许关闭
+     *
+     * @type {boolean}
+     * @memberof Dialog
+     */
     maskClosable;
+    /**
+     * 是否可见
+     *
+     * @type {boolean}
+     * @memberof Dialog
+     */
     visible;
+    /**
+     * 设置蒙层的 z-index
+     *
+     * @type {number}
+     * @memberof Dialog
+     */
     zIndex;
+    /**
+     * 是否显示关闭按钮
+     *
+     * @type {boolean}
+     * @memberof Dialog
+     */
     closable;
+    /**
+     * 点击操作按钮后后是否关闭
+     *
+     * @type {boolean}
+     * @memberof Dialog
+     */
     buttonClosable;
+    /**
+     * 是否显示垂直按钮布局
+     *
+     * @type {boolean}
+     * @memberof Dialog
+     */
     verticalButtons;
+    /**
+     * 图片
+     *
+     * @type {string}
+     * @memberof Dialog
+     */
     image;
+    /**
+     * 提示标题
+     *
+     * @type {string}
+     * @memberof Dialog
+     */
     title;
+    /**
+     * 提示文本
+     *
+     * @type {string}
+     * @memberof Dialog
+     */
     content;
+    /**
+     * 操作按钮列表
+     *
+     * @type {DialogButton[]}
+     * @memberof Dialog
+     */
     buttons;
     get classes() {
         const { prefixCls, verticalButtons, buttons: _buttons } = this;

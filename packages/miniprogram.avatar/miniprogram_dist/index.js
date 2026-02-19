@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.avatar.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-02-19, 22:57:43.
+ * Built on 2026-02-19, 23:49:52.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -13,15 +13,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js';
 import { useRect } from '@doraemon-ui/miniprogram.shared';
 const { classNames, styleToCssString } = Doraemon.util;
-let Avatar = 
-/**
- * Avatar 头像组件
- *
- * @description 用于展示用户头像或文字缩写，支持图片、文字两种类型，并提供圆形和方形两种形状。
- * @class Avatar
- * @extends {Doraemon}
- */
-class Avatar extends Doraemon {
+let Avatar = class Avatar extends Doraemon {
     /**
      * 自定义类名前缀
      *
@@ -192,12 +184,5 @@ Avatar = __decorate([
             },
         },
     })
-    /**
-     * Avatar 头像组件
-     *
-     * @description 用于展示用户头像或文字缩写，支持图片、文字两种类型，并提供圆形和方形两种形状。
-     * @class Avatar
-     * @extends {Doraemon}
-     */
 ], Avatar);
 export default defineComponentHOC()(Avatar);

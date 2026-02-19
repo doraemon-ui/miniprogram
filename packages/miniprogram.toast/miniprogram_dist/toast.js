@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.toast.
- * © 2021 - 2024 Doraemon UI.
- * Built on 2024-04-06, 22:38:17.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.22.
+ * © 2021 - 2026 Doraemon UI.
+ * Built on 2026-02-19, 23:51:40.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
  */
 import { getCurrentPage, findComponentNode, usePopupStateHOC, isObject, isString, isTrue, isFalse, } from '@doraemon-ui/miniprogram.shared';
 /**
@@ -21,7 +21,20 @@ export const presetIconRecord = {
  */
 const defaultProps = {
     duration: 1500,
+    position: 'center',
+    maskClosable: true,
 };
+function config(val) {
+    if (val.duration !== undefined) {
+        defaultProps.duration = val.duration;
+    }
+    if (val.position !== undefined) {
+        defaultProps.position = val.position;
+    }
+    if (val.maskClosable !== undefined) {
+        defaultProps.maskClosable = val.maskClosable;
+    }
+}
 const mergeProps = (p) => {
     return Object.assign({}, defaultProps, typeof p === 'string' ? { text: p } : p);
 };
@@ -155,4 +168,4 @@ function loading(p, selector, instance) {
         }, selector, instance);
     });
 }
-export { show, success, warning, error, info, loading, clear, };
+export { config, show, success, warning, error, info, loading, clear, };

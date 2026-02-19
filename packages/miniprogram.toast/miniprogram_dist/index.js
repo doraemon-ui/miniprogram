@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.toast.
- * © 2021 - 2024 Doraemon UI.
- * Built on 2024-04-06, 22:38:17.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.22.
+ * © 2021 - 2026 Doraemon UI.
+ * Built on 2026-02-19, 23:51:40.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -21,15 +21,75 @@ let Toast = class Toast extends Doraemon {
      * @memberof Toast
      */
     prefixCls;
+    /**
+     * 自定义图片，image 的优先级高于 icon
+     *
+     * @type {string}
+     * @memberof Toast
+     */
     image;
+    /**
+     * 图标
+     *
+     * @type {ToastIcon}
+     * @memberof Toast
+     */
     icon;
+    /**
+     * 图标的颜色
+     *
+     * @type {string}
+     * @memberof Toast
+     */
     iconColor;
+    /**
+     * 提示文本
+     *
+     * @type {string}
+     * @memberof Toast
+     */
     text;
+    /**
+     * 提示的延迟时间，若小于等于 0 则不会自动关闭
+     *
+     * @type {number}
+     * @memberof Toast
+     */
     duration;
+    /**
+     * 垂直方向显示位置
+     *
+     * @type {ToastPosition}
+     * @memberof Toast
+     */
     position;
+    /**
+     * 是否显示蒙层
+     *
+     * @type {boolean}
+     * @memberof Toast
+     */
     mask;
-    maskClickable;
+    /**
+     * 点击蒙层是否允许关闭
+     *
+     * @type {boolean}
+     * @memberof Toast
+     */
+    maskClosable;
+    /**
+     * 是否可见
+     *
+     * @type {boolean}
+     * @memberof Toast
+     */
     visible;
+    /**
+     * 设置蒙层的 z-index
+     *
+     * @type {number}
+     * @memberof Toast
+     */
     zIndex;
     get classes() {
         const { prefixCls, iconType: hasIcon, image } = this;
@@ -52,7 +112,7 @@ let Toast = class Toast extends Doraemon {
     }
     get maskStyle() {
         return {
-            pointerEvents: this.maskClickable ? 'none' : 'auto',
+            pointerEvents: this.maskClosable ? 'none' : 'auto',
         };
     }
     get iconType() {
@@ -148,7 +208,7 @@ __decorate([
         type: Boolean,
         default: true,
     })
-], Toast.prototype, "maskClickable", void 0);
+], Toast.prototype, "maskClosable", void 0);
 __decorate([
     Prop({
         type: Boolean,

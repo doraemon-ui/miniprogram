@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.core-js.
- * © 2021 - 2024 Doraemon UI.
- * Built on 2024-04-06, 22:34:46.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.22.
+ * © 2021 - 2026 Doraemon UI.
+ * Built on 2026-02-19, 23:47:46.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
  */
 
 const LIFECYCLE_HOOKS = [
@@ -47,10 +47,14 @@ function warn(msg, vm) {
     }
 }
 
+const check = (it) => {
+    return it && typeof it.env && it;
+};
+const miniprogramThis = check(typeof wx === 'object' && wx);
 /**
  * miniporgram environment sniffing
  */
-const inMiniprogram = typeof wx !== 'undefined';
+const inMiniprogram = !!miniprogramThis;
 /**
  * development mode
  */
@@ -59,8 +63,8 @@ const isDev = "production" !== 'production';
 
 function nextTick(fn) {
     if (inMiniprogram &&
-        typeof wx.nextTick === 'function') {
-        wx.nextTick(fn);
+        typeof miniprogramThis.nextTick === 'function') {
+        miniprogramThis.nextTick(fn);
     }
     else {
         setTimeout(fn, 0);
@@ -573,6 +577,10 @@ class Doraemon {
      * @memberof Doraemon
      */
     static util = util;
+    static super;
+    static superOptions;
+    static extendOptions;
+    static sealedOptions;
 }
 
 /**
@@ -597,7 +605,17 @@ function stateMixin(Component) {
     const propsDef = {};
     propsDef.get = function () {
         const vm = this;
-        return vm._renderProxy ? vm._renderProxy.properties : undefined;
+        if (vm._renderProxy) {
+            const ret = {};
+            const props = vm.$options.props;
+            if (props) {
+                for (const key in props) {
+                    ret[key] = vm._renderProxy.properties[key];
+                }
+            }
+            return ret;
+        }
+        return undefined;
     };
     Object.defineProperty(Component.prototype, '$data', dataDef);
     Object.defineProperty(Component.prototype, '$props', propsDef);
@@ -1029,6 +1047,10 @@ function throttle(func, wait, options) {
     });
 }
 
+function isDef(v) {
+    return v !== undefined && v !== null;
+}
+
 function initComponents(vm, components) {
     return Object.keys(components).reduce((acc, key) => {
         const { module: componentName, type = 'child', observer, throttle = true } = getData$1(components[key]);
@@ -1075,9 +1097,9 @@ function initComponents(vm, components) {
         };
         const option = {
             type,
-            linked: typeof observer === 'undefined' ? noop : linkCb,
-            linkChanged: typeof observer === 'undefined' ? noop : linkCb,
-            unlinked: typeof observer === 'undefined' ? noop : linkCb,
+            linked: !isDef(observer) ? noop : linkCb,
+            linkChanged: !isDef(observer) ? noop : linkCb,
+            unlinked: !isDef(observer) ? noop : linkCb,
         };
         return {
             ...acc,
@@ -1240,6 +1262,7 @@ function callHook(vm, hook) {
     }
 }
 
+const hasProxy = typeof Proxy !== 'undefined';
 function initExposed(vm) {
     const expose = vm.$options.expose || {};
     if (Array.isArray(expose)) {
@@ -1247,6 +1270,7 @@ function initExposed(vm) {
             const exposed = vm._exposed || (vm._exposed = {});
             expose.forEach((key) => {
                 Object.defineProperty(exposed, key, {
+                    enumerable: !hasProxy,
                     get: () => vm[key],
                     set: (val) => (vm[key] = val)
                 });
@@ -1271,20 +1295,40 @@ const publicPropertiesMap = {
 };
 function getExposeProxy(vm) {
     if (vm._exposed) {
-        return (vm._exposeProxy ||
-            (vm._exposeProxy = new Proxy(vm._exposed, {
-                get(target, key) {
-                    if (key in target) {
-                        return target[key];
+        if (hasProxy) {
+            return (vm._exposeProxy ||
+                (vm._exposeProxy = new Proxy(vm._exposed, {
+                    get(target, key) {
+                        if (key in target) {
+                            return target[key];
+                        }
+                        else if (key in publicPropertiesMap) {
+                            return publicPropertiesMap[key](vm);
+                        }
+                    },
+                    has(target, key) {
+                        return key in target || key in publicPropertiesMap;
+                    },
+                })));
+        }
+        else {
+            vm._exposeProxy = Object.create(null);
+            for (const key in vm._exposed) {
+                Object.defineProperty(vm._exposeProxy, key, {
+                    get() {
+                        return vm._exposed[key];
                     }
-                    else if (key in publicPropertiesMap) {
+                });
+            }
+            for (const key in publicPropertiesMap) {
+                Object.defineProperty(vm._exposeProxy, key, {
+                    get() {
                         return publicPropertiesMap[key](vm);
                     }
-                },
-                has(target, key) {
-                    return key in target || key in publicPropertiesMap;
-                },
-            })));
+                });
+            }
+            return vm._exposeProxy;
+        }
     }
 }
 function getPublicInstance(vm) {
@@ -1408,33 +1452,39 @@ function find(vm, path) {
 }
 
 function initWatch(vm, watch) {
-    return Object.keys(watch).reduce((acc, key) => ({ ...acc, [key]: function defineWatch(newVal) {
-            const renderProxy = this;
-            if (!renderProxy.$component || !renderProxy.$component._isMounted) {
-                return;
-            }
-            // Always equal to the newVal
-            const oldVal = renderProxy.data[key];
-            const handler = Array.isArray(watch[key]) ? watch[key] : [watch[key]];
-            if (Array.isArray(handler)) {
-                handler.forEach(h => {
-                    if (typeof h === 'string') {
-                        renderProxy.$component[h]?.(newVal, oldVal);
+    return Object.keys(watch).reduce((acc, key) => ({
+        ...acc,
+        [key]: createWatcher(vm, key, watch[key]),
+    }), {});
+}
+function createWatcher(vm, key, handler) {
+    return function defineWatch(newVal) {
+        const renderProxy = this;
+        if (!renderProxy.$component || !renderProxy.$component._isMounted) {
+            return;
+        }
+        // Always equal to the newVal
+        const oldVal = renderProxy.data[key];
+        const handlers = Array.isArray(handler) ? handler : [handler];
+        if (Array.isArray(handlers)) {
+            handlers.forEach(h => {
+                if (typeof h === 'string') {
+                    renderProxy.$component[h]?.(newVal, oldVal);
+                }
+                else if (typeof h === 'function') {
+                    h.call(renderProxy.$component, newVal, oldVal);
+                }
+                else if (isPlainObject(h)) {
+                    if (typeof h.handler === 'string') {
+                        renderProxy.$component[h.handler]?.(newVal, oldVal);
                     }
-                    else if (typeof h === 'function') {
-                        h.call(renderProxy.$component, newVal, oldVal);
+                    else {
+                        h.handler.call(renderProxy.$component, newVal, oldVal);
                     }
-                    else if (isPlainObject(h)) {
-                        if (typeof h.handler === 'string') {
-                            renderProxy.$component[h.handler]?.(newVal, oldVal);
-                        }
-                        else {
-                            h.handler.call(renderProxy.$component, newVal, oldVal);
-                        }
-                    }
-                });
-            }
-        } }), {});
+                }
+            });
+        }
+    };
 }
 
 /**
@@ -1499,9 +1549,9 @@ function defineComponentHOC(externalOptions = {}) {
         const methods = initMethods(componentInstance, options.methods);
         const componentConf = {
             options: {
-                multipleSlots: typeof externalOptions.multipleSlots !== 'undefined' ?
+                multipleSlots: isDef(externalOptions.multipleSlots) ?
                     externalOptions.multipleSlots : true,
-                addGlobalClass: typeof externalOptions.addGlobalClass !== 'undefined' ?
+                addGlobalClass: isDef(externalOptions.addGlobalClass) ?
                     externalOptions.addGlobalClass : true,
             },
             externalClasses: [
