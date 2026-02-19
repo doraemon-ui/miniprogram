@@ -1,7 +1,6 @@
 {
   "granularPathspec": false,
   "npmClient": "pnpm",
-  "useWorkspaces": true,
   "packages": [
     "demos/*",
     "packages/*",
