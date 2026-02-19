@@ -3,29 +3,12 @@
 exports[`Backdrop mount correctly 1`] = `
 <dora-backdrop>
   <dora-animation-group
-    classNames="dora-animate--fadeIn"
-    disableScroll="{{true}}"
     doraClass="dora-backdrop"
     id="dora-animation-group"
-    in="{{false}}"
-    mountOnEnter="{{true}}"
-    unmountOnExit="{{true}}"
-    wrapStyle="{{Object {}}}"
     bind:click="onClick"
     bind:enter="onShow"
     bind:entered="onShowed"
     bind:exited="onClosed"
-  >
-    <wx-view
-      ariaLabel="backdrop"
-      class="dora-backdrop__aria-button"
-      role="button"
-      catch:tap="onClick"
-    />
-    <wx-view
-      class="dora-backdrop__bd"
-      catch:tap="onContentClick"
-    />
-  </dora-animation-group>
+  />
 </dora-backdrop>
 `;

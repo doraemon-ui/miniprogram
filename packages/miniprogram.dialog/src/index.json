@@ -1,6 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-    "dora-popup": "@doraemon-ui/miniprogram.popup/index"
+    "dora-popup": "../../miniprogram.popup/src/index"
   }
 }

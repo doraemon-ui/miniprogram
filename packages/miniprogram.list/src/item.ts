@@ -213,6 +213,7 @@ class ListItem extends Doraemon {
   phoneNumberNoQuotaToast!: boolean
   appParameter!: string
 
+  // union type
   openType!: NativeButtonOpenType | NativeRouteOpenType
   
   get classes () {

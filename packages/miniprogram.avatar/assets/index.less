@@ -1,0 +1,82 @@
+@import "./variables.less";
+
+// Avatar styles
+// @prop --container-size: Size of the default avatar
+// @prop --container-size-sm: Size of the small avatar
+// @prop --container-size-lg: Size of the large avatar
+// @prop --font-size: Font size of the default avatar text
+// @prop --font-size-sm: Font size of the small avatar text
+// @prop --font-size-lg: Font size of the large avatar text
+// @prop --square-border-radius: Border radius of the avatar
+// -----------------------------
+.@{avatar-prefix-cls} {
+  // default css variables
+  --container-size: @avatar-size-base;
+  --container-size-sm: @avatar-size-sm;
+  --container-size-lg: @avatar-size-lg;
+  --font-size: @avatar-font-size-base;
+  --font-size-sm: @avatar-font-size-sm;
+  --font-size-lg: @avatar-font-size-lg;
+  --square-border-radius: @avatar-border-radius;
+
+  box-sizing: border-box;
+  display: inline-block;
+  text-align: center;
+  background-color: @avatar-background-color;
+  color: @avatar-text-color;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  vertical-align: middle;
+
+  // default size
+  width: var(--container-size);
+  height: var(--container-size);
+  line-height: var(--container-size);
+  font-size: var(--font-size);
+  border-radius: 50%;
+
+  .@{avatar-prefix-cls}__string {
+    line-height: var(--container-size);
+  }
+
+  // size modifiers
+  &--small {
+    width: var(--container-size-sm);
+    height: var(--container-size-sm);
+    line-height: var(--container-size-sm);
+    font-size: var(--font-size-sm);
+    border-radius: 50%;
+
+    .@{avatar-prefix-cls}__string {
+      line-height: var(--container-size-sm);
+    }
+  }
+
+  &--large {
+    width: var(--container-size-lg);
+    height: var(--container-size-lg);
+    line-height: var(--container-size-lg);
+    font-size: var(--font-size-lg);
+    border-radius: 50%;
+
+    .@{avatar-prefix-cls}__string {
+      line-height: var(--container-size-lg);
+    }
+  }
+
+  &--square {
+    border-radius: var(--square-border-radius);
+  }
+
+  &--thumb {
+    background-color: transparent;
+  }
+
+  &__thumb {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+}

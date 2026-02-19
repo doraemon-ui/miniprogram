@@ -85,7 +85,7 @@ class DemoPage extends Doraemon {
    * @type {string}
    * @memberof DemoPage
    */
-  darkmode!: string
+  darkmode!: DarkMode
 
   @Prop({
     type: Boolean,

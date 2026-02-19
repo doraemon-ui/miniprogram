@@ -146,6 +146,7 @@ class Panel extends Doraemon {
 
   onClick () {
     const { index, disabled } = this
+    console.log(11111111, this.$parent)
     if (!disabled) {
       (this.$parent as AccordionInstance)?.onClickItem(index)
     }

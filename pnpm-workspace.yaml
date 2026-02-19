@@ -2,3 +2,4 @@ packages:
   - demos/*
   - packages/*
   - playground/**
+  - taro-react-playground/**

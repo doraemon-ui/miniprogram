@@ -1,0 +1,26 @@
+<dora-accordion
+  id="dora-accordion"
+  title="Default"
+  label="Accordion model"
+  defaultCurrent="{{ ['key1'] }}"
+  accordion="{{ accordion }}"
+  bind:change="onChange"
+>
+  <dora-accordion-panel
+    key="key1"
+    thumb="http://cdn.skyvow.cn/logo.png"
+    title="Accordion 1"
+    content="微信小程序自定义组件"
+    disabled
+    showArrow="{{ false }}"
+  />
+  <dora-accordion-panel
+    id="dora-accordion-panel"
+    key="key2"
+    thumb="http://cdn.skyvow.cn/logo.png"
+    title="Accordion 2"
+    content="微信小程序自定义组件"
+    disabled="{{ false }}"
+    showArrow
+  />
+</dora-accordion>

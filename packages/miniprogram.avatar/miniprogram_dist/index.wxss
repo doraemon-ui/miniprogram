@@ -1,0 +1,80 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-avatar {
+  --container-size: 80rpx;
+  --container-size-sm: 64rpx;
+  --container-size-lg: 96rpx;
+  --font-size: 28rpx;
+  --font-size-sm: 24rpx;
+  --font-size-lg: 32rpx;
+  --square-border-radius: var(--dora-border-radius, 16rpx);
+  box-sizing: border-box;
+  display: inline-block;
+  text-align: center;
+  background-color: var(--dora-component-background-color,#fff);
+  background-color: var(--dora-component-background-color,#fff);
+  color: rgba(var(--dora-text-color-rgb,0,0,0),.65);
+  color: rgba(var(--dora-text-color-rgb,0,0,0),.65);
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  vertical-align: middle;
+  width: var(--container-size);
+  width: var(--container-size);
+  height: var(--container-size);
+  height: var(--container-size);
+  line-height: var(--container-size);
+  line-height: var(--container-size);
+  font-size: var(--font-size);
+  font-size: var(--font-size);
+  border-radius: 50%
+}
+.dora-avatar .dora-avatar__string {
+  line-height: var(--container-size);
+  line-height: var(--container-size)
+}
+.dora-avatar--small {
+  width: var(--container-size-sm);
+  width: var(--container-size-sm);
+  height: var(--container-size-sm);
+  height: var(--container-size-sm);
+  line-height: var(--container-size-sm);
+  line-height: var(--container-size-sm);
+  font-size: var(--font-size-sm);
+  font-size: var(--font-size-sm);
+  border-radius: 50%
+}
+.dora-avatar--small .dora-avatar__string {
+  line-height: var(--container-size-sm);
+  line-height: var(--container-size-sm)
+}
+.dora-avatar--large {
+  width: var(--container-size-lg);
+  width: var(--container-size-lg);
+  height: var(--container-size-lg);
+  height: var(--container-size-lg);
+  line-height: var(--container-size-lg);
+  line-height: var(--container-size-lg);
+  font-size: var(--font-size-lg);
+  font-size: var(--font-size-lg);
+  border-radius: 50%
+}
+.dora-avatar--large .dora-avatar__string {
+  line-height: var(--container-size-lg);
+  line-height: var(--container-size-lg)
+}
+.dora-avatar--square {
+  border-radius: var(--square-border-radius);
+  border-radius: var(--square-border-radius)
+}
+.dora-avatar--thumb {
+  background-color: transparent
+}
+.dora-avatar__thumb {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover
+}

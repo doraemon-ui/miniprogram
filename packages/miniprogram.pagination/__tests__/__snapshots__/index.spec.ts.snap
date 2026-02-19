@@ -9,11 +9,41 @@ exports[`Pagination mount correctly 1`] = `
       class="dora-pagination__prev"
     >
       <dora-button
-        disabled="{{true}}"
         doraClass="dora-pagination__button"
         type="light"
         bind:click="onPrev"
-      />
+      >
+        <wx-button
+          appParameter=""
+          class="dora-class dora-button dora-color dora-color--positive dora-button--solid dora-button--disabled"
+          disabled="{{true}}"
+          formType=""
+          hoverClass="dora-hover-class none"
+          hoverStartTime="{{20}}"
+          hoverStayTime="{{70}}"
+          hoverStopPropagation="{{false}}"
+          lang="en"
+          loading="{{false}}"
+          openType=""
+          phoneNumberNoQuotaToast="{{true}}"
+          sendMessageImg=""
+          sendMessagePath=""
+          sendMessageTitle=""
+          sessionFrom=""
+          showMessageCard="{{false}}"
+          bind:agreeprivacyauthorization="onAgreePrivacyAuthorization"
+          bind:chooseavatar="onChooseAvatar"
+          bind:contact="onContact"
+          bind:createliveactivity="onCreateLiveActivity"
+          bind:error="onError"
+          bind:getphonenumber="onGetPhoneNumber"
+          bind:getrealtimephonenumber="onGetRealtimePhoneNumber"
+          bind:getuserinfo="onGetUserInfo"
+          bind:launchapp="onLaunchApp"
+          bind:opensetting="onOpenSetting"
+          bind:tap="onClick"
+        />
+      </dora-button>
     </wx-view>
     <wx-view
       class="dora-pagination__number"
@@ -30,11 +60,41 @@ exports[`Pagination mount correctly 1`] = `
       class="dora-pagination__next"
     >
       <dora-button
-        disabled="{{true}}"
         doraClass="dora-pagination__button"
         type="light"
         bind:click="onNext"
-      />
+      >
+        <wx-button
+          appParameter=""
+          class="dora-class dora-button dora-color dora-color--positive dora-button--solid dora-button--disabled"
+          disabled="{{true}}"
+          formType=""
+          hoverClass="dora-hover-class none"
+          hoverStartTime="{{20}}"
+          hoverStayTime="{{70}}"
+          hoverStopPropagation="{{false}}"
+          lang="en"
+          loading="{{false}}"
+          openType=""
+          phoneNumberNoQuotaToast="{{true}}"
+          sendMessageImg=""
+          sendMessagePath=""
+          sendMessageTitle=""
+          sessionFrom=""
+          showMessageCard="{{false}}"
+          bind:agreeprivacyauthorization="onAgreePrivacyAuthorization"
+          bind:chooseavatar="onChooseAvatar"
+          bind:contact="onContact"
+          bind:createliveactivity="onCreateLiveActivity"
+          bind:error="onError"
+          bind:getphonenumber="onGetPhoneNumber"
+          bind:getrealtimephonenumber="onGetRealtimePhoneNumber"
+          bind:getuserinfo="onGetUserInfo"
+          bind:launchapp="onLaunchApp"
+          bind:opensetting="onOpenSetting"
+          bind:tap="onClick"
+        />
+      </dora-button>
     </wx-view>
   </wx-view>
 </dora-pagination>

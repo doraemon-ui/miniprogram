@@ -3,30 +3,53 @@
 exports[`Dialog mount correctly 1`] = `
 <dora-dialog>
   <dora-popup
-    bodyStyle="{{
-      Object {
-        "backgroundColor": "unset",
-        "minWidth": "75vw",
-      }
-    }}"
-    closable="{{false}}"
-    mask="{{true}}"
-    maskClosable="{{true}}"
-    position="center"
-    visible="{{false}}"
-    zIndex="{{null}}"
+    id="dora-popup"
     bind:close="onPopupClose"
     bind:closed="onPopupClosed"
   >
     <wx-view
-      class="dora-class dora-dialog"
+      class="dora-class dora-popup dora-popup--position-center"
+      style="touch-action: auto;  "
+      bind:touchend="onTouchEnd"
+      bind:touchmove="onTouchMove"
+      bind:touchstart="onTouchStart"
     >
-      <wx-view
-        class="dora-dialog__bd"
+      <dora-backdrop
+        disableScroll="{{true}}"
+        id="dora-backdrop"
+        transparent="{{false}}"
+        wrapStyle="{{null}}"
+        zIndex="{{0}}"
+        bind:click="onMaskClick"
       />
-      <wx-view
-        class="dora-dialog__ft"
-      />
+      <dora-animation-group
+        classNames="dora-animate--fadeIn"
+        doraClass="dora-popup__body"
+        id="dora-animation-group"
+        in="{{false}}"
+        mountOnEnter="{{true}}"
+        unmountOnExit="{{true}}"
+        wrapStyle="{{
+          Object {
+            "backgroundColor": "unset",
+            "minWidth": "75vw",
+          }
+        }}"
+        bind:enter="onShow"
+        bind:entered="onShowed"
+        bind:exited="onClosed"
+      >
+        <wx-view
+          class="dora-class dora-dialog"
+        >
+          <wx-view
+            class="dora-dialog__bd"
+          />
+          <wx-view
+            class="dora-dialog__ft"
+          />
+        </wx-view>
+      </dora-animation-group>
     </wx-view>
   </dora-popup>
 </dora-dialog>

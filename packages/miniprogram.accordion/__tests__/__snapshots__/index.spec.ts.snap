@@ -16,9 +16,7 @@ exports[`Accordion mount correctly 1`] = `
       <wx-view
         class="dora-accordion__bd"
       >
-        <dora-accordion-panel
-          id="dora-accordion-panel"
-        >
+        <dora-accordion-panel>
           <wx-view
             class="dora-class dora-accordion-panel"
           >
@@ -46,48 +44,24 @@ exports[`Accordion mount correctly 1`] = `
             </wx-view>
           </wx-view>
         </dora-accordion-panel>
-      </wx-view>
-    </wx-view>
-  </dora-accordion>
-</main>
-`;
-
-exports[`Accordion should support to change props 1`] = `
-<main>
-  <dora-accordion
-    id="dora-accordion"
-    bind:change="onChange"
-  >
-    <wx-view
-      class="dora-class dora-accordion"
-    >
-      <wx-view
-        class="dora-accordion__hd"
-      >
-        Default
-      </wx-view>
-      <wx-view
-        class="dora-accordion__bd"
-      >
         <dora-accordion-panel
           id="dora-accordion-panel"
         >
           <wx-view
-            class="dora-class dora-accordion-panel dora-accordion-panel--disabled"
+            class="dora-class dora-accordion-panel"
           >
             <wx-view
               class="dora-accordion-panel__hd"
               bind:tap="onClick"
             >
-              <wx-image
-                class="dora-accordion-panel__thumb"
-                src="http://cdn.skyvow.cn/logo.png"
-              />
               <wx-view
                 class="dora-accordion-panel__title"
               >
-                Accordion 1
+                Accordion 2
               </wx-view>
+              <wx-view
+                class="dora-accordion-panel__arrow"
+              />
             </wx-view>
             <wx-view
               class="dora-accordion-panel__bd"
@@ -100,11 +74,6 @@ exports[`Accordion should support to change props 1`] = `
             </wx-view>
           </wx-view>
         </dora-accordion-panel>
-      </wx-view>
-      <wx-view
-        class="dora-accordion__ft"
-      >
-        Accordion model
       </wx-view>
     </wx-view>
   </dora-accordion>

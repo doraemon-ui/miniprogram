@@ -1,0 +1,43 @@
+@media (prefers-color-scheme: light) {
+  page [data-dora-theme="auto"] .button,
+  page [data-dora-theme="light"] .button {
+    background-color: #fff !important;
+    color: #000 !important;
+  }
+
+  page [data-dora-theme="auto"] .button.button-hover,
+  page [data-dora-theme="light"] .button.button-hover {
+    background-color: #e6e6e6 !important;
+  }
+}
+
+page [data-dora-theme="light"] .button {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+page [data-dora-theme="light"] .button.button-hover {
+  background-color: #e6e6e6 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  page [data-dora-theme="auto"] .button,
+  page [data-dora-theme="dark"] .button {
+    background-color: #343434 !important;
+    color: #d6d6d6 !important;
+  }
+
+  page [data-dora-theme="auto"] .button.button-hover,
+  page [data-dora-theme="dark"] .button.button-hover {
+    background-color: #191919 !important;
+  }
+}
+
+page [data-dora-theme="dark"] .button {
+  background-color: #343434 !important;
+  color: #d6d6d6 !important;
+}
+
+page [data-dora-theme="dark"] .button.button-hover {
+  background-color: #191919 !important;
+}

@@ -5,6 +5,9 @@ module.exports = {
   testEnvironment: 'jsdom',
   testURL: 'https://jest.test',
   moduleFileExtensions: ['js', 'ts', 'tsx'],
+  transformIgnorePatterns: [
+    '/node_modules/(?!.*(@doraemon-ui|miniprogram-simulate))',
+  ],
   transform: {
     '.+\\.jsx?$': [
       'babel-jest',
@@ -18,6 +21,7 @@ module.exports = {
     // '**/__tests__/**/*.(js|ts)?(x)',
     '**/?(*.)(spec).(js|ts)?(x)',
   ],
+  // coverageProvider: 'v8',
   coverageDirectory: '<rootDir>/.coverage-report',
   collectCoverageFrom: [
     'src/**/*.{js,jsx,ts,tsx}',

@@ -1,8 +1,8 @@
 {
   "component": true,
   "usingComponents": {
-    "dora-animation-group": "@doraemon-ui/miniprogram.animation-group/index",
-    "dora-backdrop": "@doraemon-ui/miniprogram.backdrop/index",
-    "dora-safe-area": "@doraemon-ui/miniprogram.safe-area/index"
+    "dora-animation-group": "../../animation-group/src/index",
+    "dora-backdrop": "../../backdrop/src/index",
+    "dora-safe-area": "../../safe-area/src/index"
   }
 }

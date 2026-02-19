@@ -91,15 +91,15 @@ describe('Pagination', () => {
     expect($comp.activeIndex).toBe(3)
     expect(pagination.querySelectorAll('.dora-pagination__number').length).toBe(1)
 
-    // prevButton.dispatchEvent('tap')
-    // await simulate.sleep(0)
-    // expect(onPrev).toHaveBeenCalled()
-    // expect($comp.activeIndex).toBe(2)
+    prevButton.dispatchEvent('tap')
+    await simulate.sleep(0)
+    expect(onPrev).toHaveBeenCalled()
+    expect($comp.activeIndex).toBe(2)
 
-    // nextButton.dispatchEvent('tap')
-    // await simulate.sleep(0)
-    // expect(onNext).toHaveBeenCalled()
-    // expect($comp.activeIndex).toBe(3)
+    nextButton.dispatchEvent('tap')
+    await simulate.sleep(0)
+    expect(onNext).toHaveBeenCalled()
+    expect($comp.activeIndex).toBe(3)
 
     wrapper.setData({ simple: true })
     await simulate.sleep(0)

@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Avatar mount correctly 1`] = `
+<dora-avatar>
+  <wx-view
+    class="dora-class dora-avatar dora-avatar--circle dora-avatar--default"
+    style=""
+  >
+    <wx-text
+      class="dora-avatar__string"
+      style=""
+    />
+  </wx-view>
+</dora-avatar>
+`;
