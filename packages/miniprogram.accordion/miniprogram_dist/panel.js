@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.accordion.
- * © 2021 - 2024 Doraemon UI.
- * Built on 2024-04-06, 22:35:23.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.22.
+ * © 2021 - 2026 Doraemon UI.
+ * Built on 2026-02-22, 01:41:16.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -106,7 +106,9 @@ let Panel = class Panel extends Doraemon {
     }
     onClick() {
         const { index, disabled } = this;
+        console.log(11111111, this.$parent);
         if (!disabled) {
+            ;
             this.$parent?.onClickItem(index);
         }
     }
@@ -114,37 +116,37 @@ let Panel = class Panel extends Doraemon {
 __decorate([
     Prop({
         type: String,
-        default: ''
+        default: '',
     })
 ], Panel.prototype, "key", void 0);
 __decorate([
     Prop({
         type: String,
-        default: ''
+        default: '',
     })
 ], Panel.prototype, "thumb", void 0);
 __decorate([
     Prop({
         type: String,
-        default: ''
+        default: '',
     })
 ], Panel.prototype, "title", void 0);
 __decorate([
     Prop({
         type: String,
-        default: ''
+        default: '',
     })
 ], Panel.prototype, "content", void 0);
 __decorate([
     Prop({
         type: Boolean,
-        default: false
+        default: false,
     })
 ], Panel.prototype, "disabled", void 0);
 __decorate([
     Prop({
         type: Boolean,
-        default: true
+        default: true,
     })
 ], Panel.prototype, "showArrow", void 0);
 Panel = __decorate([

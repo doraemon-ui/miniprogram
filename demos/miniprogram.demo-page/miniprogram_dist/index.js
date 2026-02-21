@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.demo-page.
- * © 2021 - 2024 Doraemon UI.
- * Built on 2024-04-06, 22:36:31.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.22.
+ * © 2021 - 2026 Doraemon UI.
+ * Built on 2026-02-22, 01:42:28.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -30,17 +30,17 @@ const getSysTheme = () => {
     return theme;
 };
 const presetThemeRecord = {
-    'light': {
-        'backgroundColor': '#fafafa',
-        'backgroundTextStyle': DarkMode.LIGHT,
-        'navigationBarBackgroundColor': '#fafafa',
-        'navigationBarTextStyle': 'black',
+    light: {
+        backgroundColor: '#fafafa',
+        backgroundTextStyle: DarkMode.LIGHT,
+        navigationBarBackgroundColor: '#fafafa',
+        navigationBarTextStyle: 'black',
     },
-    'dark': {
-        'backgroundColor': '#0d0d0d',
-        'backgroundTextStyle': DarkMode.DARK,
-        'navigationBarBackgroundColor': '#0d0d0d',
-        'navigationBarTextStyle': 'white',
+    dark: {
+        backgroundColor: '#0d0d0d',
+        backgroundTextStyle: DarkMode.DARK,
+        navigationBarBackgroundColor: '#0d0d0d',
+        navigationBarTextStyle: 'white',
     },
 };
 const darkmodeSync = (darkmode) => {
@@ -83,8 +83,9 @@ let DemoPage = class DemoPage extends Doraemon {
         const hd = `${prefixCls}__hd`;
         const title = `${prefixCls}__title`;
         const desc = `${prefixCls}__desc`;
-        const darkmode = classNames(`${prefixCls}__darkmode`, `${prefixCls}__iconfont`, (curTheme === DarkMode.AUTO ? sysTheme === DarkMode.DARK : curTheme === DarkMode.DARK) ?
-            `${prefixCls}__iconfont-dark` : `${prefixCls}__iconfont-light`);
+        const darkmode = classNames(`${prefixCls}__darkmode`, `${prefixCls}__iconfont`, (curTheme === DarkMode.AUTO ? sysTheme === DarkMode.DARK : curTheme === DarkMode.DARK)
+            ? `${prefixCls}__iconfont-dark`
+            : `${prefixCls}__iconfont-light`);
         const bd = classNames(`${prefixCls}__bd`, {
             [`${prefixCls}__bd--spacing`]: spacing,
         });

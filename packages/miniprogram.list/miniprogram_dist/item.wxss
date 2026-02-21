@@ -126,7 +126,7 @@
   position: relative
 }
 .dora-list-item--access > .dora-list-item__ft::after {
-  content: " ";
+  content: ' ';
   display: inline-block;
   width: 32rpx;
   height: 32rpx;

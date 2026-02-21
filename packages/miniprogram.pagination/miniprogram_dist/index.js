@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.pagination.
- * © 2021 - 2024 Doraemon UI.
- * Built on 2024-04-06, 22:37:25.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.22.
+ * © 2021 - 2026 Doraemon UI.
+ * Built on 2026-02-22, 01:43:40.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,9 +10,58 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { defineComponentHOC, Doraemon, Component, Watch, Emit } from '@doraemon-ui/miniprogram.core-js';
+import { defineComponentHOC, Doraemon, Component, Prop, Watch, Emit } from '@doraemon-ui/miniprogram.core-js';
 const { classNames } = Doraemon.util;
 let Pagination = class Pagination extends Doraemon {
+    /**
+     * 自定义类名前缀
+     *
+     * @type {string}
+     * @memberof Pagination
+     */
+    prefixCls;
+    /**
+     * 形态
+     *
+     * @type {('button' | 'number' | 'pointer')}
+     * @memberof Pagination
+     */
+    mode;
+    /**
+     * 默认页号
+     *
+     * @type {number}
+     * @memberof Pagination
+     */
+    defaultCurrent;
+    /**
+     * 当前页号
+     *
+     * @type {number}
+     * @memberof Pagination
+     */
+    current;
+    /**
+     * 是否受控
+     *
+     * @type {boolean}
+     * @memberof Pagination
+     */
+    controlled;
+    /**
+     * 总页数
+     *
+     * @type {number}
+     * @memberof Pagination
+     */
+    total;
+    /**
+     * 是否隐藏数值
+     *
+     * @type {boolean}
+     * @memberof Pagination
+     */
+    simple;
     get classes() {
         const { prefixCls } = this;
         const wrap = classNames(prefixCls);
@@ -68,7 +117,48 @@ let Pagination = class Pagination extends Doraemon {
             current,
         };
     }
+    mounted() {
+        const { defaultCurrent, current, controlled } = this;
+        const activeIndex = controlled ? current : defaultCurrent;
+        this.updated(activeIndex);
+    }
 };
+__decorate([
+    Prop({
+        type: String,
+        default: 'button',
+    })
+], Pagination.prototype, "mode", void 0);
+__decorate([
+    Prop({
+        type: Number,
+        default: 1,
+    })
+], Pagination.prototype, "defaultCurrent", void 0);
+__decorate([
+    Prop({
+        type: Number,
+        default: 1,
+    })
+], Pagination.prototype, "current", void 0);
+__decorate([
+    Prop({
+        type: Boolean,
+        default: false,
+    })
+], Pagination.prototype, "controlled", void 0);
+__decorate([
+    Prop({
+        type: Number,
+        default: 0,
+    })
+], Pagination.prototype, "total", void 0);
+__decorate([
+    Prop({
+        type: Boolean,
+        default: false,
+    })
+], Pagination.prototype, "simple", void 0);
 __decorate([
     Watch('current')
 ], Pagination.prototype, "watchCurrent", null);
@@ -87,30 +177,6 @@ Pagination = __decorate([
             prefixCls: {
                 type: String,
                 default: 'dora-pagination',
-            },
-            mode: {
-                type: String,
-                default: 'button',
-            },
-            defaultCurrent: {
-                type: Number,
-                default: 1,
-            },
-            current: {
-                type: Number,
-                default: 1,
-            },
-            controlled: {
-                type: Boolean,
-                default: false,
-            },
-            total: {
-                type: Number,
-                default: 0,
-            },
-            simple: {
-                type: Boolean,
-                default: false,
             },
         },
     })

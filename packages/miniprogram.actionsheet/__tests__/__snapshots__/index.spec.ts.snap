@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActionSheet mount correctly 1`] = `
+<dora-actionsheet>
+  <dora-popup
+    id="dora-popup"
+    bind:close="onPopupClose"
+    bind:closed="onPopupClosed"
+  >
+    <wx-view
+      class="dora-class dora-popup dora-popup--position-bottom"
+      style="touch-action: none;  "
+      bind:touchend="onTouchEnd"
+      bind:touchmove="onTouchMove"
+      bind:touchstart="onTouchStart"
+    >
+      <dora-backdrop
+        disableScroll="{{true}}"
+        id="dora-backdrop"
+        transparent="{{false}}"
+        wrapStyle="{{null}}"
+        zIndex="{{null}}"
+        bind:click="onMaskClick"
+      />
+      <dora-animation-group
+        classNames="dora-animate--slideInUp"
+        doraClass="dora-popup__body"
+        id="dora-animation-group"
+        in="{{false}}"
+        mountOnEnter="{{true}}"
+        unmountOnExit="{{true}}"
+        wrapStyle="{{Object {}}}"
+        bind:enter="onShow"
+        bind:entered="onShowed"
+        bind:exited="onClosed"
+      >
+        <wx-view
+          class="dora-class dora-actionsheet"
+        >
+          <wx-view
+            class="dora-actionsheet__content dora-actionsheet__content--theme-ios dora-actionsheet__content--has-cancel"
+          >
+            <wx-view
+              class="dora-actionsheet__group dora-actionsheet__group--options"
+            />
+            <wx-view
+              class="dora-actionsheet__group dora-actionsheet__group--cancel"
+            >
+              <wx-button
+                class="dora-actionsheet__button dora-actionsheet__button--cancel"
+                hoverClass="dora-actionsheet__button--hover"
+                catch:tap="onCancel"
+              >
+                取消
+              </wx-button>
+            </wx-view>
+          </wx-view>
+        </wx-view>
+        <dora-safe-area
+          safeArea="bottom"
+        />
+      </dora-animation-group>
+    </wx-view>
+  </dora-popup>
+</dora-actionsheet>
+`;

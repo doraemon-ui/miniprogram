@@ -1,18 +1,11 @@
 /**
  * @doraemon-ui/miniprogram.core-js.
- * © 2021 - 2024 Doraemon UI.
- * Built on 2024-04-06, 22:34:46.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.22.
+ * © 2021 - 2026 Doraemon UI.
+ * Built on 2026-02-22, 01:40:35.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
  */
 
-const LIFECYCLE_HOOKS = [
-    'beforeCreate',
-    'created',
-    'mounted',
-    'destroyed',
-    'unmounted',
-    'errorCaptured',
-];
+const LIFECYCLE_HOOKS = ['beforeCreate', 'created', 'mounted', 'destroyed', 'unmounted', 'errorCaptured'];
 
 const config = {
     /**
@@ -42,15 +35,19 @@ function warn(msg, vm) {
     if (config.warnHandler) {
         config.warnHandler.call(null, msg);
     }
-    else if (hasConsole && (!config.silent)) {
+    else if (hasConsole && !config.silent) {
         console.error(`[Doraemon warn]: ${msg}`);
     }
 }
 
+const check = (it) => {
+    return it && typeof it.env && it;
+};
+const miniprogramThis = check(typeof wx === 'object' && wx);
 /**
  * miniporgram environment sniffing
  */
-const inMiniprogram = typeof wx !== 'undefined';
+const inMiniprogram = !!miniprogramThis;
 /**
  * development mode
  */
@@ -58,9 +55,8 @@ const isDev = "production" !== 'production';
 // export const isDev = true
 
 function nextTick(fn) {
-    if (inMiniprogram &&
-        typeof wx.nextTick === 'function') {
-        wx.nextTick(fn);
+    if (inMiniprogram && typeof miniprogramThis.nextTick === 'function') {
+        miniprogramThis.nextTick(fn);
     }
     else {
         setTimeout(fn, 0);
@@ -307,18 +303,19 @@ const keys = Object.keys;
 // including multiple space separated values.
 const unquotedContentValueRegex = /^(normal|none|(\b(url\([^)]*\)|chapter_counter|attr\([^)]*\)|(no-)?(open|close)-quote|inherit)((\b\s*)|$|\s+))+)$/;
 function buildRule(key, value, exclude) {
-    if ((key.toString().match(exclude) === null) && !isUnitlessNumber[key] && typeof value === 'number') {
+    if (key.toString().match(exclude) === null && !isUnitlessNumber[key] && typeof value === 'number') {
         value = '' + value + 'px';
     }
     else if (key === 'content' && !unquotedContentValueRegex.test(value)) {
-        value = "'" + value.replace(/'/g, "\\'") + "'";
+        // prettier-ignore
+        value = '\'' + value.replace(/'/g, '\\\'') + '\'';
     }
     return hyphenateStyleName_1(key) + ': ' + value + ';  ';
 }
 // css var prefix
 const cssVarPattern = /^--/;
 function styleToCssString(rules, options = {
-    exclude: cssVarPattern
+    exclude: cssVarPattern,
 }) {
     const exclude = options ? options.exclude : null;
     if (typeof rules === 'string') {
@@ -382,7 +379,7 @@ function hasOwn(obj, key) {
  */
 function isReserved(str) {
     const c = (str + '').charCodeAt(0);
-    return c === 0x24 || c === 0x5F;
+    return c === 0x24 || c === 0x5f;
 }
 
 function noop(...args) { }
@@ -481,7 +478,7 @@ const util = {
     warn,
     isEqual,
     classNames,
-    styleToCssString
+    styleToCssString,
 };
 
 let uid = 0;
@@ -573,6 +570,10 @@ class Doraemon {
      * @memberof Doraemon
      */
     static util = util;
+    static super;
+    static superOptions;
+    static extendOptions;
+    static sealedOptions;
 }
 
 /**
@@ -597,7 +598,17 @@ function stateMixin(Component) {
     const propsDef = {};
     propsDef.get = function () {
         const vm = this;
-        return vm._renderProxy ? vm._renderProxy.properties : undefined;
+        if (vm._renderProxy) {
+            const ret = {};
+            const props = vm.$options.props;
+            if (props) {
+                for (const key in props) {
+                    ret[key] = vm._renderProxy.properties[key];
+                }
+            }
+            return ret;
+        }
+        return undefined;
     };
     Object.defineProperty(Component.prototype, '$data', dataDef);
     Object.defineProperty(Component.prototype, '$props', propsDef);
@@ -632,22 +643,17 @@ function isPrimitive(value) {
 
 function createDecorator(factory) {
     return (target, key, index) => {
-        const Ctor = typeof target === 'function'
-            ? target
-            : target.constructor;
+        const Ctor = typeof target === 'function' ? target : target.constructor;
         if (!Ctor.__decorators__) {
             Ctor.__decorators__ = [];
         }
         if (typeof index !== 'number') {
             index = undefined;
         }
-        Ctor.__decorators__.push(options => factory(options, key, index));
+        Ctor.__decorators__.push((options) => factory(options, key, index));
     };
 }
-const $internalHooks = [
-    'data',
-    ...LIFECYCLE_HOOKS,
-];
+const $internalHooks = ['data', ...LIFECYCLE_HOOKS];
 function componentFactory(Component, options = {}) {
     options.name = options.name || Component._componentTag || Component.name;
     // prototype props.
@@ -668,7 +674,6 @@ function componentFactory(Component, options = {}) {
                 (options.methods || (options.methods = {}))[key] = descriptor.value;
             }
             else {
-                // typescript decorated data
                 (options.mixins || (options.mixins = [])).push({
                     data() {
                         return { [key]: descriptor.value };
@@ -677,7 +682,6 @@ function componentFactory(Component, options = {}) {
             }
         }
         else if (descriptor.get || descriptor.set) {
-            // computed properties
             (options.computed || (options.computed = {}))[key] = {
                 get: descriptor.get,
                 set: descriptor.set,
@@ -692,21 +696,19 @@ function componentFactory(Component, options = {}) {
     // decorate options
     const decorators = Component.__decorators__;
     if (decorators) {
-        decorators.forEach(fn => fn(options));
+        decorators.forEach((fn) => fn(options));
         delete Component.__decorators__;
     }
     // find super
     const superProto = Object.getPrototypeOf(Component.prototype);
-    const Super = superProto instanceof Doraemon
-        ? superProto.constructor
-        : Doraemon;
+    const Super = superProto instanceof Doraemon ? superProto.constructor : Doraemon;
     const Extended = Super.extend(options);
     forwardStaticMembers(Extended, Component, Super);
     return Extended;
 }
 function forwardStaticMembers(Extended, Original, Super) {
     // We have to use getOwnPropertyNames since Babel registers methods as non-enumerable
-    Object.getOwnPropertyNames(Original).forEach(key => {
+    Object.getOwnPropertyNames(Original).forEach((key) => {
         // `prototype` should not be overwritten
         if (key === 'prototype') {
             return;
@@ -722,9 +724,7 @@ function forwardStaticMembers(Extended, Original, Super) {
                 return;
             }
             const superDescriptor = Object.getOwnPropertyDescriptor(Super, key);
-            if (!isPrimitive(descriptor.value) &&
-                superDescriptor &&
-                superDescriptor.value === descriptor.value) {
+            if (!isPrimitive(descriptor.value) && superDescriptor && superDescriptor.value === descriptor.value) {
                 return;
             }
         }
@@ -745,12 +745,12 @@ function collectDataFromConstructor(vm, Component) {
                 }
             }
         }
-        keys.forEach(key => {
+        keys.forEach((key) => {
             if (key.charAt(0) !== '_') {
                 Object.defineProperty(this, key, {
                     get: () => vm[key],
                     // set: value => { vm[key] = value },
-                    set: value => {
+                    set: (value) => {
                         if (!(props && hasOwn(props, key))) {
                             vm[key] = value !== undefined ? value : null;
                         }
@@ -766,7 +766,7 @@ function collectDataFromConstructor(vm, Component) {
     Component.prototype._init = originalInit;
     // create plain data object
     const plainData = {};
-    Object.keys(data).forEach(key => {
+    Object.keys(data).forEach((key) => {
         if (data[key] !== undefined) {
             plainData[key] = data[key];
         }
@@ -941,9 +941,7 @@ function debounce(func, wait, options) {
         const timeSinceLastCall = time - lastCallTime;
         const timeSinceLastInvoke = time - lastInvokeTime;
         const timeWaiting = wait - timeSinceLastCall;
-        return maxing
-            ? Math.min(timeWaiting, maxWait - timeSinceLastInvoke)
-            : timeWaiting;
+        return maxing ? Math.min(timeWaiting, maxWait - timeSinceLastInvoke) : timeWaiting;
     }
     function shouldInvoke(time) {
         const timeSinceLastCall = time - lastCallTime;
@@ -951,8 +949,7 @@ function debounce(func, wait, options) {
         // Either this is the first call, activity has stopped and we're at the
         // trailing edge, the system time has gone backwards and we're treating
         // it as the trailing edge, or we've hit the `maxWait` limit.
-        return (lastCallTime === undefined || (timeSinceLastCall >= wait) ||
-            (timeSinceLastCall < 0) || (maxing && timeSinceLastInvoke >= maxWait));
+        return lastCallTime === undefined || timeSinceLastCall >= wait || timeSinceLastCall < 0 || (maxing && timeSinceLastInvoke >= maxWait);
     }
     function timerExpired() {
         const time = Date.now();
@@ -1023,10 +1020,14 @@ function throttle(func, wait, options) {
         trailing = 'trailing' in options ? !!options.trailing : trailing;
     }
     return debounce(func, wait, {
-        'leading': leading,
-        'maxWait': wait,
-        'trailing': trailing,
+        leading: leading,
+        maxWait: wait,
+        trailing: trailing,
     });
+}
+
+function isDef(v) {
+    return v !== undefined && v !== null;
 }
 
 function initComponents(vm, components) {
@@ -1060,7 +1061,7 @@ function initComponents(vm, components) {
                     else if (isPlainObject(throttle) && throttle !== true) {
                         opts = {
                             ...opts,
-                            ...throttle
+                            ...throttle,
                         };
                     }
                     const { wait, options } = opts;
@@ -1075,9 +1076,9 @@ function initComponents(vm, components) {
         };
         const option = {
             type,
-            linked: typeof observer === 'undefined' ? noop : linkCb,
-            linkChanged: typeof observer === 'undefined' ? noop : linkCb,
-            unlinked: typeof observer === 'undefined' ? noop : linkCb,
+            linked: !isDef(observer) ? noop : linkCb,
+            linkChanged: !isDef(observer) ? noop : linkCb,
+            unlinked: !isDef(observer) ? noop : linkCb,
         };
         return {
             ...acc,
@@ -1092,7 +1093,7 @@ function getData$1(comp) {
             ['module']: ret.module,
             type: ret.type,
             observer: ret.observer,
-            throttle: ret.throttle
+            throttle: ret.throttle,
         };
     }
     else if (typeof comp === 'string') {
@@ -1105,7 +1106,7 @@ function getData$1(comp) {
             ['module']: comp.module,
             type: comp.type,
             observer: comp.observer,
-            throttle: comp.throttle
+            throttle: comp.throttle,
         };
     }
     return {};
@@ -1140,7 +1141,7 @@ function useThrottle() {
 function initComputed(vm, forceUpdate = false) {
     if (vm._isMounted || forceUpdate) {
         const computed = vm.$options.computed || {};
-        Object.keys(computed).forEach(key => {
+        Object.keys(computed).forEach((key) => {
             const userDef = computed[key];
             const getter = typeof userDef === 'function' ? userDef : userDef.get;
             if (getter) {
@@ -1158,9 +1159,7 @@ function initComputed(vm, forceUpdate = false) {
 
 function getDefaultData(vm) {
     let data = vm.$options.data || {};
-    data = typeof data === 'function'
-        ? getData(data, vm)
-        : data || {};
+    data = typeof data === 'function' ? getData(data, vm) : data || {};
     const mixins = vm.$options.mixins || [];
     const instData = mixins.reduce((acc, mixin) => ({
         ...acc,
@@ -1192,8 +1191,7 @@ function getData(data, vm) {
             const key = keys[i];
             if (isDev) ;
             if (props && hasOwn(props, key)) {
-                isDev && warn(`The data property "${key}" is already declared as a prop. ` +
-                    'Use prop default value instead.', vm);
+                isDev && warn(`The data property "${key}" is already declared as a prop. ` + 'Use prop default value instead.', vm);
             }
             else if (!isReserved(key)) {
                 // properties starting with "$" or "_" are not set in miniprogram instance
@@ -1240,6 +1238,7 @@ function callHook(vm, hook) {
     }
 }
 
+const hasProxy = typeof Proxy !== 'undefined';
 function initExposed(vm) {
     const expose = vm.$options.expose || {};
     if (Array.isArray(expose)) {
@@ -1247,8 +1246,9 @@ function initExposed(vm) {
             const exposed = vm._exposed || (vm._exposed = {});
             expose.forEach((key) => {
                 Object.defineProperty(exposed, key, {
+                    enumerable: !hasProxy,
                     get: () => vm[key],
-                    set: (val) => (vm[key] = val)
+                    set: (val) => (vm[key] = val),
                 });
             });
             return exposed;
@@ -1271,20 +1271,40 @@ const publicPropertiesMap = {
 };
 function getExposeProxy(vm) {
     if (vm._exposed) {
-        return (vm._exposeProxy ||
-            (vm._exposeProxy = new Proxy(vm._exposed, {
-                get(target, key) {
-                    if (key in target) {
-                        return target[key];
-                    }
-                    else if (key in publicPropertiesMap) {
+        if (hasProxy) {
+            return (vm._exposeProxy ||
+                (vm._exposeProxy = new Proxy(vm._exposed, {
+                    get(target, key) {
+                        if (key in target) {
+                            return target[key];
+                        }
+                        else if (key in publicPropertiesMap) {
+                            return publicPropertiesMap[key](vm);
+                        }
+                    },
+                    has(target, key) {
+                        return key in target || key in publicPropertiesMap;
+                    },
+                })));
+        }
+        else {
+            vm._exposeProxy = Object.create(null);
+            for (const key in vm._exposed) {
+                Object.defineProperty(vm._exposeProxy, key, {
+                    get() {
+                        return vm._exposed[key];
+                    },
+                });
+            }
+            for (const key in publicPropertiesMap) {
+                Object.defineProperty(vm._exposeProxy, key, {
+                    get() {
                         return publicPropertiesMap[key](vm);
-                    }
-                },
-                has(target, key) {
-                    return key in target || key in publicPropertiesMap;
-                },
-            })));
+                    },
+                });
+            }
+            return vm._exposeProxy;
+        }
     }
 }
 function getPublicInstance(vm) {
@@ -1297,10 +1317,13 @@ function initMethods(vm, methods) {
     const methodProxy = {};
     vm.$options.props;
     for (const key in methods) {
-        methodProxy[key] = typeof methods[key] !== 'function' ? noop : function (...args) {
-            const renderProxy = this;
-            return renderProxy.$component[key].call(renderProxy.$component, ...args);
-        };
+        methodProxy[key] =
+            typeof methods[key] !== 'function'
+                ? noop
+                : function (...args) {
+                    const renderProxy = this;
+                    return renderProxy.$component[key].call(renderProxy.$component, ...args);
+                };
     }
     return methodProxy;
 }
@@ -1315,9 +1338,7 @@ function initProps(vm, propsOptions) {
         const type = propOptions.type || NULL_PROP;
         const value = validateProp(key, propsOptions, {}, vm);
         // 属性的类型（可以指定多个）
-        properties[key] = Array.isArray(type)
-            ? { optionalTypes: type, type, value }
-            : { type, value };
+        properties[key] = Array.isArray(type) ? { optionalTypes: type, type, value } : { type, value };
     }
     return properties;
 }
@@ -1364,12 +1385,7 @@ function initRefs(vm) {
     }
     Object.defineProperty(vm, '$parent', {
         get() {
-            const nodes = parentNodes
-                .slice(0, 1)
-                .reduce((acc, path) => ([
-                ...acc,
-                ...find(vm, path),
-            ]), []);
+            const nodes = parentNodes.slice(0, 1).reduce((acc, path) => [...acc, ...find(vm, path)], []);
             return nodes && nodes[0];
         },
     });
@@ -1380,18 +1396,13 @@ function initRefs(vm) {
     });
     Object.defineProperty(vm, '$children', {
         get() {
-            const nodes = childrenNodes
-                .reduce((acc, path) => ([
-                ...acc,
-                ...find(vm, path),
-            ]), []);
+            const nodes = childrenNodes.reduce((acc, path) => [...acc, ...find(vm, path)], []);
             return nodes;
         },
     });
     Object.defineProperty(vm, '$refs', {
         get() {
-            const nodes = refNodes
-                .reduce((acc, node) => ({
+            const nodes = refNodes.reduce((acc, node) => ({
                 ...acc,
                 [node.ref]: find(vm, node.path),
             }), {});
@@ -1408,33 +1419,39 @@ function find(vm, path) {
 }
 
 function initWatch(vm, watch) {
-    return Object.keys(watch).reduce((acc, key) => ({ ...acc, [key]: function defineWatch(newVal) {
-            const renderProxy = this;
-            if (!renderProxy.$component || !renderProxy.$component._isMounted) {
-                return;
-            }
-            // Always equal to the newVal
-            const oldVal = renderProxy.data[key];
-            const handler = Array.isArray(watch[key]) ? watch[key] : [watch[key]];
-            if (Array.isArray(handler)) {
-                handler.forEach(h => {
-                    if (typeof h === 'string') {
-                        renderProxy.$component[h]?.(newVal, oldVal);
+    return Object.keys(watch).reduce((acc, key) => ({
+        ...acc,
+        [key]: createWatcher(vm, key, watch[key]),
+    }), {});
+}
+function createWatcher(vm, key, handler) {
+    return function defineWatch(newVal) {
+        const renderProxy = this;
+        if (!renderProxy.$component || !renderProxy.$component._isMounted) {
+            return;
+        }
+        // Always equal to the newVal
+        const oldVal = renderProxy.data[key];
+        const handlers = Array.isArray(handler) ? handler : [handler];
+        if (Array.isArray(handlers)) {
+            handlers.forEach((h) => {
+                if (typeof h === 'string') {
+                    renderProxy.$component[h]?.(newVal, oldVal);
+                }
+                else if (typeof h === 'function') {
+                    h.call(renderProxy.$component, newVal, oldVal);
+                }
+                else if (isPlainObject(h)) {
+                    if (typeof h.handler === 'string') {
+                        renderProxy.$component[h.handler]?.(newVal, oldVal);
                     }
-                    else if (typeof h === 'function') {
-                        h.call(renderProxy.$component, newVal, oldVal);
+                    else {
+                        h.handler.call(renderProxy.$component, newVal, oldVal);
                     }
-                    else if (isPlainObject(h)) {
-                        if (typeof h.handler === 'string') {
-                            renderProxy.$component[h.handler]?.(newVal, oldVal);
-                        }
-                        else {
-                            h.handler.call(renderProxy.$component, newVal, oldVal);
-                        }
-                    }
-                });
-            }
-        } }), {});
+                }
+            });
+        }
+    };
 }
 
 /**
@@ -1460,7 +1477,8 @@ if (inMiniprogram) {
 
 function syncPropsToData(props, computed) {
     const defaultData = Object.keys(props).reduce((acc, name) => ({
-        ...acc, [name]: props[name].value
+        ...acc,
+        [name]: props[name].value,
     }), {});
     const sync = (data) => {
         return Object.keys(computed).reduce((acc, key) => {
@@ -1499,19 +1517,10 @@ function defineComponentHOC(externalOptions = {}) {
         const methods = initMethods(componentInstance, options.methods);
         const componentConf = {
             options: {
-                multipleSlots: typeof externalOptions.multipleSlots !== 'undefined' ?
-                    externalOptions.multipleSlots : true,
-                addGlobalClass: typeof externalOptions.addGlobalClass !== 'undefined' ?
-                    externalOptions.addGlobalClass : true,
+                multipleSlots: isDef(externalOptions.multipleSlots) ? externalOptions.multipleSlots : true,
+                addGlobalClass: isDef(externalOptions.addGlobalClass) ? externalOptions.addGlobalClass : true,
             },
-            externalClasses: [
-                'dora-class',
-                'dora-class-a',
-                'dora-class-b',
-                'dora-class-c',
-                'dora-hover-class'
-            ].concat(Array.isArray(externalOptions.externalClasses) ?
-                externalOptions.externalClasses : []),
+            externalClasses: ['dora-class', 'dora-class-a', 'dora-class-b', 'dora-class-c', 'dora-hover-class'].concat(Array.isArray(externalOptions.externalClasses) ? externalOptions.externalClasses : []),
             ['export']() {
                 if (externalOptions.expose) {
                     return externalOptions.expose.call(this);
@@ -1519,11 +1528,10 @@ function defineComponentHOC(externalOptions = {}) {
                 return getPublicInstance(this.$component);
             },
             relations: { ...components },
-            behaviors: (Array.isArray(externalOptions.behaviors) ?
-                externalOptions.behaviors : []).concat([
+            behaviors: (Array.isArray(externalOptions.behaviors) ? externalOptions.behaviors : []).concat([
                 'wx://component-export',
                 useThrottle(),
-                syncPropsToData(defaultProps, options.computed)
+                syncPropsToData(defaultProps, options.computed),
             ]),
             observers: {
                 ...watch,
@@ -1533,9 +1541,7 @@ function defineComponentHOC(externalOptions = {}) {
             },
             properties: { ...defaultProps },
             data: {
-                ...(typeof externalOptions.data === 'function'
-                    ? (externalOptions.data() || {})
-                    : (externalOptions.data || {}))
+                ...(typeof externalOptions.data === 'function' ? externalOptions.data() || {} : externalOptions.data || {}),
             },
             methods: { ...methods },
             lifetimes: {
@@ -1585,7 +1591,7 @@ function mergeStaticProperty(config, target) {
         config[key] = target[key];
     }
     // 低版本 IOS 下部分属性不能直接访问
-    Object.getOwnPropertyNames(target).forEach(key => {
+    Object.getOwnPropertyNames(target).forEach((key) => {
         const excludes = ['arguments', 'caller', 'length', 'name', 'prototype'];
         if (excludes.indexOf(key) < 0) {
             config[key] = target[key];

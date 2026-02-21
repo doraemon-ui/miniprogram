@@ -46,7 +46,7 @@
   display: -ms-flexbox;
   display: flex
 }
-.dora-dialog__ft:after {
+.dora-dialog__ft::after {
   content: " ";
   position: absolute;
   left: 0;

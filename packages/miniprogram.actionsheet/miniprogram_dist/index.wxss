@@ -1,0 +1,175 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-actionsheet {
+  --options-bg: var(--dora-actionsheet-options-bg, rgba(var(--dora-white-rgb, 255, 255, 255), 0.65));
+  --options-normal-bg: var(--dora-actionsheet-options-normal-bg, var(--dora-component-background-color, #fff));
+  --options-cancel-bg: var(--dora-actionsheet-options-cancel-bg, var(--dora-component-background-color, #fff));
+  --options-active-bg: var(--dora-actionsheet-options-active-bg, var(--dora-active-state-bg, var(--dora-color-step-10, #e6e6e6)));
+  --text-color: var(--dora-actionsheet-text-color, #007aff);
+  --border-color: var(--dora-actionsheet-border-color, var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9)));
+  --destructive-text-color: var(--dora-actionsheet-destructive-text-color, #ff3b30);
+  --icon-size: 40rpx;
+  --border-radius: 24rpx;
+  --margin: 20rpx
+}
+.dora-actionsheet__content {
+  margin-left: var(--margin);
+  margin-left: var(--margin);
+  margin-right: var(--margin);
+  margin-right: var(--margin);
+  width: auto;
+  overflow: hidden
+}
+.dora-actionsheet__content--theme-wx {
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 0
+}
+.dora-actionsheet__content--theme-wx .dora-actionsheet__group {
+  border-radius: 0;
+  margin-bottom: calc(var(--margin) - 4rpx);
+  margin-bottom: calc(var(--margin) - 4rpx)
+}
+.dora-actionsheet__content--theme-wx .dora-actionsheet__group--options {
+  background-color: var(--options-normal-bg);
+  background-color: var(--options-normal-bg)
+}
+.dora-actionsheet__content--theme-wx .dora-actionsheet__group--cancel {
+  margin-bottom: 0
+}
+.dora-actionsheet__content--theme-wx .dora-actionsheet__button {
+  font-size: 36rpx;
+  color: #000
+}
+.dora-actionsheet__content--theme-wx .dora-actionsheet__button--cancel {
+  font-weight: 400
+}
+.dora-actionsheet__content--theme-wx.dora-actionsheet__content--has-cancel {
+  background-color: var(--options-cancel-bg);
+  background-color: var(--options-cancel-bg)
+}
+.dora-actionsheet__group {
+  margin-bottom: var(--margin);
+  margin-bottom: var(--margin);
+  border-radius: var(--border-radius);
+  border-radius: var(--border-radius);
+  background-color: var(--options-normal-bg);
+  background-color: var(--options-normal-bg);
+  overflow: hidden
+}
+.dora-actionsheet__group--options {
+  background-color: var(--options-bg);
+  background-color: var(--options-bg)
+}
+.dora-actionsheet__title {
+  padding: 32rpx;
+  color: #8f8f8f;
+  text-align: center;
+  font-size: 26rpx
+}
+.dora-actionsheet__button {
+  color: inherit!important;
+  background: 0 0!important;
+  font-size: inherit;
+  font-weight: 400;
+  line-height: inherit;
+  text-align: inherit;
+  text-decoration: none;
+  overflow: visible;
+  min-height: 0!important;
+  width: auto!important;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  min-width: 104rpx;
+  min-height: 96rpx;
+  width: 100%;
+  border-radius: 0;
+  background-color: transparent;
+  color: var(--text-color);
+  color: var(--text-color);
+  font-size: 42rpx;
+  line-height: 96rpx;
+  text-align: center;
+  text-overflow: ellipsis;
+  vertical-align: top;
+  cursor: pointer
+}
+.dora-actionsheet__button::after {
+  display: block;
+  position: static;
+  top: auto;
+  left: auto;
+  width: auto;
+  height: auto;
+  border: none;
+  border-radius: 0;
+  transform: none;
+  transform-origin: 0 0
+}
+.dora-actionsheet__button--hover {
+  box-shadow: none;
+  border-color: var(--border-color);
+  border-color: var(--border-color);
+  color: var(--text-color);
+  color: var(--text-color);
+  background: var(--options-active-bg);
+  background: var(--options-active-bg)
+}
+.dora-actionsheet__button--destructive {
+  color: var(--destructive-text-color)!important;
+  color: var(--destructive-text-color)!important
+}
+.dora-actionsheet__button--cancel {
+  font-weight: 500
+}
+.dora-actionsheet__button--disabled {
+  opacity: var(--dora-disabled-opacity,.3)!important;
+  opacity: var(--dora-disabled-opacity,.3)!important;
+  cursor: not-allowed!important
+}
+.dora-actionsheet__group .dora-actionsheet__button {
+  border-top: none
+}
+.dora-actionsheet__group .dora-actionsheet__button::after {
+  transform: none;
+  transform-origin: none;
+  border: none;
+  border-radius: 0;
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 1PX;
+  border-top: 1PX solid var(--border-color);
+  border-top: 1PX solid var(--border-color);
+  color: var(--border-color);
+  color: var(--border-color);
+  transform-origin: 0 0;
+  transform: scaleY(.5)
+}
+.dora-actionsheet__group .dora-actionsheet__button:first-child:last-child::after {
+  border-width: 0
+}
+.dora-actionsheet__icon {
+  width: var(--icon-size);
+  width: var(--icon-size);
+  height: var(--icon-size);
+  height: var(--icon-size);
+  display: inline-block;
+  margin-right: 20rpx
+}
+.dora-actionsheet__text {
+  cursor: pointer
+}

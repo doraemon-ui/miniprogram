@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.animation-group.
- * © 2021 - 2024 Doraemon UI.
- * Built on 2024-04-06, 22:35:36.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.22.
+ * © 2021 - 2026 Doraemon UI.
+ * Built on 2026-02-22, 01:41:30.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -430,16 +430,12 @@ let AnimationGroup = class AnimationGroup extends Doraemon {
                     this.$emit('change', { animateStatus: AnimateStatus.EXITED });
                 });
             }
-            if (animateStatus !== AnimateStatus.ENTER &&
-                animateStatus !== AnimateStatus.ENTERING &&
-                animateStatus !== AnimateStatus.ENTERED) {
+            if (animateStatus !== AnimateStatus.ENTER && animateStatus !== AnimateStatus.ENTERING && animateStatus !== AnimateStatus.ENTERED) {
                 nextStatus = AnimateStatus.ENTERING;
             }
         }
         else {
-            if (animateStatus === AnimateStatus.ENTER ||
-                animateStatus === AnimateStatus.ENTERING ||
-                animateStatus === AnimateStatus.ENTERED) {
+            if (animateStatus === AnimateStatus.ENTER || animateStatus === AnimateStatus.ENTERING || animateStatus === AnimateStatus.ENTERED) {
                 nextStatus = AnimateStatus.EXITING;
             }
         }

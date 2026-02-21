@@ -16,159 +16,159 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale
 }
-.doraicons-loading-outline:before {
-  content: "\e8ad"
+.doraicons-loading-outline::before {
+  content: '\e8ad'
 }
-.doraicons-loading-3-quarters-outline:before {
-  content: "\e67e"
+.doraicons-loading-3-quarters-outline::before {
+  content: '\e67e'
 }
-.doraicons-dora-bell:before {
-  content: "\e621"
+.doraicons-dora-bell::before {
+  content: '\e621'
 }
-.doraicons-dora-hopter:before {
-  content: "\e62a"
+.doraicons-dora-hopter::before {
+  content: '\e62a'
 }
-.doraicons-dora-avatar:before {
-  content: "\ef6c"
+.doraicons-dora-avatar::before {
+  content: '\ef6c'
 }
-.doraicons-sunny-outline:before {
-  content: "\e7e9"
+.doraicons-sunny-outline::before {
+  content: '\e7e9'
 }
-.doraicons-moon-outline:before {
-  content: "\ecf2"
+.doraicons-moon-outline::before {
+  content: '\ecf2'
 }
-.doraicons-search-circle:before {
-  content: "\ea1f"
+.doraicons-search-circle::before {
+  content: '\ea1f'
 }
-.doraicons-search-circle-outline:before {
-  content: "\ea1e"
+.doraicons-search-circle-outline::before {
+  content: '\ea1e'
 }
-.doraicons-arrow-up-circle:before {
-  content: "\e66a"
+.doraicons-arrow-up-circle::before {
+  content: '\e66a'
 }
-.doraicons-arrow-down:before {
-  content: "\e66b"
+.doraicons-arrow-down::before {
+  content: '\e66b'
 }
-.doraicons-arrow-up:before {
-  content: "\e676"
+.doraicons-arrow-up::before {
+  content: '\e676'
 }
-.doraicons-information-circle-outline:before {
-  content: "\e67b"
+.doraicons-information-circle-outline::before {
+  content: '\e67b'
 }
-.doraicons-information-circle:before {
-  content: "\e67c"
+.doraicons-information-circle::before {
+  content: '\e67c'
 }
-.doraicons-star-half:before {
-  content: "\e687"
+.doraicons-star-half::before {
+  content: '\e687'
 }
-.doraicons-arrow-right-circle:before {
-  content: "\e7ce"
+.doraicons-arrow-right-circle::before {
+  content: '\e7ce'
 }
-.doraicons-arrow-down-circle:before {
-  content: "\e7cd"
+.doraicons-arrow-down-circle::before {
+  content: '\e7cd'
 }
-.doraicons-close:before {
-  content: "\e7d7"
+.doraicons-close::before {
+  content: '\e7d7'
 }
-.doraicons-checkmark:before {
-  content: "\e7d8"
+.doraicons-checkmark::before {
+  content: '\e7d8'
 }
-.doraicons-help:before {
-  content: "\e7e5"
+.doraicons-help::before {
+  content: '\e7e5'
 }
-.doraicons-star-outline:before {
-  content: "\e7f8"
+.doraicons-star-outline::before {
+  content: '\e7f8'
 }
-.doraicons-arrow-left-circle:before {
-  content: "\e706"
+.doraicons-arrow-left-circle::before {
+  content: '\e706'
 }
-.doraicons-arrow-right:before {
-  content: "\e708"
+.doraicons-arrow-right::before {
+  content: '\e708'
 }
-.doraicons-arrow-up-circle-outline:before {
-  content: "\e709"
+.doraicons-arrow-up-circle-outline::before {
+  content: '\e709'
 }
-.doraicons-arrow-right-circle-outline:before {
-  content: "\e70a"
+.doraicons-arrow-right-circle-outline::before {
+  content: '\e70a'
 }
-.doraicons-checkmark-circle:before {
-  content: "\e71a"
+.doraicons-checkmark-circle::before {
+  content: '\e71a'
 }
-.doraicons-heart:before {
-  content: "\e73a"
+.doraicons-heart::before {
+  content: '\e73a'
 }
-.doraicons-help-circle-outline:before {
-  content: "\e73b"
+.doraicons-help-circle-outline::before {
+  content: '\e73b'
 }
-.doraicons-alert-circle:before {
-  content: "\e777"
+.doraicons-alert-circle::before {
+  content: '\e777'
 }
-.doraicons-close-circle:before {
-  content: "\e77f"
+.doraicons-close-circle::before {
+  content: '\e77f'
 }
-.doraicons-alert-circle-outline:before {
-  content: "\ea04"
+.doraicons-alert-circle-outline::before {
+  content: '\ea04'
 }
-.doraicons-remove:before {
-  content: "\e6ef"
+.doraicons-remove::before {
+  content: '\e6ef'
 }
-.doraicons-remove-circle:before {
-  content: "\e6f0"
+.doraicons-remove-circle::before {
+  content: '\e6f0'
 }
-.doraicons-star:before {
-  content: "\e6f1"
+.doraicons-star::before {
+  content: '\e6f1'
 }
-.doraicons-search:before {
-  content: "\e6f2"
+.doraicons-search::before {
+  content: '\e6f2'
 }
-.doraicons-sunny:before {
-  content: "\e6fb"
+.doraicons-sunny::before {
+  content: '\e6fb'
 }
-.doraicons-add-circle-outline:before {
-  content: "\e700"
+.doraicons-add-circle-outline::before {
+  content: '\e700'
 }
-.doraicons-arrow-left-circle-outline:before {
-  content: "\e703"
+.doraicons-arrow-left-circle-outline::before {
+  content: '\e703'
 }
-.doraicons-arrow-left:before {
-  content: "\e707"
+.doraicons-arrow-left::before {
+  content: '\e707'
 }
-.doraicons-close-circle-outline:before {
-  content: "\e70b"
+.doraicons-close-circle-outline::before {
+  content: '\e70b'
 }
-.doraicons-checkmark-circle-outline:before {
-  content: "\e70c"
+.doraicons-checkmark-circle-outline::before {
+  content: '\e70c'
 }
-.doraicons-moon:before {
-  content: "\e720"
+.doraicons-moon::before {
+  content: '\e720'
 }
-.doraicons-remove-circle-outline:before {
-  content: "\e715"
+.doraicons-remove-circle-outline::before {
+  content: '\e715'
 }
-.doraicons-add:before {
-  content: "\e787"
+.doraicons-add::before {
+  content: '\e787'
 }
-.doraicons-add-circle:before {
-  content: "\e788"
+.doraicons-add-circle::before {
+  content: '\e788'
 }
-.doraicons-arrow-down-circle-outline:before {
-  content: "\e789"
+.doraicons-arrow-down-circle-outline::before {
+  content: '\e789'
 }
-.doraicons-information:before {
-  content: "\e795"
+.doraicons-information::before {
+  content: '\e795'
 }
-.doraicons-heart-half:before {
-  content: "\e797"
+.doraicons-heart-half::before {
+  content: '\e797'
 }
-.doraicons-heart-half-outline:before {
-  content: "\ecf3"
+.doraicons-heart-half-outline::before {
+  content: '\ecf3'
 }
-.doraicons-heart-outline:before {
-  content: "\e79b"
+.doraicons-heart-outline::before {
+  content: '\e79b'
 }
-.doraicons-help-circle:before {
-  content: "\e7ab"
+.doraicons-help-circle::before {
+  content: '\e7ab'
 }
-.doraicons-alert:before {
-  content: "\ea6c"
+.doraicons-alert::before {
+  content: '\ea6c'
 }

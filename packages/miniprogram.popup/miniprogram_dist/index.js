@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.popup.
- * © 2021 - 2024 Doraemon UI.
- * Built on 2024-04-06, 22:37:40.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.22.
+ * © 2021 - 2026 Doraemon UI.
+ * Built on 2026-02-22, 01:44:00.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -160,9 +160,7 @@ let Popup = class Popup extends Doraemon {
         return styleToCssString({
             ...this.wrapStyle,
             ...this.indexStyle,
-            touchAction: ['top', 'bottom'].includes(this.position)
-                ? 'none'
-                : 'auto'
+            touchAction: ['top', 'bottom'].includes(this.position) ? 'none' : 'auto',
         });
     }
     /**
@@ -189,10 +187,10 @@ let Popup = class Popup extends Doraemon {
     setBackdropVisible(visible) {
         if (this.mask && this._backdrop) {
             if (visible) {
-                this._backdrop.retain();
+                this._backdrop.retain?.();
             }
             else {
-                this._backdrop.release();
+                this._backdrop.release?.();
             }
         }
     }
@@ -268,31 +266,23 @@ let Popup = class Popup extends Doraemon {
     _start;
     _move;
     onTouchStart(e) {
-        if (!this.closeOnSwipe ||
-            !['top', 'bottom'].includes(this.position) ||
-            getPointsNumber(e) > 1) {
+        if (!this.closeOnSwipe || !['top', 'bottom'].includes(this.position) || getPointsNumber(e) > 1) {
             return;
         }
         this._start = getTouchPoints(e);
     }
     onTouchMove(e) {
-        if (!this.closeOnSwipe ||
-            !['top', 'bottom'].includes(this.position) ||
-            getPointsNumber(e) > 1) {
+        if (!this.closeOnSwipe || !['top', 'bottom'].includes(this.position) || getPointsNumber(e) > 1) {
             return;
         }
         this._move = getTouchPoints(e);
         const direction = getSwipeDirection(this._start.x, this._move.x, this._start.y, this._move.y);
-        if ((this.position === 'bottom' && direction === 'Down') ||
-            (this.position === 'top' && direction === 'Up')) {
+        if ((this.position === 'bottom' && direction === 'Down') || (this.position === 'top' && direction === 'Up')) {
             this.isMoved = true;
         }
     }
     onTouchEnd(e) {
-        if (!this.closeOnSwipe ||
-            !['top', 'bottom'].includes(this.position) ||
-            getPointsNumber(e) > 1 ||
-            !this.isMoved) {
+        if (!this.closeOnSwipe || !['top', 'bottom'].includes(this.position) || getPointsNumber(e) > 1 || !this.isMoved) {
             return;
         }
         this.isMoved = false;

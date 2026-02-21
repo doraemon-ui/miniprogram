@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.safe-area.
- * © 2021 - 2024 Doraemon UI.
- * Built on 2024-04-06, 22:37:10.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.22.
+ * © 2021 - 2026 Doraemon UI.
+ * Built on 2026-02-22, 01:43:22.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -29,16 +29,12 @@ export function getSafeAreaInset(safeAreaStyle = 'default') {
         const { safeArea, screenHeight, windowHeight } = windowInfo;
         const isIOS = !!(windowInfo.system.toLowerCase().search('ios') + 1);
         // 状态栏高度
-        const statusBarHeight = !windowInfo.statusBarHeight
-            ? screenHeight - windowHeight - 20
-            : windowInfo.statusBarHeight;
+        const statusBarHeight = !windowInfo.statusBarHeight ? screenHeight - windowHeight - 20 : windowInfo.statusBarHeight;
         // 胶囊高度
         const navBarHeight = (menuRect.top - statusBarHeight) * 2 + menuRect.height;
         // 下方扩展 4 像素高度, 防止下方边距太小
         const navBarExtendHeight = windowInfo.statusBarHeight && isIOS ? 4 : 0;
-        safeAreaInset.top = isDefault
-            ? statusBarHeight + navBarHeight + navBarExtendHeight
-            : Math.max(statusBarHeight, safeAreaInset.top);
+        safeAreaInset.top = isDefault ? statusBarHeight + navBarHeight + navBarExtendHeight : Math.max(statusBarHeight, safeAreaInset.top);
         safeAreaInset.bottom = screenHeight - safeArea.bottom;
     }
     catch (e) {
@@ -124,9 +120,7 @@ let SafeArea = class SafeArea extends Doraemon {
         const safeAreaConfig = getSafeAreaConfig(safeArea);
         const position = safeAreaConfig.bottom ? 'bottom' : safeAreaConfig.top ? 'top' : 'none';
         let varStyle = '';
-        if ((forceRender || isIPhoneX) &&
-            !supports &&
-            ['bottom', 'top'].includes(position)) {
+        if ((forceRender || isIPhoneX) && !supports && ['bottom', 'top'].includes(position)) {
             const safeAreaInset = getSafeAreaInset(safeAreaStyle);
             varStyle = `--inset-top: ${safeAreaInset.top}PX;`;
             varStyle += `--inset-bottom: ${safeAreaInset.bottom}PX;`;

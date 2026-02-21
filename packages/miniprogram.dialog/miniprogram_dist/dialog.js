@@ -1,10 +1,29 @@
 /**
  * @doraemon-ui/miniprogram.dialog.
- * © 2021 - 2024 Doraemon UI.
- * Built on 2024-04-06, 22:37:55.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.22.
+ * © 2021 - 2026 Doraemon UI.
+ * Built on 2026-02-22, 01:44:27.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
  */
-import { getCurrentPage, findComponentNode, usePopupStateHOC, isTrue, isFalse, } from '@doraemon-ui/miniprogram.shared';
+import { getCurrentPage, findComponentNode, usePopupStateHOC, isObject, isString, isTrue, isFalse, } from '@doraemon-ui/miniprogram.shared';
+const mergeOptions = (selector, instance) => {
+    let opts = {
+        selector: '#dora-dialog',
+        instance: getCurrentPage(),
+    };
+    if (isString(selector)) {
+        opts.selector = selector;
+        if (instance) {
+            opts.instance = instance;
+        }
+    }
+    else if (isObject(selector)) {
+        opts = {
+            ...opts,
+            ...selector,
+        };
+    }
+    return opts;
+};
 const destroyFns = new Map();
 function clear() {
     for (const [close] of destroyFns) {
@@ -39,23 +58,8 @@ function mountComponent(props, container, statePropName = 'visible') {
     };
 }
 function show(props, selector, instance) {
-    let opts = {
-        selector: '#dora-dialog',
-        instance: getCurrentPage(),
-    };
-    if (typeof selector === 'string') {
-        opts.selector = selector;
-        if (instance) {
-            opts.instance = instance;
-        }
-    }
-    else if (typeof selector === 'object') {
-        opts = {
-            ...opts,
-            ...selector,
-        };
-    }
-    const comp = findComponentNode(opts.selector, opts.instance);
+    const options = mergeOptions(selector, instance);
+    const comp = findComponentNode(options.selector, options.instance);
     const { destroy } = mountComponent(props, comp);
     return () => destroy();
 }
@@ -65,13 +69,15 @@ function alert(props, selector, instance) {
         show.call(null, {
             ...restProps,
             buttonClosable: true,
-            buttons: [{
+            buttons: [
+                {
                     type: confirmType ?? 'balanced',
                     text: confirmText ?? '确定',
                     onClick(...args) {
                         onConfirm?.(...args);
                     },
-                }],
+                },
+            ],
             onClose: () => {
                 resolve();
             },
@@ -84,21 +90,24 @@ function confirm(props, selector, instance) {
         show.call(null, {
             ...restProps,
             buttonClosable: true,
-            buttons: [{
+            buttons: [
+                {
                     type: cancelType ?? 'dark',
                     text: cancelText ?? '取消',
                     async onClick(...args) {
                         await onCancel?.(...args);
                         resolve(false);
                     },
-                }, {
+                },
+                {
                     type: confirmType ?? 'balanced',
                     text: confirmText ?? '确定',
                     async onClick(...args) {
                         await onConfirm?.(...args);
                         resolve(true);
                     },
-                }],
+                },
+            ],
             onClose: () => {
                 restProps.onClose?.();
                 resolve(false);
@@ -106,4 +115,4 @@ function confirm(props, selector, instance) {
         }, selector, instance);
     });
 }
-export { show, alert, confirm, clear, };
+export { show, alert, confirm, clear };

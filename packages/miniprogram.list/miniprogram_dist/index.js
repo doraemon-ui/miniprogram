@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.list.
- * © 2021 - 2024 Doraemon UI.
- * Built on 2024-04-06, 22:36:57.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.22.
+ * © 2021 - 2026 Doraemon UI.
+ * Built on 2026-02-22, 01:43:08.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -104,25 +104,25 @@ let List = class List extends Doraemon {
 __decorate([
     Prop({
         type: String,
-        default: ''
+        default: '',
     })
 ], List.prototype, "title", void 0);
 __decorate([
     Prop({
         type: String,
-        default: ''
+        default: '',
     })
 ], List.prototype, "label", void 0);
 __decorate([
     Prop({
         type: String,
-        default: 'default'
+        default: 'default',
     })
 ], List.prototype, "mode", void 0);
 __decorate([
     Prop({
         type: Boolean,
-        default: true
+        default: true,
     })
 ], List.prototype, "hasLine", void 0);
 __decorate([
@@ -152,7 +152,7 @@ List = __decorate([
                 default: 'dora-list',
             },
         },
-        expose: ['getBoundingClientRect']
+        expose: ['getBoundingClientRect'],
     })
 ], List);
 export default defineComponentHOC({ multipleSlots: false })(List);
