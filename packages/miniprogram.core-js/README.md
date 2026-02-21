@@ -16,11 +16,11 @@ npm i -S @doraemon-ui/miniprogram.core-js
 
 There are 7 decorators:
 
-* `@Emit`
-* `@Event`
-* `@Prop`
-* `@Watch`
-* `@Component`
+- `@Emit`
+- `@Event`
+- `@Prop`
+- `@Watch`
+- `@Component`
 
 ```typescript
 import { Component, Emit, Event, Prop, Watch, Doraemon } from '@doraemon-ui/miniprogram.core-js'
@@ -30,10 +30,14 @@ class MyComp extends Doraemon {
   count: number = 1
 
   @Emit()
-  addToCount(n: number) { this.count += n }
+  addToCount(n: number) {
+    this.count += n
+  }
 
   @Emit('reset')
-  resetCount(){ this.count = 0 }
+  resetCount() {
+    this.count = 0
+  }
 
   @Event()
   increment(e) {

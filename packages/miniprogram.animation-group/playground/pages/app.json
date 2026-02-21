@@ -1,8 +1,6 @@
 {
-  "pages":[
-    "index/index"
-  ],
-  "window":{
+  "pages": ["index/index"],
+  "window": {
     "backgroundColor": "@backgroundColor",
     "backgroundTextStyle": "@backgroundTextStyle",
     "navigationBarBackgroundColor": "@navigationBarBackgroundColor",
@@ -12,5 +10,5 @@
   "style": "v2",
   "sitemapLocation": "sitemap.json",
   "darkmode": true,
-  "themeLocation":"theme.json"
+  "themeLocation": "theme.json"
 }

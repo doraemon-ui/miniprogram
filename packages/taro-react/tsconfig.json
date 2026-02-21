@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "es2015",
+    "allowJs": false,
+    "types": ["miniprogram-api-typings", "jest", "node"],
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "strict": false,
+    "strictPropertyInitialization": false,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "sourceMap": false,
+    "resolveJsonModule": true,
+    "jsx": "react",
+    "jsxFactory": "React.createElement"
+  },
+  "compileOnSave": false,
+  "exclude": ["node_modules/*", "miniprogram_dist/*"]
+}

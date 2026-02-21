@@ -6,10 +6,9 @@ export type PopupStateFunc<Props extends Record<string, any>> = {
   update: (props: Props, callback?: () => void) => void
 }
 
-export function usePopupStateHOC<
-  Instance extends ComponentPublicInstance,
-  Props = Instance['$props'] & Instance['$data']
-  >(statePropName: string = 'visible') {
+export function usePopupStateHOC<Instance extends ComponentPublicInstance, Props = Instance['$props'] & Instance['$data']>(
+  statePropName: string = 'visible',
+) {
   return (container: Instance): PopupStateFunc<Props> => {
     const render = (props: Props, callback?: () => void) => {
       Object.assign(container, props)
@@ -32,7 +31,7 @@ export function usePopupStateHOC<
     return {
       render: open,
       destroy: close,
-      update
+      update,
     }
   }
 }

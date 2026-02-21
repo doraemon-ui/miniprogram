@@ -9,18 +9,15 @@ const keys = Object.keys
 const counter = 1
 // Follows syntax at https://developer.mozilla.org/en-US/docs/Web/CSS/content,
 // including multiple space separated values.
-const unquotedContentValueRegex = /^(normal|none|(\b(url\([^)]*\)|chapter_counter|attr\([^)]*\)|(no-)?(open|close)-quote|inherit)((\b\s*)|$|\s+))+)$/
+const unquotedContentValueRegex =
+  /^(normal|none|(\b(url\([^)]*\)|chapter_counter|attr\([^)]*\)|(no-)?(open|close)-quote|inherit)((\b\s*)|$|\s+))+)$/
 
-function buildRule(
-  key: string,
-  value: any,
-  exclude?: RegExp
-) {
-  if ((key.toString().match(exclude) === null) && !isUnitlessNumber[key] && typeof value === 'number') {
+function buildRule(key: string, value: any, exclude?: RegExp) {
+  if (key.toString().match(exclude) === null && !isUnitlessNumber[key] && typeof value === 'number') {
     value = '' + value + 'px'
-  }
-  else if (key === 'content' && !unquotedContentValueRegex.test(value)) {
-    value = "'" + value.replace(/'/g, "\\'") + "'"
+  } else if (key === 'content' && !unquotedContentValueRegex.test(value)) {
+    // prettier-ignore
+    value = '\'' + value.replace(/'/g, '\\\'') + '\''
   }
 
   return hyphenateStyleName(key) + ': ' + value + ';  '
@@ -29,13 +26,13 @@ function buildRule(
 // css var prefix
 const cssVarPattern = /^--/
 
-export function styleToCssString (
+export function styleToCssString(
   rules: string | Record<string, any>,
   options: {
     exclude?: RegExp
   } = {
-    exclude: cssVarPattern
-  }
+    exclude: cssVarPattern,
+  },
 ): string {
   const exclude = options ? options.exclude : null
   if (typeof rules === 'string') {
@@ -55,8 +52,7 @@ export function styleToCssString (
       for (let i = 0, len = value.length; i < len; i++) {
         result += buildRule(styleKey, value[i], exclude)
       }
-    }
-    else {
+    } else {
       result += buildRule(styleKey, value, exclude)
     }
   }

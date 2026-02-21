@@ -10,7 +10,7 @@ let cid = 1
  * @param {ComponentOptions<Doraemon>} [extendOptions={}]
  * @returns
  */
-export function extend (extendOptions: ComponentOptions<Doraemon> = {}) {
+export function extend(extendOptions: ComponentOptions<Doraemon> = {}) {
   const Super = this as DoraemonClass<Doraemon>
   const SuperId = Super.cid
   const cachedCtors = (extendOptions as any)._Ctor || ((extendOptions as any)._Ctor = {})
@@ -47,14 +47,14 @@ export function extend (extendOptions: ComponentOptions<Doraemon> = {}) {
   return Sub as unknown as DoraemonClass<Doraemon>
 }
 
-function initProps (Component: DoraemonClass<Doraemon>) {
+function initProps(Component: DoraemonClass<Doraemon>) {
   const props = Component.options.props || {}
   for (const key in props) {
     proxy(Component.prototype, 'data', key)
   }
 }
 
-function initComputed (Component: DoraemonClass<Doraemon>) {
+function initComputed(Component: DoraemonClass<Doraemon>) {
   const computed = Component.options.computed || {}
   for (const key in computed) {
     proxy(Component.prototype, 'data', key)

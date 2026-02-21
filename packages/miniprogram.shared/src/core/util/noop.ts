@@ -1,1 +1,1 @@
-export function noop (...args: any[]) {}
+export function noop(...args: any[]) {}

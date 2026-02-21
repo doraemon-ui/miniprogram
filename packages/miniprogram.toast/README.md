@@ -55,21 +55,21 @@ export type ToastPosition = 'top' | 'bottom' | 'center'
 
 `show` 方法支持传入一个 `props` 对象，它包含了以下这些属性：
 
-| 参数 | 类型 | 描述 | 默认值 |
-| --- | --- | --- | --- |
-| prefixCls | `string` | 自定义类名前缀 | dora-toast |
-| image | `string` | 自定义图片，image 的优先级高于 icon | - |
-| icon | `ToastIcon` | 图标 | - |
-| iconColor | `string` | 图标的颜色 | - |
-| text | `string` | 提示文本 | - |
-| position | `ToastPosition` | 垂直方向显示位置 | - |
-| mask | `boolean` | 是否显示蒙层 | true |
-| maskClosable | `boolean` | 点击蒙层是否允许关闭 | true |
-| visible | `boolean` | 是否可见 | false |
-| zIndex | `number` | 设置蒙层的 z-index。优先级高于 css 设置的 var(--z-index)。 | - |
-| duration | `number` | 提示的延迟时间，若小于等于 0 则不会自动关闭 | 1500 |
-| onClose | `() => void` | 点击关闭按钮或蒙层的回调函数 | - |
-| onClosed | `() => void` | 关闭后的回调函数 | - |
+| 参数         | 类型            | 描述                                                       | 默认值     |
+| ------------ | --------------- | ---------------------------------------------------------- | ---------- |
+| prefixCls    | `string`        | 自定义类名前缀                                             | dora-toast |
+| image        | `string`        | 自定义图片，image 的优先级高于 icon                        | -          |
+| icon         | `ToastIcon`     | 图标                                                       | -          |
+| iconColor    | `string`        | 图标的颜色                                                 | -          |
+| text         | `string`        | 提示文本                                                   | -          |
+| position     | `ToastPosition` | 垂直方向显示位置                                           | -          |
+| mask         | `boolean`       | 是否显示蒙层                                               | true       |
+| maskClosable | `boolean`       | 点击蒙层是否允许关闭                                       | true       |
+| visible      | `boolean`       | 是否可见                                                   | false      |
+| zIndex       | `number`        | 设置蒙层的 z-index。优先级高于 css 设置的 var(--z-index)。 | -          |
+| duration     | `number`        | 提示的延迟时间，若小于等于 0 则不会自动关闭                | 1500       |
+| onClose      | `() => void`    | 点击关闭按钮或蒙层的回调函数                               | -          |
+| onClosed     | `() => void`    | 关闭后的回调函数                                           | -          |
 
 !> 同一时间只允许弹出一个轻提示，新出现的 `Toast` 会将之前正在显示中的 `Toast` 挤掉。
 
@@ -107,9 +107,9 @@ Toast.config({ duration: 1000, position: 'top' })
 
 ## CSS Variables
 
-| 属性 | 描述 | 默认值 | 全局变量 |
-| --- | --- | --- | --- |
-| --text-color | 文字颜色 | `#fff` | `--dora-toast-text-color` |
-| --background-color | 背景颜色 | `rgba(0, 0, 0, 0.7)` | `--dora-toast-background-color` |
-| --border-radius | 圆角大小 | `var(--dora-border-radius, 8px)` | `--dora-toast-border-radius` |
-| --min-width | 最小宽度 | `96px` | `--dora-toast-min-width` |
+| 属性               | 描述     | 默认值                           | 全局变量                        |
+| ------------------ | -------- | -------------------------------- | ------------------------------- |
+| --text-color       | 文字颜色 | `#fff`                           | `--dora-toast-text-color`       |
+| --background-color | 背景颜色 | `rgba(0, 0, 0, 0.7)`             | `--dora-toast-background-color` |
+| --border-radius    | 圆角大小 | `var(--dora-border-radius, 8px)` | `--dora-toast-border-radius`    |
+| --min-width        | 最小宽度 | `96px`                           | `--dora-toast-min-width`        |

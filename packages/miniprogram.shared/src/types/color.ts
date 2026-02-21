@@ -3,5 +3,4 @@
  *
  * @export
  */
-export type PresetColor = 'light' | 'stable' | 'positive' | 'calm' |
-  'balanced' | 'energized' | 'assertive' | 'royal' | 'dark'
+export type PresetColor = 'light' | 'stable' | 'positive' | 'calm' | 'balanced' | 'energized' | 'assertive' | 'royal' | 'dark'

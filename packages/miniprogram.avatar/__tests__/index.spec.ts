@@ -6,7 +6,7 @@ jest.mock('@doraemon-ui/miniprogram.shared', () => ({
   useRect: jest.fn(),
 }))
 
-function mountTest (id: string | (() => string) ,defaultProps = {}) {
+function mountTest(id: string | (() => string), defaultProps = {}) {
   describe('mount and unmount', () => {
     it('component could be updated and unmounted without errors', () => {
       const wrapper = simulate.render(typeof id === 'function' ? id() : id, defaultProps)
@@ -21,7 +21,7 @@ function mountTest (id: string | (() => string) ,defaultProps = {}) {
 
 let id: string
 
-function getId () {
+function getId() {
   return id
 }
 
@@ -47,10 +47,7 @@ describe('Avatar', () => {
 
   test('should call setScale when scale is true and without src', async () => {
     const mockedUseRect = useRect as jest.Mock
-    mockedUseRect.mockResolvedValueOnce([
-      { width: 40 },
-      { width: 80 },
-    ])
+    mockedUseRect.mockResolvedValueOnce([{ width: 40 }, { width: 80 }])
 
     const compId = simulate.load({
       usingComponents: {
@@ -80,7 +77,7 @@ describe('Avatar', () => {
     expect($comp.childrenStyle).not.toBe('')
   })
 
-  function createAvatarWrapper () {
+  function createAvatarWrapper() {
     const compId = simulate.load({
       usingComponents: {
         'dora-avatar': id,

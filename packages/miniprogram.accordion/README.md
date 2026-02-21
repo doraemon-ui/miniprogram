@@ -44,38 +44,38 @@ yarn add @doraemon-ui/miniprogram.accordion
 
 ### Accordion props
 
-| 参数 | 类型 | 描述 | 默认值 |
-| --- | --- | --- | --- |
-| prefixCls | `string` | 自定义类名前缀 | dora-accordion |
-| defaultCurrent | `string[]` | 默认激活 tab 面板的 key，当 `controlled` 为 `false` 时才生效 | - |
-| current | `string[]` | 用于手动激活 tab 面板的 key，当 `controlled` 为 `true` 时才生效 | - |
-| controlled | `boolean` | 是否受控 [说明文档](controlled.md) | false |
-| accordion | `boolean` | 是否手风琴模式 | false |
-| title | `string` | 标题 | - |
-| label | `string` | 描述 | - |
-| bind:change | `(event: CustomEvent<{ key: string \| string[]; keys: Panel[] }>) => void` | 切换面板的回调函数 | - |
+| 参数           | 类型                                                                       | 描述                                                            | 默认值         |
+| -------------- | -------------------------------------------------------------------------- | --------------------------------------------------------------- | -------------- |
+| prefixCls      | `string`                                                                   | 自定义类名前缀                                                  | dora-accordion |
+| defaultCurrent | `string[]`                                                                 | 默认激活 tab 面板的 key，当 `controlled` 为 `false` 时才生效    | -              |
+| current        | `string[]`                                                                 | 用于手动激活 tab 面板的 key，当 `controlled` 为 `true` 时才生效 | -              |
+| controlled     | `boolean`                                                                  | 是否受控 [说明文档](controlled.md)                              | false          |
+| accordion      | `boolean`                                                                  | 是否手风琴模式                                                  | false          |
+| title          | `string`                                                                   | 标题                                                            | -              |
+| label          | `string`                                                                   | 描述                                                            | -              |
+| bind:change    | `(event: CustomEvent<{ key: string \| string[]; keys: Panel[] }>) => void` | 切换面板的回调函数                                              | -              |
 
 ### AccordionPanel props
 
-| 参数 | 类型 | 描述 | 默认值 |
-| --- | --- | --- | --- |
-| prefixCls | `string` | 自定义类名前缀 | dora-accordion-panel |
-| key | `string` | 当前激活 tab 索引 | - |
-| thumb | `string` | 左侧缩略图 | - |
-| title | `string` | 左侧标题 | - |
-| content | `string` | 面板内容 | - |
-| disabled | `boolean` | 是否禁用 | false |
-| showArrow | `boolean` | 是否显示箭头图标 | true |
+| 参数      | 类型      | 描述              | 默认值               |
+| --------- | --------- | ----------------- | -------------------- |
+| prefixCls | `string`  | 自定义类名前缀    | dora-accordion-panel |
+| key       | `string`  | 当前激活 tab 索引 | -                    |
+| thumb     | `string`  | 左侧缩略图        | -                    |
+| title     | `string`  | 左侧标题          | -                    |
+| content   | `string`  | 面板内容          | -                    |
+| disabled  | `boolean` | 是否禁用          | false                |
+| showArrow | `boolean` | 是否显示箭头图标  | true                 |
 
 ### AccordionPanel slot
 
-| 名称 | 描述 |
-| --- | --- |
-| - | 自定义内容 |
+| 名称   | 描述           |
+| ------ | -------------- |
+| -      | 自定义内容     |
 | header | 自定义左侧标题 |
 
 ### AccordionPanel externalClasses
 
-| 名称 | 描述 |
-| --- | --- |
+| 名称       | 描述         |
+| ---------- | ------------ |
 | dora-class | 根节点样式类 |

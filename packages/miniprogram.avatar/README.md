@@ -1,6 +1,6 @@
-# Avatar Avatar
+# Avatar 头像
 
-@doraemon-ui/miniprogram.avatar
+用来代表用户或事物，支持图片、图标或字符展示。
 
 ## 安装
 
@@ -44,14 +44,14 @@ yarn add @doraemon-ui/miniprogram.avatar
 
 ### Avatar props
 
-| 参数 | 类型 | 描述 | 默认值 |
-| --- | --- | --- | --- |
-| prefixCls | `string` | 自定义类名前缀 | dora-avatar |
-| shape | `'circle' \| 'square'` | 头像形状 | circle |
-| size | `'small' \| 'default' \| 'large'` | 头像尺寸 | default |
-| src | `string` | 头像图片地址，优先级高于插槽文字 | - |
-| bodyStyle | `string \| Partial<CSSStyleDeclaration>` | 自定义外层容器样式，最终会转换为内联样式 | - |
-| scale | `boolean` | 当为文字头像且内容过长时，是否自动缩放文字以适应容器宽度 | false |
+| 参数      | 类型                                     | 描述                                                     | 默认值      |
+| --------- | ---------------------------------------- | -------------------------------------------------------- | ----------- |
+| prefixCls | `string`                                 | 自定义类名前缀                                           | dora-avatar |
+| shape     | `'circle' \| 'square'`                   | 头像形状                                                 | circle      |
+| size      | `'small' \| 'default' \| 'large'`        | 头像尺寸                                                 | default     |
+| src       | `string`                                 | 头像图片地址，优先级高于插槽文字                         | -           |
+| bodyStyle | `string \| Partial<CSSStyleDeclaration>` | 自定义外层容器样式，最终会转换为内联样式                 | -           |
+| scale     | `boolean`                                | 当为文字头像且内容过长时，是否自动缩放文字以适应容器宽度 | false       |
 
 ### Avatar slot
 
@@ -61,18 +61,18 @@ yarn add @doraemon-ui/miniprogram.avatar
 
 ### Avatar externalClasses
 
-| 名称 | 描述 |
-| --- | --- |
+| 名称       | 描述         |
+| ---------- | ------------ |
 | dora-class | 根节点样式类 |
 
 ## CSS Variables
 
-| 属性 | 描述 | 默认值 | 全局变量 |
-| --- | --- | --- | --- |
-| --container-size | 默认头像尺寸 | `40px` | - |
-| --container-size-sm | 小号头像尺寸 | `32px` | - |
-| --container-size-lg | 大号头像尺寸 | `48px` | - |
-| --font-size | 默认文字字号 | `14px` | - |
-| --font-size-sm | 小号文字字号 | `12px` | - |
-| --font-size-lg | 大号文字字号 | `16px` | - |
+| 属性                   | 描述             | 默认值                           | 全局变量               |
+| ---------------------- | ---------------- | -------------------------------- | ---------------------- |
+| --container-size       | 默认头像尺寸     | `40px`                           | -                      |
+| --container-size-sm    | 小号头像尺寸     | `32px`                           | -                      |
+| --container-size-lg    | 大号头像尺寸     | `48px`                           | -                      |
+| --font-size            | 默认文字字号     | `14px`                           | -                      |
+| --font-size-sm         | 小号文字字号     | `12px`                           | -                      |
+| --font-size-lg         | 大号文字字号     | `16px`                           | -                      |
 | --square-border-radius | 矩形头像圆角大小 | `var(--dora-border-radius, 8px)` | `--dora-border-radius` |

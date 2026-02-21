@@ -25,6 +25,7 @@
     "**/*.tgz",
     "jest.config.js",
     "**/lib/**",
+    "**/dist/**",
     "**/miniprogram_dist/**"
   ],
   "version": "independent"

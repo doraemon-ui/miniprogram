@@ -17,22 +17,22 @@ export interface ComputedOptions<T> {
   set: ComputedSetter<T>
 }
 
-export type DefaultData<D> =  object | ((this: D) => object)
+export type DefaultData<D> = object | ((this: D) => object)
 export type DefaultProps = Record<string, any>
-export type DefaultMethods<D> =  { [key: string]: (this: D, ...args: any[]) => any }
-export type DefaultComputed = Record<
-  string,
-  ComputedGetter<any> | ComputedOptions<any>
->
+export type DefaultMethods<D> = { [key: string]: (this: D, ...args: any[]) => any }
+export type DefaultComputed = Record<string, ComputedGetter<any> | ComputedOptions<any>>
 
 export type RelationComponent<D> = {
   ['module']?: string
   type?: 'ancestor' | 'parent' | 'child' | 'descendant'
   observer?: string | ((target: D) => void)
-  throttle?: number | boolean | {
-    wait?: number
-    options?: ThrottleOptions
-  }
+  throttle?:
+    | number
+    | boolean
+    | {
+        wait?: number
+        options?: ThrottleOptions
+      }
 }
 
 export interface ComponentOptions<
@@ -40,7 +40,7 @@ export interface ComponentOptions<
   Data = DefaultData<D>,
   Methods = DefaultMethods<D>,
   Computed = DefaultComputed,
-  PropsDef=PropsDefinition<DefaultProps>
+  PropsDef = PropsDefinition<DefaultProps>,
 > {
   data?: Data
   props?: PropsDef
@@ -57,7 +57,7 @@ export interface ComponentOptions<
   errorCaptured?(): void
 
   components?: {
-    [key: string]: string | Partial<RelationComponent<D>> | (() => (Partial<RelationComponent<D>>))
+    [key: string]: string | Partial<RelationComponent<D>> | (() => Partial<RelationComponent<D>>)
   }
 
   mixins?: (ComponentOptions<Doraemon> | typeof Doraemon)[]
@@ -65,7 +65,7 @@ export interface ComponentOptions<
   expose?: string[]
 }
 
-export type Prop<T> = { (): T } | { new(...args: never[]): T & object } | { new(...args: string[]): Function }
+export type Prop<T> = { (): T } | { new (...args: never[]): T & object } | { new (...args: string[]): Function }
 
 export type PropType<T> = Prop<T> | Prop<T>[]
 

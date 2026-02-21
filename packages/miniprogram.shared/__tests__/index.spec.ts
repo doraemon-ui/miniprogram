@@ -3,7 +3,6 @@ import {
   findComponentNode,
   getCurrentPage,
   miniprogramThis,
-
   useQuery,
   useSelector,
   useSelectorAll,
@@ -13,17 +12,14 @@ import {
   useRectAll,
   useScrollOffset,
   useComputedStyle,
-
   getTouchPoints,
   getPointsNumber,
   isEqualPoints,
   isNearbyPoints,
   getPointsDistance,
   getSwipeDirection,
-
   useNativeRoute,
   usePopupStateHOC,
-
   buildURL,
   isDate,
   isDef,
@@ -44,8 +40,7 @@ const fakeTouchEvent = (pageX: number, pageY: number) => ({
   changedTouches: [],
 })
 
-const fakeTouchPoint = (pageX: number, pageY: number) =>
-  getTouchPoints(fakeTouchEvent(pageX, pageY) as any)
+const fakeTouchPoint = (pageX: number, pageY: number) => getTouchPoints(fakeTouchEvent(pageX, pageY) as any)
 
 describe('Shared', () => {
   describe('Core', () => {
@@ -68,7 +63,7 @@ describe('Shared', () => {
       expect(useRectAll(['#dora'])).toBeDefined()
       expect(useScrollOffset()).toBeDefined()
       expect(useComputedStyle('#dora')).toBeDefined()
-      
+
       expect(getTouchPoints(fakeTouchEvent(10, 20) as any)).toEqual({ x: 10, y: 20 })
       expect(getPointsNumber(fakeTouchEvent(10, 20) as any)).toBe(1)
       expect(isEqualPoints(fakeTouchPoint(10, 20) as any, fakeTouchPoint(10, 20) as any)).toBeTruthy()
@@ -92,7 +87,7 @@ describe('Shared', () => {
     test('call isDate', () => {
       expect(isDate(undefined)).toBe(false)
       expect(isDate(null)).toBe(false)
-      expect(isDate(new Date)).toBe(true)
+      expect(isDate(new Date())).toBe(true)
     })
     test('call isDef', () => {
       expect(isDef(undefined)).toBe(false)

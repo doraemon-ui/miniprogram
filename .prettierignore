@@ -1,0 +1,12 @@
+.eslintrc
+.npmrc
+.git
+.github
+.*.js
+babel.config.js
+.coverage-report
+dist
+example/dist
+miniprogram_dist
+node_modules
+.husky/

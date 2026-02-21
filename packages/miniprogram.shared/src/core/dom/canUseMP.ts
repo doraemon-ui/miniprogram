@@ -6,6 +6,6 @@ import { miniprogramThis } from './global'
  * @export
  * @return {*}  {boolean}
  */
-export function canUseMP (): boolean {
+export function canUseMP(): boolean {
   return miniprogramThis && typeof getCurrentPages !== 'undefined'
 }

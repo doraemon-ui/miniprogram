@@ -1,3 +1,3 @@
-export function isFalse (v: any): boolean {
+export function isFalse(v: any): boolean {
   return v === false
 }

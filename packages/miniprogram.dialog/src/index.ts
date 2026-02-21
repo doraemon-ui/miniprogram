@@ -163,7 +163,7 @@ class Dialog extends Doraemon {
   })
   buttons: DialogButton[]
 
-  get classes () {
+  get classes() {
     const { prefixCls, verticalButtons, buttons: _buttons } = this
     const wrap = classNames(prefixCls)
     const hd = `${prefixCls}__hd`
@@ -213,7 +213,7 @@ class Dialog extends Doraemon {
   popupVisible: boolean = false
 
   @Watch('visible')
-  onVisibleChange (visible: boolean) {
+  onVisibleChange(visible: boolean) {
     this.setPopupVisible(visible)
   }
 
@@ -223,27 +223,27 @@ class Dialog extends Doraemon {
     }
   }
 
-  onPopupClose () {
+  onPopupClose() {
     this.onClose()
   }
 
-  onPopupClosed () {
+  onPopupClosed() {
     this.onClosed()
   }
 
-  onClose () {
+  onClose() {
     this.$emit('close')
   }
 
-  onClosed () {
+  onClosed() {
     this.$emit('closed')
   }
 
-  mounted () {
+  mounted() {
     this.setPopupVisible(this.visible)
   }
 
-  async onAction (e: CustomEvent, method: keyof NativeButtonHandle<DialogButton>, closable: boolean = false) {
+  async onAction(e: CustomEvent, method: keyof NativeButtonHandle<DialogButton>, closable: boolean = false) {
     const { index } = e.currentTarget.dataset
     const button = this.buttons[index]
     const eventName = method.replace(/^on/, '').toLowerCase() as NativeButtonEvent
@@ -259,57 +259,57 @@ class Dialog extends Doraemon {
   }
 
   @Event()
-  async onClick (e: CustomEvent) {
+  async onClick(e: CustomEvent) {
     await this.onAction(e, 'onClick', this.buttonClosable)
   }
 
   @Event()
-  async onGetUserInfo (e: CustomEvent) {
+  async onGetUserInfo(e: CustomEvent) {
     await this.onAction(e, 'onGetUserInfo')
   }
 
   @Event()
-  async onContact (e: CustomEvent) {
+  async onContact(e: CustomEvent) {
     await this.onAction(e, 'onContact')
   }
 
   @Event()
-  async onGetPhoneNumber (e: CustomEvent) {
+  async onGetPhoneNumber(e: CustomEvent) {
     await this.onAction(e, 'onGetPhoneNumber')
   }
 
   @Event()
-  async onLaunchApp (e: CustomEvent) {
+  async onLaunchApp(e: CustomEvent) {
     await this.onAction(e, 'onLaunchApp')
   }
 
   @Event()
-  async onError (e: CustomEvent) {
+  async onError(e: CustomEvent) {
     await this.onAction(e, 'onError')
   }
 
   @Event()
-  async onOpenSetting (e: CustomEvent) {
+  async onOpenSetting(e: CustomEvent) {
     await this.onAction(e, 'onOpenSetting')
   }
 
   @Event()
-  async onChooseAvatar (e: CustomEvent) {
+  async onChooseAvatar(e: CustomEvent) {
     await this.onAction(e, 'onChooseAvatar')
   }
 
   @Event()
-  async onCreateLiveActivity (e: CustomEvent) {
+  async onCreateLiveActivity(e: CustomEvent) {
     await this.onAction(e, 'onCreateLiveActivity')
   }
 
   @Event()
-  async onGetRealtimePhoneNumber (e: CustomEvent) {
+  async onGetRealtimePhoneNumber(e: CustomEvent) {
     await this.onAction(e, 'onGetRealtimePhoneNumber')
   }
 
   @Event()
-  async onAgreePrivacyAuthorization (e: CustomEvent) {
+  async onAgreePrivacyAuthorization(e: CustomEvent) {
     await this.onAction(e, 'onAgreePrivacyAuthorization')
   }
 }

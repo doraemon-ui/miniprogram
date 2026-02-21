@@ -1,9 +1,6 @@
 export type MiniprogramIAnyObject = WechatMiniprogram.IAnyObject
 
-export type MiniprogramPageInstance =  WechatMiniprogram.Page.Instance<
-  MiniprogramIAnyObject,
-  MiniprogramIAnyObject
->
+export type MiniprogramPageInstance = WechatMiniprogram.Page.Instance<MiniprogramIAnyObject, MiniprogramIAnyObject>
 
 export type MiniprogramComponentInstance = WechatMiniprogram.Component.Instance<
   MiniprogramIAnyObject,
@@ -20,13 +17,8 @@ export type MiniprogramCustomEvent<
   D extends MiniprogramIAnyObject = MiniprogramIAnyObject,
   M extends MiniprogramIAnyObject = MiniprogramIAnyObject,
   C extends MiniprogramIAnyObject = MiniprogramIAnyObject,
-  T extends MiniprogramIAnyObject = C
-> = WechatMiniprogram.CustomEvent<
-  D,
-  M,
-  C,
-  T
->
+  T extends MiniprogramIAnyObject = C,
+> = WechatMiniprogram.CustomEvent<D, M, C, T>
 
 export type MiniprogramButtonGetUserInfo = WechatMiniprogram.ButtonGetUserInfo['detail']
 export type MiniprogramButtonContact = WechatMiniprogram.ButtonContact['detail']

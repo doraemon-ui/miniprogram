@@ -18,16 +18,14 @@ interface RelationOption {
   target?: string
 }
 
-export function initComponents(vm: Doraemon, components: ComponentOptions<Doraemon>['components']): {
+export function initComponents(
+  vm: Doraemon,
+  components: ComponentOptions<Doraemon>['components'],
+): {
   [componentName: string]: RelationOption
 } {
   return Object.keys(components).reduce((acc, key) => {
-    const {
-      module: componentName,
-      type = 'child',
-      observer,
-      throttle = true
-    } = getData(components[key])
+    const { module: componentName, type = 'child', observer, throttle = true } = getData(components[key])
     const linkCb = function (this: ComponentRenderProxy<Doraemon>, target: ComponentRenderProxy<Doraemon>) {
       const oName = `_${componentName.replace(/\./g, '').replace(/\//g, '_')}_throttled`
       const oFn = function (target: ComponentRenderProxy<Doraemon>) {
@@ -43,7 +41,7 @@ export function initComponents(vm: Doraemon, components: ComponentOptions<Doraem
       if (throttle !== undefined && throttle !== false) {
         if (!this[oName]) {
           let opts: {
-            wait: number,
+            wait: number
             options: ThrottleOptions
           } = {
             wait: 50,
@@ -57,7 +55,7 @@ export function initComponents(vm: Doraemon, components: ComponentOptions<Doraem
           } else if (isPlainObject(throttle) && throttle !== true) {
             opts = {
               ...opts,
-              ...throttle
+              ...throttle,
             }
           }
           const { wait, options } = opts
@@ -82,8 +80,8 @@ export function initComponents(vm: Doraemon, components: ComponentOptions<Doraem
   }, {})
 }
 
-export function getData (
-  comp: string | Partial<RelationComponent<Doraemon>> | (() => (Partial<RelationComponent<Doraemon>>))
+export function getData(
+  comp: string | Partial<RelationComponent<Doraemon>> | (() => Partial<RelationComponent<Doraemon>>),
 ): RelationComponent<Doraemon> {
   if (typeof comp === 'function') {
     const ret = comp()
@@ -91,7 +89,7 @@ export function getData (
       ['module']: ret.module,
       type: ret.type,
       observer: ret.observer,
-      throttle: ret.throttle
+      throttle: ret.throttle,
     }
   } else if (typeof comp === 'string') {
     return {
@@ -102,13 +100,13 @@ export function getData (
       ['module']: comp.module,
       type: comp.type,
       observer: comp.observer,
-      throttle: comp.throttle
+      throttle: comp.throttle,
     }
   }
   return {}
 }
 
-export function useThrottle () {
+export function useThrottle() {
   return Behavior({
     lifetimes: {
       created() {
@@ -125,7 +123,7 @@ export function useThrottle () {
       },
       detached() {
         if (this._throttledFns.length > 0) {
-          (this._throttledFns as ThrottleReturn<any>[]).forEach((throttled) => {
+          ;(this._throttledFns as ThrottleReturn<any>[]).forEach((throttled) => {
             throttled.cancel()
           })
           this._throttledFns = []

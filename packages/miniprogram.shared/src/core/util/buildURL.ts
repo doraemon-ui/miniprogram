@@ -1,32 +1,34 @@
 import { isDate } from './isDate'
 import { isObject } from './isObject'
 
-function encode(val : string) : string {
+function encode(val: string): string {
   // 对url进行编码并处理特殊字符
-  return encodeURIComponent(val)
-    //ig为全局查找，忽略大小写
-    .replace(/%40/g, '@')
-    .replace(/%3A/ig, ':')
-    .replace(/%24/g, '$')
-    .replace(/%2C/ig, ',')
-    .replace(/%20/g, '+')
-    .replace(/%5B/ig, '[')
-    .replace(/%5D/ig , ']')
-}   
+  return (
+    encodeURIComponent(val)
+      //ig为全局查找，忽略大小写
+      .replace(/%40/g, '@')
+      .replace(/%3A/gi, ':')
+      .replace(/%24/g, '$')
+      .replace(/%2C/gi, ',')
+      .replace(/%20/g, '+')
+      .replace(/%5B/gi, '[')
+      .replace(/%5D/gi, ']')
+  )
+}
 
-export function buildURL(url: string, params?: Record<string, any>): string{
+export function buildURL(url: string, params?: Record<string, any>): string {
   // 没有 params 就直接返回 url，无需拼接
   if (!params) {
     return url
   }
 
-  const parts : string[] = []
+  const parts: string[] = []
 
   Object.keys(params).forEach((key) => {
     // key 对应的是索引值，数组索引值默认从 0 开始，对象的索引值为 key
     const val = params[key]
     // 如果传入的 params 参数有 null 或者 undefined，那么就处理下一个参数
-    if (val === null || typeof val === 'undefined'){
+    if (val === null || typeof val === 'undefined') {
       // 此处的 return 不是退出循环，而是处理下一个参数
       return
     }

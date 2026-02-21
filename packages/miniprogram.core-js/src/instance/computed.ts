@@ -3,17 +3,14 @@ import { isDev } from '../util/env'
 import { isEqual } from '../util/isEqual'
 import { warn } from '../util/warn'
 
-export function initComputed (vm: Doraemon, forceUpdate: boolean = false) {
+export function initComputed(vm: Doraemon, forceUpdate: boolean = false) {
   if (vm._isMounted || forceUpdate) {
     const computed = vm.$options.computed || {}
-    Object.keys(computed).forEach(key => {
+    Object.keys(computed).forEach((key) => {
       const userDef = computed[key]
       const getter = typeof userDef === 'function' ? userDef : userDef.get
       if (isDev && !getter) {
-        warn(
-          `Getter is missing for computed property "${key}".`,
-          vm
-        )
+        warn(`Getter is missing for computed property "${key}".`, vm)
       }
       if (getter) {
         const value = getter.call(vm, vm)

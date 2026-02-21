@@ -32,7 +32,7 @@ describe('Accordion', () => {
             />
           </dora-accordion>
         `,
-      })
+      }),
     )
     wrapper.attach(document.createElement('parent-wrapper'))
     const accordion = wrapper.querySelector('#dora-accordion')
@@ -55,7 +55,7 @@ describe('Accordion', () => {
     expect(accordionPanel.querySelectorAll('.dora-accordion-panel').length).toBe(1)
     expect(accordionPanel.querySelectorAll('.dora-accordion-panel--disabled').length).toBe(0)
     expect(accordionPanel.querySelectorAll('.dora-accordion-panel .dora-accordion-panel__arrow').length).toBe(1)
-    
+
     const hd = accordionPanel.querySelector('.dora-accordion-panel .dora-accordion-panel__hd')
     hd.dispatchEvent('tap')
     await simulate.sleep(0)

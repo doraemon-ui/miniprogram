@@ -7,6 +7,6 @@ import type { MiniprogramPublicInstance } from '../../types'
  * @export
  * @return {*}  {(MiniprogramPublicInstance | null)}
  */
-export function getCurrentPage (): MiniprogramPublicInstance | null {
+export function getCurrentPage(): MiniprogramPublicInstance | null {
   return canUseMP() ? getCurrentPages()[getCurrentPages().length - 1] : null
 }

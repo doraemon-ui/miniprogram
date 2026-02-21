@@ -23,10 +23,7 @@ export type { NativeButtonHandle, NativeButtonEvent }
  * @export
  * @interface DialogButton
  */
-export type DialogButton = Omit<
-  NativeButtonProps,
-  'size' | 'type'| 'plain' | 'loading'
-> & {
+export type DialogButton = Omit<NativeButtonProps, 'size' | 'type' | 'plain' | 'loading'> & {
   /** 标题 */
   text?: string
   /** 按钮类型 */
@@ -79,7 +76,7 @@ export interface DialogProps {
  */
 export type DialogShowOptions = {
   /** 组件的选择器 */
-  selector?: string,
+  selector?: string
   /** 页面的实例 */
   instance?: MiniprogramPublicInstance
 }
@@ -89,10 +86,7 @@ export type DialogShowOptions = {
  *
  * @export
  */
-export type DialogShowProps = Omit<
-  DialogProps,
-  'visible'
-> & {
+export type DialogShowProps = Omit<DialogProps, 'visible'> & {
   /** 点击关闭按钮或蒙层的回调函数 */
   onClose?: () => void
   /** 关闭后的回调函数 */
@@ -112,7 +106,7 @@ const mergeOptions = <T extends DialogShowOptions>(selector?: Partial<T> | strin
   } else if (isObject(selector)) {
     opts = {
       ...opts,
-      ...selector as DialogShowOptions,
+      ...(selector as DialogShowOptions),
     }
   }
   return opts
@@ -127,11 +121,7 @@ function clear() {
   }
 }
 
-function mountComponent(
-  props: DialogShowProps,
-  container: DialogInstance,
-  statePropName: string = 'visible'
-) {
+function mountComponent(props: DialogShowProps, container: DialogInstance, statePropName: string = 'visible') {
   const { render, destroy, update } = usePopupStateHOC<DialogInstance>(statePropName)(container)
   const close = () => {
     if (isTrue(container[statePropName])) {
@@ -162,13 +152,13 @@ function mountComponent(
   }
 }
 
-function show (props?: DialogShowProps, options?: DialogShowOptions): () => void
-function show (props?: DialogShowProps, selector?: string, instance?: MiniprogramPublicInstance): () => void
-function show (props?: DialogShowProps, selector?: DialogShowOptions | string, instance?: MiniprogramPublicInstance): () => void {
+function show(props?: DialogShowProps, options?: DialogShowOptions): () => void
+function show(props?: DialogShowProps, selector?: string, instance?: MiniprogramPublicInstance): () => void
+function show(props?: DialogShowProps, selector?: DialogShowOptions | string, instance?: MiniprogramPublicInstance): () => void {
   const options = mergeOptions<DialogShowOptions>(selector, instance)
   const comp = findComponentNode<DialogInstance>(options.selector, options.instance)
   const { destroy } = mountComponent(props, comp)
-  
+
   return () => destroy()
 }
 
@@ -177,10 +167,7 @@ function show (props?: DialogShowProps, selector?: DialogShowOptions | string, i
  *
  * @export
  */
-export type DialogAlertProps = Omit<
-  DialogShowProps,
-  'buttonClosable' | 'buttons'
-> & {
+export type DialogAlertProps = Omit<DialogShowProps, 'buttonClosable' | 'buttons'> & {
   /** 确定按钮的文字 */
   confirmText?: string
   /** 确定按钮的类型 */
@@ -189,25 +176,32 @@ export type DialogAlertProps = Omit<
   onConfirm?: DefaultButtonHandle<DialogButton>
 }
 
-function alert (props?: DialogAlertProps, options?: DialogShowOptions): Promise<void>
-function alert (props?: DialogAlertProps, selector?: string, instance?: MiniprogramPublicInstance): Promise<void>
-function alert (props?: DialogAlertProps, selector?: DialogShowOptions | string, instance?: MiniprogramPublicInstance): Promise<void> {
+function alert(props?: DialogAlertProps, options?: DialogShowOptions): Promise<void>
+function alert(props?: DialogAlertProps, selector?: string, instance?: MiniprogramPublicInstance): Promise<void>
+function alert(props?: DialogAlertProps, selector?: DialogShowOptions | string, instance?: MiniprogramPublicInstance): Promise<void> {
   const { confirmText, confirmType, onConfirm, ...restProps } = props
   return new Promise<void>((resolve) => {
-    show.call(null, {
-      ...restProps,
-      buttonClosable: true,
-      buttons: [{
-        type: confirmType ?? 'balanced',
-        text: confirmText ?? '确定',
-        onClick (...args) {
-          onConfirm?.(...args)
+    show.call(
+      null,
+      {
+        ...restProps,
+        buttonClosable: true,
+        buttons: [
+          {
+            type: confirmType ?? 'balanced',
+            text: confirmText ?? '确定',
+            onClick(...args) {
+              onConfirm?.(...args)
+            },
+          },
+        ],
+        onClose: () => {
+          resolve()
         },
-      }],
-      onClose: () => {
-        resolve()
-      },
-    } as DialogProps, selector, instance)
+      } as DialogProps,
+      selector,
+      instance,
+    )
   })
 }
 
@@ -225,40 +219,47 @@ export type DialogConfirmProps = DialogAlertProps & {
   onCancel?: DefaultButtonHandle<DialogButton>
 }
 
-function confirm (props?: DialogConfirmProps, options?: DialogShowOptions): Promise<boolean>
-function confirm (props?: DialogConfirmProps, selector?: string, instance?: MiniprogramPublicInstance): Promise<boolean>
-function confirm (props?: DialogConfirmProps, selector?: DialogShowOptions | string, instance?: MiniprogramPublicInstance): Promise<boolean> {
+function confirm(props?: DialogConfirmProps, options?: DialogShowOptions): Promise<boolean>
+function confirm(props?: DialogConfirmProps, selector?: string, instance?: MiniprogramPublicInstance): Promise<boolean>
+function confirm(
+  props?: DialogConfirmProps,
+  selector?: DialogShowOptions | string,
+  instance?: MiniprogramPublicInstance,
+): Promise<boolean> {
   const { confirmText, confirmType, onConfirm, cancelText, cancelType, onCancel, ...restProps } = props
   return new Promise<boolean>((resolve) => {
-    show.call(null, {
-      ...restProps,
-      buttonClosable: true,
-      buttons: [{
-        type: cancelType ?? 'dark',
-        text: cancelText ?? '取消',
-        async onClick (...args) {
-          await onCancel?.(...args)
+    show.call(
+      null,
+      {
+        ...restProps,
+        buttonClosable: true,
+        buttons: [
+          {
+            type: cancelType ?? 'dark',
+            text: cancelText ?? '取消',
+            async onClick(...args) {
+              await onCancel?.(...args)
+              resolve(false)
+            },
+          },
+          {
+            type: confirmType ?? 'balanced',
+            text: confirmText ?? '确定',
+            async onClick(...args) {
+              await onConfirm?.(...args)
+              resolve(true)
+            },
+          },
+        ],
+        onClose: () => {
+          restProps.onClose?.()
           resolve(false)
         },
-      }, {
-        type: confirmType ?? 'balanced',
-        text: confirmText ?? '确定',
-        async onClick (...args) {
-          await onConfirm?.(...args)
-          resolve(true)
-        },
-      }],
-      onClose: () => {
-        restProps.onClose?.()
-        resolve(false)
-      },
-    } as DialogProps, selector, instance)
+      } as DialogProps,
+      selector,
+      instance,
+    )
   })
 }
 
-export {
-  show,
-  alert,
-  confirm,
-  clear,
-}
+export { show, alert, confirm, clear }

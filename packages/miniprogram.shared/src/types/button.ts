@@ -5,9 +5,18 @@ import type { MiniprogramCustomEvent } from './mp'
  *
  * @export
  */
-export type NativeButtonOpenType = 'contact' | 'liveActivity' | 'share' | 'getPhoneNumber' |
-  'getRealtimePhoneNumber' | 'getUserInfo' | 'launchApp' | 'openSetting' | 'feedback' |
-  'chooseAvatar' | 'agreePrivacyAuthorization'
+export type NativeButtonOpenType =
+  | 'contact'
+  | 'liveActivity'
+  | 'share'
+  | 'getPhoneNumber'
+  | 'getRealtimePhoneNumber'
+  | 'getUserInfo'
+  | 'launchApp'
+  | 'openSetting'
+  | 'feedback'
+  | 'chooseAvatar'
+  | 'agreePrivacyAuthorization'
 
 /**
  * 原生按钮组件的类型
@@ -59,9 +68,18 @@ export interface NativeButtonProps {
 /**
  * 按钮的事件
  */
-export type NativeButtonEvent = 'click' | 'getuserinfo' | 'contact' | 'createliveactivity' |
-  'getphonenumber' | 'getrealtimephonenumber' | 'error' | 'opensetting' | 'launchapp' |
-  'chooseavatar' | 'agreeprivacyauthorization'
+export type NativeButtonEvent =
+  | 'click'
+  | 'getuserinfo'
+  | 'contact'
+  | 'createliveactivity'
+  | 'getphonenumber'
+  | 'getrealtimephonenumber'
+  | 'error'
+  | 'opensetting'
+  | 'launchapp'
+  | 'chooseavatar'
+  | 'agreeprivacyauthorization'
 
 /**
  * 默认事件的类型
@@ -71,19 +89,17 @@ export type NativeButtonEvent = 'click' | 'getuserinfo' | 'contact' | 'createliv
 export type DefaultButtonHandle<
   Button = NativeButtonProps,
   Detail = MiniprogramCustomEvent['detail'],
-  Method = NativeButtonEvent
-> = (
-  event: {
-    /** 触发事件的方法 */
-    method?: Method
-    /** 按钮组件 */
-    button?: Button,
-    /** 索引值 */
-    index?: number,
-    /** 回调的 detail 数据 */
-    detail?: Detail
-  }
-) => void | Promise<void>
+  Method = NativeButtonEvent,
+> = (event: {
+  /** 触发事件的方法 */
+  method?: Method
+  /** 按钮组件 */
+  button?: Button
+  /** 索引值 */
+  index?: number
+  /** 回调的 detail 数据 */
+  detail?: Detail
+}) => void | Promise<void>
 
 /**
  * 原生按钮组件的事件类型

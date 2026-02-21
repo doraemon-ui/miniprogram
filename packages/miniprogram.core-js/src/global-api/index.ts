@@ -7,7 +7,7 @@ export const util = {
   warn,
   isEqual,
   classNames,
-  styleToCssString
+  styleToCssString,
 }
 
 export { extend } from './extend'

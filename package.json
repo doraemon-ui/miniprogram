@@ -5,8 +5,7 @@
     "packages": [
       "demos/*",
       "packages/*",
-      "playground/**",
-      "taro-react-playground/**"
+      "playground/**"
     ],
     "nohoist": [
       "**@doraemon-ui/style**"
@@ -22,11 +21,12 @@
     "@babel/preset-typescript": "^7.14.5",
     "@types/jest": "^27.0.3",
     "@types/node": "^16.3.3",
-    "@typescript-eslint/parser": "^4.28.3",
+    "@typescript-eslint/parser": "^6.21.0",
     "babel-jest": "^27.0.6",
     "core-js": "^3.15.2",
-    "eslint": "^7.31.0",
+    "eslint": "^8.57.0",
     "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-prettier": "^5.5.5",
     "husky": "^6.0.0",
     "jest": "^27.0.6",
     "lint-staged": "^11.1.2",
@@ -34,6 +34,7 @@
     "miniprogram-api-typings": "^3.12.2",
     "miniprogram-simulate": "1.6.1",
     "pnpm": "^7.11.0",
+    "prettier": "^3.8.1",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^22.0.0",
     "ts-jest": "^27.0.3",
@@ -41,10 +42,12 @@
     "typescript": "^4.1.2"
   },
   "scripts": {
-    "eslint": "eslint {packages,demos}/** --ext js,ts",
-    "eslint:fix": "eslint {packages,demos}/** --ext js,ts --fix",
-    "stylelint": "stylelint \"{packages,demos}/**/*.less\" --syntax less",
-    "stylelint:fix": "stylelint \"{packages,demos}/**/*.less\" --syntax less --fix",
+    "prettier": "prettier --check \"{packages,playground,demos}/**/*.{js,ts,jsx,tsx,json,less,css,md}\"",
+    "prettier:fix": "prettier --write \"{packages,playground,demos}/**/*.{js,ts,jsx,tsx,json,less,css,md}\"",
+    "eslint": "eslint {packages,playground,demos}/** --ext js,ts",
+    "eslint:fix": "eslint {packages,playground,demos}/** --ext js,ts --fix",
+    "stylelint": "stylelint \"{packages,playground,demos}/**/*.less\" --syntax less",
+    "stylelint:fix": "stylelint \"{packages,playground,demos}/**/*.less\" --syntax less --fix",
     "lint": "pnpm run eslint && pnpm run stylelint",
     "lint:fix": "pnpm run eslint:fix && pnpm run stylelint:fix",
     "prepare": "husky install",

@@ -1,4 +1,4 @@
-const check =  (it: WechatMiniprogram.Wx) => {
+const check = (it: WechatMiniprogram.Wx) => {
   return it && typeof it.env && it
 }
 

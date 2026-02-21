@@ -1,4 +1,4 @@
-@import "./variables.less";
+@import './variables.less';
 
 // Dialog styles
 // @prop --font-size: Font size of the dialog
@@ -8,7 +8,7 @@
 .@{dialog-prefix-cls} {
   --font-size: @dialog-bd-font-size;
   --title-font-size: @dialog-title-font-size;
-  --button-text-color: #get-color(dark)[];
+  --button-text-color: #get-color(dark) [];
 
   position: relative;
   background-color: @dialog-content-bg;
@@ -45,7 +45,7 @@
     font-size: var(--title-font-size);
     display: flex;
 
-    &:after {
+    &::after {
       .setTopLine(@border-color-split);
     }
   }
@@ -100,7 +100,7 @@
     position: relative;
 
     &.@{dora-prefix}-color {
-      --button-text-color: #current-color(base)[];
+      --button-text-color: #current-color(base) [];
     }
 
     &--bold {

@@ -1,4 +1,3 @@
-
 import { defineComponentHOC, Doraemon, Component, Prop, Watch, Emit } from '@doraemon-ui/miniprogram.core-js'
 const { classNames } = Doraemon.util
 
@@ -27,7 +26,7 @@ class Pagination extends Doraemon {
    */
   @Prop({
     type: String,
-    default: 'button'
+    default: 'button',
   })
   mode: 'button' | 'number' | 'pointer'
 
@@ -39,7 +38,7 @@ class Pagination extends Doraemon {
    */
   @Prop({
     type: Number,
-    default: 1
+    default: 1,
   })
   defaultCurrent: number
 
@@ -51,7 +50,7 @@ class Pagination extends Doraemon {
    */
   @Prop({
     type: Number,
-    default: 1
+    default: 1,
   })
   current: number
 
@@ -63,7 +62,7 @@ class Pagination extends Doraemon {
    */
   @Prop({
     type: Boolean,
-    default: false
+    default: false,
   })
   controlled: boolean
 
@@ -75,7 +74,7 @@ class Pagination extends Doraemon {
    */
   @Prop({
     type: Number,
-    default: 0
+    default: 0,
   })
   total: number
 
@@ -87,11 +86,11 @@ class Pagination extends Doraemon {
    */
   @Prop({
     type: Boolean,
-    default: false
+    default: false,
   })
   simple: boolean
 
-  get classes () {
+  get classes() {
     const { prefixCls } = this
     const wrap = classNames(prefixCls)
     const prev = `${prefixCls}__prev`
@@ -116,7 +115,7 @@ class Pagination extends Doraemon {
   activeIndex: number = 1
 
   @Watch('current')
-  watchCurrent (newVal: number) {
+  watchCurrent(newVal: number) {
     if (this.controlled) {
       this.updated(newVal)
     }

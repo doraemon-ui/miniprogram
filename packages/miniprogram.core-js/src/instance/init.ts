@@ -31,22 +31,22 @@ export class Doraemon implements ComponentInternalInstance {
 
   // public properties
   $options: ComponentOptions<Doraemon>
-  get $root (): ComponentPublicInstance {
+  get $root(): ComponentPublicInstance {
     return undefined
   }
-  get $parent (): ComponentPublicInstance {
+  get $parent(): ComponentPublicInstance {
     return undefined
   }
-  get $children (): ComponentPublicInstance[] {
+  get $children(): ComponentPublicInstance[] {
     return undefined
   }
-  get $refs (): { [key: string]: ComponentPublicInstance | ComponentPublicInstance[] | undefined } {
+  get $refs(): { [key: string]: ComponentPublicInstance | ComponentPublicInstance[] | undefined } {
     return undefined
   }
-  get $data (): Record<string, any> {
+  get $data(): Record<string, any> {
     return undefined
   }
-  get $props (): Record<string, any> {
+  get $props(): Record<string, any> {
     return undefined
   }
   $emit: (event: string, ...args: any[]) => this
@@ -58,7 +58,7 @@ export class Doraemon implements ComponentInternalInstance {
    * @param {ComponentOptions<Doraemon>} [options]
    * @memberof Doraemon
    */
-  constructor (options?: ComponentOptions<Doraemon>) {
+  constructor(options?: ComponentOptions<Doraemon>) {
     if (isDev && !(this instanceof Doraemon)) {
       warn('Doraemon is a constructor and should be called with the `new` keyword')
     }
@@ -71,14 +71,11 @@ export class Doraemon implements ComponentInternalInstance {
    * @param {ComponentOptions<Doraemon>} [options]
    * @memberof Doraemon
    */
-  _init (options?: ComponentOptions<Doraemon>) {
+  _init(options?: ComponentOptions<Doraemon>) {
     const vm = this
     vm._uid = uid++
     vm._isDoraemon = true
-    vm.$options = Object.assign({},
-      (vm.constructor as DoraemonClass<Doraemon>).options,
-      options || {}
-    )
+    vm.$options = Object.assign({}, (vm.constructor as DoraemonClass<Doraemon>).options, options || {})
     vm._self = vm
   }
 
@@ -88,7 +85,7 @@ export class Doraemon implements ComponentInternalInstance {
    * @param {ComponentRenderProxy<Doraemon>} vm
    * @memberof Doraemon
    */
-  _render (vm: ComponentRenderProxy<Doraemon>) {
+  _render(vm: ComponentRenderProxy<Doraemon>) {
     this._renderProxy = vm
   }
 
@@ -97,14 +94,12 @@ export class Doraemon implements ComponentInternalInstance {
   static options: ComponentOptions<Doraemon> = Object.create(null)
   static nextTick: typeof nextTick = nextTick
   static extend: typeof extend = extend
-  static get config (): Config {
+  static get config(): Config {
     return config
   }
-  static set config (_) {
+  static set config(_) {
     if (isDev) {
-      warn(
-        'Do not replace the Doraemon.config object, set individual fields instead.'
-      )
+      warn('Do not replace the Doraemon.config object, set individual fields instead.')
     }
   }
 
@@ -124,9 +119,7 @@ export class Doraemon implements ComponentInternalInstance {
 
 export type DoraemonClass<D> = { new (...args: any[]): D & Doraemon } & typeof Doraemon
 
-export type ComponentRenderProxy<
-  D extends Doraemon
-> = WechatMiniprogram.Component.Instance<
+export type ComponentRenderProxy<D extends Doraemon> = WechatMiniprogram.Component.Instance<
   WechatMiniprogram.Component.DataOption,
   WechatMiniprogram.Component.PropertyOption,
   Partial<WechatMiniprogram.Component.MethodOption>,
@@ -147,7 +140,7 @@ export type ComponentPublicInstance<
   Data = {},
   Computed extends DefaultComputed = {},
   Methods extends DefaultMethods<D> = {},
-  PublicProps = Props
+  PublicProps = Props,
 > = {
   $options: ComponentOptions<D>
   $root: ComponentPublicInstance | undefined
@@ -158,16 +151,13 @@ export type ComponentPublicInstance<
   $props: Prettify<Props> & PublicProps
   $emit: (event: string, ...args: any[]) => ComponentPublicInstance
   $nextTick: (fn: (this: ComponentPublicInstance) => void) => void
-
 } & IfAny<Props, Props, Omit<Props, keyof RawBindings>> &
   RawBindings &
   ExtractComputedReturns<Computed> &
   Methods &
   ComponentCustomProperties
 
-export interface ComponentInternalInstance<
-  D extends Doraemon = Doraemon
-> extends ComponentPublicInstance<D> {
+export interface ComponentInternalInstance<D extends Doraemon = Doraemon> extends ComponentPublicInstance<D> {
   // private properties
   _isDoraemon: boolean
   _isMounted: boolean

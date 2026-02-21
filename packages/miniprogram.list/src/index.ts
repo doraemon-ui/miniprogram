@@ -1,6 +1,7 @@
 import { type ComponentPublicInstance, defineComponentHOC, Doraemon, Component, Prop } from '@doraemon-ui/miniprogram.core-js'
 import { type MiniprogramDOMRect, useRect } from '@doraemon-ui/miniprogram.shared'
 import type { ListItemInstance } from './item'
+export type { ListItemInstance, ListItemProps, ListItemExpose } from './item'
 const { classNames, styleToCssString } = Doraemon.util
 
 export type ListExpose = {
@@ -8,20 +9,16 @@ export type ListExpose = {
 }
 
 export interface ListProps {
-  prefixCls: string
-  title: string
-  label: string
-  mode: 'default' | 'card'
-  hasLine: boolean
-  wrapStyle: Partial<CSSStyleDeclaration>
-  bodyStyle: Partial<CSSStyleDeclaration>
+  prefixCls?: string
+  title?: string
+  label?: string
+  mode?: 'default' | 'card'
+  hasLine?: boolean
+  wrapStyle?: Partial<CSSStyleDeclaration>
+  bodyStyle?: Partial<CSSStyleDeclaration>
 }
 
-export type ListInstance = ComponentPublicInstance<
-  List,
-  ListProps,
-  ListExpose
->
+export type ListInstance = ComponentPublicInstance<List, ListProps, ListExpose>
 
 @Component({
   components: {
@@ -37,7 +34,7 @@ export type ListInstance = ComponentPublicInstance<
       default: 'dora-list',
     },
   },
-  expose: ['getBoundingClientRect']
+  expose: ['getBoundingClientRect'],
 })
 class List extends Doraemon {
   /**
@@ -56,7 +53,7 @@ class List extends Doraemon {
    */
   @Prop({
     type: String,
-    default: ''
+    default: '',
   })
   title: string
 
@@ -68,7 +65,7 @@ class List extends Doraemon {
    */
   @Prop({
     type: String,
-    default: ''
+    default: '',
   })
   label: string
 
@@ -80,7 +77,7 @@ class List extends Doraemon {
    */
   @Prop({
     type: String,
-    default: 'default'
+    default: 'default',
   })
   mode: 'default' | 'card'
 
@@ -92,7 +89,7 @@ class List extends Doraemon {
    */
   @Prop({
     type: Boolean,
-    default: true
+    default: true,
   })
   hasLine: boolean
 
@@ -120,7 +117,7 @@ class List extends Doraemon {
   })
   bodyStyle: Partial<CSSStyleDeclaration>
 
-  get classes () {
+  get classes() {
     const { prefixCls, mode, hasLine } = this
     const wrap = classNames(prefixCls, {
       [`${prefixCls}--card`]: mode === 'card',
@@ -138,11 +135,11 @@ class List extends Doraemon {
     }
   }
 
-  get containerStyle () {
+  get containerStyle() {
     return this.wrapStyle ? styleToCssString(this.wrapStyle) : ''
   }
 
-  get internalBodyStyle () {
+  get internalBodyStyle() {
     return this.bodyStyle ? styleToCssString(this.bodyStyle) : ''
   }
 
@@ -160,7 +157,7 @@ class List extends Doraemon {
     return useRect(`.${this.prefixCls}`, this._renderProxy)
   }
 
-  mounted () {
+  mounted() {
     this.updateIsLast()
   }
 }

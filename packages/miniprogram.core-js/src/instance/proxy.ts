@@ -10,12 +10,12 @@ const sharedPropertyDefinition: PropertyDescriptor = {
   set: noop,
 }
 
-export function proxy (target: object, sourceKey: string, key: string) {
-  sharedPropertyDefinition.get = function proxyGetter () {
+export function proxy(target: object, sourceKey: string, key: string) {
+  sharedPropertyDefinition.get = function proxyGetter() {
     const vm: Doraemon = this
     return vm._renderProxy[sourceKey][key]
   }
-  sharedPropertyDefinition.set = function proxySetter (val) {
+  sharedPropertyDefinition.set = function proxySetter(val) {
     const vm: Doraemon = this
     vm._renderProxy.setData({
       [key]: val,
@@ -24,7 +24,7 @@ export function proxy (target: object, sourceKey: string, key: string) {
   Object.defineProperty(target, key, sharedPropertyDefinition)
 }
 
-export function initProxy (vm: Doraemon) {
+export function initProxy(vm: Doraemon) {
   const props = vm.$options.props
   const keys = Object.keys(vm._renderProxy.data)
   let i = keys.length

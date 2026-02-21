@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "miniprogram.actionsheet",
+  "usingComponents": {
+    "demo-page": "@doraemon-ui/miniprogram.demo-page",
+    "demo-block": "@doraemon-ui/miniprogram.demo-block",
+    "dora-actionsheet": "@doraemon-ui/miniprogram.actionsheet/index"
+  }
+}

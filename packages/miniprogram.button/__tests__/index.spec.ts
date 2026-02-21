@@ -1,7 +1,7 @@
 import path from 'path'
 import simulate from 'miniprogram-simulate'
 
-function mountTest (id: string | (() => string), defaultProps = {}) {
+function mountTest(id: string | (() => string), defaultProps = {}) {
   describe('mount and unmount', () => {
     it('component could be updated and unmounted without errors', () => {
       const wrapper = simulate.render(typeof id === 'function' ? id() : id, defaultProps)
@@ -16,7 +16,7 @@ function mountTest (id: string | (() => string), defaultProps = {}) {
 
 let id: string
 
-function getId () {
+function getId() {
   return id
 }
 
@@ -119,7 +119,7 @@ describe('Button', () => {
           onGetUserInfo,
           onClick,
         },
-      })
+      }),
     )
     wrapper.attach(document.createElement('parent-wrapper'))
     const button = wrapper.querySelector('#dora-button')
@@ -135,7 +135,7 @@ describe('Button', () => {
     await simulate.sleep(0)
     expect($comp.$props.openType).toBe('getUserInfo')
     expect(onGetUserInfo).toHaveBeenCalled()
-    
+
     wrapper.setData({ openType: 'getPhoneNumber' })
     nativeButton.dispatchEvent('getphonenumber')
     await simulate.sleep(0)

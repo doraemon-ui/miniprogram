@@ -1,11 +1,9 @@
 .git
 .github
 .*.js
-demos
-packages
+babel.config.js
+.coverage-report
 dist
-lib
-types
 example/dist
 miniprogram_dist
 node_modules

@@ -1,9 +1,7 @@
 import type { Doraemon } from '../instance'
 
 export type IAnyObject = Record<string, any>
-export type Target<
-  D extends IAnyObject = IAnyObject
-> = {
+export type Target<D extends IAnyObject = IAnyObject> = {
   /** 事件组件的 id */
   id: string
   /** 当前组件的类型 */
@@ -16,11 +14,7 @@ export type Target<
   offsetLeft: number
 }
 
-export interface BaseEvent<
-  M extends IAnyObject = IAnyObject,
-  C extends IAnyObject = IAnyObject,
-  T extends IAnyObject = C
-> {
+export interface BaseEvent<M extends IAnyObject = IAnyObject, C extends IAnyObject = IAnyObject, T extends IAnyObject = C> {
   /** 事件类型 */
   type: string
   /** 页面打开到触发事件所经过的毫秒数 */
@@ -37,7 +31,7 @@ export interface CustomEvent<
   D extends IAnyObject = IAnyObject,
   M extends IAnyObject = IAnyObject,
   C extends IAnyObject = IAnyObject,
-  T extends IAnyObject = C
+  T extends IAnyObject = C,
 > extends BaseEvent<M, C, T> {
   /** 额外的信息 */
   detail: D
@@ -66,7 +60,7 @@ export interface TouchEvent<
   D extends IAnyObject = IAnyObject,
   M extends IAnyObject = IAnyObject,
   C extends IAnyObject = IAnyObject,
-  T extends IAnyObject = C
+  T extends IAnyObject = C,
 > extends CustomEvent<D, M, C, T> {
   /** 触摸事件，当前停留在屏幕中的触摸点信息的数组 */
   touches: TouchDetail[]
@@ -87,8 +81,8 @@ export function Event(): MethodDecorator {
       if (event) {
         event.preventDefault = function () {}
         event.stopPropagation = function () {}
-        event.target = event.target || {} as Target
-        event.currentTarget = event.currentTarget || event.target || {} as Target
+        event.target = event.target || ({} as Target)
+        event.currentTarget = event.currentTarget || event.target || ({} as Target)
         event.detail = event.detail || {}
         Object.assign(event.target, event.detail)
         Object.assign(event.currentTarget, event.detail)

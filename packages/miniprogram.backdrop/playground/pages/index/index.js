@@ -1,12 +1,12 @@
 Page({
   data: {
     wrapStyle: {
-      '--background-color': 'rgba(219, 10, 10, 0.5)'
+      '--background-color': 'rgba(219, 10, 10, 0.5)',
     },
     locks: 0,
   },
   onLoad() {
-    [...Array(4).keys()].forEach((key) => {
+    ;[...Array(4).keys()].forEach((key) => {
       this.setData({ [`visible${key + 1}`]: false })
       this[`setVisible${key + 1}`] = () => {
         console.log(`setVisible${key + 1}`)
@@ -23,7 +23,7 @@ Page({
         console.log(`onClosed${key + 1}`)
       }
     })
-  
+
     this.backdrop = this.selectComponent('#dora-backdrop')
   },
   retain() {

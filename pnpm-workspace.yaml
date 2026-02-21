@@ -1,5 +1,5 @@
 packages:
   - demos/*
   - packages/*
+  - miniprogram/*
   - playground/**
-  - taro-react-playground/**

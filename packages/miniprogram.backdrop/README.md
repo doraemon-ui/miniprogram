@@ -42,22 +42,22 @@ yarn add @doraemon-ui/miniprogram.backdrop
 
 ## API
 
-| 参数 | 类型 | 描述 | 默认值 |
-| --- | --- | --- | --- |
-| prefixCls | `string` | 自定义类名前缀 | dora-backdrop |
-| classNames | `any` | 过渡的类名，更多内置过渡效果请参考 [AnimationGroup](animation-group.md) | dora-animate--fadeIn |
-| transparent | `boolean` | 是否显示透明蒙层 | false |
-| disableScroll | `boolean` | 阻止移动触摸 | true |
-| visible | `boolean` | 是否可见 | false |
-| wrapStyle | `object` | 蒙层的样式 | - |
-| zIndex | `number` | 设置蒙层的 z-index。优先级高于 css 设置的 var(--z-index)。 | - |
-| mountOnEnter | `boolean` | 首次进入过渡时是否懒挂载组件 | true |
-| unmountOnExit | `boolean` | 离开过渡完成时是否卸载组件 | true |
-| bind:click | `() => void` | 点击事件 | - |
-| bind:show | `() => void` | 开始展示前触发 | - |
-| bind:showed | `() => void` | 完全展示后触发 | - |
-| bind:close | `() => void` | 开始关闭前触发 | - |
-| bind:closed | `() => void` | 完全关闭后触 | - |
+| 参数          | 类型         | 描述                                                                    | 默认值               |
+| ------------- | ------------ | ----------------------------------------------------------------------- | -------------------- |
+| prefixCls     | `string`     | 自定义类名前缀                                                          | dora-backdrop        |
+| classNames    | `any`        | 过渡的类名，更多内置过渡效果请参考 [AnimationGroup](animation-group.md) | dora-animate--fadeIn |
+| transparent   | `boolean`    | 是否显示透明蒙层                                                        | false                |
+| disableScroll | `boolean`    | 阻止移动触摸                                                            | true                 |
+| visible       | `boolean`    | 是否可见                                                                | false                |
+| wrapStyle     | `object`     | 蒙层的样式                                                              | -                    |
+| zIndex        | `number`     | 设置蒙层的 z-index。优先级高于 css 设置的 var(--z-index)。              | -                    |
+| mountOnEnter  | `boolean`    | 首次进入过渡时是否懒挂载组件                                            | true                 |
+| unmountOnExit | `boolean`    | 离开过渡完成时是否卸载组件                                              | true                 |
+| bind:click    | `() => void` | 点击事件                                                                | -                    |
+| bind:show     | `() => void` | 开始展示前触发                                                          | -                    |
+| bind:showed   | `() => void` | 完全展示后触发                                                          | -                    |
+| bind:close    | `() => void` | 开始关闭前触发                                                          | -                    |
+| bind:closed   | `() => void` | 完全关闭后触                                                            | -                    |
 
 ### Imperative
 
@@ -82,7 +82,7 @@ backdrop.backdropHolds === 0
 
 ## CSS Variables
 
-| 属性 | 描述 | 默认值 | 全局变量 |
-| --- | --- | --- | --- |
-| --z-index | 蒙层的 `z-index` | `var(--dora-component-z-index, 1000)` | `--dora-backdrop-z-index` |
-| --background-color | 蒙层的背景颜色 | `rgba(0, 0, 0, 0.4)` | `--dora-backdrop-background-color` |
+| 属性               | 描述             | 默认值                                | 全局变量                           |
+| ------------------ | ---------------- | ------------------------------------- | ---------------------------------- |
+| --z-index          | 蒙层的 `z-index` | `var(--dora-component-z-index, 1000)` | `--dora-backdrop-z-index`          |
+| --background-color | 蒙层的背景颜色   | `rgba(0, 0, 0, 0.4)`                  | `--dora-backdrop-background-color` |

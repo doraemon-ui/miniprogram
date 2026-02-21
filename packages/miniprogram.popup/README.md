@@ -48,28 +48,28 @@ yarn add @doraemon-ui/miniprogram.popup
 export type Position = 'bottom' | 'top' | 'left' | 'right' | 'center'
 ```
 
-| 参数 | 类型 | 描述 | 默认值 |
-| --- | --- | --- | --- |
-| prefixCls | `string` | 自定义类名前缀 | dora-popup |
-| animationPrefixCls | `string` | 自定义 animation 类名前缀 | dora-animate |
-| position | `Position` | 指定弹出的位置 | center |
-| wrapStyle | `object` | 自定义样式 | - |
-| bodyStyle | `object` | 自定义 body 样式 | - |
-| closable | `boolean` | 是否显示关闭按钮 | false |
-| mask | `boolean` | 是否显示蒙层 | true |
-| maskClosable | `boolean` | 点击蒙层是否允许关闭 | true |
-| maskTransparent | `boolean` | 是否显示透明蒙层 | false |
-| maskStyle | `object` | 蒙层的样式 | - |
-| visible | `boolean` | 是否可见 | false |
-| closeOnSwipe | `boolean` | 是否支持向上/下滑动关闭 | false |
-| zIndex | `number` | 设置蒙层的 z-index。优先级高于 css 设置的 var(--z-index)。 | - |
-| mountOnEnter | `boolean` | 首次进入过渡时是否懒挂载组件 | true |
-| unmountOnExit | `boolean` | 离开过渡完成时是否卸载组件 | true |
-| safeArea | `SafeAreaProp` | 是否开启安全区适配，关于 `SafeAreaProp` 的类型定义，请参考 `SafeArea` 的文档 | false |
-| bind:show | `() => void` | 开始展示前触发 | - |
-| bind:showed | `() => void` | 完全展示后触发 | - |
-| bind:close | `() => void` | 点击关闭按钮或蒙层的回调函数 | - |
-| bind:closed | `() => void` | 完全关闭后触 | - |
+| 参数               | 类型           | 描述                                                                         | 默认值       |
+| ------------------ | -------------- | ---------------------------------------------------------------------------- | ------------ |
+| prefixCls          | `string`       | 自定义类名前缀                                                               | dora-popup   |
+| animationPrefixCls | `string`       | 自定义 animation 类名前缀                                                    | dora-animate |
+| position           | `Position`     | 指定弹出的位置                                                               | center       |
+| wrapStyle          | `object`       | 自定义样式                                                                   | -            |
+| bodyStyle          | `object`       | 自定义 body 样式                                                             | -            |
+| closable           | `boolean`      | 是否显示关闭按钮                                                             | false        |
+| mask               | `boolean`      | 是否显示蒙层                                                                 | true         |
+| maskClosable       | `boolean`      | 点击蒙层是否允许关闭                                                         | true         |
+| maskTransparent    | `boolean`      | 是否显示透明蒙层                                                             | false        |
+| maskStyle          | `object`       | 蒙层的样式                                                                   | -            |
+| visible            | `boolean`      | 是否可见                                                                     | false        |
+| closeOnSwipe       | `boolean`      | 是否支持向上/下滑动关闭                                                      | false        |
+| zIndex             | `number`       | 设置蒙层的 z-index。优先级高于 css 设置的 var(--z-index)。                   | -            |
+| mountOnEnter       | `boolean`      | 首次进入过渡时是否懒挂载组件                                                 | true         |
+| unmountOnExit      | `boolean`      | 离开过渡完成时是否卸载组件                                                   | true         |
+| safeArea           | `SafeAreaProp` | 是否开启安全区适配，关于 `SafeAreaProp` 的类型定义，请参考 `SafeArea` 的文档 | false        |
+| bind:show          | `() => void`   | 开始展示前触发                                                               | -            |
+| bind:showed        | `() => void`   | 完全展示后触发                                                               | -            |
+| bind:close         | `() => void`   | 点击关闭按钮或蒙层的回调函数                                                 | -            |
+| bind:closed        | `() => void`   | 完全关闭后触                                                                 | -            |
 
 ### Popup slot
 
@@ -79,13 +79,13 @@ export type Position = 'bottom' | 'top' | 'left' | 'right' | 'center'
 
 ### Popup externalClasses
 
-| 名称 | 描述 |
-| --- | --- |
+| 名称       | 描述         |
+| ---------- | ------------ |
 | dora-class | 根节点样式类 |
 
 ## CSS Variables
 
-| 属性 | 描述 | 默认值 | 全局变量 |
-| --- | --- | --- | --- |
-| --z-index | 弹窗的 `z-index` | `var(--dora-component-z-index, 1000)` | `--dora-popup-z-index` |
-| --background-color | 弹层的背景色 | `var(--dora-component-background-color, #fff)` | `--dora-popup-background-color` |
+| 属性               | 描述             | 默认值                                         | 全局变量                        |
+| ------------------ | ---------------- | ---------------------------------------------- | ------------------------------- |
+| --z-index          | 弹窗的 `z-index` | `var(--dora-component-z-index, 1000)`          | `--dora-popup-z-index`          |
+| --background-color | 弹层的背景色     | `var(--dora-component-background-color, #fff)` | `--dora-popup-background-color` |

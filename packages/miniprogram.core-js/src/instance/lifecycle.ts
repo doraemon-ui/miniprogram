@@ -3,7 +3,7 @@ import { noop } from '../util/noop'
 import type { Doraemon } from './init'
 import type { ComponentOptions } from '../types/options'
 
-export function initLifecycle (vm: Doraemon, options: ComponentOptions<Doraemon>) {
+export function initLifecycle(vm: Doraemon, options: ComponentOptions<Doraemon>) {
   const methods = options.methods
   vm._isMounted = false
   vm._isDestroyed = false
@@ -13,7 +13,7 @@ export function initLifecycle (vm: Doraemon, options: ComponentOptions<Doraemon>
   }
 }
 
-export function callHook (vm: Doraemon, hook: string) {
+export function callHook(vm: Doraemon, hook: string) {
   var handlers = [vm.$options[hook]]
   if (handlers) {
     for (var i = 0, j = handlers.length; i < j; i++) {

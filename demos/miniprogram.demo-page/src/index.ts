@@ -4,7 +4,7 @@ const { classNames } = Doraemon.util
 
 enum DarkMode {
   AUTO = 'auto',
-  LIGHT ='light',
+  LIGHT = 'light',
   DARK = 'dark',
 }
 
@@ -28,17 +28,17 @@ const presetThemeRecord: {
     navigationBarTextStyle: 'black' | 'white'
   }
 } = {
-  'light': {
-    'backgroundColor': '#fafafa',
-    'backgroundTextStyle': DarkMode.LIGHT,
-    'navigationBarBackgroundColor': '#fafafa',
-    'navigationBarTextStyle': 'black',
+  light: {
+    backgroundColor: '#fafafa',
+    backgroundTextStyle: DarkMode.LIGHT,
+    navigationBarBackgroundColor: '#fafafa',
+    navigationBarTextStyle: 'black',
   },
-  'dark': {
-    'backgroundColor': '#0d0d0d',
-    'backgroundTextStyle': DarkMode.DARK,
-    'navigationBarBackgroundColor': '#0d0d0d',
-    'navigationBarTextStyle': 'white',
+  dark: {
+    backgroundColor: '#0d0d0d',
+    backgroundTextStyle: DarkMode.DARK,
+    navigationBarBackgroundColor: '#0d0d0d',
+    navigationBarTextStyle: 'white',
   },
 }
 
@@ -111,7 +111,7 @@ class DemoPage extends Doraemon {
   })
   desc: string
 
-  get classes () {
+  get classes() {
     const { prefixCls, spacing, sysTheme, curTheme, darkmode: _darkmode } = this
     const wrap = prefixCls
     const hd = `${prefixCls}__hd`
@@ -120,8 +120,9 @@ class DemoPage extends Doraemon {
     const darkmode = classNames(
       `${prefixCls}__darkmode`,
       `${prefixCls}__iconfont`,
-      (curTheme === DarkMode.AUTO ? sysTheme === DarkMode.DARK : curTheme === DarkMode.DARK) ?
-        `${prefixCls}__iconfont-dark` : `${prefixCls}__iconfont-light`
+      (curTheme === DarkMode.AUTO ? sysTheme === DarkMode.DARK : curTheme === DarkMode.DARK)
+        ? `${prefixCls}__iconfont-dark`
+        : `${prefixCls}__iconfont-light`,
     )
     const bd = classNames(`${prefixCls}__bd`, {
       [`${prefixCls}__bd--spacing`]: spacing,
@@ -138,7 +139,7 @@ class DemoPage extends Doraemon {
   }
 
   @Watch('darkmode')
-  onWatchDarmode (darkmode: DarkMode) {
+  onWatchDarmode(darkmode: DarkMode) {
     this.onDarkmodeChange(darkmode)
   }
 
@@ -148,8 +149,10 @@ class DemoPage extends Doraemon {
   curTheme: DarkMode = DarkMode.AUTO
   sysTheme: SysThemeType = getSysTheme()
 
-  onIconClick () {
-    if (!this.clickable) { return }
+  onIconClick() {
+    if (!this.clickable) {
+      return
+    }
     const curTheme = this.isManual ? this.curTheme : getSysTheme()
     const theme = curTheme === DarkMode.DARK ? DarkMode.LIGHT : DarkMode.DARK
     this.isManual = true
@@ -157,14 +160,16 @@ class DemoPage extends Doraemon {
     darkmodeSync(theme)
   }
 
-  setTheme (curTheme: DarkMode) {
+  setTheme(curTheme: DarkMode) {
     if (this.curTheme !== curTheme) {
       this.curTheme = curTheme
     }
   }
 
-  onThemeChange (theme?: SysThemeType) {
-    if (this.isRegister) { return }
+  onThemeChange(theme?: SysThemeType) {
+    if (this.isRegister) {
+      return
+    }
     const cb = ({ theme }) => {
       this.sysTheme = theme as SysThemeType
       this.isRegister = true
@@ -178,7 +183,7 @@ class DemoPage extends Doraemon {
     }
   }
 
-  onDarkmodeChange (darkmode: DarkMode) {
+  onDarkmodeChange(darkmode: DarkMode) {
     const isAuto = darkmode === DarkMode.AUTO
     if (isAuto) {
       this.onThemeChange()
@@ -189,7 +194,7 @@ class DemoPage extends Doraemon {
     this.setTheme(DarkMode.AUTO)
   }
 
-  mounted () {
+  mounted() {
     this.onDarkmodeChange(this.darkmode as DarkMode)
   }
 }

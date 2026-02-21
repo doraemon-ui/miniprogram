@@ -10,6 +10,9 @@ import type { MiniprogramComponentInstance, MiniprogramPublicInstance } from '..
  * @param {MiniprogramPublicInstance} [instance=getCurrentPage()]
  * @return {*}  {(T | null)}
  */
-export function findComponentNode<T = MiniprogramComponentInstance> (selector: string, instance: MiniprogramPublicInstance = getCurrentPage()): T | null {
-  return (instance?.selectComponent(selector) as unknown) as T || null
+export function findComponentNode<T = MiniprogramComponentInstance>(
+  selector: string,
+  instance: MiniprogramPublicInstance = getCurrentPage(),
+): T | null {
+  return (instance?.selectComponent(selector) as unknown as T) || null
 }

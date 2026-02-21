@@ -1,5 +1,5 @@
 declare module 'react-style-object-to-css' {
-  export default function styleToCssString (rules: Record<string, any>): string
+  export default function styleToCssString(rules: Record<string, any>): string
 }
 
 declare module 'react-style-object-to-css/lib/CSSProperty' {

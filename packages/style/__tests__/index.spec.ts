@@ -3,7 +3,6 @@ import path from 'path'
 import less from 'less'
 import { JSDOM } from 'jsdom'
 
-
 describe('Style', () => {
   let window: Window = null
   let document: Document = null
@@ -32,11 +31,11 @@ describe('Style', () => {
     })
   })
 
-  function compare (className = '', targetCss = {}, tagName = 'div') {
+  function compare(className = '', targetCss = {}, tagName = 'div') {
     const element = document.createElement(tagName)
     element.className = className
     const style = window.getComputedStyle(element)
-    Object.keys(targetCss).forEach(prop => {
+    Object.keys(targetCss).forEach((prop) => {
       expect(style[prop]).toEqual(targetCss[prop])
     })
   }

@@ -2,11 +2,11 @@ Page({
   data: {
     wrapStyle: {
       '--z-index': 9999,
-      '--background-color': '#3880ff'
+      '--background-color': '#3880ff',
     },
   },
-  onLoad () {
-    [...Array(16).keys()].forEach((key) => {
+  onLoad() {
+    ;[...Array(16).keys()].forEach((key) => {
       this.setData({ [`visible${key + 1}`]: false })
       this[`onOpen${key + 1}`] = () => {
         console.log(`onOpen${key + 1}`)

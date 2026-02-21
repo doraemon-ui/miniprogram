@@ -7,10 +7,10 @@
   }
 
   @media (prefers-color-scheme: dark) {
-    @{body-node} [data-dora-theme="auto"] & {
+    @{body-node} [data-dora-theme='auto'] & {
       @rule();
     }
-    @{body-node} [data-dora-theme="dark"] & {
+    @{body-node} [data-dora-theme='dark'] & {
       @rule();
     }
   }
@@ -32,18 +32,18 @@
   @{body-node} {
     @lightRule();
   }
-  @{body-node} [data-dora-theme="dark"] {
+  @{body-node} [data-dora-theme='dark'] {
     @darkRule();
   }
 
   @media (prefers-color-scheme: dark) {
-    @{body-node} [data-dora-theme="auto"],
-    @{body-node} [data-dora-theme="dark"] {
+    @{body-node} [data-dora-theme='auto'],
+    @{body-node} [data-dora-theme='dark'] {
       @darkRule();
     }
   }
 }
 
 .colorToRGB(@color) {
-  @list: red(@color), green(@color), blue(@color)
+  @list: red(@color), green(@color), blue(@color);
 }

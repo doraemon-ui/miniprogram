@@ -1,7 +1,7 @@
 import path from 'path'
 import simulate from 'miniprogram-simulate'
 
-function mountTest (id: string | (() => string), defaultProps = {}) {
+function mountTest(id: string | (() => string), defaultProps = {}) {
   describe('mount and unmount', () => {
     it('component could be updated and unmounted without errors', () => {
       const wrapper = simulate.render(typeof id === 'function' ? id() : id, defaultProps)
@@ -16,7 +16,7 @@ function mountTest (id: string | (() => string), defaultProps = {}) {
 
 let id: string
 
-function getId () {
+function getId() {
   return id
 }
 
@@ -33,7 +33,7 @@ describe('Backdrop', () => {
     expect(wrapper.querySelectorAll('.dora-backdrop__bd').length).toBe(1)
     expect(wrapper.toJSON()).toMatchSnapshot()
   })
-  
+
   test('should support to change className', () => {
     const wrapper = simulate.render(id, { prefixCls: 'dora-mask' })
     wrapper.attach(document.createElement('parent-wrapper'))
@@ -108,7 +108,7 @@ describe('Backdrop', () => {
           onClosed,
           onClick,
         },
-      })
+      }),
     )
     wrapper.attach(document.createElement('parent-wrapper'))
     const backdrop = wrapper.querySelector('#dora-backdrop')

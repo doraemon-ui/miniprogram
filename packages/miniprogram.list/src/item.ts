@@ -1,6 +1,48 @@
-import { type CustomEvent, defineComponentHOC, Doraemon, Component, Emit, Event, Prop} from '@doraemon-ui/miniprogram.core-js'
+import {
+  type ComponentPublicInstance,
+  type CustomEvent,
+  defineComponentHOC,
+  Doraemon,
+  Component,
+  Emit,
+  Event,
+  Prop,
+} from '@doraemon-ui/miniprogram.core-js'
 import { type NativeButtonOpenType, type NativeRouteOpenType, useNativeRoute, NATIVE_ROUTES } from '@doraemon-ui/miniprogram.shared'
 const { classNames, styleToCssString } = Doraemon.util
+
+export interface ListItemProps {
+  prefixCls?: string
+  thumb?: string
+  title?: string
+  label?: string
+  extra?: string
+  hasLine?: boolean
+  isLink?: boolean
+  align?: 'flex-start' | 'center'
+  wrapStyle?: Partial<CSSStyleDeclaration>
+  url?: string
+  urlParams?: object
+  delta?: number
+  disabled?: boolean
+  openType?: NativeButtonOpenType | NativeRouteOpenType
+  hoverClass?: string
+  hoverStopPropagation?: boolean
+  hoverStartTime?: number
+  hoverStayTime?: number
+  lang?: 'en' | 'zh_CN' | 'zh_TW'
+  sessionFrom?: string
+  sendMessageTitle?: string
+  sendMessagePath?: string
+  sendMessageImg?: string
+  showMessageCard?: boolean
+  phoneNumberNoQuotaToast?: boolean
+  appParameter?: string
+}
+
+export interface ListItemExpose {
+  updateIsLast: (isLast: boolean) => void
+}
 
 @Component({
   components: {
@@ -83,7 +125,7 @@ const { classNames, styleToCssString } = Doraemon.util
       default: '',
     },
   },
-  expose: ['updateIsLast']
+  expose: ['updateIsLast'],
 })
 class ListItem extends Doraemon {
   /**
@@ -102,7 +144,7 @@ class ListItem extends Doraemon {
    */
   @Prop({
     type: String,
-    default: ''
+    default: '',
   })
   thumb: string
 
@@ -114,7 +156,7 @@ class ListItem extends Doraemon {
    */
   @Prop({
     type: String,
-    default: ''
+    default: '',
   })
   title: string
 
@@ -126,7 +168,7 @@ class ListItem extends Doraemon {
    */
   @Prop({
     type: String,
-    default: ''
+    default: '',
   })
   label: string
 
@@ -138,7 +180,7 @@ class ListItem extends Doraemon {
    */
   @Prop({
     type: String,
-    default: ''
+    default: '',
   })
   extra: string
 
@@ -150,7 +192,7 @@ class ListItem extends Doraemon {
    */
   @Prop({
     type: Boolean,
-    default: true
+    default: true,
   })
   hasLine: boolean
 
@@ -162,7 +204,7 @@ class ListItem extends Doraemon {
    */
   @Prop({
     type: Boolean,
-    default: false
+    default: false,
   })
   isLink: boolean
 
@@ -174,7 +216,7 @@ class ListItem extends Doraemon {
    */
   @Prop({
     type: String,
-    default: 'center'
+    default: 'center',
   })
   align: 'flex-start' | 'center'
 
@@ -215,8 +257,8 @@ class ListItem extends Doraemon {
 
   // union type
   openType!: NativeButtonOpenType | NativeRouteOpenType
-  
-  get classes () {
+
+  get classes() {
     const { prefixCls, hoverClass, isLast, hasLine, isLink, align, disabled } = this
     const wrap = classNames(prefixCls, {
       [`${prefixCls}--last`]: isLast,
@@ -233,7 +275,7 @@ class ListItem extends Doraemon {
     const ft = `${prefixCls}__ft`
     const arrow = `${prefixCls}__arrow`
     const hover = hoverClass && hoverClass !== 'default' ? hoverClass : `${prefixCls}--hover`
-  
+
     return {
       wrap,
       hd,
@@ -247,13 +289,13 @@ class ListItem extends Doraemon {
     }
   }
 
-  get containerStyle () {
+  get containerStyle() {
     return this.wrapStyle ? styleToCssString(this.wrapStyle) : ''
   }
 
   isLast: boolean = false
 
-  onClick () {
+  onClick() {
     if (!this.disabled) {
       this.$emit('click')
       this.linkTo()
@@ -262,61 +304,61 @@ class ListItem extends Doraemon {
 
   @Event()
   @Emit('getuserinfo')
-  onGetUserInfo (e: CustomEvent) {
+  onGetUserInfo(e: CustomEvent) {
     return e.target
   }
 
   @Event()
   @Emit('contact')
-  onContact (e: CustomEvent) {
+  onContact(e: CustomEvent) {
     return e.target
   }
 
   @Event()
   @Emit('getphonenumber')
-  onGetPhoneNumber (e: CustomEvent) {
+  onGetPhoneNumber(e: CustomEvent) {
     return e.target
   }
 
   @Event()
   @Emit('launchapp')
-  onLaunchApp (e: CustomEvent) {
+  onLaunchApp(e: CustomEvent) {
     return e.target
   }
 
   @Event()
   @Emit('chooseavatar')
-  onChooseAvatar (e: CustomEvent) {
+  onChooseAvatar(e: CustomEvent) {
     return e.target
   }
 
   @Event()
   @Emit('opensetting')
-  onOpenSetting (e: CustomEvent) {
+  onOpenSetting(e: CustomEvent) {
     return e.target
   }
 
   @Event()
   @Emit('createliveactivity')
-  onCreateLiveActivity (e: CustomEvent) {
+  onCreateLiveActivity(e: CustomEvent) {
     return e.target
   }
 
   @Event()
   @Emit('getrealtimephonenumber')
-  onGetRealtimePhoneNumber (e: CustomEvent) {
+  onGetRealtimePhoneNumber(e: CustomEvent) {
     return e.target
   }
 
   @Event()
   @Emit('agreeprivacyauthorization')
-  onAgreePrivacyAuthorization (e: CustomEvent) {
+  onAgreePrivacyAuthorization(e: CustomEvent) {
     return e.target
   }
 
   @Event()
   @Emit('error')
-  onError (e: CustomEvent) {
+  onError(e: CustomEvent) {
     return e.target
   }
 
@@ -331,7 +373,7 @@ class ListItem extends Doraemon {
           openType,
           delta,
         },
-        this._renderProxy
+        this._renderProxy,
       )
     }
   }
@@ -345,5 +387,5 @@ class ListItem extends Doraemon {
   }
 }
 
-export type ListItemInstance = ListItem
+export type ListItemInstance = ComponentPublicInstance<ListItem, ListItemProps, ListItemExpose>
 export default defineComponentHOC()(ListItem)

@@ -38,28 +38,32 @@ enum AnimateType {
 /**
  * 自定义动画类名的类型
  */
-type ClassNames = string | {
-  /** 进场动画的开始状态，在动画完成之后移除 */
-  enter?: string
-  /** 进场动画的结束状态，在动画完成之后移除 */
-  enterActive?: string
-  /** 进场动画的完成状态 */
-  enterDone?: string
-  /** 离场动画的开始状态，在动画完成之后移除 */
-  exit?: string
-  /** 离场动画的结束状态，在动画完成之后移除 */
-  exitActive?: string
-  /** 离场动画的完成状态 */
-  exitDone?: string
-}
+type ClassNames =
+  | string
+  | {
+      /** 进场动画的开始状态，在动画完成之后移除 */
+      enter?: string
+      /** 进场动画的结束状态，在动画完成之后移除 */
+      enterActive?: string
+      /** 进场动画的完成状态 */
+      enterDone?: string
+      /** 离场动画的开始状态，在动画完成之后移除 */
+      exit?: string
+      /** 离场动画的结束状态，在动画完成之后移除 */
+      exitActive?: string
+      /** 离场动画的完成状态 */
+      exitDone?: string
+    }
 
 /**
  * 动画持续时间的类型
  */
-type Duration = number | {
-  enter?: number
-  exit?: number
-}
+type Duration =
+  | number
+  | {
+      enter?: number
+      exit?: number
+    }
 
 /**
  * 下一阶段动画的类型
@@ -83,7 +87,7 @@ const defaultClassNames: ClassNames = {
   exitDone: '',
 }
 
-function delayHandler (timeout = 1000 / 60) {
+function delayHandler(timeout = 1000 / 60) {
   return new Promise((resolve) => {
     setTimeout(resolve, timeout)
   })
@@ -266,7 +270,7 @@ class AnimationGroup extends Doraemon {
    * @param {boolean} [mounting=false] 是否首次挂载
    * @memberof AnimationGroup
    */
-  updateStatus (nextStatus: AnimateStatus, mounting: boolean = false) {
+  updateStatus(nextStatus: AnimateStatus, mounting: boolean = false) {
     if (nextStatus !== null) {
       this.isAppearing = mounting
 
@@ -285,9 +289,9 @@ class AnimationGroup extends Doraemon {
    * @returns
    * @memberof AnimationGroup
    */
-  getClassNames (scene: AnimateStatus.ENTER | AnimateStatus.EXIT): {
-    className: string,
-    activeClassName: string,
+  getClassNames(scene: AnimateStatus.ENTER | AnimateStatus.EXIT): {
+    className: string
+    activeClassName: string
     doneClassName: string
   } {
     const classNames = this.classNames
@@ -309,7 +313,7 @@ class AnimationGroup extends Doraemon {
    * @returns {{ enter?: number, exit?: number }}
    * @memberof AnimationGroup
    */
-  getTimeouts (): { enter?: number, exit?: number } {
+  getTimeouts(): { enter?: number; exit?: number } {
     const { duration } = this
     if (duration !== null && typeof duration === 'object') {
       return {
@@ -332,7 +336,7 @@ class AnimationGroup extends Doraemon {
    * @param {Function} callback 回调函数
    * @memberof AnimationGroup
    */
-  setNextAnimate (nextAnimate: NextAnimate, callback: Function) {
+  setNextAnimate(nextAnimate: NextAnimate, callback: Function) {
     if (nextAnimate.animateStatus) {
       this.animateStatus = nextAnimate.animateStatus
     }
@@ -350,7 +354,7 @@ class AnimationGroup extends Doraemon {
    * @returns
    * @memberof AnimationGroup
    */
-  performEnter () {
+  performEnter() {
     const { className, activeClassName } = this.getClassNames(AnimateStatus.ENTER)
     const { enter } = this.getTimeouts()
     const enterParams: NextAnimate = {
@@ -393,7 +397,7 @@ class AnimationGroup extends Doraemon {
    *
    * @memberof AnimationGroup
    */
-  performEntered () {
+  performEntered() {
     const { doneClassName } = this.getClassNames(AnimateStatus.ENTER)
     const enteredParams: NextAnimate = {
       animateStatus: AnimateStatus.ENTERED,
@@ -413,7 +417,7 @@ class AnimationGroup extends Doraemon {
    * @returns
    * @memberof AnimationGroup
    */
-  performExit () {
+  performExit() {
     const { className, activeClassName } = this.getClassNames(AnimateStatus.EXIT)
     const { exit } = this.getTimeouts()
     const exitParams: NextAnimate = {
@@ -456,7 +460,7 @@ class AnimationGroup extends Doraemon {
    *
    * @memberof AnimationGroup
    */
-  performExited () {
+  performExited() {
     const { doneClassName } = this.getClassNames(AnimateStatus.EXIT)
     const exitedParams: NextAnimate = {
       animateStatus: AnimateStatus.EXITED,
@@ -482,7 +486,7 @@ class AnimationGroup extends Doraemon {
    *
    * @memberof AnimationGroup
    */
-  onClick () {
+  onClick() {
     this.$emit('click')
   }
 
@@ -491,7 +495,7 @@ class AnimationGroup extends Doraemon {
    *
    * @memberof AnimationGroup
    */
-  onTouchMove () {
+  onTouchMove() {
     /** Ignore */
   }
 
@@ -500,7 +504,7 @@ class AnimationGroup extends Doraemon {
    *
    * @memberof AnimationGroup
    */
-  addEventListener () {
+  addEventListener() {
     const { animateStatus } = this
     const { enter, exit } = this.getTimeouts()
 
@@ -518,7 +522,7 @@ class AnimationGroup extends Doraemon {
    *
    * @memberof AnimationGroup
    */
-  onTransitionEnd () {
+  onTransitionEnd() {
     if (this.type === AnimateType.TRANSITION) {
       this.addEventListener()
     }
@@ -529,7 +533,7 @@ class AnimationGroup extends Doraemon {
    *
    * @memberof AnimationGroup
    */
-  onAnimationEnd () {
+  onAnimationEnd() {
     if (this.type === AnimateType.ANIMATION) {
       this.addEventListener()
     }
@@ -542,7 +546,7 @@ class AnimationGroup extends Doraemon {
    * @memberof AnimationGroup
    */
   @Watch('in')
-  updated (newVal: boolean) {
+  updated(newVal: boolean) {
     let { animateStatus } = this
     let nextStatus = null
 
@@ -553,19 +557,11 @@ class AnimationGroup extends Doraemon {
           this.$emit('change', { animateStatus: AnimateStatus.EXITED })
         })
       }
-      if (
-        animateStatus !== AnimateStatus.ENTER &&
-        animateStatus !== AnimateStatus.ENTERING &&
-        animateStatus !== AnimateStatus.ENTERED
-      ) {
+      if (animateStatus !== AnimateStatus.ENTER && animateStatus !== AnimateStatus.ENTERING && animateStatus !== AnimateStatus.ENTERED) {
         nextStatus = AnimateStatus.ENTERING
       }
     } else {
-      if (
-        animateStatus === AnimateStatus.ENTER ||
-        animateStatus === AnimateStatus.ENTERING ||
-        animateStatus === AnimateStatus.ENTERED
-      ) {
+      if (animateStatus === AnimateStatus.ENTER || animateStatus === AnimateStatus.ENTERING || animateStatus === AnimateStatus.ENTERED) {
         nextStatus = AnimateStatus.EXITING
       }
     }
@@ -579,7 +575,7 @@ class AnimationGroup extends Doraemon {
    * @readonly
    * @memberof AnimationGroup
    */
-  get containerStyle () {
+  get containerStyle() {
     return this.wrapStyle ? styleToCssString(this.wrapStyle) : ''
   }
 
@@ -589,7 +585,7 @@ class AnimationGroup extends Doraemon {
    * @readonly
    * @memberof AnimationGroup
    */
-  get show () {
+  get show() {
     return this._isMounted ? this.animateStatus !== AnimateStatus.UNMOUNTED : false
   }
 
@@ -598,7 +594,7 @@ class AnimationGroup extends Doraemon {
    *
    * @memberof AnimationGroup
    */
-  mounted () {
+  mounted() {
     const props = this
     let animateStatus: AnimateStatus = null
     let appearStatus: AnimateStatus = null

@@ -110,7 +110,7 @@ class Popup extends Doraemon {
     default: false,
   })
   maskTransparent: boolean
-  
+
   /**
    * 自定义蒙层样式
    *
@@ -207,7 +207,7 @@ class Popup extends Doraemon {
   })
   safeArea: SafeAreaProp
 
-  get classes () {
+  get classes() {
     const { prefixCls, position } = this
     const wrap = classNames(prefixCls, {
       [`${prefixCls}--position-${position}`]: position,
@@ -231,7 +231,7 @@ class Popup extends Doraemon {
    * @memberof Popup
    */
   get indexStyle(): Partial<CSSStyleDeclaration> | null {
-    return this.zIndex ? { zIndex: this.zIndex } as unknown as Partial<CSSStyleDeclaration> : null
+    return this.zIndex ? ({ zIndex: this.zIndex } as unknown as Partial<CSSStyleDeclaration>) : null
   }
 
   /**
@@ -240,13 +240,11 @@ class Popup extends Doraemon {
    * @readonly
    * @memberof Popup
    */
-  get containerStyle () {
+  get containerStyle() {
     return styleToCssString({
       ...this.wrapStyle,
       ...this.indexStyle,
-      touchAction: ['top', 'bottom'].includes(this.position)
-        ? 'none'
-        : 'auto'
+      touchAction: ['top', 'bottom'].includes(this.position) ? 'none' : 'auto',
     })
   }
 
@@ -256,7 +254,7 @@ class Popup extends Doraemon {
    * @readonly
    * @memberof Popup
    */
-  get internalBodyStyle (): Partial<CSSStyleDeclaration> {
+  get internalBodyStyle(): Partial<CSSStyleDeclaration> {
     return this.bodyStyle ? { ...this.bodyStyle, ...this.indexStyle } : { ...this.indexStyle }
   }
 
@@ -303,7 +301,7 @@ class Popup extends Doraemon {
   /**
    * 点击关闭按钮
    */
-  onXClose () {
+  onXClose() {
     if (this.closable) {
       this.onClose()
     }
@@ -368,41 +366,25 @@ class Popup extends Doraemon {
   _move: TouchPoint
 
   onTouchStart(e: TouchEvent) {
-    if (
-      !this.closeOnSwipe ||
-      !['top', 'bottom'].includes(this.position) ||
-      getPointsNumber(e) > 1
-    ) {
+    if (!this.closeOnSwipe || !['top', 'bottom'].includes(this.position) || getPointsNumber(e) > 1) {
       return
     }
     this._start = getTouchPoints(e)
   }
 
   onTouchMove(e: TouchEvent) {
-    if (
-      !this.closeOnSwipe ||
-      !['top', 'bottom'].includes(this.position) ||
-      getPointsNumber(e) > 1
-    ) {
+    if (!this.closeOnSwipe || !['top', 'bottom'].includes(this.position) || getPointsNumber(e) > 1) {
       return
     }
     this._move = getTouchPoints(e)
     const direction = getSwipeDirection(this._start.x, this._move.x, this._start.y, this._move.y)
-    if (
-      (this.position === 'bottom' && direction === 'Down') ||
-      (this.position === 'top' && direction === 'Up')
-    ) {
+    if ((this.position === 'bottom' && direction === 'Down') || (this.position === 'top' && direction === 'Up')) {
       this.isMoved = true
     }
   }
 
   onTouchEnd(e: TouchEvent) {
-    if (
-      !this.closeOnSwipe ||
-      !['top', 'bottom'].includes(this.position) ||
-      getPointsNumber(e) > 1 ||
-      !this.isMoved
-    ) {
+    if (!this.closeOnSwipe || !['top', 'bottom'].includes(this.position) || getPointsNumber(e) > 1 || !this.isMoved) {
       return
     }
     this.isMoved = false

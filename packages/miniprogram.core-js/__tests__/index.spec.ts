@@ -94,12 +94,12 @@ describe('CoreJs', () => {
           onIncrement,
           onDecrement,
         },
-      })
+      }),
     )
     wrapper.attach(document.createElement('parent-wrapper'))
     const myComp = wrapper.querySelector('#my-comp')
     const $comp = myComp.instance.$component as any
-    
+
     $comp.resetCount()
     await simulate.sleep(0)
     expect(onReset).toHaveBeenCalledTimes(1)
@@ -152,7 +152,7 @@ describe('CoreJs', () => {
           destroyed,
           unmounted,
         },
-      })
+      }),
     )
     wrapper.attach(document.createElement('parent-wrapper'))
     await simulate.sleep(0)

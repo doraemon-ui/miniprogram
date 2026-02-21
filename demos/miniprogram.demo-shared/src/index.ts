@@ -6,10 +6,7 @@ import dogShit from './dogShit'
 import doraProp from './doraProp'
 import doraQuote from './doraQuote'
 
-export {
-  doraProp,
-  doraQuote,
-}
+export { doraProp, doraQuote }
 
 export default {
   ...dogShit,

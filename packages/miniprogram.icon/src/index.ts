@@ -42,7 +42,7 @@ class Icon extends Doraemon {
   })
   color: string
 
-  get classes () {
+  get classes() {
     const { prefixCls, type } = this
     const wrap = classNames(prefixCls, {
       [`${prefixCls}-${type}`]: type,
@@ -52,7 +52,7 @@ class Icon extends Doraemon {
     }
   }
 
-  get containerStyle () {
+  get containerStyle() {
     const getFontSize = (size: string | number): string => {
       let fontSize = size
       if (typeof size === 'number') {
@@ -70,7 +70,7 @@ class Icon extends Doraemon {
     })
   }
 
-  onClick () {
+  onClick() {
     this.$emit('click')
   }
 }

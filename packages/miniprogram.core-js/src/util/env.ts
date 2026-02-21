@@ -1,4 +1,4 @@
-const check =  (it: any) => {
+const check = (it: any) => {
   return it && typeof it.env && it
 }
 

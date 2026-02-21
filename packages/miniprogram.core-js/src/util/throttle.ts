@@ -6,11 +6,7 @@ export type ThrottleReturn<T extends (...args: any[]) => any> = DebounceReturn<T
 
 let FUNC_ERROR_TEXT = 'Expected a function'
 
-export function throttle<T extends (...args: any[]) => any>(
-  func: T,
-  wait?: number,
-  options?: ThrottleOptions
-): ThrottleReturn<T> {
+export function throttle<T extends (...args: any[]) => any>(func: T, wait?: number, options?: ThrottleOptions): ThrottleReturn<T> {
   let leading = true,
     trailing = true
 
@@ -22,8 +18,8 @@ export function throttle<T extends (...args: any[]) => any>(
     trailing = 'trailing' in options ? !!options.trailing : trailing
   }
   return debounce(func, wait, {
-    'leading': leading,
-    'maxWait': wait,
-    'trailing': trailing,
+    leading: leading,
+    maxWait: wait,
+    trailing: trailing,
   })
 }

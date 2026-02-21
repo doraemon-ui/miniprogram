@@ -11,7 +11,7 @@ export function initExposed(vm: Doraemon) {
         Object.defineProperty(exposed, key, {
           enumerable: !hasProxy,
           get: () => vm[key],
-          set: (val) => (vm[key] = val)
+          set: (val) => (vm[key] = val),
         })
       })
       return exposed
@@ -21,10 +21,7 @@ export function initExposed(vm: Doraemon) {
   }
 }
 
-export type PublicPropertiesMap = Record<
-  string,
-  (i: ComponentInternalInstance) => any
->
+export type PublicPropertiesMap = Record<string, (i: ComponentInternalInstance) => any>
 
 export const publicPropertiesMap: PublicPropertiesMap = {
   $data: (vm) => vm.$data,
@@ -62,14 +59,14 @@ export function getExposeProxy(vm: ComponentInternalInstance) {
         Object.defineProperty(vm._exposeProxy, key, {
           get() {
             return vm._exposed[key]
-          }
+          },
         })
       }
       for (const key in publicPropertiesMap) {
         Object.defineProperty(vm._exposeProxy, key, {
           get() {
             return publicPropertiesMap[key](vm)
-          }
+          },
         })
       }
       return vm._exposeProxy
@@ -78,7 +75,7 @@ export function getExposeProxy(vm: ComponentInternalInstance) {
 }
 
 export function getPublicInstance(
-  vm: ComponentInternalInstance
+  vm: ComponentInternalInstance,
 ): ComponentPublicInstance | ComponentInternalInstance['_exposed'] | ComponentInternalInstance | null {
   if (!vm) return null
   return getExposeProxy(vm) || vm

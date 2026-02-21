@@ -1,4 +1,4 @@
-@import "./variables.less";
+@import './variables.less';
 
 // SafeArea styles
 // @prop --inset-top: Top distance of the safe-area
@@ -15,30 +15,30 @@
   box-sizing: border-box;
 
   &--position-top {
-    padding-top: calc(~"var(--inset-top) * var(--multiple)");
+    padding-top: calc(~'var(--inset-top) * var(--multiple)');
   }
 
   &--position-top&--supports {
     @supports (padding-top: constant(safe-area-inset-top)) {
-      padding-top: calc(~"constant(safe-area-inset-top) * var(--multiple)");
+      padding-top: calc(~'constant(safe-area-inset-top) * var(--multiple)');
     }
 
     @supports (padding-top: env(safe-area-inset-top)) {
-      padding-top: calc(~"env(safe-area-inset-top) * var(--multiple)");
+      padding-top: calc(~'env(safe-area-inset-top) * var(--multiple)');
     }
   }
 
   &--position-bottom {
-    padding-bottom: calc(~"var(--inset-bottom) * var(--multiple)");
+    padding-bottom: calc(~'var(--inset-bottom) * var(--multiple)');
   }
 
   &--position-bottom&--supports {
     @supports (padding-bottom: constant(safe-area-inset-bottom)) {
-      padding-bottom: calc(~"constant(safe-area-inset-bottom) * var(--multiple)");
+      padding-bottom: calc(~'constant(safe-area-inset-bottom) * var(--multiple)');
     }
 
     @supports (padding-bottom: env(safe-area-inset-bottom)) {
-      padding-bottom: calc(~"env(safe-area-inset-bottom) * var(--multiple)");
+      padding-bottom: calc(~'env(safe-area-inset-bottom) * var(--multiple)');
     }
   }
 }

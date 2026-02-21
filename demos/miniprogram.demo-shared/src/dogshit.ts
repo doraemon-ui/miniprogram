@@ -1,6 +1,6 @@
 let 主题 = '一天掉多少根头发'
 
-let 论述 = [ 
+let 论述 = [
   '现在，解决主题的问题，是非常非常重要的。 所以， ',
   '我们不得不面对一个非常尴尬的事实，那就是， ',
   '主题的发生，到底需要如何做到，不主题的发生，又会如何产生。 ',
@@ -142,37 +142,34 @@ let 后面垫话 = [
   '这句话语虽然很短，但令我浮想联翩。 ',
 ]
 
-let 前面垫话 = [
-  '曾经说过',
-  '在不经意间这样说过',
-]
+let 前面垫话 = ['曾经说过', '在不经意间这样说过']
 
-function 随便取一句(列表){
-  let 坐标 = Math.floor( Math.random() * 列表.length )
+function 随便取一句(列表) {
+  let 坐标 = Math.floor(Math.random() * 列表.length)
   return 列表[坐标]
 }
 
-function 随便取一个数(最小值 = 0,最大值 = 100){
-  let 数字 = Math.random()*( 最大值 - 最小值 ) + 最小值
+function 随便取一个数(最小值 = 0, 最大值 = 100) {
+  let 数字 = Math.random() * (最大值 - 最小值) + 最小值
   return 数字
 }
 
-function 来点名人名言(){
+function 来点名人名言() {
   let 名言 = 随便取一句(名人名言)
-  名言 = 名言.replace('曾经说过', 随便取一句(前面垫话) )
-  名言 = 名言.replace('这不禁令我深思', 随便取一句(后面垫话) )
+  名言 = 名言.replace('曾经说过', 随便取一句(前面垫话))
+  名言 = 名言.replace('这不禁令我深思', 随便取一句(后面垫话))
   return 名言
 }
 
-function 来点论述(){
+function 来点论述() {
   let 句子 = 随便取一句(论述)
-  句子 = 句子.replace(RegExp('主题', 'g'),主题)
+  句子 = 句子.replace(RegExp('主题', 'g'), 主题)
   return 句子
 }
 
-function 增加段落(章节){
-  if(章节[章节.length-1] === ' '){
-    章节 = 章节.slice(0,-2)
+function 增加段落(章节) {
+  if (章节[章节.length - 1] === ' ') {
+    章节 = 章节.slice(0, -2)
   }
   return '　　' + 章节 + '。 '
 }
@@ -180,20 +177,20 @@ function 增加段落(章节){
 function 生成文章(title, chapter, paragraph) {
   主题 = title
   let 文章 = []
-  for(let 空 in ([...Array(paragraph).keys()])){
+  for (let 空 in [...Array(paragraph).keys()]) {
     let 章节 = ''
     let 章节长度 = 0
-    while( 章节长度 < chapter ){
+    while (章节长度 < chapter) {
       let 随机数 = 随便取一个数()
-      if(随机数 < 5 && 章节.length > 200){
+      if (随机数 < 5 && 章节.length > 200) {
         章节 = 增加段落(章节)
-        文章.push(章节) 
+        文章.push(章节)
         章节 = ''
-      }else if(随机数 < 20){
+      } else if (随机数 < 20) {
         let 句子 = 来点名人名言()
         章节长度 = 章节长度 + 句子.length
         章节 = 章节 + 句子
-      }else{
+      } else {
         let 句子 = 来点论述()
         章节长度 = 章节长度 + 句子.length
         章节 = 章节 + 句子
@@ -205,7 +202,7 @@ function 生成文章(title, chapter, paragraph) {
   return 文章.join('\n')
 }
 
-export function dogShit (title: string, chapter = 129, paragraph = 1) {
+export function dogShit(title: string, chapter = 129, paragraph = 1) {
   return 生成文章(title, chapter, paragraph)
 }
 

@@ -1,0 +1,22 @@
+{
+  "description": "项目配置文件",
+  "miniprogramRoot": "pages/",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "enhance": false,
+    "postcss": true,
+    "minified": true,
+    "nodeModules": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.11.3",
+  "appid": "wx958ccbebf60d68f3",
+  "projectname": "miniprogram.actionsheet",
+  "simulatorType": "wechat",
+  "srcMiniprogramRoot": "pages/"
+}

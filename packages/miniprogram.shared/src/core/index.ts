@@ -4,7 +4,4 @@ export * from './util'
 import dom from './dom'
 import util from './util'
 
-export {
-  dom,
-  util,
-}
+export { dom, util }

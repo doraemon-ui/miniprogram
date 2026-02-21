@@ -17,13 +17,7 @@ export interface NativeRouteProps {
 /**
  * openType 属性可选值为 navigateTo、redirectTo、switchTab、navigateBack、reLaunch
  */
-export const NATIVE_ROUTES: NativeRouteOpenType[] = [
-  'navigateTo',
-  'redirectTo',
-  'switchTab',
-  'navigateBack',
-  'reLaunch',
-]
+export const NATIVE_ROUTES: NativeRouteOpenType[] = ['navigateTo', 'redirectTo', 'switchTab', 'navigateBack', 'reLaunch']
 
 /**
  * 跳转到指定的页面
@@ -31,7 +25,7 @@ export const NATIVE_ROUTES: NativeRouteOpenType[] = [
  * @export
  * @param {NativeRouteProps} props 参数对象
  * @param {*} vm 小程序页面或组件的实例对象
- * @return {*} 
+ * @return {*}
  */
 export function useNativeRoute(props: NativeRouteProps, vm) {
   const { url, urlParams, openType = 'navigateTo', delta = 1 } = props
@@ -49,13 +43,10 @@ export function useNativeRoute(props: NativeRouteProps, vm) {
     })
   }
   if (!url) {
-    return Promise.reject(
-      `Invalid value of prop "url" of "${vm.is}": Expected an Non-empty String.`
-    )
+    return Promise.reject(`Invalid value of prop "url" of "${vm.is}": Expected an Non-empty String.`)
   } else if (!NATIVE_ROUTES.includes(openType)) {
     return Promise.reject(
-      `Invalid value of prop "openType" of "${vm.is}": expected "${NATIVE_ROUTES.join(',')}", ` +
-      `but got ${openType}.`
+      `Invalid value of prop "openType" of "${vm.is}": expected "${NATIVE_ROUTES.join(',')}", ` + `but got ${openType}.`,
     )
   } else if (openType === 'navigateBack') {
     return promisify(openType, { delta })

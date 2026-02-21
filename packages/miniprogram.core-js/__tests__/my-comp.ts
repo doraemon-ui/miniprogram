@@ -1,20 +1,24 @@
 import { defineComponentHOC, Doraemon, Component, Prop, Watch, Emit, Event } from '../src'
 
-const valueDecorator = (value: any) => (_: any, __: any): any => {
-  return {
-    enumerable: true,
-    value,
+const valueDecorator =
+  (value: any) =>
+  (_: any, __: any): any => {
+    return {
+      enumerable: true,
+      value,
+    }
   }
-}
 
-const getterDecorator = (value: any) => (_: any, __: any): any => {
-  return {
-    enumerable: true,
-    get () {
-      return value
-    },
+const getterDecorator =
+  (value: any) =>
+  (_: any, __: any): any => {
+    return {
+      enumerable: true,
+      get() {
+        return value
+      },
+    }
   }
-}
 
 @Component({
   components: {
@@ -42,7 +46,7 @@ class MyComp extends Doraemon {
 
   a: string = 'hello'
 
-  get b () {
+  get b() {
     return this.foo + 1
   }
 
@@ -54,14 +58,14 @@ class MyComp extends Doraemon {
 
   msg: string = ''
 
-  hello () {
+  hello() {
     this.msg = 'hi'
   }
 
   changed: boolean = false
 
   @Watch('a')
-  onChange (newVal: string) {
+  onChange(newVal: string) {
     this.changed = true
   }
 
@@ -88,18 +92,18 @@ class MyComp extends Doraemon {
     return Promise.resolve(1)
   }
 
-  beforeCreate () {}
-  created () {}
-  mounted () {}
-  destroyed () {}
-  unmounted () {}
-  errorCaptured () {}
+  beforeCreate() {}
+  created() {}
+  mounted() {}
+  destroyed() {}
+  unmounted() {}
+  errorCaptured() {}
 
-  error () {
+  error() {
     throw new Error('errorCaptured')
   }
 
-  observer () {}
+  observer() {}
 }
 
 export default defineComponentHOC()(MyComp)

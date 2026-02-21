@@ -5,7 +5,7 @@ Page({
       '--header-font-size': '15px',
       '--header-width': 'auto',
       '--thumb-size': '25px',
-    }
+    },
   },
   onContact(e) {
     console.log('onContact', e)
@@ -33,5 +33,5 @@ Page({
   },
   onError(e) {
     console.log('onError', e)
-  }
+  },
 })

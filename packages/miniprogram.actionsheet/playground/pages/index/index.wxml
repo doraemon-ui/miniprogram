@@ -1,0 +1,36 @@
+<demo-page
+  darkmode="auto"
+  title="miniprogram.actionsheet"
+  desc="miniprogram.actionsheet"
+  clickable
+  spacing
+>
+  <demo-block title="iOS Theme">
+    <button type="primary" bindtap="showIos">Show ActionSheet (iOS)</button>
+  </demo-block>
+
+  <demo-block title="WeChat Theme">
+    <button type="primary" bindtap="showWx">Show ActionSheet (WeChat)</button>
+  </demo-block>
+
+  <dora-actionsheet
+    visible="{{ visible1 }}"
+    theme="ios"
+    titleText="请选择操作"
+    buttons="{{ buttons }}"
+    cancelText="取消"
+    destructiveText="删除"
+    bind:cancel="onCancel"
+    bind:action="onAction"
+  />
+
+  <dora-actionsheet
+    visible="{{ visible2 }}"
+    theme="wx"
+    titleText="请选择操作"
+    buttons="{{ buttons }}"
+    cancelText="取消"
+    bind:cancel="onCancel"
+    bind:action="onAction"
+  />
+</demo-page>

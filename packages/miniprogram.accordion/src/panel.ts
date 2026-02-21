@@ -33,7 +33,7 @@ class Panel extends Doraemon {
    */
   @Prop({
     type: String,
-    default: ''
+    default: '',
   })
   key: string
 
@@ -45,7 +45,7 @@ class Panel extends Doraemon {
    */
   @Prop({
     type: String,
-    default: ''
+    default: '',
   })
   thumb: string
 
@@ -57,7 +57,7 @@ class Panel extends Doraemon {
    */
   @Prop({
     type: String,
-    default: ''
+    default: '',
   })
   title: string
 
@@ -69,7 +69,7 @@ class Panel extends Doraemon {
    */
   @Prop({
     type: String,
-    default: ''
+    default: '',
   })
   content: string
 
@@ -81,7 +81,7 @@ class Panel extends Doraemon {
    */
   @Prop({
     type: Boolean,
-    default: false
+    default: false,
   })
   disabled: boolean
 
@@ -93,11 +93,11 @@ class Panel extends Doraemon {
    */
   @Prop({
     type: Boolean,
-    default: true
+    default: true,
   })
   showArrow: boolean
 
-  get classes () {
+  get classes() {
     const { prefixCls, current, disabled } = this
     const wrap = classNames(prefixCls, {
       [`${prefixCls}--current`]: current,
@@ -109,7 +109,7 @@ class Panel extends Doraemon {
     const arrow = `${prefixCls}__arrow`
     const bd = `${prefixCls}__bd`
     const content = `${prefixCls}__content`
-  
+
     return {
       wrap,
       hd,
@@ -137,18 +137,18 @@ class Panel extends Doraemon {
    */
   index: string = '0'
 
-  updateCurrentAndIndex (current: boolean, index: string) {
+  updateCurrentAndIndex(current: boolean, index: string) {
     this.$nextTick(() => {
       this.current = current
       this.index = index
     })
   }
 
-  onClick () {
+  onClick() {
     const { index, disabled } = this
     console.log(11111111, this.$parent)
     if (!disabled) {
-      (this.$parent as AccordionInstance)?.onClickItem(index)
+      ;(this.$parent as AccordionInstance)?.onClickItem(index)
     }
   }
 }

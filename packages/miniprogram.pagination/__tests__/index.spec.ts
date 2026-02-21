@@ -1,7 +1,7 @@
 import path from 'path'
 import simulate from 'miniprogram-simulate'
 
-function mountTest (id: string | (() => string), defaultProps = {}) {
+function mountTest(id: string | (() => string), defaultProps = {}) {
   describe('mount and unmount', () => {
     it('component could be updated and unmounted without errors', () => {
       const wrapper = simulate.render(typeof id === 'function' ? id() : id, defaultProps)
@@ -16,7 +16,7 @@ function mountTest (id: string | (() => string), defaultProps = {}) {
 
 let id: string
 
-function getId () {
+function getId() {
   return id
 }
 
@@ -24,7 +24,7 @@ describe('Pagination', () => {
   beforeAll(() => {
     id = simulate.load(path.resolve(__dirname, '../src/index'), 'dora-pagination', { less: true })
   })
-  
+
   mountTest(getId)
   mountTest(getId, { mode: 'button' })
   mountTest(getId, { mode: 'number' })
@@ -80,7 +80,7 @@ describe('Pagination', () => {
           onPrev,
           onNext,
         },
-      })
+      }),
     )
     wrapper.attach(document.createElement('parent-wrapper'))
     const pagination = wrapper.querySelector('#dora-pagination')

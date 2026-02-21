@@ -1,5 +1,6 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import { useRect } from '@doraemon-ui/miniprogram.shared'
+import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+
 const { classNames, styleToCssString } = Doraemon.util
 
 @Component({
@@ -107,7 +108,7 @@ class Avatar extends Doraemon {
    * @readonly
    * @memberof Avatar
    */
-  get classes () {
+  get classes() {
     const { prefixCls, shape, size, src } = this
     const wrap = classNames(prefixCls, {
       [`${prefixCls}--${shape}`]: shape,
@@ -128,23 +129,25 @@ class Avatar extends Doraemon {
    * @description 测量头像容器和文字元素的宽度，当文字超出容器时自动缩放
    * @memberof Avatar
    */
-  setScale () {
+  setScale() {
     const { prefixCls } = this
-    useRect([`.${prefixCls}`, `.${prefixCls}__string`], this._renderProxy)
-      .then(([parent, child]) => {
-        if (!parent || !child) { return }
-        const offset = parent.width - 8 < child.width
-        const childrenScale = offset ? (parent.width - 8) / child.width : 1
-        const childrenStyle = childrenScale !== 1
+    useRect([`.${prefixCls}`, `.${prefixCls}__string`], this._renderProxy).then(([parent, child]) => {
+      if (!parent || !child) {
+        return
+      }
+      const offset = parent.width - 8 < child.width
+      const childrenScale = offset ? (parent.width - 8) / child.width : 1
+      const childrenStyle =
+        childrenScale !== 1
           ? styleToCssString({
-            position: 'absolute',
-            display: 'inline-block',
-            transform: `scale(${childrenScale})`,
-            left: `calc(50% - ${Math.round(child.width / 2)}px)`,
-          })
+              position: 'absolute',
+              display: 'inline-block',
+              transform: `scale(${childrenScale})`,
+              left: `calc(50% - ${Math.round(child.width / 2)}px)`,
+            })
           : ''
-        this.childrenStyle = childrenStyle
-      })
+      this.childrenStyle = childrenStyle
+    })
   }
 
   /**
@@ -154,7 +157,7 @@ class Avatar extends Doraemon {
    * @memberof Avatar
    */
   @Watch('bodyStyle')
-  onBodyStyleChanged (newVal: string | Partial<CSSStyleDeclaration>) {
+  onBodyStyleChanged(newVal: string | Partial<CSSStyleDeclaration>) {
     this.extStyle = styleToCssString(newVal)
   }
 
@@ -164,7 +167,7 @@ class Avatar extends Doraemon {
    * @description 当无图片且开启了缩放时，自动计算文字缩放比例
    * @memberof Avatar
    */
-  mounted () {
+  mounted() {
     if (!this.src && this.scale) {
       this.setScale()
     }

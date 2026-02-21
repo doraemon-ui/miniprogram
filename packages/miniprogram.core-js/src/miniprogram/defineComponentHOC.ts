@@ -25,7 +25,7 @@ export interface ComponentExternalOptions extends WechatMiniprogram.Component.Co
   data?: Record<string, any> | (() => Record<string, any>)
 }
 
-export function defineComponentHOC (externalOptions: ComponentExternalOptions = {}) {
+export function defineComponentHOC(externalOptions: ComponentExternalOptions = {}) {
   return function (target: DoraemonClass<Doraemon>) {
     mergeStaticProperty(externalOptions, target)
 
@@ -40,61 +40,52 @@ export function defineComponentHOC (externalOptions: ComponentExternalOptions = 
     options.methods = options.methods || {}
     options.mixins = options.mixins || []
 
-    const defaultProps = initProps(componentInstance, options.props) as
-      WechatMiniprogram.Component.PropertyOption
+    const defaultProps = initProps(componentInstance, options.props) as WechatMiniprogram.Component.PropertyOption
     const watch = initWatch(componentInstance, options.watch)
-    const components = initComponents(componentInstance, options.components) as
-      { [componentName: string]: WechatMiniprogram.Component.RelationOption }
+    const components = initComponents(componentInstance, options.components) as {
+      [componentName: string]: WechatMiniprogram.Component.RelationOption
+    }
     const methods = initMethods(componentInstance, options.methods)
 
     const componentConf: WechatMiniprogram.Component.Options<any, any, any> = {
       options: {
-        multipleSlots: isDef(externalOptions.multipleSlots) ?
-          externalOptions.multipleSlots : true,
-        addGlobalClass: isDef(externalOptions.addGlobalClass) ?
-          externalOptions.addGlobalClass : true,
+        multipleSlots: isDef(externalOptions.multipleSlots) ? externalOptions.multipleSlots : true,
+        addGlobalClass: isDef(externalOptions.addGlobalClass) ? externalOptions.addGlobalClass : true,
       },
-      externalClasses: [
-        'dora-class',
-        'dora-class-a',
-        'dora-class-b',
-        'dora-class-c',
-        'dora-hover-class'
-      ].concat(
-        Array.isArray(externalOptions.externalClasses) ?
-          externalOptions.externalClasses : []
+      externalClasses: ['dora-class', 'dora-class-a', 'dora-class-b', 'dora-class-c', 'dora-hover-class'].concat(
+        Array.isArray(externalOptions.externalClasses) ? externalOptions.externalClasses : [],
       ),
-      ['export'] (this: ComponentRenderProxy<Doraemon>) {
+      ['export'](this: ComponentRenderProxy<Doraemon>) {
         if (externalOptions.expose) {
           return externalOptions.expose.call(this)
         }
         return getPublicInstance(this.$component)
       },
       relations: { ...components },
-      behaviors: (Array.isArray(externalOptions.behaviors) ?
-        externalOptions.behaviors : []).concat([
-          'wx://component-export',
-          useThrottle(),
-          syncPropsToData(defaultProps, options.computed)
-        ]),
+      behaviors: (Array.isArray(externalOptions.behaviors) ? externalOptions.behaviors : []).concat([
+        'wx://component-export',
+        useThrottle(),
+        syncPropsToData(defaultProps, options.computed),
+      ]),
       observers: {
         ...watch,
-        ['**']: function defineComputed (this: ComponentRenderProxy<Doraemon>) {
+        ['**']: function defineComputed(this: ComponentRenderProxy<Doraemon>) {
           initComputed(this.$component)
         },
       },
       properties: { ...defaultProps },
       data: {
-        ...(typeof externalOptions.data === 'function'
-          ? (externalOptions.data() || {})
-          : (externalOptions.data || {})) as Record<string, any>
+        ...((typeof externalOptions.data === 'function' ? externalOptions.data() || {} : externalOptions.data || {}) as Record<
+          string,
+          any
+        >),
       },
       methods: { ...methods },
       lifetimes: {
         created: function beforeCreate(this: ComponentRenderProxy<Doraemon>) {
           this.$component = new target()
           this.$component._render(this)
-          
+
           initLifecycle(this.$component, options)
           initRefs(this.$component)
           callHook(this.$component, 'beforeCreate')
@@ -132,7 +123,7 @@ export function defineComponentHOC (externalOptions: ComponentExternalOptions = 
   }
 }
 
-export function toNative (target: DoraemonClass<Doraemon>) {
+export function toNative(target: DoraemonClass<Doraemon>) {
   return defineComponentHOC()(target)
 }
 
@@ -141,7 +132,7 @@ function mergeStaticProperty(config: ComponentExternalOptions, target: DoraemonC
     config[key] = target[key]
   }
   // 低版本 IOS 下部分属性不能直接访问
-  Object.getOwnPropertyNames(target).forEach(key => {
+  Object.getOwnPropertyNames(target).forEach((key) => {
     const excludes = ['arguments', 'caller', 'length', 'name', 'prototype']
     if (excludes.indexOf(key) < 0) {
       config[key] = target[key]

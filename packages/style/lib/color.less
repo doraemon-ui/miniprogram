@@ -1,59 +1,59 @@
-@import "./themes.less";
-@import "./var.fn.less";
+@import './themes.less';
+@import './var.fn.less';
 
 @light-value: {
   base: #f4f5f8;
   active: darken(#f4f5f8, 10%);
   contrast: #000;
-}
+};
 
 @stable-value: {
   base: #92949c;
   active: darken(#92949c, 10%);
   contrast: #fff;
-}
+};
 
 @positive-value: {
   base: #3880ff;
   active: darken(#3880ff, 10%);
   contrast: #fff;
-}
+};
 
 @calm-value: {
   base: #3dc2ff;
   active: darken(#3dc2ff, 10%);
   contrast: #fff;
-}
+};
 
 @balanced-value: {
   base: #2dd36f;
   active: darken(#2dd36f, 10%);
   contrast: #fff;
-}
+};
 
 @energized-value: {
   base: #ffc409;
   active: darken(#ffc409, 10%);
   contrast: #000;
-}
+};
 
 @assertive-value: {
   base: #eb445a;
   active: darken(#eb445a, 10%);
   contrast: #fff;
-}
+};
 
 @royal-value: {
   base: #8a63d2;
   active: darken(#8a63d2, 10%);
   contrast: #fff;
-}
+};
 
 @dark-value: {
   base: #222428;
   active: darken(#222428, 10%);
   contrast: #fff;
-}
+};
 
 @colors: {
   light: light-value;
@@ -65,7 +65,7 @@
   assertive: assertive-value;
   royal: royal-value;
   dark: dark-value;
-}
+};
 
 // Gets the active color's css variable from a variation.
 // --------------------------------------------------------------------------------------------
@@ -74,7 +74,7 @@
 // current-color(active) => var(--dora-color-active)
 // current-color(contrast) => var(--dora-color-contrast)
 #current-color (@variation: base) {
-  @return: var(~"--dora-color-@{variation}");
+  @return: var(~'--dora-color-@{variation}');
 }
 
 // Gets the specific color's css variable from the name and variation.
@@ -84,10 +84,10 @@
 // #get-color(positive, active)[] => var(--dora-color-positive-active, #055fff)
 // #get-color(positive, contrast)[] => var(--dora-color-positive-contrast, #fff)
 #get-color (@name: positive, @variation: base) {
-  @values: ~"@{name}-value";
-  @base: var(~"--dora-color-@{name}", @@values[base]);
-  @active: var(~"--dora-color-@{name}-active", @@values[active]);
-  @contrast: var(~"--dora-color-@{name}-contrast", @@values[contrast]);
+  @values: ~'@{name}-value';
+  @base: var(~'--dora-color-@{name}', @@values[base]);
+  @active: var(~'--dora-color-@{name}-active', @@values[active]);
+  @contrast: var(~'--dora-color-@{name}-contrast', @@values[contrast]);
   @return: if((@variation = base), @base, if((@variation = active), @active, @contrast));
 }
 

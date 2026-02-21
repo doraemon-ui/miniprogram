@@ -91,7 +91,7 @@ class Button extends Doraemon {
    */
   @Prop({
     type: String,
-    default: 'positive'
+    default: 'positive',
   })
   color: PresetColor
 
@@ -103,7 +103,7 @@ class Button extends Doraemon {
    */
   @Prop({
     type: String,
-    default: 'solid'
+    default: 'solid',
   })
   fill: 'solid' | 'outline' | 'clear'
 
@@ -115,7 +115,7 @@ class Button extends Doraemon {
    */
   @Prop({
     type: String,
-    default: ''
+    default: '',
   })
   expand: 'block' | 'full'
 
@@ -127,7 +127,7 @@ class Button extends Doraemon {
    */
   @Prop({
     type: String,
-    default: ''
+    default: '',
   })
   shape: 'rounded' | 'rectangular'
 
@@ -139,7 +139,7 @@ class Button extends Doraemon {
    */
   @Prop({
     type: String,
-    default: 'default'
+    default: 'default',
   })
   size: 'small' | 'default' | 'large'
 
@@ -151,7 +151,7 @@ class Button extends Doraemon {
    */
   @Prop({
     type: Boolean,
-    default: false
+    default: false,
   })
   strong: boolean
 
@@ -311,7 +311,7 @@ class Button extends Doraemon {
    * @returns {{ wrap: string, hover: string }} 包含 wrap（按钮类名）和 hover（点击态类名）的对象
    * @memberof Button
    */
-  get classes () {
+  get classes() {
     const { prefixCls, hoverClass, color, size, fill, expand, shape, strong, disabled } = this
     const finalSize = ['small', 'large'].includes(size) ? size : ''
     const finalFill = ['solid', 'outline', 'clear'].includes(fill) ? fill : ''
@@ -328,7 +328,7 @@ class Button extends Doraemon {
       [`${prefixCls}--disabled`]: disabled,
     })
     const hover = hoverClass && hoverClass !== 'default' ? hoverClass : `${prefixCls}--activated`
-    
+
     return {
       wrap,
       hover,
@@ -342,7 +342,7 @@ class Button extends Doraemon {
    * @fires click
    * @memberof Button
    */
-  onClick () {
+  onClick() {
     if (!this.disabled && !this.loading) {
       this.$emit('click')
     }
@@ -357,7 +357,7 @@ class Button extends Doraemon {
    */
   @Event()
   @Emit('getuserinfo')
-  onGetUserInfo (e: CustomEvent) {
+  onGetUserInfo(e: CustomEvent) {
     return e.target
   }
 
@@ -370,7 +370,7 @@ class Button extends Doraemon {
    */
   @Event()
   @Emit('contact')
-  onContact (e: CustomEvent) {
+  onContact(e: CustomEvent) {
     return e.target
   }
 
@@ -383,7 +383,7 @@ class Button extends Doraemon {
    */
   @Event()
   @Emit('getphonenumber')
-  onGetPhoneNumber (e: CustomEvent) {
+  onGetPhoneNumber(e: CustomEvent) {
     return e.target
   }
 
@@ -396,7 +396,7 @@ class Button extends Doraemon {
    */
   @Event()
   @Emit('launchapp')
-  onLaunchApp (e: CustomEvent) {
+  onLaunchApp(e: CustomEvent) {
     return e.target
   }
 
@@ -409,7 +409,7 @@ class Button extends Doraemon {
    */
   @Event()
   @Emit('chooseavatar')
-  onChooseAvatar (e: CustomEvent) {
+  onChooseAvatar(e: CustomEvent) {
     return e.target
   }
 
@@ -422,7 +422,7 @@ class Button extends Doraemon {
    */
   @Event()
   @Emit('opensetting')
-  onOpenSetting (e: CustomEvent) {
+  onOpenSetting(e: CustomEvent) {
     return e.target
   }
 
@@ -435,7 +435,7 @@ class Button extends Doraemon {
    */
   @Event()
   @Emit('createliveactivity')
-  onCreateLiveActivity (e: CustomEvent) {
+  onCreateLiveActivity(e: CustomEvent) {
     return e.target
   }
 
@@ -448,7 +448,7 @@ class Button extends Doraemon {
    */
   @Event()
   @Emit('getrealtimephonenumber')
-  onGetRealtimePhoneNumber (e: CustomEvent) {
+  onGetRealtimePhoneNumber(e: CustomEvent) {
     return e.target
   }
 
@@ -461,7 +461,7 @@ class Button extends Doraemon {
    */
   @Event()
   @Emit('agreeprivacyauthorization')
-  onAgreePrivacyAuthorization (e: CustomEvent) {
+  onAgreePrivacyAuthorization(e: CustomEvent) {
     return e.target
   }
 
@@ -474,7 +474,7 @@ class Button extends Doraemon {
    */
   @Event()
   @Emit('error')
-  onError (e: CustomEvent) {
+  onError(e: CustomEvent) {
     return e.target
   }
 }

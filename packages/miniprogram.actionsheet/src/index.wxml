@@ -1,0 +1,54 @@
+<dora-popup
+  id="dora-popup"
+  bodyStyle="{{ theme === 'ios' ? 'background-color: transparent' : '' }}"
+  position="bottom"
+  safeArea="bottom"
+  visible="{{ popupVisible }}"
+  bind:close="onPopupClose"
+  bind:closed="onPopupClosed"
+>
+  <view class="dora-class {{ classes.wrap }}">
+    <view class="{{ classes.content }}">
+      <view class="{{ classes.options }}">
+        <view class="{{ classes.title }}" wx:if="{{ titleText }}">{{ titleText }}</view>
+        <block wx:for="{{ buttons }}" wx:for-item="button" wx:key="index">
+          <button
+            class="{{ classes.button[index].wrap }}"
+            data-index="{{ index }}"
+            disabled="{{ button.disabled }}"
+            open-type="{{ button.openType }}"
+            hover-class="{{ !button.disabled ? classes.button[index].hover : 'none' }}"
+            hover-stop-propagation="{{ button.hoverStopPropagation }}"
+            hover-start-time="{{ button.hoverStartTime || 20 }}"
+            hover-stay-time="{{ button.hoverStayTime || 70 }}"
+            lang="{{ button.lang || 'en' }}"
+            bindgetuserinfo="onGetUserInfo"
+            session-from="{{ button.sessionFrom }}"
+            send-message-title="{{ button.sendMessageTitle }}"
+            send-message-path="{{ button.sendMessagePath }}"
+            send-message-img="{{ button.sendMessageImg }}"
+            show-message-card="{{ button.showMessageCard }}"
+            bindcontact="onContact"
+            bindgetphonenumber="onGetPhoneNumber"
+            app-parameter="{{ button.appParameter }}"
+            bindlaunchapp="onLaunchApp"
+            binderror="onError"
+            bindopensetting="onOpenSetting"
+            bindchooseavatar="onChooseAvatar"
+            bindcreateliveactivity="onCreateLiveActivity"
+            bindgetrealtimephonenumber="onGetRealtimePhoneNumber"
+            bindagreeprivacyauthorization="onAgreePrivacyAuthorization"
+            catchtap="onClick"
+          >
+            <image class="{{ classes.icon }}" src="{{ button.icon }}" wx:if="{{ button.icon }}" />
+            <text class="{{ classes.text }}">{{ button.text }}</text>
+          </button>
+        </block>
+        <button class="{{ classes.destructive }}" wx:if="{{ destructiveText }}" catchtap="onDestructiveClick">{{ destructiveText }}</button>
+      </view>
+      <view class="{{ classes.group }}" wx:if="{{ cancelText }}">
+        <button class="{{ classes.cancel }}" hover-class="{{ classes.hover }}" catchtap="onCancel">{{ cancelText }}</button>
+      </view>
+    </view>
+  </view>
+</dora-popup>

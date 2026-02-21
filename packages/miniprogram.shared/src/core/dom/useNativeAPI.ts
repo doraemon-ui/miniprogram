@@ -6,15 +6,17 @@ const fakeMediaResult = (request, response) => {
   }
   if (request.mediaType.includes('video')) {
     return {
-      tempFiles: [{
-        tempFilePath: response.tempFilePath,
-        size: response.size,
-        duration: response.duration,
-        height: response.height,
-        width: response.width,
-        thumbTempFilePath: response.tempFilePath,
-        fileType: 'video',
-      }],
+      tempFiles: [
+        {
+          tempFilePath: response.tempFilePath,
+          size: response.size,
+          duration: response.duration,
+          height: response.height,
+          width: response.width,
+          thumbTempFilePath: response.tempFilePath,
+          fileType: 'video',
+        },
+      ],
       type: 'video',
     }
   }
@@ -35,7 +37,7 @@ const fakeMediaResult = (request, response) => {
  * @see https://developers.weixin.qq.com/miniprogram/dev/api/media/video/wx.chooseMedia.html
  * @export
  * @param {*} options
- * @return {*} 
+ * @return {*}
  */
 export function chooseMedia(options) {
   const {
@@ -103,14 +105,15 @@ export function uploadFile(options) {
   })
 }
 
-export function getSystemInfoSync(
-  keys: ('window' | 'device' | 'appBase')[] = ['window', 'device', 'appBase']
-): Record<string, any> {
+export function getSystemInfoSync(keys: ('window' | 'device' | 'appBase')[] = ['window', 'device', 'appBase']): Record<string, any> {
   return typeof miniprogramThis.getWindowInfo === 'function'
-    ? keys.reduce((acc, key) => ({
-      ...acc,
-      ...miniprogramThis[`get${key.charAt(0).toUpperCase() + key.substring(1)}Info`](),
-    }), {})
+    ? keys.reduce(
+        (acc, key) => ({
+          ...acc,
+          ...miniprogramThis[`get${key.charAt(0).toUpperCase() + key.substring(1)}Info`](),
+        }),
+        {},
+      )
     : miniprogramThis.getSystemInfoSync()
 }
 

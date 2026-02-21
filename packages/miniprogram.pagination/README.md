@@ -44,28 +44,28 @@ yarn add @doraemon-ui/miniprogram.pagination
 
 ### Pagination props
 
-| 参数 | 类型 | 描述 | 默认值 |
-| --- | --- | --- | --- |
-| prefixCls | `string` | 自定义类名前缀 | dora-pagination |
-| mode | `'button' \| 'number' \| 'pointer'` | 形态 | button |
-| defaultCurrent | `number` | 默认页号，当 `controlled` 为 `false` 时才生效 | 1 |
-| current | `number` | 当前页号，当 `controlled` 为 `true` 时才生效 | 1 |
-| controlled | `boolean` | 是否受控 [说明文档](controlled.md) | false |
-| total | `number` | 总页数 | 0 |
-| simple | `boolean` | 是否隐藏数值 | false |
-| bind:change | `(event: CustomEvent<{ current: number; type: 'prev' \| 'next' }>) => void` | change 事件触发的回调函数 | - |
-| bind:prev | `(event: CustomEvent<{ current: number }>) => void` | 左侧按钮点击事件 | - |
-| bind:next | `(event: CustomEvent<{ current: number }>) => void` | 右侧按钮点击事件 | - |
+| 参数           | 类型                                                                        | 描述                                          | 默认值          |
+| -------------- | --------------------------------------------------------------------------- | --------------------------------------------- | --------------- |
+| prefixCls      | `string`                                                                    | 自定义类名前缀                                | dora-pagination |
+| mode           | `'button' \| 'number' \| 'pointer'`                                         | 形态                                          | button          |
+| defaultCurrent | `number`                                                                    | 默认页号，当 `controlled` 为 `false` 时才生效 | 1               |
+| current        | `number`                                                                    | 当前页号，当 `controlled` 为 `true` 时才生效  | 1               |
+| controlled     | `boolean`                                                                   | 是否受控 [说明文档](controlled.md)            | false           |
+| total          | `number`                                                                    | 总页数                                        | 0               |
+| simple         | `boolean`                                                                   | 是否隐藏数值                                  | false           |
+| bind:change    | `(event: CustomEvent<{ current: number; type: 'prev' \| 'next' }>) => void` | change 事件触发的回调函数                     | -               |
+| bind:prev      | `(event: CustomEvent<{ current: number }>) => void`                         | 左侧按钮点击事件                              | -               |
+| bind:next      | `(event: CustomEvent<{ current: number }>) => void`                         | 右侧按钮点击事件                              | -               |
 
 ### Pagination slot
 
-| 名称 | 描述 |
-| --- | --- |
+| 名称 | 描述               |
+| ---- | ------------------ |
 | prev | 自定义左侧按钮内容 |
 | next | 自定义右侧按钮内容 |
 
 ### Pagination externalClasses
 
-| 名称 | 描述 |
-| --- | --- |
+| 名称       | 描述         |
+| ---------- | ------------ |
 | dora-class | 根节点样式类 |

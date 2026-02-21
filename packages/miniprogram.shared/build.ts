@@ -9,7 +9,7 @@ const indexConfig = getRollupConfig({
   },
 })
 
-async function buildAll () {
+async function buildAll() {
   await startBuild(indexConfig)
 }
 

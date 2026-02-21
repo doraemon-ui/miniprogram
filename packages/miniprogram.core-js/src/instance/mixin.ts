@@ -4,7 +4,7 @@ import { nextTick } from '../util/nextTick'
 import { toArray } from '../util/toArray'
 import { warn } from '../util/warn'
 
-export function stateMixin (Component: typeof Doraemon) {
+export function stateMixin(Component: typeof Doraemon) {
   const dataDef: PropertyDescriptor = {}
   dataDef.get = function () {
     const vm: Doraemon = this
@@ -27,11 +27,7 @@ export function stateMixin (Component: typeof Doraemon) {
   }
   if (isDev) {
     dataDef.set = function () {
-      warn(
-        'Avoid replacing instance root $data. ' +
-        'Use nested data properties instead.',
-        this
-      )
+      warn('Avoid replacing instance root $data. ' + 'Use nested data properties instead.', this)
     }
     propsDef.set = function () {
       warn('$props is readonly.', this)
@@ -41,13 +37,13 @@ export function stateMixin (Component: typeof Doraemon) {
   Object.defineProperty(Component.prototype, '$props', propsDef)
 }
 
-export function renderMixin (Component: typeof Doraemon) {
+export function renderMixin(Component: typeof Doraemon) {
   Component.prototype.$nextTick = function (fn) {
     return nextTick(fn)
   }
 }
 
-export function eventsMixin (Component: typeof Doraemon) {
+export function eventsMixin(Component: typeof Doraemon) {
   Component.prototype.$emit = function (event) {
     const vm: Doraemon = this
     const args = toArray(arguments, 1)

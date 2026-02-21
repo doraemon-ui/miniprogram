@@ -20,32 +20,24 @@ export interface DoraemonDecorator {
   (target: Doraemon, key: string, index: number): void
 }
 
-export function createDecorator (factory: (options: ComponentOptions<Doraemon>, key: string, index: number) => void): DoraemonDecorator {
+export function createDecorator(factory: (options: ComponentOptions<Doraemon>, key: string, index: number) => void): DoraemonDecorator {
   return (target: Doraemon | typeof Doraemon, key?: string, index?: any) => {
-    const Ctor = typeof target === 'function'
-      ? target as DecoratedClass
-      : target.constructor as DecoratedClass
+    const Ctor = typeof target === 'function' ? (target as DecoratedClass) : (target.constructor as DecoratedClass)
     if (!Ctor.__decorators__) {
       Ctor.__decorators__ = []
     }
     if (typeof index !== 'number') {
       index = undefined
     }
-    Ctor.__decorators__.push(options => factory(options, key, index))
+    Ctor.__decorators__.push((options) => factory(options, key, index))
   }
 }
 
-export const $internalHooks = [
-  'data',
-  ...LIFECYCLE_HOOKS,
-]
+export const $internalHooks = ['data', ...LIFECYCLE_HOOKS]
 
-export function componentFactory (
-  Component: DoraemonClass<Doraemon>,
-  options: ComponentOptions<Doraemon> = {}
-): DoraemonClass<Doraemon> {
+export function componentFactory(Component: DoraemonClass<Doraemon>, options: ComponentOptions<Doraemon> = {}): DoraemonClass<Doraemon> {
   options.name = options.name || (Component as any)._componentTag || (Component as any).name
-  
+
   // prototype props.
   const proto = Component.prototype
   Object.getOwnPropertyNames(proto).forEach(function (key) {
@@ -62,18 +54,18 @@ export function componentFactory (
     if (descriptor.value !== void 0) {
       // methods
       if (typeof descriptor.value === 'function') {
-        (options.methods || (options.methods = {}))[key] = descriptor.value
+        ;(options.methods || (options.methods = {}))[key] = descriptor.value
       } else {
         // typescript decorated data
-        (options.mixins || (options.mixins = [])).push({
-          data () {
+        ;(options.mixins || (options.mixins = [])).push({
+          data() {
             return { [key]: descriptor.value }
           },
         })
       }
     } else if (descriptor.get || descriptor.set) {
       // computed properties
-      (options.computed || (options.computed = {}))[key] = {
+      ;(options.computed || (options.computed = {}))[key] = {
         get: descriptor.get,
         set: descriptor.set,
       }
@@ -82,7 +74,7 @@ export function componentFactory (
 
   // add data hook to collect class properties as Doraemon instance's data
   ;(options.mixins || (options.mixins = [])).push({
-    data () {
+    data() {
       return collectDataFromConstructor(this, Component)
     },
   })
@@ -90,15 +82,13 @@ export function componentFactory (
   // decorate options
   const decorators = (Component as DecoratedClass).__decorators__
   if (decorators) {
-    decorators.forEach(fn => fn(options))
+    decorators.forEach((fn) => fn(options))
     delete (Component as DecoratedClass).__decorators__
   }
 
   // find super
   const superProto = Object.getPrototypeOf(Component.prototype)
-  const Super = superProto instanceof Doraemon
-    ? superProto.constructor as DoraemonClass<Doraemon>
-    : Doraemon
+  const Super = superProto instanceof Doraemon ? (superProto.constructor as DoraemonClass<Doraemon>) : Doraemon
   const Extended = Super.extend(options)
 
   forwardStaticMembers(Extended, Component, Super)
@@ -106,13 +96,9 @@ export function componentFactory (
   return Extended
 }
 
-function forwardStaticMembers (
-  Extended: typeof Doraemon,
-  Original: typeof Doraemon,
-  Super: typeof Doraemon
-) {
+function forwardStaticMembers(Extended: typeof Doraemon, Original: typeof Doraemon, Super: typeof Doraemon) {
   // We have to use getOwnPropertyNames since Babel registers methods as non-enumerable
-  Object.getOwnPropertyNames(Original).forEach(key => {
+  Object.getOwnPropertyNames(Original).forEach((key) => {
     // `prototype` should not be overwritten
     if (key === 'prototype') {
       return
@@ -133,11 +119,7 @@ function forwardStaticMembers (
 
       const superDescriptor = Object.getOwnPropertyDescriptor(Super, key)
 
-      if (
-        !isPrimitive(descriptor.value) &&
-        superDescriptor &&
-        superDescriptor.value === descriptor.value
-      ) {
+      if (!isPrimitive(descriptor.value) && superDescriptor && superDescriptor.value === descriptor.value) {
         return
       }
     }
@@ -145,7 +127,7 @@ function forwardStaticMembers (
   })
 }
 
-export function collectDataFromConstructor (vm, Component: DoraemonClass<Doraemon>) {
+export function collectDataFromConstructor(vm, Component: DoraemonClass<Doraemon>) {
   // override _init to prevent to init as Doraemon instance
   const originalInit = Component.prototype._init
   Component.prototype._init = function () {
@@ -160,12 +142,12 @@ export function collectDataFromConstructor (vm, Component: DoraemonClass<Doraemo
       }
     }
 
-    keys.forEach(key => {
+    keys.forEach((key) => {
       if (key.charAt(0) !== '_') {
         Object.defineProperty(this, key, {
           get: () => vm[key],
           // set: value => { vm[key] = value },
-          set: value => {
+          set: (value) => {
             if (!(props && hasOwn(props, key))) {
               vm[key] = value !== undefined ? value : null
             }
@@ -184,7 +166,7 @@ export function collectDataFromConstructor (vm, Component: DoraemonClass<Doraemo
 
   // create plain data object
   const plainData = {}
-  Object.keys(data).forEach(key => {
+  Object.keys(data).forEach((key) => {
     if (data[key] !== undefined) {
       plainData[key] = data[key]
     }
@@ -192,9 +174,9 @@ export function collectDataFromConstructor (vm, Component: DoraemonClass<Doraemo
   return plainData
 }
 
-function Component <D extends Doraemon>(options: ComponentOptions<D> & ThisType<D>): <DC extends DoraemonClass<D>>(target: DC) => DC
-function Component <DC extends DoraemonClass<Doraemon>>(target: DC): DC
-function Component (options: DoraemonClass<Doraemon> | ComponentOptions<Doraemon>) {
+function Component<D extends Doraemon>(options: ComponentOptions<D> & ThisType<D>): <DC extends DoraemonClass<D>>(target: DC) => DC
+function Component<DC extends DoraemonClass<Doraemon>>(target: DC): DC
+function Component(options: DoraemonClass<Doraemon> | ComponentOptions<Doraemon>) {
   if (typeof options === 'function') {
     return componentFactory(options)
   }
@@ -203,10 +185,8 @@ function Component (options: DoraemonClass<Doraemon> | ComponentOptions<Doraemon
   }
 }
 
-Component.registerHooks = function registerHooks (keys: string[]): void {
+Component.registerHooks = function registerHooks(keys: string[]): void {
   $internalHooks.push(...keys)
 }
 
-export {
-  Component,
-}
+export { Component }

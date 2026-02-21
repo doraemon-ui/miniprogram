@@ -24,19 +24,15 @@ export function getSafeAreaInset(safeAreaStyle: SafeAreaStyle = 'default') {
     const isIOS = !!(windowInfo.system.toLowerCase().search('ios') + 1)
 
     // 状态栏高度
-    const statusBarHeight = !windowInfo.statusBarHeight
-        ? screenHeight - windowHeight - 20
-        : windowInfo.statusBarHeight
+    const statusBarHeight = !windowInfo.statusBarHeight ? screenHeight - windowHeight - 20 : windowInfo.statusBarHeight
 
     // 胶囊高度
     const navBarHeight = (menuRect.top - statusBarHeight) * 2 + menuRect.height
 
     // 下方扩展 4 像素高度, 防止下方边距太小
     const navBarExtendHeight = windowInfo.statusBarHeight && isIOS ? 4 : 0
-    
-    safeAreaInset.top = isDefault
-      ? statusBarHeight + navBarHeight + navBarExtendHeight
-      : Math.max(statusBarHeight, safeAreaInset.top)
+
+    safeAreaInset.top = isDefault ? statusBarHeight + navBarHeight + navBarExtendHeight : Math.max(statusBarHeight, safeAreaInset.top)
 
     safeAreaInset.bottom = screenHeight - safeArea.bottom
   } catch (e) {
@@ -160,28 +156,22 @@ class SafeArea extends Doraemon {
    * @readonly
    * @memberof SafeArea
    */
-  get containerStyle () {
+  get containerStyle() {
     const { safeArea, safeAreaStyle, forceRender, supports, wrapStyle, isIPhoneX } = this
     const safeAreaConfig = getSafeAreaConfig(safeArea)
     const position = safeAreaConfig.bottom ? 'bottom' : safeAreaConfig.top ? 'top' : 'none'
     let varStyle = ''
 
-    if (
-      (forceRender || isIPhoneX) &&
-      !supports &&
-      ['bottom', 'top'].includes(position)
-    ) {
+    if ((forceRender || isIPhoneX) && !supports && ['bottom', 'top'].includes(position)) {
       const safeAreaInset = getSafeAreaInset(safeAreaStyle)
       varStyle = `--inset-top: ${safeAreaInset.top}PX;`
       varStyle += `--inset-bottom: ${safeAreaInset.bottom}PX;`
     }
 
-    return styleToCssString(
-      varStyle + styleToCssString(wrapStyle)
-    )
+    return styleToCssString(varStyle + styleToCssString(wrapStyle))
   }
 
-  get classes () {
+  get classes() {
     const { prefixCls, forceRender, supports, safeArea, isIPhoneX } = this
     const safeAreaConfig = getSafeAreaConfig(safeArea)
     const wrap = classNames(prefixCls, {

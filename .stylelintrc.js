@@ -30,6 +30,12 @@ module.exports = {
     "declaration-block-no-duplicate-properties": null,
     "function-calc-no-invalid": null,
     "font-family-no-missing-generic-family-keyword": null,
-    "declaration-empty-line-before": null
+    "declaration-empty-line-before": null,
+    "property-no-unknown": null,
+    "declaration-block-no-duplicate-custom-properties": null,
+    "function-name-case": null,
+    "function-parentheses-space-inside": null,
+    "declaration-colon-space-after": null,
+    "declaration-colon-space-before": null,
   }
 }

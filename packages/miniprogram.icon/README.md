@@ -44,15 +44,15 @@ yarn add @doraemon-ui/miniprogram.icon
 
 ### Icon props
 
-| 参数 | 类型 | 描述 | 默认值 |
-| --- | --- | --- | --- |
-| type | `string` | 图标名称 | - |
-| size | `string,number` | 图标大小 | 32 |
-| color | `string` | 图标颜色 | - |
-| hidden | `boolean` | 是否隐藏组件 | false |
+| 参数   | 类型            | 描述         | 默认值 |
+| ------ | --------------- | ------------ | ------ |
+| type   | `string`        | 图标名称     | -      |
+| size   | `string,number` | 图标大小     | 32     |
+| color  | `string`        | 图标颜色     | -      |
+| hidden | `boolean`       | 是否隐藏组件 | false  |
 
 ### Icon externalClasses
 
-| 名称 | 描述 |
-| --- | --- |
+| 名称       | 描述         |
+| ---------- | ------------ |
 | dora-class | 根节点样式类 |

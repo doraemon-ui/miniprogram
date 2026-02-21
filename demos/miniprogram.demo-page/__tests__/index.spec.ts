@@ -1,7 +1,7 @@
 import path from 'path'
 import simulate from 'miniprogram-simulate'
 
-function mountTest (id: string | (() => string) ,defaultProps = {}) {
+function mountTest(id: string | (() => string), defaultProps = {}) {
   describe('mount and unmount', () => {
     it('component could be updated and unmounted without errors', () => {
       const wrapper = simulate.render(typeof id === 'function' ? id() : id, defaultProps)
@@ -16,7 +16,7 @@ function mountTest (id: string | (() => string) ,defaultProps = {}) {
 
 let id: string
 
-function getId () {
+function getId() {
   return id
 }
 
@@ -48,7 +48,7 @@ describe('DemoPage', () => {
         data: {
           darkmode: 'dark',
         },
-      })
+      }),
     )
     wrapper.attach(document.createElement('parent-wrapper'))
     const myComp = wrapper.querySelector('#my-comp')

@@ -1,0 +1,58 @@
+{
+  "name": "@doraemon-ui/taro-react",
+  "private": false,
+  "version": "0.0.1-alpha.1",
+  "description": "Taro React components for doraemon-ui",
+  "author": "skyvow <724355924@qq.com>",
+  "homepage": "",
+  "license": "MIT",
+  "miniprogram": "miniprogram_dist",
+  "main": "miniprogram_dist/index.js",
+  "module": "miniprogram_dist/index.esm.js",
+  "devMain": "src/index.ts",
+  "types": "index.d.ts",
+  "files": [
+    "miniprogram_dist",
+    "plugin"
+  ],
+  "keywords": [
+    "doraemon-ui",
+    "taro",
+    "react",
+    "miniprogram"
+  ],
+  "scripts": {
+    "build:dev": "cross-env NODE_ENV=development ts-node --transpile-only --skip-project build.ts",
+    "build": "cross-env NODE_ENV=production ts-node --transpile-only --skip-project build.ts",
+    "build:rollup": "rollup -c",
+    "build:watch": "rollup -c --watch",
+    "clean": "cross-env rimraf miniprogram_dist",
+    "preversion": "pnpm run clean && pnpm run build"
+  },
+  "peerDependencies": {
+    "react": ">=17.0.0",
+    "@tarojs/react": ">=4.1.11",
+    "@tarojs/taro": ">=4.1.11",
+    "@tarojs/components": ">=4.1.11"
+  },
+  "dependencies": {
+    "@doraemon-ui/miniprogram.list": "workspace:*"
+  },
+  "devDependencies": {
+    "@doraemon-ui/miniprogram.tools": "^0.0.2-alpha.22",
+    "@tarojs/react": "^4.1.11",
+    "@tarojs/taro": "^4.1.11",
+    "@tarojs/components": "^4.1.11",
+    "@types/fs-extra": "^11.0.0",
+    "@types/node": "^16.3.3",
+    "@types/react": "^18.0.0",
+    "cross-env": "^7.0.3",
+    "fast-glob": "^3.3.0",
+    "fs-extra": "^11.2.0",
+    "react": "^18.0.0",
+    "rimraf": "^3.0.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

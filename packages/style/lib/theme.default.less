@@ -3,15 +3,15 @@
 
 // Preset Colors
 // -------------------------------------------------------------------------------------------
-@light: #get-color(light)[];
-@stable: #get-color(stable)[];
-@positive: #get-color(positive)[];
-@calm: #get-color(calm)[];
-@balanced: #get-color(balanced)[];
-@energized: #get-color(energized)[];
-@assertive: #get-color(assertive)[];
-@royal: #get-color(royal)[];
-@dark: #get-color(dark)[];
+@light: #get-color(light) [];
+@stable: #get-color(stable) [];
+@positive: #get-color(positive) [];
+@calm: #get-color(calm) [];
+@balanced: #get-color(balanced) [];
+@energized: #get-color(energized) [];
+@assertive: #get-color(assertive) [];
+@royal: #get-color(royal) [];
+@dark: #get-color(dark) [];
 
 // Default Foreground and Background Colors
 // -------------------------------------------------------------------------------------------
@@ -57,12 +57,12 @@
 @component-background: var(--dora-component-background-color, @white-value);
 @component-z-index: var(--dora-component-z-index, 1000);
 // @font-family: var(--dora-font-family);
-@text-color: rgba(var(--dora-text-color-rgb, @black-rgb-value), .65);
-@text-color-secondary: rgba(var(--dora-text-color-rgb, @black-rgb-value), .45);
+@text-color: rgba(var(--dora-text-color-rgb, @black-rgb-value), 0.65);
+@text-color-secondary: rgba(var(--dora-text-color-rgb, @black-rgb-value), 0.45);
 @text-color-inverse: @white;
-@heading-color: rgba(var(--dora-text-color-rgb, @black-rgb-value), .55);
+@heading-color: rgba(var(--dora-text-color-rgb, @black-rgb-value), 0.55);
 // @heading-color-dark: rgba(var(--dora-white-rgb), 1);
-@text-color-dark: rgba(var(--dora-white-rgb, @white-rgb-value), .85);
+@text-color-dark: rgba(var(--dora-white-rgb, @white-rgb-value), 0.85);
 // @text-color-secondary-dark: rgba(var(--dora-white-rgb), .65);
 @font-variant-base: tabular-nums;
 @font-feature-settings-base: 'tnum';
@@ -95,7 +95,7 @@
 @margin-component-sm: 3px;
 
 // Disabled states
-@disabled-opacity: var(--dora-disabled-opacity, .3);
+@disabled-opacity: var(--dora-disabled-opacity, 0.3);
 
 @background-color-base: @color-step-10;
 @background-color-light: @color-step-5;
@@ -116,10 +116,10 @@
 @border-color-base: var(--dora-border-color, @color-step-10); // base border outline a component
 @border-color-split: var(--dora-border-color-split, @color-step-15); // split border inside a component
 @border-color-inverse: @white;
-@border-width-base: var(--dora-border-width, 1PX); // width of the border for a component
+@border-width-base: var(--dora-border-width, 1px); // width of the border for a component
 @border-style-base: var(--dora-border-style, solid); // style of a components border
 
 // Shadow
-@shadow-color: var(--dora-box-shadow-color, rgba(var(--dora-black-rgb, @black-rgb-value), .15));
+@shadow-color: var(--dora-box-shadow-color, rgba(var(--dora-black-rgb, @black-rgb-value), 0.15));
 @shadow-color-inverse: @white;
 @box-shadow-base: 0 2px 8px @shadow-color;

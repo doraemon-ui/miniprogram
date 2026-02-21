@@ -54,7 +54,7 @@ class DemoBlock extends Doraemon {
   })
   align: string
 
-  get classes () {
+  get classes() {
     const { prefixCls, bordered } = this
     const wrap = prefixCls
     const hd = `${prefixCls}__hd`
@@ -69,7 +69,7 @@ class DemoBlock extends Doraemon {
     }
   }
 
-  get bodyStyle () {
+  get bodyStyle() {
     const { padding, background, direction, align } = this
     const bodyStyle: { [key: string]: string } = {}
     if (padding) {

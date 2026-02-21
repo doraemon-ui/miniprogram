@@ -1,7 +1,7 @@
-@import "./var.dark.less";
-@import "./var.default.less";
-@import "./var.light.less";
-@import "./var.fn.less";
+@import './var.dark.less';
+@import './var.default.less';
+@import './var.light.less';
+@import './var.fn.less';
 
 /*! inject:wxss:../../@doraemon-ui/style/var.wxss */
 
@@ -12,13 +12,13 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  @{body-node} [data-dora-theme="auto"],
-  @{body-node} [data-dora-theme="dark"] {
+  @{body-node} [data-dora-theme='auto'],
+  @{body-node} [data-dora-theme='dark'] {
     .varDark();
   }
 }
 
-@{body-node} [data-dora-theme="dark"] {
+@{body-node} [data-dora-theme='dark'] {
   .varDark();
 }
 

@@ -1,7 +1,7 @@
 import path from 'path'
 import simulate from 'miniprogram-simulate'
 
-function mountTest (id: string | (() => string), defaultProps = {}) {
+function mountTest(id: string | (() => string), defaultProps = {}) {
   describe('mount and unmount', () => {
     it('component could be updated and unmounted without errors', () => {
       const wrapper = simulate.render(typeof id === 'function' ? id() : id, defaultProps)
@@ -16,7 +16,7 @@ function mountTest (id: string | (() => string), defaultProps = {}) {
 
 let id: string
 
-function getId () {
+function getId() {
   return id
 }
 
@@ -76,7 +76,7 @@ describe('AnimationGroup', () => {
           onExited,
           onChange,
         },
-      })
+      }),
     )
     wrapper.attach(document.createElement('parent-wrapper'))
     const animationGroup = wrapper.querySelector('#dora-animation-group')
@@ -140,7 +140,7 @@ describe('AnimationGroup', () => {
           wrapStyle: null,
           disableScroll: false,
         },
-      })
+      }),
     )
     wrapper.attach(document.createElement('parent-wrapper'))
     const animationGroup = wrapper.querySelector('#dora-animation-group')

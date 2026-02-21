@@ -12,13 +12,19 @@ module.exports = {
   "parser": "@typescript-eslint/parser",
   "plugins": [
     "import",
+    // "prettier",
   ],
+  // "extends": ['plugin:prettier/recommended'],
   "rules": {
-    "indent": [2, 2, { "SwitchCase": 2 }],
+    // "prettier/prettier": "off",
+    "indent": "off",
+    // "indent": [2, 2, { "SwitchCase": 2 }],
     "quotes": [2, "single"],
     "semi": [2, "never"],
     "strict": [2, "never"],
     "comma-dangle": [2, "always-multiline"],
     "array-bracket-newline": [2, "consistent"],
+    "jsx-quotes": [2, "prefer-double"],
+    // "space-before-function-paren": [2, "always"],
   },
 }

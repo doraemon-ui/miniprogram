@@ -10,20 +10,14 @@ export {
   type ComponentRenderProxy,
   type ComponentPublicInstance,
   type ComponentCustomProperties,
-  type ComponentInternalInstance
+  type ComponentInternalInstance,
 } from './instance'
 
 export { defineComponentHOC, toNative } from './miniprogram/defineComponentHOC'
 
 export type { DoraemonDecorator } from './decorators/Component'
 
-export type {
-  IAnyObject,
-  Target,
-  BaseEvent,
-  CustomEvent,
-  TouchEvent,
-} from './decorators/Event'
+export type { IAnyObject, Target, BaseEvent, CustomEvent, TouchEvent } from './decorators/Event'
 
 export type {
   ExtractComputedReturns,
@@ -37,5 +31,5 @@ export type {
   RelationComponent,
   ComponentOptions,
   PropOptions,
-  WatchOptions
+  WatchOptions,
 } from './types/options'

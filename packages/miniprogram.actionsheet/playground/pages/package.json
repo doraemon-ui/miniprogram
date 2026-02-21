@@ -1,0 +1,24 @@
+{
+  "name": "miniprogram.actionsheet",
+  "private": true,
+  "version": "0.0.1",
+  "description": "miniprogram actionsheet component demo for doraemon-ui",
+  "author": "skyvow",
+  "homepage": "",
+  "license": "MIT",
+  "main": "app.js",
+  "keywords": [
+    "doraemon-ui",
+    "miniprogram",
+    "actionsheet"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@doraemon-ui/miniprogram.demo-block": "^0.0.1-alpha.2",
+    "@doraemon-ui/miniprogram.demo-page": "^0.0.1-alpha.2",
+    "@doraemon-ui/miniprogram.demo-shared": "^0.0.1-alpha.1",
+    "@doraemon-ui/miniprogram.actionsheet": "^0.0.1-alpha.0"
+  }
+}

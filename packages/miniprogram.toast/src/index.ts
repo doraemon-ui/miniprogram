@@ -8,7 +8,7 @@ const { classNames } = Doraemon.util
       type: String,
       default: 'dora-toast',
     },
-  }
+  },
 })
 class Toast extends Doraemon {
   /**
@@ -139,7 +139,7 @@ class Toast extends Doraemon {
   })
   zIndex: number
 
-  get classes () {
+  get classes() {
     const { prefixCls, iconType: hasIcon, image } = this
     const wrap = classNames(prefixCls)
     const content = classNames(`${prefixCls}__content`, {
@@ -160,25 +160,25 @@ class Toast extends Doraemon {
     }
   }
 
-  get maskStyle (): Partial<CSSStyleDeclaration> {
+  get maskStyle(): Partial<CSSStyleDeclaration> {
     return {
       pointerEvents: this.maskClosable ? 'none' : 'auto',
     }
   }
 
-  get iconType (): string {
+  get iconType(): string {
     return presetIconRecord[this.icon] ?? this.icon ?? ''
   }
 
-  get bodyStyle (): Partial<CSSStyleDeclaration> {
+  get bodyStyle(): Partial<CSSStyleDeclaration> {
     const getTop = (position: ToastPosition) => {
       switch (position) {
-          case 'top':
-            return '20%'
-          case 'bottom':
-            return '80%'
-          default:
-            return '50%'
+        case 'top':
+          return '20%'
+        case 'bottom':
+          return '80%'
+        default:
+          return '50%'
       }
     }
     return {
@@ -192,7 +192,7 @@ class Toast extends Doraemon {
   popupVisible: boolean = false
 
   @Watch('visible')
-  onVisibleChange (visible: boolean) {
+  onVisibleChange(visible: boolean) {
     this.setPopupVisible(visible)
   }
 
@@ -202,23 +202,23 @@ class Toast extends Doraemon {
     }
   }
 
-  onPopupClose () {
+  onPopupClose() {
     this.onClose()
   }
 
-  onPopupClosed () {
+  onPopupClosed() {
     this.onClosed()
   }
 
-  onClose () {
+  onClose() {
     this.$emit('close')
   }
 
-  onClosed () {
+  onClosed() {
     this.$emit('closed')
   }
 
-  mounted () {
+  mounted() {
     this.setPopupVisible(this.visible)
   }
 }

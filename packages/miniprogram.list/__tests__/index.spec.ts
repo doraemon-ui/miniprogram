@@ -25,7 +25,7 @@ describe('List', () => {
             />
           </dora-list>
         `,
-      })
+      }),
     )
     wrapper.attach(document.createElement('parent-wrapper'))
     const list = wrapper.querySelector('#dora-list')
@@ -73,13 +73,13 @@ describe('List', () => {
           onGetUserInfo,
           onClick,
         },
-      })
+      }),
     )
     wrapper.attach(document.createElement('parent-wrapper'))
     const list = wrapper.querySelector('#dora-list-item')
     const $comp = list.instance.$component as any
     const listItem = list.querySelector('.dora-list-item')
-  
+
     listItem.dispatchEvent('tap')
     await simulate.sleep(0)
     expect(onClick).toHaveBeenCalledTimes(1)
@@ -89,7 +89,7 @@ describe('List', () => {
     await simulate.sleep(0)
     expect($comp.$props.openType).toBe('getUserInfo')
     expect(onGetUserInfo).toHaveBeenCalled()
-    
+
     wrapper.setData({ openType: 'getPhoneNumber' })
     listItem.dispatchEvent('getphonenumber')
     await simulate.sleep(0)
@@ -145,7 +145,7 @@ describe('List', () => {
           wrapStyle: null,
           bodyStyle: null,
         },
-      })
+      }),
     )
     wrapper.attach(document.createElement('parent-wrapper'))
     const list = wrapper.querySelector('#dora-list')

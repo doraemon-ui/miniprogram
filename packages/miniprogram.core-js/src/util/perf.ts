@@ -7,10 +7,13 @@ import type { ComponentRenderProxy, Doraemon } from '../instance'
  * @param {*} vm
  * @param {*} options
  */
-export let setUpdatePerformance: (vm: ComponentRenderProxy<Doraemon>, options?: {
-  withDataPaths?: boolean
-  showZero?: boolean
-}) => void
+export let setUpdatePerformance: (
+  vm: ComponentRenderProxy<Doraemon>,
+  options?: {
+    withDataPaths?: boolean
+    showZero?: boolean
+  },
+) => void
 
 if (inMiniprogram) {
   setUpdatePerformance = function (vm, options = {}) {

@@ -8,9 +8,9 @@ import type { MiniprogramDOMRect, MiniprogramElement, MiniprogramPublicInstance 
  * 查询节点信息的对象
  *
  * @param {MiniprogramPublicInstance} [instance=getCurrentPage()] 小程序页面或组件的实例对象
- * @return {*} 
+ * @return {*}
  */
-function useQuery (instance: MiniprogramPublicInstance = getCurrentPage()): WechatMiniprogram.SelectorQuery {
+function useQuery(instance: MiniprogramPublicInstance = getCurrentPage()): WechatMiniprogram.SelectorQuery {
   if (!canUseMP()) {
     return null
   }
@@ -25,7 +25,7 @@ function useQuery (instance: MiniprogramPublicInstance = getCurrentPage()): Wech
  * @param {MiniprogramPublicInstance} instance 小程序页面或组件的实例对象
  * @return {*}  {(MiniprogramElement | null)}
  */
-function useSelector (selector: string, instance?: MiniprogramPublicInstance): MiniprogramElement | null {
+function useSelector(selector: string, instance?: MiniprogramPublicInstance): MiniprogramElement | null {
   return canUseMP() ? useQuery(instance).select(selector) : null
 }
 
@@ -37,7 +37,7 @@ function useSelector (selector: string, instance?: MiniprogramPublicInstance): M
  * @param {MiniprogramPublicInstance} instance 小程序页面或组件的实例对象
  * @return {*}  {(MiniprogramElement | null)}
  */
-function useSelectorAll (selector: string, instance?: MiniprogramPublicInstance): MiniprogramElement | null {
+function useSelectorAll(selector: string, instance?: MiniprogramPublicInstance): MiniprogramElement | null {
   return canUseMP() ? useQuery(instance).selectAll(selector) : null
 }
 
@@ -48,14 +48,7 @@ const makeFields = () => ({
   rect: true,
   // size: true,
   scrollOffset: true,
-  computedStyle: [
-    'width',
-    'height',
-    'borderTopWidth',
-    'borderRightWidth',
-    'borderBottomWidth',
-    'borderLeftWidth',
-  ],
+  computedStyle: ['width', 'height', 'borderTopWidth', 'borderRightWidth', 'borderBottomWidth', 'borderLeftWidth'],
   node: true,
 })
 
@@ -158,23 +151,17 @@ function useRef(selector: string[], instance?: MiniprogramPublicInstance): Promi
  * @param {MiniprogramPublicInstance} [instance] 小程序页面或组件的实例对象
  * @return {*}  {(Promise<MiniprogramNodeRef | MiniprogramNodeRef[]>)}
  */
-function useRef (selector: string | string[], instance?: MiniprogramPublicInstance): Promise<MiniprogramNodeRef | MiniprogramNodeRef[]> {
+function useRef(selector: string | string[], instance?: MiniprogramPublicInstance): Promise<MiniprogramNodeRef | MiniprogramNodeRef[]> {
   return new Promise((resolve) => {
     const query = useQuery(instance)
     const isArray = Array.isArray(selector)
     const classList = isArray ? selector : [selector]
     if (query) {
       classList.forEach((s) => {
-        query
-          .select(s)
-          .fields(makeFields())
+        query.select(s).fields(makeFields())
       })
       query.exec((nodes) => {
-        resolve(
-          isArray
-            ? nodes.map((node) => makeNodeRef(node))
-            : makeNodeRef(nodes[0])
-        )
+        resolve(isArray ? nodes.map((node) => makeNodeRef(node)) : makeNodeRef(nodes[0]))
       })
     }
   })
@@ -191,23 +178,20 @@ function useRefAll(selector: string[], instance?: MiniprogramPublicInstance): Pr
  * @param {MiniprogramPublicInstance} [instance] 小程序页面或组件的实例对象
  * @return {*}  {(Promise<MiniprogramNodeRef[] | MiniprogramNodeRef[][]>)}
  */
-function useRefAll (selector: string | string[], instance?: MiniprogramPublicInstance): Promise<MiniprogramNodeRef[] | MiniprogramNodeRef[][]> {
+function useRefAll(
+  selector: string | string[],
+  instance?: MiniprogramPublicInstance,
+): Promise<MiniprogramNodeRef[] | MiniprogramNodeRef[][]> {
   return new Promise((resolve) => {
     const query = useQuery(instance)
     const isArray = Array.isArray(selector)
     const classList = isArray ? selector : [selector]
     if (query) {
       classList.forEach((s) => {
-        query
-          .selectAll(s)
-          .fields(makeFields())
+        query.selectAll(s).fields(makeFields())
       })
       query.exec((nodesList) => {
-        resolve(
-          isArray
-            ? nodesList.map((nodes) => nodes.map((node) => makeNodeRef(node)))
-            : nodesList[0].map((node) => makeNodeRef(node))
-        )
+        resolve(isArray ? nodesList.map((nodes) => nodes.map((node) => makeNodeRef(node))) : nodesList[0].map((node) => makeNodeRef(node)))
       })
     }
   })
@@ -224,16 +208,14 @@ function useRect(selector: string[], instance?: MiniprogramPublicInstance): Prom
  * @param {MiniprogramPublicInstance} [instance] 小程序页面或组件的实例对象
  * @return {*}  {(Promise<MiniprogramDOMRect | MiniprogramDOMRect[]>)}
  */
-function useRect (selector: string | string[], instance?: MiniprogramPublicInstance): Promise<MiniprogramDOMRect | MiniprogramDOMRect[]> {
+function useRect(selector: string | string[], instance?: MiniprogramPublicInstance): Promise<MiniprogramDOMRect | MiniprogramDOMRect[]> {
   return new Promise((resolve) => {
     const query = useQuery(instance)
     const isArray = Array.isArray(selector)
     const classList = isArray ? selector : [selector]
     if (query) {
       classList.forEach((s) => {
-        query
-          .select(s)
-          .boundingClientRect()
+        query.select(s).boundingClientRect()
       })
       query.exec((nodes) => {
         resolve(isArray ? nodes : nodes[0])
@@ -252,16 +234,17 @@ function useRectAll(selector: string[], instance?: MiniprogramPublicInstance): P
  * @param {MiniprogramPublicInstance} [instance] 小程序页面或组件的实例对象
  * @return {*}  {(Promise<MiniprogramDOMRect[] | MiniprogramDOMRect[][]>)}
  */
-function useRectAll (selector: string | string[], instance?: MiniprogramPublicInstance): Promise<MiniprogramDOMRect[] | MiniprogramDOMRect[][]> {
+function useRectAll(
+  selector: string | string[],
+  instance?: MiniprogramPublicInstance,
+): Promise<MiniprogramDOMRect[] | MiniprogramDOMRect[][]> {
   return new Promise((resolve) => {
-      const query = useQuery(instance)
+    const query = useQuery(instance)
     const isArray = Array.isArray(selector)
     const classList = isArray ? selector : [selector]
     if (query) {
       classList.forEach((s) => {
-        query
-          .selectAll(s)
-          .boundingClientRect()
+        query.selectAll(s).boundingClientRect()
       })
       query.exec((nodesList) => {
         resolve(isArray ? nodesList : nodesList[0])
@@ -277,13 +260,11 @@ function useRectAll (selector: string | string[], instance?: MiniprogramPublicIn
  * @param {MiniprogramPublicInstance} [instance] 小程序页面或组件的实例对象
  * @return {*}  {Promise<MiniprogramScrollOffset>}
  */
-function useScrollOffset (instance?: MiniprogramPublicInstance): Promise<MiniprogramScrollOffset> {
+function useScrollOffset(instance?: MiniprogramPublicInstance): Promise<MiniprogramScrollOffset> {
   return new Promise((resolve) => {
     const query = useQuery(instance)
     if (query) {
-      query
-        .selectViewport()
-        .scrollOffset()
+      query.selectViewport().scrollOffset()
       query.exec(([node]) => {
         resolve(node)
       })
@@ -291,7 +272,10 @@ function useScrollOffset (instance?: MiniprogramPublicInstance): Promise<Minipro
   })
 }
 
-function useComputedStyle (selector: string, instance?: MiniprogramPublicInstance): Promise<{ [key in keyof Partial<CSSStyleDeclaration>]: any }>
+function useComputedStyle(
+  selector: string,
+  instance?: MiniprogramPublicInstance,
+): Promise<{ [key in keyof Partial<CSSStyleDeclaration>]: any }>
 
 /**
  * 指定样式名列表，返回节点对应样式名的当前值
@@ -301,8 +285,8 @@ function useComputedStyle (selector: string, instance?: MiniprogramPublicInstanc
  * @param {...any[]} args
  * @return {*}  {Promise<{ [key in keyof Partial<CSSStyleDeclaration>]: any }>}
  */
-function useComputedStyle (selector: string, ...args: any[]): Promise<{ [key in keyof Partial<CSSStyleDeclaration>]: any }> {
-  const [ computedStyle, instance ] = args
+function useComputedStyle(selector: string, ...args: any[]): Promise<{ [key in keyof Partial<CSSStyleDeclaration>]: any }> {
+  const [computedStyle, instance] = args
   const opts: {
     computedStyle: (keyof Partial<CSSStyleDeclaration>)[]
     instance: MiniprogramPublicInstance
@@ -319,11 +303,9 @@ function useComputedStyle (selector: string, ...args: any[]): Promise<{ [key in 
   return new Promise((resolve) => {
     const query = useQuery(opts.instance)
     if (query) {
-      query
-        .select(selector)
-        .fields({
-          computedStyle: opts.computedStyle as unknown as string[],
-        })
+      query.select(selector).fields({
+        computedStyle: opts.computedStyle as unknown as string[],
+      })
       query.exec(([node]) => {
         resolve(node)
       })
@@ -331,14 +313,4 @@ function useComputedStyle (selector: string, ...args: any[]): Promise<{ [key in 
   })
 }
 
-export {
-  useQuery,
-  useSelector,
-  useSelectorAll,
-  useRef,
-  useRefAll,
-  useRect,
-  useRectAll,
-  useScrollOffset,
-  useComputedStyle,
-}
+export { useQuery, useSelector, useSelectorAll, useRef, useRefAll, useRect, useRectAll, useScrollOffset, useComputedStyle }

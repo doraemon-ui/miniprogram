@@ -19,11 +19,7 @@ export interface BackdropProps {
   wrapStyle: Partial<CSSStyleDeclaration>
 }
 
-export type BackdropInstance = ComponentPublicInstance<
-  Backdrop,
-  BackdropProps,
-  BackdropExpose
->
+export type BackdropInstance = ComponentPublicInstance<Backdrop, BackdropProps, BackdropExpose>
 
 @Component({
   props: {
@@ -32,7 +28,7 @@ export type BackdropInstance = ComponentPublicInstance<
       default: 'dora-backdrop',
     },
   },
-  expose: ['backdropHolds', 'retain', 'release']
+  expose: ['backdropHolds', 'retain', 'release'],
 })
 class Backdrop extends Doraemon {
   /**
@@ -139,7 +135,7 @@ class Backdrop extends Doraemon {
   })
   wrapStyle: Partial<CSSStyleDeclaration>
 
-  get classes () {
+  get classes() {
     const { prefixCls, transparent } = this
     const wrap = classNames(prefixCls, {
       [`${prefixCls}--transparent`]: transparent,
@@ -161,7 +157,7 @@ class Backdrop extends Doraemon {
    * @memberof Backdrop
    */
   get indexStyle(): Partial<CSSStyleDeclaration> | null {
-    return this.zIndex ? { zIndex: this.zIndex } as unknown as Partial<CSSStyleDeclaration> : null
+    return this.zIndex ? ({ zIndex: this.zIndex } as unknown as Partial<CSSStyleDeclaration>) : null
   }
 
   /**
@@ -170,7 +166,7 @@ class Backdrop extends Doraemon {
    * @readonly
    * @memberof Backdrop
    */
-  get containerStyle (): Partial<CSSStyleDeclaration> {
+  get containerStyle(): Partial<CSSStyleDeclaration> {
     return this.wrapStyle ? { ...this.wrapStyle, ...this.indexStyle } : { ...this.indexStyle }
   }
 
@@ -183,7 +179,7 @@ class Backdrop extends Doraemon {
   internalVisible: boolean = false
 
   @Watch('visible')
-  onVisibleChange (visible: boolean) {
+  onVisibleChange(visible: boolean) {
     this.internalVisible = visible
     if (!visible) {
       this.backdropHolds = 0
@@ -264,7 +260,7 @@ class Backdrop extends Doraemon {
   /**
    * 点击事件
    */
-  onClick () {
+  onClick() {
     this.$emit('click')
   }
 }

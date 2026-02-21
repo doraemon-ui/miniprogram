@@ -36,7 +36,7 @@ export type Config = {
   _lifecycleHooks: string[]
 }
 
-export const config = ({
+export const config = {
   /**
    * 取消所有的日志与警告
    */
@@ -61,4 +61,4 @@ export const config = ({
    * 生命周期钩子函数
    */
   _lifecycleHooks: LIFECYCLE_HOOKS,
-} as Config)
+} as Config
