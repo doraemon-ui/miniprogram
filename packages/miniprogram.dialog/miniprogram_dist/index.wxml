@@ -1,4 +1,5 @@
 <dora-popup
+  id="dora-popup"
   position="center"
   bodyStyle="{{ { minWidth: '75vw', backgroundColor: 'unset', ...bodyStyle } }}"
   closable="{{ closable }}"

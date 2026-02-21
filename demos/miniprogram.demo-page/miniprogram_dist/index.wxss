@@ -10,17 +10,17 @@
   font-display: swap
 }
 .dora-demo-page__iconfont {
-  font-family: "DemoPage iconfont"!important;
+  font-family: 'DemoPage iconfont'!important;
   font-size: 32rpx;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale
 }
 .dora-demo-page__iconfont-light::before {
-  content: "\e705"
+  content: '\e705'
 }
 .dora-demo-page__iconfont-dark::before {
-  content: "\e501"
+  content: '\e501'
 }
 .dora-demo-page {
   position: relative;

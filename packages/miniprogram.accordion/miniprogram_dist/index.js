@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.accordion.
- * © 2021 - 2024 Doraemon UI.
- * Built on 2024-04-06, 22:35:23.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.22.
+ * © 2021 - 2026 Doraemon UI.
+ * Built on 2026-02-22, 00:34:39.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -92,9 +92,7 @@ let Accordion = class Accordion extends Doraemon {
         if (elements.length > 0) {
             elements.forEach((element, index) => {
                 const key = element.key || String(index);
-                const current = this.accordion ?
-                    activeKey[0] === key :
-                    activeKey.indexOf(key) !== -1;
+                const current = this.accordion ? activeKey[0] === key : activeKey.indexOf(key) !== -1;
                 element.updateCurrentAndIndex(current, key);
             });
         }
@@ -117,9 +115,7 @@ let Accordion = class Accordion extends Doraemon {
             activeKey = activeKey[0] === key ? [] : [key];
         }
         else {
-            activeKey = activeKey.indexOf(key) !== -1 ?
-                activeKey.filter((n) => n !== key) :
-                [...activeKey, key];
+            activeKey = activeKey.indexOf(key) !== -1 ? activeKey.filter((n) => n !== key) : [...activeKey, key];
         }
         this.setActiveKey(activeKey);
     }
@@ -132,37 +128,37 @@ let Accordion = class Accordion extends Doraemon {
 __decorate([
     Prop({
         type: Array,
-        default: []
+        default: [],
     })
 ], Accordion.prototype, "defaultCurrent", void 0);
 __decorate([
     Prop({
         type: Array,
-        default: []
+        default: [],
     })
 ], Accordion.prototype, "current", void 0);
 __decorate([
     Prop({
         type: Boolean,
-        default: false
+        default: false,
     })
 ], Accordion.prototype, "controlled", void 0);
 __decorate([
     Prop({
         type: Boolean,
-        default: false
+        default: false,
     })
 ], Accordion.prototype, "accordion", void 0);
 __decorate([
     Prop({
         type: String,
-        default: ''
+        default: '',
     })
 ], Accordion.prototype, "title", void 0);
 __decorate([
     Prop({
         type: String,
-        default: ''
+        default: '',
     })
 ], Accordion.prototype, "label", void 0);
 __decorate([

@@ -3,8 +3,8 @@
 @import '../../@doraemon-ui/style/color.wxss';
 
 .dora-safe-area {
-  --inset-top: var(--dora-safe-area-inset-top, 44PX);
-  --inset-bottom: var(--dora-safe-area-inset-bottom, 34PX);
+  --inset-top: var(--dora-safe-area-inset-top, 88rpx);
+  --inset-bottom: var(--dora-safe-area-inset-bottom, 68rpx);
   --multiple: var(--dora-safe-area-multiple, 1);
   display: block;
   width: 100%;

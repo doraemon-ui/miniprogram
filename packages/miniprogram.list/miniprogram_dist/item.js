@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.list.
- * © 2021 - 2024 Doraemon UI.
- * Built on 2024-04-06, 22:36:57.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.22.
+ * © 2021 - 2026 Doraemon UI.
+ * Built on 2026-02-22, 00:36:35.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,7 +10,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { defineComponentHOC, Doraemon, Component, Emit, Event, Prop } from '@doraemon-ui/miniprogram.core-js';
+import { defineComponentHOC, Doraemon, Component, Emit, Event, Prop, } from '@doraemon-ui/miniprogram.core-js';
 import { useNativeRoute, NATIVE_ROUTES } from '@doraemon-ui/miniprogram.shared';
 const { classNames, styleToCssString } = Doraemon.util;
 let ListItem = class ListItem extends Doraemon {
@@ -81,7 +81,7 @@ let ListItem = class ListItem extends Doraemon {
     url;
     urlParams;
     delta;
-    openType;
+    // openType!: NativeRouteOpenType
     // native button props
     // @see https://developers.weixin.qq.com/miniprogram/dev/component/button.html
     disabled;
@@ -98,6 +98,8 @@ let ListItem = class ListItem extends Doraemon {
     showMessageCard;
     phoneNumberNoQuotaToast;
     appParameter;
+    // union type
+    openType;
     get classes() {
         const { prefixCls, hoverClass, isLast, hasLine, isLink, align, disabled } = this;
         const wrap = classNames(prefixCls, {
@@ -190,43 +192,43 @@ let ListItem = class ListItem extends Doraemon {
 __decorate([
     Prop({
         type: String,
-        default: ''
+        default: '',
     })
 ], ListItem.prototype, "thumb", void 0);
 __decorate([
     Prop({
         type: String,
-        default: ''
+        default: '',
     })
 ], ListItem.prototype, "title", void 0);
 __decorate([
     Prop({
         type: String,
-        default: ''
+        default: '',
     })
 ], ListItem.prototype, "label", void 0);
 __decorate([
     Prop({
         type: String,
-        default: ''
+        default: '',
     })
 ], ListItem.prototype, "extra", void 0);
 __decorate([
     Prop({
         type: Boolean,
-        default: true
+        default: true,
     })
 ], ListItem.prototype, "hasLine", void 0);
 __decorate([
     Prop({
         type: Boolean,
-        default: false
+        default: false,
     })
 ], ListItem.prototype, "isLink", void 0);
 __decorate([
     Prop({
         type: String,
-        default: 'center'
+        default: 'center',
     })
 ], ListItem.prototype, "align", void 0);
 __decorate([
@@ -357,7 +359,7 @@ ListItem = __decorate([
                 default: '',
             },
         },
-        expose: ['updateIsLast']
+        expose: ['updateIsLast'],
     })
 ], ListItem);
 export default defineComponentHOC()(ListItem);

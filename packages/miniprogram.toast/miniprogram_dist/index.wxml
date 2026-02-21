@@ -2,7 +2,7 @@
   position="center"
   bodyStyle="{{ bodyStyle }}"
   mask="{{ mask }}"
-  maskClosable="{{ maskClosable }}"
+  maskClosable="{{ false }}"
   maskTransparent
   maskStyle="{{ maskStyle }}"
   visible="{{ popupVisible }}"

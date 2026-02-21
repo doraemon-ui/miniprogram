@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.shared.
- * © 2021 - 2024 Doraemon UI.
- * Built on 2024-04-06, 22:36:01.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.22.
+ * © 2021 - 2026 Doraemon UI.
+ * Built on 2026-02-22, 00:35:21.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
  */
 
 const check = (it) => {
@@ -53,15 +53,15 @@ function isObject(obj) {
 
 function encode(val) {
     // 对url进行编码并处理特殊字符
-    return encodeURIComponent(val)
+    return (encodeURIComponent(val)
         //ig为全局查找，忽略大小写
         .replace(/%40/g, '@')
-        .replace(/%3A/ig, ':')
+        .replace(/%3A/gi, ':')
         .replace(/%24/g, '$')
-        .replace(/%2C/ig, ',')
+        .replace(/%2C/gi, ',')
         .replace(/%20/g, '+')
-        .replace(/%5B/ig, '[')
-        .replace(/%5D/ig, ']');
+        .replace(/%5B/gi, '[')
+        .replace(/%5D/gi, ']'));
 }
 function buildURL(url, params) {
     // 没有 params 就直接返回 url，无需拼接
@@ -123,9 +123,7 @@ function isFalse(v) {
 }
 
 function isPromise(val) {
-    return (isDef(val) &&
-        typeof val.then === 'function' &&
-        typeof val.catch === 'function');
+    return isDef(val) && typeof val.then === 'function' && typeof val.catch === 'function';
 }
 
 function isString(v) {
@@ -145,7 +143,7 @@ function noop(...args) { }
 function omit(obj, fields) {
     const clone = { ...obj };
     if (Array.isArray(fields)) {
-        fields.forEach(key => {
+        fields.forEach((key) => {
             delete clone[key];
         });
     }
@@ -222,14 +220,7 @@ const makeFields = () => ({
     rect: true,
     // size: true,
     scrollOffset: true,
-    computedStyle: [
-        'width',
-        'height',
-        'borderTopWidth',
-        'borderRightWidth',
-        'borderBottomWidth',
-        'borderLeftWidth',
-    ],
+    computedStyle: ['width', 'height', 'borderTopWidth', 'borderRightWidth', 'borderBottomWidth', 'borderLeftWidth'],
     node: true,
 });
 const makeNodeRef = (node) => {
@@ -281,14 +272,10 @@ function useRef(selector, instance) {
         const classList = isArray ? selector : [selector];
         if (query) {
             classList.forEach((s) => {
-                query
-                    .select(s)
-                    .fields(makeFields());
+                query.select(s).fields(makeFields());
             });
             query.exec((nodes) => {
-                resolve(isArray
-                    ? nodes.map((node) => makeNodeRef(node))
-                    : makeNodeRef(nodes[0]));
+                resolve(isArray ? nodes.map((node) => makeNodeRef(node)) : makeNodeRef(nodes[0]));
             });
         }
     });
@@ -308,14 +295,10 @@ function useRefAll(selector, instance) {
         const classList = isArray ? selector : [selector];
         if (query) {
             classList.forEach((s) => {
-                query
-                    .selectAll(s)
-                    .fields(makeFields());
+                query.selectAll(s).fields(makeFields());
             });
             query.exec((nodesList) => {
-                resolve(isArray
-                    ? nodesList.map((nodes) => nodes.map((node) => makeNodeRef(node)))
-                    : nodesList[0].map((node) => makeNodeRef(node)));
+                resolve(isArray ? nodesList.map((nodes) => nodes.map((node) => makeNodeRef(node))) : nodesList[0].map((node) => makeNodeRef(node)));
             });
         }
     });
@@ -335,9 +318,7 @@ function useRect(selector, instance) {
         const classList = isArray ? selector : [selector];
         if (query) {
             classList.forEach((s) => {
-                query
-                    .select(s)
-                    .boundingClientRect();
+                query.select(s).boundingClientRect();
             });
             query.exec((nodes) => {
                 resolve(isArray ? nodes : nodes[0]);
@@ -359,9 +340,7 @@ function useRectAll(selector, instance) {
         const classList = isArray ? selector : [selector];
         if (query) {
             classList.forEach((s) => {
-                query
-                    .selectAll(s)
-                    .boundingClientRect();
+                query.selectAll(s).boundingClientRect();
             });
             query.exec((nodesList) => {
                 resolve(isArray ? nodesList : nodesList[0]);
@@ -380,9 +359,7 @@ function useScrollOffset(instance) {
     return new Promise((resolve) => {
         const query = useQuery(instance);
         if (query) {
-            query
-                .selectViewport()
-                .scrollOffset();
+            query.selectViewport().scrollOffset();
             query.exec(([node]) => {
                 resolve(node);
             });
@@ -410,9 +387,7 @@ function useComputedStyle(selector, ...args) {
     return new Promise((resolve) => {
         const query = useQuery(opts.instance);
         if (query) {
-            query
-                .select(selector)
-                .fields({
+            query.select(selector).fields({
                 computedStyle: opts.computedStyle,
             });
             query.exec(([node]) => {
@@ -437,34 +412,34 @@ const getTouchPoints = (nativeEvent, index = 0) => {
     };
 };
 /**
-* 获取触摸点个数
-*/
+ * 获取触摸点个数
+ */
 const getPointsNumber = (e) => e.touches?.length || e.changedTouches?.length || 0;
 /**
-* 判断是否为同一点
-*/
+ * 判断是否为同一点
+ */
 const isEqualPoints = (p1, p2) => p1.x === p2.x && p1.y === p2.y;
 /**
-* 判断是否为相近的两点
-*/
+ * 判断是否为相近的两点
+ */
 const isNearbyPoints = (p1, p2, DOUBLE_TAP_RADIUS = 25) => {
     const xMove = Math.abs(p1.x - p2.x);
     const yMove = Math.abs(p1.y - p2.y);
     return xMove < DOUBLE_TAP_RADIUS && yMove < DOUBLE_TAP_RADIUS;
 };
 /**
-* 获取两点之间的距离
-*/
+ * 获取两点之间的距离
+ */
 const getPointsDistance = (p1, p2) => {
     const xMove = Math.abs(p1.x - p2.x);
     const yMove = Math.abs(p1.y - p2.y);
     return Math.sqrt(xMove * xMove + yMove * yMove);
 };
 /**
-* 获取触摸移动方向
-*/
+ * 获取触摸移动方向
+ */
 const getSwipeDirection = (x1, x2, y1, y2) => {
-    return Math.abs(x1 - x2) >= Math.abs(y1 - y2) ? (x1 - x2 > 0 ? 'Left' : 'Right') : (y1 - y2 > 0 ? 'Up' : 'Down');
+    return Math.abs(x1 - x2) >= Math.abs(y1 - y2) ? (x1 - x2 > 0 ? 'Left' : 'Right') : y1 - y2 > 0 ? 'Up' : 'Down';
 };
 
 const fakeMediaResult = (request, response) => {
@@ -473,7 +448,8 @@ const fakeMediaResult = (request, response) => {
     }
     if (request.mediaType.includes('video')) {
         return {
-            tempFiles: [{
+            tempFiles: [
+                {
                     tempFilePath: response.tempFilePath,
                     size: response.size,
                     duration: response.duration,
@@ -481,7 +457,8 @@ const fakeMediaResult = (request, response) => {
                     width: response.width,
                     thumbTempFilePath: response.tempFilePath,
                     fileType: 'video',
-                }],
+                },
+            ],
             type: 'video',
         };
     }
@@ -559,7 +536,7 @@ function getSystemInfoSync(keys = ['window', 'device', 'appBase']) {
 }
 function vibrateShort(options) {
     if (getSystemInfoSync(['window', 'device']).platform === 'devtools') {
-        return;
+        return Promise.resolve();
     }
     return miniprogramThis.vibrateShort(options);
 }
@@ -624,13 +601,7 @@ function nextTick(cb) {
 /**
  * openType 属性可选值为 navigateTo、redirectTo、switchTab、navigateBack、reLaunch
  */
-const NATIVE_ROUTES = [
-    'navigateTo',
-    'redirectTo',
-    'switchTab',
-    'navigateBack',
-    'reLaunch',
-];
+const NATIVE_ROUTES = ['navigateTo', 'redirectTo', 'switchTab', 'navigateBack', 'reLaunch'];
 /**
  * 跳转到指定的页面
  *
@@ -643,19 +614,23 @@ function useNativeRoute(props, vm) {
     const { url, urlParams, openType = 'navigateTo', delta = 1 } = props;
     const promisify = (method, params) => {
         return new Promise((resolve, reject) => {
-            miniprogramThis[method].call(miniprogramThis, {
-                ...params,
-                success: resolve,
-                fail: reject,
-            });
+            try {
+                miniprogramThis[method]?.call(miniprogramThis, {
+                    ...params,
+                    success: resolve,
+                    fail: reject,
+                });
+            }
+            catch (e) {
+                reject(e);
+            }
         });
     };
     if (!url) {
         return Promise.reject(`Invalid value of prop "url" of "${vm.is}": Expected an Non-empty String.`);
     }
     else if (!NATIVE_ROUTES.includes(openType)) {
-        return Promise.reject(`Invalid value of prop "openType" of "${vm.is}": expected "${NATIVE_ROUTES.join(',')}", ` +
-            `but got ${openType}.`);
+        return Promise.reject(`Invalid value of prop "openType" of "${vm.is}": expected "${NATIVE_ROUTES.join(',')}", ` + `but got ${openType}.`);
     }
     else if (openType === 'navigateBack') {
         return promisify(openType, { delta });
@@ -684,7 +659,7 @@ function usePopupStateHOC(statePropName = 'visible') {
         return {
             render: open,
             destroy: close,
-            update
+            update,
         };
     };
 }
@@ -712,7 +687,7 @@ var dom = {
     getSystemInfoSync,
     getMenuButtonBoundingClientRectSync,
     useNativeRoute,
-    usePopupStateHOC
+    usePopupStateHOC,
 };
 
 var index = {

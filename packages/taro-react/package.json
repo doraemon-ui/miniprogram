@@ -1,7 +1,7 @@
 {
   "name": "@doraemon-ui/taro-react",
   "private": false,
-  "version": "0.0.1-alpha.1",
+  "version": "0.0.1-alpha.2",
   "description": "Taro React components for doraemon-ui",
   "author": "skyvow <724355924@qq.com>",
   "homepage": "",
@@ -30,19 +30,19 @@
     "preversion": "pnpm run clean && pnpm run build"
   },
   "peerDependencies": {
-    "react": ">=17.0.0",
+    "@tarojs/components": ">=4.1.11",
     "@tarojs/react": ">=4.1.11",
     "@tarojs/taro": ">=4.1.11",
-    "@tarojs/components": ">=4.1.11"
+    "react": ">=17.0.0"
   },
   "dependencies": {
     "@doraemon-ui/miniprogram.list": "workspace:*"
   },
   "devDependencies": {
     "@doraemon-ui/miniprogram.tools": "^0.0.2-alpha.22",
+    "@tarojs/components": "^4.1.11",
     "@tarojs/react": "^4.1.11",
     "@tarojs/taro": "^4.1.11",
-    "@tarojs/components": "^4.1.11",
     "@types/fs-extra": "^11.0.0",
     "@types/node": "^16.3.3",
     "@types/react": "^18.0.0",

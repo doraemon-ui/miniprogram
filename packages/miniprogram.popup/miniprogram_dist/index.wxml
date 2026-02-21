@@ -15,6 +15,7 @@
     disableScroll="{{ !closeOnSwipe }}"
   />
   <dora-animation-group
+    id="dora-animation-group"
     dora-class="{{ classes.body }}"
     in="{{ popupVisible }}"
     classNames="{{ transitionName }}"
