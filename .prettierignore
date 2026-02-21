@@ -4,6 +4,7 @@
 .github
 .*.js
 babel.config.js
+lerna.json
 .coverage-report
 dist
 example/dist

@@ -8,6 +8,7 @@
   ],
   "command": {
     "publish": {
+      "access": "public",
       "verifyAccess": false,
       "verifyRegistry": false,
       "allowBranch": [

@@ -50,7 +50,6 @@
     "stylelint:fix": "stylelint \"{packages,playground,demos}/**/*.less\" --syntax less --fix",
     "lint": "pnpm run eslint && pnpm run stylelint",
     "lint:fix": "pnpm run eslint:fix && pnpm run stylelint:fix",
-    "prepare": "husky install",
     "pre-commit": "lint-staged",
     "changed": "lerna changed --include-merged-tags",
     "publish:alpha": "lerna publish prerelease --include-merged-tags --allow-branch '**' --pre-dist-tag alpha --preid alpha --force-git-tag",
