@@ -1,0 +1,47 @@
+<demo-page
+  darkmode="auto"
+  title="Pagination"
+  desc="分页器"
+  clickable
+>
+  <demo-block align="unset" title="Button with text">
+    <block>
+      <dora-pagination defaultCurrent="1" total="5" bind:prev="onPrev" bind:next="onNext">
+        <view slot="prev">Prev</view>
+        <view slot="next">Next</view>
+      </dora-pagination>
+    </block>
+  </demo-block>
+  <demo-block align="unset" title="Controlled">
+    <block>
+      <dora-pagination current="{{ current }}" total="5" mode="button" controlled bind:change="onChange">
+        <view slot="prev">Prev</view>
+        <view slot="next">Next</view>
+      </dora-pagination>
+    </block>
+  </demo-block>
+  <demo-block align="unset" title="Hide number">
+    <block>
+      <dora-pagination defaultCurrent="1" total="5" simple>
+        <view slot="prev">Prev</view>
+        <view slot="next">Next</view>
+      </dora-pagination>
+    </block>
+  </demo-block>
+  <demo-block align="unset" title="Show number only">
+    <block>
+      <dora-pagination defaultCurrent="1" total="5" mode="number">
+        <view slot="prev">Prev</view>
+        <view slot="next">Next</view>
+      </dora-pagination>
+    </block>
+  </demo-block>
+  <demo-block align="unset" title="Point style">
+    <block>
+      <dora-pagination defaultCurrent="1" total="5" mode="pointer">
+        <view slot="prev">Prev</view>
+        <view slot="next">Next</view>
+      </dora-pagination>
+    </block>
+  </demo-block>
+</demo-page>

@@ -1,0 +1,28 @@
+<demo-page
+  darkmode="auto"
+  title="AnimationGroup"
+  desc="动画组"
+  clickable
+>
+  <demo-block title="Basic">
+    <block wx:for="{{ animations }}" wx:key="index">
+      <button class="button" data-index="{{ index }}" bindtap="onClick">{{ item }}</button>
+    </block>
+    <dora-animation-group
+      dora-class="example"
+      in="{{ example.in }}"
+      enter="{{ example.enter }}"
+      exit="{{ example.exit }}"
+      class-names="{{ example.classNames }}"
+      bind:enter="onEnter"
+      bind:entering="onEntering"
+      bind:entered="onEntered"
+      bind:exit="onExit"
+      bind:exiting="onExiting"
+      bind:exited="onExited"
+      bind:change="onChange"
+    >
+      {{ example.animation }}
+    </dora-animation-group>
+  </demo-block>
+</demo-page>  

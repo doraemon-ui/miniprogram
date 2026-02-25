@@ -11,3 +11,5 @@ example/dist
 miniprogram_dist
 node_modules
 .husky/
+docs/_scripts/lib/**
+docs/_scripts/modules/LAB/**
