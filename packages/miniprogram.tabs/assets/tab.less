@@ -1,0 +1,79 @@
+@import './variables.less';
+
+.tab-style(@theme, @color) {
+  &--@{theme} &-bar {
+    background: @color;
+  }
+
+  &--@{theme}&--current {
+    color: @color;
+  }
+}
+
+.@{tabs-prefix-cls} {
+  &__tab {
+    flex: 1;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    box-sizing: border-box;
+    font-size: @tabs-font-size;
+    padding: 0 @tabs-scrolling-size;
+    cursor: pointer;
+
+    &-bar {
+      display: block;
+      width: calc(~'100%' - @tabs-scrolling-size * 2);
+      height: @tabs-bar-size;
+      background: transparent;
+      position: absolute;
+      bottom: 0;
+      left: @tabs-scrolling-size;
+      background: @tabs-bar-balanced-bg;
+      border-radius: @tabs-bar-size;
+
+      &--full {
+        width: 100%;
+        left: 0;
+      }
+    }
+
+    &--vertical {
+      padding: 0 @tabs-scrolling-size;
+    }
+
+    &--vertical &-bar {
+      width: @tabs-bar-size;
+      height: 100%;
+      right: 0;
+      left: auto;
+    }
+
+    &--current {
+      color: @tabs-bar-balanced-bg;
+    }
+
+    &--horizontal&--scroll {
+      display: inline-flex;
+      width: auto;
+    }
+
+    &--disabled {
+      opacity: @disabled-opacity;
+      cursor: not-allowed;
+    }
+
+    .tab-style(light, @tabs-bar-light-bg);
+    .tab-style(stable, @tabs-bar-stable-bg);
+    .tab-style(positive, @tabs-bar-positive-bg);
+    .tab-style(calm, @tabs-bar-calm-bg);
+    .tab-style(assertive, @tabs-bar-assertive-bg);
+    .tab-style(balanced, @tabs-bar-balanced-bg);
+    .tab-style(energized, @tabs-bar-energized-bg);
+    .tab-style(royal, @tabs-bar-royal-bg);
+    .tab-style(dark, @tabs-bar-dark-bg);
+  }
+}

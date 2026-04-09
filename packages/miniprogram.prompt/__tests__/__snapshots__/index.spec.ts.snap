@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Prompt mount correctly 1`] = `
+<dora-prompt>
+  <dora-animation-group
+    doraClass="dora-prompt"
+  />
+</dora-prompt>
+`;

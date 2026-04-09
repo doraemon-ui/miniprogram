@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "miniprogram.form",
+  "usingComponents": {
+    "demo-page": "@doraemon-ui/miniprogram.demo-page",
+    "demo-block": "@doraemon-ui/miniprogram.demo-block",
+    "dora-form": "@doraemon-ui/miniprogram.form/index"
+  }
+}

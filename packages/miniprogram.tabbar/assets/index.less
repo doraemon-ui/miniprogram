@@ -1,0 +1,100 @@
+@import './variables.less';
+
+// Tabbar styles
+// -----------------------------
+.@{tabbar-prefix-cls} {
+  position: relative;
+  z-index: 500;
+  width: 100%;
+  background-color: @tabbar-bg;
+  box-sizing: border-box;
+
+  &-wrap {
+    width: 100%;
+    min-height: @tabbar-height;
+    box-sizing: border-box;
+    display: flex;
+  }
+
+  &--bottom {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    border-top: 1rpx solid @border-color-split;
+  }
+
+  &--top {
+    position: fixed;
+    left: 0;
+    top: 0;
+    border-bottom: 1rpx solid @border-color-split;
+  }
+}
+
+.@{tabbar-item-prefix-cls} {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  color: @tabbar-default-color;
+  padding: 10rpx 0;
+  box-sizing: border-box;
+  float: left;
+  cursor: pointer;
+
+  &__icon {
+    display: flex;
+    justify-content: center;
+    font-size: 44rpx;
+    height: 44rpx;
+    line-height: 1;
+  }
+
+  &__title {
+    font-size: @tabbar-font-size;
+    margin: 4rpx 0 0;
+    line-height: 1;
+    text-align: center;
+  }
+
+  &--current {
+    color: @tabbar-balanced-bg;
+  }
+
+  &--disabled {
+    opacity: @disabled-opacity;
+    cursor: not-allowed;
+  }
+
+  &--light&--current {
+    color: @tabbar-light-bg;
+  }
+  &--stable&--current {
+    color: @tabbar-stable-bg;
+  }
+  &--positive&--current {
+    color: @tabbar-positive-bg;
+  }
+  &--calm&--current {
+    color: @tabbar-calm-bg;
+  }
+  &--assertive&--current {
+    color: @tabbar-assertive-bg;
+  }
+  &--balanced&--current {
+    color: @tabbar-balanced-bg;
+  }
+  &--energized&--current {
+    color: @tabbar-energized-bg;
+  }
+  &--royal&--current {
+    color: @tabbar-royal-bg;
+  }
+  &--dark&--current {
+    color: @tabbar-dark-bg;
+  }
+}

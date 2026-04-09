@@ -1,0 +1,35 @@
+<dora-spin nested spinning="{{ loading }}">
+  <view
+    class="dora-class {{ classes.wrap }}"
+    data-picker-value="{{ inputValue }}"
+    data-picker-col-value="value"
+    data-picker-col-label="label"
+    style="{{ styles.wrap }}"
+    bind:touchstart="onTouchStart"
+    catch:touchmove="onTouchMove"
+    bind:touchend="onTouchEnd"
+    bind:touchcancel="onTouchEnd"
+  >
+    <view class="dora-mask-class {{ maskClass }} {{ classes.mask }}" style="{{ styles.mask }} {{ extMaskStyle }}"></view>
+    <view class="dora-indicator-class {{ indicatorClass }} {{ classes.indicator }}" style="{{ styles.indicator }} {{ extIndicatorStyle }}"></view>
+    <view class="dora-content-class {{ classes.content }}" style="{{ styles.content }} {{ contentStyle }}">
+      <block wx:for="{{ optionsView }}" wx:for-item="option" wx:key="_value">
+        <view
+          style="{{ styles.item }} {{ getIndexedStyle(extItemStyle, index) }}"
+          class="{{ classes.item }} {{ !!option.disabled ? prefixCls + '__item--disabled' : '' }} {{ selectedIndex === index ? prefixCls + '__item--selected' : '' }}"
+          data-value="{{ option.value }}"
+          data-index="{{ index }}"
+          data-disabled="{{ !!option.disabled }}"
+          catchtap="onItemClick"
+        >
+          <block wx:if="{{ !option.labelImage }}">
+            {{ option.label }}
+          </block>
+          <block wx:else>
+            <image class="{{ classes.image }}" src="{{ option.labelImage }}" style="{{ styles.image }}" />
+          </block>
+        </view>
+      </block>
+    </view>
+  </view>
+</dora-spin>

@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VirtualList mount correctly 1`] = `
+<dora-virtual-list>
+  <wx-view
+    class="dora-class dora-virtual-list"
+    style="height: 300px;  "
+  >
+    <wx-scroll-view
+      class="dora-virtual-list__scroll-view"
+      enableBackToTop="{{false}}"
+      lowerThreshold="{{50}}"
+      scrollTop="{{0}}"
+      scrollWithAnimation="{{false}}"
+      scrollY="{{true}}"
+      upperThreshold="{{50}}"
+      bind:scroll="scrollHandler"
+      bind:scrolltolower="onScrollToLower"
+      bind:scrolltoupper="onScrollToUpper"
+    >
+      <wx-view
+        class="dora-virtual-list__scroll-area"
+        style=""
+      />
+    </wx-scroll-view>
+  </wx-view>
+</dora-virtual-list>
+`;

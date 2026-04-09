@@ -18,24 +18,48 @@ class Icon extends Doraemon {
    */
   prefixCls!: string
 
+  /**
+   * 是否隐藏
+   *
+   * @type {boolean}
+   * @memberof Icon
+   */
   @Prop({
     type: Boolean,
     default: false,
   })
   hidden: boolean
 
+  /**
+   * 图标类型
+   *
+   * @type {string}
+   * @memberof Icon
+   */
   @Prop({
     type: String,
     default: '',
   })
   type: string
 
+  /**
+   * 图标尺寸
+   *
+   * @type {(string | number)}
+   * @memberof Icon
+   */
   @Prop({
     type: [String, Number],
     default: 32,
   })
-  size: string
+  size: string | number
 
+  /**
+   * 图标颜色
+   *
+   * @type {string}
+   * @memberof Icon
+   */
   @Prop({
     type: String,
     default: '',
@@ -74,5 +98,7 @@ class Icon extends Doraemon {
     this.$emit('click')
   }
 }
+
+export { Icon }
 
 export default defineComponentHOC()(Icon)

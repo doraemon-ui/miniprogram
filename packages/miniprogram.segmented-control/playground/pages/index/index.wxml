@@ -1,0 +1,29 @@
+<demo-page title="SegmentedControl" desc="分段器">
+  <demo-block title="Default">
+    <dora-segmented-control values="{{ ['Segment1', 'Segment2'] }}" />
+  </demo-block>
+
+  <demo-block title="Theme">
+    <dora-segmented-control theme="light" values="{{ ['Segment1', 'Segment2'] }}" />
+    <dora-segmented-control theme="stable" values="{{ ['Segment1', 'Segment2'] }}" />
+    <dora-segmented-control theme="positive" values="{{ ['Segment1', 'Segment2'] }}" />
+    <dora-segmented-control theme="calm" values="{{ ['Segment1', 'Segment2'] }}" />
+    <dora-segmented-control theme="balanced" values="{{ ['Segment1', 'Segment2'] }}" />
+    <dora-segmented-control theme="energized" values="{{ ['Segment1', 'Segment2'] }}" />
+    <dora-segmented-control theme="assertive" values="{{ ['Segment1', 'Segment2'] }}" />
+    <dora-segmented-control theme="royal" values="{{ ['Segment1', 'Segment2'] }}" />
+    <dora-segmented-control theme="dark" values="{{ ['Segment1', 'Segment2'] }}" />
+  </demo-block>
+
+  <demo-block title="Disabled">
+    <dora-segmented-control disabled values="{{ ['Segment1', 'Segment2'] }}" />
+  </demo-block>
+
+  <demo-block title="DefaultCurrent">
+    <dora-segmented-control defaultCurrent="{{ 2 }}" values="{{ ['Segment1', 'Segment2', 'Segment3'] }}" />
+  </demo-block>
+
+  <demo-block title="Controlled">
+    <dora-segmented-control current="{{ current }}" controlled values="{{ ['Segment1', 'Segment2', 'Segment3'] }}" bind:change="onChange" />
+  </demo-block>
+</demo-page>

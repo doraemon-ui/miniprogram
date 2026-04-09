@@ -1,0 +1,17 @@
+<demo-page title="MultiPickerView" desc="多列选择器" spacing>
+  <demo-block title="Multiple">
+    <dora-multi-picker-view value="{{ value }}" options="{{ options }}" bind:valueChange="onValueChange" />
+  </demo-block>
+  <demo-block title="Single">
+    <dora-multi-picker-view value="{{ value }}" options="{{ options[0] }}" bind:valueChange="onValueChange" />
+  </demo-block>
+  <demo-block title="Custom FieldNames">
+    <dora-multi-picker-view defaultFieldNames="{{ fieldNames }}" options="{{ fieldNamesOptions }}" />
+  </demo-block>
+  <demo-block title="Loading">
+    <dora-multi-picker-view options="{{ options }}" loading />
+  </demo-block>
+  <demo-block title="Custom Image">
+    <dora-multi-picker-view options="{{ imageOptions }}" />
+  </demo-block>
+</demo-page>

@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "miniprogram.floating-panel",
+  "usingComponents": {
+    "demo-page": "@doraemon-ui/miniprogram.demo-page",
+    "demo-block": "@doraemon-ui/miniprogram.demo-block",
+    "dora-floating-panel": "@doraemon-ui/miniprogram.floating-panel/index"
+  }
+}

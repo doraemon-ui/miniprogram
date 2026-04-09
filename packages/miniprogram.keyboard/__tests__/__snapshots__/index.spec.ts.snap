@@ -1,0 +1,265 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Keyboard mount correctly 1`] = `
+<dora-keyboard>
+  <dora-popup
+    bind:close="hide"
+  >
+    <wx-view
+      class="dora-class dora-popup dora-popup--position-bottom"
+      style="touch-action: none;  "
+      bind:touchend="onTouchEnd"
+      bind:touchmove="onTouchMove"
+      bind:touchstart="onTouchStart"
+    >
+      <dora-backdrop
+        disableScroll="{{true}}"
+        id="dora-backdrop"
+        transparent="{{false}}"
+        wrapStyle="{{null}}"
+        zIndex="{{null}}"
+        bind:click="onMaskClick"
+      />
+      <dora-animation-group
+        classNames="dora-animate--slideInUp"
+        doraClass="dora-popup__body"
+        id="dora-animation-group"
+        in="{{false}}"
+        mountOnEnter="{{true}}"
+        unmountOnExit="{{true}}"
+        wrapStyle="{{Object {}}}"
+        bind:enter="onShow"
+        bind:entered="onShowed"
+        bind:exited="onClosed"
+      >
+        <wx-view
+          class="dora-class dora-keyboard"
+        >
+          <wx-view
+            class="dora-keyboard__hd"
+          >
+            输入数字密码
+          </wx-view>
+          <wx-view
+            class="dora-keyboard__bd"
+          >
+            <wx-view
+              class="dora-keyboard__label"
+            >
+              <wx-view
+                class="dora-keyboard__password dora-keyboard__password--dot "
+              >
+                
+            
+          
+              </wx-view>
+            </wx-view>
+            <wx-view
+              class="dora-keyboard__label"
+            >
+              <wx-view
+                class="dora-keyboard__password dora-keyboard__password--dot "
+              >
+                
+            
+          
+              </wx-view>
+            </wx-view>
+            <wx-view
+              class="dora-keyboard__label"
+            >
+              <wx-view
+                class="dora-keyboard__password dora-keyboard__password--dot "
+              >
+                
+            
+          
+              </wx-view>
+            </wx-view>
+            <wx-view
+              class="dora-keyboard__label"
+            >
+              <wx-view
+                class="dora-keyboard__password dora-keyboard__password--dot "
+              >
+                
+            
+          
+              </wx-view>
+            </wx-view>
+            <wx-view
+              class="dora-keyboard__label"
+            >
+              <wx-view
+                class="dora-keyboard__password dora-keyboard__password--dot "
+              >
+                
+            
+          
+              </wx-view>
+            </wx-view>
+            <wx-view
+              class="dora-keyboard__label"
+            >
+              <wx-view
+                class="dora-keyboard__password dora-keyboard__password--dot "
+              >
+                
+            
+          
+              </wx-view>
+            </wx-view>
+          </wx-view>
+          <wx-view
+            class="dora-keyboard__ft"
+          >
+            <wx-view
+              class="dora-keyboard__title"
+            >
+              安全键盘
+            </wx-view>
+            <wx-view
+              class="dora-keyboard__numbers"
+            >
+              <wx-view
+                class="dora-keyboard__number"
+              >
+                <wx-view
+                  class="dora-keyboard__text"
+                  data-value="{{1}}"
+                  hoverClass="dora-keyboard__text--hover"
+                  hoverStartTime="20"
+                  hoverStayTime="170"
+                  bind:tap="increase"
+                >
+                  1
+                </wx-view>
+                <wx-view
+                  class="dora-keyboard__text"
+                  data-value="{{2}}"
+                  hoverClass="dora-keyboard__text--hover"
+                  hoverStartTime="20"
+                  hoverStayTime="170"
+                  bind:tap="increase"
+                >
+                  2
+                </wx-view>
+                <wx-view
+                  class="dora-keyboard__text"
+                  data-value="{{3}}"
+                  hoverClass="dora-keyboard__text--hover"
+                  hoverStartTime="20"
+                  hoverStayTime="170"
+                  bind:tap="increase"
+                >
+                  3
+                </wx-view>
+              </wx-view>
+              <wx-view
+                class="dora-keyboard__number"
+              >
+                <wx-view
+                  class="dora-keyboard__text"
+                  data-value="{{4}}"
+                  hoverClass="dora-keyboard__text--hover"
+                  hoverStartTime="20"
+                  hoverStayTime="170"
+                  bind:tap="increase"
+                >
+                  4
+                </wx-view>
+                <wx-view
+                  class="dora-keyboard__text"
+                  data-value="{{5}}"
+                  hoverClass="dora-keyboard__text--hover"
+                  hoverStartTime="20"
+                  hoverStayTime="170"
+                  bind:tap="increase"
+                >
+                  5
+                </wx-view>
+                <wx-view
+                  class="dora-keyboard__text"
+                  data-value="{{6}}"
+                  hoverClass="dora-keyboard__text--hover"
+                  hoverStartTime="20"
+                  hoverStayTime="170"
+                  bind:tap="increase"
+                >
+                  6
+                </wx-view>
+              </wx-view>
+              <wx-view
+                class="dora-keyboard__number"
+              >
+                <wx-view
+                  class="dora-keyboard__text"
+                  data-value="{{7}}"
+                  hoverClass="dora-keyboard__text--hover"
+                  hoverStartTime="20"
+                  hoverStayTime="170"
+                  bind:tap="increase"
+                >
+                  7
+                </wx-view>
+                <wx-view
+                  class="dora-keyboard__text"
+                  data-value="{{8}}"
+                  hoverClass="dora-keyboard__text--hover"
+                  hoverStartTime="20"
+                  hoverStayTime="170"
+                  bind:tap="increase"
+                >
+                  8
+                </wx-view>
+                <wx-view
+                  class="dora-keyboard__text"
+                  data-value="{{9}}"
+                  hoverClass="dora-keyboard__text--hover"
+                  hoverStartTime="20"
+                  hoverStayTime="170"
+                  bind:tap="increase"
+                >
+                  9
+                </wx-view>
+              </wx-view>
+              <wx-view
+                class="dora-keyboard__number"
+              >
+                <wx-view
+                  class="dora-keyboard__text"
+                  hoverClass="dora-keyboard__text--hover"
+                  hoverStartTime="20"
+                  hoverStayTime="170"
+                  bind:tap="hide"
+                >
+                  取消
+                </wx-view>
+                <wx-view
+                  class="dora-keyboard__text"
+                  data-value="{{0}}"
+                  hoverClass="dora-keyboard__text--hover"
+                  hoverStartTime="20"
+                  hoverStayTime="170"
+                  bind:tap="increase"
+                >
+                  0
+                </wx-view>
+                <wx-view
+                  class="dora-keyboard__text"
+                  bind:tap="decrease"
+                >
+                  ×
+                </wx-view>
+              </wx-view>
+            </wx-view>
+          </wx-view>
+        </wx-view>
+        <dora-safe-area
+          safeArea="bottom"
+        />
+      </dora-animation-group>
+    </wx-view>
+  </dora-popup>
+</dora-keyboard>
+`;

@@ -1,5 +1,5 @@
 import { defineComponentHOC, Doraemon, Component, Prop } from '@doraemon-ui/miniprogram.core-js'
-import type { AccordionInstance } from '.'
+import type { AccordionInstance } from './types'
 const { classNames } = Doraemon.util
 
 @Component({
@@ -16,12 +16,12 @@ const { classNames } = Doraemon.util
     },
   },
 })
-class Panel extends Doraemon {
+class AccordionPanel extends Doraemon {
   /**
    * 自定义类名前缀
    *
    * @type {string}
-   * @memberof Panel
+   * @memberof AccordionPanel
    */
   prefixCls!: string
 
@@ -29,7 +29,7 @@ class Panel extends Doraemon {
    * 当前激活 tab 索引
    *
    * @type {string}
-   * @memberof Panel
+   * @memberof AccordionPanel
    */
   @Prop({
     type: String,
@@ -41,7 +41,7 @@ class Panel extends Doraemon {
    * 左侧缩略图
    *
    * @type {string}
-   * @memberof Panel
+   * @memberof AccordionPanel
    */
   @Prop({
     type: String,
@@ -53,7 +53,7 @@ class Panel extends Doraemon {
    * 左侧标题
    *
    * @type {string}
-   * @memberof Panel
+   * @memberof AccordionPanel
    */
   @Prop({
     type: String,
@@ -65,7 +65,7 @@ class Panel extends Doraemon {
    * 面板内容
    *
    * @type {string}
-   * @memberof Panel
+   * @memberof AccordionPanel
    */
   @Prop({
     type: String,
@@ -77,7 +77,7 @@ class Panel extends Doraemon {
    * 是否禁用
    *
    * @type {boolean}
-   * @memberof Panel
+   * @memberof AccordionPanel
    */
   @Prop({
     type: Boolean,
@@ -89,7 +89,7 @@ class Panel extends Doraemon {
    * 是否显示箭头图标
    *
    * @type {boolean}
-   * @memberof Panel
+   * @memberof AccordionPanel
    */
   @Prop({
     type: Boolean,
@@ -125,7 +125,7 @@ class Panel extends Doraemon {
    * 是否激动当前面板
    *
    * @type {boolean}
-   * @memberof Panel
+   * @memberof AccordionPanel
    */
   current: boolean = false
 
@@ -133,7 +133,7 @@ class Panel extends Doraemon {
    * 对应 Key 值。如果没有设置 key，默认取 index 索引值
    *
    * @type {string}
-   * @memberof Panel
+   * @memberof AccordionPanel
    */
   index: string = '0'
 
@@ -146,12 +146,12 @@ class Panel extends Doraemon {
 
   onClick() {
     const { index, disabled } = this
-    console.log(11111111, this.$parent)
     if (!disabled) {
       ;(this.$parent as AccordionInstance)?.onClickItem(index)
     }
   }
 }
 
-export type PanelInstance = Panel
-export default defineComponentHOC()(Panel)
+export { AccordionPanel }
+
+export default defineComponentHOC()(AccordionPanel)

@@ -1,0 +1,17 @@
+<dora-popup-select
+  id="dora-popup-select"
+  prefixCls="{{ prefixCls }}"
+  value="{{ selectValue }}"
+  options="{{ selectOptions }}"
+  multiple="{{ selectMultiple }}"
+  max="{{ selectMax }}"
+  notFoundContent="{{ selectNotFoundContent }}"
+  virtualized="{{ selectVirtualized }}"
+  toolbar="{{ selectToolbar }}"
+  visible="{{ visible }}"
+  controlled
+  bind:cancel="onCancel"
+  bind:confirm="onConfirm"
+  bind:change="onVisibleChange"
+  bind:valueChange="onValueChange"
+/>

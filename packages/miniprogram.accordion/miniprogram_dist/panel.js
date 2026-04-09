@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.accordion.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-02-22, 01:41:16.
+ * Built on 2026-03-07, 15:47:52.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -12,54 +12,54 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { defineComponentHOC, Doraemon, Component, Prop } from '@doraemon-ui/miniprogram.core-js';
 const { classNames } = Doraemon.util;
-let Panel = class Panel extends Doraemon {
+let AccordionPanel = class AccordionPanel extends Doraemon {
     /**
      * 自定义类名前缀
      *
      * @type {string}
-     * @memberof Panel
+     * @memberof AccordionPanel
      */
     prefixCls;
     /**
      * 当前激活 tab 索引
      *
      * @type {string}
-     * @memberof Panel
+     * @memberof AccordionPanel
      */
     key;
     /**
      * 左侧缩略图
      *
      * @type {string}
-     * @memberof Panel
+     * @memberof AccordionPanel
      */
     thumb;
     /**
      * 左侧标题
      *
      * @type {string}
-     * @memberof Panel
+     * @memberof AccordionPanel
      */
     title;
     /**
      * 面板内容
      *
      * @type {string}
-     * @memberof Panel
+     * @memberof AccordionPanel
      */
     content;
     /**
      * 是否禁用
      *
      * @type {boolean}
-     * @memberof Panel
+     * @memberof AccordionPanel
      */
     disabled;
     /**
      * 是否显示箭头图标
      *
      * @type {boolean}
-     * @memberof Panel
+     * @memberof AccordionPanel
      */
     showArrow;
     get classes() {
@@ -88,14 +88,14 @@ let Panel = class Panel extends Doraemon {
      * 是否激动当前面板
      *
      * @type {boolean}
-     * @memberof Panel
+     * @memberof AccordionPanel
      */
     current = false;
     /**
      * 对应 Key 值。如果没有设置 key，默认取 index 索引值
      *
      * @type {string}
-     * @memberof Panel
+     * @memberof AccordionPanel
      */
     index = '0';
     updateCurrentAndIndex(current, index) {
@@ -106,7 +106,6 @@ let Panel = class Panel extends Doraemon {
     }
     onClick() {
         const { index, disabled } = this;
-        console.log(11111111, this.$parent);
         if (!disabled) {
             ;
             this.$parent?.onClickItem(index);
@@ -118,38 +117,38 @@ __decorate([
         type: String,
         default: '',
     })
-], Panel.prototype, "key", void 0);
+], AccordionPanel.prototype, "key", void 0);
 __decorate([
     Prop({
         type: String,
         default: '',
     })
-], Panel.prototype, "thumb", void 0);
+], AccordionPanel.prototype, "thumb", void 0);
 __decorate([
     Prop({
         type: String,
         default: '',
     })
-], Panel.prototype, "title", void 0);
+], AccordionPanel.prototype, "title", void 0);
 __decorate([
     Prop({
         type: String,
         default: '',
     })
-], Panel.prototype, "content", void 0);
+], AccordionPanel.prototype, "content", void 0);
 __decorate([
     Prop({
         type: Boolean,
         default: false,
     })
-], Panel.prototype, "disabled", void 0);
+], AccordionPanel.prototype, "disabled", void 0);
 __decorate([
     Prop({
         type: Boolean,
         default: true,
     })
-], Panel.prototype, "showArrow", void 0);
-Panel = __decorate([
+], AccordionPanel.prototype, "showArrow", void 0);
+AccordionPanel = __decorate([
     Component({
         components: {
             Accordion: () => ({
@@ -164,5 +163,6 @@ Panel = __decorate([
             },
         },
     })
-], Panel);
-export default defineComponentHOC()(Panel);
+], AccordionPanel);
+export { AccordionPanel };
+export default defineComponentHOC()(AccordionPanel);

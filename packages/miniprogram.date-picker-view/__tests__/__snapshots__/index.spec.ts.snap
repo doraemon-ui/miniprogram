@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DatePickerView mount correctly 1`] = `
+<dora-date-picker-view>
+  <dora-multi-picker-view
+    id="dora-picker"
+    bind:valueChange="onValueChange"
+  >
+    <dora-spin>
+      <wx-view
+        class="dora-class dora-spin dora-spin--default dora-spin--nested"
+      >
+        <dora-animation-group
+          doraClass="dora-spin__spinning--nested"
+        />
+        <wx-view
+          class="dora-spin__container dora-spin__container--blur"
+        >
+          <wx-view
+            class="dora-class dora-picker"
+            data-picker-value="{{Array []}}"
+          />
+        </wx-view>
+      </wx-view>
+    </dora-spin>
+  </dora-multi-picker-view>
+</dora-date-picker-view>
+`;

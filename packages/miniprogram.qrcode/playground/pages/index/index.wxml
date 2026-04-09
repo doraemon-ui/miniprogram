@@ -1,0 +1,27 @@
+<demo-page title="Qrcode" desc="二维码" spacing>
+  <demo-block title="输入文字即时生成">
+    <dora-textarea rows="{{ 3 }}" placeholder="支持文本、网址和电子邮箱" maxlength="{{ 300 }}" value="{{ value }}" controlled bind:change="onChange" />
+  </demo-block>
+
+  <demo-block title="留白">
+    <dora-slider value="{{ [whiteSpace] }}" controlled showValue showMark step="{{ 10 }}" min="{{ 0 }}" max="{{ 20 }}" bind:change="onSliderChange" />
+  </demo-block>
+
+  <demo-block title="二维码">
+    <dora-qrcode
+      id="qrcode"
+      data="{{ value }}"
+      fgColor="{{ fgColor }}"
+      width="{{ 200 }}"
+      height="{{ 200 }}"
+      whiteSpace="{{ whiteSpace }}"
+      showMenuByLongpress
+      qrcodeStatus="{{ qrcodeStatus }}"
+      bind:load="qrcodeLoad"
+      bind:error="qrcodeError"
+      bind:click="previewImage"
+      bind:refresh="onRefresh"
+    />
+    <dora-button block type="light" bind:click="downloadQRCode">保存图片到系统相册</dora-button>
+  </demo-block>
+</demo-page>

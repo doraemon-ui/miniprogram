@@ -1,100 +1,52 @@
-# Badge 徽章
+# Badge Badge
 
-图标右上角的圆形徽标数字。
+@doraemon-ui/miniprogram.badge
+
+## 安装
+
+我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
+
+```bash
+npm install --save @doraemon-ui/miniprogram.badge
+# or
+yarn add @doraemon-ui/miniprogram.badge
+```
+
+如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
 
 ## 使用指南
 
 ### 在 page.json 中引入组件
 
-```json
-{
-  "navigationBarTitleText": "Badge",
-  "usingComponents": {
-    "wux-badge": "../../dist/badge/index"
-  }
-}
-```
+[json](./playground/badge/pages/index/index.json ':include :type=code')
 
-### 示例
+### 示例代码
 
-```html
-<view class="page">
-  <view class="page__hd">
-    <view class="page__title">Badge</view>
-    <view class="page__desc">徽章</view>
-  </view>
-  <view class="page__bd">
-    <view class="example">
-      <wux-badge dot="{{ true }}">
-        <view class="example__badge"></view>
-      </wux-badge>
-    </view>
-    <view class="example">
-      <wux-badge count="0" show-zero="{{ true }}">
-        <view class="example__badge"></view>
-      </wux-badge>
-    </view>
-    <view class="example">
-      <wux-badge count="3">
-        <view class="example__badge"></view>
-      </wux-badge>
-    </view>
-    <view class="example">
-      <wux-badge count="100">
-        <view class="example__badge"></view>
-      </wux-badge>
-    </view>
-    <view class="example">
-      <wux-badge count="9999" overflow-count="1024">
-        <view class="example__badge"></view>
-      </wux-badge>
-    </view>
-    <view class="example">
-      <wux-badge count="66" />
-    </view>
-    <view class="example">
-      <wux-badge count="88" wux-class-badge="bg-green" />
-    </view>
-    <view class="example">
-      <wux-badge status="success" />
-    </view>
-    <view class="example">
-      <wux-badge status="error" />
-    </view>
-    <view class="example">
-      <wux-badge status="default" />
-    </view>
-    <view class="example">
-      <wux-badge status="processing" />
-    </view>
-    <view class="example">
-      <wux-badge status="warning" text="Warning" />
-    </view>
-  </view>
-</view>
-```
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/DoraemonUI)
 
-## 视频演示
+<!-- tabs:start -->
 
-[Badge](./_media/badge.mp4 ':include :type=iframe width=375px height=667px')
+#### **WXML**
+
+[wxml](./playground/badge/pages/index/index.wxml ':include :type=code')
+
+#### **JAVASCRIPT**
+
+[js](./playground/badge/pages/index/index.js ':include :type=code')
+
+#### **WXSS**
+
+[wxss](./playground/badge/pages/index/index.wxss ':include :type=code')
+
+<!-- tabs:end -->
 
 ## API
 
 ### Badge props
 
-| 参数          | 类型      | 描述                                                                       | 默认值    |
-| ------------- | --------- | -------------------------------------------------------------------------- | --------- |
-| prefixCls     | `string`  | 自定义类名前缀                                                             | wux-badge |
-| count         | `number`  | 展示的数字，大于 overflowCount 时显示为 ${overflowCount}+，为 0 时隐藏     | 0         |
-| overflowCount | `number`  | 展示封顶的数字值                                                           | 99        |
-| dot           | `boolean` | 不展示数字，只有一个小红点                                                 | false     |
-| showZero      | `boolean` | 当数值为 0 时，是否展示 Badge                                              | false     |
-| status        | `string`  | 设置 Badge 为状态点，可选值为 success、processing、default、error、warning | -         |
-| text          | `string`  | 在设置了 status 的前提下有效，设置状态点的文本                             | -         |
-| position          | `string`  | 位置，可选值为 topRight、topLeft、bottomRight、bottomLeft | topRight         |
-| backgroundColor          | `string`  | 背景颜色 | #ed3f14         |
-| hideShadow          | `boolean`  | 是否隐藏阴影 | false         |
-| title          | `string`  | 徽章的内容，优先级高于 dot & count | -         |
+| 参数      | 类型     | 描述           | 默认值     |
+| --------- | -------- | -------------- | ---------- |
+| prefixCls | `string` | 自定义类名前缀 | dora-badge |
 
 ### Badge slot
 
@@ -104,7 +56,12 @@
 
 ### Badge externalClasses
 
-| 名称            | 描述             |
-| --------------- | ---------------- |
-| wux-class       | 根节点样式类     |
-| wux-badge-class | 展示的数字样式类 |
+| 名称       | 描述         |
+| ---------- | ------------ |
+| dora-class | 根节点样式类 |
+
+## CSS Variables
+
+| 属性         | 描述     | 默认值 | 全局变量 |
+| ------------ | -------- | ------ | -------- |
+| --text-color | 文字颜色 | `#fff` | -        |

@@ -1,0 +1,74 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-floating-panel {
+  position: fixed;
+  z-index: var(--dora-floating-panel-z-index,1000);
+  z-index: var(--dora-floating-panel-z-index,1000);
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-touch-action: none;
+  touch-action: none
+}
+.dora-floating-panel::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -100vh;
+  height: 100vh;
+  width: 100vw;
+  background: var(--dora-floating-panel-bg,#fff);
+  background: var(--dora-floating-panel-bg,#fff)
+}
+.dora-floating-panel__hd {
+  -ms-flex: none;
+  flex: none;
+  height: var(--dora-floating-panel-hd-size,52rpx);
+  height: var(--dora-floating-panel-hd-size,52rpx);
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: grab;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: var(--dora-floating-panel-bg,#fff);
+  background-color: var(--dora-floating-panel-bg,#fff);
+  border-top-left-radius: var(--dora-floating-panel-hd-radius,24rpx);
+  border-top-left-radius: var(--dora-floating-panel-hd-radius,24rpx);
+  border-top-right-radius: var(--dora-floating-panel-hd-radius,24rpx);
+  border-top-right-radius: var(--dora-floating-panel-hd-radius,24rpx)
+}
+.dora-floating-panel__bar {
+  height: 6rpx;
+  width: 40rpx;
+  border-radius: 20rpx;
+  background: var(--dora-floating-panel-bar-bg,#c8c9cc);
+  background: var(--dora-floating-panel-bar-bg,#c8c9cc)
+}
+.dora-floating-panel__bd {
+  -ms-flex: 1 1;
+  flex: 1 1;
+  overflow-y: scroll;
+  background: var(--dora-floating-panel-bg,#fff);
+  background: var(--dora-floating-panel-bg,#fff)
+}
+.dora-floating-panel__mask {
+  display: block;
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  top: -100vh;
+  background: 0 0
+}

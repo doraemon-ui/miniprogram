@@ -1,0 +1,162 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CascaderPickerView mount correctly 1`] = `
+<dora-cascader-picker-view>
+  <dora-multi-picker-view
+    id="dora-picker"
+    bind:valueChange="onValueChange"
+  >
+    <dora-spin>
+      <wx-view
+        class="dora-class dora-spin dora-spin--default dora-spin--nested"
+      >
+        <dora-animation-group
+          doraClass="dora-spin__spinning--nested"
+        >
+          <wx-view
+            class="dora-class dora-class-a dora-class-b dora-class-c  dora-animate--fadeIn-exit"
+            style=""
+            bind:animationend=""
+            bind:tap="onClick"
+            catch:touchmove=""
+            bind:transitionend="onTransitionEnd"
+          >
+            <wx-view
+              class="dora-spin__dots"
+            >
+              <wx-view
+                class="dora-spin__dot"
+                style=""
+              >
+                dot
+              </wx-view>
+              <wx-view
+                class="dora-spin__dot"
+                style=""
+              >
+                dot
+              </wx-view>
+              <wx-view
+                class="dora-spin__dot"
+                style=""
+              >
+                dot
+              </wx-view>
+              <wx-view
+                class="dora-spin__dot"
+                style=""
+              >
+                dot
+              </wx-view>
+            </wx-view>
+          </wx-view>
+        </dora-animation-group>
+        <wx-view
+          class="dora-spin__container"
+        >
+          <wx-view
+            class="dora-class dora-picker"
+            data-picker-value="{{
+              Array [
+                "a",
+                "a1",
+              ]
+            }}"
+          >
+            <dora-picker-view
+              data-index="{{0}}"
+              style="width: 50%"
+              bind:beforeChange="onBeforeChange"
+              bind:scrollChange="onScrollChange"
+              bind:valueChange="onValueChange"
+            >
+              <dora-spin>
+                <wx-view
+                  class="dora-class dora-spin dora-spin--default dora-spin--nested"
+                >
+                  <dora-animation-group
+                    doraClass="dora-spin__spinning--nested"
+                  />
+                  <wx-view
+                    class="dora-spin__container dora-spin__container--blur"
+                  >
+                    <wx-view
+                      class="dora-class dora-picker-view dora-picker-view--center"
+                      data-picker-col-label="label"
+                      data-picker-col-value="value"
+                      data-picker-value=""
+                      style=""
+                      bind:touchcancel="onTouchEnd"
+                      bind:touchend="onTouchEnd"
+                      catch:touchmove="onTouchMove"
+                      bind:touchstart="onTouchStart"
+                    >
+                      <wx-view
+                        class="dora-mask-class  dora-picker-view__mask"
+                        style=" "
+                      />
+                      <wx-view
+                        class="dora-indicator-class  dora-picker-view__indicator"
+                        style=" "
+                      />
+                      <wx-view
+                        class="dora-content-class dora-picker-view__content"
+                        style=" "
+                      />
+                    </wx-view>
+                  </wx-view>
+                </wx-view>
+              </dora-spin>
+            </dora-picker-view>
+            <dora-picker-view
+              data-index="{{1}}"
+              style="width: 50%"
+              bind:beforeChange="onBeforeChange"
+              bind:scrollChange="onScrollChange"
+              bind:valueChange="onValueChange"
+            >
+              <dora-spin>
+                <wx-view
+                  class="dora-class dora-spin dora-spin--default dora-spin--nested"
+                >
+                  <dora-animation-group
+                    doraClass="dora-spin__spinning--nested"
+                  />
+                  <wx-view
+                    class="dora-spin__container dora-spin__container--blur"
+                  >
+                    <wx-view
+                      class="dora-class dora-picker-view dora-picker-view--center"
+                      data-picker-col-label="label"
+                      data-picker-col-value="value"
+                      data-picker-value=""
+                      style=""
+                      bind:touchcancel="onTouchEnd"
+                      bind:touchend="onTouchEnd"
+                      catch:touchmove="onTouchMove"
+                      bind:touchstart="onTouchStart"
+                    >
+                      <wx-view
+                        class="dora-mask-class  dora-picker-view__mask"
+                        style=" "
+                      />
+                      <wx-view
+                        class="dora-indicator-class  dora-picker-view__indicator"
+                        style=" "
+                      />
+                      <wx-view
+                        class="dora-content-class dora-picker-view__content"
+                        style=" "
+                      />
+                    </wx-view>
+                  </wx-view>
+                </wx-view>
+              </dora-spin>
+            </dora-picker-view>
+          </wx-view>
+        </wx-view>
+      </wx-view>
+    </dora-spin>
+  </dora-multi-picker-view>
+</dora-cascader-picker-view>
+`;

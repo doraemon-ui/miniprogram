@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Badge mount correctly 1`] = `
+<dora-badge>
+  <wx-view
+    class="dora-class dora-badge dora-badge--position-topRight"
+  />
+</dora-badge>
+`;

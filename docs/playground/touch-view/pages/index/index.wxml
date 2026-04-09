@@ -1,0 +1,7 @@
+<demo-page title="TouchView" desc="点击态容器" spacing>
+  <demo-block title="Basic">
+    <dora-touch-view bind:click="onClick" wrapStyle="padding: 24rpx; border: 1px solid #ddd;">
+      touch me
+    </dora-touch-view>
+  </demo-block>
+</demo-page>

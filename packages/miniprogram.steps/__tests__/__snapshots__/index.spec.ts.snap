@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Steps mount correctly 1`] = `
+<dora-steps>
+  <wx-view
+    class="dora-class dora-steps"
+  />
+</dora-steps>
+`;

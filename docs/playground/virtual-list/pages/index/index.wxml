@@ -1,0 +1,26 @@
+<demo-page
+  darkmode="auto"
+  title="VirtualList"
+  desc="虚拟列表"
+  clickable
+  spacing
+>
+  <demo-block title="ScrollView">
+    <dora-button block type="light" bind:click="refresh">Refresh Items</dora-button>
+    <dora-virtual-list
+      id="dora-virtual-list"
+      height="{{ height }}"
+      itemHeight="{{ itemHeight }}"
+      itemBuffer="{{ itemBuffer }}"
+      scrollToIndex="{{ scrollToIndex }}"
+      scrollWithAnimation="{{ scrollWithAnimation }}"
+      disableScroll="{{ disableScroll }}"
+      bind:change="onChange"
+      bind:scrolltolower="onScrollToLower"
+    >
+      <dora-virtual-list-item wx:for="{{ virtual.items }}" wx:key="*this">
+        <view> #{{ item }} - Doraemon UI </view>
+      </dora-virtual-list-item>
+    </dora-virtual-list>
+  </demo-block>
+</demo-page>

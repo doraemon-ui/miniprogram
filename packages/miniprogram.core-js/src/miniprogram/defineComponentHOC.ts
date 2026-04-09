@@ -14,14 +14,28 @@ import { setUpdatePerformance } from '../util/perf'
 import { syncPropsToData } from './syncPropsToData'
 import type { ComponentRenderProxy, Doraemon, DoraemonClass } from '../instance'
 
+/**
+ * ComponentExternalOptions接口定义
+ */
 export interface ComponentExternalOptions extends WechatMiniprogram.Component.ComponentOptions {
-  /** 组件接受的外部样式类 */
+  /**
+   * 组件接受的外部样式类
+   */
   externalClasses?: string[]
-  /** 组件自定义导出 */
+
+  /**
+   * 组件自定义导出
+   */
   expose?: () => WechatMiniprogram.IAnyObject
-  /** 组件间代码共享 */
+
+  /**
+   * 组件间代码共享
+   */
   behaviors?: WechatMiniprogram.Behavior.BehaviorIdentifier[]
-  /** 组件的内部数据 */
+
+  /**
+   * 组件的内部数据
+   */
   data?: Record<string, any> | (() => Record<string, any>)
 }
 

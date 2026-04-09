@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "dora-list-item": "@doraemon-ui/miniprogram.list/item",
+    "dora-selectable": "@doraemon-ui/miniprogram.selectable/index"
+  }
+}

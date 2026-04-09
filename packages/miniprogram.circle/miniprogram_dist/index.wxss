@@ -1,0 +1,17 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-circle {
+  display: inline-block;
+  position: relative
+}
+.dora-circle__inner {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate3d(0,-50%,0);
+  line-height: 1
+}

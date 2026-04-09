@@ -1,0 +1,118 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-segmented-control {
+  display: -ms-flexbox;
+  display: flex;
+  border-radius: 10rpx;
+  overflow: hidden;
+  min-height: 54rpx;
+  opacity: 1;
+  margin: 0 0 20rpx
+}
+.dora-segmented-control--disabled {
+  opacity: .45
+}
+.dora-segmented-control__item {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex: 1;
+  flex: 1;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #33cd5f;
+  font-size: 28rpx;
+  line-height: 1;
+  transition: background .3s;
+  position: relative;
+  border: 2rpx solid #33cd5f;
+  width: 100%;
+  box-sizing: border-box;
+  border-left-width: 0
+}
+.dora-segmented-control__item:first-child {
+  border-left-width: 2rpx;
+  border-radius: 10rpx 0 0 10rpx
+}
+.dora-segmented-control__item:last-child {
+  border-radius: 0 10rpx 10rpx 0
+}
+.dora-segmented-control__item--current {
+  background: #33cd5f;
+  color: #fff
+}
+.dora-segmented-control--light .dora-segmented-control__item {
+  color: #ddd;
+  border-color: #ddd
+}
+.dora-segmented-control--light .dora-segmented-control__item--current {
+  background: #ddd;
+  color: #fff
+}
+.dora-segmented-control--stable .dora-segmented-control__item {
+  color: #ddd;
+  border-color: #ddd
+}
+.dora-segmented-control--stable .dora-segmented-control__item--current {
+  background: #ddd;
+  color: #fff
+}
+.dora-segmented-control--positive .dora-segmented-control__item {
+  color: #0faeff;
+  border-color: #0faeff
+}
+.dora-segmented-control--positive .dora-segmented-control__item--current {
+  background: #0faeff;
+  color: #fff
+}
+.dora-segmented-control--calm .dora-segmented-control__item {
+  color: #11c1f3;
+  border-color: #11c1f3
+}
+.dora-segmented-control--calm .dora-segmented-control__item--current {
+  background: #11c1f3;
+  color: #fff
+}
+.dora-segmented-control--assertive .dora-segmented-control__item {
+  color: #ef473a;
+  border-color: #ef473a
+}
+.dora-segmented-control--assertive .dora-segmented-control__item--current {
+  background: #ef473a;
+  color: #fff
+}
+.dora-segmented-control--balanced .dora-segmented-control__item {
+  color: #33cd5f;
+  border-color: #33cd5f
+}
+.dora-segmented-control--balanced .dora-segmented-control__item--current {
+  background: #33cd5f;
+  color: #fff
+}
+.dora-segmented-control--energized .dora-segmented-control__item {
+  color: #ffc900;
+  border-color: #ffc900
+}
+.dora-segmented-control--energized .dora-segmented-control__item--current {
+  background: #ffc900;
+  color: #fff
+}
+.dora-segmented-control--royal .dora-segmented-control__item {
+  color: #886aea;
+  border-color: #886aea
+}
+.dora-segmented-control--royal .dora-segmented-control__item--current {
+  background: #886aea;
+  color: #fff
+}
+.dora-segmented-control--dark .dora-segmented-control__item {
+  color: #444;
+  border-color: #444
+}
+.dora-segmented-control--dark .dora-segmented-control__item--current {
+  background: #444;
+  color: #fff
+}

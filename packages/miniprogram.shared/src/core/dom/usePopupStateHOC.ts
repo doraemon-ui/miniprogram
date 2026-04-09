@@ -1,5 +1,8 @@
 import type { ComponentPublicInstance } from '@doraemon-ui/miniprogram.core-js'
 
+/**
+ * PopupStateFunc类型定义
+ */
 export type PopupStateFunc<Props extends Record<string, any>> = {
   render: (props: Props, callback?: () => void) => void
   destroy: (callback?: () => void) => void

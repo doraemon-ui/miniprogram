@@ -1,0 +1,7 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-select__list {
+  max-height: 448rpx
+}

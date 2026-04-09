@@ -1,122 +1,67 @@
-# Ellipsis 文本省略
+# Ellipsis Ellipsis
 
-展示空间不足时，隐去部分内容并用“...”替代。
+@doraemon-ui/miniprogram.ellipsis
+
+## 安装
+
+我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
+
+```bash
+npm install --save @doraemon-ui/miniprogram.ellipsis
+# or
+yarn add @doraemon-ui/miniprogram.ellipsis
+```
+
+如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
 
 ## 使用指南
 
 ### 在 page.json 中引入组件
 
-```json
-{
-  "navigationBarTitleText": "Ellipsis",
-  "usingComponents": {
-    "wux-ellipsis": "../../dist/ellipsis/index"
-  }
-}
-```
+[json](./playground/ellipsis/pages/index/index.json ':include :type=code')
 
-### 示例
+### 示例代码
 
-```html
-<view class="page">
-  <view class="page__hd">
-    <view class="page__title">Ellipsis</view>
-    <view class="page__desc">文本省略</view>
-  </view>
-  <view class="page__bd page__bd_spacing">
-    <view class="sub-title">尾部省略</view>
-    <wux-ellipsis
-      direction="end"
-      content="{{ content }}"
-      bind:click="onContentClick"
-    />
-    <view class="sub-title">头部省略</view>
-    <wux-ellipsis direction="start" content="{{ content }}" />
-    <view class="sub-title">中间省略</view>
-    <wux-ellipsis direction="middle" content="{{ content }}" />
-    <view class="sub-title">多行省略</view>
-    <wux-ellipsis rows="3" content="{{ content }}" />
-    <view class="sub-title">展开收起</view>
-    <wux-ellipsis
-      expandText="展开"
-      collapseText="收起"
-      content="{{ content }}"
-    />
-    <view class="sub-title">仅展开</view>
-    <wux-ellipsis direction="end" expandText="展开" content="{{ content }}" />
-    <wux-ellipsis direction="start" expandText="展开" content="{{ content }}" />
-    <wux-ellipsis
-      direction="middle"
-      expandText="展开"
-      content="{{ content }}"
-    />
-    <view class="sub-title">默认展开</view>
-    <wux-ellipsis
-      defaultExpanded
-      expandText="展开"
-      collapseText="收起"
-      content="{{ content }}"
-    />
-    <view class="sub-title">emoji</view>
-    <wux-ellipsis
-      expandText="展开"
-      collapseText="收起"
-      content="🐮🐮🐮🐶🐶🐶🐱🐱🐱🐯🐯🐯🐻🐻🐻🐮🐮🐮🐶🐶🐶🐱🐱🐱🐯🐯🐯🐻🐻🐻"
-    />
-    <view class="sub-title">数字或英文</view>
-    <wux-ellipsis
-      wux-class="word-break"
-      expandText="展开"
-      collapseText="收起"
-      content="6666666666666666666666666666666666666666666666666666"
-    />
-    <wux-ellipsis
-      wux-class="word-break"
-      expandText="展开"
-      collapseText="收起"
-      content="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
-    />
-    <view class="page__desc"
-      >当文本内容中包含大量数字或英文时，文本内容无法省略；此时，如果需要让文本省略生效，可以手动添加
-      word-break 样式（如 word-break: break-word），从而实现自动省略。</view
-    >
-  </view>
-</view>
-```
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/DoraemonUI)
 
-```js
-Page({
-  data: {
-    content:
-      'Wux Weapp 是一套组件化、可复用、易扩展的微信小程序 UI 组件库。UI 样式可配置，拓展灵活，轻松适应不同的设计风格；80+ 丰富的组件，能够满足移动端开发的基本需求。',
-  },
-  onContentClick(e) {
-    console.log('onContentClick', e)
-  },
-})
-```
+<!-- tabs:start -->
 
-## 视频演示
+#### **WXML**
 
-[Ellipsis](./_media/ellipsis.mp4 ':include :type=iframe width=375px height=667px')
+[wxml](./playground/ellipsis/pages/index/index.wxml ':include :type=code')
+
+#### **JAVASCRIPT**
+
+[js](./playground/ellipsis/pages/index/index.js ':include :type=code')
+
+#### **WXSS**
+
+[wxss](./playground/ellipsis/pages/index/index.wxss ':include :type=code')
+
+<!-- tabs:end -->
 
 ## API
 
 ### Ellipsis props
 
-| 参数            | 类型       | 描述                                  | 默认值       |
-| --------------- | ---------- | ------------------------------------- | ------------ |
-| prefixCls       | `string`   | 自定义类名前缀                        | wux-ellipsis |
-| content         | `string`   | 文本内容                              | -            |
-| direction       | `string`   | 省略位置，可选值为 start、end、middle | end          |
-| defaultExpanded | `boolean`  | 默认展开                              | false        |
-| expandText      | `string`   | 展开操作的文案                        | -            |
-| collapseText    | `string`   | 收起操作的文案                        | -            |
-| rows            | `number`   | 展示几行                              | 1            |
-| bind:click      | `function` | 点击事件                              | -            |
+| 参数      | 类型     | 描述           | 默认值        |
+| --------- | -------- | -------------- | ------------- |
+| prefixCls | `string` | 自定义类名前缀 | dora-ellipsis |
+
+### Ellipsis slot
+
+| 名称 | 描述       |
+| ---- | ---------- |
+| -    | 自定义内容 |
 
 ### Ellipsis externalClasses
 
-| 名称      | 描述         |
-| --------- | ------------ |
-| wux-class | 根节点样式类 |
+| 名称       | 描述         |
+| ---------- | ------------ |
+| dora-class | 根节点样式类 |
+
+## CSS Variables
+
+| 属性         | 描述     | 默认值 | 全局变量 |
+| ------------ | -------- | ------ | -------- |
+| --text-color | 文字颜色 | `#fff` | -        |

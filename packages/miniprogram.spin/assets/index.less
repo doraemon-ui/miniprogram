@@ -1,0 +1,150 @@
+@import './variables.less';
+
+.@{spin-prefix-cls} {
+  position: relative;
+  display: inline-block;
+
+  &__spinning {
+    opacity: 1;
+    position: static;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    font-size: @spin-font-size;
+    line-height: @spin-line-height;
+    color: @spin-color;
+
+    &--nested {
+      vertical-align: middle;
+      text-align: center;
+      font-size: @spin-font-size;
+      line-height: @spin-line-height;
+      color: @spin-color;
+      display: block;
+      position: absolute;
+      height: 100%;
+      max-height: 640rpx;
+      width: 100%;
+      z-index: 4;
+    }
+  }
+
+  &--nested {
+    display: block;
+  }
+
+  &--nested &__tip {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    padding-top: 12rpx;
+    text-shadow: 0 1px 2px #fff;
+  }
+
+  &__dots {
+    width: @spin-dot-size-base;
+    height: @spin-dot-size-base;
+    overflow: hidden;
+    display: inline-block;
+    transform: rotate(45deg);
+    animation: dora-spin-rotate 1.2s infinite linear;
+  }
+
+  &--nested &__dots {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -(@spin-dot-size-base / 2);
+  }
+
+  &__dot {
+    width: 18rpx;
+    height: 18rpx;
+    border-radius: 100%;
+    background-color: @spin-color;
+    transform: scale(0.75);
+    display: block;
+    position: absolute;
+    opacity: 0.45;
+    animation: dora-spin-move 1s infinite linear alternate;
+    transform-origin: 50% 50%;
+    text-indent: -999em;
+
+    &:first-child {
+      left: 0;
+      top: 0;
+    }
+    &:nth-child(2) {
+      right: 0;
+      top: 0;
+      animation-delay: 0.4s;
+    }
+    &:nth-child(3) {
+      right: 0;
+      bottom: 0;
+      animation-delay: 0.8s;
+    }
+    &:nth-child(4) {
+      left: 0;
+      bottom: 0;
+      animation-delay: 1.2s;
+    }
+  }
+
+  &--show-text&--nested &__dots {
+    margin-top: -(@spin-dot-size-base / 2) - 20rpx;
+  }
+
+  &__container {
+    position: relative;
+    transition: opacity 0.3s;
+
+    &--blur {
+      overflow: hidden;
+      opacity: 0.5;
+      filter: blur(0.5px);
+      transform: translateZ(0);
+    }
+  }
+
+  &--small &__dots {
+    width: @spin-dot-size-sm;
+    height: @spin-dot-size-sm;
+  }
+  &--small&--nested &__dots {
+    margin: -(@spin-dot-size-sm / 2);
+  }
+  &--small &__dot {
+    width: 12rpx;
+    height: 12rpx;
+  }
+  &--small&--show-text&--nested &__dots {
+    margin-top: -(@spin-dot-size-sm / 2) - 20rpx;
+  }
+
+  &--large &__dots {
+    width: @spin-dot-size-lg;
+    height: @spin-dot-size-lg;
+  }
+  &--large&--nested &__dots {
+    margin: -(@spin-dot-size-lg / 2);
+  }
+  &--large &__dot {
+    width: 28rpx;
+    height: 28rpx;
+  }
+  &--large&--show-text&--nested &__dots {
+    margin-top: -(@spin-dot-size-lg / 2) - 20rpx;
+  }
+}
+
+@keyframes dora-spin-rotate {
+  to {
+    transform: rotate(405deg);
+  }
+}
+@keyframes dora-spin-move {
+  to {
+    opacity: 1;
+  }
+}

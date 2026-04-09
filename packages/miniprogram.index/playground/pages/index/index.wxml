@@ -1,0 +1,10 @@
+<dora-index id="dora-index" height="100%" indicatorPosition="{{ indicatorPosition }}" bind:change="onChange">
+  <dora-index-item wx:for="{{ alphabet }}" wx:key="index" name="{{ item.initial }}">
+    <view class="demo-item" wx:for="{{ item.cells }}" wx:for-item="cell" wx:for-index="cellIndex" wx:key="cellIndex">{{ cell }}</view>
+  </dora-index-item>
+</dora-index>
+<view class="demo-btn">
+  <dora-button block type="light" bind:click="setIndicator">set indicator to {{ indicatorPosition === 'center' ? 'right' : 'center' }}</dora-button>
+  <dora-button block type="light" bind:click="scrollToH">scroll to H by index</dora-button>
+  <dora-button block type="light" bind:click="scrollToZ">scroll to Z by name</dora-button>
+</view>

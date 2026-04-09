@@ -1,0 +1,37 @@
+<dora-popup
+  position="bottom"
+  visible="{{ visible }}"
+  mountOnEnter="{{ false }}"
+  safeArea="bottom"
+  bind:close="close"
+  bind:closed="onClosed"
+>
+  <view class="dora-class {{ classes.wrap }}" wx:if="{{ shouldRender }}">
+    <view class="{{ classes.hd }}">
+      <view class="{{ classes.toolbar }}" wx:if="{{ title || cancelText || confirmText }}" catchtouchmove="noop">
+        <view class="{{ classes.inner }}">
+          <view class="{{ classes.cancel }}" hover-class="{{ classes.hover }}" bindtap="onCancel" wx:if="{{ cancelText }}">{{ cancelText }}</view>
+          <view class="{{ classes.title }}">{{ title }}</view>
+          <view class="{{ classes.confirm }}" hover-class="{{ classes.hover }}" bindtap="onConfirm" wx:if="{{ confirmText }}">{{ confirmText }}</view>
+        </view>
+      </view>
+    </view>
+    <view class="{{ classes.bd }}">
+      <dora-cascader-view
+        id="dora-cascader-view"
+        controlled="{{ controlled }}"
+        defaultValue="{{ innerValue }}"
+        value="{{ innerValue }}"
+        options="{{ options }}"
+        full="{{ full }}"
+        height="{{ height }}"
+        placeholder="{{ chooseTitle }}"
+        defaultFieldNames="{{ defaultFieldNames }}"
+        skipAnimation="{{ skipAnimation }}"
+        bind:change="onChange"
+        bind:load="onLoadOptions"
+        bind:tabsChange="onTabsChange"
+      />
+    </view>
+  </view>
+</dora-popup>

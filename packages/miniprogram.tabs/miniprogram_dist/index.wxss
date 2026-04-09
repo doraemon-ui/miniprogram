@@ -1,0 +1,210 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-tabs {
+  position: relative
+}
+.dora-tabs--scroll .dora-tabs__scroll-view {
+  display: block;
+  overflow: auto;
+  white-space: nowrap
+}
+.dora-tabs--vertical {
+  display: -ms-inline-flexbox;
+  display: inline-flex
+}
+.dora-tabs--vertical .dora-tabs__scroll-view {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: auto;
+  height: auto;
+  max-height: var(--dora-tabs-vertical-height,540rpx);
+  max-height: var(--dora-tabs-vertical-height,540rpx);
+  -ms-flex-direction: column;
+  flex-direction: column
+}
+.dora-tabs__scroll-view {
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: var(--dora-tabs-height,88rpx);
+  height: var(--dora-tabs-height,88rpx);
+  line-height: var(--dora-tabs-height,88rpx);
+  line-height: var(--dora-tabs-height,88rpx);
+  box-sizing: border-box;
+  position: relative;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  -ms-flex-align: center;
+  align-items: center;
+  background: var(--dora-tabs-background-color,var(--dora-component-background-color,#fff));
+  background: var(--dora-tabs-background-color,var(--dora-component-background-color,#fff))
+}
+.dora-tabs__mask {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 40rpx;
+  height: 100%;
+  pointer-events: none
+}
+.dora-tabs__mask--prev {
+  left: 0;
+  background: linear-gradient(90deg,#fff,hsla(0,0%,100%,0))
+}
+.dora-tabs__mask--next {
+  right: 0;
+  background: linear-gradient(270deg,#fff,hsla(0,0%,100%,0))
+}
+.dora-tabs--vertical .dora-tabs__mask {
+  width: 100%;
+  height: 40rpx;
+  left: 0;
+  right: unset
+}
+.dora-tabs--vertical .dora-tabs__mask--prev {
+  bottom: unset;
+  background: linear-gradient(180deg,#fff,hsla(0,0%,100%,0))
+}
+.dora-tabs--vertical .dora-tabs__mask--next {
+  top: unset;
+  background: linear-gradient(0deg,#fff,hsla(0,0%,100%,0))
+}
+.dora-tabs__tab {
+  -ms-flex: 1;
+  flex: 1;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  box-sizing: border-box;
+  font-size: var(--dora-tabs-font-size,28rpx);
+  font-size: var(--dora-tabs-font-size,28rpx);
+  padding: 0 var(--dora-tabs-scrolling-size,30rpx);
+  padding: 0 var(--dora-tabs-scrolling-size,30rpx);
+  cursor: pointer
+}
+.dora-tabs__tab-bar {
+  display: block;
+  width: calc(100% - var(--dora-tabs-scrolling-size,30rpx) * 2);
+  width: calc(100% - var(--dora-tabs-scrolling-size,30rpx) * 2);
+  height: var(--dora-tabs-bar-size,4rpx);
+  height: var(--dora-tabs-bar-size,4rpx);
+  background: 0 0;
+  position: absolute;
+  bottom: 0;
+  left: var(--dora-tabs-scrolling-size,30rpx);
+  left: var(--dora-tabs-scrolling-size,30rpx);
+  background: var(--dora-tabs-bar-balanced-bg,var(--dora-color-balanced,#2dd36f));
+  background: var(--dora-tabs-bar-balanced-bg,var(--dora-color-balanced,#2dd36f));
+  border-radius: var(--dora-tabs-bar-size,4rpx);
+  border-radius: var(--dora-tabs-bar-size,4rpx)
+}
+.dora-tabs__tab-bar--full {
+  width: 100%;
+  left: 0
+}
+.dora-tabs__tab--vertical {
+  padding: 0 var(--dora-tabs-scrolling-size,30rpx);
+  padding: 0 var(--dora-tabs-scrolling-size,30rpx)
+}
+.dora-tabs__tab--vertical .dora-tabs__tab-bar {
+  width: var(--dora-tabs-bar-size,4rpx);
+  width: var(--dora-tabs-bar-size,4rpx);
+  height: 100%;
+  right: 0;
+  left: auto
+}
+.dora-tabs__tab--current {
+  color: var(--dora-tabs-bar-balanced-bg,var(--dora-color-balanced,#2dd36f));
+  color: var(--dora-tabs-bar-balanced-bg,var(--dora-color-balanced,#2dd36f))
+}
+.dora-tabs__tab--horizontal.dora-tabs__tab--scroll {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: auto
+}
+.dora-tabs__tab--disabled {
+  opacity: var(--dora-disabled-opacity,.3);
+  opacity: var(--dora-disabled-opacity,.3);
+  cursor: not-allowed
+}
+.dora-tabs__tab--light .dora-tabs__tab-bar {
+  background: var(--dora-tabs-bar-light-bg,var(--dora-color-light,#f4f5f8));
+  background: var(--dora-tabs-bar-light-bg,var(--dora-color-light,#f4f5f8))
+}
+.dora-tabs__tab--light.dora-tabs__tab--current {
+  color: var(--dora-tabs-bar-light-bg,var(--dora-color-light,#f4f5f8));
+  color: var(--dora-tabs-bar-light-bg,var(--dora-color-light,#f4f5f8))
+}
+.dora-tabs__tab--stable .dora-tabs__tab-bar {
+  background: var(--dora-tabs-bar-stable-bg,var(--dora-color-stable,#92949c));
+  background: var(--dora-tabs-bar-stable-bg,var(--dora-color-stable,#92949c))
+}
+.dora-tabs__tab--stable.dora-tabs__tab--current {
+  color: var(--dora-tabs-bar-stable-bg,var(--dora-color-stable,#92949c));
+  color: var(--dora-tabs-bar-stable-bg,var(--dora-color-stable,#92949c))
+}
+.dora-tabs__tab--positive .dora-tabs__tab-bar {
+  background: var(--dora-tabs-bar-positive-bg,var(--dora-color-positive,#3880ff));
+  background: var(--dora-tabs-bar-positive-bg,var(--dora-color-positive,#3880ff))
+}
+.dora-tabs__tab--positive.dora-tabs__tab--current {
+  color: var(--dora-tabs-bar-positive-bg,var(--dora-color-positive,#3880ff));
+  color: var(--dora-tabs-bar-positive-bg,var(--dora-color-positive,#3880ff))
+}
+.dora-tabs__tab--calm .dora-tabs__tab-bar {
+  background: var(--dora-tabs-bar-calm-bg,var(--dora-color-calm,#3dc2ff));
+  background: var(--dora-tabs-bar-calm-bg,var(--dora-color-calm,#3dc2ff))
+}
+.dora-tabs__tab--calm.dora-tabs__tab--current {
+  color: var(--dora-tabs-bar-calm-bg,var(--dora-color-calm,#3dc2ff));
+  color: var(--dora-tabs-bar-calm-bg,var(--dora-color-calm,#3dc2ff))
+}
+.dora-tabs__tab--assertive .dora-tabs__tab-bar {
+  background: var(--dora-tabs-bar-assertive-bg,var(--dora-color-assertive,#eb445a));
+  background: var(--dora-tabs-bar-assertive-bg,var(--dora-color-assertive,#eb445a))
+}
+.dora-tabs__tab--assertive.dora-tabs__tab--current {
+  color: var(--dora-tabs-bar-assertive-bg,var(--dora-color-assertive,#eb445a));
+  color: var(--dora-tabs-bar-assertive-bg,var(--dora-color-assertive,#eb445a))
+}
+.dora-tabs__tab--balanced .dora-tabs__tab-bar {
+  background: var(--dora-tabs-bar-balanced-bg,var(--dora-color-balanced,#2dd36f));
+  background: var(--dora-tabs-bar-balanced-bg,var(--dora-color-balanced,#2dd36f))
+}
+.dora-tabs__tab--balanced.dora-tabs__tab--current {
+  color: var(--dora-tabs-bar-balanced-bg,var(--dora-color-balanced,#2dd36f));
+  color: var(--dora-tabs-bar-balanced-bg,var(--dora-color-balanced,#2dd36f))
+}
+.dora-tabs__tab--energized .dora-tabs__tab-bar {
+  background: var(--dora-tabs-bar-energized-bg,var(--dora-color-energized,#ffc409));
+  background: var(--dora-tabs-bar-energized-bg,var(--dora-color-energized,#ffc409))
+}
+.dora-tabs__tab--energized.dora-tabs__tab--current {
+  color: var(--dora-tabs-bar-energized-bg,var(--dora-color-energized,#ffc409));
+  color: var(--dora-tabs-bar-energized-bg,var(--dora-color-energized,#ffc409))
+}
+.dora-tabs__tab--royal .dora-tabs__tab-bar {
+  background: var(--dora-tabs-bar-royal-bg,var(--dora-color-royal,#8a63d2));
+  background: var(--dora-tabs-bar-royal-bg,var(--dora-color-royal,#8a63d2))
+}
+.dora-tabs__tab--royal.dora-tabs__tab--current {
+  color: var(--dora-tabs-bar-royal-bg,var(--dora-color-royal,#8a63d2));
+  color: var(--dora-tabs-bar-royal-bg,var(--dora-color-royal,#8a63d2))
+}
+.dora-tabs__tab--dark .dora-tabs__tab-bar {
+  background: var(--dora-tabs-bar-dark-bg,var(--dora-color-dark,#222428));
+  background: var(--dora-tabs-bar-dark-bg,var(--dora-color-dark,#222428))
+}
+.dora-tabs__tab--dark.dora-tabs__tab--current {
+  color: var(--dora-tabs-bar-dark-bg,var(--dora-color-dark,#222428));
+  color: var(--dora-tabs-bar-dark-bg,var(--dora-color-dark,#222428))
+}

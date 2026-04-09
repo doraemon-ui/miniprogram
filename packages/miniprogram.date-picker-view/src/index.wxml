@@ -1,0 +1,16 @@
+<dora-multi-picker-view
+  id="dora-picker"
+  wx:if="{{ cols.length > 0 }}"
+  prefixCls="{{ multiPickerPrefixCls }}"
+  pickerPrefixCls="{{ pickerPrefixCls }}"
+  value="{{ inputValue }}"
+  itemHeight="{{ itemHeight }}"
+  itemStyle="{{ itemStyle }}"
+  indicatorStyle="{{ indicatorStyle }}"
+  indicatorClass="{{ indicatorClass }}"
+  maskStyle="{{ maskStyle }}"
+  maskClass="{{ maskClass }}"
+  labelAlign="{{ labelAlign }}"
+  options="{{ cols }}"
+  bind:valueChange="onValueChange"
+/>

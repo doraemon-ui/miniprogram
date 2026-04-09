@@ -1,83 +1,52 @@
-# Circle 进度环
+# Circle Circle
 
-用于展现某个任务的当前进度。
+@doraemon-ui/miniprogram.circle
+
+## 安装
+
+我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
+
+```bash
+npm install --save @doraemon-ui/miniprogram.circle
+# or
+yarn add @doraemon-ui/miniprogram.circle
+```
+
+如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
 
 ## 使用指南
 
 ### 在 page.json 中引入组件
 
-```json
-{
-  "navigationBarTitleText": "Circle",
-  "usingComponents": {
-    "wux-button": "../../dist/button/index",
-    "wux-circle": "../../dist/circle/index"
-  }
-}
-```
+[json](./playground/circle/pages/index/index.json ':include :type=code')
 
-### 示例
+### 示例代码
 
-```html
-<view class="page">
-  <view class="page__hd">
-    <view class="page__title">Circle</view>
-    <view class="page__desc">进度环</view>
-  </view>
-  <view class="page__bd page__bd_spacing">
-    <view class="sub-title">Color</view>
-    <wux-circle percent="80" color="#33cd5f">#33cd5f</wux-circle>
-    <view class="sub-title">BackgroundColor</view>
-    <wux-circle percent="80" background-color="#ef473a">#ef473a</wux-circle>
-    <view class="sub-title">Other</view>
-    <wux-circle percent="{{ percent }}">{{ percent + '%' }}</wux-circle>
-    <wux-button block type="light" bind:click="add">Add</wux-button>
-  </view>
-</view>
-```
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/DoraemonUI)
 
-```js
-Page({
-  data: {
-    percent: 50,
-  },
-  add() {
-    let percent = this.data.percent + 10
+<!-- tabs:start -->
 
-    if (this.data.percent >= 100) {
-      percent = 0
-    }
+#### **WXML**
 
-    this.setData({
-      percent,
-    })
-  },
-})
-```
+[wxml](./playground/circle/pages/index/index.wxml ':include :type=code')
 
-## 视频演示
+#### **JAVASCRIPT**
 
-[Circle](./_media/circle.mp4 ':include :type=iframe width=375px height=667px')
+[js](./playground/circle/pages/index/index.js ':include :type=code')
+
+#### **WXSS**
+
+[wxss](./playground/circle/pages/index/index.wxss ':include :type=code')
+
+<!-- tabs:end -->
 
 ## API
 
 ### Circle props
 
-| 参数             | 类型       | 描述                                                                                    | 默认值     |
-| ---------------- | ---------- | --------------------------------------------------------------------------------------- | ---------- |
-| prefixCls        | `string`   | 自定义类名前缀                                                                          | wux-circle |
-| percent          | `number`   | 百分比 0~100                                                                            | 0          |
-| size             | `number`   | 进度环的尺寸，单位 px                                                                   | 120        |
-| strokeWidth      | `number`   | 进度环的宽度，单位 px                                                                   | 10         |
-| lineCap          | `string`   | 进度环的线头样式，可选值为 square、round、butt                                          | round      |
-| backgroundColor  | `string`   | 默认背景颜色                                                                            | #f3f3f3    |
-| color            | `string`   | 默认前景颜色                                                                            | #33cd5f    |
-| sAngle           | `number`   | 进度环动画的开始角度（在 3 点钟方向）                                                   | 0          |
-| counterclockwise | `boolean`  | 设置圆形进度条是顺时针旋转，还是逆时针旋转。true 表示逆时针旋转，false 表示顺时针旋转。 | false      |
-| speed            | `number`   | 进度环的动画速度                                                                        | 2000       |
-| animate          | `boolean`  | 进度环动画是否执行平滑动画效果                                                          | true       |
-| background       | `boolean`  | 是否显示进度环的运动轨迹                                                                | true       |
-| bind:change      | `function` | 每一个动画帧之后的回调函数                                                              | -          |
+| 参数      | 类型     | 描述           | 默认值      |
+| --------- | -------- | -------------- | ----------- |
+| prefixCls | `string` | 自定义类名前缀 | dora-circle |
 
 ### Circle slot
 
@@ -87,6 +56,12 @@ Page({
 
 ### Circle externalClasses
 
-| 名称      | 描述         |
-| --------- | ------------ |
-| wux-class | 根节点样式类 |
+| 名称       | 描述         |
+| ---------- | ------------ |
+| dora-class | 根节点样式类 |
+
+## CSS Variables
+
+| 属性         | 描述     | 默认值 | 全局变量 |
+| ------------ | -------- | ------ | -------- |
+| --text-color | 文字颜色 | `#fff` | -        |

@@ -1,119 +1,67 @@
-# Progress 进度条
+# Progress Progress
 
-用于展现某个任务的当前进度。
+@doraemon-ui/miniprogram.progress
+
+## 安装
+
+我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
+
+```bash
+npm install --save @doraemon-ui/miniprogram.progress
+# or
+yarn add @doraemon-ui/miniprogram.progress
+```
+
+如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
 
 ## 使用指南
 
 ### 在 page.json 中引入组件
 
-```json
-{
-  "navigationBarTitleText": "Progress",
-  "usingComponents": {
-    "wux-white-space": "../../dist/white-space/index",
-    "wux-button": "../../dist/button/index",
-    "wux-progress": "../../dist/progress/index"
-  }
-}
-```
+[json](./playground/progress/pages/index/index.json ':include :type=code')
 
-### 示例
+### 示例代码
 
-```html
-<view class="page">
-  <view class="page__hd">
-    <view class="page__title">Progress</view>
-    <view class="page__desc">进度条</view>
-  </view>
-  <view class="page__bd page__bd_spacing">
-    <view class="sub-title">Status</view>
-    <wux-progress status="normal" percent="50" />
-    <wux-white-space />
-    <wux-progress status="progress" percent="50" />
-    <wux-white-space />
-    <wux-progress status="error" percent="50" />
-    <wux-white-space />
-    <wux-progress status="success" percent="50" />
-    <view class="sub-title">ActiveColor</view>
-    <wux-progress active-color="#11c1f3" percent="50" />
-    <wux-white-space />
-    <wux-progress active-color="#ffc900" percent="50" />
-    <wux-white-space />
-    <wux-progress active-color="#886aea" percent="50" />
-    <view class="sub-title">BackgroundColor</view>
-    <wux-progress background-color="#fff" percent="25" />
-    <wux-white-space />
-    <wux-progress background-color="#f3f3f3" percent="50" />
-    <wux-white-space />
-    <wux-progress background-color="#f8f8f8" percent="75" />
-    <view class="sub-title">Shape</view>
-    <wux-progress shape="square" percent="25" />
-    <wux-white-space />
-    <wux-progress shape="square" percent="50" />
-    <wux-white-space />
-    <wux-progress shape="square" percent="75" />
-    <view class="sub-title">BarStyle</view>
-    <wux-progress bar-style="background-color: #5cb85c" percent="25" />
-    <wux-white-space />
-    <wux-progress bar-style="background-color: #5bc0de" percent="50" />
-    <wux-white-space />
-    <wux-progress bar-style="background-color: #f0ad4e" percent="75" />
-    <view class="sub-title">StrokeWidth</view>
-    <wux-progress stroke-width="8" percent="25" />
-    <wux-white-space />
-    <wux-progress stroke-width="10" percent="50" />
-    <wux-white-space />
-    <wux-progress stroke-width="12" percent="75" />
-    <view class="sub-title">ShowInfo</view>
-    <wux-progress show-info percent="{{ percent }}" />
-    <wux-progress show-info percent="{{ percent }}" />
-    <wux-progress show-info percent="{{ percent }}" />
-    <wux-button block type="light" bind:click="add">Add</wux-button>
-  </view>
-</view>
-```
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/DoraemonUI)
 
-```js
-Page({
-  data: {
-    percent: 50,
-  },
-  add() {
-    let percent = this.data.percent + 10
+<!-- tabs:start -->
 
-    if (this.data.percent >= 100) {
-      percent = 0
-    }
+#### **WXML**
 
-    this.setData({
-      percent,
-    })
-  },
-})
-```
+[wxml](./playground/progress/pages/index/index.wxml ':include :type=code')
 
-## 视频演示
+#### **JAVASCRIPT**
 
-[Progress](./_media/progress.mp4 ':include :type=iframe width=375px height=667px')
+[js](./playground/progress/pages/index/index.js ':include :type=code')
+
+#### **WXSS**
+
+[wxss](./playground/progress/pages/index/index.wxss ':include :type=code')
+
+<!-- tabs:end -->
 
 ## API
 
 ### Progress props
 
-| 参数            | 类型            | 描述                                               | 默认值       |
-| --------------- | --------------- | -------------------------------------------------- | ------------ |
-| prefixCls       | `string`        | 自定义类名前缀                                     | wux-progress |
-| percent         | `number`        | 百分比 0~100                                       | 0            |
-| strokeWidth     | `string`        | 进度条线的宽度，单位 px                            | 10           |
-| activeColor     | `string`        | 已选择的进度条的颜色，优先级高于 status 的默认颜色 | -            |
-| backgroundColor | `string`        | 未选择的进度条的颜色                               | #f3f3f3      |
-| barStyle        | `string,object` | 进度样式                                           | -            |
-| status          | `string`        | 状态，可选值为 normal、progress、error、success    | normal       |
-| shape           | `string`        | 形状，可选值为 round、square                       | round        |
-| showInfo        | `boolean`       | 在进度条右侧显示百分比                             | false        |
+| 参数      | 类型     | 描述           | 默认值        |
+| --------- | -------- | -------------- | ------------- |
+| prefixCls | `string` | 自定义类名前缀 | dora-progress |
+
+### Progress slot
+
+| 名称 | 描述       |
+| ---- | ---------- |
+| -    | 自定义内容 |
 
 ### Progress externalClasses
 
-| 名称      | 描述         |
-| --------- | ------------ |
-| wux-class | 根节点样式类 |
+| 名称       | 描述         |
+| ---------- | ------------ |
+| dora-class | 根节点样式类 |
+
+## CSS Variables
+
+| 属性         | 描述     | 默认值 | 全局变量 |
+| ------------ | -------- | ------ | -------- |
+| --text-color | 文字颜色 | `#fff` | -        |

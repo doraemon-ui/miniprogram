@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Popover mount correctly 1`] = `
+<dora-popover>
+  <wx-view
+    class="dora-class dora-popover dora-popover--theme-light dora-popover--placement-top"
+    style="; "
+  >
+    <dora-animation-group
+      bind:enter="onEnter"
+    />
+  </wx-view>
+  <wx-view
+    class="dora-popover__element"
+    catch:tap="onClick"
+  />
+</dora-popover>
+`;

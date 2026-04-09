@@ -1,104 +1,67 @@
-# CountUp 计数器
+# Countup Countup
 
-用于展现计数器。
+@doraemon-ui/miniprogram.countup
+
+## 安装
+
+我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
+
+```bash
+npm install --save @doraemon-ui/miniprogram.countup
+# or
+yarn add @doraemon-ui/miniprogram.countup
+```
+
+如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
 
 ## 使用指南
 
-### 示例
+### 在 page.json 中引入组件
 
-```html
-<view class="page">
-  <view class="page__hd">
-    <view class="page__title">CountUp</view>
-    <view class="page__desc">计数器</view>
-  </view>
-  <view class="page__bd">
-    <view class="text-center">
-      <view class="countup">{{ c1 }}</view>
-      <view class="countup">{{ c2 }}</view>
-      <view class="countup">{{ c3 }}</view>
-    </view>
-    <view class="weui-btn-area text-center">
-      <button type="primary" size="mini" bindtap="start">Start</button>
-      <button type="primary" size="mini" bindtap="pauseResume">
-        Pause/Resume
-      </button>
-      <button type="primary" size="mini" bindtap="reset">Reset</button>
-      <button type="primary" size="mini" bindtap="update">Update</button>
-    </view>
-  </view>
-</view>
-```
+[json](./playground/countup/pages/index/index.json ':include :type=code')
 
-```js
-import { $wuxCountUp } from '../../dist/index'
+### 示例代码
 
-Page({
-  data: {},
-  onLoad() {
-    this.c1 = new $wuxCountUp(1, 1024, 0, 2, {
-      printValue(value) {
-        this.setData({
-          c1: value,
-        })
-      },
-    })
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/DoraemonUI)
 
-    this.c2 = new $wuxCountUp(0, 88.88, 2, 2, {
-      printValue(value) {
-        this.setData({
-          c2: value,
-        })
-      },
-    })
+<!-- tabs:start -->
 
-    this.c3 = new $wuxCountUp(0, 520, 0, 2, {
-      printValue(value) {
-        this.setData({
-          c3: value,
-        })
-      },
-    })
+#### **WXML**
 
-    this.c1.start()
-    this.c2.start()
-  },
-  start() {
-    this.c3.start(() => {
-      wx.showToast({
-        title: '已完成',
-      })
-    })
-  },
-  reset() {
-    this.c3.reset()
-  },
-  update() {
-    this.c3.update(1314)
-  },
-  pauseResume() {
-    this.c3.pauseResume()
-  },
-})
-```
+[wxml](./playground/countup/pages/index/index.wxml ':include :type=code')
 
-## 视频演示
+#### **JAVASCRIPT**
 
-[CountUp](./_media/countup.mp4 ':include :type=iframe width=375px height=667px')
+[js](./playground/countup/pages/index/index.js ':include :type=code')
+
+#### **WXSS**
+
+[wxss](./playground/countup/pages/index/index.wxss ':include :type=code')
+
+<!-- tabs:end -->
 
 ## API
 
-| 参数                 | 类型       | 描述               | 默认值 |
-| -------------------- | ---------- | ------------------ | ------ |
-| startVal             | `number`   | 起始值             | -      |
-| endVal               | `number`   | 结束值             | -      |
-| decimals             | `number`   | 小数点位数         | 0      |
-| duration             | `number`   | 刷新时间           | 0      |
-| options              | `object`   | 配置项             | -      |
-| options.useEasing    | `boolean`  | 是否开启过渡动画   | true   |
-| options.useGrouping  | `boolean`  | 是否分隔数值       | true   |
-| options.separator    | `string`   | 分隔符             | -      |
-| options.decimal      | `string`   | 小数点符号         | .      |
-| options.easingFn     | `function` | 自定义过渡动画     | -      |
-| options.formattingFn | `function` | 自定义格式化函数   | -      |
-| options.printValue   | `function` | 渲染组件的回调函数 | -      |
+### Countup props
+
+| 参数      | 类型     | 描述           | 默认值       |
+| --------- | -------- | -------------- | ------------ |
+| prefixCls | `string` | 自定义类名前缀 | dora-countup |
+
+### Countup slot
+
+| 名称 | 描述       |
+| ---- | ---------- |
+| -    | 自定义内容 |
+
+### Countup externalClasses
+
+| 名称       | 描述         |
+| ---------- | ------------ |
+| dora-class | 根节点样式类 |
+
+## CSS Variables
+
+| 属性         | 描述     | 默认值 | 全局变量 |
+| ------------ | -------- | ------ | -------- |
+| --text-color | 文字颜色 | `#fff` | -        |

@@ -1,0 +1,17 @@
+.text-center {
+  text-align: center;
+}
+
+.countup {
+  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+  font-size: 72rpx;
+  color: #33cd5f;
+}
+
+.button-sp-area {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16rpx;
+}
+

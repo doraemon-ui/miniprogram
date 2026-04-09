@@ -1,0 +1,29 @@
+<demo-page title="SearchBar" desc="搜索栏">
+  <demo-block title="Normal">
+    <dora-search-bar clear maxlength="8" />
+  </demo-block>
+
+  <demo-block title="Focus">
+    <dora-search-bar clear focus />
+  </demo-block>
+
+  <demo-block title="Show cancel button">
+    <dora-search-bar
+      clear
+      show-cancel
+      value="{{ value }}"
+      controlled
+      placeholder="Search"
+      bind:change="onChange"
+      bind:focus="onFocus"
+      bind:blur="onBlur"
+      bind:confirm="onConfirm"
+      bind:clear="onClear"
+      bind:cancel="onCancel"
+    />
+  </demo-block>
+
+  <demo-block title="Always show clear button">
+    <dora-search-bar clear onlyShowClearWhenFocus="{{ false }}" />
+  </demo-block>
+</demo-page>

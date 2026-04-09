@@ -1,0 +1,100 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-alert {
+  --text-color: var(--dora-color-balanced-contrast, #fff);
+  --background-color: var(--dora-color-balanced, #2dd36f);
+  --border-radius: var(--dora-alert-border-radius, var(--dora-border-radius-sm, 8rpx));
+  --font-size: var(--dora-alert-font-size, 28rpx);
+  padding: var(--dora-alert-padding-vertical,20rpx) var(--dora-alert-padding-horizontal,30rpx);
+  padding: var(--dora-alert-padding-vertical,20rpx) var(--dora-alert-padding-horizontal,30rpx);
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: var(--border-radius);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size);
+  font-size: var(--font-size);
+  color: var(--text-color);
+  color: var(--text-color);
+  background-color: var(--background-color);
+  background-color: var(--background-color)
+}
+.dora-alert__thumb {
+  width: var(--dora-alert-thumb-size,40rpx);
+  width: var(--dora-alert-thumb-size,40rpx);
+  height: var(--dora-alert-thumb-size,40rpx);
+  height: var(--dora-alert-thumb-size,40rpx);
+  display: block;
+  margin-right: var(--dora-alert-thumb-margin,12rpx);
+  margin-right: var(--dora-alert-thumb-margin,12rpx)
+}
+.dora-alert__bd {
+  -ms-flex: 1;
+  flex: 1
+}
+.dora-alert__text {
+  text-align: left
+}
+.dora-alert__desc {
+  text-align: left;
+  line-height: 1.2;
+  font-size: 24rpx
+}
+.dora-alert__ft {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-item-align: center;
+  align-self: center;
+  text-align: right
+}
+.dora-alert__closable:not(:empty) {
+  -ms-flex: none;
+  flex: none;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-left: var(--dora-alert-closable-margin-left,12rpx);
+  margin-left: var(--dora-alert-closable-margin-left,12rpx);
+  cursor: pointer
+}
+.dora-alert--light {
+  --background-color: var(--dora-color-light, #f4f5f8);
+  --text-color: var(--dora-color-light-contrast, #000)
+}
+.dora-alert--stable {
+  --background-color: var(--dora-color-stable, #92949c);
+  --text-color: var(--dora-color-stable-contrast, #fff)
+}
+.dora-alert--positive {
+  --background-color: var(--dora-color-positive, #3880ff);
+  --text-color: var(--dora-color-positive-contrast, #fff)
+}
+.dora-alert--calm {
+  --background-color: var(--dora-color-calm, #3dc2ff);
+  --text-color: var(--dora-color-calm-contrast, #fff)
+}
+.dora-alert--balanced {
+  --background-color: var(--dora-color-balanced, #2dd36f);
+  --text-color: var(--dora-color-balanced-contrast, #fff)
+}
+.dora-alert--energized {
+  --background-color: var(--dora-color-energized, #ffc409);
+  --text-color: var(--dora-color-energized-contrast, #000)
+}
+.dora-alert--assertive {
+  --background-color: var(--dora-color-assertive, #eb445a);
+  --text-color: var(--dora-color-assertive-contrast, #fff)
+}
+.dora-alert--royal {
+  --background-color: var(--dora-color-royal, #8a63d2);
+  --text-color: var(--dora-color-royal-contrast, #fff)
+}
+.dora-alert--dark {
+  --background-color: var(--dora-color-dark, #222428);
+  --text-color: var(--dora-color-dark-contrast, #fff)
+}

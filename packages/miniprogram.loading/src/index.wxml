@@ -1,0 +1,7 @@
+<dora-backdrop id="dora-backdrop" transparent="{{ transparent }}" wx:if="{{ mask && in }}" />
+<dora-animation-group dora-class="{{ classes.wrap }}" in="{{ in }}" classNames="{{ classNames }}">
+  <view class="{{ classes.content }}">
+    <view class="{{ classes.icon }}"></view>
+    <view class="{{ classes.text }}">{{ text }}</view>
+  </view>
+</dora-animation-group>

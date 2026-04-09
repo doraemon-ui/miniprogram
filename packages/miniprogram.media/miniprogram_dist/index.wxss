@@ -1,0 +1,72 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-media {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 30rpx;
+  overflow: hidden
+}
+.dora-media--align-flex-start {
+  -ms-flex-align: start;
+  -ms-grid-row-align: flex-start;
+  align-items: flex-start
+}
+.dora-media--align-flex-end {
+  -ms-flex-align: end;
+  -ms-grid-row-align: flex-end;
+  align-items: flex-end
+}
+.dora-media--align-center {
+  -ms-flex-align: center;
+  -ms-grid-row-align: center;
+  align-items: center
+}
+.dora-media--align-stretch {
+  -ms-flex-align: stretch;
+  -ms-grid-row-align: stretch;
+  align-items: stretch
+}
+.dora-media--align-baseline {
+  -ms-flex-align: baseline;
+  -ms-grid-row-align: baseline;
+  align-items: baseline
+}
+.dora-media__hd {
+  margin-right: .8em;
+  text-align: center
+}
+.dora-media__thumb {
+  width: 120rpx;
+  height: 120rpx;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top
+}
+.dora-media__bd {
+  -ms-flex: 1;
+  flex: 1;
+  min-width: 0
+}
+.dora-media__title {
+  font-weight: 400;
+  font-size: 34rpx;
+  width: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal
+}
+.dora-media__desc {
+  color: var(--dora-color-text-secondary,#999);
+  color: var(--dora-color-text-secondary,#999);
+  font-size: 26rpx;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical
+}

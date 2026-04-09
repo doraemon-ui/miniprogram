@@ -1,8 +1,25 @@
 import { isPlainObject } from './isPlainObject'
 
+/**
+ * DebounceOptions类型定义
+ */
 export type DebounceOptions = {
+  /**
+   * leading
+   * @type {boolean}
+   */
   leading: boolean
+
+  /**
+   * trailing
+   * @type {boolean}
+   */
   trailing: boolean
+
+  /**
+   * maxWait
+   * @type {number}
+   */
   maxWait: number
 }
 
@@ -10,6 +27,9 @@ interface NoReturn<T extends (...args: any[]) => any> {
   (...args: Parameters<T>): any
 }
 
+/**
+ * DebounceReturn类型定义
+ */
 export type DebounceReturn<T extends (...args: any[]) => any> = NoReturn<T> & {
   cancel: () => void
   flush: () => any

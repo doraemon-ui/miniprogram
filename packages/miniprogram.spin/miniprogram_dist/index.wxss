@@ -1,0 +1,138 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-spin {
+  position: relative;
+  display: inline-block
+}
+.dora-spin__spinning {
+  opacity: 1;
+  position: static;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 28rpx;
+  line-height: 1.5;
+  color: #333
+}
+.dora-spin__spinning--nested {
+  vertical-align: middle;
+  text-align: center;
+  font-size: 28rpx;
+  line-height: 1.5;
+  color: #333;
+  display: block;
+  position: absolute;
+  height: 100%;
+  max-height: 640rpx;
+  width: 100%;
+  z-index: 4
+}
+.dora-spin--nested {
+  display: block
+}
+.dora-spin--nested .dora-spin__tip {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  padding-top: 12rpx;
+  text-shadow: 0 2rpx 4rpx #fff
+}
+.dora-spin__dots {
+  width: 38rpx;
+  height: 38rpx;
+  overflow: hidden;
+  display: inline-block;
+  transform: rotate(45deg);
+  animation: dora-spin-rotate 1.2s infinite linear
+}
+.dora-spin--nested .dora-spin__dots {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -19rpx
+}
+.dora-spin__dot {
+  width: 18rpx;
+  height: 18rpx;
+  border-radius: 100%;
+  background-color: #333;
+  transform: scale(.75);
+  display: block;
+  position: absolute;
+  opacity: .45;
+  animation: dora-spin-move 1s infinite linear alternate;
+  transform-origin: 50% 50%;
+  text-indent: -999em
+}
+.dora-spin__dot:first-child {
+  left: 0;
+  top: 0
+}
+.dora-spin__dot:nth-child(2) {
+  right: 0;
+  top: 0;
+  animation-delay: .4s
+}
+.dora-spin__dot:nth-child(3) {
+  right: 0;
+  bottom: 0;
+  animation-delay: .8s
+}
+.dora-spin__dot:nth-child(4) {
+  left: 0;
+  bottom: 0;
+  animation-delay: 1.2s
+}
+.dora-spin--show-text.dora-spin--nested .dora-spin__dots {
+  margin-top: -39rpx
+}
+.dora-spin__container {
+  position: relative;
+  transition: opacity .3s
+}
+.dora-spin__container--blur {
+  overflow: hidden;
+  opacity: .5;
+  filter: blur(1rpx);
+  transform: translateZ(0)
+}
+.dora-spin--small .dora-spin__dots {
+  width: 24rpx;
+  height: 24rpx
+}
+.dora-spin--small.dora-spin--nested .dora-spin__dots {
+  margin: -12rpx
+}
+.dora-spin--small .dora-spin__dot {
+  width: 12rpx;
+  height: 12rpx
+}
+.dora-spin--small.dora-spin--show-text.dora-spin--nested .dora-spin__dots {
+  margin-top: -32rpx
+}
+.dora-spin--large .dora-spin__dots {
+  width: 56rpx;
+  height: 56rpx
+}
+.dora-spin--large.dora-spin--nested .dora-spin__dots {
+  margin: -28rpx
+}
+.dora-spin--large .dora-spin__dot {
+  width: 28rpx;
+  height: 28rpx
+}
+.dora-spin--large.dora-spin--show-text.dora-spin--nested .dora-spin__dots {
+  margin-top: -48rpx
+}
+@keyframes dora-spin-rotate {
+  to {
+    transform: rotate(405deg)
+  }
+}
+@keyframes dora-spin-move {
+  to {
+    opacity: 1
+  }
+}

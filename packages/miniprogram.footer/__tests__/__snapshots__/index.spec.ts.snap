@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer mount correctly 1`] = `
+<dora-footer>
+  <wx-view
+    class="dora-class dora-footer dora-footer--balanced"
+  />
+</dora-footer>
+`;

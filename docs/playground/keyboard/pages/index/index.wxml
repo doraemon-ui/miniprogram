@@ -1,0 +1,11 @@
+<dora-keyboard id="dora-keyboard" />
+
+<demo-page darkmode="auto" title="KeyBoard" desc="数字键盘" clickable spacing>
+  <demo-block title="Actions">
+    <dora-button block type="light" bind:click="open">Open KeyBoard</dora-button>
+    <dora-button block type="light" bind:click="openWitdhDisorder">Open a disorderly KeyBoard</dora-button>
+    <dora-button block type="light" bind:click="openWithPromiseCallback">Open KeyBoard with promise callback</dora-button>
+    <dora-button block type="light" bind:click="openPlain">Plain theme</dora-button>
+    <dora-button block type="light" bind:click="openTimed">Open and close</dora-button>
+  </demo-block>
+</demo-page>

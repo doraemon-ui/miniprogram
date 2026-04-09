@@ -1,0 +1,60 @@
+<view class="dora-class {{ classes.wrap }}">
+  <view class="{{ classes.hd }}">
+    <view wx:if="{{ resultIcon }}" class="{{ classes.icon }}">
+      <icon type="{{ resultIcon.type }}" size="{{ resultIcon.size }}" color="{{ resultIcon.color }}" />
+    </view>
+    <block wx:else>
+      <slot name="header"></slot>
+    </block>
+  </view>
+  <view class="{{ classes.bd }}">
+    <view wx:if="{{ title }}" class="{{ classes.title }}">{{ title }}</view>
+    <view wx:if="{{ label }}" class="{{ classes.desc }}">{{ label }}</view>
+    <view wx:if="{{ buttons.length }}" class="{{ classes.buttons }}">
+      <block wx:for="{{ buttons }}" wx:for-item="button" wx:key="index">
+        <dora-button
+          type="{{ button.type || 'stable' }}"
+          clear="{{ button.clear || false }}"
+          block="{{ button.block || false }}"
+          full="{{ button.full || false }}"
+          outline="{{ button.outline || false }}"
+          size="{{ button.size || 'default' }}"
+          disabled="{{ button.disabled || false }}"
+          loading="{{ button.loading || false }}"
+          formType="{{ button.formType || '' }}"
+          openType="{{ button.openType || '' }}"
+          hoverStopPropagation="{{ button.hoverStopPropagation || false }}"
+          hoverStartTime="{{ button.hoverStartTime || 20 }}"
+          hoverStayTime="{{ button.hoverStayTime || 70 }}"
+          lang="{{ button.lang || 'en' }}"
+          bind:getuserinfo="bindgetuserinfo"
+          sessionFrom="{{ button.sessionFrom || '' }}"
+          sendMessageTitle="{{ button.sendMessageTitle || '' }}"
+          sendMessagePath="{{ button.sendMessagePath || '' }}"
+          sendMessageImg="{{ button.sendMessageImg || '' }}"
+          showMessageCard="{{ button.showMessageCard || false }}"
+          bind:contact="bindcontact"
+          bind:getphonenumber="bindgetphonenumber"
+          appParameter="{{ button.appParameter || '' }}"
+          bind:error="onError"
+          bind:opensetting="bindopensetting"
+          bind:launchapp="bindlaunchapp"
+          bind:chooseavatar="bindchooseavatar"
+          data-index="{{ index }}"
+          bind:click="onClick"
+        >
+          {{ button.text }}
+        </dora-button>
+      </block>
+    </view>
+    <slot></slot>
+  </view>
+  <view class="{{ classes.ft }}">
+    <block wx:if="{{ extra }}">
+      <text>{{ extra }}</text>
+    </block>
+    <block wx:else>
+      <slot name="footer"></slot>
+    </block>
+  </view>
+</view>

@@ -1,0 +1,8 @@
+<demo-page darkmode="auto" title="Rater" desc="评分组件" clickable spacing>
+  <demo-block title="Basic">
+    <dora-rater defaultValue="{{ 3 }}" />
+  </demo-block>
+  <demo-block title="AllowHalf & Controlled">
+    <dora-rater allowHalf controlled value="{{ value }}" bind:change="onChange" />
+  </demo-block>
+</demo-page>

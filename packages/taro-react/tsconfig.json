@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": ".",
     "target": "esnext",
     "module": "es2015",
     "allowJs": false,
@@ -15,7 +17,10 @@
     "sourceMap": false,
     "resolveJsonModule": true,
     "jsx": "react",
-    "jsxFactory": "React.createElement"
+    "jsxFactory": "React.createElement",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "compileOnSave": false,
   "exclude": ["node_modules/*", "miniprogram_dist/*"]

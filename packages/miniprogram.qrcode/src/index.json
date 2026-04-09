@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "dora-spin": "../../miniprogram.spin/src/index",
+    "dora-icon": "../../miniprogram.icon/src/index"
+  }
+}

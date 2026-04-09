@@ -1,0 +1,187 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-keyboard {
+  display: block;
+  width: 100%;
+  color: rgba(var(--dora-text-color-rgb,0,0,0),.55);
+  color: rgba(var(--dora-text-color-rgb,0,0,0),.55);
+  background-color: #f7f7f7
+}
+.dora-keyboard__hd {
+  height: 80rpx;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #1f2324;
+  font-size: 30rpx;
+  position: relative
+}
+.dora-keyboard__hd::after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 1PX;
+  border-bottom: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  border-bottom: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  color: var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  color: var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  transform-origin: 0 100%;
+  transform: scaleY(.5)
+}
+.dora-keyboard__bd {
+  margin: 30rpx 80rpx;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  background-color: var(--dora-keyboard-bg,#f7f7f7);
+  background-color: var(--dora-keyboard-bg,#f7f7f7)
+}
+.dora-keyboard__input {
+  width: 100%;
+  padding: 8rpx;
+  height: var(--dora-keyboard-input-size,80rpx);
+  height: var(--dora-keyboard-input-size,80rpx);
+  min-height: var(--dora-keyboard-input-size,80rpx);
+  min-height: var(--dora-keyboard-input-size,80rpx);
+  text-align: center;
+  box-sizing: border-box
+}
+.dora-keyboard__label {
+  -ms-flex: 1;
+  flex: 1;
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100rpx
+}
+.dora-keyboard__label:not(:last-child)::after {
+  content: "";
+  width: 1px;
+  height: 50%;
+  position: absolute;
+  right: 0;
+  top: 25%;
+  background-color: var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  background-color: var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  transform: scaleX(.5)
+}
+.dora-keyboard__password {
+  width: auto;
+  height: auto;
+  display: none
+}
+.dora-keyboard__password--dot {
+  width: var(--dora-keyboard-dot-size,16rpx);
+  width: var(--dora-keyboard-dot-size,16rpx);
+  height: var(--dora-keyboard-dot-size,16rpx);
+  height: var(--dora-keyboard-dot-size,16rpx);
+  border-radius: 50%;
+  background-color: var(--dora-keyboard-dot-bg,#333);
+  background-color: var(--dora-keyboard-dot-bg,#333)
+}
+.dora-keyboard__password--active {
+  display: block
+}
+.dora-keyboard__ft {
+  background-color: var(--dora-keyboard-bg,#f7f7f7);
+  background-color: var(--dora-keyboard-bg,#f7f7f7);
+  position: relative
+}
+.dora-keyboard__ft::before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 1PX;
+  border-top: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  border-top: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  color: var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  color: var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  transform-origin: 0 0;
+  transform: scaleY(.5)
+}
+.dora-keyboard__title {
+  overflow: hidden;
+  padding: 20rpx 0 12rpx;
+  color: #222;
+  margin-bottom: 2rpx;
+  font-size: 24rpx;
+  text-align: center;
+  background-color: var(--dora-keyboard-bg,#f7f7f7);
+  background-color: var(--dora-keyboard-bg,#f7f7f7)
+}
+.dora-keyboard__numbers {
+  font-size: 48rpx;
+  background-color: var(--dora-keyboard-bg,#f7f7f7);
+  background-color: var(--dora-keyboard-bg,#f7f7f7)
+}
+.dora-keyboard__number {
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%
+}
+.dora-keyboard__text {
+  display: -ms-flexbox;
+  display: flex;
+  width: 1%;
+  -ms-flex: 1;
+  flex: 1;
+  color: #222;
+  height: 100rpx;
+  position: relative;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  overflow: hidden
+}
+.dora-keyboard__text::before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 1PX;
+  border-top: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  border-top: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  color: var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  color: var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  transform-origin: 0 0;
+  transform: scaleY(.5)
+}
+.dora-keyboard__text:not(:last-child)::after {
+  content: " ";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 1PX;
+  bottom: 0;
+  border-right: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  border-right: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  color: var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  color: var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  transform-origin: 100% 0;
+  transform: scaleX(.5)
+}
+.dora-keyboard__text--hover {
+  background-color: #dedede;
+  color: rgba(0,0,0,.6)
+}
+.dora-keyboard__number:last-child .dora-keyboard__text:last-child,
+.dora-keyboard__number:last-child .dora-keyboard__text:nth-last-child(3) {
+  background-color: #f7f7f7;
+  font-size: 30rpx;
+  color: #686868
+}

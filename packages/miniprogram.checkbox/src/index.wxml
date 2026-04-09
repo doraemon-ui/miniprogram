@@ -1,0 +1,72 @@
+<dora-list-item
+  dora-class="{{ classes.cell }}"
+  prefixCls="{{ cellPrefixCls }}"
+  title="{{ title }}"
+  label="{{ label }}"
+  extra="{{ context.iconPosition === 'left' ? extra : '' }}"
+  hasLine="{{ !context.hasFieldDecorator ? (hasLine || context.hasLine) && !isLast : false }}"
+  disabled="{{ disabled || context.disabled }}"
+  hoverClass="{{ !(readOnly || context.readOnly || context.hasFieldDecorator) ? 'default' : 'none' }}"
+  wrapStyle="{{ !context.hasFieldDecorator ? wrapStyle : { paddingLeft: 0, paddingRight: 0, ...wrapStyle } }}"
+  wx:if="{{ context.withListComponent }}"
+>
+  <block wx:if="{{ context.iconPosition === 'left' }}">
+    <view slot="header" class="{{ classes.iconPosition }}">
+      <view class="{{ classes.iconSelectable }}">
+        <dora-selectable
+          dora-class="{{ classes.selectable }}"
+          prefixCls="{{ selectablePrefixCls }}"
+          type="checkbox"
+          value="{{ value }}"
+          checked="{{ inputChecked }}"
+          color="{{ color }}"
+          disabled="{{ disabled || context.disabled }}"
+          readOnly="{{ readOnly || context.readOnly }}"
+          iconSize="{{ context.iconSize }}"
+          iconOn="{{ context.iconOn }}"
+          iconOff="{{ context.iconOff }}"
+          controlled
+          bind:change="checkboxChange"
+        />
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <view slot="header" class="{{ classes.extra }}">{{ extra }}</view>
+    <dora-selectable
+      slot="footer"
+      dora-class="{{ classes.selectable }}"
+      prefixCls="{{ selectablePrefixCls }}"
+      type="checkbox"
+      value="{{ value }}"
+      checked="{{ inputChecked }}"
+      color="{{ color }}"
+      disabled="{{ disabled || context.disabled }}"
+      readOnly="{{ readOnly || context.readOnly }}"
+      iconSize="{{ context.iconSize }}"
+      iconOn="{{ context.iconOn }}"
+      iconOff="{{ context.iconOff }}"
+      controlled
+      bind:change="checkboxChange"
+    />
+  </block>
+</dora-list-item>
+<block wx:else>
+  <dora-selectable
+    dora-class="{{ classes.selectableH }}"
+    prefixCls="{{ selectablePrefixCls }}"
+    type="checkbox"
+    value="{{ value }}"
+    checked="{{ inputChecked }}"
+    color="{{ color }}"
+    disabled="{{ disabled || context.disabled }}"
+    readOnly="{{ readOnly || context.readOnly }}"
+    iconSize="{{ context.iconSize }}"
+    iconOn="{{ context.iconOn }}"
+    iconOff="{{ context.iconOff }}"
+    controlled
+    bind:change="checkboxChange"
+  >
+    {{ title }}
+  </dora-selectable>
+</block>

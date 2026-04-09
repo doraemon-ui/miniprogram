@@ -1,0 +1,25 @@
+<label class="dora-class {{ classes.wrap }}" bindtap="onChange" style="{{ extStyle }}">
+  <block wx:if="{{ type === 'checkbox' }}">
+    <checkbox value="{{ value }}" checked="{{ inputChecked }}" color="{{ inputColor }}" disabled="{{ disabled }}" class="dora-input-class {{ classes.input }}" />
+    <block wx:if="{{ inputChecked && innerIconOn }}">
+      <icon class="{{ classes.icon }}" type="{{ innerIconOn }}" size="{{ innerIconSize }}" color="{{ !disabled ? inputColor : '#666' }}" />
+    </block>
+    <block wx:elif="{{ !inputChecked && innerIconOff }}">
+      <icon class="{{ classes.icon }}" type="{{ innerIconOff }}" size="{{ innerIconSize }}" color="{{ !disabled ? inputColor : '#666' }}" />
+    </block>
+  </block>
+  <block wx:elif="{{ type === 'radio' }}">
+    <radio value="{{ value }}" checked="{{ inputChecked }}" color="{{ inputColor }}" disabled="{{ disabled }}" class="dora-input-class {{ classes.input }}" />
+    <block wx:if="{{ inputChecked && innerIconOn }}">
+      <icon class="{{ classes.icon }}" type="{{ innerIconOn }}" size="{{ innerIconSize }}" color="{{ !disabled ? inputColor : '#666' }}" />
+    </block>
+    <block wx:elif="{{ !inputChecked && innerIconOff }}">
+      <icon class="{{ classes.icon }}" type="{{ innerIconOff }}" size="{{ innerIconSize }}" color="{{ !disabled ? inputColor : '#666' }}" />
+    </block>
+  </block>
+  <block wx:else>
+    <slot name="icon-on" wx:if="{{ inputChecked }}"></slot>
+    <slot name="icon-off" wx:else></slot>
+  </block>
+  <slot></slot>
+</label>

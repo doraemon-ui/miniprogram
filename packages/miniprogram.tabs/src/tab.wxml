@@ -1,0 +1,8 @@
+<view class="dora-class {{ classes.wrap }}" bindtap="onTap">
+  <view class="{{ classes.title }}" wx:if="{{ title }}">{{ title }}</view>
+  <block wx:else>
+    <slot></slot>
+  </block>
+  <view class="{{ classes.bar }}" wx:if="{{ current }}"></view>
+</view>
+

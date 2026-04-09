@@ -2,7 +2,8 @@ import { warn } from '../util/warn'
 import { nextTick } from '../util/nextTick'
 import { isDev } from '../util/env'
 import { util, extend } from '../global-api'
-import { type Config, config } from './config'
+import { config } from './config'
+import type { Config } from './config'
 import type { ComponentOptions, DefaultComputed, DefaultMethods, ExtractComputedReturns } from '../types/options'
 
 let uid: number = 0
@@ -117,8 +118,14 @@ export class Doraemon implements ComponentInternalInstance {
   static sealedOptions: ComponentOptions<Doraemon>
 }
 
+/**
+ * DoraemonClass类型定义
+ */
 export type DoraemonClass<D> = { new (...args: any[]): D & Doraemon } & typeof Doraemon
 
+/**
+ * ComponentRenderProxy类型定义
+ */
 export type ComponentRenderProxy<D extends Doraemon> = WechatMiniprogram.Component.Instance<
   WechatMiniprogram.Component.DataOption,
   WechatMiniprogram.Component.PropertyOption,
@@ -130,9 +137,21 @@ export type ComponentRenderProxy<D extends Doraemon> = WechatMiniprogram.Compone
 
 // If the type T accepts type "any", output type Y, otherwise output type N.
 // https://stackoverflow.com/questions/49927523/disallow-call-with-any/49928360#49928360
+/**
+ * IfAny类型定义
+ */
 export type IfAny<T, Y, N> = 0 extends 1 & T ? Y : N
+/**
+ * Prettify类型定义
+ */
 export type Prettify<T> = { [K in keyof T]: T[K] } & {}
+/**
+ * ComponentCustomProperties接口定义
+ */
 export interface ComponentCustomProperties {}
+/**
+ * ComponentPublicInstance类型定义
+ */
 export type ComponentPublicInstance<
   D extends Doraemon = Doraemon,
   Props = {},
@@ -157,21 +176,68 @@ export type ComponentPublicInstance<
   Methods &
   ComponentCustomProperties
 
+/**
+ * ComponentInternalInstance接口定义
+ */
 export interface ComponentInternalInstance<D extends Doraemon = Doraemon> extends ComponentPublicInstance<D> {
   // private properties
+
+  /**
+   * _isDoraemon
+   * @type {boolean}
+   */
   _isDoraemon: boolean
+
+  /**
+   * _isMounted
+   * @type {boolean}
+   */
   _isMounted: boolean
+
+  /**
+   * _isDestroyed
+   * @type {boolean}
+   */
   _isDestroyed: boolean
+
+  /**
+   * _hasHookEvent
+   * @type {boolean}
+   */
   _hasHookEvent: boolean
 
   // miniprogram component instance
+
+  /**
+   * _renderProxy
+   * @type {ComponentRenderProxy<D>}
+   */
   _renderProxy: ComponentRenderProxy<D>
 
   // exposed properties via expose()
+
+  /**
+   * _exposed
+   * @type {Record<string, any> | null}
+   */
   _exposed: Record<string, any> | null
+
+  /**
+   * _exposeProxy
+   * @type {Record<string, any> | null}
+   */
   _exposeProxy: Record<string, any> | null
 
+  /**
+   * _uid
+   * @type {number}
+   */
   _uid: number
+
+  /**
+   * _self
+   * @type {this}
+   */
   _self: this
 
   /**

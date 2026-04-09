@@ -1,0 +1,71 @@
+@import './variables.less';
+
+// Field styles
+// -----------------------------
+.@{field-prefix-cls} {
+  padding: 24rpx 32rpx;
+  border-bottom: 1px solid @border-color-split;
+
+  &__child {
+    display: flex;
+
+    &--position-right {
+      justify-content: flex-end;
+    }
+
+    &--position-normal {
+      justify-content: normal;
+    }
+  }
+
+  &__label {
+    position: relative;
+    margin-left: 0;
+    margin-bottom: 0;
+    margin-right: @margin-component-base;
+    text-align: left;
+    white-space: nowrap;
+    width: 210rpx;
+
+    &--wrap {
+      white-space: normal;
+    }
+  }
+
+  &__label-help {
+    margin-left: @margin-component-base;
+  }
+
+  &__feedback-message {
+    color: @assertive;
+    margin-top: @margin-component-base;
+  }
+
+  &__required-asterisk {
+    display: inline-block;
+    position: absolute;
+    left: -0.6em;
+    top: 0;
+    color: @assertive;
+  }
+
+  &__required-text {
+    display: inline-block;
+    margin-left: @margin-component-base;
+    color: @text-color-secondary;
+  }
+
+  &__arrow {
+    display: flex;
+  }
+}
+
+.hidden {
+  display: none !important;
+}
+
+.disabled,
+.readOnly {
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+}

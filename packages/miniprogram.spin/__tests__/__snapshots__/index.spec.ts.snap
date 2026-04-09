@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Spin mount correctly 1`] = `
+<dora-spin>
+  <wx-view
+    class="dora-class dora-spin dora-spin--default"
+  >
+    <dora-animation-group
+      doraClass="dora-spin__spinning"
+    >
+      <wx-view
+        class="dora-class dora-class-a dora-class-b dora-class-c  "
+        style=""
+        bind:animationend=""
+        bind:tap="onClick"
+        catch:touchmove=""
+        bind:transitionend="onTransitionEnd"
+      >
+        <wx-view
+          class="dora-spin__dots"
+        >
+          <wx-view
+            class="dora-spin__dot"
+            style=""
+          >
+            dot
+          </wx-view>
+          <wx-view
+            class="dora-spin__dot"
+            style=""
+          >
+            dot
+          </wx-view>
+          <wx-view
+            class="dora-spin__dot"
+            style=""
+          >
+            dot
+          </wx-view>
+          <wx-view
+            class="dora-spin__dot"
+            style=""
+          >
+            dot
+          </wx-view>
+        </wx-view>
+      </wx-view>
+    </dora-animation-group>
+  </wx-view>
+</dora-spin>
+`;

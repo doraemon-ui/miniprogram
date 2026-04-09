@@ -20,7 +20,9 @@ export function callHook(vm: Doraemon, hook: string) {
       try {
         handlers[i].call(vm)
       } catch (e) {
-        /** Ignore */
+        /**
+         * Ignore
+         */
       }
     }
   }

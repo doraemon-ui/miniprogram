@@ -1,0 +1,44 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-result {
+  padding-top: 0;
+  text-align: center
+}
+.dora-result__bd {
+  padding: 48rpx 40rpx
+}
+.dora-result__icon {
+  padding-top: 72rpx;
+  text-align: center
+}
+.dora-result__title {
+  margin-bottom: 10rpx;
+  font-weight: 400;
+  font-size: 48rpx
+}
+.dora-result__desc {
+  font-size: var(--dora-font-size-md,28rpx);
+  font-size: var(--dora-font-size-md,28rpx);
+  color: var(--dora-color-text-secondary,#999);
+  color: var(--dora-color-text-secondary,#999)
+}
+.dora-result__buttons {
+  margin-top: 60rpx
+}
+.dora-result__ft {
+  font-size: var(--dora-font-size-md,28rpx);
+  font-size: var(--dora-font-size-md,28rpx);
+  color: var(--dora-color-text-secondary,#999);
+  color: var(--dora-color-text-secondary,#999)
+}
+.dora-result--fixed .dora-result__ft {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 32rpx;
+  text-align: center;
+  box-sizing: border-box
+}

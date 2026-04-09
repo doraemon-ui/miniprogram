@@ -1,0 +1,11 @@
+<demo-page
+  darkmode="auto"
+  title="miniprogram.form"
+  desc="miniprogram.form"
+  clickable
+  spacing
+>
+  <demo-block title="Basic">
+    <dora-form>miniprogram.form</dora-form>
+  </demo-block>
+</demo-page>

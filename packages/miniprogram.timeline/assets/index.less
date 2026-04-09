@@ -1,0 +1,112 @@
+@import './variables.less';
+
+// Timeline styles
+// -----------------------------
+.@{timeline-prefix-cls} {
+  position: relative;
+}
+
+.@{timeline-item-prefix-cls} {
+  @timeline-font-size: @font-size-base;
+  @timeline-width: 2rpx;
+  @timeline-color: @border-color-base;
+  @timeline-dot-size: 12rpx;
+  @timeline-dot-bg: #fff;
+  @timeline-dot-border-width: 2rpx;
+  @timeline-dot-color: #387ef5;
+
+  position: relative;
+  padding: 0 0 24rpx;
+  margin: 0;
+  font-size: @timeline-font-size;
+  box-sizing: border-box;
+
+  &__tail {
+    height: 100%;
+    border-left: @timeline-width solid @timeline-color;
+    position: absolute;
+    left: 10rpx;
+    top: 0;
+    box-sizing: border-box;
+  }
+
+  &__dot {
+    width: @timeline-dot-size;
+    height: @timeline-dot-size;
+    background-color: @timeline-dot-bg;
+    border-radius: 50%;
+    border: @timeline-dot-border-width solid @timeline-dot-color;
+    position: absolute;
+    color: @timeline-dot-color;
+    box-sizing: border-box;
+
+    &--custom {
+      margin-left: 2rpx !important;
+      left: 10rpx;
+      top: 16rpx;
+      border: 0;
+      border-radius: 0;
+      width: auto;
+      height: auto;
+      background-color: transparent;
+      text-align: center;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &__content {
+    padding: 0 0 20rpx 40rpx;
+    position: relative;
+    top: -10rpx;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  &--last &__tail,
+  &--pending &__tail--pending {
+    display: none;
+  }
+
+  &--last&--pending &__tail {
+    display: block;
+    border-left-style: dotted;
+  }
+
+  &--right &__tail {
+    left: 100%;
+  }
+
+  &--right &__dot {
+    left: 100%;
+    margin-left: -10rpx;
+  }
+
+  &--right &__content {
+    text-align: right;
+    right: 0;
+    left: -40rpx;
+  }
+
+  &--alternate&--right &__tail,
+  &--alternate&--left &__tail {
+    left: 50%;
+  }
+
+  &--alternate&--right &__dot,
+  &--alternate&--left &__dot {
+    left: 50%;
+    margin-left: -10rpx;
+  }
+
+  &--alternate&--right &__content {
+    text-align: right;
+    right: 50%;
+    width: 50%;
+  }
+
+  &--alternate&--left &__content {
+    text-align: left;
+    left: 50%;
+    width: 50%;
+  }
+}

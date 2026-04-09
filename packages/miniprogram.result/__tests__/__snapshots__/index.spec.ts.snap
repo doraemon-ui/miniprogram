@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Result mount correctly 1`] = `
+<dora-result>
+  <wx-view
+    class="dora-class dora-result"
+  >
+    <wx-view
+      class="dora-result__hd"
+    >
+      <wx-view
+        class="dora-result__icon"
+      >
+        <wx-icon
+          color="#33cd5f"
+          size="{{93}}"
+          type="success"
+        />
+      </wx-view>
+    </wx-view>
+    <wx-view
+      class="dora-result__bd"
+    />
+    <wx-view
+      class="dora-result__ft"
+    />
+  </wx-view>
+</dora-result>
+`;

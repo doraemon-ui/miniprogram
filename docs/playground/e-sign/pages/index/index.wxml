@@ -1,0 +1,20 @@
+<demo-page
+  darkmode="auto"
+  title="ESign"
+  desc="电子签名"
+  clickable
+  spacing
+>
+  <demo-block title="Default">
+    <dora-e-sign bind:signing="onSigning" bind:clear="onClear" bind:submit="onSubmit" />
+  </demo-block>
+  <demo-block title="Custom lineColor">
+    <dora-e-sign lineColor="#ff0000" bind:signing="onSigning" bind:clear="onClear" bind:submit="onSubmit" />
+  </demo-block>
+  <demo-block title="Custom lineWidth">
+    <dora-e-sign lineWidth="{{ 6 }}" bind:signing="onSigning" bind:clear="onClear" bind:submit="onSubmit" />
+  </demo-block>
+  <demo-block title="Custom bgColor">
+    <dora-e-sign bgColor="#cccccc" bind:signing="onSigning" bind:clear="onClear" bind:submit="onSubmit" />
+  </demo-block>
+</demo-page>

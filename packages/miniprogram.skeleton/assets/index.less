@@ -1,0 +1,93 @@
+@import './variables.less';
+
+.@{skeleton-prefix-cls} {
+  position: relative;
+  width: 100%;
+}
+
+.avatar-size(@size) {
+  width: @size;
+  height: @size;
+  line-height: @size;
+}
+
+.@{skeleton-avatar-prefix-cls} {
+  display: inline-block;
+  vertical-align: top;
+  background: @skeleton-bg;
+  .avatar-size(@skeleton-avatar-size-base);
+
+  &--small {
+    .avatar-size(@skeleton-avatar-size-sm);
+  }
+
+  &--large {
+    .avatar-size(@skeleton-avatar-size-lg);
+  }
+
+  &--circle {
+    border-radius: 50%;
+  }
+
+  &--rounded {
+    border-radius: @skeleton-radius;
+  }
+
+  &--square {
+    border-radius: 0;
+  }
+
+  &--active {
+    background: linear-gradient(90deg, @skeleton-bg 25%, @skeleton-to-bg 37%, @skeleton-bg 63%);
+    animation: dora-skeleton-loading 1.4s ease infinite;
+    background-size: 400% 100%;
+  }
+}
+
+.@{skeleton-paragraph-prefix-cls} {
+  position: relative;
+  overflow: hidden;
+
+  &__row {
+    height: @skeleton-paragraph-size;
+    background: @skeleton-bg;
+    width: 100%;
+    margin-top: 32rpx;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:nth-child(4n + 1) {
+      width: 80%;
+    }
+    &:nth-child(4n + 2) {
+      width: 100%;
+    }
+    &:nth-child(4n + 3) {
+      width: 70%;
+    }
+    &:nth-child(4n + 4) {
+      width: 85%;
+    }
+  }
+
+  &--rounded &__row {
+    border-radius: @skeleton-radius;
+  }
+
+  &--active &__row {
+    background: linear-gradient(90deg, @skeleton-bg 25%, @skeleton-to-bg 37%, @skeleton-bg 63%);
+    animation: dora-skeleton-loading 1.4s ease infinite;
+    background-size: 400% 100%;
+  }
+}
+
+@keyframes dora-skeleton-loading {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}

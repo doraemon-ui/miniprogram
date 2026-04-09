@@ -1,0 +1,17 @@
+<dora-multi-picker-view
+  id="dora-picker"
+  prefixCls="{{ prefixCls }}"
+  pickerPrefixCls="{{ pickerPrefixCls }}"
+  value="{{ inputValue }}"
+  itemHeight="{{ itemHeight }}"
+  itemStyle="{{ itemStyle }}"
+  indicatorStyle="{{ indicatorStyle }}"
+  indicatorClass="{{ indicatorClass }}"
+  maskStyle="{{ maskStyle }}"
+  maskClass="{{ maskClass }}"
+  labelAlign="{{ labelAlign }}"
+  defaultFieldNames="{{ pickerFieldNamesData }}"
+  options="{{ showOptions }}"
+  loading="{{ loading }}"
+  bind:valueChange="onValueChange"
+/>

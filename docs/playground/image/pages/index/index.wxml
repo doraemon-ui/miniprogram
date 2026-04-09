@@ -1,0 +1,11 @@
+<demo-page
+  darkmode="auto"
+  title="miniprogram.image"
+  desc="miniprogram.image"
+  clickable
+  spacing
+>
+  <demo-block title="Basic">
+    <dora-image>miniprogram.image</dora-image>
+  </demo-block>
+</demo-page>

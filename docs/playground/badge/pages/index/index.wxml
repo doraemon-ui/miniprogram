@@ -1,0 +1,11 @@
+<demo-page
+  darkmode="auto"
+  title="miniprogram.badge"
+  desc="miniprogram.badge"
+  clickable
+  spacing
+>
+  <demo-block title="Basic">
+    <dora-badge>miniprogram.badge</dora-badge>
+  </demo-block>
+</demo-page>

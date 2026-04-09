@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectorGroup mount correctly 1`] = `
+<dora-selector-group>
+  <wx-view
+    class="dora-class dora-selector-group dora-selector-group--balanced"
+    style="--selector-group-columns:3;--selector-group-column-gap:16rpx;"
+  >
+    <wx-view
+      class="dora-selector-group__grid"
+    />
+  </wx-view>
+</dora-selector-group>
+`;

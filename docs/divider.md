@@ -1,62 +1,52 @@
-# Divider 分割线
+# Divider Divider
 
-用于区隔内容的分割线。
+@doraemon-ui/miniprogram.divider
+
+## 安装
+
+我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
+
+```bash
+npm install --save @doraemon-ui/miniprogram.divider
+# or
+yarn add @doraemon-ui/miniprogram.divider
+```
+
+如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
 
 ## 使用指南
 
 ### 在 page.json 中引入组件
 
-```json
-{
-  "navigationBarTitleText": "Divider",
-  "usingComponents": {
-    "wux-divider": "../../dist/divider/index"
-  }
-}
-```
+[json](./playground/divider/pages/index/index.json ':include :type=code')
 
-### 示例
+### 示例代码
 
-```html
-<view class="page">
-  <view class="page__hd">
-    <view class="page__title">Divider</view>
-    <view class="page__desc">分割线</view>
-  </view>
-  <view class="page__bd">
-    <wux-divider show-text="{{ false }}" />
-    <wux-divider show-text="{{ false }}" dashed />
-    <wux-divider position="left" text="Wux Weapp" />
-    <wux-divider text="Wux Weapp" />
-    <wux-divider position="right" text="Wux Weapp" />
-    <wux-divider dashed position="left" text="Wux Weapp" />
-    <wux-divider dashed text="Wux Weapp" />
-    <wux-divider dashed position="right" text="Wux Weapp" />
-    <wux-divider>
-      <view class="loadmore">
-        <view class="loading"></view>
-        <text class="text">正在加载</text>
-      </view>
-    </wux-divider>
-  </view>
-</view>
-```
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/DoraemonUI)
 
-## 视频演示
+<!-- tabs:start -->
 
-[Divider](./_media/divider.mp4 ':include :type=iframe width=375px height=667px')
+#### **WXML**
+
+[wxml](./playground/divider/pages/index/index.wxml ':include :type=code')
+
+#### **JAVASCRIPT**
+
+[js](./playground/divider/pages/index/index.js ':include :type=code')
+
+#### **WXSS**
+
+[wxss](./playground/divider/pages/index/index.wxss ':include :type=code')
+
+<!-- tabs:end -->
 
 ## API
 
 ### Divider props
 
-| 参数      | 类型      | 描述                                           | 默认值      |
-| --------- | --------- | ---------------------------------------------- | ----------- |
-| prefixCls | `string`  | 自定义类名前缀                                 | wux-divider |
-| position  | `string`  | 分割线文字的位置，可选值为 left、center、right | center      |
-| dashed    | `boolean` | 是否显示虚线                                   | false       |
-| text      | `string`  | 文字                                           | -           |
-| showText  | `boolean` | 是否显示文字                                   | true        |
+| 参数      | 类型     | 描述           | 默认值       |
+| --------- | -------- | -------------- | ------------ |
+| prefixCls | `string` | 自定义类名前缀 | dora-divider |
 
 ### Divider slot
 
@@ -66,6 +56,12 @@
 
 ### Divider externalClasses
 
-| 名称      | 描述         |
-| --------- | ------------ |
-| wux-class | 根节点样式类 |
+| 名称       | 描述         |
+| ---------- | ------------ |
+| dora-class | 根节点样式类 |
+
+## CSS Variables
+
+| 属性         | 描述     | 默认值 | 全局变量 |
+| ------------ | -------- | ------ | -------- |
+| --text-color | 文字颜色 | `#fff` | -        |

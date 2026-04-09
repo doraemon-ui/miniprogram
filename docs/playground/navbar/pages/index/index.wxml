@@ -1,0 +1,13 @@
+<demo-page darkmode="auto" title="NavBar" desc="导航栏" clickable spacing>
+  <demo-block title="Default">
+    <dora-navbar leftText="Back" title="NavBar" rightText="Click me!" bind:click="onClick" />
+  </demo-block>
+
+  <demo-block title="Dark">
+    <dora-navbar theme="dark">
+      <dora-icon slot="left" type="ios-arrow-back" size="23" />
+      <view>导航栏</view>
+      <dora-icon slot="right" type="ios-more" size="23" />
+    </dora-navbar>
+  </demo-block>
+</demo-page>

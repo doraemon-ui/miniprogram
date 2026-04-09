@@ -1,4 +1,5 @@
 import { defineComponentHOC, Doraemon, Component, Prop, Watch, Emit } from '@doraemon-ui/miniprogram.core-js'
+import type { PaginationMode } from './types'
 const { classNames } = Doraemon.util
 
 @Component({
@@ -28,7 +29,7 @@ class Pagination extends Doraemon {
     type: String,
     default: 'button',
   })
-  mode: 'button' | 'number' | 'pointer'
+  mode: PaginationMode
 
   /**
    * 默认页号
@@ -164,5 +165,7 @@ class Pagination extends Doraemon {
     this.updated(activeIndex)
   }
 }
+
+export { Pagination }
 
 export default defineComponentHOC()(Pagination)

@@ -1,0 +1,12 @@
+<demo-page darkmode="auto" title="Field" desc="表单字段" clickable spacing>
+  <demo-block title="Basic">
+    <dora-field label="用户名" required help="请输入登录用户名">
+      <dora-input placeholder="请输入用户名"></dora-input>
+    </dora-field>
+  </demo-block>
+  <demo-block title="With Extra">
+    <dora-field label="手机号" extra="中国大陆" childElementPosition="normal">
+      <dora-input placeholder="请输入手机号"></dora-input>
+    </dora-field>
+  </demo-block>
+</demo-page>

@@ -1,132 +1,67 @@
-# SegmentedControl 分段器
+# SegmentedControl SegmentedControl
 
-分段器由至少 2 个分段控件组成，用作不同视图的显示，预设 9 种颜色 `light`, `stable`, `positive`, `calm`, `assertive`, `balanced`, `energized`, `royal`, `dark` 可选用。
+@doraemon-ui/miniprogram.segmented-control
+
+## 安装
+
+我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
+
+```bash
+npm install --save @doraemon-ui/miniprogram.segmented-control
+# or
+yarn add @doraemon-ui/miniprogram.segmented-control
+```
+
+如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
 
 ## 使用指南
 
 ### 在 page.json 中引入组件
 
-```json
-{
-  "navigationBarTitleText": "SegmentedControl",
-  "usingComponents": {
-    "wux-segmented-control": "../../dist/segmented-control/index"
-  }
-}
-```
+[json](./playground/segmented-control/pages/index/index.json ':include :type=code')
 
-### 示例
+### 示例代码
 
-```html
-<view class="page">
-  <view class="page__hd">
-    <view class="page__title">SegmentedControl</view>
-    <view class="page__desc">分段器</view>
-  </view>
-  <view class="page__bd">
-    <view class="sub-title">Default</view>
-    <wux-segmented-control values="{{ ['Segment1', 'Segment2'] }}" />
-    <view class="sub-title">Theme</view>
-    <wux-segmented-control
-      theme="light"
-      values="{{ ['Segment1', 'Segment2'] }}"
-    />
-    <wux-segmented-control
-      theme="stable"
-      values="{{ ['Segment1', 'Segment2'] }}"
-    />
-    <wux-segmented-control
-      theme="positive"
-      values="{{ ['Segment1', 'Segment2'] }}"
-    />
-    <wux-segmented-control
-      theme="calm"
-      values="{{ ['Segment1', 'Segment2'] }}"
-    />
-    <wux-segmented-control
-      theme="balanced"
-      values="{{ ['Segment1', 'Segment2'] }}"
-    />
-    <wux-segmented-control
-      theme="energized"
-      values="{{ ['Segment1', 'Segment2'] }}"
-    />
-    <wux-segmented-control
-      theme="assertive"
-      values="{{ ['Segment1', 'Segment2'] }}"
-    />
-    <wux-segmented-control
-      theme="royal"
-      values="{{ ['Segment1', 'Segment2'] }}"
-    />
-    <wux-segmented-control
-      theme="dark"
-      values="{{ ['Segment1', 'Segment2'] }}"
-    />
-    <view class="sub-title">Disabled</view>
-    <wux-segmented-control disabled values="{{ ['Segment1', 'Segment2'] }}" />
-    <view class="sub-title">DefaultCurrent</view>
-    <wux-segmented-control
-      default-current="2"
-      values="{{ ['Segment1', 'Segment2', 'Segment3'] }}"
-    />
-    <view class="sub-title">Controlled</view>
-    <wux-segmented-control
-      current="{{ current }}"
-      controlled
-      values="{{ ['Segment1', 'Segment2', 'Segment3'] }}"
-      bind:change="onChange"
-    />
-  </view>
-</view>
-```
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/DoraemonUI)
 
-```js
-Page({
-  data: {
-    current: 1,
-  },
-  onLoad() {
-    this.key = Math.floor(Math.random() * 3)
-  },
-  onChange(e) {
-    console.log(e)
+<!-- tabs:start -->
 
-    if (e.detail.key === this.key) {
-      return wx.showModal({
-        title: 'No switching is allowed',
-        showCancel: !1,
-      })
-    }
+#### **WXML**
 
-    this.setData({
-      current: e.detail.key,
-    })
-  },
-})
-```
+[wxml](./playground/segmented-control/pages/index/index.wxml ':include :type=code')
 
-## 视频演示
+#### **JAVASCRIPT**
 
-[SegmentedControl](./_media/segmented-control.mp4 ':include :type=iframe width=375px height=667px')
+[js](./playground/segmented-control/pages/index/index.js ':include :type=code')
+
+#### **WXSS**
+
+[wxss](./playground/segmented-control/pages/index/index.wxss ':include :type=code')
+
+<!-- tabs:end -->
 
 ## API
 
 ### SegmentedControl props
 
-| 参数           | 类型       | 描述                                                                                        | 默认值      |
-| -------------- | ---------- | ------------------------------------------------------------------------------------------- | ----------- |
-| prefixCls      | `string`   | 自定义类名前缀                                                                              | wux-segment |
-| theme          | `string`   | 主题色，可选值为 light、stable、positive、calm、assertive、balanced、energized、royal、dark | balanced    |
-| defaultCurrent | `number`   | 默认激活 tab 面板的 key，当 `controlled` 为 `false` 时才生效                                | 0           |
-| current        | `number`   | 用于手动激活 tab 面板的 key，当 `controlled` 为 `true` 时才生效                             | 0           |
-| controlled     | `boolean`  | 是否受控 [说明文档](controlled.md)                                                          | false       |
-| disabled       | `boolean`  | 是否禁用                                                                                    | false       |
-| values         | `array`    | 选项数组                                                                                    | []          |
-| bind:change    | `function` | 切换面板的回调函数                                                                          | -           |
+| 参数      | 类型     | 描述           | 默认值                 |
+| --------- | -------- | -------------- | ---------------------- |
+| prefixCls | `string` | 自定义类名前缀 | dora-segmented-control |
+
+### SegmentedControl slot
+
+| 名称 | 描述       |
+| ---- | ---------- |
+| -    | 自定义内容 |
 
 ### SegmentedControl externalClasses
 
-| 名称      | 描述         |
-| --------- | ------------ |
-| wux-class | 根节点样式类 |
+| 名称       | 描述         |
+| ---------- | ------------ |
+| dora-class | 根节点样式类 |
+
+## CSS Variables
+
+| 属性         | 描述     | 默认值 | 全局变量 |
+| ------------ | -------- | ------ | -------- |
+| --text-color | 文字颜色 | `#fff` | -        |

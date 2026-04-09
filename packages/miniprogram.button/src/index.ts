@@ -1,4 +1,5 @@
-import { type CustomEvent, defineComponentHOC, Doraemon, Component, Event, Emit, Prop } from '@doraemon-ui/miniprogram.core-js'
+import { defineComponentHOC, Doraemon, Component, Event, Emit, Prop } from '@doraemon-ui/miniprogram.core-js'
+import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
 import type { PresetColor, NativeButtonOpenType } from '@doraemon-ui/miniprogram.shared'
 const { classNames } = Doraemon.util
 
@@ -308,7 +309,6 @@ class Button extends Doraemon {
    *
    * @description 根据组件属性动态生成按钮的包裹类名和点击态类名
    * @readonly
-   * @returns {{ wrap: string, hover: string }} 包含 wrap（按钮类名）和 hover（点击态类名）的对象
    * @memberof Button
    */
   get classes() {
@@ -478,5 +478,7 @@ class Button extends Doraemon {
     return e.target
   }
 }
+
+export { Button }
 
 export default defineComponentHOC()(Button)

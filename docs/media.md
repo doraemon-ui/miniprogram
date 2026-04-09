@@ -1,81 +1,52 @@
-# Media 媒体对象
+# Media Media
 
-用于在一个内容块的左边或右边展示一个多媒体内容。
+@doraemon-ui/miniprogram.media
+
+## 安装
+
+我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
+
+```bash
+npm install --save @doraemon-ui/miniprogram.media
+# or
+yarn add @doraemon-ui/miniprogram.media
+```
+
+如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
 
 ## 使用指南
 
 ### 在 page.json 中引入组件
 
-```json
-{
-  "navigationBarTitleText": "Media",
-  "usingComponents": {
-    "wux-media": "../../dist/media/index"
-  }
-}
-```
+[json](./playground/media/pages/index/index.json ':include :type=code')
 
-### 示例
+### 示例代码
 
-```html
-<view class="page">
-  <view class="page__hd">
-    <view class="page__title">Media</view>
-    <view class="page__desc">媒体对象</view>
-  </view>
-  <view class="page__bd">
-    <view class="sub-title">Default</view>
-    <wux-media
-      title="标题一"
-      label="由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。"
-    ></wux-media>
-    <view class="sub-title">Thumb</view>
-    <wux-media
-      thumb="http://cdn.skyvow.cn/logo.png"
-      title="标题一"
-      label="由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。"
-    ></wux-media>
-    <view class="sub-title">Custom thumb style</view>
-    <wux-media
-      thumb="http://cdn.skyvow.cn/logo.png"
-      thumb-style="border-radius: 50%"
-      title="标题一"
-      label="由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。"
-    ></wux-media>
-    <view class="sub-title">Nesting</view>
-    <wux-media
-      align="flex-start"
-      thumb="http://cdn.skyvow.cn/logo.png"
-      title="标题一"
-      label="由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。"
-    >
-      <wux-media
-        align="flex-start"
-        thumb="http://cdn.skyvow.cn/logo.png"
-        title="标题一"
-        label="由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。"
-      ></wux-media>
-    </wux-media>
-  </view>
-</view>
-```
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/DoraemonUI)
 
-## 视频演示
+<!-- tabs:start -->
 
-[Media](./_media/media.mp4 ':include :type=iframe width=375px height=667px')
+#### **WXML**
+
+[wxml](./playground/media/pages/index/index.wxml ':include :type=code')
+
+#### **JAVASCRIPT**
+
+[js](./playground/media/pages/index/index.js ':include :type=code')
+
+#### **WXSS**
+
+[wxss](./playground/media/pages/index/index.wxss ':include :type=code')
+
+<!-- tabs:end -->
 
 ## API
 
 ### Media props
 
-| 参数       | 类型            | 描述                                                     | 默认值    |
-| ---------- | --------------- | -------------------------------------------------------- | --------- |
-| prefixCls  | `string`        | 自定义类名前缀                                           | wux-media |
-| title      | `string`        | 标题                                                     | -         |
-| thumb      | `string`        | 标题图片                                                 | -         |
-| thumbStyle | `string,object` | 标题图片样式                                             | -         |
-| label      | `string`        | 标题辅助内容                                             | -         |
-| align      | `string`        | 对齐方式，可选值为 start、center、end、baseline、stretch | center    |
+| 参数      | 类型     | 描述           | 默认值     |
+| --------- | -------- | -------------- | ---------- |
+| prefixCls | `string` | 自定义类名前缀 | dora-media |
 
 ### Media slot
 
@@ -85,6 +56,12 @@
 
 ### Media externalClasses
 
-| 名称      | 描述         |
-| --------- | ------------ |
-| wux-class | 根节点样式类 |
+| 名称       | 描述         |
+| ---------- | ------------ |
+| dora-class | 根节点样式类 |
+
+## CSS Variables
+
+| 属性         | 描述     | 默认值 | 全局变量 |
+| ------------ | -------- | ------ | -------- |
+| --text-color | 文字颜色 | `#fff` | -        |

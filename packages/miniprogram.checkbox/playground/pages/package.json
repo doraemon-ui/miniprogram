@@ -1,0 +1,26 @@
+{
+  "name": "miniprogram.checkbox",
+  "private": true,
+  "version": "0.0.1",
+  "description": "miniprogram checkbox component demo for doraemon-ui",
+  "author": "skyvow",
+  "homepage": "",
+  "license": "MIT",
+  "main": "app.js",
+  "keywords": [
+    "doraemon-ui",
+    "miniprogram",
+    "checkbox"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@doraemon-ui/miniprogram.demo-block": "^0.0.1-alpha.2",
+    "@doraemon-ui/miniprogram.demo-page": "^0.0.1-alpha.2",
+    "@doraemon-ui/miniprogram.demo-shared": "^0.0.1-alpha.1",
+    "@doraemon-ui/miniprogram.list": "^0.0.2-alpha.42",
+    "@doraemon-ui/miniprogram.selectable": "^0.0.1-alpha.0",
+    "@doraemon-ui/miniprogram.checkbox": "^0.0.1-alpha.0"
+  }
+}

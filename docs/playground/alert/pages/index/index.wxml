@@ -1,0 +1,44 @@
+<demo-page
+  darkmode="auto"
+  title="Alert"
+  desc="警告框"
+  clickable
+  spacing
+>
+  <demo-block title="Theme">
+    <dora-alert theme="light" title="https://github.com/wux-weapp/wux-weapp" />
+    <dora-alert theme="stable" title="https://github.com/wux-weapp/wux-weapp" />
+    <dora-alert theme="positive" title="https://github.com/wux-weapp/wux-weapp" />
+    <dora-alert theme="calm" title="https://github.com/wux-weapp/wux-weapp" />
+    <dora-alert theme="assertive" title="https://github.com/wux-weapp/wux-weapp" />
+    <dora-alert theme="balanced" title="https://github.com/wux-weapp/wux-weapp" />
+    <dora-alert theme="energized" title="https://github.com/wux-weapp/wux-weapp" />
+    <dora-alert theme="royal" title="https://github.com/wux-weapp/wux-weapp" />
+    <dora-alert theme="dark" title="https://github.com/wux-weapp/wux-weapp" />
+  </demo-block>
+  <demo-block title="Closable">
+    <dora-alert closable title="微信小程序自定义组件" label="https://github.com/wux-weapp/wux-weapp" />
+    <dora-alert closable title="微信小程序自定义组件" label="https://github.com/wux-weapp/wux-weapp" />
+    <dora-alert closable title="微信小程序自定义组件" label="https://github.com/wux-weapp/wux-weapp" />
+  </demo-block>
+  <demo-block title="Thumb">
+    <dora-alert thumb="http://cdn.skyvow.cn/logo.png" label="https://github.com/wux-weapp/wux-weapp" />
+    <dora-alert thumb="http://cdn.skyvow.cn/logo.png" label="https://github.com/wux-weapp/wux-weapp" />
+    <dora-alert thumb="http://cdn.skyvow.cn/logo.png" label="https://github.com/wux-weapp/wux-weapp" />
+  </demo-block>
+  <demo-block title="Slot">
+    <dora-alert theme="balanced">
+      <dora-icon dora-class="thumb" type="ios-checkmark-circle-outline" size="20" color="#fff" slot="header" />
+      <text>微信小程序自定义组件</text>
+      <dora-icon dora-class="close" type="ios-close-circle-outline" size="20" color="#fff" slot="footer" />
+    </dora-alert>
+    <dora-alert theme="energized">
+      <dora-icon dora-class="thumb" type="ios-alert" size="20" color="#000" slot="header" />
+      <text>微信小程序自定义组件</text>
+    </dora-alert>
+    <dora-alert theme="assertive">
+      <dora-icon dora-class="thumb" type="ios-close-circle-outline" size="20" color="#fff" slot="header" />
+      <text>微信小程序自定义组件</text>
+    </dora-alert>
+  </demo-block>
+</demo-page>

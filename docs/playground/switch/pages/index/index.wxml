@@ -1,0 +1,28 @@
+<demo-page title="Switch" desc="滑动开关" spacing>
+  <demo-block title="Themes">
+    <dora-switch color="light" value="{{ value1 }}" bind:change="onChange1" />
+    <dora-switch color="stable" value="{{ value1 }}" bind:change="onChange1" />
+    <dora-switch color="positive" value="{{ value1 }}" bind:change="onChange1" />
+    <dora-switch color="calm" value="{{ value1 }}" bind:change="onChange1" />
+    <dora-switch color="balanced" value="{{ value1 }}" bind:change="onChange1" />
+    <dora-switch color="energized" value="{{ value1 }}" bind:change="onChange1" />
+    <dora-switch color="assertive" value="{{ value1 }}" bind:change="onChange1" />
+    <dora-switch color="royal" value="{{ value1 }}" bind:change="onChange1" />
+    <dora-switch color="dark" value="{{ value1 }}" bind:change="onChange1" />
+  </demo-block>
+  <demo-block title="States">
+    <dora-switch value="{{ value2 }}" bind:change="onChange2" />
+    <dora-switch value="{{ value3 }}" bind:change="onChange3" />
+    <dora-switch value="{{ value4 }}" color="red" bind:change="onChange4" />
+    <dora-switch value="{{ value5 }}" color="yellow" bind:change="onChange5" />
+    <dora-switch value="{{ true }}" disabled />
+    <dora-switch value="{{ false }}" disabled />
+    <dora-switch value="{{ value5 }}" checkedText="开" uncheckedText="关" bind:change="onChange5" />
+    <dora-switch value="{{ value5 }}" bind:change="onChange5">
+      <text slot="checked">√</text>
+      <text slot="unchecked">×</text>
+    </dora-switch>
+    <dora-switch value="{{ value6 }}" loading bind:change="onChange6" />
+    <dora-switch color="positive" value="{{ value7 }}" loading="{{ loading }}" bind:change="onChange7" />
+  </demo-block>
+</demo-page>

@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Timeago mount correctly 1`] = `
+<dora-timeago>
+  <wx-text
+    class="dora-class dora-timeago"
+  >
+    
+  </wx-text>
+</dora-timeago>
+`;

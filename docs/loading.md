@@ -1,75 +1,67 @@
-# Loading 指示器
+# Loading Loading
 
-用于展现 loading 提示框。
+@doraemon-ui/miniprogram.loading
+
+## 安装
+
+我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
+
+```bash
+npm install --save @doraemon-ui/miniprogram.loading
+# or
+yarn add @doraemon-ui/miniprogram.loading
+```
+
+如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
 
 ## 使用指南
 
 ### 在 page.json 中引入组件
 
-```json
-{
-  "navigationBarTitleText": "Loading",
-  "usingComponents": {
-    "wux-button": "../../dist/button/index",
-    "wux-loading": "../../dist/loading/index"
-  }
-}
-```
+[json](./playground/loading/pages/index/index.json ':include :type=code')
 
-### 示例
+### 示例代码
 
-!> 该组件主要依靠 JavaScript 主动调用，所以一般只需在 wxml 中添加一个组件，并设置 id 为 `#wux-loading` 或其他，之后在 page.js 中调用 `$wuxLoading(id)` 获取匹配到的第一个组件实例对象。
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/DoraemonUI)
 
-```html
-<wux-loading id="wux-loading" />
+<!-- tabs:start -->
 
-<view class="page">
-  <view class="page__hd">
-    <view class="page__title">Loading</view>
-    <view class="page__desc">指示器</view>
-  </view>
-  <view class="page__bd page__bd_spacing">
-    <wux-button block type="light" bind:click="showLoading"
-      >加载中提示</wux-button
-    >
-  </view>
-</view>
-```
+#### **WXML**
 
-```js
-import { $wuxLoading } from '../../dist/index'
+[wxml](./playground/loading/pages/index/index.wxml ':include :type=code')
 
-Page({
-  data: {},
-  onLoad() {},
-  showLoading() {
-    this.$wuxLoading = $wuxLoading()
-    this.$wuxLoading.show({
-      text: '数据加载中',
-    })
+#### **JAVASCRIPT**
 
-    setTimeout(() => {
-      this.$wuxLoading.hide()
-    }, 1500)
-  },
-})
-```
+[js](./playground/loading/pages/index/index.js ':include :type=code')
 
-## 视频演示
+#### **WXSS**
 
-[Loading](./_media/loading.mp4 ':include :type=iframe width=375px height=667px')
+[wxss](./playground/loading/pages/index/index.wxss ':include :type=code')
+
+<!-- tabs:end -->
 
 ## API
 
-| 参数               | 类型      | 描述                                                                    | 默认值              |
-| ------------------ | --------- | ----------------------------------------------------------------------- | ------------------- |
-| options            | `object`  | 配置项                                                                  | -                   |
-| options.prefixCls  | `string`  | 自定义类名前缀                                                          | wux-loading         |
-| options.classNames | `any`     | 过渡的类名，更多内置过渡效果请参考 [AnimationGroup](animation-group.md) | wux-animate--fadeIn |
-| options.text       | `string`  | 提示文本                                                                | 数据加载中          |
-| options.mask       | `boolean` | 是否显示蒙层                                                            | true                |
+### Loading props
 
-### Loading.method
+| 参数      | 类型     | 描述           | 默认值       |
+| --------- | -------- | -------------- | ------------ |
+| prefixCls | `string` | 自定义类名前缀 | dora-loading |
 
-- Loading.show
-- Loading.hide
+### Loading slot
+
+| 名称 | 描述       |
+| ---- | ---------- |
+| -    | 自定义内容 |
+
+### Loading externalClasses
+
+| 名称       | 描述         |
+| ---------- | ------------ |
+| dora-class | 根节点样式类 |
+
+## CSS Variables
+
+| 属性         | 描述     | 默认值 | 全局变量 |
+| ------------ | -------- | ------ | -------- |
+| --text-color | 文字颜色 | `#fff` | -        |

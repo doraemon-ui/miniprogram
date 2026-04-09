@@ -1,0 +1,51 @@
+<block wx:if="{{ context.layout !== 'none' }}">
+  <view
+    id="dora-field-wrap"
+    class="dora-class {{ classes.wrap }} {{ hidden ? 'hidden' : '' }} {{ (disabled || context.disabled) ? 'disabled' : (readOnly || context.readOnly) ? 'readOnly' : '' }}"
+  >
+    <view class="{{ classes.label }}" wx:if="{{ !!label || mergedRequired || !!help }}">
+      <text>{{ label }}</text>
+      <block wx:if="{{ mergedRequired }}">
+        <view class="{{ classes.asterisk }}" wx:if="{{ context.requiredMarkStyle === 'asterisk' }}">{{ context.asteriskText }}</view>
+        <view class="{{ classes.text }}" wx:elif="{{ context.requiredMarkStyle === 'text-required' }}">({{ context.requiredText }})</view>
+      </block>
+      <block wx:else>
+        <view class="{{ classes.text }}" wx:if="{{ context.requiredMarkStyle === 'text-optional' }}">({{ context.optionalText }})</view>
+      </block>
+      <block wx:if="{{ !!help }}">
+        <dora-icon class="{{ classes.labelHelp }}" type="ios-information-circle" color="#B2B2B2" size="14" catchtap="setPopoverVisible" />
+      </block>
+    </view>
+    <view class="{{ classes.child }}" wx:if="{{ childElementPosition !== 'none' }}">
+      <slot></slot>
+    </view>
+    <block wx:else>
+      <slot></slot>
+    </block>
+    <view wx:if="{{ hasFeedback && feedbackMessage.length > 0 }}">
+      <view class="{{ classes.feedback }}" wx:for="{{ feedbackMessage }}" wx:for-item="h" wx:key="index">{{ h }}</view>
+    </view>
+    <view class="{{ classes.extra }}" wx:if="{{ extra }}">{{ extra }}</view>
+    <view class="{{ classes.extra }}" wx:else>
+      <slot name="extra"></slot>
+    </view>
+    <view class="{{ classes.arrow }}" wx:if="{{ !isLink }}">
+      <slot name="arrow"></slot>
+    </view>
+    <dora-popover
+      visible="{{ popoverVisible }}"
+      controlled
+      theme="dark"
+      placement="top"
+      content="{{ help }}"
+      useSlot="{{ false }}"
+      slotRect="{{ slotRect }}"
+      relativeRect="{{ relativeRect }}"
+      bind:change="onPopoverChange"
+      wx:if="{{ help }}"
+    />
+  </view>
+</block>
+<block wx:else>
+  <slot></slot>
+</block>

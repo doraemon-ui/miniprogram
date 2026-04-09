@@ -1,0 +1,18 @@
+.icon-on {
+  width: 18px;
+  height: 18px;
+  background: #33cd5f;
+  border-radius: 4px;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.icon-off {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #b2b2b2;
+  border-radius: 4px;
+  display: inline-block;
+  margin-right: 6px;
+}
+

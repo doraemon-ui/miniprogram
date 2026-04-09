@@ -1,0 +1,17 @@
+<dora-popup
+  visible="{{ visible }}"
+  mask="{{ showMask }}"
+  maskClosable="{{ maskClosable }}"
+  closable="{{ false }}"
+  bodyStyle="{{ popupBodyStyle }}"
+  bind:close="onClose"
+>
+  <view class="dora-class {{ classes.wrap }}">
+    <view class="{{ classes.inner }}">
+      <slot></slot>
+    </view>
+    <view class="{{ classes.close }}" wx:if="{{ closable }}" bindtap="onClose">
+      <text class="{{ classes.x }}"></text>
+    </view>
+  </view>
+</dora-popup>

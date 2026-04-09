@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Upload mount correctly 1`] = `
+<dora-upload>
+  <wx-view
+    class="dora-class dora-upload dora-upload--text"
+  >
+    <wx-view
+      class="dora-upload__files"
+    >
+      <wx-view
+        class="dora-upload__select"
+        bind:tap="onSelect"
+      >
+        <wx-view
+          class="dora-upload__button"
+        />
+      </wx-view>
+    </wx-view>
+  </wx-view>
+</dora-upload>
+`;

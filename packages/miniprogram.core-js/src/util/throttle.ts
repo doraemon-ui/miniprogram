@@ -1,7 +1,14 @@
-import { type DebounceOptions, type DebounceReturn, debounce } from './debounce'
+import { debounce } from './debounce'
+import type { DebounceOptions, DebounceReturn } from './debounce'
 import { isPlainObject } from './isPlainObject'
 
+/**
+ * ThrottleOptions类型定义
+ */
 export type ThrottleOptions = Omit<DebounceOptions, 'maxWait'>
+/**
+ * ThrottleReturn类型定义
+ */
 export type ThrottleReturn<T extends (...args: any[]) => any> = DebounceReturn<T>
 
 let FUNC_ERROR_TEXT = 'Expected a function'

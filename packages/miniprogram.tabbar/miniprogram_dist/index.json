@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "dora-tabbar-item": "./tabbar-item"
+  }
+}

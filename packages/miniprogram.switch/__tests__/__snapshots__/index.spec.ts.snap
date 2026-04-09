@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Switch mount correctly 1`] = `
+<dora-switch>
+  <wx-view
+    ariaChecked="{{false}}"
+    ariaDisabled="{{false}}"
+    ariaLabel="switch"
+    ariaRole="switch"
+    class="dora-class dora-switch dora-switch--balanced"
+  >
+    <wx-view
+      class="dora-switch__input"
+      style=""
+      bind:tap="onTap"
+    >
+      <wx-view
+        class="dora-switch__text"
+      />
+    </wx-view>
+  </wx-view>
+</dora-switch>
+`;

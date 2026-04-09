@@ -1,64 +1,15 @@
-import {
-  getCurrentPage,
-  findComponentNode,
-  usePopupStateHOC,
-  isObject,
-  isString,
-  isTrue,
-  isFalse,
-  type MiniprogramPublicInstance,
-} from '@doraemon-ui/miniprogram.shared'
-import type { ToastInstance } from '.'
-
-/**
- * 预设的图标的类型
- *
- * @export
- */
-export type ToastPresetIcon = 'success' | 'error' | 'warning' | 'loading'
-
-/**
- * 图标的类型
- *
- * @export
- */
-export type ToastIcon = ToastPresetIcon | string
-
-/**
- * 显示位置的类型
- *
- * @export
- */
-export type ToastPosition = 'top' | 'bottom' | 'center'
-
-/**
- * 轻提示对应参数的类型
- *
- * @export
- * @interface ToastProps
- */
-export interface ToastProps {
-  /** 自定义类名前缀 */
-  prefixCls?: string
-  /** 自定义图片，image 的优先级高于 icon */
-  image?: string
-  /** 图标，可选值为 success、error、warning、loading */
-  icon?: ToastIcon
-  /** 图标的颜色 */
-  iconColor?: string
-  /** 提示文本 */
-  text?: string
-  /** 垂直方向显示位置，可选值为 top、bottom、center */
-  position?: ToastPosition
-  /** 是否显示蒙层 */
-  mask?: boolean
-  /** 点击蒙层是否允许关闭 */
-  maskClosable?: boolean
-  /** 是否可见 */
-  visible?: boolean
-  /** 设置蒙层的 z-index */
-  zIndex?: number
-}
+import { getCurrentPage, findComponentNode, usePopupStateHOC, isObject, isString, isTrue, isFalse } from '@doraemon-ui/miniprogram.shared'
+import type { MiniprogramPublicInstance } from '@doraemon-ui/miniprogram.shared'
+import type {
+  ToastIcon,
+  ToastInstance,
+  ToastInternalProps,
+  ToastPosition,
+  ToastPresetIcon,
+  ToastProps,
+  ToastShowOptions,
+  ToastShowProps,
+} from './types'
 
 /**
  * 预设的图标
@@ -72,32 +23,6 @@ export const presetIconRecord: {
   error: 'close-circle-outline',
   warning: 'alert',
   loading: 'loading-outline',
-}
-
-/**
- * show 方法对应参数的类型
- *
- * @export
- */
-export type ToastShowProps = Omit<ToastProps, 'visible'> & {
-  /** 提示的延迟时间，若小于等于 0 则不会自动关闭 */
-  duration?: number
-  /** 点击关闭按钮或蒙层的回调函数 */
-  onClose?: () => void
-  /** 关闭后的回调函数 */
-  onClosed?: () => void
-}
-
-/**
- * 轻提示的参数
- *
- * @export
- */
-export type ToastShowOptions = {
-  /** 组件的选择器 */
-  selector?: string
-  /** 页面的实例 */
-  instance?: MiniprogramPublicInstance
 }
 
 /**
@@ -205,13 +130,6 @@ function show(p: ToastShowProps | string, selector?: ToastShowOptions | string, 
   }
   return () => destroy()
 }
-
-/**
- * 指令式方法对应参数的类型
- *
- * @export
- */
-export type ToastInternalProps = Omit<ToastShowProps, 'image' | 'icon' | 'iconColor'>
 
 function success(p: ToastInternalProps | string, options?: ToastShowOptions): Promise<void>
 function success(p: ToastInternalProps | string, selector?: string, instance?: MiniprogramPublicInstance): Promise<void>

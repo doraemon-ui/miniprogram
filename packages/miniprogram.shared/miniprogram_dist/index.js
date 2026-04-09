@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.shared.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-02-22, 01:41:58.
+ * Built on 2026-02-26, 17:28:26.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
  */
 
@@ -114,6 +114,17 @@ function buildURL(url, params) {
     return url;
 }
 
+function getDefaultContext(props, fields = []) {
+    const clone = {};
+    if (Array.isArray(fields)) {
+        fields.forEach((key) => {
+            const prop = props[key];
+            clone[key] = typeof prop === 'object' ? prop.value : prop;
+        });
+    }
+    return clone;
+}
+
 function isDef(v) {
     return v !== undefined && v !== null;
 }
@@ -165,6 +176,7 @@ function sleep(time) {
 
 var util = {
     buildURL,
+    getDefaultContext,
     isDate,
     isDef,
     isFalse,
@@ -697,4 +709,4 @@ var index = {
     ...util,
 };
 
-export { NATIVE_ROUTES, buildURL, canUseMP, chooseMedia, index as default, dom, findComponentNode, getCurrentPage, getMenuButtonBoundingClientRectSync, getPointsDistance, getPointsNumber, getSwipeDirection, getSystemInfoSync, getTouchPoints, isDate, isDef, isEqualPoints, isFalse, isNearbyPoints, isObject, isPromise, isString, isTrue, isUndef, miniprogramThis, nextTick, noop, omit, pxToNumber, sleep, uploadFile, useComputedStyle, useNativeRoute, usePopupStateHOC, useQuery, useRect, useRectAll, useRef, useRefAll, useScrollOffset, useSelector, useSelectorAll, util, vibrateShort };
+export { NATIVE_ROUTES, buildURL, canUseMP, chooseMedia, index as default, dom, findComponentNode, getCurrentPage, getDefaultContext, getMenuButtonBoundingClientRectSync, getPointsDistance, getPointsNumber, getSwipeDirection, getSystemInfoSync, getTouchPoints, isDate, isDef, isEqualPoints, isFalse, isNearbyPoints, isObject, isPromise, isString, isTrue, isUndef, miniprogramThis, nextTick, noop, omit, pxToNumber, sleep, uploadFile, useComputedStyle, useNativeRoute, usePopupStateHOC, useQuery, useRect, useRectAll, useRef, useRefAll, useScrollOffset, useSelector, useSelectorAll, util, vibrateShort };

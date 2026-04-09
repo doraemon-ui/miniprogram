@@ -1,0 +1,24 @@
+<demo-page
+  darkmode="auto"
+  title="CountUp"
+  desc="计数器"
+  clickable
+  spacing
+>
+  <demo-block title="CountUp">
+    <view class="text-center">
+      <view class="countup">{{ c1 }}</view>
+      <view class="countup">{{ c2 }}</view>
+      <view class="countup">{{ c3 }}</view>
+    </view>
+  </demo-block>
+
+  <demo-block title="Control">
+    <view class="button-sp-area">
+      <dora-button type="light" size="small" bind:click="start">Start</dora-button>
+      <dora-button type="light" size="small" bind:click="pauseResume">Pause/Resume</dora-button>
+      <dora-button type="light" size="small" bind:click="reset">Reset</dora-button>
+      <dora-button type="light" size="small" bind:click="update">Update</dora-button>
+    </view>
+  </demo-block>
+</demo-page>

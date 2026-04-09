@@ -1,0 +1,56 @@
+<view class="dora-class {{ classes.wrap }}">
+  <view class="{{ classes.label }}" wx:if="{{ label }}">{{ label }}</view>
+  <block wx:else>
+    <slot></slot>
+  </block>
+  <view class="{{ classes.control }}">
+    <input
+      class="{{ classes.item }}"
+      value="{{ inputValue }}"
+      type="{{ type }}"
+      password="{{ !internalVisible ? password : false }}"
+      placeholder="{{ placeholder }}"
+      placeholder-style="{{ internalPlaceholderStyle }}"
+      placeholder-class="{{ placeholderClass }}"
+      disabled="{{ disabled || readOnly }}"
+      maxlength="{{ maxlength }}"
+      cursor-spacing="{{ cursorSpacing }}"
+      focus="{{ focus }}"
+      confirm-type="{{ confirmType }}"
+      always-embed="{{ alwaysEmbed }}"
+      confirm-hold="{{ confirmHold }}"
+      cursor="{{ cursor }}"
+      selection-start="{{ selectionStart }}"
+      selection-end="{{ selectionEnd }}"
+      adjust-position="{{ adjustPosition }}"
+      hold-keyboard="{{ holdKeyboard }}"
+      safe-password-cert-path="{{ safePasswordCertPath }}"
+      safe-password-length="{{ safePasswordLength }}"
+      safe-password-time-stamp="{{ safePasswordTimeStamp }}"
+      safe-password-nonce="{{ safePasswordNonce }}"
+      safe-password-salt="{{ safePasswordSalt }}"
+      safe-password-custom-hash="{{ safePasswordCustomHash }}"
+      bindinput="onChange"
+      bindfocus="onFocus"
+      bindblur="onBlur"
+      bindconfirm="onConfirm"
+      bindkeyboardheightchange="onKeyboardHeightChange"
+      bindnicknamereview="onNicknameReview"
+    >
+      <keyboard-accessory class="{{ classes.keyboardAccessory }}" style="max-height: 200px;">
+        <slot name="keyboard-accessory"></slot>
+      </keyboard-accessory>
+    </input>
+  </view>
+  <view class="{{ classes.clear }}" bindtap="onClear" wx:if="{{ shouldShowClear }}">
+    <icon type="clear" color="#B2B2B2" size="14" />
+  </view>
+  <view class="{{ classes.eye }}" bindtap="onInternalVisibleChange" wx:if="{{ password && visibilityToggle }}"></view>
+  <view class="{{ classes.error }}" bindtap="onError" wx:if="{{ error }}">
+    <icon type="warn" color="#ef473a" size="14" />
+  </view>
+  <view class="{{ classes.extra }}" wx:if="{{ extra }}">{{ extra }}</view>
+  <block wx:else>
+    <slot name="footer"></slot>
+  </block>
+</view>

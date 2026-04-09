@@ -1,167 +1,67 @@
-# Alert 警告框
+# Alert Alert
 
-用于展现警告信息，预设 9 种颜色 `light`, `stable`, `positive`, `calm`, `assertive`, `balanced`, `energized`, `royal`, `dark` 可选用。
+@doraemon-ui/miniprogram.alert
+
+## 安装
+
+我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
+
+```bash
+npm install --save @doraemon-ui/miniprogram.alert
+# or
+yarn add @doraemon-ui/miniprogram.alert
+```
+
+如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
 
 ## 使用指南
 
 ### 在 page.json 中引入组件
 
-```json
-{
-  "navigationBarTitleText": "Alert",
-  "usingComponents": {
-    "wux-white-space": "../../dist/white-space/index",
-    "wux-icon": "../../dist/icon/index",
-    "wux-alert": "../../dist/alert/index"
-  }
-}
-```
+[json](./playground/alert/pages/index/index.json ':include :type=code')
 
-### 示例
+### 示例代码
 
-```html
-<view class="page">
-  <view class="page__hd">
-    <view class="page__title">Alert</view>
-    <view class="page__desc">警告框</view>
-  </view>
-  <view class="page__bd page__bd_spacing">
-    <view class="sub-title">Theme</view>
-    <wux-alert theme="light" title="https://github.com/wux-weapp/wux-weapp" />
-    <wux-white-space />
-    <wux-alert theme="stable" title="https://github.com/wux-weapp/wux-weapp" />
-    <wux-white-space />
-    <wux-alert
-      theme="positive"
-      title="https://github.com/wux-weapp/wux-weapp"
-    />
-    <wux-white-space />
-    <wux-alert theme="calm" title="https://github.com/wux-weapp/wux-weapp" />
-    <wux-white-space />
-    <wux-alert
-      theme="assertive"
-      title="https://github.com/wux-weapp/wux-weapp"
-    />
-    <wux-white-space />
-    <wux-alert
-      theme="balanced"
-      title="https://github.com/wux-weapp/wux-weapp"
-    />
-    <wux-white-space />
-    <wux-alert
-      theme="energized"
-      title="https://github.com/wux-weapp/wux-weapp"
-    />
-    <wux-white-space />
-    <wux-alert theme="royal" title="https://github.com/wux-weapp/wux-weapp" />
-    <wux-white-space />
-    <wux-alert theme="dark" title="https://github.com/wux-weapp/wux-weapp" />
-    <view class="sub-title">Closable</view>
-    <wux-alert
-      closable
-      title="微信小程序自定义组件"
-      label="https://github.com/wux-weapp/wux-weapp"
-    />
-    <wux-white-space />
-    <wux-alert
-      closable
-      title="微信小程序自定义组件"
-      label="https://github.com/wux-weapp/wux-weapp"
-    />
-    <wux-white-space />
-    <wux-alert
-      closable
-      title="微信小程序自定义组件"
-      label="https://github.com/wux-weapp/wux-weapp"
-    />
-    <view class="sub-title">Thumb</view>
-    <wux-alert
-      thumb="http://cdn.skyvow.cn/logo.png"
-      label="https://github.com/wux-weapp/wux-weapp"
-    />
-    <wux-white-space />
-    <wux-alert
-      thumb="http://cdn.skyvow.cn/logo.png"
-      label="https://github.com/wux-weapp/wux-weapp"
-    />
-    <wux-white-space />
-    <wux-alert
-      thumb="http://cdn.skyvow.cn/logo.png"
-      label="https://github.com/wux-weapp/wux-weapp"
-    />
-    <view class="sub-title">Slot</view>
-    <wux-alert theme="balanced">
-      <wux-icon
-        wux-class="thumb"
-        type="ios-checkmark-circle-outline"
-        size="20"
-        color="#fff"
-        slot="header"
-      />
-      <text>微信小程序自定义组件</text>
-      <wux-icon
-        wux-class="close"
-        type="ios-close-circle-outline"
-        size="20"
-        color="#fff"
-        slot="footer"
-      />
-    </wux-alert>
-    <wux-white-space />
-    <wux-alert theme="energized">
-      <wux-icon
-        wux-class="thumb"
-        type="ios-alert"
-        size="20"
-        color="#fff"
-        slot="header"
-      />
-      <text>微信小程序自定义组件</text>
-    </wux-alert>
-    <wux-white-space />
-    <wux-alert theme="assertive">
-      <wux-icon
-        wux-class="thumb"
-        type="ios-close-circle-outline"
-        size="20"
-        color="#fff"
-        slot="header"
-      />
-      <text>微信小程序自定义组件</text>
-    </wux-alert>
-  </view>
-</view>
-```
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/DoraemonUI)
 
-## 视频演示
+<!-- tabs:start -->
 
-[Alert](./_media/alert.mp4 ':include :type=iframe width=375px height=667px')
+#### **WXML**
+
+[wxml](./playground/alert/pages/index/index.wxml ':include :type=code')
+
+#### **JAVASCRIPT**
+
+[js](./playground/alert/pages/index/index.js ':include :type=code')
+
+#### **WXSS**
+
+[wxss](./playground/alert/pages/index/index.wxss ':include :type=code')
+
+<!-- tabs:end -->
 
 ## API
 
 ### Alert props
 
-| 参数       | 类型       | 描述                                                                                        | 默认值              |
-| ---------- | ---------- | ------------------------------------------------------------------------------------------- | ------------------- |
-| prefixCls  | `string`   | 自定义类名前缀                                                                              | wux-alert           |
-| classNames | `any`      | 过渡的类名，更多内置过渡效果请参考 [AnimationGroup](animation-group.md)                     | wux-animate--fadeIn |
-| theme      | `string`   | 主题色，可选值为 light、stable、positive、calm、assertive、balanced、energized、royal、dark | balanced            |
-| thumb      | `string`   | 缩略图                                                                                      | -                   |
-| title      | `string`   | 标题                                                                                        | -                   |
-| label      | `string`   | 描述                                                                                        | -                   |
-| closable   | `boolean`  | 是否显示关闭按钮                                                                            | false               |
-| bind:click | `function` | 点击关闭或者操作区域的回调函数                                                              | -                   |
+| 参数      | 类型     | 描述           | 默认值     |
+| --------- | -------- | -------------- | ---------- |
+| prefixCls | `string` | 自定义类名前缀 | dora-alert |
 
 ### Alert slot
 
-| 名称   | 描述             |
-| ------ | ---------------- |
-| -      | 自定义标题或描述 |
-| header | 自定义缩略图     |
-| footer | 自定义右侧内容   |
+| 名称 | 描述       |
+| ---- | ---------- |
+| -    | 自定义内容 |
 
 ### Alert externalClasses
 
-| 名称      | 描述         |
-| --------- | ------------ |
-| wux-class | 根节点样式类 |
+| 名称       | 描述         |
+| ---------- | ------------ |
+| dora-class | 根节点样式类 |
+
+## CSS Variables
+
+| 属性         | 描述     | 默认值 | 全局变量 |
+| ------------ | -------- | ------ | -------- |
+| --text-color | 文字颜色 | `#fff` | -        |

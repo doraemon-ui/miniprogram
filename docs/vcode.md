@@ -1,91 +1,67 @@
-# Vcode 验证码
+# Vcode Vcode
 
-用于展现验证码。
+@doraemon-ui/miniprogram.vcode
+
+## 安装
+
+我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
+
+```bash
+npm install --save @doraemon-ui/miniprogram.vcode
+# or
+yarn add @doraemon-ui/miniprogram.vcode
+```
+
+如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
 
 ## 使用指南
 
 ### 在 page.json 中引入组件
 
-```json
-{
-  "navigationBarTitleText": "Vcode",
-  "usingComponents": {
-    "wux-vcode": "../../dist/vcode/index"
-  }
-}
-```
+[json](./playground/vcode/pages/index/index.json ':include :type=code')
 
-### 示例
+### 示例代码
 
-```html
-<view class="page">
-  <view class="page__hd">
-    <view class="page__title">Vcode</view>
-    <view class="page__desc">验证码</view>
-  </view>
-  <view class="page__bd">
-    <view class="weui-cells__title">默认 & 自定义</view>
-    <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell weui-cell_input weui-cell_vcode">
-        <view class="weui-cell__hd">
-          <view class="weui-label">验证码</view>
-        </view>
-        <view class="weui-cell__bd">
-          <input class="weui-input" placeholder="请输入验证码" />
-        </view>
-        <view class="weui-cell__ft" style="text-align: left">
-          <wux-vcode bind:change="onChange" />
-        </view>
-      </view>
-      <view class="weui-cell weui-cell_input weui-cell_vcode">
-        <view class="weui-cell__hd">
-          <view class="weui-label">验证码</view>
-        </view>
-        <view class="weui-cell__bd">
-          <input class="weui-input" placeholder="请输入验证码" />
-        </view>
-        <view class="weui-cell__ft" style="text-align: left">
-          <wux-vcode
-            canvas-id="custom-canvas"
-            bg-color="#e6f6ff"
-            font-color="#165189"
-            has-point="{{ false }}"
-            has-line="{{ false }}"
-            bind:change="onChange"
-          />
-        </view>
-      </view>
-    </view>
-  </view>
-</view>
-```
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/DoraemonUI)
 
-```js
-Page({
-  data: {},
-  onLoad() {},
-  onChange(e) {
-    console.log(`验证码：${e.detail.value}`)
-  },
-})
-```
+<!-- tabs:start -->
 
-## 视频演示
+#### **WXML**
 
-[Vcode](./_media/vcode.mp4 ':include :type=iframe width=375px height=667px')
+[wxml](./playground/vcode/pages/index/index.wxml ':include :type=code')
+
+#### **JAVASCRIPT**
+
+[js](./playground/vcode/pages/index/index.js ':include :type=code')
+
+#### **WXSS**
+
+[wxss](./playground/vcode/pages/index/index.wxss ':include :type=code')
+
+<!-- tabs:end -->
 
 ## API
 
 ### Vcode props
 
-| 参数        | 类型       | 描述               | 默认值                                                         |
-| ----------- | ---------- | ------------------ | -------------------------------------------------------------- |
-| str         | `string`   | 验证码范围         | ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 |
-| num         | `number`   | 验证码长度         | 6                                                              |
-| width       | `number`   | 画布宽度           | 120                                                            |
-| height      | `number`   | 画布高度           | 40                                                             |
-| bgColor     | `string`   | 画布背景色         | -                                                              |
-| fontColor   | `string`   | 画布字体颜色       | -                                                              |
-| hasPoint    | `boolean`  | 是否显示干扰点     | true                                                           |
-| hasLine     | `boolean`  | 是否显示干扰线     | true                                                           |
-| bind:change | `function` | 点击事件的回调函数 | -                                                              |
+| 参数      | 类型     | 描述           | 默认值     |
+| --------- | -------- | -------------- | ---------- |
+| prefixCls | `string` | 自定义类名前缀 | dora-vcode |
+
+### Vcode slot
+
+| 名称 | 描述       |
+| ---- | ---------- |
+| -    | 自定义内容 |
+
+### Vcode externalClasses
+
+| 名称       | 描述         |
+| ---------- | ------------ |
+| dora-class | 根节点样式类 |
+
+## CSS Variables
+
+| 属性         | 描述     | 默认值 | 全局变量 |
+| ------------ | -------- | ------ | -------- |
+| --text-color | 文字颜色 | `#fff` | -        |

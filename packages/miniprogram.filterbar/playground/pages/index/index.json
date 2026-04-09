@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "miniprogram.filterbar",
+  "usingComponents": {
+    "demo-page": "@doraemon-ui/miniprogram.demo-page",
+    "demo-block": "@doraemon-ui/miniprogram.demo-block",
+    "dora-filterbar": "@doraemon-ui/miniprogram.filterbar/index"
+  }
+}

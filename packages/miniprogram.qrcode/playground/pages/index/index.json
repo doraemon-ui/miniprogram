@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "Qrcode",
+  "usingComponents": {
+    "demo-page": "@doraemon-ui/miniprogram.demo-page/index",
+    "demo-block": "@doraemon-ui/miniprogram.demo-block/index",
+    "dora-qrcode": "@doraemon-ui/miniprogram.qrcode/index",
+    "dora-slider": "@doraemon-ui/miniprogram.slider/index",
+    "dora-textarea": "@doraemon-ui/miniprogram.textarea/index",
+    "dora-button": "@doraemon-ui/miniprogram.button/index"
+  }
+}

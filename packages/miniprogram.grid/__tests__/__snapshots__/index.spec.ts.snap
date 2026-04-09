@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Grid mount correctly 1`] = `
+<dora-grids>
+  <wx-view
+    class="dora-class dora-grids dora-grids--bordered"
+  />
+</dora-grids>
+`;

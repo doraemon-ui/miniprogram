@@ -1,5 +1,8 @@
 import { LIFECYCLE_HOOKS } from '../util/constants'
 
+/**
+ * Config类型定义
+ */
 export type Config = {
   /**
    * 取消所有的日志与警告

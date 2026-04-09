@@ -174,5 +174,6 @@ class Avatar extends Doraemon {
   }
 }
 
-export type AvatarInstance = Avatar
+export { Avatar }
+
 export default defineComponentHOC()(Avatar)

@@ -1,117 +1,67 @@
-# Timeline 时间轴
+# Timeline Timeline
 
-用于展现时间流信息。
+@doraemon-ui/miniprogram.timeline
+
+## 安装
+
+我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
+
+```bash
+npm install --save @doraemon-ui/miniprogram.timeline
+# or
+yarn add @doraemon-ui/miniprogram.timeline
+```
+
+如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
 
 ## 使用指南
 
 ### 在 page.json 中引入组件
 
-```json
-{
-  "navigationBarTitleText": "Timeline",
-  "usingComponents": {
-    "wux-icon": "../../dist/icon/index",
-    "wux-timeline": "../../dist/timeline/index",
-    "wux-timeline-item": "../../dist/timeline-item/index"
-  }
-}
-```
+[json](./playground/timeline/pages/index/index.json ':include :type=code')
 
-### 示例
+### 示例代码
 
-```html
-<view class="page">
-  <view class="page__hd">
-    <view class="page__title">Timeline</view>
-    <view class="page__desc">时间轴</view>
-  </view>
-  <view class="page__bd page__bd_spacing">
-    <view class="sub-title">Default</view>
-    <wux-timeline>
-      <wux-timeline-item content="2018-10-24 v1.0.0" />
-      <wux-timeline-item content="2018-10-24 v1.0.0" />
-      <wux-timeline-item content="2018-10-24 v1.0.0" />
-      <wux-timeline-item content="2018-10-24 v1.0.0" />
-    </wux-timeline>
-    <view class="sub-title">Position = alternate</view>
-    <wux-timeline position="alternate">
-      <wux-timeline-item content="2018-10-24 v1.0.0" />
-      <wux-timeline-item content="2018-10-24 v1.0.0" />
-      <wux-timeline-item content="2018-10-24 v1.0.0" />
-      <wux-timeline-item content="2018-10-24 v1.0.0" />
-    </wux-timeline>
-    <view class="sub-title">Position = right</view>
-    <wux-timeline position="right">
-      <wux-timeline-item content="2018-10-24 v1.0.0" />
-      <wux-timeline-item content="2018-10-24 v1.0.0" />
-      <wux-timeline-item content="2018-10-24 v1.0.0" />
-      <wux-timeline-item content="2018-10-24 v1.0.0" />
-    </wux-timeline>
-    <view class="sub-title">Pending</view>
-    <wux-timeline pending>
-      <wux-timeline-item content="2018-10-24 v1.0.0" />
-      <wux-timeline-item content="2018-10-24 v1.0.0" />
-      <wux-timeline-item content="2018-10-24 v1.0.0" />
-      <wux-timeline-item content="2018-10-24 v1.0.0" />
-    </wux-timeline>
-    <view class="sub-title">Slot</view>
-    <wux-timeline>
-      <wux-timeline-item>
-        <view>2018-10-24 v1.0.0</view>
-      </wux-timeline-item>
-      <wux-timeline-item custom>
-        <wux-icon slot="dot" type="ios-time" size="23" />
-        <view>2018-10-24 v1.0.0</view>
-      </wux-timeline-item>
-      <wux-timeline-item dotStyle="border-color: #33cd5f; color: #33cd5f">
-        <view>2018-10-24 v1.0.0</view>
-      </wux-timeline-item>
-      <wux-timeline-item dotStyle="border-color: #ef473a; color: #ef473a">
-        <view>2018-10-24 v1.0.0</view>
-      </wux-timeline-item>
-    </wux-timeline>
-  </view>
-</view>
-```
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/DoraemonUI)
 
-## 视频演示
+<!-- tabs:start -->
 
-[Timeline](./_media/timeline.mp4 ':include :type=iframe width=375px height=667px')
+#### **WXML**
+
+[wxml](./playground/timeline/pages/index/index.wxml ':include :type=code')
+
+#### **JAVASCRIPT**
+
+[js](./playground/timeline/pages/index/index.js ':include :type=code')
+
+#### **WXSS**
+
+[wxss](./playground/timeline/pages/index/index.wxss ':include :type=code')
+
+<!-- tabs:end -->
 
 ## API
 
 ### Timeline props
 
-| 参数      | 类型      | 描述                                                    | 默认值       |
-| --------- | --------- | ------------------------------------------------------- | ------------ |
-| prefixCls | `string`  | 自定义类名前缀                                          | wux-timeline |
-| pending   | `boolean` | 最后一个节点是否为幽灵节点                              | false        |
-| position  | `string`  | 时间轴和内容的相对位置，可选值为 left、alternate、right | left         |
+| 参数      | 类型     | 描述           | 默认值        |
+| --------- | -------- | -------------- | ------------- |
+| prefixCls | `string` | 自定义类名前缀 | dora-timeline |
+
+### Timeline slot
+
+| 名称 | 描述       |
+| ---- | ---------- |
+| -    | 自定义内容 |
 
 ### Timeline externalClasses
 
-| 名称      | 描述         |
-| --------- | ------------ |
-| wux-class | 根节点样式类 |
+| 名称       | 描述         |
+| ---------- | ------------ |
+| dora-class | 根节点样式类 |
 
-### TimelineItem props
+## CSS Variables
 
-| 参数      | 类型            | 描述               | 默认值            |
-| --------- | --------------- | ------------------ | ----------------- |
-| prefixCls | `string`        | 自定义类名前缀     | wux-timeline-item |
-| content   | `string`        | 内容               | -                 |
-| dotStyle  | `string,object` | 时间轴点样式       | -                 |
-| custom    | `boolean`       | 是否自定义时间轴点 | false             |
-
-### TimelineItem slot
-
-| 名称 | 描述                                           |
-| ---- | ---------------------------------------------- |
-| -    | 自定义内容                                     |
-| dot  | 自定义时间轴点，当 `custom` 为 `true` 时才生效 |
-
-### TimelineItem externalClasses
-
-| 名称      | 描述         |
-| --------- | ------------ |
-| wux-class | 根节点样式类 |
+| 属性         | 描述     | 默认值 | 全局变量 |
+| ------------ | -------- | ------ | -------- |
+| --text-color | 文字颜色 | `#fff` | -        |

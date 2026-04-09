@@ -1,125 +1,67 @@
-# Layout 栅格布局
+# Layout Layout
 
-12 栅格系统，布局时基于行 `row` 和列 `col` 来定义信息区块的外部框架，具体使用方法如下：
+@doraemon-ui/miniprogram.layout
 
-- 使用 `row` 在水平方向创建一行
-- 将一组 `col` 插入在 `row` 中
-- 在每个 `col` 中，键入自己的内容
-- 通过设置 `col` 的 `span` 参数，指定跨越的范围，其范围是 1 到 12
-- 每个 `row` 中的 `col` 总和应该为 12
+## 安装
+
+我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
+
+```bash
+npm install --save @doraemon-ui/miniprogram.layout
+# or
+yarn add @doraemon-ui/miniprogram.layout
+```
+
+如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
 
 ## 使用指南
 
 ### 在 page.json 中引入组件
 
-```json
-{
-  "navigationBarTitleText": "Layout",
-  "usingComponents": {
-    "wux-row": "../../dist/row/index",
-    "wux-col": "../../dist/col/index"
-  }
-}
-```
+[json](./playground/layout/pages/index/index.json ':include :type=code')
 
-### 示例
+### 示例代码
 
-```html
-<view class="page">
-  <view class="page__hd">
-    <view class="page__title">Layout</view>
-    <view class="page__desc">栅格布局</view>
-  </view>
-  <view class="page__bd">
-    <wux-row>
-      <wux-col span="12">
-        <view class="placeholder">wux</view>
-      </wux-col>
-    </wux-row>
-    <wux-row>
-      <wux-col span="6">
-        <view class="placeholder">wux</view>
-      </wux-col>
-      <wux-col span="6">
-        <view class="placeholder">wux</view>
-      </wux-col>
-    </wux-row>
-    <wux-row>
-      <wux-col span="4">
-        <view class="placeholder">wux</view>
-      </wux-col>
-      <wux-col span="4">
-        <view class="placeholder">wux</view>
-      </wux-col>
-      <wux-col span="4">
-        <view class="placeholder">wux</view>
-      </wux-col>
-    </wux-row>
-    <wux-row>
-      <wux-col span="4">
-        <view class="placeholder">wux</view>
-      </wux-col>
-      <wux-col span="4" offset="4">
-        <view class="placeholder">wux</view>
-      </wux-col>
-    </wux-row>
-    <wux-row>
-      <wux-col span="4">
-        <view class="placeholder">wux</view>
-      </wux-col>
-      <wux-col span="4" push="4">
-        <view class="placeholder">wux</view>
-      </wux-col>
-    </wux-row>
-    <wux-row>
-      <wux-col span="4">
-        <view class="placeholder">wux</view>
-      </wux-col>
-      <wux-col span="4" offset="4" pull="4">
-        <view class="placeholder">wux</view>
-      </wux-col>
-    </wux-row>
-  </view>
-</view>
-```
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/DoraemonUI)
 
-## 视频演示
+<!-- tabs:start -->
 
-[Layout](./_media/layout.mp4 ':include :type=iframe width=375px height=667px')
+#### **WXML**
+
+[wxml](./playground/layout/pages/index/index.wxml ':include :type=code')
+
+#### **JAVASCRIPT**
+
+[js](./playground/layout/pages/index/index.js ':include :type=code')
+
+#### **WXSS**
+
+[wxss](./playground/layout/pages/index/index.wxss ':include :type=code')
+
+<!-- tabs:end -->
 
 ## API
 
-### Row props
+### Layout props
 
-| 参数      | 类型     | 描述           | 默认值  |
-| --------- | -------- | -------------- | ------- |
-| prefixCls | `string` | 自定义类名前缀 | wux-row |
-| gutter    | `number` | 栅格间隔       | 0       |
+| 参数      | 类型     | 描述           | 默认值      |
+| --------- | -------- | -------------- | ----------- |
+| prefixCls | `string` | 自定义类名前缀 | dora-layout |
 
-### Row externalClasses
-
-| 名称      | 描述         |
-| --------- | ------------ |
-| wux-class | 根节点样式类 |
-
-### Col props
-
-| 参数      | 类型     | 描述               | 默认值  |
-| --------- | -------- | ------------------ | ------- |
-| prefixCls | `string` | 自定义类名前缀     | wux-col |
-| span      | `number` | 栅格占位格数       | 0       |
-| pull      | `number` | 栅格向左移动格数   | 0       |
-| push      | `number` | 栅格向右移动格数   | 0       |
-| offset    | `number` | 栅格左侧的间隔格数 | 0       |
-
-### Col slot
+### Layout slot
 
 | 名称 | 描述       |
 | ---- | ---------- |
 | -    | 自定义内容 |
 
-### Col externalClasses
+### Layout externalClasses
 
-| 名称      | 描述         |
-| --------- | ------------ |
-| wux-class | 根节点样式类 |
+| 名称       | 描述         |
+| ---------- | ------------ |
+| dora-class | 根节点样式类 |
+
+## CSS Variables
+
+| 属性         | 描述     | 默认值 | 全局变量 |
+| ------------ | -------- | ------ | -------- |
+| --text-color | 文字颜色 | `#fff` | -        |

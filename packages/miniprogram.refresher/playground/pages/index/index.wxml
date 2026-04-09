@@ -1,0 +1,10 @@
+<dora-refresher id="dora-refresher" bind:pulling="onPulling" bind:refresh="onRefresh" bind:loadmore="onLoadmore" scrollTop="{{ scrollTop }}">
+  <demo-page darkmode="auto" title="Refresher" desc="下拉刷新/上拉加载" clickable spacing>
+    <demo-block title="List">
+      <view wx:for="{{ items }}" wx:key="index">
+        <view>{{ item.title }}</view>
+        <view>{{ item.content }}</view>
+      </view>
+    </demo-block>
+  </demo-page>
+</dora-refresher>

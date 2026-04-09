@@ -325,7 +325,7 @@ export default [
       {
         title: 'ActionSheet',
         remark: '上拉菜单',
-        url: '/pages/actionsheet/index',
+        url: '/pages/action-sheet/index',
       },
       {
         title: 'Backdrop',

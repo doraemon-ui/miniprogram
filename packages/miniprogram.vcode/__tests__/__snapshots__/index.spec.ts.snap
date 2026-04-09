@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Vcode mount correctly 1`] = `
+<dora-vcode>
+  <wx-canvas
+    class="dora-class"
+    id="dora-vcode"
+    style="width: 120px; height: 40px;"
+    type="2d"
+    bind:tap="draw"
+  />
+</dora-vcode>
+`;

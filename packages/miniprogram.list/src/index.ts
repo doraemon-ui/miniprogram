@@ -1,24 +1,8 @@
-import { type ComponentPublicInstance, defineComponentHOC, Doraemon, Component, Prop } from '@doraemon-ui/miniprogram.core-js'
-import { type MiniprogramDOMRect, useRect } from '@doraemon-ui/miniprogram.shared'
-import type { ListItemInstance } from './item'
-export type { ListItemInstance, ListItemProps, ListItemExpose } from './item'
+import { defineComponentHOC, Doraemon, Component, Prop } from '@doraemon-ui/miniprogram.core-js'
+import { useRect } from '@doraemon-ui/miniprogram.shared'
+import type { ListItemInstance } from './types'
+
 const { classNames, styleToCssString } = Doraemon.util
-
-export type ListExpose = {
-  getBoundingClientRect: () => Promise<MiniprogramDOMRect>
-}
-
-export interface ListProps {
-  prefixCls?: string
-  title?: string
-  label?: string
-  mode?: 'default' | 'card'
-  hasLine?: boolean
-  wrapStyle?: Partial<CSSStyleDeclaration>
-  bodyStyle?: Partial<CSSStyleDeclaration>
-}
-
-export type ListInstance = ComponentPublicInstance<List, ListProps, ListExpose>
 
 @Component({
   components: {
@@ -161,5 +145,7 @@ class List extends Doraemon {
     this.updateIsLast()
   }
 }
+
+export { List }
 
 export default defineComponentHOC({ multipleSlots: false })(List)

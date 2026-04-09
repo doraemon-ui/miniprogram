@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Index mount correctly 1`] = `
+<dora-index>
+  <wx-view
+    class="dora-class dora-index"
+    style="height: 300px;  "
+  >
+    <wx-scroll-view
+      scrollTop="{{0}}"
+      scrollY="{{true}}"
+      style="height: 300px;  "
+      bind:scroll="onScroll"
+    />
+  </wx-view>
+</dora-index>
+`;

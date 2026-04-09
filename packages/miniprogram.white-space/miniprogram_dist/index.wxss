@@ -1,0 +1,13 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-white-space--small {
+  height: 16rpx
+}
+.dora-white-space--default {
+  height: 24rpx
+}
+.dora-white-space--large {
+  height: 32rpx
+}

@@ -1,0 +1,106 @@
+@import './variables.less';
+
+// InputNumber styles
+// -----------------------------
+.@{input-number-prefix-cls} {
+  position: relative;
+  display: flex;
+
+  &__control {
+    width: 96rpx;
+    height: 52rpx;
+    border: 1px solid @border-color-base;
+    padding: 6rpx 0;
+    box-sizing: border-box;
+  }
+
+  &__input {
+    width: 100%;
+    height: 100%;
+    min-height: inherit;
+    border: 0;
+    font-size: @font-size-lg;
+    line-height: 1;
+    color: @text-color;
+    text-align: center;
+    background: transparent;
+    appearance: none;
+    box-sizing: border-box;
+
+    &--disabled {
+      opacity: 1;
+    }
+  }
+
+  &__selector {
+    width: 68rpx;
+    height: 52rpx;
+    font-size: 48rpx;
+    line-height: 1;
+    color: @input-number-balanced-color;
+    border: 1px solid @border-color-base;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &--disabled {
+      color: @input-number-disabled-color !important;
+      cursor: not-allowed;
+    }
+
+    &--sub {
+      border-right: none;
+      padding: 6rpx 20rpx;
+      border-radius: @border-radius-sm 0 0 @border-radius-sm;
+    }
+
+    &--add {
+      border-left: none;
+      padding: 6rpx 16rpx;
+      border-radius: 0 @border-radius-sm @border-radius-sm 0;
+    }
+  }
+
+  &__icon {
+    font-size: inherit !important;
+    vertical-align: middle;
+    line-height: inherit;
+  }
+
+  &--circle {
+    .@{input-number-prefix-cls}__control {
+      border-color: transparent;
+    }
+
+    .@{input-number-prefix-cls}__selector {
+      width: 52rpx;
+      border-radius: 50%;
+      border: 1px solid @input-number-balanced-color;
+
+      &--disabled {
+        border-color: @input-number-disabled-color !important;
+      }
+    }
+  }
+
+  .input-number(light, @input-number-light-color);
+  .input-number(stable, @input-number-stable-color);
+  .input-number(positive, @input-number-positive-color);
+  .input-number(calm, @input-number-calm-color);
+  .input-number(assertive, @input-number-assertive-color);
+  .input-number(balanced, @input-number-balanced-color);
+  .input-number(energized, @input-number-energized-color);
+  .input-number(royal, @input-number-royal-color);
+  .input-number(dark, @input-number-dark-color);
+}
+
+.input-number(@theme, @color) {
+  .@{input-number-prefix-cls}__selector--@{theme} {
+    color: @color;
+  }
+
+  .@{input-number-prefix-cls}--circle .@{input-number-prefix-cls}__selector--@{theme} {
+    border-color: @color;
+  }
+}

@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input mount correctly 1`] = `
+<dora-input>
+  <wx-view
+    class="dora-class dora-input"
+  >
+    <wx-view
+      class="dora-input__control"
+    >
+      <wx-input
+        adjustPosition="{{true}}"
+        alwaysEmbed="{{false}}"
+        class="dora-input__item"
+        confirmHold="{{false}}"
+        confirmType="done"
+        cursor="{{-1}}"
+        cursorSpacing="{{11}}"
+        disabled="{{false}}"
+        focus="{{false}}"
+        holdKeyboard="{{false}}"
+        maxlength="{{140}}"
+        password="{{false}}"
+        placeholder=""
+        placeholderClass="input-placeholder"
+        placeholderStyle=""
+        safePasswordCertPath="{{null}}"
+        safePasswordCustomHash="{{null}}"
+        safePasswordLength="{{null}}"
+        safePasswordNonce="{{null}}"
+        safePasswordSalt="{{null}}"
+        safePasswordTimeStamp="{{null}}"
+        selectionEnd="{{-1}}"
+        selectionStart="{{-1}}"
+        type="text"
+        value=""
+        bind:blur="onBlur"
+        bind:confirm="onConfirm"
+        bind:focus="onFocus"
+        bind:input="onChange"
+        bind:keyboardheightchange="onKeyboardHeightChange"
+        bind:nicknamereview="onNicknameReview"
+      >
+        <wx-keyboard-accessory
+          class="dora-input__keyboardAccessory"
+          style="max-height: 200px;"
+        />
+      </wx-input>
+    </wx-view>
+  </wx-view>
+</dora-input>
+`;

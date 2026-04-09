@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WingBlank mount correctly 1`] = `
+<dora-wing-blank>
+  <wx-view
+    class="dora-class dora-wing-blank dora-wing-blank--default"
+    style="; "
+  />
+</dora-wing-blank>
+`;

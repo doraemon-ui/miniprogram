@@ -1,0 +1,5 @@
+<view class="dora-class {{ classes.wrap }}" style="{{ tabbarStyle }}">
+  <view class="{{ classes.tabbar }}">
+    <slot></slot>
+  </view>
+</view>

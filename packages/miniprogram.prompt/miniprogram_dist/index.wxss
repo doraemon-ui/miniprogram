@@ -1,0 +1,56 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-prompt {
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  color: var(--dora-prompt-color,#999);
+  color: var(--dora-prompt-color,#999);
+  background-color: var(--dora-prompt-bg,#fff);
+  background-color: var(--dora-prompt-bg,#fff)
+}
+.dora-prompt__bd {
+  margin-top: 0;
+  text-align: center
+}
+.dora-prompt__icon {
+  width: var(--dora-prompt-icon-size,96rpx);
+  width: var(--dora-prompt-icon-size,96rpx);
+  height: var(--dora-prompt-icon-size,96rpx);
+  height: var(--dora-prompt-icon-size,96rpx)
+}
+.dora-prompt__title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: rgba(var(--dora-text-color-rgb,0,0,0),.55);
+  color: rgba(var(--dora-text-color-rgb,0,0,0),.55);
+  margin: 4rpx 0
+}
+.dora-prompt__text {
+  font-size: 24rpx;
+  margin: 4rpx 0
+}
+.dora-prompt__button {
+  font-size: 24rpx;
+  line-height: 2;
+  margin: 8rpx auto;
+  width: 200rpx;
+  padding: 4rpx 0;
+  border: var(--dora-border-width,1PX) var(--dora-border-style,solid) var(--dora-border-color,var(--dora-color-step-10,#e6e6e6));
+  border: var(--dora-border-width,1PX) var(--dora-border-style,solid) var(--dora-border-color,var(--dora-color-step-10,#e6e6e6))
+}
+.dora-prompt__button::after {
+  display: none
+}
+.dora-prompt__button--hover {
+  color: rgba(var(--dora-text-color-rgb,0,0,0),.65)!important;
+  color: rgba(var(--dora-text-color-rgb,0,0,0),.65)!important;
+  background-color: var(--dora-active-state-bg,var(--dora-color-step-10,#e6e6e6))!important;
+  background-color: var(--dora-active-state-bg,var(--dora-color-step-10,#e6e6e6))!important
+}

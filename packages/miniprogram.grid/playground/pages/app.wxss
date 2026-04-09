@@ -1,0 +1,2 @@
+@import 'assets/styles/common.wxss';
+@import 'assets/styles/polyfill.wxss';

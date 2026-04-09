@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Field mount correctly 1`] = `
+<dora-field>
+  <wx-view
+    class="dora-class dora-field  "
+    id="dora-field-wrap"
+  >
+    <wx-view
+      class="dora-field__extra"
+    />
+    <wx-view
+      class="dora-field__arrow"
+    />
+  </wx-view>
+</dora-field>
+`;

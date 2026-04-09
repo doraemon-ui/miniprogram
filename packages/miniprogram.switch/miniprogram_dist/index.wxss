@@ -1,0 +1,100 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-switch {
+  display: inline-block;
+  vertical-align: middle;
+  box-sizing: border-box;
+  position: relative;
+  -ms-flex-item-align: center;
+  align-self: center;
+  cursor: pointer
+}
+.dora-switch__input {
+  position: relative;
+  min-width: 104rpx;
+  height: 62rpx;
+  border: 1rpx solid #dfdfdf;
+  outline: 0;
+  border-radius: 62rpx/2;
+  box-sizing: border-box;
+  background-color: #dfdfdf;
+  transition: background-color .1s,border .1s
+}
+.dora-switch__input::before {
+  content: " ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60rpx;
+  border-radius: 60rpx/2;
+  background-color: #fdfdfd;
+  transition: transform .35s cubic-bezier(.45,1,.4,1)
+}
+.dora-switch__input::after {
+  content: " ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 60rpx/2;
+  background-color: #fff;
+  box-shadow: 0 2rpx 6rpx rgba(0,0,0,.4);
+  transition: left .35s cubic-bezier(.4,.4,.25,1.35)
+}
+.dora-switch__input--checked {
+  border-color: #33cd5f;
+  background-color: #33cd5f
+}
+.dora-switch__input--checked::before {
+  transform: scale(0)
+}
+.dora-switch__input--checked::after {
+  left: calc(100% - 58rpx)
+}
+.dora-switch__input--disabled {
+  opacity: .5;
+  cursor: not-allowed
+}
+.dora-switch__text {
+  position: relative;
+  z-index: 10;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100%;
+  transition: margin .2s;
+  margin: 0 16rpx 0 72rpx
+}
+.dora-switch--checked .dora-switch__text {
+  color: var(--dora-white,#fff);
+  color: var(--dora-white,#fff);
+  margin: 0 70rpx 0 20rpx
+}
+.dora-switch__spin {
+  position: absolute;
+  left: 30rpx/2;
+  top: 30rpx/2;
+  z-index: 10;
+  width: 60rpx/2;
+  height: 60rpx/2;
+  border: 3rpx solid rgba(255,255,255,.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: dora-switch-spin-rotate 1s linear infinite
+}
+.dora-switch--checked .dora-switch__spin {
+  left: unset;
+  right: 30rpx/2
+}
+@keyframes dora-switch-spin-rotate {
+  to {
+    transform: rotate(1turn)
+  }
+}

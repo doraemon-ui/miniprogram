@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loading mount correctly 1`] = `
+<dora-loading>
+  <dora-animation-group
+    doraClass="dora-loading"
+  />
+</dora-loading>
+`;

@@ -1,88 +1,67 @@
-# NavBar 导航栏
+# Navbar Navbar
 
-用于提供页面的导航能力。
+@doraemon-ui/miniprogram.navbar
+
+## 安装
+
+我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
+
+```bash
+npm install --save @doraemon-ui/miniprogram.navbar
+# or
+yarn add @doraemon-ui/miniprogram.navbar
+```
+
+如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
 
 ## 使用指南
 
 ### 在 page.json 中引入组件
 
-```json
-{
-  "navigationBarTitleText": "NavBar",
-  "usingComponents": {
-    "wux-navbar": "../../dist/navbar/index",
-    "wux-icon": "../../dist/icon/index"
-  }
-}
-```
+[json](./playground/navbar/pages/index/index.json ':include :type=code')
 
-### 示例
+### 示例代码
 
-```html
-<view class="page">
-  <view class="page__hd">
-    <view class="page__title">NavBar</view>
-    <view class="page__desc">导航栏</view>
-  </view>
-  <view class="page__bd">
-    <view class="sub-title">Default</view>
-    <wux-navbar
-      leftText="Back"
-      title="NavBar"
-      rightText="Click me!"
-      bind:click="onClick"
-    />
-    <view class="sub-title">Default</view>
-    <wux-navbar theme="dark">
-      <wux-icon slot="left" type="ios-arrow-back" size="23" />
-      <view>导航栏</view>
-      <wux-icon slot="right" type="ios-more" size="23" />
-    </wux-navbar>
-  </view>
-</view>
-```
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/DoraemonUI)
 
-```js
-Page({
-  onClick(e) {
-    console.log('onClick', e)
-    if (e.detail.type === 'right') {
-      wx.showModal({
-        title: 'Thank you for your support!',
-        showCancel: !1,
-      })
-    }
-  },
-})
-```
+<!-- tabs:start -->
 
-## 视频演示
+#### **WXML**
 
-[NavBar](./_media/navbar.mp4 ':include :type=iframe width=375px height=667px')
+[wxml](./playground/navbar/pages/index/index.wxml ':include :type=code')
+
+#### **JAVASCRIPT**
+
+[js](./playground/navbar/pages/index/index.js ':include :type=code')
+
+#### **WXSS**
+
+[wxss](./playground/navbar/pages/index/index.wxss ':include :type=code')
+
+<!-- tabs:end -->
 
 ## API
 
-### NavBar props
+### Navbar props
 
-| 参数       | 类型       | 描述                                                                                        | 默认值     |
-| ---------- | ---------- | ------------------------------------------------------------------------------------------- | ---------- |
-| prefixCls  | `string`   | 自定义类名前缀                                                                              | wux-navbar |
-| theme      | `string`   | 主题色，可选值为 light、stable、positive、calm、assertive、balanced、energized、royal、dark | light      |
-| title      | `string`   | 标题                                                                                        | -          |
-| leftText   | `string`   | 导航左边内容                                                                                | -          |
-| rightText  | `string`   | 导航右边内容                                                                                | -          |
-| bind:click | `function` | 点击事件                                                                                    | -          |
+| 参数      | 类型     | 描述           | 默认值      |
+| --------- | -------- | -------------- | ----------- |
+| prefixCls | `string` | 自定义类名前缀 | dora-navbar |
 
-### NavBar slot
+### Navbar slot
 
-| 名称  | 描述               |
-| ----- | ------------------ |
-| -     | 自定义标题         |
-| left  | 自定义导航左边内容 |
-| right | 自定义导航右边内容 |
+| 名称 | 描述       |
+| ---- | ---------- |
+| -    | 自定义内容 |
 
-### NavBar externalClasses
+### Navbar externalClasses
 
-| 名称      | 描述         |
-| --------- | ------------ |
-| wux-class | 根节点样式类 |
+| 名称       | 描述         |
+| ---------- | ------------ |
+| dora-class | 根节点样式类 |
+
+## CSS Variables
+
+| 属性         | 描述     | 默认值 | 全局变量 |
+| ------------ | -------- | ------ | -------- |
+| --text-color | 文字颜色 | `#fff` | -        |

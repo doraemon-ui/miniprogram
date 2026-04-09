@@ -1,0 +1,17 @@
+<demo-page
+  darkmode="auto"
+  title="Vcode"
+  desc="验证码"
+  clickable
+  spacing
+>
+  <demo-block title="Default">
+    <dora-vcode bind:change="onChange" />
+  </demo-block>
+  <demo-block title="Custom">
+    <dora-vcode id="custom-canvas" str="1234567890" bgColor="#e6f6ff" fontColor="#165189" hasPoint hasLine bind:change="onChange" />
+  </demo-block>
+  <demo-block title="Refresh">
+    <dora-button block type="light" bind:click="onClick">Refresh Vcode</dora-button>
+  </demo-block>
+</demo-page>

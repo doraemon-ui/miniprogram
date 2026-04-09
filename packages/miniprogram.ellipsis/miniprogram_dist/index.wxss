@@ -1,0 +1,29 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-ellipsis {
+  overflow: hidden;
+  line-height: var(--dora-ellipsis-line-height,1.5);
+  line-height: var(--dora-ellipsis-line-height,1.5)
+}
+.dora-ellipsis--container {
+  position: fixed;
+  left: -19998rpx;
+  top: -19998rpx;
+  z-index: -1000;
+  height: auto;
+  min-height: auto;
+  max-height: auto;
+  text-overflow: clip;
+  white-space: normal;
+  -webkit-line-clamp: unset;
+  display: block
+}
+.dora-ellipsis__collapsed,
+.dora-ellipsis__expanded {
+  display: inline;
+  color: var(--dora-ellipsis-action-color,var(--dora-color-positive,#3880ff));
+  color: var(--dora-ellipsis-action-color,var(--dora-color-positive,#3880ff));
+  cursor: pointer
+}

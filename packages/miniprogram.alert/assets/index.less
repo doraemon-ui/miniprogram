@@ -1,0 +1,66 @@
+@import './variables.less';
+
+// Alert styles
+// @prop --text-color: Text color of the alert
+// @prop --background-color: Background color of the alert
+// @prop --border-radius: Border radius of the alert
+// @prop --font-size: Font size of the alert
+// -----------------------------
+.@{alert-prefix-cls} {
+  --text-color: #get-color(balanced, contrast) [];
+  --background-color: #get-color(balanced) [];
+  --border-radius: @alert-border-radius;
+  --font-size: @alert-font-size;
+
+  padding: @alert-padding-vertical @alert-padding-horizontal;
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: var(--border-radius);
+  font-size: var(--font-size);
+  color: var(--text-color);
+  background-color: var(--background-color);
+
+  &__thumb {
+    .square(@alert-thumb-size);
+
+    display: block;
+    margin-right: @alert-thumb-margin;
+  }
+
+  &__bd {
+    flex: 1;
+  }
+
+  &__text {
+    text-align: left;
+  }
+
+  &__desc {
+    text-align: left;
+    line-height: 1.2;
+    font-size: 12px;
+  }
+
+  &__ft {
+    display: flex;
+    align-self: center;
+    text-align: right;
+  }
+
+  &__closable:not(:empty) {
+    flex: none;
+    display: flex;
+    align-items: center;
+    margin-left: @alert-closable-margin-left;
+    cursor: pointer;
+  }
+
+  each(@colors, {
+    @name: @key;
+    &--@{name} {
+      --background-color: #get-color(@name)[];
+      --text-color: #get-color(@name, contrast)[];
+    }
+  });
+}

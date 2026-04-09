@@ -1,0 +1,21 @@
+<dora-picker visible="{{ visible }}" controlled options="{{ options }}" value="{{ value1 }}" cascade cols="{{ 3 }}" data-index="{{ 1 }}" bind:confirm="onConfirm" bind:valueChange="onValueChange" bind:visibleChange="onVisibleChange" />
+<demo-page title="Picker" desc="选择器" spacing>
+  <demo-block title="Multiple & cascader">
+    <dora-picker options="{{ options }}" value="{{ value1 }}" cascade cols="{{ 3 }}" data-index="{{ 1 }}" bind:confirm="onConfirm" bind:valueChange="onValueChange">
+      <view style="padding: 24rpx; background: #fff; border-radius: 12rpx;">{{ displayValue1 }}</view>
+    </dora-picker>
+  </demo-block>
+  <demo-block title="Multiple">
+    <dora-picker options="{{ seasons }}" value="{{ value2 }}" data-index="{{ 2 }}" bind:confirm="onConfirm" bind:valueChange="onValueChange">
+      <view style="padding: 24rpx; background: #fff; border-radius: 12rpx;">{{ displayValue2 }}</view>
+    </dora-picker>
+  </demo-block>
+  <demo-block title="Single">
+    <dora-picker options="{{ options }}" value="{{ value3 }}" cascade cols="{{ 1 }}" data-index="{{ 3 }}" bind:confirm="onConfirm" bind:valueChange="onValueChange">
+      <view style="padding: 24rpx; background: #fff; border-radius: 12rpx;">{{ displayValue3 }}</view>
+    </dora-picker>
+  </demo-block>
+  <demo-block title="Button Open">
+    <view style="padding: 24rpx; background: #fff; border-radius: 12rpx;" bindtap="onClick">Button click - {{ displayValue1 }}</view>
+  </demo-block>
+</demo-page>

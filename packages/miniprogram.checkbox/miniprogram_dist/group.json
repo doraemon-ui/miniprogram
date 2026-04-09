@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "dora-list": "@doraemon-ui/miniprogram.list/index",
+    "dora-checkbox": "./index"
+  }
+}

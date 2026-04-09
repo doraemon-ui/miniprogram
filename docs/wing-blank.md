@@ -1,62 +1,52 @@
-# WingBlank 两翼留白
+# WingBlank WingBlank
 
-布局控件。
+@doraemon-ui/miniprogram.wing-blank
+
+## 安装
+
+我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
+
+```bash
+npm install --save @doraemon-ui/miniprogram.wing-blank
+# or
+yarn add @doraemon-ui/miniprogram.wing-blank
+```
+
+如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
 
 ## 使用指南
 
 ### 在 page.json 中引入组件
 
-```json
-{
-  "navigationBarTitleText": "WingBlank",
-  "usingComponents": {
-    "wux-wing-blank": "../../dist/wing-blank/index",
-    "wux-white-space": "../../dist/white-space/index"
-  }
-}
-```
+[json](./playground/wing-blank/pages/index/index.json ':include :type=code')
 
-### 示例
+### 示例代码
 
-```html
-<view class="page">
-  <view class="page__hd">
-    <view class="page__title">WingBlank</view>
-    <view class="page__desc">两翼留白</view>
-  </view>
-  <view class="page__bd">
-    <wux-wing-blank size="small">
-      <view class="placeholder">Wux</view>
-    </wux-wing-blank>
-    <wux-white-space />
-    <wux-wing-blank size="default">
-      <view class="placeholder">Wux</view>
-    </wux-wing-blank>
-    <wux-white-space />
-    <wux-wing-blank size="large">
-      <view class="placeholder">Wux</view>
-    </wux-wing-blank>
-    <wux-white-space />
-    <wux-wing-blank body-style="margin-left: 20px; margin-right: 20px">
-      <view class="placeholder">Wux</view>
-    </wux-wing-blank>
-  </view>
-</view>
-```
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/DoraemonUI)
 
-## 视频演示
+<!-- tabs:start -->
 
-[WingBlank](./_media/wing-blank.mp4 ':include :type=iframe width=375px height=667px')
+#### **WXML**
+
+[wxml](./playground/wing-blank/pages/index/index.wxml ':include :type=code')
+
+#### **JAVASCRIPT**
+
+[js](./playground/wing-blank/pages/index/index.js ':include :type=code')
+
+#### **WXSS**
+
+[wxss](./playground/wing-blank/pages/index/index.wxss ':include :type=code')
+
+<!-- tabs:end -->
 
 ## API
 
 ### WingBlank props
 
-| 参数      | 类型            | 描述                                           | 默认值        |
-| --------- | --------------- | ---------------------------------------------- | ------------- |
-| prefixCls | `string`        | 自定义类名前缀                                 | wux-wingblank |
-| size      | `string`        | 两翼留白的间距，可选值为 small、default、large | default       |
-| bodyStyle | `string,object` | 自定义样式                                     | -             |
+| 参数      | 类型     | 描述           | 默认值          |
+| --------- | -------- | -------------- | --------------- |
+| prefixCls | `string` | 自定义类名前缀 | dora-wing-blank |
 
 ### WingBlank slot
 
@@ -66,6 +56,12 @@
 
 ### WingBlank externalClasses
 
-| 名称      | 描述         |
-| --------- | ------------ |
-| wux-class | 根节点样式类 |
+| 名称       | 描述         |
+| ---------- | ------------ |
+| dora-class | 根节点样式类 |
+
+## CSS Variables
+
+| 属性         | 描述     | 默认值 | 全局变量 |
+| ------------ | -------- | ------ | -------- |
+| --text-color | 文字颜色 | `#fff` | -        |

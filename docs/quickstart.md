@@ -64,7 +64,7 @@ cd wux-weapp
 
 ```
 demo/
-  |-actionsheet/
+  |-action-sheet/
   |-animation-group/
   |-backdrop/
   |-badge/
@@ -73,7 +73,7 @@ demo/
   |-index.js
 ```
 
-- 首先将 `packages/` 目录下对应组件（如 `actionsheet`）拷贝至 `demo` 目录；
+- 首先将 `packages/` 目录下对应组件（如 `action-sheet`）拷贝至 `demo` 目录；
 - 其次看其对应目录下 `index.json` 是否存在依赖组件，若存在则一一拷贝；
 - 然后看组件是否依靠 JavaScript 主动调用（查看对应文档可得知或存在 `index.js` 文件中），是则拷贝 `index.js` 文件，并删除不需要的组件引用；
 - 最后查看组件目录下 `index.js` 是否存在对帮助方法的引用，若存在则拷贝 `helpers` 目录（抑或直接拷贝不管是否存在引用）。

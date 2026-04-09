@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SwipeAction mount correctly 1`] = `
+<dora-swipe-action>
+  <wx-view
+    class="dora-class dora-swipe"
+  >
+    <wx-view
+      class="dora-swipe__cover"
+      hidden="{{true}}"
+      style=""
+      bind:touchstart="onClose"
+    />
+    <wx-view
+      class="dora-swipe__content"
+      style=""
+      catch:touchend="onTouchEnd"
+      catch:touchmove=""
+      bind:touchstart="onTouchStart"
+    />
+  </wx-view>
+</dora-swipe-action>
+`;

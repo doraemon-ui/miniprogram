@@ -1,25 +1,5 @@
-import { type ComponentPublicInstance, defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 const { classNames } = Doraemon.util
-
-export type BackdropExpose = {
-  backdropHolds: number
-  retain: () => void
-  release: () => void
-}
-
-export interface BackdropProps {
-  prefixCls: string
-  transparent: boolean
-  zIndex: number
-  disableScroll: boolean
-  mountOnEnter: boolean
-  unmountOnExit: boolean
-  visible: boolean
-  classNames: string
-  wrapStyle: Partial<CSSStyleDeclaration>
-}
-
-export type BackdropInstance = ComponentPublicInstance<Backdrop, BackdropProps, BackdropExpose>
 
 @Component({
   props: {
@@ -226,7 +206,9 @@ class Backdrop extends Doraemon {
    * @memberof Backdrop
    */
   onContentClick() {
-    /** Ignore */
+    /**
+     * Ignore
+     */
   }
 
   /**
@@ -264,5 +246,7 @@ class Backdrop extends Doraemon {
     this.$emit('click')
   }
 }
+
+export { Backdrop }
 
 export default defineComponentHOC()(Backdrop)

@@ -1,0 +1,41 @@
+<view class="dora-class {{ classes.wrap }}">
+  <view class="{{ classes.hd }}">
+    <dora-tabs
+      controlled
+      current="{{ activeIndex + '' }}"
+      theme="assertive"
+      justify="flex-start"
+      bind:change="onTabsChange"
+      data-active-index="{{ activeIndex + '' }}"
+      wx:if="{{ activeOptions.length }}"
+    >
+      <block wx:for="{{ activeOptions }}" wx:key="index">
+        <dora-tab key="{{ index + '' }}" title="{{ item[fieldNames.label] + '' }}"></dora-tab>
+      </block>
+    </dora-tabs>
+  </view>
+  <view class="{{ classes.bd }}" style="{{ bodyStyle }}">
+    <block wx:for="{{ showOptions }}" wx:for-item="option" wx:for-index="optionIndex" wx:key="optionIndex" wx:if="{{ showOptions.length }}">
+      <view class="{{ classes.innerScroll }}">
+        <scroll-view scroll-y class="dora-scroll-view-class {{ classes.scrollView }}" style="{{ scrollViewStyle }}">
+          <dora-radio-group
+            data-option-index="{{ optionIndex }}"
+            value="{{ activeValue[optionIndex] || '' }}"
+            bodyStyle="{{ { backgroundColor: 'unset' } }}"
+            bind:change="onItemSelect"
+            wx:if="{{ option.length }}"
+          >
+            <block wx:for="{{ option }}" wx:key="__comp_unique_key">
+              <dora-radio
+                color="assertive"
+                title="{{ item[fieldNames.label] + '' }}"
+                value="{{ item[fieldNames.value] + '' }}"
+                disabled="{{ !!item[fieldNames.disabled] }}"
+              />
+            </block>
+          </dora-radio-group>
+        </scroll-view>
+      </view>
+    </block>
+  </view>
+</view>

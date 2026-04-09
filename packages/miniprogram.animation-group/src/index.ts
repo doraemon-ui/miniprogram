@@ -1,79 +1,7 @@
 import { defineComponentHOC, Doraemon, Component, Watch, Prop } from '@doraemon-ui/miniprogram.core-js'
+import type { ClassNames, Duration, NextAnimate } from './types'
+import { AnimateStatus, AnimateType } from './types'
 const { styleToCssString } = Doraemon.util
-
-/**
- * 动画状态的类型
- *
- * @enum {number}
- */
-enum AnimateStatus {
-  /** 进场动画的开始状态 */
-  ENTER = 'enter',
-  /** 进场动画的结束状态 */
-  ENTERING = 'entering',
-  /** 进场动画的完成状态 */
-  ENTERED = 'entered',
-  /** 离场动画的开始状态 */
-  EXIT = 'exit',
-  /** 离场动画的结束状态 */
-  EXITING = 'exiting',
-  /** 离场动画的完成状态 */
-  EXITED = 'exited',
-  /** 组件已卸载 */
-  UNMOUNTED = 'unmounted',
-}
-
-/**
- * 动画的类型
- *
- * @enum {number}
- */
-enum AnimateType {
-  /** 过渡效果 */
-  TRANSITION = 'transition',
-  /** 动画效果 */
-  ANIMATION = 'animation',
-}
-
-/**
- * 自定义动画类名的类型
- */
-type ClassNames =
-  | string
-  | {
-      /** 进场动画的开始状态，在动画完成之后移除 */
-      enter?: string
-      /** 进场动画的结束状态，在动画完成之后移除 */
-      enterActive?: string
-      /** 进场动画的完成状态 */
-      enterDone?: string
-      /** 离场动画的开始状态，在动画完成之后移除 */
-      exit?: string
-      /** 离场动画的结束状态，在动画完成之后移除 */
-      exitActive?: string
-      /** 离场动画的完成状态 */
-      exitDone?: string
-    }
-
-/**
- * 动画持续时间的类型
- */
-type Duration =
-  | number
-  | {
-      enter?: number
-      exit?: number
-    }
-
-/**
- * 下一阶段动画的类型
- */
-type NextAnimate = {
-  /** 动画的状态 */
-  animateStatus?: AnimateStatus
-  /** 动画的类名 */
-  animateCss?: string
-}
 
 /**
  * 默认动画类名
@@ -496,7 +424,9 @@ class AnimationGroup extends Doraemon {
    * @memberof AnimationGroup
    */
   onTouchMove() {
-    /** Ignore */
+    /**
+     * Ignore
+     */
   }
 
   /**
@@ -619,5 +549,7 @@ class AnimationGroup extends Doraemon {
     })
   }
 }
+
+export { AnimationGroup }
 
 export default defineComponentHOC()(AnimationGroup)

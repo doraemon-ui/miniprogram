@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "dora-timeline-item": "./timeline-item"
+  }
+}

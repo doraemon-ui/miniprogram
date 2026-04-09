@@ -1,0 +1,25 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-radio__selectable {
+  position: static!important
+}
+.dora-radio__icon-position {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center
+}
+.dora-radio__icon-selectable {
+  min-width: 56rpx;
+  margin-right: 24rpx
+}
+.dora-radio__thumb {
+  width: var(--dora-radio-thumb-size,40rpx);
+  width: var(--dora-radio-thumb-size,40rpx);
+  height: var(--dora-radio-thumb-size,40rpx);
+  height: var(--dora-radio-thumb-size,40rpx);
+  display: block;
+  margin-right: 12rpx
+}

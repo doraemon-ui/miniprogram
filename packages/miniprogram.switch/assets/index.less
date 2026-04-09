@@ -1,0 +1,118 @@
+@import './variables.less';
+
+// Switch styles
+// -----------------------------
+.@{switch-prefix-cls} {
+  @switch-height: 62rpx;
+  @switch-bg: #dfdfdf;
+  @switch-color: #33cd5f;
+  @disabled-opacity: 0.5;
+
+  @switch-handle-height: @switch-height - 2rpx;
+  @switch-spin-height: @switch-handle-height / 2;
+  @switch-spin-margin: (@switch-handle-height - @switch-spin-height) / 2;
+
+  display: inline-block;
+  vertical-align: middle;
+  box-sizing: border-box;
+  position: relative;
+  align-self: center;
+  cursor: pointer;
+
+  &__input {
+    position: relative;
+    min-width: 104rpx;
+    height: @switch-height;
+    border: 1rpx solid @switch-bg;
+    outline: 0;
+    border-radius: @switch-height / 2;
+    box-sizing: border-box;
+    background-color: @switch-bg;
+    transition:
+      background-color 0.1s,
+      border 0.1s;
+
+    &::before {
+      content: ' ';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: @switch-handle-height;
+      border-radius: @switch-handle-height / 2;
+      background-color: #fdfdfd;
+      transition: transform 0.35s cubic-bezier(0.45, 1, 0.4, 1);
+    }
+
+    &::after {
+      content: ' ';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: @switch-handle-height;
+      height: @switch-handle-height;
+      border-radius: @switch-handle-height / 2;
+      background-color: #fff;
+      box-shadow: 0 2rpx 6rpx rgba(0, 0, 0, 0.4);
+      transition: left 0.35s cubic-bezier(0.4, 0.4, 0.25, 1.35);
+    }
+
+    &--checked {
+      border-color: @switch-color;
+      background-color: @switch-color;
+
+      &::before {
+        transform: scale(0);
+      }
+
+      &::after {
+        left: calc(~'100% - 58rpx');
+      }
+    }
+
+    &--disabled {
+      opacity: @disabled-opacity;
+      cursor: not-allowed;
+    }
+  }
+
+  &__text {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    transition: margin 0.2s;
+    margin: 0 16rpx 0 72rpx;
+  }
+
+  &--checked &__text {
+    color: @text-color-inverse;
+    margin: 0 70rpx 0 20rpx;
+  }
+
+  &__spin {
+    position: absolute;
+    left: @switch-spin-margin;
+    top: @switch-spin-margin;
+    z-index: 10;
+    width: @switch-spin-height;
+    height: @switch-spin-height;
+    border: 3rpx solid rgba(255, 255, 255, 0.35);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: dora-switch-spin-rotate 1s linear infinite;
+  }
+
+  &--checked &__spin {
+    left: unset;
+    right: @switch-spin-margin;
+  }
+}
+
+@keyframes dora-switch-spin-rotate {
+  to {
+    transform: rotate(1turn);
+  }
+}

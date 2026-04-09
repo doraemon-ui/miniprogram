@@ -1,0 +1,138 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-badge {
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+  vertical-align: middle
+}
+.dora-badge__count {
+  position: absolute;
+  transform: translate(50%,-50%);
+  top: 0;
+  right: 0;
+  height: var(--dora-badge-height,36rpx);
+  height: var(--dora-badge-height,36rpx);
+  border-radius: var(--dora-badge-height,36rpx)/2;
+  border-radius: var(--dora-badge-height,36rpx)/2;
+  min-width: var(--dora-badge-height,36rpx);
+  min-width: var(--dora-badge-height,36rpx);
+  background: var(--dora-badge-bg,#ed3f14);
+  background: var(--dora-badge-bg,#ed3f14);
+  color: var(--dora-badge-color,#fff);
+  color: var(--dora-badge-color,#fff);
+  line-height: var(--dora-badge-height,36rpx);
+  line-height: var(--dora-badge-height,36rpx);
+  text-align: center;
+  padding: 0 10rpx;
+  font-size: var(--dora-badge-font-size,24rpx);
+  font-size: var(--dora-badge-font-size,24rpx);
+  white-space: nowrap;
+  transform-origin: 100% 0;
+  z-index: 10;
+  box-shadow: 0 0 0 2rpx var(--dora-white,#fff);
+  box-shadow: 0 0 0 2rpx var(--dora-white,#fff);
+  box-sizing: border-box;
+  text-rendering: optimizeLegibility
+}
+.dora-badge__dot {
+  width: var(--dora-badge-dot-size,16rpx);
+  width: var(--dora-badge-dot-size,16rpx);
+  height: var(--dora-badge-dot-size,16rpx);
+  height: var(--dora-badge-dot-size,16rpx);
+  position: absolute;
+  transform: translate(50%,-50%);
+  transform-origin: 100% 0;
+  top: 0;
+  right: 0;
+  border-radius: 100%;
+  background: var(--dora-badge-bg,#ed3f14);
+  background: var(--dora-badge-bg,#ed3f14);
+  z-index: 10;
+  box-shadow: 0 0 0 2rpx var(--dora-white,#fff);
+  box-shadow: 0 0 0 2rpx var(--dora-white,#fff)
+}
+.dora-badge--position-topLeft .dora-badge__count,
+.dora-badge--position-topLeft .dora-badge__dot {
+  right: 100%
+}
+.dora-badge--position-bottomRight .dora-badge__count,
+.dora-badge--position-bottomRight .dora-badge__dot {
+  top: 100%
+}
+.dora-badge--position-bottomLeft .dora-badge__count,
+.dora-badge--position-bottomLeft .dora-badge__dot {
+  top: 100%;
+  right: 100%
+}
+.dora-badge--hide-shadow .dora-badge__count,
+.dora-badge--hide-shadow .dora-badge__dot {
+  box-shadow: none!important
+}
+.dora-badge__status {
+  line-height: inherit;
+  vertical-align: baseline
+}
+.dora-badge__status-dot {
+  width: var(--dora-badge-status-size,12rpx);
+  width: var(--dora-badge-status-size,12rpx);
+  height: var(--dora-badge-status-size,12rpx);
+  height: var(--dora-badge-status-size,12rpx);
+  display: inline-block;
+  border-radius: 50%;
+  vertical-align: middle;
+  position: relative;
+  top: -2rpx
+}
+.dora-badge__status-dot--success {
+  background-color: var(--dora-badge-success-bg,#52c41a);
+  background-color: var(--dora-badge-success-bg,#52c41a)
+}
+.dora-badge__status-dot--processing {
+  background-color: var(--dora-badge-processing-bg,#1890ff);
+  background-color: var(--dora-badge-processing-bg,#1890ff);
+  position: relative
+}
+.dora-badge__status-dot--processing::after {
+  position: absolute;
+  top: -2rpx;
+  left: -2rpx;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2rpx solid var(--dora-badge-processing-bg,#1890ff);
+  border: 2rpx solid var(--dora-badge-processing-bg,#1890ff);
+  content: "";
+  animation: statusProcessing 1.2s infinite ease-in-out
+}
+.dora-badge__status-dot--default {
+  background-color: var(--dora-badge-normal-bg,#d9d9d9);
+  background-color: var(--dora-badge-normal-bg,#d9d9d9)
+}
+.dora-badge__status-dot--error {
+  background-color: var(--dora-badge-error-bg,#f5222d);
+  background-color: var(--dora-badge-error-bg,#f5222d)
+}
+.dora-badge__status-dot--warning {
+  background-color: var(--dora-badge-warning-bg,#faad14);
+  background-color: var(--dora-badge-warning-bg,#faad14)
+}
+.dora-badge__status-text {
+  display: inline-block;
+  color: rgba(var(--dora-text-color-rgb,0,0,0),.65);
+  color: rgba(var(--dora-text-color-rgb,0,0,0),.65);
+  font-size: 28rpx;
+  margin-left: 16rpx
+}
+@keyframes statusProcessing {
+  0% {
+    transform: scale(.8);
+    opacity: .5
+  }
+  to {
+    transform: scale(2.4);
+    opacity: 0
+  }
+}

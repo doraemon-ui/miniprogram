@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Ellipsis mount correctly 1`] = `
+<dora-ellipsis>
+  <wx-view
+    class="dora-class dora-ellipsis"
+    bind:tap="onTap"
+  >
+    <wx-text>
+      
+    </wx-text>
+  </wx-view>
+  <wx-view
+    class="dora-class dora-ellipsis dora-ellipsis--container"
+    style="width: 100%;  word-break: break-word;  "
+  >
+    
+  
+
+  </wx-view>
+</dora-ellipsis>
+`;

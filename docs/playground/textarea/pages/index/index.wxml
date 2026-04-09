@@ -1,0 +1,38 @@
+<demo-page
+  darkmode="auto"
+  title="Textarea"
+  desc="多行输入框"
+  clickable
+  spacing
+>
+  <demo-block title="基础用法">
+    <dora-textarea placeholder="No label" />
+    <dora-textarea label="First name" />
+    <dora-textarea label="Last name" placeholder="Input your last name" />
+  </demo-block>
+
+  <demo-block title="自动高度 / 固定行数">
+    <dora-textarea autoHeight label="Auto Height" />
+    <dora-textarea rows="{{ 3 }}" label="Rows 3" placeholder="Input..." />
+  </demo-block>
+
+  <demo-block title="计数 / 清除">
+    <dora-textarea hasCount rows="{{ 3 }}" cursorSpacing="{{ 80 }}" placeholder="Count..." />
+    <dora-textarea clear label="Clearable" defaultValue="hello" bind:clear="onClear" />
+  </demo-block>
+
+  <demo-block title="受控模式">
+    <dora-textarea
+      label="Controlled"
+      value="{{ value }}"
+      controlled
+      error="{{ error }}"
+      bind:change="onChange"
+      bind:focus="onFocus"
+      bind:blur="onBlur"
+      bind:confirm="onConfirm"
+      bind:clear="onClear"
+      bind:error="onError"
+    />
+  </demo-block>
+</demo-page>

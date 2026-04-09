@@ -1,0 +1,66 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-notice-bar {
+  background-color: var(--dora-notice-bar-bg,#fffbe8);
+  background-color: var(--dora-notice-bar-bg,#fffbe8);
+  height: var(--dora-notice-bar-height,72rpx);
+  height: var(--dora-notice-bar-height,72rpx);
+  overflow: hidden;
+  font-size: var(--dora-notice-bar-font-size,26rpx);
+  font-size: var(--dora-notice-bar-font-size,26rpx);
+  line-height: var(--dora-notice-bar-height,72rpx);
+  line-height: var(--dora-notice-bar-height,72rpx);
+  color: var(--dora-notice-bar-color,#f76a24);
+  color: var(--dora-notice-bar-color,#f76a24);
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0 var(--dora-notice-bar-icon-margin,16rpx);
+  padding: 0 var(--dora-notice-bar-icon-margin,16rpx)
+}
+.dora-notice-bar__icon {
+  width: var(--dora-notice-bar-icon-size,32rpx);
+  width: var(--dora-notice-bar-icon-size,32rpx);
+  height: var(--dora-notice-bar-icon-size,32rpx);
+  height: var(--dora-notice-bar-icon-size,32rpx);
+  margin-right: var(--dora-notice-bar-icon-margin,16rpx);
+  margin-right: var(--dora-notice-bar-icon-margin,16rpx)
+}
+.dora-notice-bar__action {
+  width: var(--dora-notice-bar-icon-size,32rpx);
+  width: var(--dora-notice-bar-icon-size,32rpx);
+  height: var(--dora-notice-bar-icon-size,32rpx);
+  height: var(--dora-notice-bar-icon-size,32rpx);
+  margin-left: var(--dora-notice-bar-icon-margin,16rpx);
+  margin-left: var(--dora-notice-bar-icon-margin,16rpx)
+}
+.dora-notice-bar__hd {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center
+}
+.dora-notice-bar__bd {
+  -ms-flex: 1;
+  flex: 1;
+  width: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
+}
+.dora-notice-bar__marquee-container {
+  overflow: hidden
+}
+.dora-notice-bar__marquee {
+  position: relative;
+  transform: translate3d(0,0,0);
+  white-space: nowrap;
+  display: inline-block
+}
+.dora-notice-bar__ft {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center
+}

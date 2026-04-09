@@ -1,0 +1,81 @@
+@import './variables.less';
+
+// Tag styles
+// -----------------------------
+.@{tag-prefix-cls} {
+  display: inline-flex;
+  align-items: center;
+  line-height: 40rpx;
+  height: 44rpx;
+  padding: 0 14rpx;
+  border-radius: @border-radius-base;
+  border: 2rpx solid @border-color-base;
+  background: #fafafa;
+  font-size: @font-size-base;
+  margin-right: 16rpx;
+  white-space: nowrap;
+
+  &--hover {
+    opacity: 0.85;
+  }
+
+  &__icon {
+    margin-left: 8rpx;
+  }
+
+  &--magenta {
+    color: #eb2f96;
+    background: fade(#eb2f96, 6);
+    border-color: fade(#eb2f96, 30);
+  }
+  &--red {
+    color: #f5222d;
+    background: fade(#f5222d, 6);
+    border-color: fade(#f5222d, 30);
+  }
+  &--volcano {
+    color: #fa541c;
+    background: fade(#fa541c, 6);
+    border-color: fade(#fa541c, 30);
+  }
+  &--orange {
+    color: #fa8c16;
+    background: fade(#fa8c16, 6);
+    border-color: fade(#fa8c16, 30);
+  }
+  &--gold {
+    color: #faad14;
+    background: fade(#faad14, 6);
+    border-color: fade(#faad14, 30);
+  }
+  &--lime {
+    color: #a0d911;
+    background: fade(#a0d911, 6);
+    border-color: fade(#a0d911, 30);
+  }
+  &--green {
+    color: #52c41a;
+    background: fade(#52c41a, 6);
+    border-color: fade(#52c41a, 30);
+  }
+  &--cyan {
+    color: #13c2c2;
+    background: fade(#13c2c2, 6);
+    border-color: fade(#13c2c2, 30);
+  }
+  &--blue {
+    color: #1890ff;
+    background: fade(#1890ff, 6);
+    border-color: fade(#1890ff, 30);
+  }
+  &--geekblue {
+    color: #2f54eb;
+    background: fade(#2f54eb, 6);
+    border-color: fade(#2f54eb, 30);
+  }
+  &--purple {
+    color: #722ed1;
+    background: fade(#722ed1, 6);
+    border-color: fade(#722ed1, 30);
+  }
+}

@@ -1,0 +1,88 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-input {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center
+}
+.dora-input__label {
+  position: relative;
+  margin-left: 0;
+  margin-right: 12rpx;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  width: var(--dora-input-label-width,210rpx);
+  width: var(--dora-input-label-width,210rpx)
+}
+.dora-input__label--wrap {
+  white-space: normal
+}
+.dora-input__label--required::before {
+  display: inline-block;
+  margin-right: 6rpx;
+  color: var(--dora-color-assertive,#eb445a);
+  color: var(--dora-color-assertive,#eb445a);
+  font-size: 28rpx;
+  font-family: SimSun,sans-serif;
+  line-height: 1;
+  content: "*"
+}
+.dora-input__control {
+  -ms-flex: 1;
+  flex: 1
+}
+.dora-input__item {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  font-size: inherit;
+  color: inherit;
+  height: 1.47058824em;
+  min-height: 1.47058824em;
+  line-height: 1.47058824
+}
+.dora-input__clear {
+  display: -ms-flexbox;
+  display: flex
+}
+.dora-input__eye {
+  display: -ms-flexbox;
+  display: flex;
+  width: var(--dora-input-eye-size,32rpx);
+  width: var(--dora-input-eye-size,32rpx);
+  height: var(--dora-input-eye-size,32rpx);
+  height: var(--dora-input-eye-size,32rpx);
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-left: 12rpx
+}
+.dora-input__error {
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 12rpx
+}
+.dora-input__extra {
+  color: rgba(var(--dora-text-color-rgb,0,0,0),.45);
+  color: rgba(var(--dora-text-color-rgb,0,0,0),.45);
+  margin-left: 12rpx
+}
+.dora-input--disabled {
+  opacity: var(--dora-disabled-opacity,.3);
+  opacity: var(--dora-disabled-opacity,.3);
+  cursor: not-allowed
+}
+.dora-input--error .dora-input__control {
+  color: var(--dora-color-assertive,#eb445a);
+  color: var(--dora-color-assertive,#eb445a)
+}
+.dora-input__keyboardAccessory {
+  max-height: 400rpx
+}

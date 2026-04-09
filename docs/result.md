@@ -1,105 +1,67 @@
-# Result 结果页
+# Result Result
 
-在整张页面中组织插画、图标、文字等内容，向用户反馈操作结果。
+@doraemon-ui/miniprogram.result
+
+## 安装
+
+我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
+
+```bash
+npm install --save @doraemon-ui/miniprogram.result
+# or
+yarn add @doraemon-ui/miniprogram.result
+```
+
+如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
 
 ## 使用指南
 
 ### 在 page.json 中引入组件
 
-```json
-{
-  "navigationBarTitleText": "Result",
-  "usingComponents": {
-    "wux-result": "../../dist/result/index"
-  }
-}
-```
+[json](./playground/result/pages/index/index.json ':include :type=code')
 
-### 示例
+### 示例代码
 
-```html
-<wux-result
-  title="支付成功"
-  label="微信小程序自定义组件 https://github.com/wux-weapp/wux-weapp"
-  buttons="{{ buttons }}"
-  extra="Copyright © 2018 wux weapp"
-  fixed
-  bind:click="onClick"
-/>
-```
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/DoraemonUI)
 
-```js
-Page({
-  data: {
-    buttons: [
-      {
-        type: 'balanced',
-        block: true,
-        text: '确定',
-      },
-      {
-        type: 'light',
-        block: true,
-        text: '返回',
-      },
-    ],
-  },
-  onClick(e) {
-    console.log(e)
-    const { index } = e.detail
+<!-- tabs:start -->
 
-    index === 0 &&
-      wx.showModal({
-        title: 'Thank you for your support!',
-        showCancel: !1,
-      })
+#### **WXML**
 
-    index === 1 && wx.navigateBack()
-  },
-})
-```
+[wxml](./playground/result/pages/index/index.wxml ':include :type=code')
 
-## 视频演示
+#### **JAVASCRIPT**
 
-[Result](./_media/result.mp4 ':include :type=iframe width=375px height=667px')
+[js](./playground/result/pages/index/index.js ':include :type=code')
+
+#### **WXSS**
+
+[wxss](./playground/result/pages/index/index.wxss ':include :type=code')
+
+<!-- tabs:end -->
 
 ## API
 
 ### Result props
 
-| 参数                | 类型       | 描述                                                                                                  | 默认值     |
-| ------------------- | ---------- | ----------------------------------------------------------------------------------------------------- | ---------- |
-| prefixCls           | `string`   | 自定义类名前缀                                                                                        | wux-result |
-| icon                | `any`      | 图标的配置项                                                                                          | -          |
-| icon.type           | `string`   | 图标的类型，可选值为 success、success_no_circle、info、warn、waiting、cancel、download、search、clear | success    |
-| icon.size           | `number`   | 图标的大小                                                                                            | 93         |
-| icon.color          | `string`   | 图标的颜色                                                                                            | #33cd5f    |
-| title               | `string`   | 标题                                                                                                  | -          |
-| label               | `string`   | 描述                                                                                                  | -          |
-| buttons             | `array`    | 按钮列表                                                                                              | []         |
-| extra               | `string`   | 底部内容                                                                                              | -          |
-| fixed               | `boolean`  | 底部内容是否定位在底部                                                                                | false      |
-| bind:click          | `function` | 点击事件                                                                                              | -          |
-| bind:getuserinfo    | `function` | 用户点击该按钮时，会返回获取到的用户信息，回调的 detail 数据与 wx.getUserInfo 返回的一致              | -          |
-| bind:contact        | `function` | 客服消息回调                                                                                          | -          |
-| bind:getphonenumber | `function` | 获取用户手机号回调                                                                                    | -          |
-| bind:error          | `function` | 当使用开放能力时，发生错误的回调                                                                      | -          |
-| bind:opensetting    | `function` | 在打开授权设置页后回调                                                                                | -          |
-| bind:launchapp     | `function` | 打开 APP 成功的回调，open-type=launchApp时有效                                                                        | -            |
-| bind:chooseavatar     | `function` | 获取用户头像回调，open-type=chooseAvatar时有效                                                                        | -            |
-
-> 按钮列表：buttons 参数请参考 [Button](button.md)。
+| 参数      | 类型     | 描述           | 默认值      |
+| --------- | -------- | -------------- | ----------- |
+| prefixCls | `string` | 自定义类名前缀 | dora-result |
 
 ### Result slot
 
-| 名称   | 描述             |
-| ------ | ---------------- |
-| -      | 自定义标题或描述 |
-| header | 自定义图标       |
-| footer | 自定义底部内容   |
+| 名称 | 描述       |
+| ---- | ---------- |
+| -    | 自定义内容 |
 
 ### Result externalClasses
 
-| 名称      | 描述         |
-| --------- | ------------ |
-| wux-class | 根节点样式类 |
+| 名称       | 描述         |
+| ---------- | ------------ |
+| dora-class | 根节点样式类 |
+
+## CSS Variables
+
+| 属性         | 描述     | 默认值 | 全局变量 |
+| ------------ | -------- | ------ | -------- |
+| --text-color | 文字颜色 | `#fff` | -        |

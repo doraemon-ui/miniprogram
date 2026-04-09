@@ -1,0 +1,108 @@
+@import './variables.less';
+
+// Refresher styles
+// -----------------------------
+.@{refresher-prefix-cls} {
+  position: absolute;
+  top: -120rpx;
+  right: 0;
+  left: 0;
+  overflow: hidden;
+  margin: auto;
+  height: 100rpx;
+
+  &--hidden {
+    visibility: hidden;
+  }
+  &--visible {
+    visibility: visible;
+  }
+
+  &__content {
+    position: absolute;
+    bottom: 10rpx;
+    left: 0;
+    width: 100%;
+    color: @text-color;
+    text-align: center;
+    font-size: 60rpx;
+  }
+
+  &__content--text {
+    bottom: 0;
+  }
+  &__text-pulling,
+  &__text-refreshing {
+    font-size: @font-size-lg;
+    line-height: @font-size-lg;
+  }
+  &__text-refreshing {
+    display: none;
+  }
+
+  &__icon-pulling {
+    padding: 14rpx 0;
+    transform: translateZ(0) rotate(0deg);
+  }
+  &__icon-refreshing {
+    padding: 14rpx 0;
+    display: none;
+  }
+  &__icon--arrow-down::before {
+    content: '↓';
+  }
+  &__icon--refresher::before {
+    content: '⟳';
+  }
+
+  &--active&--refreshing {
+    .@{refresher-prefix-cls}__icon-pulling,
+    .@{refresher-prefix-cls}__text-pulling {
+      display: none;
+    }
+    .@{refresher-prefix-cls}__icon-refreshing,
+    .@{refresher-prefix-cls}__text-refreshing {
+      display: block;
+    }
+  }
+}
+
+.@{loader-prefix-cls} {
+  overflow: hidden;
+  margin: auto;
+  height: 100rpx;
+  font-size: 30rpx;
+  position: relative;
+  text-align: center;
+  display: none;
+
+  .@{refresher-prefix-cls}__icon--refresher {
+    display: inline-block;
+    margin: 0;
+  }
+  &__text-loading {
+    margin-left: @margin-component-base;
+  }
+  &--hidden {
+    visibility: hidden;
+    display: none;
+  }
+  &--visible {
+    visibility: visible;
+    display: block;
+  }
+  &--end {
+    visibility: visible;
+    display: block;
+  }
+  &__content {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    color: @text-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

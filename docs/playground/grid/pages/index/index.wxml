@@ -1,0 +1,11 @@
+<demo-page
+  darkmode="auto"
+  title="miniprogram.grid"
+  desc="miniprogram.grid"
+  clickable
+  spacing
+>
+  <demo-block title="Basic">
+    <dora-grid>miniprogram.grid</dora-grid>
+  </demo-block>
+</demo-page>

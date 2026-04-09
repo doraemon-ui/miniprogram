@@ -1,0 +1,35 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-date-picker {
+  background: #fff
+}
+.dora-date-picker__toolbar {
+  border-bottom: 2rpx solid var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  border-bottom: 2rpx solid var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9))
+}
+.dora-date-picker__inner {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 20rpx 24rpx
+}
+.dora-date-picker__cancel,
+.dora-date-picker__confirm {
+  color: var(--dora-color-balanced,#2dd36f);
+  color: var(--dora-color-balanced,#2dd36f);
+  font-size: 28rpx
+}
+.dora-date-picker__title {
+  color: rgba(var(--dora-text-color-rgb,0,0,0),.55);
+  color: rgba(var(--dora-text-color-rgb,0,0,0),.55);
+  font-size: 30rpx;
+  font-weight: 500
+}
+.dora-date-picker__hover {
+  opacity: .75
+}

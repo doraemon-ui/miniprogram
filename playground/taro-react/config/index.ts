@@ -1,19 +1,9 @@
-import path from 'path'
-import fs from 'fs'
-import { defineConfig, type UserConfigExport } from '@tarojs/cli'
+import path from 'node:path'
+import { defineConfig } from '@tarojs/cli'
+import type { UserConfigExport } from '@tarojs/cli'
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
 import devConfig from './dev'
 import prodConfig from './prod'
-// import taroReactPlugin from "../taro-react-plugin";
-
-// 获取 @doraemon-ui 域下的所有组件
-const getDoraemonPackages = () => {
-  const doraemonPath = path.resolve(__dirname, '../node_modules/@doraemon-ui')
-  if (!fs.existsSync(doraemonPath)) {
-    return []
-  }
-  return fs.readdirSync(doraemonPath).map((pkg) => `@doraemon-ui/${pkg}`)
-}
 
 // https://taro-docs.jd.com/docs/next/config#defineconfig-辅助函数
 export default defineConfig<'webpack5'>(async (merge, { command, mode }) => {
@@ -29,16 +19,14 @@ export default defineConfig<'webpack5'>(async (merge, { command, mode }) => {
     },
     sourceRoot: 'src',
     outputRoot: 'dist',
-    plugins: ['@tarojs/plugin-generator', path.resolve(__dirname, '../taro-react-plugin.ts')],
+    plugins: [
+      '@tarojs/plugin-generator',
+      '@doraemon-ui/taro-react/plugin/taro-react-plugin',
+      // path.resolve(__dirname, '../node_modules/@doraemon-ui/taro-react/plugin/taro-react-plugin.ts'),
+    ],
     defineConstants: {},
     copy: {
-      patterns: [
-        // 指向 miniprogram_dist 下的所有子目录及特定后缀文件
-        // ...getDoraemonPackages().map((pkg) => ({
-        //   from: `node_modules/${pkg}/miniprogram_dist/*.{js,json,wxml,wxss}`,
-        //   to: `dist/miniprogram_npm/${pkg}/[name][ext]`,
-        // })),
-      ],
+      patterns: [],
       options: {},
     },
     framework: 'react',

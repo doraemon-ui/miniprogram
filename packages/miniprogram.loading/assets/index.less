@@ -1,0 +1,59 @@
+@import './variables.less';
+
+// Loading styles
+// -----------------------------
+.@{loading-prefix-cls} {
+  position: fixed;
+  z-index: var(--dora-z-index-toast, 1080);
+  top: 50%;
+  left: 50%;
+  background: var(--dora-loading-bg, rgba(58, 58, 58, 0.95));
+  font-size: var(--dora-font-size-md, 28rpx);
+  line-height: var(--dora-line-height-md, 1.5);
+  text-align: center;
+  border-radius: @border-radius-base;
+  color: var(--dora-white, #fff);
+  transform: translate3d(-50%, -50%, 0);
+
+  &__content {
+    min-width: 236rpx;
+    padding: 18rpx 30rpx;
+    box-sizing: border-box;
+
+    &--has-icon {
+      padding: 30rpx;
+
+      .@{loading-prefix-cls}__text {
+        margin-top: 12rpx;
+      }
+    }
+  }
+
+  &__icon {
+    margin: 0;
+    display: block;
+
+    &--loading {
+      display: inline-block !important;
+      vertical-align: middle;
+      animation: loading 1s steps(12, end) infinite;
+      .encoded-svg-background(loading);
+      background-repeat: no-repeat;
+      background-size: 100%;
+      margin: 10rpx 0 0 !important;
+      width: 76rpx;
+      height: 76rpx;
+      vertical-align: baseline;
+    }
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate3d(0, 0, 1, 0deg);
+  }
+
+  100% {
+    transform: rotate3d(0, 0, 1, 360deg);
+  }
+}

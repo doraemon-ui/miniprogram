@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Refresher mount correctly 1`] = `
+<dora-refresher>
+  <wx-view
+    style="transition: transform .4s; transform: translate3d(0px, 0px, 0px) scale(1);"
+    bind:touchend="onTouchEnd"
+    catch:touchmove=""
+    bind:touchstart="onTouchStart"
+  >
+    <wx-view
+      class="dora-class dora-refresher dora-refresher--hidden"
+    >
+      <wx-view
+        class="dora-refresher__content dora-refresher__content--text"
+      >
+        <wx-view
+          class="dora-refresher__icon-pulling"
+        >
+          <wx-text
+            class="dora-refresher__icon--arrow-down"
+          />
+        </wx-view>
+        <wx-view
+          class="dora-refresher__text-pulling"
+        >
+          下拉刷新
+        </wx-view>
+        <wx-view
+          class="dora-refresher__icon-refreshing"
+        >
+          <wx-text
+            class="dora-refresher__icon--refresher"
+          />
+        </wx-view>
+        <wx-view
+          class="dora-refresher__text-refreshing"
+        >
+          正在刷新
+        </wx-view>
+      </wx-view>
+    </wx-view>
+    <wx-view
+      class="dora-refresher__container"
+    />
+    <wx-view
+      class="dora-loader dora-loader--hidden"
+    >
+      <wx-view
+        class="dora-loader__content"
+      >
+        <wx-text
+          class="dora-refresher__icon--refresher"
+        />
+      </wx-view>
+    </wx-view>
+  </wx-view>
+</dora-refresher>
+`;

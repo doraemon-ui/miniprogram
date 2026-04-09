@@ -1,0 +1,37 @@
+@import './variables.less';
+
+// Landscape styles
+// -----------------------------
+.@{landscape-prefix-cls} {
+  &__inner {
+    padding: 30rpx;
+    font-size: 30rpx;
+    line-height: 1.5;
+    color: @text-color;
+
+    > image {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+
+  &__close {
+    position: relative;
+    display: inline-block;
+    margin-top: 10rpx;
+  }
+
+  &__close-x {
+    display: inline-block;
+    width: 48rpx;
+    height: 48rpx;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .encoded-svg-background(delete);
+  }
+
+  &--has-mask &__close-x {
+    .encoded-svg-background(delete, #fff);
+  }
+}

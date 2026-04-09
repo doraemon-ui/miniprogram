@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Textarea mount correctly 1`] = `
+<dora-textarea>
+  <wx-view
+    class="dora-class dora-textarea"
+  >
+    <wx-view
+      class="dora-textarea__control"
+    >
+      <wx-textarea
+        adjustPosition="{{true}}"
+        autoHeight="{{false}}"
+        class="dora-textarea__item"
+        confirmHold="{{false}}"
+        confirmType="return"
+        cursor="{{-1}}"
+        cursorSpacing="{{11}}"
+        disabled="{{false}}"
+        disableDefaultPadding="{{false}}"
+        fixed="{{false}}"
+        focus="{{false}}"
+        holdKeyboard="{{false}}"
+        maxlength="{{140}}"
+        placeholder=""
+        placeholderClass="textarea-placeholder"
+        placeholderStyle="; "
+        selectionEnd="{{-1}}"
+        selectionStart="{{-1}}"
+        showConfirmBar="{{true}}"
+        style=""
+        value=""
+        bind:blur="onBlur"
+        bind:confirm="onConfirm"
+        bind:focus="onFocus"
+        bind:input="onChange"
+        bind:keyboardheightchange="onKeyboardHeightChange"
+        bind:linechange="onLineChange"
+      >
+        <wx-keyboard-accessory
+          class="dora-textarea__keyboard-accessory"
+          style="max-height: 400rpx;"
+        />
+      </wx-textarea>
+    </wx-view>
+  </wx-view>
+</dora-textarea>
+`;

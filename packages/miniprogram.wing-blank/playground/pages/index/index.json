@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "WingBlank",
+  "usingComponents": {
+    "demo-page": "@doraemon-ui/miniprogram.demo-page",
+    "demo-block": "@doraemon-ui/miniprogram.demo-block",
+    "dora-wing-blank": "@doraemon-ui/miniprogram.wing-blank/index",
+    "dora-white-space": "@doraemon-ui/miniprogram.white-space/index"
+  }
+}

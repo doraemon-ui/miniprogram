@@ -1,0 +1,27 @@
+<dora-date-picker visible="{{ visible }}" controlled mode="datetime" value="{{ value1 }}" lang="{{ lang }}" data-index="{{ 1 }}" data-mode="datetime" bind:confirm="onConfirm" bind:visibleChange="onVisibleChange" />
+<demo-page title="DatePicker" desc="日期选择器" spacing>
+  <dora-segmented-control values="{{ ['zh_CN', 'zh_TW', 'en'] }}" bind:change="onChange" />
+  <demo-block title="Datetime {{ displayValue1 }}">
+    <dora-date-picker mode="datetime" value="{{ value1 }}" lang="{{ lang }}" data-index="{{ 1 }}" data-mode="datetime" bind:confirm="onConfirm">
+      <view style="padding: 24rpx; background: #fff; border-radius: 12rpx;">{{ displayValue1 }}</view>
+    </dora-date-picker>
+  </demo-block>
+  <demo-block title="Date {{ displayValue2 }}">
+    <dora-date-picker mode="date" value="{{ value2 }}" lang="{{ lang }}" data-index="{{ 2 }}" data-mode="date" bind:confirm="onConfirm">
+      <view style="padding: 24rpx; background: #fff; border-radius: 12rpx;">{{ displayValue2 }}</view>
+    </dora-date-picker>
+  </demo-block>
+  <demo-block title="Time {{ displayValue5 }}">
+    <dora-date-picker mode="time" value="{{ value5 }}" lang="{{ lang }}" data-index="{{ 5 }}" data-mode="time" bind:confirm="onConfirm">
+      <view style="padding: 24rpx; background: #fff; border-radius: 12rpx;">{{ displayValue5 }}</view>
+    </dora-date-picker>
+  </demo-block>
+  <demo-block title="TillNow {{ displayValue10 }}">
+    <dora-date-picker tillNow mode="datetime" value="{{ value10 }}" lang="{{ lang }}" data-index="{{ 10 }}" data-mode="datetime" bind:confirm="onConfirm">
+      <view style="padding: 24rpx; background: #fff; border-radius: 12rpx;">{{ displayValue10 }}</view>
+    </dora-date-picker>
+  </demo-block>
+  <demo-block title="Button Open">
+    <view style="padding: 24rpx; background: #fff; border-radius: 12rpx;" bindtap="onClick">Button click - {{ displayValue1 }}</view>
+  </demo-block>
+</demo-page>

@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "dora-list-item": "../../miniprogram.list/src/item",
+    "dora-selectable": "../../miniprogram.selectable/src/index"
+  }
+}

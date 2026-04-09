@@ -1,154 +1,67 @@
-# Toptips 顶部提示
+# Toptips Toptips
 
-用于展现简短的提示信息，在窗口顶部显示。
+@doraemon-ui/miniprogram.toptips
+
+## 安装
+
+我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
+
+```bash
+npm install --save @doraemon-ui/miniprogram.toptips
+# or
+yarn add @doraemon-ui/miniprogram.toptips
+```
+
+如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
 
 ## 使用指南
 
 ### 在 page.json 中引入组件
 
-```json
-{
-  "navigationBarTitleText": "Toptips",
-  "usingComponents": {
-    "wux-button": "../../dist/button/index",
-    "wux-toptips": "../../dist/toptips/index"
-  }
-}
-```
+[json](./playground/toptips/pages/index/index.json ':include :type=code')
 
-### 示例
+### 示例代码
 
-!> 该组件主要依靠 JavaScript 主动调用，所以一般只需在 wxml 中添加一个组件，并设置 id 为 `#wux-toptips` 或其他，之后在 page.js 中调用 `$wuxToptips(id)` 获取匹配到的第一个组件实例对象。
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/DoraemonUI)
 
-```html
-<wux-toptips id="wux-toptips" />
+<!-- tabs:start -->
 
-<view class="page">
-  <view class="page__hd">
-    <view class="page__title">Toptips</view>
-    <view class="page__desc">顶部提示</view>
-  </view>
-  <view class="page__bd page__bd_spacing">
-    <wux-button block type="light" bind:click="showToptips1">Show</wux-button>
-    <wux-button block type="light" bind:click="showToptips2"
-      >Success</wux-button
-    >
-    <wux-button block type="light" bind:click="showToptips3">Info</wux-button>
-    <wux-button block type="light" bind:click="showToptips4">Warn</wux-button>
-    <wux-button block type="light" bind:click="showToptips5">Error</wux-button>
-    <wux-button block type="light" bind:click="showToptips6"
-      >Use return value to close</wux-button
-    >
-    <wux-button block type="light" bind:click="showToptips7"
-      >Use promise to know when closed</wux-button
-    >
-  </view>
-</view>
-```
+#### **WXML**
 
-```js
-import { $wuxToptips } from '../../dist/index'
+[wxml](./playground/toptips/pages/index/index.wxml ':include :type=code')
 
-Page({
-  showToptips1() {
-    $wuxToptips().show({
-      icon: 'cancel',
-      hidden: false,
-      text: 'Toptips Title',
-      duration: 3000,
-      success() {},
-    })
-  },
-  showToptips2() {
-    $wuxToptips().success({
-      hidden: false,
-      text: 'Toptips Title',
-      duration: 3000,
-      success() {},
-    })
-  },
-  showToptips3() {
-    $wuxToptips().info({
-      hidden: false,
-      text: 'Toptips Title',
-      duration: 3000,
-      success() {},
-    })
-  },
-  showToptips4() {
-    $wuxToptips().warn({
-      hidden: false,
-      text: 'Toptips Title',
-      duration: 3000,
-      success() {},
-    })
-  },
-  showToptips5() {
-    $wuxToptips().error({
-      hidden: false,
-      text: 'Toptips Title',
-      duration: 3000,
-      success() {},
-    })
-  },
-  showToptips6() {
-    if (this.timeout) clearTimeout(this.timeout)
+#### **JAVASCRIPT**
 
-    const hide = $wuxToptips().show({
-      icon: 'cancel',
-      hidden: false,
-      text: 'Toptips Title',
-      duration: 3000,
-    })
+[js](./playground/toptips/pages/index/index.js ':include :type=code')
 
-    this.timeout = setTimeout(hide, 1000)
-  },
-  showToptips7() {
-    const hide = $wuxToptips().show({
-      icon: 'cancel',
-      hidden: false,
-      text: 'Toptips Title',
-      duration: 3000,
-    })
+#### **WXSS**
 
-    // hide.promise.then(() => console.log('success'))
-    hide.then(() => console.log('success'))
-  },
-})
-```
+[wxss](./playground/toptips/pages/index/index.wxss ':include :type=code')
 
-## 视频演示
-
-[Toptips](./_media/toptips.mp4 ':include :type=iframe width=375px height=667px')
+<!-- tabs:end -->
 
 ## API
 
-| 参数               | 类型       | 描述                                                                    | 默认值                   |
-| ------------------ | ---------- | ----------------------------------------------------------------------- | ------------------------ |
-| options            | `object`   | 配置项                                                                  | -                        |
-| options.prefixCls  | `string`   | 自定义类名前缀                                                          | wux-toptips              |
-| options.classNames | `any`      | 过渡的类名，更多内置过渡效果请参考 [AnimationGroup](animation-group.md) | wux-animate--slideInDown |
-| options.icon       | `string`   | 图标类型                                                                | cancel                   |
-| options.hidden     | `boolean`  | 是否隐藏图标                                                            | false                    |
-| options.text       | `string`   | 报错文本                                                                | -                        |
-| options.duration   | `number`   | 多少毫秒后消失                                                          | 3000                     |
-| options.success    | `function` | 消失后的回调函数                                                        | -                        |
+### Toptips props
 
-### Toptips.method
+| 参数      | 类型     | 描述           | 默认值       |
+| --------- | -------- | -------------- | ------------ |
+| prefixCls | `string` | 自定义类名前缀 | dora-toptips |
 
-- Toptips.show
-- Toptips.success
-- Toptips.info
-- Toptips.warn
-- Toptips.error
+### Toptips slot
 
-> 以上函数调用后，会返回一个引用，可以通过该引用手动关闭组件
+| 名称 | 描述       |
+| ---- | ---------- |
+| -    | 自定义内容 |
 
-```
-const hide = Toptips.show()
-hide()
+### Toptips externalClasses
 
-// 返回值支持 promise 接口，可以通过 then/promise.then 方法在关闭后运行 callback
-hide.then(callback)
-hide.promise.then(callback)
-```
+| 名称       | 描述         |
+| ---------- | ------------ |
+| dora-class | 根节点样式类 |
+
+## CSS Variables
+
+| 属性         | 描述     | 默认值 | 全局变量 |
+| ------------ | -------- | ------ | -------- |
+| --text-color | 文字颜色 | `#fff` | -        |

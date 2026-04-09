@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tag mount correctly 1`] = `
+<dora-tag>
+  <wx-view
+    class="dora-class dora-tag "
+    hoverClass="dora-tag--hover"
+    style=""
+    bind:tap="onClick"
+  />
+</dora-tag>
+`;

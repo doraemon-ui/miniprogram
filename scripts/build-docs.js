@@ -113,7 +113,7 @@ function removeLegacyFlatExampleIfExists(key, ext) {
 
 function rewritePlaygroundExamplePaths(markdown, key) {
   // 将 packages README 中的示例 include 路径映射到 docs/playground 下的扁平文件
-  // e.g. ./playground/pages/index/index.json -> ./playground/actionsheet/pages/index/index.json
+  // e.g. ./playground/pages/index/index.json -> ./playground/action-sheet/pages/index/index.json
   return markdown.replace(
     /(\.\/)?playground\/pages\/index\/index\.(json|wxml|js|wxss)\b/g,
     (_m, _maybeDotSlash, ext) => `./playground/${key}/pages/index/index.${ext}`,
@@ -191,9 +191,7 @@ function main() {
     const docPath = path.join(docsDir, docFile)
 
     if (!exists(docPath)) {
-      missingInDocs.push(
-        `${docFile} (line ${link.line}${link.category ? `, ${link.category}` : ''})`,
-      )
+      missingInDocs.push(`${docFile} (line ${link.line}${link.category ? `, ${link.category}` : ''})`)
     }
 
     // 只针对组件文档做 packages 映射提示：如果 packages 里没有同名 key，就提醒一下
@@ -201,19 +199,9 @@ function main() {
       // sidebar 顶部也有介绍/快速上手等页面，这些一般不在 packages 里，过滤掉
       const isTopDoc =
         link.category === null &&
-        [
-          'introduce.md',
-          'quickstart.md',
-          'customize-theme.md',
-          'changelog.md',
-          'utility.md',
-          'controlled.md',
-          'faq.md',
-        ].includes(docFile)
+        ['introduce.md', 'quickstart.md', 'customize-theme.md', 'changelog.md', 'utility.md', 'controlled.md', 'faq.md'].includes(docFile)
       if (!isTopDoc) {
-        missingInPackages.push(
-          `${docFile} (line ${link.line}${link.category ? `, ${link.category}` : ''})`,
-        )
+        missingInPackages.push(`${docFile} (line ${link.line}${link.category ? `, ${link.category}` : ''})`)
       }
     }
   }

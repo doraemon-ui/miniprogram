@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "dora-popover": "../../miniprogram.popover/src/index",
+    "dora-icon": "../../miniprogram.icon/src/index"
+  }
+}

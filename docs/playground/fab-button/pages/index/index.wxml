@@ -1,0 +1,62 @@
+<demo-page
+  darkmode="auto"
+  title="FabButton"
+  desc="浮动按钮"
+  clickable
+  spacing
+>
+  <demo-block title="Demo">
+    <dora-fab-button
+      position="topLeft"
+      theme="balanced"
+      direction="horizontal"
+      reverse
+      buttons="{{ buttons }}"
+      bind:change="onChange"
+      bind:click="onClick"
+      bind:contact="onContact"
+      bind:getuserinfo="onGotUserInfo"
+    />
+    <dora-fab-button
+      position="topRight"
+      theme="balanced"
+      direction="vertical"
+      reverse
+      buttons="{{ buttons }}"
+      bind:change="onChange"
+      bind:click="onClick"
+      bind:contact="onContact"
+      bind:getuserinfo="onGotUserInfo"
+    />
+    <dora-fab-button
+      position="bottomLeft"
+      theme="balanced"
+      direction="vertical"
+      buttons="{{ buttons }}"
+      bind:change="onChange"
+      bind:click="onClick"
+      bind:contact="onContact"
+      bind:getuserinfo="onGotUserInfo"
+    />
+    <dora-fab-button
+      position="center"
+      theme="balanced"
+      direction="circle"
+      buttons="{{ buttons }}"
+      bind:change="onChange"
+      bind:click="onClick"
+      bind:contact="onContact"
+      bind:getuserinfo="onGotUserInfo"
+    />
+    <dora-fab-button
+      position="bottomRight"
+      theme="balanced"
+      direction="horizontal"
+      buttons="{{ buttons }}"
+      bind:change="onChange"
+      bind:click="onClick"
+      bind:contact="onContact"
+      bind:getuserinfo="onGotUserInfo"
+    />
+  </demo-block>
+</demo-page>

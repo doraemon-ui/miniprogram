@@ -1,0 +1,103 @@
+@import './variables.less';
+
+.@{search-bar-prefix-cls} {
+  position: relative;
+  padding: 16rpx 20rpx;
+  display: flex;
+  box-sizing: border-box;
+  background-color: @search-bar-bg;
+  border-top: 1rpx solid var(--dora-border-color, #ddd);
+  border-bottom: 1rpx solid var(--dora-border-color, #ddd);
+
+  &__form {
+    position: relative;
+    flex: 1;
+    width: 100%;
+    height: @search-bar-input-height;
+    overflow: hidden;
+    background-color: #fff;
+    background-clip: padding-box;
+    border-radius: @search-bar-radius;
+  }
+
+  &__box {
+    position: relative;
+    padding-left: 60rpx;
+    padding-right: 60rpx;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 1;
+  }
+
+  &__control {
+    height: @search-bar-input-height;
+    padding: 8rpx 0;
+    box-sizing: border-box;
+  }
+
+  &__input {
+    width: 100%;
+    height: 100%;
+    min-height: inherit;
+    border: 0;
+    font-size: @search-bar-font-size;
+    line-height: 1;
+    color: var(--dora-color-text-base, #333);
+    text-align: left;
+    background: transparent;
+    box-sizing: border-box;
+  }
+
+  &__label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 1rpx;
+    right: 1rpx;
+    bottom: 1rpx;
+    left: 1rpx;
+    z-index: 2;
+    border-radius: @search-bar-radius;
+    text-align: center;
+    color: var(--dora-color-text-secondary, #999);
+    background: #fff;
+  }
+
+  &__text {
+    display: inline-block;
+    font-size: @search-bar-font-size;
+    vertical-align: middle;
+    margin-left: 16rpx;
+  }
+
+  &__cancel {
+    margin-left: 20rpx;
+    line-height: @search-bar-input-height;
+    color: var(--dora-color-primary, #33cd5f);
+    white-space: nowrap;
+  }
+
+  &__icon {
+    vertical-align: middle;
+  }
+
+  &__search {
+    position: absolute;
+    left: 20rpx;
+    top: 14rpx;
+  }
+
+  &__clear {
+    display: block;
+    position: absolute;
+    top: 14rpx;
+    right: 0;
+    padding: 0 20rpx;
+  }
+
+  &--disabled {
+    opacity: 0.45;
+  }
+}

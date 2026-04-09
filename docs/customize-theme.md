@@ -46,7 +46,7 @@
 可自由选择所需的组件进行打包，以下是一些最常用的组件，所有组件可以在 [config.json](https://github.com/wux-weapp/wux-weapp/tree/master/scripts/config.json) 找到。
 
 - [x] accordion
-- [x] actionsheet
+- [x] action-sheet
 - [x] alert
 - [x] animation-group
 - [x] avatar

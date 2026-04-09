@@ -1,0 +1,81 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-skeleton {
+  position: relative;
+  width: 100%
+}
+.dora-skeleton-avatar {
+  display: inline-block;
+  vertical-align: top;
+  background: #f2f2f2;
+  width: 64rpx;
+  height: 64rpx;
+  line-height: 64rpx
+}
+.dora-skeleton-avatar--small {
+  width: 48rpx;
+  height: 48rpx;
+  line-height: 48rpx
+}
+.dora-skeleton-avatar--large {
+  width: 96rpx;
+  height: 96rpx;
+  line-height: 96rpx
+}
+.dora-skeleton-avatar--circle {
+  border-radius: 50%
+}
+.dora-skeleton-avatar--rounded {
+  border-radius: 8rpx
+}
+.dora-skeleton-avatar--square {
+  border-radius: 0
+}
+.dora-skeleton-avatar--active {
+  background: linear-gradient(90deg,#f2f2f2 25%,#e6e6e6 37%,#f2f2f2 63%);
+  animation: dora-skeleton-loading 1.4s ease infinite;
+  background-size: 400% 100%
+}
+.dora-skeleton-paragraph {
+  position: relative;
+  overflow: hidden
+}
+.dora-skeleton-paragraph__row {
+  height: 28rpx;
+  background: #f2f2f2;
+  width: 100%;
+  margin-top: 32rpx
+}
+.dora-skeleton-paragraph__row:first-child {
+  margin-top: 0
+}
+.dora-skeleton-paragraph__row:nth-child(4n+1) {
+  width: 80%
+}
+.dora-skeleton-paragraph__row:nth-child(4n+2) {
+  width: 100%
+}
+.dora-skeleton-paragraph__row:nth-child(4n+3) {
+  width: 70%
+}
+.dora-skeleton-paragraph__row:nth-child(4n+4) {
+  width: 85%
+}
+.dora-skeleton-paragraph--rounded .dora-skeleton-paragraph__row {
+  border-radius: 8rpx
+}
+.dora-skeleton-paragraph--active .dora-skeleton-paragraph__row {
+  background: linear-gradient(90deg,#f2f2f2 25%,#e6e6e6 37%,#f2f2f2 63%);
+  animation: dora-skeleton-loading 1.4s ease infinite;
+  background-size: 400% 100%
+}
+@keyframes dora-skeleton-loading {
+  0% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0 50%
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "dora-tabs": "../../miniprogram.tabs/src/index",
+    "dora-tab": "../../miniprogram.tabs/src/tab",
+    "dora-radio-group": "../../miniprogram.radio/src/group",
+    "dora-radio": "../../miniprogram.radio/src/index"
+  }
+}

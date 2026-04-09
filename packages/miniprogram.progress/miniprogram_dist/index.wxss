@@ -1,0 +1,59 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-progress {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center
+}
+.dora-progress__outer {
+  -ms-flex: 1;
+  flex: 1
+}
+.dora-progress__inner {
+  background-color: var(--dora-progress-remaining-color,#f3f3f3);
+  background-color: var(--dora-progress-remaining-color,#f3f3f3)
+}
+.dora-progress__bar {
+  background-color: var(--dora-progress-default-color,#387ef5);
+  background-color: var(--dora-progress-default-color,#387ef5);
+  transition: all .3s linear 0s
+}
+.dora-progress__text {
+  margin-left: var(--dora-progress-text-margin,20rpx);
+  margin-left: var(--dora-progress-text-margin,20rpx);
+  text-align: left;
+  vertical-align: middle
+}
+.dora-progress--round .dora-progress__bar,
+.dora-progress--round .dora-progress__inner {
+  border-radius: var(--dora-progress-radius,100rpx);
+  border-radius: var(--dora-progress-radius,100rpx)
+}
+.dora-progress--progress .dora-progress__bar {
+  position: relative
+}
+.dora-progress--progress .dora-progress__bar::before {
+  content: '';
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  border-radius: 20rpx;
+  animation: progress 2s ease-in-out infinite
+}
+@keyframes progress {
+  0% {
+    opacity: .3;
+    width: 0
+  }
+  100% {
+    opacity: 0;
+    width: 100%
+  }
+}

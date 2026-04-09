@@ -1,16 +1,33 @@
 import { miniprogramThis } from './global'
 import { buildURL } from '../util'
 
+/**
+ * NativeRouteOpenType类型定义
+ */
 export type NativeRouteOpenType = 'navigateTo' | 'redirectTo' | 'switchTab' | 'navigateBack' | 'reLaunch'
 
+/**
+ * NativeRouteProps接口定义
+ */
 export interface NativeRouteProps {
-  /** 页面的路径 */
+  /**
+   * 页面的路径
+   */
   url?: string
-  /** 拼接到 url 路径后的参数 */
+
+  /**
+   * 拼接到 url 路径后的参数
+   */
   urlParams?: Record<string, any>
-  /** 跳转方式 */
+
+  /**
+   * 跳转方式
+   */
   openType?: NativeRouteOpenType
-  /** 返回的页面数，如果 delta 大于现有页面数，则返回到首页。open-type="navigateBack"时有效 */
+
+  /**
+   * 返回的页面数，如果 delta 大于现有页面数，则返回到首页。open-type="navigateBack"时有效
+   */
   delta?: number
 }
 

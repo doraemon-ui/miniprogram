@@ -1,0 +1,49 @@
+@import './variables.less';
+
+// CascaderView styles
+// -----------------------------
+.@{cascader-view-prefix-cls} {
+  position: relative;
+  font-size: @cascader-view-font-size;
+  line-height: @line-height-base;
+  color: @cascader-view-color;
+  background-color: @cascader-view-inner-bg;
+  overflow: hidden;
+
+  &__hd {
+    position: relative;
+    width: 100%;
+
+    &::after {
+      .setBottomLine(@border-color-split);
+    }
+  }
+
+  &__bd {
+    width: 100%;
+    display: flex;
+    background-color: @cascader-view-bg;
+  }
+
+  &__inner-scroll {
+    display: block;
+    height: inherit;
+    width: 50%;
+    flex: 0 0 50%;
+    background-color: @cascader-view-inner-bg;
+
+    &--full {
+      width: 100%;
+      flex: 0 0 100%;
+      background-color: @cascader-view-inner-bg !important;
+    }
+
+    &:nth-child(2n) {
+      background-color: @cascader-view-bg;
+    }
+  }
+
+  &__scroll-view {
+    max-height: @cascader-view-scroll-view-size;
+  }
+}

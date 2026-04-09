@@ -1,4 +1,5 @@
 export * from './buildURL'
+export * from './getDefaultContext'
 export * from './isDate'
 export * from './isDef'
 export * from './isFalse'
@@ -13,6 +14,7 @@ export * from './pxToNumber'
 export * from './sleep'
 
 import { buildURL } from './buildURL'
+import { getDefaultContext } from './getDefaultContext'
 import { isDate } from './isDate'
 import { isDef } from './isDef'
 import { isFalse } from './isFalse'
@@ -28,6 +30,7 @@ import { sleep } from './sleep'
 
 export default {
   buildURL,
+  getDefaultContext,
   isDate,
   isDef,
   isFalse,

@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "dora-animation-group": "@doraemon-ui/miniprogram.animation-group/index",
+    "dora-icon": "@doraemon-ui/miniprogram.icon/index"
+  }
+}

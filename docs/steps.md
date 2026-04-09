@@ -1,133 +1,67 @@
-# Steps 步骤条
+# Steps Steps
 
-显示一个任务的进度；或者引导用户完成某个复杂任务。
+@doraemon-ui/miniprogram.steps
+
+## 安装
+
+我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
+
+```bash
+npm install --save @doraemon-ui/miniprogram.steps
+# or
+yarn add @doraemon-ui/miniprogram.steps
+```
+
+如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
 
 ## 使用指南
 
 ### 在 page.json 中引入组件
 
-```json
-{
-  "navigationBarTitleText": "Steps",
-  "usingComponents": {
-    "wux-steps": "../../dist/steps/index",
-    "wux-step": "../../dist/step/index"
-  }
-}
-```
+[json](./playground/steps/pages/index/index.json ':include :type=code')
 
-### 示例
+### 示例代码
 
-```html
-<view class="page">
-  <view class="page__hd">
-    <view class="page__title">Steps</view>
-    <view class="page__desc">步骤条</view>
-  </view>
-  <view class="page__bd">
-    <view class="sub-title">Default</view>
-    <wux-steps>
-      <wux-step
-        status="finish"
-        title="Finished"
-        content="This is description"
-      ></wux-step>
-      <wux-step
-        status="process"
-        title="In Progress"
-        content="This is description"
-      ></wux-step>
-      <wux-step
-        status="wait"
-        title="Waiting"
-        content="This is description"
-      ></wux-step>
-    </wux-steps>
-    <view class="sub-title">Direction = vertical</view>
-    <wux-steps direction="vertical">
-      <wux-step
-        status="finish"
-        title="Finished"
-        content="This is description"
-      ></wux-step>
-      <wux-step
-        status="process"
-        title="In Progress"
-        content="This is description"
-      ></wux-step>
-      <wux-step
-        status="error"
-        title="Error"
-        content="This is description"
-      ></wux-step>
-    </wux-steps>
-    <view class="sub-title">Current</view>
-    <wux-steps current="{{ current }}">
-      <wux-step title="First"></wux-step>
-      <wux-step title="Second"></wux-step>
-      <wux-step title="Third"></wux-step>
-    </wux-steps>
-    <view class="button-sp-area">
-      <button type="default" bindtap="onClick">Next step</button>
-    </view>
-  </view>
-</view>
-```
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/DoraemonUI)
 
-```js
-Page({
-  data: {
-    current: 1,
-  },
-  onClick() {
-    const current = this.data.current + 1 > 2 ? 0 : this.data.current + 1
+<!-- tabs:start -->
 
-    this.setData({
-      current,
-    })
-  },
-})
-```
+#### **WXML**
 
-## 视频演示
+[wxml](./playground/steps/pages/index/index.wxml ':include :type=code')
 
-[Steps](./_media/steps.mp4 ':include :type=iframe width=375px height=667px')
+#### **JAVASCRIPT**
+
+[js](./playground/steps/pages/index/index.js ':include :type=code')
+
+#### **WXSS**
+
+[wxss](./playground/steps/pages/index/index.wxss ':include :type=code')
+
+<!-- tabs:end -->
 
 ## API
 
 ### Steps props
 
-| 参数      | 类型     | 描述                                                                          | 默认值     |
-| --------- | -------- | ----------------------------------------------------------------------------- | ---------- |
-| prefixCls | `string` | 自定义类名前缀                                                                | wux-steps  |
-| current   | `number` | 指定当前步骤，从 0 开始记数。在子 `Step` 元素中，可以通过 status 属性覆盖状态 | 0          |
-| direction | `string` | step 样式，可选值为 vertical、horizontal                                      | horizontal |
+| 参数      | 类型     | 描述           | 默认值     |
+| --------- | -------- | -------------- | ---------- |
+| prefixCls | `string` | 自定义类名前缀 | dora-steps |
+
+### Steps slot
+
+| 名称 | 描述       |
+| ---- | ---------- |
+| -    | 自定义内容 |
 
 ### Steps externalClasses
 
-| 名称      | 描述         |
-| --------- | ------------ |
-| wux-class | 根节点样式类 |
+| 名称       | 描述         |
+| ---------- | ------------ |
+| dora-class | 根节点样式类 |
 
-### Step props
+## CSS Variables
 
-| 参数      | 类型     | 描述                                                                                                        | 默认值   |
-| --------- | -------- | ----------------------------------------------------------------------------------------------------------- | -------- |
-| prefixCls | `string` | 自定义类名前缀                                                                                              | wux-step |
-| status    | `string` | 指定状态，可选值为 wait、process、finish、error。当不配置该属性时，会使用 `Steps` 的 current 来自动指定状态 | -        |
-| title     | `string` | 标题                                                                                                        | -        |
-| content   | `string` | 步骤的详情描述                                                                                              | -        |
-| icon      | `string` | 步骤图标                                                                                                    | -        |
-
-### Step slot
-
-| 名称    | 描述       |
-| ------- | ---------- |
-| title   | 自定义标题 |
-| content | 自定义描述 |
-
-### Step externalClasses
-
-| 名称      | 描述         |
-| --------- | ------------ |
-| wux-class | 根节点样式类 |
+| 属性         | 描述     | 默认值 | 全局变量 |
+| ------------ | -------- | ------ | -------- |
+| --text-color | 文字颜色 | `#fff` | -        |

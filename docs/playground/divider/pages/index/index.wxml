@@ -1,0 +1,34 @@
+<demo-page
+  darkmode="auto"
+  title="Divider"
+  desc="分割线"
+  clickable
+  spacing
+>
+  <demo-block title="Horizontal">
+    <dora-divider show-text="{{ false }}" />
+    <dora-divider show-text="{{ false }}" dashed />
+    <dora-divider position="left" text="Wux Weapp" />
+    <dora-divider text="Wux Weapp" />
+    <dora-divider position="right" text="Wux Weapp" />
+    <dora-divider dashed position="left" text="Wux Weapp" />
+    <dora-divider dashed text="Wux Weapp" />
+    <dora-divider dashed position="right" text="Wux Weapp" />
+    <dora-divider>
+      <view class="loadmore">
+        <view class="loading"></view>
+        <text class="text">正在加载</text>
+      </view>
+    </dora-divider>
+  </demo-block>
+
+  <demo-block title="Vertical">
+    <view class="inline-wrap">
+      <text>Wux Weapp</text>
+      <dora-divider direction="vertical" show-text="{{ false }}" />
+      <text>Wux Weapp</text>
+      <dora-divider direction="vertical" show-text="{{ false }}" />
+      <text>Wux Weapp</text>
+    </view>
+  </demo-block>
+</demo-page>

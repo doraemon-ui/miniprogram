@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tabbar mount correctly 1`] = `
+<dora-tabbar>
+  <wx-view
+    class="dora-class dora-tabbar"
+    style="background-color: #fff;  "
+  >
+    <wx-view
+      class="dora-tabbar-wrap"
+    />
+  </wx-view>
+</dora-tabbar>
+`;

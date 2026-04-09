@@ -1,14 +1,12 @@
-import { type TouchEvent, defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
-import { type TouchPoint, findComponentNode, getPointsNumber, getSwipeDirection, getTouchPoints } from '@doraemon-ui/miniprogram.shared'
-import type { SafeAreaProp } from '@doraemon-ui/miniprogram.safe-area'
+import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+import type { TouchEvent } from '@doraemon-ui/miniprogram.core-js'
+import { findComponentNode, getPointsNumber, getSwipeDirection, getTouchPoints } from '@doraemon-ui/miniprogram.shared'
+import type { TouchPoint } from '@doraemon-ui/miniprogram.shared'
 import type { BackdropInstance } from '@doraemon-ui/miniprogram.backdrop'
+import type { SafeAreaProp } from '@doraemon-ui/miniprogram.safe-area'
+import type { Position } from './types'
 
 const { classNames, styleToCssString } = Doraemon.util
-
-/**
- * 弹出的位置
- */
-export type Position = 'bottom' | 'top' | 'left' | 'right' | 'center'
 
 @Component({
   props: {
@@ -404,5 +402,7 @@ class Popup extends Doraemon {
     this.getTransitionName(this.position)
   }
 }
+
+export { Popup }
 
 export default defineComponentHOC()(Popup)

@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "dora-popup-select": "../../miniprogram.popup-select/src/index"
+  }
+}

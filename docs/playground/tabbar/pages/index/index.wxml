@@ -1,0 +1,34 @@
+<demo-page title="TabBar" desc="标签栏" spacing>
+  <demo-block title="Default">
+    <dora-tabbar defaultCurrent="tab2">
+      <dora-tabbar-item tabKey="tab1" title="Tab 1">
+        <dora-icon dora-class="icon" type="ios-home" size="22" slot="icon-on" />
+        <dora-icon dora-class="icon" type="ios-home" size="22" slot="icon-off" />
+      </dora-tabbar-item>
+      <dora-tabbar-item tabKey="tab2" title="Tab 2">
+        <dora-icon dora-class="icon" type="ios-home" size="22" slot="icon-on" />
+        <dora-icon dora-class="icon" type="ios-home" size="22" slot="icon-off" />
+      </dora-tabbar-item>
+      <dora-tabbar-item tabKey="tab3" title="Tab 3">
+        <dora-icon dora-class="icon" type="ios-home" size="22" slot="icon-on" />
+        <dora-icon dora-class="icon" type="ios-home" size="22" slot="icon-off" />
+      </dora-tabbar-item>
+    </dora-tabbar>
+  </demo-block>
+  <demo-block title="Controlled">
+    <dora-tabbar controlled current="{{ current }}" bind:change="onChange">
+      <dora-tabbar-item title="Tab 1">
+        <dora-icon dora-class="icon" type="ios-home" size="22" slot="icon-on" />
+        <dora-icon dora-class="icon" type="ios-home" size="22" slot="icon-off" />
+      </dora-tabbar-item>
+      <dora-tabbar-item title="Tab 2">
+        <dora-icon dora-class="icon" type="ios-home" size="22" slot="icon-on" />
+        <dora-icon dora-class="icon" type="ios-home" size="22" slot="icon-off" />
+      </dora-tabbar-item>
+      <dora-tabbar-item title="Tab 3">
+        <dora-icon dora-class="icon" type="ios-home" size="22" slot="icon-on" />
+        <dora-icon dora-class="icon" type="ios-home" size="22" slot="icon-off" />
+      </dora-tabbar-item>
+    </dora-tabbar>
+  </demo-block>
+</demo-page>

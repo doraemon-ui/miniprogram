@@ -1,87 +1,67 @@
-# Timeago 多久之前
+# Timeago Timeago
 
-用于将时间转化成类似于\*\*\* 时间前的描述文字。
+@doraemon-ui/miniprogram.timeago
+
+## 安装
+
+我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
+
+```bash
+npm install --save @doraemon-ui/miniprogram.timeago
+# or
+yarn add @doraemon-ui/miniprogram.timeago
+```
+
+如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
 
 ## 使用指南
 
 ### 在 page.json 中引入组件
 
-```json
-{
-  "navigationBarTitleText": "Timeago",
-  "usingComponents": {
-    "wux-segmented-control": "../../dist/segmented-control/index",
-    "wux-timeago": "../../dist/timeago/index"
-  }
-}
-```
+[json](./playground/timeago/pages/index/index.json ':include :type=code')
 
-### 示例
+### 示例代码
 
-```html
-<view class="page">
-  <view class="page__hd">
-    <view class="page__title">Timeago</view>
-    <view class="page__desc">多久之前</view>
-  </view>
-  <view class="page__bd page__bd_spacing">
-    <wux-segmented-control
-      values="{{ ['zh_CN', 'zh_TW', 'en'] }}"
-      bind:change="onChange"
-    />
-    <view class="sub-title">Default</view>
-    <wux-timeago to="{{ to }}" lang="{{ lang }}" />
-    <view class="sub-title">Refreshable</view>
-    <wux-timeago to="{{ to }}" lang="{{ lang }}" refreshable />
-    <view class="sub-title">From</view>
-    <wux-timeago to="2018-12-12" from="2019-01-01" lang="{{ lang }}" />
-    <view class="sub-title">Timein</view>
-    <wux-timeago to="2020-10-24" lang="{{ lang }}" />
-  </view>
-</view>
-```
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/DoraemonUI)
 
-```js
-Page({
-  data: {
-    to: null,
-    lang: 'zh_CN',
-  },
-  onLoad() {
-    this.setData({
-      to: new Date().getTime(),
-    })
-  },
-  onChange(e) {
-    console.log(e)
-    const { key, values } = e.detail
-    const lang = values[key]
+<!-- tabs:start -->
 
-    this.setData({
-      lang,
-    })
-  },
-})
-```
+#### **WXML**
 
-## 视频演示
+[wxml](./playground/timeago/pages/index/index.wxml ':include :type=code')
 
-[Timeago](./_media/timeago.mp4 ':include :type=iframe width=375px height=667px')
+#### **JAVASCRIPT**
+
+[js](./playground/timeago/pages/index/index.js ':include :type=code')
+
+#### **WXSS**
+
+[wxss](./playground/timeago/pages/index/index.wxss ':include :type=code')
+
+<!-- tabs:end -->
 
 ## API
 
 ### Timeago props
 
-| 参数        | 类型      | 描述                                      | 默认值      |
-| ----------- | --------- | ----------------------------------------- | ----------- |
-| prefixCls   | `string`  | 自定义类名前缀                            | wux-timeago |
-| to          | `any`     | 当前开始时间                              | -           |
-| from        | `any`     | 当前截止时间，不传默认当前时间            | -           |
-| refreshable | `boolean` | 是否刷新时间                              | false       |
-| lang        | `string`  | 返回文本的语言，可选值为 en、zh_CN、zh_TW | zh_CN       |
+| 参数      | 类型     | 描述           | 默认值       |
+| --------- | -------- | -------------- | ------------ |
+| prefixCls | `string` | 自定义类名前缀 | dora-timeago |
+
+### Timeago slot
+
+| 名称 | 描述       |
+| ---- | ---------- |
+| -    | 自定义内容 |
 
 ### Timeago externalClasses
 
-| 名称      | 描述         |
-| --------- | ------------ |
-| wux-class | 根节点样式类 |
+| 名称       | 描述         |
+| ---------- | ------------ |
+| dora-class | 根节点样式类 |
+
+## CSS Variables
+
+| 属性         | 描述     | 默认值 | 全局变量 |
+| ------------ | -------- | ------ | -------- |
+| --text-color | 文字颜色 | `#fff` | -        |

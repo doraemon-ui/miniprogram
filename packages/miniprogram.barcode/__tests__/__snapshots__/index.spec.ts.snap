@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Barcode mount correctly 1`] = `
+<dora-barcode>
+  <wx-canvas
+    class="dora-class dora-barcode"
+    id="dora-barcode"
+    style="width: 200px; height: 100px;"
+    type="2d"
+  />
+</dora-barcode>
+`;

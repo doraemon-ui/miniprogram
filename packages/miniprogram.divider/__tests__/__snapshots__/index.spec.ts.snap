@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Divider mount correctly 1`] = `
+<dora-divider>
+  <wx-view
+    class="dora-class dora-divider dora-divider--text dora-divider--text-center dora-divider--horizontal"
+  >
+    <wx-view
+      class="dora-divider__text"
+    >
+      
+    
+    
+    </wx-view>
+  </wx-view>
+</dora-divider>
+`;

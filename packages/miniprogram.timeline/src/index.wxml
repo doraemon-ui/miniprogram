@@ -1,0 +1,3 @@
+<view class="dora-class {{ prefixCls }}">
+  <slot></slot>
+</view>

@@ -1,9 +1,8 @@
 import { defineComponentHOC, Doraemon, Component, Prop } from '@doraemon-ui/miniprogram.core-js'
 import { getSystemInfoSync, getMenuButtonBoundingClientRectSync } from '@doraemon-ui/miniprogram.shared'
+import type { SafeAreaConfig, SafeAreaProp, SafeAreaStyle } from './types'
 
 const { classNames, styleToCssString } = Doraemon.util
-
-export type SafeAreaStyle = 'default' | 'navBar' | 'statusBar'
 
 export function getSafeAreaInset(safeAreaStyle: SafeAreaStyle = 'default') {
   // StatusBar & NavBar
@@ -36,21 +35,16 @@ export function getSafeAreaInset(safeAreaStyle: SafeAreaStyle = 'default') {
 
     safeAreaInset.bottom = screenHeight - safeArea.bottom
   } catch (e) {
-    /** Ignore */
+    /**
+     * Ignore
+     */
   }
   return safeAreaInset
 }
 
-export const checkIPhoneX = ({ model, windowHeight, windowWidth }) => {
+export const checkIPhoneX = ({ model, windowHeight, windowWidth }: { model: string; windowHeight: number; windowWidth: number }) => {
   return /iphone (x|12|13|14)/.test(model.toLowerCase()) || (windowHeight >= 812 && windowHeight / windowWidth > 2)
 }
-
-export type SafeAreaConfig = {
-  top: boolean
-  bottom: boolean
-}
-
-export type SafeAreaProp = boolean | 'top' | 'bottom' | SafeAreaConfig
 
 export const defaultSafeArea: SafeAreaConfig = {
   top: false,
@@ -193,8 +187,14 @@ class SafeArea extends Doraemon {
    */
   get isIPhoneX() {
     const windowInfo = getSystemInfoSync(['window', 'device'])
-    return checkIPhoneX(windowInfo)
+    return checkIPhoneX({
+      model: windowInfo.model || '',
+      windowHeight: windowInfo.windowHeight || 0,
+      windowWidth: windowInfo.windowWidth || 0,
+    })
   }
 }
+
+export { SafeArea }
 
 export default defineComponentHOC()(SafeArea)

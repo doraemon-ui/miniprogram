@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "dora-popover": "@doraemon-ui/miniprogram.popover/index",
+    "dora-icon": "@doraemon-ui/miniprogram.icon/index"
+  }
+}

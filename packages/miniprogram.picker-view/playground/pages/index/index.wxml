@@ -1,0 +1,21 @@
+<demo-page title="PickerView" desc="单列选择器" spacing>
+  <demo-block title="Default">
+    <dora-picker-view options="{{ options[0] }}" />
+  </demo-block>
+
+  <demo-block title="Loading">
+    <dora-picker-view options="{{ options[0] }}" loading />
+  </demo-block>
+
+  <demo-block title="Custom FieldNames">
+    <dora-picker-view defaultFieldNames="{{ fieldNames }}" options="{{ fieldNamesOptions }}" />
+  </demo-block>
+
+  <demo-block title="Controlled">
+    <dora-picker-view value="{{ value }}" controlled options="{{ options[1] }}" bind:valueChange="onValueChange" />
+  </demo-block>
+
+  <demo-block title="Custom Image">
+    <dora-picker-view options="{{ imageOptions }}" />
+  </demo-block>
+</demo-page>

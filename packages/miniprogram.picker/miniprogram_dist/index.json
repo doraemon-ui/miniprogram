@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "dora-popup": "@doraemon-ui/miniprogram.popup/index",
+    "dora-cascader-picker-view": "@doraemon-ui/miniprogram.cascader-picker-view/index",
+    "dora-multi-picker-view": "@doraemon-ui/miniprogram.multi-picker-view/index"
+  }
+}

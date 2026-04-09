@@ -1,152 +1,52 @@
-# SelectorGroup 选择组
+# SelectorGroup SelectorGroup
 
-在一组选项中选择一个或多个（按钮样式）。
+@doraemon-ui/miniprogram.selector-group
+
+## 安装
+
+我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
+
+```bash
+npm install --save @doraemon-ui/miniprogram.selector-group
+# or
+yarn add @doraemon-ui/miniprogram.selector-group
+```
+
+如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
 
 ## 使用指南
 
 ### 在 page.json 中引入组件
 
-```json
-{
-    "navigationBarTitleText": "SelectorGroup",
-    "usingComponents": {
-        "wux-selector-group": "../../dist/selector-group/index"
-    }
-}
-```
+[json](./playground/selector-group/pages/index/index.json ':include :type=code')
 
-### 示例
+### 示例代码
 
-```html
-<view class="page">
-    <view class="page__hd">
-        <view class="page__title">SelectorGroup</view>
-        <view class="page__desc">选择组</view>
-    </view>
-    <view class="page__bd page__bd_spacing">
-        <view class="sub-title">简单 options</view>
-        <wux-selector-group options="{{ stringOptions }}" defaultValue="{{ value1 }}" />
-        <view class="sub-title">单选</view>
-        <wux-selector-group options="{{ options }}" defaultValue="{{ value2 }}" />
-        <view class="sub-title">多选</view>
-        <wux-selector-group options="{{ options }}" defaultValue="{{ value3 }}" multiple />
-        <view class="sub-title">可选 theme</view>
-        <wux-selector-group theme="positive" options="{{ options }}" defaultValue="{{ value2 }}" />
-        <view class="sub-title">两列布局</view>
-        <wux-selector-group columns="2" options="{{ options }}" defaultValue="{{ value2 }}" />
-        <view class="sub-title">禁用状态</view>
-        <wux-selector-group options="{{ disabledOptions }}" defaultValue="{{ value2 }}" />
-        <view class="sub-title">选项带描述</view>
-        <wux-selector-group options="{{ descriptionOptions }}" defaultValue="{{ value2 }}" />
-        <view class="sub-title">自定义 FieldName</view>
-        <wux-selector-group options="{{ fieldNamesOptions }}" defaultValue="{{ value2 }}" defaultFieldNames="{{ fieldNames }}" />
-        <view class="sub-title">圆角样式</view>
-        <wux-selector-group options="{{ options }}" defaultValue="{{ value2 }}" shape="rounded" />
-        <view class="sub-title">不显示对角</view>
-        <wux-selector-group options="{{ options }}" defaultValue="{{ value2 }}" showCheckMark="{{ false }}" />
-        <view class="sub-title">Controlled</view>
-        <wux-selector-group options="{{ options }}" value="{{ value4 }}" controlled bind:change="onChange" />
-        <view class="sub-title">必须选择一项</view>
-        <wux-selector-group options="{{ options }}" value="{{ value5 }}" controlled bind:change="onRadioChange" />
-    </view>
-</view>
-```
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/DoraemonUI)
 
-```js
-const options = [
-    {
-        label: '选项一',
-        value: '1',
-    },
-    {
-        label: '选项二',
-        value: '2',
-    },
-    {
-        label: '选项三',
-        value: '3',
-    },
-]
+<!-- tabs:start -->
 
-const stringOptions = options.map((option) => option.label)
-const descriptionOptions = options.map((option) => ({ ...option, desc: '描述信息' }))
-const disabledOptions = options.map((option) => ({ ...option, disabled: true }))
+#### **WXML**
 
-const fieldNamesOptions = [
-    {
-        labelT: '选项一',
-        valueT: '1',
-    },
-    {
-        labelT: '选项二',
-        valueT: '2',
-    },
-    {
-        labelT: '选项三',
-        valueT: '3',
-        disabledT: true,
-    },
-]
+[wxml](./playground/selector-group/pages/index/index.wxml ':include :type=code')
 
-Page({
-    data: {
-        fieldNames: {
-            label: 'labelT',
-            value: 'valueT',
-            disabled: 'disabledT',
-        },
-        fieldNamesOptions,
-        stringOptions,
-        descriptionOptions,
-        disabledOptions,
-        options,
-        value1: ['选项一'],
-        value2: ['1'],
-        value3: ['2', '3'],
-        value4: ['3'],
-        value5: ['1'],
-    },
-    onChange(e) {
-        console.log('onChange', e.detail)
-        this.setData({
-            value4: e.detail.value,
-        })
-    },
-    onRadioChange(e) {
-        console.log('onChange', e.detail)
-        const { value } = e.detail
-        if (value.length) {
-            this.setData({
-                value5: value,
-            })
-        }
-    },
-})
-```
+#### **JAVASCRIPT**
 
-## 视频演示
+[js](./playground/selector-group/pages/index/index.js ':include :type=code')
 
-[SelectorGroup](./_media/selector-group.mp4 ':include :type=iframe width=375px height=667px')
+#### **WXSS**
+
+[wxss](./playground/selector-group/pages/index/index.wxss ':include :type=code')
+
+<!-- tabs:end -->
 
 ## API
 
 ### SelectorGroup props
 
-| 参数           | 类型       | 描述                                                             | 默认值  |
-| -------------- | ---------- | ---------------------------------------------------------------- | ------- |
-| prefixCls      | `string`   | 自定义类名前缀                                                   | wux-selector-group |
-| theme      | `string`   | 主题色，可选值为 light、stable、positive、calm、assertive、balanced、energized、royal、dark | balanced            |
-| shape     | `string` | 指定头像的形状，可选值为 default、rounded、rectangular | default              |
-| columns     | `number` | 列数 | 3              |
-| gap     | `number` | 间距大小 | 8              |
-| options            | `array`         | 以配置形式设置子元素         | []              |
-| defaultFieldNames  | `object`        | 自定义 options 中的 value、label、disabled 字段 | { label: 'label', value: 'value', disabled: 'disabled' } |
-| defaultValue | `array`  | 默认选中项，当 `controlled` 为 `false` 时才生效 | -                 |
-| value        | `array`  | 当前选中项，当 `controlled` 为 `true` 时才生效  | -                 |
-| controlled   | `boolean` | 是否受控 [说明文档](controlled.md)          | false             |
-| multiple            | `boolean`               | 是否支持多选                                                   | false                                     |
-| showCheckMark     | `boolean` | 是否显示对勾角标 | true              |
-| bind:change        | `function`      | change 事件触发的回调函数                      | -               |
+| 参数      | 类型     | 描述           | 默认值              |
+| --------- | -------- | -------------- | ------------------- |
+| prefixCls | `string` | 自定义类名前缀 | dora-selector-group |
 
 ### SelectorGroup slot
 
@@ -156,6 +56,12 @@ Page({
 
 ### SelectorGroup externalClasses
 
-| 名称      | 描述         |
-| --------- | ------------ |
-| wux-class | 根节点样式类 |
+| 名称       | 描述         |
+| ---------- | ------------ |
+| dora-class | 根节点样式类 |
+
+## CSS Variables
+
+| 属性         | 描述     | 默认值 | 全局变量 |
+| ------------ | -------- | ------ | -------- |
+| --text-color | 文字颜色 | `#fff` | -        |

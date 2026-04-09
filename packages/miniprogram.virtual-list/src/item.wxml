@@ -1,0 +1,3 @@
+<view class="dora-class {{ prefixCls }}" data-index="{{ index }}" style="{{ wrapStyle }}">
+  <slot></slot>
+</view>

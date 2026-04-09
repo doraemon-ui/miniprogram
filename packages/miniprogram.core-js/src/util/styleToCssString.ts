@@ -1,4 +1,6 @@
-/** @ts-ignore */
+/**
+ * @ts-ignore
+ */
 import CSSProperty from 'react-style-object-to-css/lib/CSSProperty'
 import hyphenateStyleName from 'react-style-object-to-css/lib/hyphenateStyleName'
 
@@ -58,4 +60,6 @@ export function styleToCssString(
   }
   return result
 }
-/** @ts-ignore */
+/**
+ * @ts-ignore
+ */

@@ -1,0 +1,3 @@
+<view class="dora-class {{ classes.wrap }}">
+  <slot></slot>
+</view>

@@ -1,0 +1,4 @@
+<view class="dora-class {{ classes.wrap }}" style="{{ colStyle }}">
+  <slot></slot>
+</view>
+

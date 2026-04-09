@@ -1,0 +1,69 @@
+<dora-list
+  id="dora-list"
+  dora-class="{{ prefixCls }}"
+  prefixCls="{{ cellGroupPrefixCls }}"
+  title="{{ title }}"
+  label="{{ label }}"
+  mode="{{ mode }}"
+  bodyStyle="{{ bodyStyle }}"
+  hasLine="{{ !hasFieldDecorator ? hasLine : false }}"
+  wx:if="{{ withListComponent }}"
+>
+  <block
+    wx:for="{{ showOptions }}"
+    wx:for-item="option"
+    wx:for-index="index"
+    wx:key="__comp_unique_key"
+    wx:if="{{ options.length > 0 }}"
+  >
+    <dora-checkbox
+      class="{{ prefixCls + '__checkbox' }}"
+      prefixCls="{{ option.prefixCls || 'dora-checkbox' }}"
+      cellPrefixCls="{{ option.cellPrefixCls || 'dora-list-item' }}"
+      selectablePrefixCls="{{ option.selectablePrefixCls || 'dora-selectable' }}"
+      title="{{ option.title || '' }}"
+      label="{{ option.label || '' }}"
+      extra="{{ option.extra || '' }}"
+      value="{{ option.value }}"
+      checked="{{ option.__checked }}"
+      disabled="{{ option.disabled || disabled }}"
+      readOnly="{{ option.readOnly || readOnly }}"
+      color="{{ option.color || 'balanced' }}"
+      data-index="{{ index }}"
+      bind:change="onCheckboxChange"
+    />
+  </block>
+  <block wx:if="{{ options.length === 0 }}">
+    <slot></slot>
+  </block>
+</dora-list>
+<block wx:else>
+  <block
+    wx:for="{{ showOptions }}"
+    wx:for-item="option"
+    wx:for-index="index"
+    wx:key="__comp_unique_key"
+    wx:if="{{ options.length > 0 }}"
+  >
+    <dora-checkbox
+      class="{{ prefixCls + '__checkbox' }}"
+      prefixCls="{{ option.prefixCls || 'dora-checkbox' }}"
+      cellPrefixCls="{{ option.cellPrefixCls || 'dora-list-item' }}"
+      selectablePrefixCls="{{ option.selectablePrefixCls || 'dora-selectable' }}"
+      title="{{ option.title || '' }}"
+      label="{{ option.label || '' }}"
+      extra="{{ option.extra || '' }}"
+      value="{{ option.value }}"
+      checked="{{ option.__checked }}"
+      disabled="{{ option.disabled || disabled }}"
+      readOnly="{{ option.readOnly || readOnly }}"
+      color="{{ option.color || 'balanced' }}"
+      data-index="{{ index }}"
+      bind:change="onCheckboxChange"
+    />
+  </block>
+  <block wx:if="{{ options.length === 0 }}">
+    <slot></slot>
+  </block>
+</block>
+

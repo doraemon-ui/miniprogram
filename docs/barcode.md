@@ -1,104 +1,67 @@
-# Barcode 条形码
+# Barcode Barcode
 
-用于展现条形码。
+@doraemon-ui/miniprogram.barcode
+
+## 安装
+
+我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
+
+```bash
+npm install --save @doraemon-ui/miniprogram.barcode
+# or
+yarn add @doraemon-ui/miniprogram.barcode
+```
+
+如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
 
 ## 使用指南
 
 ### 在 page.json 中引入组件
 
-```json
-{
-  "navigationBarTitleText": "Barcode",
-  "usingComponents": {
-    "wux-barcode": "../../dist/barcode/index"
-  }
-}
-```
+[json](./playground/barcode/pages/index/index.json ':include :type=code')
 
-### 示例
+### 示例代码
 
-```html
-<view class="page">
-  <view class="page__hd">
-    <view class="page__title">Barcode</view>
-    <view class="page__desc">条形码</view>
-  </view>
-  <view class="page__bd">
-    <view class="weui-cells__title">请输入13位条形码，即时输入即时生成</view>
-    <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell weui-cell_input">
-        <view class="weui-cell__bd">
-          <input
-            value="{{ number }}"
-            type="number"
-            class="weui-input"
-            bindinput="bindinput"
-          />
-        </view>
-      </view>
-    </view>
-    <view class="weui-cells__tips">提示：扫描只能识别有效的条形码</view>
-    <wux-barcode
-      wux-class="barcode"
-      number="{{ number }}"
-      options="{{ options }}"
-      width="200"
-      height="100"
-    />
-  </view>
-</view>
-```
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/DoraemonUI)
 
-```js
-Page({
-  data: {
-    number: '9787115335524',
-    options: {
-      // number: true,
-      // prefix: true,
-      // color: 'black',
-      // debug: false,
-      onValid() {
-        console.log('onValid')
-      },
-      onInvalid() {
-        console.log('onInvalid')
-      },
-      onSuccess() {
-        console.log('onSuccess')
-      },
-      onError() {
-        console.log('onError')
-      },
-    },
-  },
-  onLoad() {},
-  bindinput(e) {
-    this.setData({
-      number: e.detail.value,
-    })
-  },
-})
-```
+<!-- tabs:start -->
 
-## 视频演示
+#### **WXML**
 
-[Barcode](./_media/barcode.mp4 ':include :type=iframe width=375px height=667px')
+[wxml](./playground/barcode/pages/index/index.wxml ':include :type=code')
+
+#### **JAVASCRIPT**
+
+[js](./playground/barcode/pages/index/index.js ':include :type=code')
+
+#### **WXSS**
+
+[wxss](./playground/barcode/pages/index/index.wxss ':include :type=code')
+
+<!-- tabs:end -->
 
 ## API
 
-| 参数              | 类型       | 描述                       | 默认值      |
-| ----------------- | ---------- | -------------------------- | ----------- |
-| canvasId          | `string`   | canvas 组件的唯一标识符    | wux-barcode |
-| number            | `number`   | 条形码的数值               | -           |
-| width             | `number`   | canvas 组件的宽度          | 200         |
-| height            | `number`   | canvas 组件的高度          | 100         |
-| options           | `object`   | 配置项                     | -           |
-| options.number    | `true`     | 是否显示数字               | true        |
-| options.prefix    | `true`     | 是否显示国家前缀           | true        |
-| options.color     | `string`   | 条形码的颜色               | black       |
-| options.debug     | `true`     | 是否开启调试               | false       |
-| options.onValid   | `function` | 验证条形码合法的回调函数   | -           |
-| options.onInvalid | `function` | 验证条形码不合法的回调函数 | -           |
-| options.onSuccess | `function` | 接口调用成功的回调函数     | -           |
-| options.onError   | `function` | 接口调用失败的回调函数     | -           |
+### Barcode props
+
+| 参数      | 类型     | 描述           | 默认值       |
+| --------- | -------- | -------------- | ------------ |
+| prefixCls | `string` | 自定义类名前缀 | dora-barcode |
+
+### Barcode slot
+
+| 名称 | 描述       |
+| ---- | ---------- |
+| -    | 自定义内容 |
+
+### Barcode externalClasses
+
+| 名称       | 描述         |
+| ---------- | ------------ |
+| dora-class | 根节点样式类 |
+
+## CSS Variables
+
+| 属性         | 描述     | 默认值 | 全局变量 |
+| ------------ | -------- | ------ | -------- |
+| --text-color | 文字颜色 | `#fff` | -        |

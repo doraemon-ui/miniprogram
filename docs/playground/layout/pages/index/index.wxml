@@ -1,0 +1,68 @@
+<demo-page darkmode="auto" title="Layout" desc="栅格布局" clickable spacing>
+  <demo-block title="Basic">
+    <dora-row>
+      <dora-col span="12">
+        <view class="placeholder">dora</view>
+      </dora-col>
+    </dora-row>
+
+    <dora-row>
+      <dora-col span="6">
+        <view class="placeholder">dora</view>
+      </dora-col>
+      <dora-col span="6">
+        <view class="placeholder">dora</view>
+      </dora-col>
+    </dora-row>
+
+    <dora-row>
+      <dora-col span="4">
+        <view class="placeholder">dora</view>
+      </dora-col>
+      <dora-col span="4">
+        <view class="placeholder">dora</view>
+      </dora-col>
+      <dora-col span="4">
+        <view class="placeholder">dora</view>
+      </dora-col>
+    </dora-row>
+
+    <dora-row>
+      <dora-col span="4">
+        <view class="placeholder">dora</view>
+      </dora-col>
+      <dora-col span="4" offset="4">
+        <view class="placeholder">dora</view>
+      </dora-col>
+    </dora-row>
+
+    <dora-row>
+      <dora-col span="4">
+        <view class="placeholder">dora</view>
+      </dora-col>
+      <dora-col span="4" push="4">
+        <view class="placeholder">dora</view>
+      </dora-col>
+    </dora-row>
+
+    <dora-row>
+      <dora-col span="4">
+        <view class="placeholder">dora</view>
+      </dora-col>
+      <dora-col span="4" offset="4" pull="4">
+        <view class="placeholder">dora</view>
+      </dora-col>
+    </dora-row>
+  </demo-block>
+
+  <demo-block title="Gutter">
+    <dora-row gutter="20">
+      <dora-col span="6">
+        <view class="placeholder">gutter</view>
+      </dora-col>
+      <dora-col span="6">
+        <view class="placeholder">gutter</view>
+      </dora-col>
+    </dora-row>
+  </demo-block>
+</demo-page>

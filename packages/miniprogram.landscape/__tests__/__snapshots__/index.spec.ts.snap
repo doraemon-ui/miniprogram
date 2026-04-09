@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Landscape mount correctly 1`] = `
+<dora-landscape>
+  <dora-popup
+    bind:close="onClose"
+  >
+    <wx-view
+      class="dora-class dora-popup dora-popup--position-center"
+      style="touch-action: auto;  "
+      bind:touchend="onTouchEnd"
+      bind:touchmove="onTouchMove"
+      bind:touchstart="onTouchStart"
+    >
+      <dora-backdrop
+        disableScroll="{{true}}"
+        id="dora-backdrop"
+        transparent="{{false}}"
+        wrapStyle="{{null}}"
+        zIndex="{{null}}"
+        bind:click="onMaskClick"
+      />
+      <dora-animation-group
+        classNames="dora-animate--fadeIn"
+        doraClass="dora-popup__body"
+        id="dora-animation-group"
+        in="{{false}}"
+        mountOnEnter="{{true}}"
+        unmountOnExit="{{true}}"
+        wrapStyle="{{
+          Object {
+            "backgroundColor": "transparent",
+            "padding": "0",
+          }
+        }}"
+        bind:enter="onShow"
+        bind:entered="onShowed"
+        bind:exited="onClosed"
+      >
+        <wx-view
+          class="dora-class dora-landscape dora-landscape--has-mask"
+        >
+          <wx-view
+            class="dora-landscape__inner"
+          />
+          <wx-view
+            class="dora-landscape__close"
+            bind:tap="onClose"
+          >
+            <wx-text
+              class="dora-landscape__close-x"
+            />
+          </wx-view>
+        </wx-view>
+      </dora-animation-group>
+    </wx-view>
+  </dora-popup>
+</dora-landscape>
+`;

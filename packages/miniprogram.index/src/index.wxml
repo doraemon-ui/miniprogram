@@ -1,0 +1,16 @@
+<view class="dora-class {{ classes.wrap }}" style="{{ extStyle }}">
+  <scroll-view scroll-y scroll-top="{{ scrollTop }}" bindscroll="onScroll" style="{{ extStyle }}">
+    <slot></slot>
+  </scroll-view>
+  <view class="{{ classes.nav }}" wx:if="{{ children.length > 0 }}" catchtouchstart="onTouchStart" catchtouchmove="onTouchMove" catchtouchend="onTouchEnd">
+    <view class="{{ classes.navRow }}">
+      <block wx:for="{{ children }}" wx:key="index">
+        <view class="{{ classes.navCol }}" data-index="{{ index }}" data-name="{{ item.name }}" data-brief="{{ item.brief }}">
+          <view class="{{ classes.navItem }} {{ index === current ? classes.navItem + '--current' : '' }}" data-index="{{ index }}" data-name="{{ item.name }}" data-brief="{{ item.brief }}">{{ item.brief }}</view>
+        </view>
+      </block>
+    </view>
+    <view class="{{ classes.indicator }}" wx:if="{{ indicatorPosition === 'right' && showIndicator && moving }}" style="{{ indicatorStyle }}">{{ currentBrief }}</view>
+  </view>
+  <view class="{{ classes.indicator }}" wx:if="{{ indicatorPosition === 'center' && showIndicator && moving }}">{{ currentBrief }}</view>
+</view>

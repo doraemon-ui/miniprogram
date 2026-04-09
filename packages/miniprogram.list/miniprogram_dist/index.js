@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.list.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-02-22, 01:43:08.
+ * Built on 2026-02-26, 17:53:04.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -13,7 +13,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import { defineComponentHOC, Doraemon, Component, Prop } from '@doraemon-ui/miniprogram.core-js';
 import { useRect } from '@doraemon-ui/miniprogram.shared';
 const { classNames, styleToCssString } = Doraemon.util;
-let List = class List extends Doraemon {
+let ListClass = class ListClass extends Doraemon {
     /**
      * 自定义类名前缀
      *
@@ -106,38 +106,38 @@ __decorate([
         type: String,
         default: '',
     })
-], List.prototype, "title", void 0);
+], ListClass.prototype, "title", void 0);
 __decorate([
     Prop({
         type: String,
         default: '',
     })
-], List.prototype, "label", void 0);
+], ListClass.prototype, "label", void 0);
 __decorate([
     Prop({
         type: String,
         default: 'default',
     })
-], List.prototype, "mode", void 0);
+], ListClass.prototype, "mode", void 0);
 __decorate([
     Prop({
         type: Boolean,
         default: true,
     })
-], List.prototype, "hasLine", void 0);
+], ListClass.prototype, "hasLine", void 0);
 __decorate([
     Prop({
         type: Object,
         default: null,
     })
-], List.prototype, "wrapStyle", void 0);
+], ListClass.prototype, "wrapStyle", void 0);
 __decorate([
     Prop({
         type: Object,
         default: null,
     })
-], List.prototype, "bodyStyle", void 0);
-List = __decorate([
+], ListClass.prototype, "bodyStyle", void 0);
+ListClass = __decorate([
     Component({
         components: {
             ListItem: () => ({
@@ -154,5 +154,6 @@ List = __decorate([
         },
         expose: ['getBoundingClientRect'],
     })
-], List);
-export default defineComponentHOC({ multipleSlots: false })(List);
+], ListClass);
+export const List = defineComponentHOC({ multipleSlots: false })(ListClass);
+export default List;

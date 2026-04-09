@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Alert mount correctly 1`] = `
+<dora-alert>
+  <dora-animation-group>
+    <wx-view
+      class="dora-class dora-class-a dora-class-b dora-class-c  "
+      style=""
+      bind:animationend=""
+      bind:tap="onClick"
+      catch:touchmove=""
+      bind:transitionend="onTransitionEnd"
+    >
+      <wx-view
+        class="dora-class dora-alert dora-alert--balanced"
+        bind:tap="onClick"
+      >
+        <wx-view
+          class="dora-alert__hd"
+        />
+        <wx-view
+          class="dora-alert__bd"
+        />
+        <wx-view
+          class="dora-alert__ft"
+        />
+      </wx-view>
+    </wx-view>
+  </dora-animation-group>
+</dora-alert>
+`;

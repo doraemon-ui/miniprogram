@@ -1,0 +1,21 @@
+<view class="dora-class {{ classes.wrap }}" style="{{ extStyle }}">
+  <view class="{{ classes.grid }}">
+    <block wx:for="{{ optionsView }}" wx:for-item="option" wx:key="value">
+      <view class="{{ classes.gridItem }} {{ option.checked ? prefixCls + '__grid-item--current' : '' }} {{ option.disabled ? prefixCls + '__grid-item--disabled' : '' }}" aria-role="option" aria-selected="{{ option.checked }}">
+        <text>{{ option.label }}</text>
+        <view class="{{ classes.desc }}" wx:if="{{ option.desc }}">{{ option.desc }}</view>
+        <view class="{{ classes.checkMark }}" wx:if="{{ showCheckMark }}">
+          <icon class="{{ classes.checkMarkIcon }}" type="success_no_circle" size="7" color="#fff" />
+        </view>
+        <dora-selectable
+          dora-input-class="{{ classes.selectable }}"
+          value="{{ option.value || '' }}"
+          checked="{{ option.checked }}"
+          disabled="{{ option.disabled }}"
+          controlled
+          bind:change="onCheckboxChange"
+        />
+      </view>
+    </block>
+  </view>
+</view>

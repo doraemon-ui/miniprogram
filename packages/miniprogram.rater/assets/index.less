@@ -1,0 +1,43 @@
+@import './variables.less';
+
+// Rater styles
+// -----------------------------
+.@{rater-prefix-cls} {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  line-height: normal;
+  vertical-align: middle;
+  text-align: left;
+
+  &__star {
+    position: relative;
+    display: inline-block;
+  }
+
+  &__box {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    color: @rater-star-color;
+    transition: color 0.3s ease;
+  }
+
+  &__icon {
+    transition: color 0.3s ease;
+  }
+
+  &__inner {
+    position: relative;
+    display: inline-block;
+  }
+
+  &__outer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: inline-block;
+    overflow: hidden;
+  }
+}

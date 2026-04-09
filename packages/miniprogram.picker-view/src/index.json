@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "dora-spin": "../../miniprogram.spin/src/index"
+  }
+}

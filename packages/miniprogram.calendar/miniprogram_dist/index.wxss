@@ -1,0 +1,240 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-calendar {
+  position: relative;
+  background: var(--dora-calendar-background-color,var(--dora-component-background-color,#fff));
+  background: var(--dora-calendar-background-color,var(--dora-component-background-color,#fff));
+  height: var(--dora-calendar-height,600rpx);
+  height: var(--dora-calendar-height,600rpx);
+  width: 100%;
+  overflow: hidden
+}
+.dora-calendar__content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform .3s
+}
+.dora-calendar__bd {
+  height: 100%;
+  position: relative;
+  overflow: hidden
+}
+.dora-calendar__hd {
+  position: relative;
+  width: 100%
+}
+.dora-calendar__hd::before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 1PX;
+  border-top: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  border-top: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  color: var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  color: var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  transform-origin: 0 0;
+  transform: scaleY(.5)
+}
+.dora-calendar__hd + .dora-calendar__bd {
+  height: calc(100% - 2.2rem)
+}
+.dora-calendar__toolbar {
+  height: 2.2rem;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center
+}
+.dora-calendar__picker {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  width: 50%;
+  max-width: 400rpx;
+  -ms-flex-negative: 10;
+  flex-shrink: 10;
+  display: block;
+  line-height: 2.2rem
+}
+.dora-calendar__link {
+  float: left;
+  width: 25%;
+  height: 2.2rem;
+  line-height: 2rem;
+  min-width: 72rpx;
+  cursor: pointer
+}
+.dora-calendar__icon {
+  display: inline-block;
+  vertical-align: middle;
+  background-size: 100% auto;
+  background-position: center
+}
+.dora-calendar__icon--next,
+.dora-calendar__icon--prev {
+  width: .75rem;
+  height: .75rem
+}
+.dora-calendar__icon--next {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2015%2015'%3E%3Cg%3E%3Cpath%20fill%3D'%23007aff'%20d%3D'M1%2C1.6l11.8%2C5.8L1%2C13.4V1.6%20M0%2C0v15l15-7.6L0%2C0L0%2C0z'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
+}
+.dora-calendar__icon--prev {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2015%2015'%3E%3Cg%3E%3Cpath%20fill%3D'%23007aff'%20d%3D'M14%2C1.6v11.8L2.2%2C7.6L14%2C1.6%20M15%2C0L0%2C7.6L15%2C15V0L15%2C0z'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
+}
+.dora-calendar__value {
+  -ms-flex-negative: 1;
+  flex-shrink: 1;
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  float: left;
+  width: 50%;
+  height: 2.2rem
+}
+.dora-calendar__weekdays {
+  height: 36rpx;
+  background: #f7f7f8;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 22rpx;
+  box-sizing: border-box;
+  position: relative
+}
+.dora-calendar__weekdays::after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 1PX;
+  border-bottom: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  border-bottom: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  color: var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  color: var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  transform-origin: 0 100%;
+  transform: scaleY(.5)
+}
+.dora-calendar__weekdays + .dora-calendar__months {
+  height: calc(100% - 36rpx)
+}
+.dora-calendar__weekday {
+  -ms-flex-negative: 1;
+  flex-shrink: 1;
+  width: 14.28571429%;
+  width: calc(100% / 7);
+  line-height: 34rpx;
+  text-align: center
+}
+.dora-calendar__months {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative
+}
+.dora-calendar__months-content {
+  width: 100%;
+  height: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-backface-visibility: hidden;
+  transform: translate3d(0,0,0)
+}
+.dora-calendar__month {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0
+}
+.dora-calendar__days {
+  height: 16.66666667%;
+  height: calc(100% / 6);
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-negative: 1;
+  flex-shrink: 1;
+  width: 100%;
+  position: relative
+}
+.dora-calendar__days::after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 1PX;
+  border-bottom: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  border-bottom: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  color: var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  color: var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  transform-origin: 0 100%;
+  transform: scaleY(.5)
+}
+.dora-calendar__days:last-child::after {
+  display: none
+}
+.dora-calendar__day {
+  -ms-flex-negative: 1;
+  flex-shrink: 1;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 14.28571429%;
+  width: calc(100% / 7);
+  text-align: center;
+  color: var(--dora-calendar-text-color,#3d4145);
+  color: var(--dora-calendar-text-color,#3d4145);
+  font-size: var(--dora-calendar-text-font-size,30rpx);
+  font-size: var(--dora-calendar-text-font-size,30rpx);
+  cursor: pointer
+}
+.dora-calendar__day--prev {
+  color: var(--dora-calendar-prev-text-color,var(--dora-color-step-20,#ccc));
+  color: var(--dora-calendar-prev-text-color,var(--dora-color-step-20,#ccc))
+}
+.dora-calendar__day--next {
+  color: var(--dora-calendar-next-text-color,var(--dora-calendar-prev-text-color,var(--dora-color-step-20,#ccc)));
+  color: var(--dora-calendar-next-text-color,var(--dora-calendar-prev-text-color,var(--dora-color-step-20,#ccc)))
+}
+.dora-calendar__day--disabled {
+  color: var(--dora-calendar-disabled-text-color,#d4d4d4);
+  color: var(--dora-calendar-disabled-text-color,#d4d4d4);
+  cursor: auto
+}
+.dora-calendar__day--today .dora-calendar__text {
+  background: var(--dora-calendar-today-text-color,#e3e3e3);
+  background: var(--dora-calendar-today-text-color,#e3e3e3)
+}
+.dora-calendar__day--selected .dora-calendar__text {
+  background: var(--dora-calendar-active-text-bg,#0894ec);
+  background: var(--dora-calendar-active-text-bg,#0894ec);
+  color: var(--dora-calendar-active-text-color,var(--dora-white,#fff));
+  color: var(--dora-calendar-active-text-color,var(--dora-white,#fff))
+}
+.dora-calendar__text {
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 100%;
+  width: var(--dora-calendar-text-size,60rpx);
+  width: var(--dora-calendar-text-size,60rpx);
+  height: var(--dora-calendar-text-size,60rpx);
+  height: var(--dora-calendar-text-size,60rpx);
+  line-height: var(--dora-calendar-text-size,60rpx);
+  line-height: var(--dora-calendar-text-size,60rpx)
+}

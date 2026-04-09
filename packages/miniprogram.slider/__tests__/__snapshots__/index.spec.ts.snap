@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Slider mount correctly 1`] = `
+<dora-slider>
+  <wx-view
+    class="dora-class dora-slider dora-slider--has-tip"
+    style="; "
+  >
+    <wx-view
+      class="dora-slider__rail-wrap"
+      bind:tap="onRailClick"
+    >
+      <wx-view
+        class="dora-slider__rail"
+        style="; "
+      >
+        <wx-view
+          class="dora-slider__track"
+          style="; "
+        />
+        <wx-view
+          class="dora-slider__handle dora-slider__handle--last "
+          data-index="{{0}}"
+          data-meta=""
+          style="left: 0%; "
+          bind:touchend="onTouchEnd"
+          catch:touchmove=""
+          bind:touchstart="onTouchStart"
+        />
+      </wx-view>
+    </wx-view>
+  </wx-view>
+</dora-slider>
+`;

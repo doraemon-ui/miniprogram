@@ -1,0 +1,12 @@
+<demo-page darkmode="auto" title="PopupSelect" desc="弹层选择器" clickable spacing>
+  <demo-block title="Single">
+    <dora-popup-select options="{{ options }}" value="{{ value }}" bind:valueChange="onValueChange">
+      <dora-button type="light">打开选择器</dora-button>
+    </dora-popup-select>
+  </demo-block>
+  <demo-block title="Multiple">
+    <dora-popup-select multiple options="{{ options }}" value="{{ values }}" bind:valueChange="onValuesChange">
+      <dora-button type="light">多选</dora-button>
+    </dora-popup-select>
+  </demo-block>
+</demo-page>

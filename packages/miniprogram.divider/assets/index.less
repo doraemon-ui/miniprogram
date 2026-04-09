@@ -1,0 +1,85 @@
+@import './variables.less';
+
+// Divider styles
+// -----------------------------
+.@{divider-prefix-cls} {
+  &--horizontal {
+    display: block;
+    height: 1px;
+    width: 100%;
+    margin: @divider-margin 0;
+    clear: both;
+    border-top: 1px solid @divider-border-color;
+  }
+
+  &--horizontal&--text {
+    display: table;
+    white-space: nowrap;
+    text-align: center;
+    background: transparent;
+    font-weight: normal;
+    color: @divider-color;
+    font-size: @divider-font-size;
+    border-top: none !important;
+
+    &::before,
+    &::after {
+      content: '';
+      display: table-cell;
+      position: relative;
+      top: 50%;
+      width: 50%;
+      border-top-width: 1px;
+      border-top-style: solid;
+      border-top-color: @divider-border-color;
+      transform: translateY(50%);
+    }
+  }
+
+  &--horizontal&--dashed {
+    border-top: 1px dashed @divider-border-color;
+  }
+
+  &--horizontal&--dashed&--text {
+    &::before,
+    &::after {
+      border-top-style: dashed;
+    }
+  }
+
+  &--horizontal&--text-left {
+    &::before {
+      width: 5%;
+    }
+
+    &::after {
+      width: 95%;
+    }
+  }
+
+  &--horizontal&--text-right {
+    &::before {
+      width: 95%;
+    }
+
+    &::after {
+      width: 5%;
+    }
+  }
+
+  &--horizontal &__text {
+    display: inline-block;
+    padding: 0 @divider-text-padding;
+  }
+
+  &--vertical {
+    position: relative;
+    top: -0.06em;
+    display: inline-block;
+    height: 0.9em;
+    margin: 0 @divider-margin;
+    vertical-align: middle;
+    border-top: 0;
+    border-left: 1px solid @divider-border-color;
+  }
+}

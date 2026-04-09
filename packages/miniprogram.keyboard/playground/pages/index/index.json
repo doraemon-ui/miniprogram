@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "KeyBoard",
+  "usingComponents": {
+    "demo-page": "@doraemon-ui/miniprogram.demo-page/index",
+    "demo-block": "@doraemon-ui/miniprogram.demo-block/index",
+    "dora-button": "@doraemon-ui/miniprogram.button/index",
+    "dora-keyboard": "@doraemon-ui/miniprogram.keyboard/index"
+  }
+}

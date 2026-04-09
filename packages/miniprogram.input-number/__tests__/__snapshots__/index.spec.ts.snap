@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputNumber mount correctly 1`] = `
+<dora-input-number>
+  <wx-view
+    class="dora-class dora-input-number dora-input-number--square"
+  >
+    <wx-view
+      class="dora-sub-class dora-input-number__selector dora-input-number__selector--sub dora-input-number__selector--balanced dora-input-number__selector--disabled"
+      data-type="sub"
+      touchcancel="onTouchCancel"
+      bind:longpress="onLongpress"
+      bind:tap="onTap"
+      bind:touchend="onTouchEnd"
+    >
+      <dora-icon
+        doraClass="dora-input-number__icon"
+      >
+        <wx-view
+          class="dora-class doraicons doraicons-ios-remove"
+          hidden="{{false}}"
+          style="font-size: 32px;  color: unset;  "
+          bind:tap="onClick"
+        />
+      </dora-icon>
+    </wx-view>
+    <wx-view
+      class="dora-control-class dora-input-number__control"
+    >
+      <wx-input
+        class="dora-input-class dora-input-number__input dora-input-number__input--disabled"
+        disabled="{{true}}"
+        type="digit"
+        value="{{0}}"
+        bind:blur="onBlur"
+        bind:focus="onFocus"
+        bind:input="onInput"
+      />
+    </wx-view>
+    <wx-view
+      class="dora-add-class dora-input-number__selector dora-input-number__selector--add dora-input-number__selector--balanced dora-input-number__selector--disabled"
+      data-type="add"
+      touchcancel="onTouchCancel"
+      bind:longpress="onLongpress"
+      bind:tap="onTap"
+      bind:touchend="onTouchEnd"
+    >
+      <dora-icon
+        doraClass="dora-input-number__icon"
+      >
+        <wx-view
+          class="dora-class doraicons doraicons-ios-add"
+          hidden="{{false}}"
+          style="font-size: 32px;  color: unset;  "
+          bind:tap="onClick"
+        />
+      </dora-icon>
+    </wx-view>
+  </wx-view>
+</dora-input-number>
+`;

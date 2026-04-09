@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Gallery mount correctly 1`] = `
+<dora-gallery>
+  <dora-animation-group
+    doraClass="dora-gallery"
+  />
+</dora-gallery>
+`;

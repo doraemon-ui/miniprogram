@@ -1,149 +1,67 @@
-# Index 索引选择器
+# Index Index
 
-用于通讯录、城市选择的索引选择器。
+@doraemon-ui/miniprogram.index
+
+## 安装
+
+我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
+
+```bash
+npm install --save @doraemon-ui/miniprogram.index
+# or
+yarn add @doraemon-ui/miniprogram.index
+```
+
+如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
 
 ## 使用指南
 
 ### 在 page.json 中引入组件
 
-```json
-{
-  "navigationBarTitleText": "Index",
-  "usingComponents": {
-    "wux-index": "../../dist/index/index",
-    "wux-index-item": "../../dist/index-item/index"
-  }
-}
-```
+[json](./playground/index/pages/index/index.json ':include :type=code')
 
-### 示例
+### 示例代码
 
-!> 注意：示例中组件为了撑满屏，设置高度为 `100%`，继承了父级元素高度，所以需要设置 `Page{ height: 100% }`，否则会导致组件右侧导航点击无效。
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/DoraemonUI)
 
-```html
-<wux-index height="100%" bind:change="onChange">
-  <wux-index-item wx:for="{{ alphabet }}" wx:key="" name="{{ item.initial }}">
-    <view
-      class="demo-item"
-      wx:for="{{ item.cells }}"
-      wx:for-item="cell"
-      wx:key=""
-      >{{ cell }}</view
-    >
-  </wux-index-item>
-</wux-index>
-```
+<!-- tabs:start -->
 
-```js
-const NAMES = [
-  'Aaron',
-  'Alden',
-  'Austin',
-  'Baldwin',
-  'Braden',
-  'Carl',
-  'Chandler',
-  'Clyde',
-  'David',
-  'Edgar',
-  'Elton',
-  'Floyd',
-  'Freeman',
-  'Gavin',
-  'Hector',
-  'Henry',
-  'Ian',
-  'Jason',
-  'Joshua',
-  'Kane',
-  'Lambert',
-  'Matthew',
-  'Morgan',
-  'Neville',
-  'Oliver',
-  'Oscar',
-  'Perry',
-  'Quinn',
-  'Ramsey',
-  'Scott',
-  'Seth',
-  'Spencer',
-  'Timothy',
-  'Todd',
-  'Trevor',
-  'Udolf',
-  'Victor',
-  'Vincent',
-  'Walton',
-  'Willis',
-  'Xavier',
-  'Yvonne',
-  'Zack',
-  'Zane',
-]
+#### **WXML**
 
-Page({
-  data: {
-    alphabet: [],
-  },
-  onLoad() {
-    const alphabet = []
+[wxml](./playground/index/pages/index/index.wxml ':include :type=code')
 
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').forEach((initial) => {
-      const cells = NAMES.filter((name) => name.charAt(0) === initial)
-      alphabet.push({
-        initial,
-        cells,
-      })
-    })
+#### **JAVASCRIPT**
 
-    this.setData({
-      alphabet,
-    })
-  },
-  onChange(e) {
-    console.log('onChange', e.detail)
-  },
-})
-```
+[js](./playground/index/pages/index/index.js ':include :type=code')
 
-## 视频演示
+#### **WXSS**
 
-[Index](./_media/index.mp4 ':include :type=iframe width=375px height=667px')
+[wxss](./playground/index/pages/index/index.wxss ':include :type=code')
+
+<!-- tabs:end -->
 
 ## API
 
 ### Index props
 
-| 参数            | 类型                       | 描述           | 默认值    |
-| --------------- | -------------------------- | -------------- | --------- |
-| prefixCls       | `string`                   | 自定义类名前缀 | wux-index |
-| height          | <code>string,number</code> | 设置容器的高度 | 300       |
-| showIndicator   | `boolean`                  | 是否显示提示框 | true      |
-| indicatorPosition   | `string`                  | 提示框的位置，可选值为 right、center | center      |
-| parentOffsetTop | `number`                   | 定位偏移量     | 0         |
+| 参数      | 类型     | 描述           | 默认值     |
+| --------- | -------- | -------------- | ---------- |
+| prefixCls | `string` | 自定义类名前缀 | dora-index |
 
-### Index externalClasses
-
-| 名称      | 描述         |
-| --------- | ------------ |
-| wux-class | 根节点样式类 |
-
-### indexItem props
-
-| 参数      | 类型     | 描述           | 默认值         |
-| --------- | -------- | -------------- | -------------- |
-| prefixCls | `string` | 自定义类名前缀 | wux-index-item |
-| name      | `string` | 名称           | -              |
-
-### IndexItem slot
+### Index slot
 
 | 名称 | 描述       |
 | ---- | ---------- |
 | -    | 自定义内容 |
 
-### IndexItem externalClasses
+### Index externalClasses
 
-| 名称      | 描述         |
-| --------- | ------------ |
-| wux-class | 根节点样式类 |
+| 名称       | 描述         |
+| ---------- | ------------ |
+| dora-class | 根节点样式类 |
+
+## CSS Variables
+
+| 属性         | 描述     | 默认值 | 全局变量 |
+| ------------ | -------- | ------ | -------- |
+| --text-color | 文字颜色 | `#fff` | -        |

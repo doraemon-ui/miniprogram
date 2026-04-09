@@ -1,4 +1,5 @@
-import { Doraemon, type DoraemonClass } from '../instance'
+import { Doraemon } from '../instance'
+import type { DoraemonClass } from '../instance'
 import { LIFECYCLE_HOOKS } from '../util/constants'
 import { hasOwn } from '../util/hasOwn'
 import { hasProto } from '../util/hasProto'
@@ -9,6 +10,9 @@ type DecoratedClass = { new (...args: any[]) } & {
   __decorators__?: any
 }
 
+/**
+ * DoraemonDecorator接口定义
+ */
 export interface DoraemonDecorator {
   // Class decorator
   (Ctor: typeof Doraemon): void

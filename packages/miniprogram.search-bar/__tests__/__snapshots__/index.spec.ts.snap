@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchBar mount correctly 1`] = `
+<dora-search-bar>
+  <wx-view
+    class="dora-class dora-search-bar"
+  >
+    <wx-view
+      class="dora-search-bar__form"
+    >
+      <wx-view
+        class="dora-search-bar__box"
+      >
+        <wx-icon
+          class="dora-search-bar__search"
+          color="#B2B2B2"
+          size="14"
+          type="search"
+        />
+        <wx-view
+          class="dora-search-bar__control"
+        >
+          <wx-input
+            adjustPosition="{{true}}"
+            class="dora-search-bar__input"
+            confirmHold="{{false}}"
+            confirmType="search"
+            cursor="{{-1}}"
+            cursorSpacing="{{11}}"
+            disabled="{{false}}"
+            focus="{{false}}"
+            maxlength="{{140}}"
+            placeholder="搜索"
+            placeholderClass="input-placeholder"
+            placeholderStyle="; "
+            selectionEnd="{{-1}}"
+            selectionStart="{{-1}}"
+            type="text"
+            value=""
+            bind:blur="onBlur"
+            bind:confirm="onConfirm"
+            bind:focus="onFocus"
+            bind:input="onChange"
+          />
+        </wx-view>
+      </wx-view>
+      <wx-label
+        class="dora-search-bar__label"
+        bind:tap="onClick"
+      >
+        <wx-icon
+          class="dora-search-bar__icon"
+          color="#B2B2B2"
+          size="14"
+          type="search"
+        />
+        <wx-text
+          class="dora-search-bar__text"
+        >
+          搜索
+        </wx-text>
+      </wx-label>
+    </wx-view>
+  </wx-view>
+</dora-search-bar>
+`;

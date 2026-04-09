@@ -1,0 +1,13 @@
+<view class="dora-class {{ classes.wrap }}">
+  <dora-animation-group dora-class="{{ classes.anim }}" in="{{ spinVisible }}" classNames="{{ classNames }}">
+    <view class="{{ classes.dots }}">
+      <block wx:for="{{ [1, 2, 3, 4] }}" wx:key="*this">
+        <view class="{{ classes.dot }}" style="{{ dotStyle }}">dot</view>
+      </block>
+    </view>
+    <view class="{{ classes.tip }}" wx:if="{{ tip }}" style="{{ tipStyle }}">{{ tip }}</view>
+  </dora-animation-group>
+  <view class="{{ classes.container }}" wx:if="{{ nested }}">
+    <slot></slot>
+  </view>
+</view>

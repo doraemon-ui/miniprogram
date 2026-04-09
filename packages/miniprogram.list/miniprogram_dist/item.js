@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.list.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-02-22, 01:43:08.
+ * Built on 2026-02-26, 17:53:04.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,10 +10,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { defineComponentHOC, Doraemon, Component, Emit, Event, Prop, } from '@doraemon-ui/miniprogram.core-js';
+import { defineComponentHOC, Doraemon, Component, Emit, Event, Prop } from '@doraemon-ui/miniprogram.core-js';
 import { useNativeRoute, NATIVE_ROUTES } from '@doraemon-ui/miniprogram.shared';
 const { classNames, styleToCssString } = Doraemon.util;
-let ListItem = class ListItem extends Doraemon {
+let ListItemClass = class ListItemClass extends Doraemon {
     /**
      * 自定义类名前缀
      *
@@ -194,90 +194,90 @@ __decorate([
         type: String,
         default: '',
     })
-], ListItem.prototype, "thumb", void 0);
+], ListItemClass.prototype, "thumb", void 0);
 __decorate([
     Prop({
         type: String,
         default: '',
     })
-], ListItem.prototype, "title", void 0);
+], ListItemClass.prototype, "title", void 0);
 __decorate([
     Prop({
         type: String,
         default: '',
     })
-], ListItem.prototype, "label", void 0);
+], ListItemClass.prototype, "label", void 0);
 __decorate([
     Prop({
         type: String,
         default: '',
     })
-], ListItem.prototype, "extra", void 0);
+], ListItemClass.prototype, "extra", void 0);
 __decorate([
     Prop({
         type: Boolean,
         default: true,
     })
-], ListItem.prototype, "hasLine", void 0);
+], ListItemClass.prototype, "hasLine", void 0);
 __decorate([
     Prop({
         type: Boolean,
         default: false,
     })
-], ListItem.prototype, "isLink", void 0);
+], ListItemClass.prototype, "isLink", void 0);
 __decorate([
     Prop({
         type: String,
         default: 'center',
     })
-], ListItem.prototype, "align", void 0);
+], ListItemClass.prototype, "align", void 0);
 __decorate([
     Prop({
         type: Object,
         default: null,
     })
-], ListItem.prototype, "wrapStyle", void 0);
+], ListItemClass.prototype, "wrapStyle", void 0);
 __decorate([
     Event(),
     Emit('getuserinfo')
-], ListItem.prototype, "onGetUserInfo", null);
+], ListItemClass.prototype, "onGetUserInfo", null);
 __decorate([
     Event(),
     Emit('contact')
-], ListItem.prototype, "onContact", null);
+], ListItemClass.prototype, "onContact", null);
 __decorate([
     Event(),
     Emit('getphonenumber')
-], ListItem.prototype, "onGetPhoneNumber", null);
+], ListItemClass.prototype, "onGetPhoneNumber", null);
 __decorate([
     Event(),
     Emit('launchapp')
-], ListItem.prototype, "onLaunchApp", null);
+], ListItemClass.prototype, "onLaunchApp", null);
 __decorate([
     Event(),
     Emit('chooseavatar')
-], ListItem.prototype, "onChooseAvatar", null);
+], ListItemClass.prototype, "onChooseAvatar", null);
 __decorate([
     Event(),
     Emit('opensetting')
-], ListItem.prototype, "onOpenSetting", null);
+], ListItemClass.prototype, "onOpenSetting", null);
 __decorate([
     Event(),
     Emit('createliveactivity')
-], ListItem.prototype, "onCreateLiveActivity", null);
+], ListItemClass.prototype, "onCreateLiveActivity", null);
 __decorate([
     Event(),
     Emit('getrealtimephonenumber')
-], ListItem.prototype, "onGetRealtimePhoneNumber", null);
+], ListItemClass.prototype, "onGetRealtimePhoneNumber", null);
 __decorate([
     Event(),
     Emit('agreeprivacyauthorization')
-], ListItem.prototype, "onAgreePrivacyAuthorization", null);
+], ListItemClass.prototype, "onAgreePrivacyAuthorization", null);
 __decorate([
     Event(),
     Emit('error')
-], ListItem.prototype, "onError", null);
-ListItem = __decorate([
+], ListItemClass.prototype, "onError", null);
+ListItemClass = __decorate([
     Component({
         components: {
             List: () => ({
@@ -361,5 +361,6 @@ ListItem = __decorate([
         },
         expose: ['updateIsLast'],
     })
-], ListItem);
-export default defineComponentHOC()(ListItem);
+], ListItemClass);
+export const ListItem = defineComponentHOC()(ListItemClass);
+export default ListItem;

@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navbar mount correctly 1`] = `
+<dora-navbar>
+  <wx-view
+    class="dora-class dora-navbar dora-navbar--light"
+  >
+    <wx-view
+      class="dora-navbar__left"
+      data-type="left"
+      bind:tap="onClick"
+    />
+    <wx-view
+      class="dora-navbar__title"
+    />
+    <wx-view
+      class="dora-navbar__right"
+      data-type="right"
+      bind:tap="onClick"
+    />
+  </wx-view>
+</dora-navbar>
+`;

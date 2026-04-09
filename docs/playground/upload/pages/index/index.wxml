@@ -1,0 +1,27 @@
+<demo-page
+  darkmode="auto"
+  title="Upload"
+  desc="上传"
+  clickable
+  spacing
+>
+  <demo-block title="默认">
+    <dora-upload url="https://example.com/upload" bind:change="onChange" bind:success="onSuccess" bind:fail="onFail" bind:complete="onComplete">
+      <dora-button type="light">Click to Upload</dora-button>
+    </dora-upload>
+  </demo-block>
+
+  <demo-block title="Picture card & max = 4">
+    <dora-upload listType="picture-card" defaultFileList="{{ fileList }}" max="{{ 4 }}" url="https://example.com/upload" bind:change="onChange" bind:preview="onPreview">
+      <view>Upload</view>
+    </dora-upload>
+  </demo-block>
+
+  <demo-block title="Progress = true">
+    <progress percent="{{ progress }}" show-info />
+    <dora-upload progress listType="picture-card" showUploadList="{{ false }}" url="https://example.com/upload" bind:change="onChange" bind:progress="onProgress">
+      <image src="{{ imageUrl }}" wx:if="{{ imageUrl }}" />
+      <view wx:else>Upload</view>
+    </dora-upload>
+  </demo-block>
+</demo-page>

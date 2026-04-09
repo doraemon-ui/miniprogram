@@ -1,48 +1,8 @@
-import {
-  type ComponentPublicInstance,
-  type CustomEvent,
-  defineComponentHOC,
-  Doraemon,
-  Component,
-  Emit,
-  Event,
-  Prop,
-} from '@doraemon-ui/miniprogram.core-js'
-import { type NativeButtonOpenType, type NativeRouteOpenType, useNativeRoute, NATIVE_ROUTES } from '@doraemon-ui/miniprogram.shared'
+import { defineComponentHOC, Doraemon, Component, Emit, Event, Prop } from '@doraemon-ui/miniprogram.core-js'
+import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
+import { useNativeRoute, NATIVE_ROUTES } from '@doraemon-ui/miniprogram.shared'
+import type { NativeButtonOpenType, NativeRouteOpenType } from '@doraemon-ui/miniprogram.shared'
 const { classNames, styleToCssString } = Doraemon.util
-
-export interface ListItemProps {
-  prefixCls?: string
-  thumb?: string
-  title?: string
-  label?: string
-  extra?: string
-  hasLine?: boolean
-  isLink?: boolean
-  align?: 'flex-start' | 'center'
-  wrapStyle?: Partial<CSSStyleDeclaration>
-  url?: string
-  urlParams?: object
-  delta?: number
-  disabled?: boolean
-  openType?: NativeButtonOpenType | NativeRouteOpenType
-  hoverClass?: string
-  hoverStopPropagation?: boolean
-  hoverStartTime?: number
-  hoverStayTime?: number
-  lang?: 'en' | 'zh_CN' | 'zh_TW'
-  sessionFrom?: string
-  sendMessageTitle?: string
-  sendMessagePath?: string
-  sendMessageImg?: string
-  showMessageCard?: boolean
-  phoneNumberNoQuotaToast?: boolean
-  appParameter?: string
-}
-
-export interface ListItemExpose {
-  updateIsLast: (isLast: boolean) => void
-}
 
 @Component({
   components: {
@@ -387,5 +347,6 @@ class ListItem extends Doraemon {
   }
 }
 
-export type ListItemInstance = ComponentPublicInstance<ListItem, ListItemProps, ListItemExpose>
+export { ListItem }
+
 export default defineComponentHOC()(ListItem)

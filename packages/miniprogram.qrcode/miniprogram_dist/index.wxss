@@ -1,0 +1,77 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-qrcode {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden
+}
+.dora-qrcode__canvas {
+  position: absolute;
+  left: -9999em;
+  top: -9999em;
+  opacity: 0;
+  visibility: hidden
+}
+.dora-qrcode__image {
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 100%
+}
+.dora-qrcode__mask {
+  position: absolute;
+  z-index: 10;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  color: var(--dora-color-title,#333);
+  color: var(--dora-color-title,#333);
+  background: rgba(255,255,255,.85);
+  text-align: center;
+  font-size: var(--dora-font-size-md,28rpx);
+  font-size: var(--dora-font-size-md,28rpx);
+  line-height: var(--dora-line-height-md,1.5);
+  line-height: var(--dora-line-height-md,1.5)
+}
+.dora-qrcode__expired {
+  color: var(--dora-color-title,#333);
+  color: var(--dora-color-title,#333)
+}
+.dora-qrcode__refresh {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  font-weight: 400;
+  white-space: nowrap;
+  text-align: center;
+  height: 64rpx;
+  padding: 8rpx 30rpx;
+  box-sizing: border-box;
+  color: var(--dora-color-primary,#33cd5f);
+  color: var(--dora-color-primary,#33cd5f)
+}
+.dora-qrcode__icon {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  vertical-align: middle;
+  font-size: 0;
+  margin-right: 16rpx
+}

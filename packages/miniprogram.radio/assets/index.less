@@ -1,0 +1,26 @@
+@import './variables.less';
+
+// Radio styles
+// -----------------------------
+.@{radio-prefix-cls} {
+  &__selectable {
+    position: static !important;
+  }
+
+  &__icon-position {
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon-selectable {
+    min-width: 16px + @margin-component-base * 2;
+    margin-right: @spacing-lg;
+  }
+
+  &__thumb {
+    .square(@radio-thumb-size);
+
+    display: block;
+    margin-right: @margin-component-base;
+  }
+}

@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DatePicker mount correctly 1`] = `
+<dora-date-picker>
+  <dora-popup
+    hasFooter="{{false}}"
+    hasHeader="{{false}}"
+    bind:close="close"
+    bind:closed="onClosed"
+    bind:show="onShow"
+  >
+    <wx-view
+      class="dora-class dora-popup dora-popup--position-bottom"
+      style="touch-action: none;  "
+      bind:touchend="onTouchEnd"
+      bind:touchmove="onTouchMove"
+      bind:touchstart="onTouchStart"
+    >
+      <dora-backdrop
+        disableScroll="{{true}}"
+        id="dora-backdrop"
+        transparent="{{false}}"
+        wrapStyle="{{null}}"
+        zIndex="{{null}}"
+        bind:click="onMaskClick"
+      />
+      <dora-animation-group
+        classNames="dora-animate--slideInUp"
+        doraClass="dora-popup__body"
+        id="dora-animation-group"
+        in="{{false}}"
+        mountOnEnter="{{false}}"
+        unmountOnExit="{{true}}"
+        wrapStyle="{{Object {}}}"
+        bind:enter="onShow"
+        bind:entered="onShowed"
+        bind:exited="onClosed"
+      >
+        <wx-view
+          class="dora-class dora-date-picker"
+        >
+          <wx-view
+            class="dora-date-picker__toolbar"
+            catch:touchmove="noop"
+          >
+            <wx-view
+              class="dora-date-picker__inner"
+            >
+              <wx-view
+                class="dora-date-picker__cancel"
+                hoverClass="dora-date-picker__hover"
+                bind:tap="onCancel"
+              >
+                取消
+              </wx-view>
+              <wx-view
+                class="dora-date-picker__title"
+              >
+                请选择
+              </wx-view>
+              <wx-view
+                class="dora-date-picker__confirm"
+                hoverClass="dora-date-picker__hover"
+                bind:tap="onConfirm"
+              >
+                确定
+              </wx-view>
+            </wx-view>
+          </wx-view>
+          <dora-date-picker-view
+            id="dora-picker"
+            bind:valueChange="onValueChange"
+          >
+            <dora-multi-picker-view
+              id="dora-picker"
+              bind:valueChange="onValueChange"
+            >
+              <dora-spin>
+                <wx-view
+                  class="dora-class dora-spin dora-spin--default dora-spin--nested"
+                >
+                  <dora-animation-group
+                    doraClass="dora-spin__spinning--nested"
+                  />
+                  <wx-view
+                    class="dora-spin__container dora-spin__container--blur"
+                  >
+                    <wx-view
+                      class="dora-class dora-picker"
+                      data-picker-value="{{Array []}}"
+                    />
+                  </wx-view>
+                </wx-view>
+              </dora-spin>
+            </dora-multi-picker-view>
+          </dora-date-picker-view>
+        </wx-view>
+        <dora-safe-area
+          safeArea="bottom"
+        />
+      </dora-animation-group>
+    </wx-view>
+  </dora-popup>
+  <wx-view
+    catch:tap="onTriggerClick"
+  />
+</dora-date-picker>
+`;

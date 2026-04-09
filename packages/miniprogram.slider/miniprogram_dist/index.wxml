@@ -1,0 +1,30 @@
+<view class="dora-class {{ classes.wrap }}" style="{{ extWrapStyle }}">
+  <view class="{{ classes.min }}" wx:if="{{ showMin }}">{{ min }}</view>
+  <slot name="min" wx:else></slot>
+  <view class="{{ classes.railWrap }}" bindtap="onRailClick">
+    <view class="{{ classes.rail }}" style="{{ extRailStyle }}">
+      <block wx:for="{{ marks }}" wx:key="index" wx:if="{{ showMark && marks.length > 0 }}">
+        <view class="{{ classes.mark }}" style="left: {{ item + '%' }}; {{ getMarkStyle(index) }}" />
+      </block>
+      <block wx:for="{{ inputValue }}" wx:key="index" wx:for-item="item">
+        <view
+          class="{{ classes.track }}"
+          style="{{ getTrackStyle(index) }}; {{ getTrackItemStyle(index) }}"
+          wx:if="{{ inputValue.length === 1 || index !== inputValue.length - 1 }}"
+        />
+        <view
+          class="{{ classes.handle }} {{ last === index ? prefixCls + '__handle--last' : '' }} {{ last === index && isTouched ? prefixCls + '__handle--is-touched' : '' }}"
+          data-index="{{ index }}"
+          data-meta="{{ formatTip(item) }}"
+          bindtouchstart="onTouchStart"
+          catchtouchmove="{{ isMoved ? 'noop' : '' }}"
+          capture-bind:touchmove="onTouchMove"
+          bindtouchend="onTouchEnd"
+          style="left: {{ offsets[index] + '%' }}; {{ getHandleStyle(index) }}"
+        />
+      </block>
+    </view>
+  </view>
+  <view class="{{ classes.max }}" wx:if="{{ showMax }}">{{ max }}</view>
+  <slot name="max" wx:else></slot>
+</view>

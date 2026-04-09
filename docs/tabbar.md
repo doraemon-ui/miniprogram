@@ -1,180 +1,67 @@
-# TabBar 标签栏
+# Tabbar Tabbar
 
-标签栏用于在不同功能模块之间进行切换，预设 9 种颜色 `light`, `stable`, `positive`, `calm`, `assertive`, `balanced`, `energized`, `royal`, `dark` 可选用。
+@doraemon-ui/miniprogram.tabbar
+
+## 安装
+
+我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
+
+```bash
+npm install --save @doraemon-ui/miniprogram.tabbar
+# or
+yarn add @doraemon-ui/miniprogram.tabbar
+```
+
+如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
 
 ## 使用指南
 
 ### 在 page.json 中引入组件
 
-```json
-{
-  "navigationBarTitleText": "TabBar",
-  "usingComponents": {
-    "wux-icon": "../../dist/icon/index",
-    "wux-badge": "../../dist/badge/index",
-    "wux-tabbar": "../../dist/tabbar/index",
-    "wux-tabbar-item": "../../dist/tabbar-item/index"
-  }
-}
-```
+[json](./playground/tabbar/pages/index/index.json ':include :type=code')
 
-### 示例
+### 示例代码
 
-```html
-<view class="page">
-  <view class="page__hd">
-    <view class="page__title">TabBar</view>
-    <view class="page__desc">标签栏</view>
-  </view>
-  <view class="page__bd">
-    <view class="sub-title">Default</view>
-    <wux-tabbar defaultCurrent="tab2">
-      <wux-tabbar-item key="tab1" title="Tab 1">
-        <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
-        <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
-      </wux-tabbar-item>
-      <wux-tabbar-item key="tab2" title="Tab 2">
-        <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
-        <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
-      </wux-tabbar-item>
-      <wux-tabbar-item key="tab3" title="Tab 3">
-        <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
-        <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
-      </wux-tabbar-item>
-    </wux-tabbar>
-    <view class="sub-title">Theme = positive</view>
-    <wux-tabbar defaultCurrent="1" theme="positive">
-      <wux-tabbar-item title="Tab 1">
-        <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
-        <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
-      </wux-tabbar-item>
-      <wux-tabbar-item title="Tab 2">
-        <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
-        <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
-      </wux-tabbar-item>
-      <wux-tabbar-item title="Tab 3">
-        <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
-        <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
-      </wux-tabbar-item>
-    </wux-tabbar>
-    <view class="sub-title">Disabled</view>
-    <wux-tabbar defaultCurrent="1">
-      <wux-tabbar-item title="Tab 1">
-        <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
-        <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
-      </wux-tabbar-item>
-      <wux-tabbar-item title="Tab 2" disabled>
-        <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
-        <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
-      </wux-tabbar-item>
-      <wux-tabbar-item title="Tab 3">
-        <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
-        <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
-      </wux-tabbar-item>
-    </wux-tabbar>
-    <view class="sub-title">Controlled</view>
-    <wux-tabbar controlled current="{{ current }}" bindchange="onChange">
-      <wux-tabbar-item title="Tab 1">
-        <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
-        <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
-      </wux-tabbar-item>
-      <wux-tabbar-item title="Tab 2">
-        <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
-        <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
-      </wux-tabbar-item>
-      <wux-tabbar-item title="Tab 3">
-        <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
-        <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
-      </wux-tabbar-item>
-    </wux-tabbar>
-    <view class="sub-title">With Badge</view>
-    <wux-tabbar defaultCurrent="1" position="bottom" safeArea>
-      <wux-tabbar-item title="Tab 1">
-        <wux-badge count="1" slot="icon-on">
-          <wux-icon wux-class="icon" type="ios-home" size="22" />
-        </wux-badge>
-        <wux-badge count="1" slot="icon-off">
-          <wux-icon wux-class="icon" type="ios-home" size="22" />
-        </wux-badge>
-      </wux-tabbar-item>
-      <wux-tabbar-item title="Tab 2">
-        <wux-badge dot slot="icon-on">
-          <wux-icon wux-class="icon" type="ios-home" size="22" />
-        </wux-badge>
-        <wux-badge dot slot="icon-off">
-          <wux-icon wux-class="icon" type="ios-home" size="22" />
-        </wux-badge>
-      </wux-tabbar-item>
-      <wux-tabbar-item title="Tab 3">
-        <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
-        <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
-      </wux-tabbar-item>
-    </wux-tabbar>
-  </view>
-</view>
-```
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/DoraemonUI)
 
-```js
-Page({
-  data: {
-    current: '1',
-  },
-  onChange(e) {
-    console.log('onChange', e)
-    this.setData({
-      current: e.detail.key,
-    })
-  },
-})
-```
+<!-- tabs:start -->
 
-## 视频演示
+#### **WXML**
 
-[TabBar](./_media/tabbar.mp4 ':include :type=iframe width=375px height=667px')
+[wxml](./playground/tabbar/pages/index/index.wxml ':include :type=code')
+
+#### **JAVASCRIPT**
+
+[js](./playground/tabbar/pages/index/index.js ':include :type=code')
+
+#### **WXSS**
+
+[wxss](./playground/tabbar/pages/index/index.wxss ':include :type=code')
+
+<!-- tabs:end -->
 
 ## API
 
-### TabBar props
+### Tabbar props
 
-| 参数            | 类型       | 描述                                                                                        | 默认值     |
-| --------------- | ---------- | ------------------------------------------------------------------------------------------- | ---------- |
-| prefixCls       | `string`   | 自定义类名前缀                                                                              | wux-tabbar |
-| defaultCurrent  | `string`   | 默认激活 tab 面板的 key，当 `controlled` 为 `false` 时才生效                                | -          |
-| current         | `string`   | 用于手动激活 tab 面板的 key，当 `controlled` 为 `true` 时才生效                             | -          |
-| controlled      | `boolean`  | 是否受控 [说明文档](controlled.md)                                                          | false      |
-| theme           | `string`   | 主题色，可选值为 light、stable、positive、calm、assertive、balanced、energized、royal、dark | balanced   |
-| backgroundColor | `string`   | 背景色                                                                                      | #fff       |
-| position        | `string`   | 标签栏位置，可选值为 bottom、top                                                            | -          |
-| safeArea        | `boolean,string,object`  | 是否适配刘海屏，可选值为 top、bottom、{ top, bottom }，当 `position` 为 `bottom/top` 时才生效                                    | false      |
-| safeAreaStyle        | `string`  | 安全区的范围，可选值为 default、navBar、statusBar， 当其值为 default 或 navBar，顶部计算的安全区包含 StatusBar & NavBar | default      |
-| bind:change     | `function` | 切换面板的回调函数                                                                          | -          |
+| 参数      | 类型     | 描述           | 默认值      |
+| --------- | -------- | -------------- | ----------- |
+| prefixCls | `string` | 自定义类名前缀 | dora-tabbar |
 
-### TabBar externalClasses
+### Tabbar slot
 
-| 名称      | 描述         |
-| --------- | ------------ |
-| wux-class | 根节点样式类 |
+| 名称 | 描述       |
+| ---- | ---------- |
+| -    | 自定义内容 |
 
-### TabBarItem props
+### Tabbar externalClasses
 
-| 参数       | 类型       | 描述           | 默认值          |
-| ---------- | ---------- | -------------- | --------------- |
-| prefixCls  | `string`   | 自定义类名前缀 | wux-tabbar-item |
-| key        | `string`   | 对应 key       | -               |
-| title      | `string`   | 选项卡标题     | -               |
-| disabled   | `boolean`  | 是否禁用       | false           |
-| bind:click | `function` | 点击事件       | -               |
+| 名称       | 描述         |
+| ---------- | ------------ |
+| dora-class | 根节点样式类 |
 
-### TabBarItem slot
+## CSS Variables
 
-| 名称     | 描述                   |
-| -------- | ---------------------- |
-| -        | 自定义标题             |
-| icon-on  | 自定义默认展示图标     |
-| icon-off | 自定义选中后的展示图标 |
-
-### TabBarItem externalClasses
-
-| 名称      | 描述         |
-| --------- | ------------ |
-| wux-class | 根节点样式类 |
+| 属性         | 描述     | 默认值 | 全局变量 |
+| ------------ | -------- | ------ | -------- |
+| --text-color | 文字颜色 | `#fff` | -        |

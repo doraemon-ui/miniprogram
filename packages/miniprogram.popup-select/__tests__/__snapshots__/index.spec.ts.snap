@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PopupSelect mount correctly 1`] = `
+<dora-popup-select>
+  <dora-popup
+    bind:close="close"
+    bind:closed="onClosed"
+    bind:show="onShow"
+  >
+    <wx-view
+      class="dora-class dora-popup dora-popup--position-bottom"
+      style="touch-action: none;  "
+      bind:touchend="onTouchEnd"
+      bind:touchmove="onTouchMove"
+      bind:touchstart="onTouchStart"
+    >
+      <dora-backdrop
+        disableScroll="{{true}}"
+        id="dora-backdrop"
+        transparent="{{false}}"
+        wrapStyle="{{null}}"
+        zIndex="{{null}}"
+        bind:click="onMaskClick"
+      />
+      <dora-animation-group
+        classNames="dora-animate--slideInUp"
+        doraClass="dora-popup__body"
+        id="dora-animation-group"
+        in="{{false}}"
+        mountOnEnter="{{true}}"
+        unmountOnExit="{{true}}"
+        wrapStyle="{{Object {}}}"
+        bind:enter="onShow"
+        bind:entered="onShowed"
+        bind:exited="onClosed"
+      >
+        <wx-view
+          class="dora-class dora-popup-select"
+        >
+          <wx-view
+            class="dora-popup-select__toolbar"
+            catch:touchmove="noop"
+          >
+            <wx-view
+              class="dora-popup-select__toolbar-inner"
+            >
+              <wx-view
+                class="dora-popup-select__cancel"
+                hoverClass="dora-popup-select__hover"
+                bind:tap="onCancel"
+              >
+                取消
+              </wx-view>
+              <wx-view
+                class="dora-popup-select__title"
+              >
+                请选择
+              </wx-view>
+              <wx-view
+                class="dora-popup-select__confirm"
+                hoverClass="dora-popup-select__hover"
+                bind:tap="onConfirm"
+              >
+                确定
+              </wx-view>
+            </wx-view>
+          </wx-view>
+          <wx-scroll-view
+            class="dora-popup-select__list"
+            scrollY="{{true}}"
+          />
+          <wx-view
+            class="dora-popup-select__prompt"
+          >
+            <dora-prompt
+              icon=""
+              text="暂无数据"
+              title=""
+              visible="{{true}}"
+            >
+              <wx-view
+                class="dora-class dora-prompt"
+                hoverClass="dora-hover-class dora-prompt--hover"
+                style="background-color: unset;  "
+                bind:tap="onClick"
+              />
+            </dora-prompt>
+          </wx-view>
+        </wx-view>
+        <dora-safe-area
+          safeArea="bottom"
+        />
+      </dora-animation-group>
+    </wx-view>
+  </dora-popup>
+  <wx-view
+    catch:tap="onTrigger"
+  />
+</dora-popup-select>
+`;

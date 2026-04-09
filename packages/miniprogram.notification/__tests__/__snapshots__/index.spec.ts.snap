@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Notification mount correctly 1`] = `
+<dora-notification>
+  <dora-animation-group
+    doraClass="dora-notification"
+    bind:click="onClick"
+  />
+</dora-notification>
+`;

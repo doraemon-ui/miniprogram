@@ -1,161 +1,67 @@
-# Grid 宫格
+# Grid Grid
 
-在水平和垂直方向，将布局切分成若干等大的区块。
+@doraemon-ui/miniprogram.grid
+
+## 安装
+
+我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
+
+```bash
+npm install --save @doraemon-ui/miniprogram.grid
+# or
+yarn add @doraemon-ui/miniprogram.grid
+```
+
+如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
 
 ## 使用指南
 
 ### 在 page.json 中引入组件
 
-```json
-{
-  "navigationBarTitleText": "Grid",
-  "usingComponents": {
-    "wux-icon": "../../dist/icon/index",
-    "wux-grids": "../../dist/grids/index",
-    "wux-grid": "../../dist/grid/index"
-  }
-}
-```
+[json](./playground/grid/pages/index/index.json ':include :type=code')
 
-### 示例
+### 示例代码
 
-```html
-<view class="page">
-  <view class="page__hd">
-    <view class="page__title">Grid</view>
-    <view class="page__desc">宫格</view>
-  </view>
-  <view class="page__bd">
-    <view class="sub-title">Default</view>
-    <wux-grids>
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-    </wux-grids>
-    <view class="sub-title">Square = true</view>
-    <wux-grids square>
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-    </wux-grids>
-    <view class="sub-title">Bordered = false</view>
-    <wux-grids bordered="{{ false }}">
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-    </wux-grids>
-    <view class="sub-title">Col = 4</view>
-    <wux-grids col="4">
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-      <wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
-    </wux-grids>
-    <view class="sub-title">Custom content</view>
-    <wux-grids>
-      <wux-grid>
-        <wux-icon type="logo-github" />
-        <view>Wux Weapp</view>
-      </wux-grid>
-      <wux-grid>
-        <wux-icon type="logo-github" />
-        <view>Wux Weapp</view>
-      </wux-grid>
-      <wux-grid>
-        <wux-icon type="logo-github" />
-        <view>Wux Weapp</view>
-      </wux-grid>
-      <wux-grid>
-        <wux-icon type="logo-github" />
-        <view>Wux Weapp</view>
-      </wux-grid>
-      <wux-grid>
-        <wux-icon type="logo-github" />
-        <view>Wux Weapp</view>
-      </wux-grid>
-      <wux-grid>
-        <wux-icon type="logo-github" />
-        <view>Wux Weapp</view>
-      </wux-grid>
-      <wux-grid>
-        <wux-icon type="logo-github" />
-        <view>Wux Weapp</view>
-      </wux-grid>
-      <wux-grid>
-        <wux-icon type="logo-github" />
-        <view>Wux Weapp</view>
-      </wux-grid>
-      <wux-grid>
-        <wux-icon type="logo-github" />
-        <view>Wux Weapp</view>
-      </wux-grid>
-    </wux-grids>
-  </view>
-</view>
-```
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/DoraemonUI)
 
-## 视频演示
+<!-- tabs:start -->
 
-[Grid](./_media/grid.mp4 ':include :type=iframe width=375px height=667px')
+#### **WXML**
+
+[wxml](./playground/grid/pages/index/index.wxml ':include :type=code')
+
+#### **JAVASCRIPT**
+
+[js](./playground/grid/pages/index/index.js ':include :type=code')
+
+#### **WXSS**
+
+[wxss](./playground/grid/pages/index/index.wxss ':include :type=code')
+
+<!-- tabs:end -->
 
 ## API
 
-### Grids props
-
-| 参数      | 类型      | 描述                     | 默认值    |
-| --------- | --------- | ------------------------ | --------- |
-| prefixCls | `string`  | 自定义类名前缀           | wux-grids |
-| col       | `string`  | 列数                     | 3         |
-| bordered  | `boolean` | 是否有边框               | true      |
-| square    | `boolean` | 每个格子是否固定为正方形 | false     |
-
-### Grids externalClasses
-
-| 名称      | 描述         |
-| --------- | ------------ |
-| wux-class | 根节点样式类 |
-
 ### Grid props
 
-| 参数       | 类型       | 描述                                                             | 默认值   |
-| ---------- | ---------- | ---------------------------------------------------------------- | -------- |
-| prefixCls  | `string`   | 自定义类名前缀                                                   | wux-grid |
-| hoverClass | `string`   | 指定按钮按下去的样式类。当 hover-class="none" 时，没有点击态效果 | default  |
-| thumb      | `string`   | 缩略图                                                           | -        |
-| label      | `string`   | 描述信息                                                         | -        |
-| bind:click | `function` | 点击事件                                                         | -        |
+| 参数      | 类型     | 描述           | 默认值    |
+| --------- | -------- | -------------- | --------- |
+| prefixCls | `string` | 自定义类名前缀 | dora-grid |
 
 ### Grid slot
 
-| 名称   | 描述         |
-| ------ | ------------ |
-| -      | 自定义内容   |
-| header | 自定义缩略图 |
+| 名称 | 描述       |
+| ---- | ---------- |
+| -    | 自定义内容 |
 
 ### Grid externalClasses
 
-| 名称      | 描述         |
-| --------- | ------------ |
-| wux-class | 根节点样式类 |
+| 名称       | 描述         |
+| ---------- | ------------ |
+| dora-class | 根节点样式类 |
+
+## CSS Variables
+
+| 属性         | 描述     | 默认值 | 全局变量 |
+| ------------ | -------- | ------ | -------- |
+| --text-color | 文字颜色 | `#fff` | -        |

@@ -1,0 +1,39 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-rater {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  line-height: normal;
+  vertical-align: middle;
+  text-align: left
+}
+.dora-rater__star {
+  position: relative;
+  display: inline-block
+}
+.dora-rater__box {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  color: var(--dora-rater-star-color,#ccc);
+  color: var(--dora-rater-star-color,#ccc);
+  transition: color .3s ease
+}
+.dora-rater__icon {
+  transition: color .3s ease
+}
+.dora-rater__inner {
+  position: relative;
+  display: inline-block
+}
+.dora-rater__outer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: inline-block;
+  overflow: hidden
+}

@@ -1,0 +1,86 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-picker-view {
+  display: block;
+  position: relative;
+  height: 476rpx;
+  overflow: hidden;
+  width: 100%;
+  -ms-flex: 1;
+  flex: 1
+}
+.dora-picker-view--left {
+  text-align: left
+}
+.dora-picker-view--center {
+  text-align: center
+}
+.dora-picker-view--right {
+  text-align: right
+}
+.dora-picker-view__indicator,
+.dora-picker-view__mask {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  z-index: 3;
+  pointer-events: none
+}
+.dora-picker-view__mask {
+  top: 0;
+  height: 100%;
+  margin: 0 auto;
+  background-image: linear-gradient(180deg,hsla(0,0%,100%,.95),hsla(0,0%,100%,.6)),linear-gradient(0deg,hsla(0,0%,100%,.95),hsla(0,0%,100%,.6));
+  background-position: top,bottom;
+  background-size: 100% 204rpx;
+  background-repeat: no-repeat
+}
+.dora-picker-view__indicator {
+  box-sizing: border-box;
+  height: 68rpx;
+  top: 204rpx;
+  border-top: 1rpx solid var(--dora-border-color,#ddd);
+  border-top: 1rpx solid var(--dora-border-color,#ddd);
+  border-bottom: 1rpx solid var(--dora-border-color,#ddd);
+  border-bottom: 1rpx solid var(--dora-border-color,#ddd)
+}
+.dora-picker-view__content {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  padding: 204rpx 0
+}
+.dora-picker-view__item {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: var(--dora-font-size-lg,32rpx);
+  font-size: var(--dora-font-size-lg,32rpx);
+  height: 68rpx;
+  line-height: 68rpx;
+  color: #000;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden
+}
+.dora-picker-view__item--disabled {
+  opacity: .45
+}
+.dora-picker-view__item--selected {
+  font-size: 34rpx
+}
+.dora-picker-view__item--selected .dora-picker-view__image {
+  transform: scale(1.1)
+}
+.dora-picker-view__image {
+  display: inline-block;
+  height: calc(68rpx * .6);
+  width: calc(68rpx * .6)
+}

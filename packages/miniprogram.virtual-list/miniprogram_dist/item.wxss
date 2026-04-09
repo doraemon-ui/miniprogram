@@ -1,0 +1,23 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-virtual-list {
+  position: relative;
+  display: block;
+  overflow: auto;
+  height: auto
+}
+.dora-virtual-list__mask {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  background-color: transparent
+}
+.dora-virtual-list__scroll-view {
+  width: 100%;
+  height: 100%
+}

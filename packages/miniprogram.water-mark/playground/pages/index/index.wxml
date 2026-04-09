@@ -1,0 +1,30 @@
+<demo-page
+  darkmode="auto"
+  title="WaterMark"
+  desc="水印"
+  clickable
+  spacing
+>
+  <demo-block title="操作">
+    <dora-button block type="light" bind:click="setProps1">普通水印</dora-button>
+    <dora-button block type="light" bind:click="setProps2">多行文字水印</dora-button>
+    <dora-button block type="light" bind:click="setProps3">图片水印</dora-button>
+  </demo-block>
+
+  <demo-block title="预览">
+    <view class="page__image" style="display:inline-flex;position:relative;width:100%;margin-bottom:30rpx;">
+      <image class="page__image-img" mode="widthFix" style="display:block;width:100%;" src="http://cdn.skyvow.cn/public/bluesky.jpg" />
+      <dora-water-mark
+        content="{{ content }}"
+        image="{{ image }}"
+        width="{{ width }}"
+        height="{{ height }}"
+        gapX="{{ 12 }}"
+        gapY="{{ 36 }}"
+        fullPage="{{ false }}"
+        bind:load="onWaterMarkLoad"
+        bind:error="onWaterMarkError"
+      />
+    </view>
+  </demo-block>
+</demo-page>

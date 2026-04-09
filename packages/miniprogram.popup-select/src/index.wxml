@@ -1,0 +1,46 @@
+<dora-popup
+  position="bottom"
+  visible="{{ popupVisible }}"
+  safeArea="bottom"
+  bind:show="onShow"
+  bind:close="close"
+  bind:closed="onClosed"
+>
+  <view class="dora-class {{ classes.wrap }}">
+    <view class="{{ classes.toolbar }}" wx:if="{{ toolbar }}" catchtouchmove="noop">
+      <view class="{{ classes.inner }}">
+        <view class="{{ classes.cancel }}" hover-class="{{ classes.hover }}" bindtap="onCancel" wx:if="{{ toolbar.cancelText }}">{{ toolbar.cancelText }}</view>
+        <view class="{{ classes.title }}">{{ toolbar.title }}</view>
+        <view class="{{ classes.confirm }}" hover-class="{{ classes.hover }}" bindtap="onConfirm" wx:if="{{ toolbar.confirmText }}">{{ toolbar.confirmText }}</view>
+      </view>
+    </view>
+    <scroll-view class="{{ classes.list }}" scroll-y>
+      <block wx:for="{{ mergedOptions }}" wx:key="value" wx:for-item="item">
+        <view class="{{ classes.group }}" wx:if="{{ item.isGroup }}">{{ item.title }}</view>
+        <view
+          wx:else
+          class="{{ classes.option }} {{ item.disabled ? classes.optionDisabled : '' }} {{ isSelected(item.value) ? classes.optionSelected : '' }}"
+          data-value="{{ item.value }}"
+          bindtap="onOptionTap"
+        >
+          <text>{{ item.title }}</text>
+          <text wx:if="{{ isSelected(item.value) }}">✓</text>
+        </view>
+      </block>
+    </scroll-view>
+    <view class="{{ classes.prompt }}" wx:if="{{ !mergedOptions || mergedOptions.length === 0 }}">
+      <dora-prompt
+        visible
+        icon="{{ mergedNotFoundContent.icon }}"
+        title="{{ mergedNotFoundContent.title }}"
+        text="{{ mergedNotFoundContent.text }}"
+        wrapStyle="{{ { backgroundColor: 'unset' } }}"
+        wx:if="{{ mergedNotFoundContent }}"
+      />
+      <slot name="notFoundContent" wx:else></slot>
+    </view>
+  </view>
+</dora-popup>
+<view catchtap="onTrigger">
+  <slot></slot>
+</view>

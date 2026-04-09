@@ -1,0 +1,76 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-divider--horizontal {
+  display: block;
+  height: 2rpx;
+  width: 100%;
+  margin: var(--dora-divider-margin,24rpx) 0;
+  margin: var(--dora-divider-margin,24rpx) 0;
+  clear: both;
+  border-top: 2rpx solid var(--dora-divider-border-color,var(--dora-border-color,var(--dora-color-step-10,#e6e6e6)));
+  border-top: 2rpx solid var(--dora-divider-border-color,var(--dora-border-color,var(--dora-color-step-10,#e6e6e6)))
+}
+.dora-divider--horizontal.dora-divider--text {
+  display: table;
+  white-space: nowrap;
+  text-align: center;
+  background: 0 0;
+  font-weight: 400;
+  color: var(--dora-divider-color,rgba(var(--dora-text-color-rgb,0,0,0),.45));
+  color: var(--dora-divider-color,rgba(var(--dora-text-color-rgb,0,0,0),.45));
+  font-size: var(--dora-divider-font-size,32rpx);
+  font-size: var(--dora-divider-font-size,32rpx);
+  border-top: none!important
+}
+.dora-divider--horizontal.dora-divider--text::after,
+.dora-divider--horizontal.dora-divider--text::before {
+  content: '';
+  display: table-cell;
+  position: relative;
+  top: 50%;
+  width: 50%;
+  border-top-width: 2rpx;
+  border-top-style: solid;
+  border-top-color: var(--dora-divider-border-color,var(--dora-border-color,var(--dora-color-step-10,#e6e6e6)));
+  border-top-color: var(--dora-divider-border-color,var(--dora-border-color,var(--dora-color-step-10,#e6e6e6)));
+  transform: translateY(50%)
+}
+.dora-divider--horizontal.dora-divider--dashed {
+  border-top: 2rpx dashed var(--dora-divider-border-color,var(--dora-border-color,var(--dora-color-step-10,#e6e6e6)));
+  border-top: 2rpx dashed var(--dora-divider-border-color,var(--dora-border-color,var(--dora-color-step-10,#e6e6e6)))
+}
+.dora-divider--horizontal.dora-divider--dashed.dora-divider--text::after,
+.dora-divider--horizontal.dora-divider--dashed.dora-divider--text::before {
+  border-top-style: dashed
+}
+.dora-divider--horizontal.dora-divider--text-left::before {
+  width: 5%
+}
+.dora-divider--horizontal.dora-divider--text-left::after {
+  width: 95%
+}
+.dora-divider--horizontal.dora-divider--text-right::before {
+  width: 95%
+}
+.dora-divider--horizontal.dora-divider--text-right::after {
+  width: 5%
+}
+.dora-divider--horizontal .dora-divider__text {
+  display: inline-block;
+  padding: 0 var(--dora-divider-text-padding,24rpx);
+  padding: 0 var(--dora-divider-text-padding,24rpx)
+}
+.dora-divider--vertical {
+  position: relative;
+  top: -.06em;
+  display: inline-block;
+  height: .9em;
+  margin: 0 var(--dora-divider-margin,24rpx);
+  margin: 0 var(--dora-divider-margin,24rpx);
+  vertical-align: middle;
+  border-top: 0;
+  border-left: 2rpx solid var(--dora-divider-border-color,var(--dora-border-color,var(--dora-color-step-10,#e6e6e6)));
+  border-left: 2rpx solid var(--dora-divider-border-color,var(--dora-border-color,var(--dora-color-step-10,#e6e6e6)))
+}

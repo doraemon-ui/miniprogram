@@ -1,0 +1,14 @@
+<dora-select id="dora-select1" />
+<dora-select id="dora-select2" />
+
+<demo-page title="Select" desc="下拉框">
+  <demo-block title="Single">
+    <view class="value">{{ displayValue1 }}</view>
+    <dora-button type="light" bind:click="onClick1">打开单选</dora-button>
+  </demo-block>
+
+  <demo-block title="Multiple">
+    <view class="value">{{ displayValue2 }}</view>
+    <dora-button type="light" bind:click="onClick2">打开多选</dora-button>
+  </demo-block>
+</demo-page>

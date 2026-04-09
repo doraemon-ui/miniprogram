@@ -1,0 +1,102 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-navbar {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  height: var(--dora-navbar-size,88rpx);
+  height: var(--dora-navbar-size,88rpx);
+  background-color: var(--dora-navbar-light-bg,#fff);
+  background-color: var(--dora-navbar-light-bg,#fff);
+  color: var(--dora-navbar-default-color,#333);
+  color: var(--dora-navbar-default-color,#333)
+}
+.dora-navbar__left,
+.dora-navbar__right,
+.dora-navbar__title {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex: 1;
+  flex: 1;
+  height: 100%
+}
+.dora-navbar__left {
+  padding-left: var(--dora-navbar-margin,24rpx);
+  padding-left: var(--dora-navbar-margin,24rpx);
+  font-size: var(--dora-navbar-font-size,28rpx);
+  font-size: var(--dora-navbar-font-size,28rpx)
+}
+.dora-navbar__title {
+  -ms-flex-pack: center;
+  justify-content: center;
+  font-size: calc(var(--dora-navbar-font-size,28rpx) + 4rpx);
+  font-size: calc(var(--dora-navbar-font-size,28rpx) + 4rpx);
+  white-space: nowrap
+}
+.dora-navbar__right {
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  font-size: var(--dora-navbar-font-size,28rpx);
+  font-size: var(--dora-navbar-font-size,28rpx);
+  margin-right: var(--dora-navbar-margin,24rpx);
+  margin-right: var(--dora-navbar-margin,24rpx)
+}
+.dora-navbar--light {
+  background-color: var(--dora-navbar-light-bg,#fff);
+  background-color: var(--dora-navbar-light-bg,#fff);
+  color: var(--dora-navbar-default-color,#333);
+  color: var(--dora-navbar-default-color,#333)
+}
+.dora-navbar--stable {
+  background-color: var(--dora-navbar-stable-bg,#f8f8f8);
+  background-color: var(--dora-navbar-stable-bg,#f8f8f8);
+  color: var(--dora-navbar-default-color,#333);
+  color: var(--dora-navbar-default-color,#333)
+}
+.dora-navbar--positive {
+  background-color: var(--dora-navbar-positive-bg,#387ef5);
+  background-color: var(--dora-navbar-positive-bg,#387ef5);
+  color: var(--dora-navbar-active-color,#fff);
+  color: var(--dora-navbar-active-color,#fff)
+}
+.dora-navbar--calm {
+  background-color: var(--dora-navbar-calm-bg,#11c1f3);
+  background-color: var(--dora-navbar-calm-bg,#11c1f3);
+  color: var(--dora-navbar-active-color,#fff);
+  color: var(--dora-navbar-active-color,#fff)
+}
+.dora-navbar--assertive {
+  background-color: var(--dora-navbar-assertive-bg,#ef473a);
+  background-color: var(--dora-navbar-assertive-bg,#ef473a);
+  color: var(--dora-navbar-active-color,#fff);
+  color: var(--dora-navbar-active-color,#fff)
+}
+.dora-navbar--balanced {
+  background-color: var(--dora-navbar-balanced-bg,#33cd5f);
+  background-color: var(--dora-navbar-balanced-bg,#33cd5f);
+  color: var(--dora-navbar-active-color,#fff);
+  color: var(--dora-navbar-active-color,#fff)
+}
+.dora-navbar--energized {
+  background-color: var(--dora-navbar-energized-bg,#ffc900);
+  background-color: var(--dora-navbar-energized-bg,#ffc900);
+  color: var(--dora-navbar-active-color,#fff);
+  color: var(--dora-navbar-active-color,#fff)
+}
+.dora-navbar--royal {
+  background-color: var(--dora-navbar-royal-bg,#886aea);
+  background-color: var(--dora-navbar-royal-bg,#886aea);
+  color: var(--dora-navbar-active-color,#fff);
+  color: var(--dora-navbar-active-color,#fff)
+}
+.dora-navbar--dark {
+  background-color: var(--dora-navbar-dark-bg,#444);
+  background-color: var(--dora-navbar-dark-bg,#444);
+  color: var(--dora-navbar-active-color,#fff);
+  color: var(--dora-navbar-active-color,#fff)
+}

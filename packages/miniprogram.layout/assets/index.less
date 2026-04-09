@@ -1,0 +1,46 @@
+@import './variables.less';
+
+// Layout styles
+// -----------------------------
+.@{row-prefix-cls} {
+  &::before,
+  &::after {
+    content: '';
+    display: table;
+  }
+
+  &::after {
+    clear: both;
+  }
+}
+
+.loop(@count) when(@count > 0) {
+  @number: percentage((@count / 12));
+
+  &--span-@{count} {
+    float: left;
+    width: @number;
+  }
+
+  &--pull-@{count} {
+    right: @number;
+  }
+
+  &--push-@{count} {
+    left: @number;
+  }
+
+  &--offset-@{count} {
+    margin-left: @number;
+  }
+
+  .loop((@count - 1));
+}
+
+.@{col-prefix-cls} {
+  position: relative;
+  min-height: 1px;
+  box-sizing: border-box;
+
+  .loop(12);
+}

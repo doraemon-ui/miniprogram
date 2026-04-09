@@ -1,0 +1,102 @@
+@import './variables.less';
+
+// Upload styles
+// -----------------------------
+.@{upload-prefix-cls} {
+  @upload-size: 156rpx;
+  @upload-border-radius: 8rpx;
+  @upload-bg: #fafafa;
+  @upload-normal-border-color: #d9d9d9;
+  @upload-success-border-style: solid;
+  @upload-normal-border-style: dashed;
+  @upload-error-border-color: #ff4d4f;
+  @upload-icon-size: 32rpx;
+
+  position: relative;
+  display: block;
+  overflow: hidden;
+
+  &--disabled {
+    opacity: @disabled-opacity;
+    cursor: not-allowed;
+  }
+
+  &--picture-card {
+    .@{upload-prefix-cls}__select {
+      width: @upload-size;
+      height: @upload-size;
+      border: 2rpx @upload-normal-border-style @upload-normal-border-color;
+      border-radius: @upload-border-radius;
+      margin: 0 16rpx 16rpx 0;
+      background-color: @upload-bg;
+      transition: border-color 0.3s ease;
+      box-sizing: border-box;
+      float: left;
+      cursor: pointer;
+    }
+
+    .@{upload-prefix-cls}__button {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      padding: 8rpx;
+      box-sizing: border-box;
+
+      image {
+        width: 100%;
+        height: 100%;
+        display: inline-block;
+        overflow: hidden;
+      }
+    }
+
+    .@{upload-prefix-cls}__files {
+      position: relative;
+      display: block;
+      float: left;
+      overflow: hidden;
+    }
+
+    .@{upload-prefix-cls}__file {
+      width: @upload-size;
+      height: @upload-size;
+      float: left;
+      margin: 0 16rpx 16rpx 0;
+      padding: 8rpx;
+      border-radius: @upload-border-radius;
+      border: 2rpx @upload-success-border-style @upload-normal-border-color;
+      position: relative;
+      box-sizing: border-box;
+      cursor: pointer;
+
+      &--uploading {
+        border-style: @upload-normal-border-style;
+      }
+
+      &--error {
+        border-color: @upload-error-border-color;
+      }
+    }
+
+    .@{upload-prefix-cls}__thumb {
+      width: 100%;
+      height: 100%;
+      display: inline-block;
+      overflow: hidden;
+    }
+
+    .@{upload-prefix-cls}__remove {
+      width: @upload-icon-size;
+      height: @upload-icon-size;
+      position: absolute;
+      right: 12rpx;
+      top: 12rpx;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.45);
+      cursor: pointer;
+    }
+  }
+}

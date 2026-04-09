@@ -1,0 +1,35 @@
+<demo-page
+  darkmode="auto"
+  title="Tag"
+  desc="标签"
+  clickable
+  spacing
+>
+  <demo-block title="Default">
+    <dora-tag>magenta</dora-tag>
+    <dora-tag color="magenta">magenta</dora-tag>
+    <dora-tag color="red">red</dora-tag>
+    <dora-tag color="volcano">volcano</dora-tag>
+    <dora-tag color="orange">orange</dora-tag>
+    <dora-tag color="gold">gold</dora-tag>
+    <dora-tag color="lime">lime</dora-tag>
+    <dora-tag color="green">green</dora-tag>
+    <dora-tag color="cyan">cyan</dora-tag>
+    <dora-tag color="blue">blue</dora-tag>
+    <dora-tag color="geekblue">geekblue</dora-tag>
+    <dora-tag color="purple">purple</dora-tag>
+  </demo-block>
+
+  <demo-block title="Custom color">
+    <dora-tag color="#f50">#f50</dora-tag>
+    <dora-tag color="#2db7f5">#2db7f5</dora-tag>
+    <dora-tag color="#87d068">#87d068</dora-tag>
+    <dora-tag color="#108ee9">#108ee9</dora-tag>
+  </demo-block>
+
+  <demo-block title="Closable">
+    <dora-tag closable bind:close="onClose">Tag 1</dora-tag>
+    <dora-tag closable visible="{{ visible }}" controlled bind:close="onClose" bind:change="onChange">Tag 3</dora-tag>
+    <dora-tag bind:click="onToggle">Toggle</dora-tag>
+  </demo-block>
+</demo-page>

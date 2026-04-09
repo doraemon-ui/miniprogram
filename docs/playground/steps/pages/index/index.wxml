@@ -1,0 +1,26 @@
+<demo-page title="Steps" desc="步骤条" spacing>
+  <demo-block title="Default">
+    <dora-steps>
+      <dora-step status="finish" title="Finished" content="This is description"></dora-step>
+      <dora-step status="process" title="In Progress" content="This is description"></dora-step>
+      <dora-step status="wait" title="Waiting" content="This is description"></dora-step>
+    </dora-steps>
+  </demo-block>
+
+  <demo-block title="Direction = vertical">
+    <dora-steps direction="vertical">
+      <dora-step status="finish" title="Finished" content="This is description"></dora-step>
+      <dora-step status="process" title="In Progress" content="This is description"></dora-step>
+      <dora-step status="error" title="Error" content="This is description"></dora-step>
+    </dora-steps>
+  </demo-block>
+
+  <demo-block title="Current">
+    <dora-steps current="{{ current }}">
+      <dora-step title="First"></dora-step>
+      <dora-step title="Second"></dora-step>
+      <dora-step title="Third"></dora-step>
+    </dora-steps>
+    <dora-button block type="light" bind:click="onClick">Next step</dora-button>
+  </demo-block>
+</demo-page>

@@ -1,0 +1,6 @@
+<canvas
+  type="2d"
+  class="dora-class {{ prefixCls }}"
+  id="{{ canvasId }}"
+  style="width: {{ width + 'px' }}; height: {{ height + 'px' }};"
+/>

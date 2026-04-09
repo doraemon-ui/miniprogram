@@ -1,0 +1,16 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-wing-blank--small {
+  margin-left: 16rpx;
+  margin-right: 16rpx
+}
+.dora-wing-blank--default {
+  margin-left: 24rpx;
+  margin-right: 24rpx
+}
+.dora-wing-blank--large {
+  margin-left: 32rpx;
+  margin-right: 32rpx
+}

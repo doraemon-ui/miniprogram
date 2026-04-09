@@ -1,0 +1,28 @@
+@import './variables.less';
+
+// ESign styles
+// -----------------------------
+.@{e-sign-prefix-cls} {
+  padding: @e-sign-padding;
+
+  &__bd {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px dotted @e-sign-border-color;
+    border-radius: @e-sign-bd-border-radius;
+    overflow: hidden;
+  }
+
+  &__ft {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__button {
+    padding-left: @e-sign-button-padding;
+    padding-right: @e-sign-button-padding;
+    margin-top: @e-sign-button-margin;
+    margin-left: @e-sign-button-margin;
+  }
+}

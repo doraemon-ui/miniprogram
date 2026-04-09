@@ -1,0 +1,2 @@
+<view class="dora-class {{ classes.wrap }}"></view>
+<view class="dora-class {{ classes.wrap }}"></view>

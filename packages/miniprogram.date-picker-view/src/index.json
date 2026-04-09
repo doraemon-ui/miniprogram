@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "dora-multi-picker-view": "../../miniprogram.multi-picker-view/src/index"
+  }
+}

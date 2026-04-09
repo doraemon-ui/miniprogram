@@ -1,0 +1,45 @@
+@import './variables.less';
+
+.@{result-prefix-cls} {
+  padding-top: 0;
+  text-align: center;
+
+  &__bd {
+    padding: @result-bd-padding;
+  }
+
+  &__icon {
+    padding-top: 72rpx;
+    text-align: center;
+  }
+
+  &__title {
+    margin-bottom: 10rpx;
+    font-weight: 400;
+    font-size: @result-title-font-size;
+  }
+
+  &__desc {
+    font-size: var(--dora-font-size-md, 28rpx);
+    color: var(--dora-color-text-secondary, #999);
+  }
+
+  &__buttons {
+    margin-top: 60rpx;
+  }
+
+  &__ft {
+    font-size: var(--dora-font-size-md, 28rpx);
+    color: var(--dora-color-text-secondary, #999);
+  }
+
+  &--fixed &__ft {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: @result-ft-padding;
+    text-align: center;
+    box-sizing: border-box;
+  }
+}

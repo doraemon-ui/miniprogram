@@ -52,51 +52,210 @@ const makeFields = () => ({
   node: true,
 })
 
+/**
+ * NodeRef类型定义
+ */
 export type NodeRef = {
+  /**
+   * borderRightWidth
+   * @type {number}
+   */
   borderRightWidth: number
+
+  /**
+   * borderLeftWidth
+   * @type {number}
+   */
   borderLeftWidth: number
+
+  /**
+   * borderTopWidth
+   * @type {number}
+   */
   borderTopWidth: number
+
+  /**
+   * borderBottomWidth
+   * @type {number}
+   */
   borderBottomWidth: number
+
+  /**
+   * width
+   * @type {number}
+   */
   width: number
+
+  /**
+   * height
+   * @type {number}
+   */
   height: number
+
+  /**
+   * id
+   * @type {string}
+   */
   id: string
+
+  /**
+   * dataset
+   * @type {Record<string, any>}
+   */
   dataset: Record<string, any>
+
+  /**
+   * mark
+   * @type {Record<string, any>}
+   */
   mark: Record<string, any>
+
+  /**
+   * top
+   * @type {number}
+   */
   top: number
+
+  /**
+   * right
+   * @type {number}
+   */
   right: number
+
+  /**
+   * bottom
+   * @type {number}
+   */
   bottom: number
+
+  /**
+   * left
+   * @type {number}
+   */
   left: number
+
+  /**
+   * scrollHeight
+   * @type {number}
+   */
   scrollHeight: number
+
+  /**
+   * scrollLeft
+   * @type {number}
+   */
   scrollLeft: number
+
+  /**
+   * scrollTop
+   * @type {number}
+   */
   scrollTop: number
+
+  /**
+   * scrollWidth
+   * @type {number}
+   */
   scrollWidth: number
+
+  /**
+   * node
+   * @type {Record<string, any>}
+   */
   node: Record<string, any>
 }
 
+/**
+ * MiniprogramScrollOffset接口定义
+ */
 export interface MiniprogramScrollOffset {
-  /** 节点的 ID */
+  /**
+   * 节点的 ID
+   */
   id: string
-  /** 节点的 dataset */
+
+  /**
+   * 节点的 dataset
+   */
   dataset: Record<string, any>
+
+  /**
+   * scrollLeft
+   * @type {number}
+   */
   scrollLeft: number
+
+  /**
+   * scrollTop
+   * @type {number}
+   */
   scrollTop: number
 }
 
+/**
+ * MiniprogramNodeRef接口定义
+ */
 export interface MiniprogramNodeRef extends MiniprogramDOMRect, MiniprogramScrollOffset {
+  /**
+   * mark
+   * @type {Record<string, any>}
+   */
   mark: Record<string, any>
 
+  /**
+   * offsetWidth
+   * @type {number}
+   */
   offsetWidth: number
+
+  /**
+   * offsetHeight
+   * @type {number}
+   */
   offsetHeight: number
+
+  /**
+   * clientLeft
+   * @type {number}
+   */
   clientLeft: number
+
+  /**
+   * clientTop
+   * @type {number}
+   */
   clientTop: number
+
+  /**
+   * clientWidth
+   * @type {number}
+   */
   clientWidth: number
+
+  /**
+   * clientHeight
+   * @type {number}
+   */
   clientHeight: number
 
+  /**
+   * scrollHeight
+   * @type {number}
+   */
   scrollHeight: number
   // scrollLeft: number
   // scrollTop: number
+
+  /**
+   * scrollWidth
+   * @type {number}
+   */
   scrollWidth: number
 
+  /**
+   * node
+   * @type {Record<string, any>}
+   */
   node: Record<string, any>
 }
 

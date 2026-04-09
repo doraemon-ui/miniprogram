@@ -1,5 +1,5 @@
 import { defineComponentHOC, Doraemon, Component, Emit, Watch, Prop } from '@doraemon-ui/miniprogram.core-js'
-import type { PanelInstance } from './panel'
+import type { PanelInstance } from './types'
 
 @Component({
   components: {
@@ -178,5 +178,6 @@ class Accordion extends Doraemon {
   }
 }
 
-export type AccordionInstance = Accordion
+export { Accordion }
+
 export default defineComponentHOC({ multipleSlots: false })(Accordion)

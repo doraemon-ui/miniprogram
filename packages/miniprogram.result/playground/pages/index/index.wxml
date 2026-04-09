@@ -1,0 +1,44 @@
+<demo-page title="Result" desc="结果页">
+  <demo-block title="演示入口">
+    <dora-button block type="light" bind:click="onSuccess">Success</dora-button>
+    <dora-button block type="light" bind:click="onError">Error</dora-button>
+    <dora-button block type="light" bind:click="onInfo">Custom Icon</dora-button>
+  </demo-block>
+
+  <demo-block title="支付成功">
+    <dora-result
+      title="支付成功"
+      label="微信小程序自定义组件 https://github.com/wux-weapp/wux-weapp"
+      buttons="{{ buttons }}"
+      extra="Copyright © 2018 wux weapp"
+      fixed
+      bind:click="onClick"
+    />
+  </demo-block>
+
+  <demo-block title="支付失败">
+    <dora-result
+      icon="{{ errorIcon }}"
+      title="支付失败"
+      label="微信小程序自定义组件 https://github.com/wux-weapp/wux-weapp"
+      buttons="{{ buttons }}"
+      extra="Copyright © 2018 wux weapp"
+      fixed
+      bind:click="onClick"
+    />
+  </demo-block>
+
+  <demo-block title="自定义图标">
+    <dora-result
+      icon="{{ false }}"
+      title="支付提示"
+      label="微信小程序自定义组件 https://github.com/wux-weapp/wux-weapp"
+      buttons="{{ buttons }}"
+      extra="Copyright © 2018 wux weapp"
+      fixed
+      bind:click="onClick"
+    >
+      <icon slot="header" type="info" color="#0faeff" size="93" />
+    </dora-result>
+  </demo-block>
+</demo-page>

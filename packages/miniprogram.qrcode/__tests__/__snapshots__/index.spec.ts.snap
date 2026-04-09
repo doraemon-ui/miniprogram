@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Qrcode mount correctly 1`] = `
+<dora-qrcode>
+  <wx-view
+    class="dora-class dora-qrcode"
+    style="height: 200px;  width: 200px;  "
+    bind:tap="onTap"
+  >
+    <wx-canvas
+      class="dora-qrcode__canvas"
+      id="dora-qrcode__canvas"
+      type="2d"
+    />
+  </wx-view>
+</dora-qrcode>
+`;

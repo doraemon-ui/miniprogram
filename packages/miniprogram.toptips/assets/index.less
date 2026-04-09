@@ -1,0 +1,49 @@
+@import './variables.less';
+
+// Toptips styles
+// -----------------------------
+.@{toptips-prefix-cls} {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+
+  &__content {
+    position: relative;
+    padding: 10rpx;
+    font-size: @font-size-base;
+    color: #fff;
+    word-wrap: break-word;
+    word-break: break-all;
+    transition: background-color 0.3s;
+
+    &--success {
+      background-color: #52c41a;
+    }
+
+    &--info {
+      background-color: #1890ff;
+    }
+
+    &--warn {
+      background-color: #faad14;
+    }
+
+    &--cancel {
+      background-color: #ff4d4f;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &__text {
+    display: block;
+    text-align: center;
+    padding: 0 52rpx;
+  }
+}

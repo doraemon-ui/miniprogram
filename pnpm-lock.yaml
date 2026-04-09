@@ -4,9 +4,16 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  miniprogram.shared: link:../../../Library/pnpm/global/5/node_modules/@doraemon-ui/miniprogram.shared
+
 importers:
 
   .:
+    dependencies:
+      miniprogram.shared:
+        specifier: link:../../../Library/pnpm/global/5/node_modules/@doraemon-ui/miniprogram.shared
+        version: link:../../../Library/pnpm/global/5/node_modules/@doraemon-ui/miniprogram.shared
     devDependencies:
       '@babel/cli':
         specifier: ^7.14.5
@@ -192,7 +199,7 @@ importers:
         specifier: ^3.0.2
         version: 3.0.2
 
-  packages/miniprogram.actionsheet:
+  packages/miniprogram.action-sheet:
     dependencies:
       '@doraemon-ui/miniprogram.core-js':
         specifier: ^0.0.2-alpha.33
@@ -209,6 +216,34 @@ importers:
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
         specifier: ^0.0.2-alpha.46
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.alert:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.33
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/miniprogram.shared':
+        specifier: ^0.0.1-alpha.13
+        version: 0.0.1-alpha.13
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.10
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
         version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
       '@types/node':
         specifier: ^16.3.3
@@ -304,6 +339,56 @@ importers:
         specifier: ^3.0.2
         version: 3.0.2
 
+  packages/miniprogram.badge:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.barcode:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
   packages/miniprogram.button:
     dependencies:
       '@doraemon-ui/miniprogram.core-js':
@@ -332,6 +417,184 @@ importers:
         specifier: ^3.0.2
         version: 3.0.2
 
+  packages/miniprogram.calendar:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.card:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.cascader:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.cascader-picker-view:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.cascader-view:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.checkbox:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/miniprogram.shared':
+        specifier: workspace:*
+        version: link:../miniprogram.shared
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.circle:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
   packages/miniprogram.core-js:
     dependencies:
       classnames:
@@ -344,6 +607,106 @@ importers:
       '@doraemon-ui/miniprogram.tools':
         specifier: ^0.0.2-alpha.22
         version: 0.0.2-alpha.23(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.countdown:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.countup:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.date-picker:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.date-picker-view:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
       '@types/node':
         specifier: ^16.3.3
         version: 16.18.126
@@ -388,6 +751,281 @@ importers:
         specifier: ^3.0.2
         version: 3.0.2
 
+  packages/miniprogram.divider:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.e-sign:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.ellipsis:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.fab-button:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.field:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.filterbar:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.floating-panel:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.footer:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.form:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.gallery:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.grid:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
   packages/miniprogram.icon:
     dependencies:
       '@doraemon-ui/miniprogram.core-js':
@@ -396,6 +1034,181 @@ importers:
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
         specifier: ^0.0.2-alpha.46
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.image:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.index:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.input:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.input-number:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.keyboard:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.landscape:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.layout:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
         version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
       '@types/node':
         specifier: ^16.3.3
@@ -438,6 +1251,156 @@ importers:
         specifier: ^3.0.2
         version: 3.0.2
 
+  packages/miniprogram.loading:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.media:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.multi-picker-view:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.navbar:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.notice-bar:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.notification:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
   packages/miniprogram.pagination:
     dependencies:
       '@doraemon-ui/miniprogram.button':
@@ -452,6 +1415,81 @@ importers:
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
         specifier: ^0.0.2-alpha.46
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.picker:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.picker-view:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.popover:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
         version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
       '@types/node':
         specifier: ^16.3.3
@@ -503,6 +1541,206 @@ importers:
         specifier: ^3.0.2
         version: 3.0.2
 
+  packages/miniprogram.popup-select:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.progress:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.prompt:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.qrcode:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.radio:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.rater:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.refresher:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.result:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
   packages/miniprogram.safe-area:
     dependencies:
       '@doraemon-ui/miniprogram.core-js':
@@ -531,6 +1769,131 @@ importers:
         specifier: ^3.0.2
         version: 3.0.2
 
+  packages/miniprogram.search-bar:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.segmented-control:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.select:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.selectable:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.selector-group:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
   packages/miniprogram.shared:
     devDependencies:
       '@doraemon-ui/miniprogram.core-js':
@@ -539,6 +1902,331 @@ importers:
       '@doraemon-ui/miniprogram.tools':
         specifier: ^0.0.2-alpha.22
         version: 0.0.2-alpha.23(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.skeleton:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.slider:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.spin:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.steps:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.sticky:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.swipe-action:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.switch:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.tabbar:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.tabs:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.tag:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.textarea:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.timeago:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.timeline:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
       '@types/node':
         specifier: ^16.3.3
         version: 16.18.126
@@ -586,6 +2274,206 @@ importers:
         specifier: ^3.0.2
         version: 3.0.2
 
+  packages/miniprogram.toptips:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.touch-view:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.upload:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.vcode:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.virtual-list:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.water-mark:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.white-space:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
+  packages/miniprogram.wing-blank:
+    dependencies:
+      '@doraemon-ui/miniprogram.core-js':
+        specifier: ^0.0.2-alpha.6
+        version: 0.0.2-alpha.33
+      '@doraemon-ui/style':
+        specifier: ^0.0.1-alpha.1
+        version: 0.0.1-alpha.10
+    devDependencies:
+      '@doraemon-ui/miniprogram.cli':
+        specifier: ^0.0.2-alpha.12
+        version: 0.0.2-alpha.46(@swc/core@1.3.96)(@types/node@16.18.126)
+      '@types/node':
+        specifier: ^16.3.3
+        version: 16.18.126
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      jest:
+        specifier: ^27.0.6
+        version: 27.5.1(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@16.18.126)(typescript@4.9.5))
+      rimraf:
+        specifier: ^3.0.2
+        version: 3.0.2
+
   packages/style:
     devDependencies:
       '@types/node':
@@ -606,9 +2494,270 @@ importers:
 
   packages/taro-react:
     dependencies:
+      '@doraemon-ui/miniprogram.accordion':
+        specifier: workspace:*
+        version: link:../miniprogram.accordion
+      '@doraemon-ui/miniprogram.action-sheet':
+        specifier: workspace:*
+        version: link:../miniprogram.action-sheet
+      '@doraemon-ui/miniprogram.alert':
+        specifier: workspace:*
+        version: link:../miniprogram.alert
+      '@doraemon-ui/miniprogram.animation-group':
+        specifier: workspace:*
+        version: link:../miniprogram.animation-group
+      '@doraemon-ui/miniprogram.avatar':
+        specifier: workspace:*
+        version: link:../miniprogram.avatar
+      '@doraemon-ui/miniprogram.backdrop':
+        specifier: workspace:*
+        version: link:../miniprogram.backdrop
+      '@doraemon-ui/miniprogram.badge':
+        specifier: workspace:*
+        version: link:../miniprogram.badge
+      '@doraemon-ui/miniprogram.barcode':
+        specifier: workspace:*
+        version: link:../miniprogram.barcode
+      '@doraemon-ui/miniprogram.button':
+        specifier: workspace:*
+        version: link:../miniprogram.button
+      '@doraemon-ui/miniprogram.calendar':
+        specifier: workspace:*
+        version: link:../miniprogram.calendar
+      '@doraemon-ui/miniprogram.card':
+        specifier: workspace:*
+        version: link:../miniprogram.card
+      '@doraemon-ui/miniprogram.cascader':
+        specifier: workspace:*
+        version: link:../miniprogram.cascader
+      '@doraemon-ui/miniprogram.cascader-picker-view':
+        specifier: workspace:*
+        version: link:../miniprogram.cascader-picker-view
+      '@doraemon-ui/miniprogram.cascader-view':
+        specifier: workspace:*
+        version: link:../miniprogram.cascader-view
+      '@doraemon-ui/miniprogram.checkbox':
+        specifier: workspace:*
+        version: link:../miniprogram.checkbox
+      '@doraemon-ui/miniprogram.circle':
+        specifier: workspace:*
+        version: link:../miniprogram.circle
+      '@doraemon-ui/miniprogram.countdown':
+        specifier: workspace:*
+        version: link:../miniprogram.countdown
+      '@doraemon-ui/miniprogram.countup':
+        specifier: workspace:*
+        version: link:../miniprogram.countup
+      '@doraemon-ui/miniprogram.date-picker':
+        specifier: workspace:*
+        version: link:../miniprogram.date-picker
+      '@doraemon-ui/miniprogram.date-picker-view':
+        specifier: workspace:*
+        version: link:../miniprogram.date-picker-view
+      '@doraemon-ui/miniprogram.dialog':
+        specifier: workspace:*
+        version: link:../miniprogram.dialog
+      '@doraemon-ui/miniprogram.divider':
+        specifier: workspace:*
+        version: link:../miniprogram.divider
+      '@doraemon-ui/miniprogram.e-sign':
+        specifier: workspace:*
+        version: link:../miniprogram.e-sign
+      '@doraemon-ui/miniprogram.ellipsis':
+        specifier: workspace:*
+        version: link:../miniprogram.ellipsis
+      '@doraemon-ui/miniprogram.fab-button':
+        specifier: workspace:*
+        version: link:../miniprogram.fab-button
+      '@doraemon-ui/miniprogram.field':
+        specifier: workspace:*
+        version: link:../miniprogram.field
+      '@doraemon-ui/miniprogram.filterbar':
+        specifier: workspace:*
+        version: link:../miniprogram.filterbar
+      '@doraemon-ui/miniprogram.floating-panel':
+        specifier: workspace:*
+        version: link:../miniprogram.floating-panel
+      '@doraemon-ui/miniprogram.footer':
+        specifier: workspace:*
+        version: link:../miniprogram.footer
+      '@doraemon-ui/miniprogram.form':
+        specifier: workspace:*
+        version: link:../miniprogram.form
+      '@doraemon-ui/miniprogram.gallery':
+        specifier: workspace:*
+        version: link:../miniprogram.gallery
+      '@doraemon-ui/miniprogram.grid':
+        specifier: workspace:*
+        version: link:../miniprogram.grid
+      '@doraemon-ui/miniprogram.icon':
+        specifier: workspace:*
+        version: link:../miniprogram.icon
+      '@doraemon-ui/miniprogram.image':
+        specifier: workspace:*
+        version: link:../miniprogram.image
+      '@doraemon-ui/miniprogram.index':
+        specifier: workspace:*
+        version: link:../miniprogram.index
+      '@doraemon-ui/miniprogram.input':
+        specifier: workspace:*
+        version: link:../miniprogram.input
+      '@doraemon-ui/miniprogram.input-number':
+        specifier: workspace:*
+        version: link:../miniprogram.input-number
+      '@doraemon-ui/miniprogram.keyboard':
+        specifier: workspace:*
+        version: link:../miniprogram.keyboard
+      '@doraemon-ui/miniprogram.landscape':
+        specifier: workspace:*
+        version: link:../miniprogram.landscape
+      '@doraemon-ui/miniprogram.layout':
+        specifier: workspace:*
+        version: link:../miniprogram.layout
       '@doraemon-ui/miniprogram.list':
         specifier: workspace:*
         version: link:../miniprogram.list
+      '@doraemon-ui/miniprogram.loading':
+        specifier: workspace:*
+        version: link:../miniprogram.loading
+      '@doraemon-ui/miniprogram.media':
+        specifier: workspace:*
+        version: link:../miniprogram.media
+      '@doraemon-ui/miniprogram.multi-picker-view':
+        specifier: workspace:*
+        version: link:../miniprogram.multi-picker-view
+      '@doraemon-ui/miniprogram.navbar':
+        specifier: workspace:*
+        version: link:../miniprogram.navbar
+      '@doraemon-ui/miniprogram.notice-bar':
+        specifier: workspace:*
+        version: link:../miniprogram.notice-bar
+      '@doraemon-ui/miniprogram.notification':
+        specifier: workspace:*
+        version: link:../miniprogram.notification
+      '@doraemon-ui/miniprogram.pagination':
+        specifier: workspace:*
+        version: link:../miniprogram.pagination
+      '@doraemon-ui/miniprogram.picker':
+        specifier: workspace:*
+        version: link:../miniprogram.picker
+      '@doraemon-ui/miniprogram.picker-view':
+        specifier: workspace:*
+        version: link:../miniprogram.picker-view
+      '@doraemon-ui/miniprogram.popover':
+        specifier: workspace:*
+        version: link:../miniprogram.popover
+      '@doraemon-ui/miniprogram.popup':
+        specifier: workspace:*
+        version: link:../miniprogram.popup
+      '@doraemon-ui/miniprogram.popup-select':
+        specifier: workspace:*
+        version: link:../miniprogram.popup-select
+      '@doraemon-ui/miniprogram.progress':
+        specifier: workspace:*
+        version: link:../miniprogram.progress
+      '@doraemon-ui/miniprogram.prompt':
+        specifier: workspace:*
+        version: link:../miniprogram.prompt
+      '@doraemon-ui/miniprogram.qrcode':
+        specifier: workspace:*
+        version: link:../miniprogram.qrcode
+      '@doraemon-ui/miniprogram.radio':
+        specifier: workspace:*
+        version: link:../miniprogram.radio
+      '@doraemon-ui/miniprogram.rater':
+        specifier: workspace:*
+        version: link:../miniprogram.rater
+      '@doraemon-ui/miniprogram.refresher':
+        specifier: workspace:*
+        version: link:../miniprogram.refresher
+      '@doraemon-ui/miniprogram.result':
+        specifier: workspace:*
+        version: link:../miniprogram.result
+      '@doraemon-ui/miniprogram.safe-area':
+        specifier: workspace:*
+        version: link:../miniprogram.safe-area
+      '@doraemon-ui/miniprogram.search-bar':
+        specifier: workspace:*
+        version: link:../miniprogram.search-bar
+      '@doraemon-ui/miniprogram.segmented-control':
+        specifier: workspace:*
+        version: link:../miniprogram.segmented-control
+      '@doraemon-ui/miniprogram.select':
+        specifier: workspace:*
+        version: link:../miniprogram.select
+      '@doraemon-ui/miniprogram.selectable':
+        specifier: workspace:*
+        version: link:../miniprogram.selectable
+      '@doraemon-ui/miniprogram.selector-group':
+        specifier: workspace:*
+        version: link:../miniprogram.selector-group
+      '@doraemon-ui/miniprogram.skeleton':
+        specifier: workspace:*
+        version: link:../miniprogram.skeleton
+      '@doraemon-ui/miniprogram.slider':
+        specifier: workspace:*
+        version: link:../miniprogram.slider
+      '@doraemon-ui/miniprogram.spin':
+        specifier: workspace:*
+        version: link:../miniprogram.spin
+      '@doraemon-ui/miniprogram.steps':
+        specifier: workspace:*
+        version: link:../miniprogram.steps
+      '@doraemon-ui/miniprogram.sticky':
+        specifier: workspace:*
+        version: link:../miniprogram.sticky
+      '@doraemon-ui/miniprogram.swipe-action':
+        specifier: workspace:*
+        version: link:../miniprogram.swipe-action
+      '@doraemon-ui/miniprogram.switch':
+        specifier: workspace:*
+        version: link:../miniprogram.switch
+      '@doraemon-ui/miniprogram.tabbar':
+        specifier: workspace:*
+        version: link:../miniprogram.tabbar
+      '@doraemon-ui/miniprogram.tabs':
+        specifier: workspace:*
+        version: link:../miniprogram.tabs
+      '@doraemon-ui/miniprogram.tag':
+        specifier: workspace:*
+        version: link:../miniprogram.tag
+      '@doraemon-ui/miniprogram.textarea':
+        specifier: workspace:*
+        version: link:../miniprogram.textarea
+      '@doraemon-ui/miniprogram.timeago':
+        specifier: workspace:*
+        version: link:../miniprogram.timeago
+      '@doraemon-ui/miniprogram.timeline':
+        specifier: workspace:*
+        version: link:../miniprogram.timeline
+      '@doraemon-ui/miniprogram.toast':
+        specifier: workspace:*
+        version: link:../miniprogram.toast
+      '@doraemon-ui/miniprogram.toptips':
+        specifier: workspace:*
+        version: link:../miniprogram.toptips
+      '@doraemon-ui/miniprogram.touch-view':
+        specifier: workspace:*
+        version: link:../miniprogram.touch-view
+      '@doraemon-ui/miniprogram.upload':
+        specifier: workspace:*
+        version: link:../miniprogram.upload
+      '@doraemon-ui/miniprogram.vcode':
+        specifier: workspace:*
+        version: link:../miniprogram.vcode
+      '@doraemon-ui/miniprogram.virtual-list':
+        specifier: workspace:*
+        version: link:../miniprogram.virtual-list
+      '@doraemon-ui/miniprogram.water-mark':
+        specifier: workspace:*
+        version: link:../miniprogram.water-mark
+      '@doraemon-ui/miniprogram.white-space':
+        specifier: workspace:*
+        version: link:../miniprogram.white-space
+      '@doraemon-ui/miniprogram.wing-blank':
+        specifier: workspace:*
+        version: link:../miniprogram.wing-blank
     devDependencies:
       '@doraemon-ui/miniprogram.tools':
         specifier: ^0.0.2-alpha.22
@@ -667,27 +2816,6 @@ importers:
       '@babel/runtime':
         specifier: ^7.24.4
         version: 7.28.6
-      '@doraemon-ui/miniprogram.button':
-        specifier: ^0.0.2-alpha.44
-        version: 0.0.2-alpha.44
-      '@doraemon-ui/miniprogram.core-js':
-        specifier: ^0.0.2-alpha.33
-        version: 0.0.2-alpha.33
-      '@doraemon-ui/miniprogram.demo-block':
-        specifier: ^0.0.1-alpha.16
-        version: 0.0.1-alpha.16
-      '@doraemon-ui/miniprogram.demo-page':
-        specifier: ^0.0.1-alpha.17
-        version: 0.0.1-alpha.17
-      '@doraemon-ui/miniprogram.list':
-        specifier: workspace:*
-        version: link:../../packages/miniprogram.list
-      '@doraemon-ui/miniprogram.shared':
-        specifier: ^0.0.1-alpha.13
-        version: 0.0.1-alpha.13
-      '@doraemon-ui/style':
-        specifier: 0.0.1-alpha.10
-        version: 0.0.1-alpha.10
       '@doraemon-ui/taro-react':
         specifier: workspace:*
         version: link:../../packages/taro-react
@@ -1698,12 +3826,6 @@ packages:
 
   '@doraemon-ui/miniprogram.core-js@0.0.2-alpha.33':
     resolution: {integrity: sha512-8ZfVYA2I+2G36EUokPpWEkJ4V53VFFgCHDCwMDfWFG3Ll7oRfPbs14rJ4Iyv9nyosSGnwb4LvpIPba0lbFn3YQ==}
-
-  '@doraemon-ui/miniprogram.demo-block@0.0.1-alpha.16':
-    resolution: {integrity: sha512-bEVedkcrfWRlZrULyC4CDYn58Riyim71i35rlwFmx1vfxddZ2zJ4mI+z8/EVV3wKwVJBAhzzVSBbboGyOVuPmQ==}
-
-  '@doraemon-ui/miniprogram.demo-page@0.0.1-alpha.17':
-    resolution: {integrity: sha512-HG5tHoEF/flhpgY+0cgeYXmV/sqDWsixGaCqCA0MEr1nGH6jrwTd155Ezu9Ra8oTIyfFcZIrFoirl9xcl7DAwQ==}
 
   '@doraemon-ui/miniprogram.icon@0.0.1-alpha.19':
     resolution: {integrity: sha512-DjRQFzPiJKirPFvgqHEImlx7dFUxyXUlXfr2tYssLd5hzeuMFTtjaP8qM3u5qxvOv7fjTmLzEi1XS1LUAJfxOg==}
@@ -11261,17 +13383,6 @@ snapshots:
       classnames: 2.5.1
       react-style-object-to-css: 1.1.2
 
-  '@doraemon-ui/miniprogram.demo-block@0.0.1-alpha.16':
-    dependencies:
-      '@doraemon-ui/miniprogram.core-js': 0.0.2-alpha.33
-      '@doraemon-ui/style': 0.0.1-alpha.10
-
-  '@doraemon-ui/miniprogram.demo-page@0.0.1-alpha.17':
-    dependencies:
-      '@doraemon-ui/miniprogram.core-js': 0.0.2-alpha.33
-      '@doraemon-ui/miniprogram.shared': 0.0.1-alpha.13
-      '@doraemon-ui/style': 0.0.1-alpha.10
-
   '@doraemon-ui/miniprogram.icon@0.0.1-alpha.19':
     dependencies:
       '@doraemon-ui/miniprogram.core-js': 0.0.2-alpha.33
@@ -11601,7 +13712,7 @@ snapshots:
   '@jest/console@27.5.1':
     dependencies:
       '@jest/types': 27.5.1
-      '@types/node': 16.18.126
+      '@types/node': 18.19.130
       chalk: 4.1.2
       jest-message-util: 27.5.1
       jest-util: 27.5.1
@@ -11614,7 +13725,7 @@ snapshots:
       '@jest/test-result': 27.5.1
       '@jest/transform': 27.5.1
       '@jest/types': 27.5.1
-      '@types/node': 16.18.126
+      '@types/node': 18.19.130
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       emittery: 0.8.1
@@ -11648,14 +13759,14 @@ snapshots:
     dependencies:
       '@jest/fake-timers': 27.5.1
       '@jest/types': 27.5.1
-      '@types/node': 16.18.126
+      '@types/node': 18.19.130
       jest-mock: 27.5.1
 
   '@jest/fake-timers@27.5.1':
     dependencies:
       '@jest/types': 27.5.1
       '@sinonjs/fake-timers': 8.1.0
-      '@types/node': 16.18.126
+      '@types/node': 18.19.130
       jest-message-util: 27.5.1
       jest-mock: 27.5.1
       jest-util: 27.5.1
@@ -11673,7 +13784,7 @@ snapshots:
       '@jest/test-result': 27.5.1
       '@jest/transform': 27.5.1
       '@jest/types': 27.5.1
-      '@types/node': 16.18.126
+      '@types/node': 18.19.130
       chalk: 4.1.2
       collect-v8-coverage: 1.0.3
       exit: 0.1.2
@@ -11746,7 +13857,7 @@ snapshots:
     dependencies:
       '@types/istanbul-lib-coverage': 2.0.6
       '@types/istanbul-reports': 3.0.4
-      '@types/node': 16.18.126
+      '@types/node': 18.19.130
       '@types/yargs': 15.0.20
       chalk: 4.1.2
 
@@ -11754,7 +13865,7 @@ snapshots:
     dependencies:
       '@types/istanbul-lib-coverage': 2.0.6
       '@types/istanbul-reports': 3.0.4
-      '@types/node': 16.18.126
+      '@types/node': 18.19.130
       '@types/yargs': 16.0.11
       chalk: 4.1.2
 
@@ -12664,20 +14775,20 @@ snapshots:
   '@types/fs-extra@11.0.4':
     dependencies:
       '@types/jsonfile': 6.1.4
-      '@types/node': 16.18.126
+      '@types/node': 18.19.130
 
   '@types/fs-extra@8.1.5':
     dependencies:
-      '@types/node': 16.18.126
+      '@types/node': 18.19.130
 
   '@types/glob@7.2.0':
     dependencies:
       '@types/minimatch': 5.1.2
-      '@types/node': 16.18.126
+      '@types/node': 18.19.130
 
   '@types/graceful-fs@4.1.9':
     dependencies:
-      '@types/node': 16.18.126
+      '@types/node': 18.19.130
 
   '@types/html-minifier-terser@6.1.0': {}
 
@@ -12708,7 +14819,7 @@ snapshots:
 
   '@types/jsonfile@6.1.4':
     dependencies:
-      '@types/node': 16.18.126
+      '@types/node': 18.19.130
 
   '@types/keyv@3.1.4':
     dependencies:
@@ -12748,7 +14859,7 @@ snapshots:
 
   '@types/postcss-url@10.0.4':
     dependencies:
-      '@types/node': 16.18.126
+      '@types/node': 18.19.130
       postcss: 8.5.6
 
   '@types/prettier@2.7.3': {}
@@ -12768,7 +14879,7 @@ snapshots:
 
   '@types/resolve@1.17.1':
     dependencies:
-      '@types/node': 16.18.126
+      '@types/node': 18.19.130
 
   '@types/responselike@1.0.3':
     dependencies:
@@ -16857,7 +18968,7 @@ snapshots:
       '@jest/environment': 27.5.1
       '@jest/test-result': 27.5.1
       '@jest/types': 27.5.1
-      '@types/node': 16.18.126
+      '@types/node': 18.19.130
       chalk: 4.1.2
       co: 4.6.0
       dedent: 0.7.0
@@ -16955,7 +19066,7 @@ snapshots:
       '@jest/environment': 27.5.1
       '@jest/fake-timers': 27.5.1
       '@jest/types': 27.5.1
-      '@types/node': 16.18.126
+      '@types/node': 18.19.130
       jest-mock: 27.5.1
       jest-util: 27.5.1
       jsdom: 16.7.0
@@ -16970,7 +19081,7 @@ snapshots:
       '@jest/environment': 27.5.1
       '@jest/fake-timers': 27.5.1
       '@jest/types': 27.5.1
-      '@types/node': 16.18.126
+      '@types/node': 18.19.130
       jest-mock: 27.5.1
       jest-util: 27.5.1
 
@@ -16980,7 +19091,7 @@ snapshots:
     dependencies:
       '@jest/types': 27.5.1
       '@types/graceful-fs': 4.1.9
-      '@types/node': 16.18.126
+      '@types/node': 18.19.130
       anymatch: 3.1.3
       fb-watchman: 2.0.2
       graceful-fs: 4.2.11
@@ -16999,7 +19110,7 @@ snapshots:
       '@jest/source-map': 27.5.1
       '@jest/test-result': 27.5.1
       '@jest/types': 27.5.1
-      '@types/node': 16.18.126
+      '@types/node': 18.19.130
       chalk: 4.1.2
       co: 4.6.0
       expect: 27.5.1
@@ -17042,7 +19153,7 @@ snapshots:
   jest-mock@27.5.1:
     dependencies:
       '@jest/types': 27.5.1
-      '@types/node': 16.18.126
+      '@types/node': 18.19.130
 
   jest-pnp-resolver@1.2.3(jest-resolve@27.5.1):
     optionalDependencies:
@@ -17078,7 +19189,7 @@ snapshots:
       '@jest/test-result': 27.5.1
       '@jest/transform': 27.5.1
       '@jest/types': 27.5.1
-      '@types/node': 16.18.126
+      '@types/node': 18.19.130
       chalk: 4.1.2
       emittery: 0.8.1
       graceful-fs: 4.2.11
@@ -17129,7 +19240,7 @@ snapshots:
 
   jest-serializer@27.5.1:
     dependencies:
-      '@types/node': 16.18.126
+      '@types/node': 18.19.130
       graceful-fs: 4.2.11
 
   jest-snapshot@27.5.1:
@@ -17162,7 +19273,7 @@ snapshots:
   jest-util@27.5.1:
     dependencies:
       '@jest/types': 27.5.1
-      '@types/node': 16.18.126
+      '@types/node': 18.19.130
       chalk: 4.1.2
       ci-info: 3.9.0
       graceful-fs: 4.2.11
@@ -17190,7 +19301,7 @@ snapshots:
     dependencies:
       '@jest/test-result': 27.5.1
       '@jest/types': 27.5.1
-      '@types/node': 16.18.126
+      '@types/node': 18.19.130
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       jest-util: 27.5.1

@@ -21,6 +21,9 @@ export function initExposed(vm: Doraemon) {
   }
 }
 
+/**
+ * PublicPropertiesMap类型定义
+ */
 export type PublicPropertiesMap = Record<string, (i: ComponentInternalInstance) => any>
 
 export const publicPropertiesMap: PublicPropertiesMap = {

@@ -1,0 +1,1351 @@
+{
+  "accordion": {
+    "components": {
+      "accordion": {
+        "src": "index",
+        "dir": "accordion",
+        "name": "Accordion",
+        "slot": null,
+        "deps": null
+      },
+      "panel": {
+        "src": "panel",
+        "dir": "accordion-panel",
+        "name": "AccordionPanel",
+        "slot": "Panel",
+        "deps": null
+      }
+    }
+  },
+  "action-sheet": {
+    "components": {
+      "action-sheet": {
+        "src": "index",
+        "dir": "action-sheet",
+        "name": "ActionSheet",
+        "slot": null,
+        "deps": [
+          {
+            "name": "popup",
+            "source": "packages"
+          }
+        ]
+      }
+    }
+  },
+  "alert": {
+    "components": {
+      "alert": {
+        "src": "index",
+        "dir": "alert",
+        "name": "Alert",
+        "slot": null,
+        "deps": [
+          {
+            "name": "animation-group",
+            "source": "packages"
+          }
+        ]
+      }
+    }
+  },
+  "animation-group": {
+    "components": {
+      "animation-group": {
+        "src": "index",
+        "dir": "animation-group",
+        "name": "AnimationGroup",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "avatar": {
+    "components": {
+      "avatar": {
+        "src": "index",
+        "dir": "avatar",
+        "name": "Avatar",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "backdrop": {
+    "components": {
+      "backdrop": {
+        "src": "index",
+        "dir": "backdrop",
+        "name": "Backdrop",
+        "slot": null,
+        "deps": [
+          {
+            "name": "animation-group",
+            "source": "packages"
+          }
+        ]
+      }
+    }
+  },
+  "badge": {
+    "components": {
+      "badge": {
+        "src": "index",
+        "dir": "badge",
+        "name": "Badge",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "barcode": {
+    "components": {
+      "barcode": {
+        "src": "index",
+        "dir": "barcode",
+        "name": "Barcode",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "button": {
+    "components": {
+      "button": {
+        "src": "index",
+        "dir": "button",
+        "name": "Button",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "calendar": {
+    "components": {
+      "calendar": {
+        "src": "index",
+        "dir": "calendar",
+        "name": "Calendar",
+        "slot": null,
+        "deps": [
+          {
+            "name": "popup",
+            "source": "packages"
+          }
+        ]
+      }
+    }
+  },
+  "card": {
+    "components": {
+      "card": {
+        "src": "index",
+        "dir": "card",
+        "name": "Card",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "cascader": {
+    "components": {
+      "cascader": {
+        "src": "index",
+        "dir": "cascader",
+        "name": "Cascader",
+        "slot": null,
+        "deps": [
+          {
+            "name": "cascader-view",
+            "source": "packages"
+          },
+          {
+            "name": "popup",
+            "source": "packages"
+          }
+        ]
+      }
+    }
+  },
+  "cascader-picker-view": {
+    "components": {
+      "cascader-picker-view": {
+        "src": "index",
+        "dir": "cascader-picker-view",
+        "name": "CascaderPickerView",
+        "slot": null,
+        "deps": [
+          {
+            "name": "multi-picker-view",
+            "source": "packages"
+          }
+        ]
+      }
+    }
+  },
+  "cascader-view": {
+    "components": {
+      "cascader-view": {
+        "src": "index",
+        "dir": "cascader-view",
+        "name": "CascaderView",
+        "slot": null,
+        "deps": [
+          {
+            "name": "radio",
+            "source": "packages"
+          },
+          {
+            "name": "radio-group",
+            "source": "packages"
+          },
+          {
+            "name": "tab",
+            "source": "packages"
+          },
+          {
+            "name": "tabs",
+            "source": "packages"
+          }
+        ]
+      }
+    }
+  },
+  "checkbox": {
+    "components": {
+      "checkbox": {
+        "src": "index",
+        "dir": "checkbox",
+        "name": "Checkbox",
+        "slot": null,
+        "deps": [
+          {
+            "name": "list-item",
+            "source": "packages"
+          },
+          {
+            "name": "selectable",
+            "source": "packages"
+          }
+        ]
+      },
+      "group": {
+        "src": "group",
+        "dir": "checkbox-group",
+        "name": "CheckboxGroup",
+        "slot": "Group",
+        "deps": [
+          {
+            "name": "checkbox",
+            "source": "self"
+          },
+          {
+            "name": "list",
+            "source": "packages"
+          }
+        ]
+      }
+    }
+  },
+  "circle": {
+    "components": {
+      "circle": {
+        "src": "index",
+        "dir": "circle",
+        "name": "Circle",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "countdown": {
+    "components": {
+      "countdown": {
+        "src": "index",
+        "dir": "countdown",
+        "name": "Countdown",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "countup": {
+    "components": {
+      "countup": {
+        "src": "index",
+        "dir": "countup",
+        "name": "Countup",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "date-picker": {
+    "components": {
+      "date-picker": {
+        "src": "index",
+        "dir": "date-picker",
+        "name": "DatePicker",
+        "slot": null,
+        "deps": [
+          {
+            "name": "date-picker-view",
+            "source": "packages"
+          },
+          {
+            "name": "popup",
+            "source": "packages"
+          }
+        ]
+      }
+    }
+  },
+  "date-picker-view": {
+    "components": {
+      "date-picker-view": {
+        "src": "index",
+        "dir": "date-picker-view",
+        "name": "DatePickerView",
+        "slot": null,
+        "deps": [
+          {
+            "name": "multi-picker-view",
+            "source": "packages"
+          }
+        ]
+      }
+    }
+  },
+  "dialog": {
+    "components": {
+      "dialog": {
+        "src": "index",
+        "dir": "dialog",
+        "name": "Dialog",
+        "slot": null,
+        "deps": [
+          {
+            "name": "popup",
+            "source": "packages"
+          }
+        ]
+      }
+    }
+  },
+  "divider": {
+    "components": {
+      "divider": {
+        "src": "index",
+        "dir": "divider",
+        "name": "Divider",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "e-sign": {
+    "components": {
+      "e-sign": {
+        "src": "index",
+        "dir": "e-sign",
+        "name": "ESign",
+        "slot": null,
+        "deps": [
+          {
+            "name": "button",
+            "source": "packages"
+          }
+        ]
+      }
+    }
+  },
+  "ellipsis": {
+    "components": {
+      "ellipsis": {
+        "src": "index",
+        "dir": "ellipsis",
+        "name": "Ellipsis",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "fab-button": {
+    "components": {
+      "fab-button": {
+        "src": "index",
+        "dir": "fab-button",
+        "name": "FabButton",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "field": {
+    "components": {
+      "field": {
+        "src": "index",
+        "dir": "field",
+        "name": "Field",
+        "slot": null,
+        "deps": [
+          {
+            "name": "icon",
+            "source": "packages"
+          },
+          {
+            "name": "popover",
+            "source": "packages"
+          }
+        ]
+      }
+    }
+  },
+  "filterbar": {
+    "components": {
+      "filterbar": {
+        "src": "index",
+        "dir": "filterbar",
+        "name": "Filterbar",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "floating-panel": {
+    "components": {
+      "floating-panel": {
+        "src": "index",
+        "dir": "floating-panel",
+        "name": "FloatingPanel",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "footer": {
+    "components": {
+      "footer": {
+        "src": "index",
+        "dir": "footer",
+        "name": "Footer",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "form": {
+    "components": {
+      "form": {
+        "src": "index",
+        "dir": "form",
+        "name": "Form",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "gallery": {
+    "components": {
+      "gallery": {
+        "src": "index",
+        "dir": "gallery",
+        "name": "Gallery",
+        "slot": null,
+        "deps": [
+          {
+            "name": "animation-group",
+            "source": "packages"
+          }
+        ]
+      }
+    }
+  },
+  "grid": {
+    "components": {
+      "grid": {
+        "src": "index",
+        "dir": "grid",
+        "name": "Grid",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "icon": {
+    "components": {
+      "icon": {
+        "src": "index",
+        "dir": "icon",
+        "name": "Icon",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "image": {
+    "components": {
+      "image": {
+        "src": "index",
+        "dir": "image",
+        "name": "Image",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "index": {
+    "components": {
+      "index": {
+        "src": "index",
+        "dir": "index",
+        "name": "Index",
+        "slot": null,
+        "deps": [
+          {
+            "name": "index-item",
+            "source": "self"
+          }
+        ]
+      },
+      "item": {
+        "src": "item",
+        "dir": "index-item",
+        "name": "IndexItem",
+        "slot": "Item",
+        "deps": null
+      }
+    }
+  },
+  "input": {
+    "components": {
+      "input": {
+        "src": "index",
+        "dir": "input",
+        "name": "Input",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "input-number": {
+    "components": {
+      "input-number": {
+        "src": "index",
+        "dir": "input-number",
+        "name": "InputNumber",
+        "slot": null,
+        "deps": [
+          {
+            "name": "icon",
+            "source": "packages"
+          }
+        ]
+      }
+    }
+  },
+  "keyboard": {
+    "components": {
+      "keyboard": {
+        "src": "index",
+        "dir": "keyboard",
+        "name": "Keyboard",
+        "slot": null,
+        "deps": [
+          {
+            "name": "popup",
+            "source": "packages"
+          }
+        ]
+      }
+    }
+  },
+  "landscape": {
+    "components": {
+      "landscape": {
+        "src": "index",
+        "dir": "landscape",
+        "name": "Landscape",
+        "slot": null,
+        "deps": [
+          {
+            "name": "popup",
+            "source": "packages"
+          }
+        ]
+      }
+    }
+  },
+  "layout": {
+    "components": {
+      "layout": {
+        "src": "index",
+        "dir": "row",
+        "name": "Row",
+        "slot": null,
+        "deps": null
+      },
+      "col": {
+        "src": "col",
+        "dir": "col",
+        "name": "Col",
+        "slot": "Col",
+        "deps": null
+      }
+    }
+  },
+  "list": {
+    "components": {
+      "list": {
+        "src": "index",
+        "dir": "list",
+        "name": "List",
+        "slot": null,
+        "deps": null
+      },
+      "item": {
+        "src": "item",
+        "dir": "list-item",
+        "name": "ListItem",
+        "slot": "Item",
+        "deps": null
+      }
+    }
+  },
+  "loading": {
+    "components": {
+      "loading": {
+        "src": "index",
+        "dir": "loading",
+        "name": "Loading",
+        "slot": null,
+        "deps": [
+          {
+            "name": "animation-group",
+            "source": "packages"
+          },
+          {
+            "name": "backdrop",
+            "source": "packages"
+          }
+        ]
+      }
+    }
+  },
+  "media": {
+    "components": {
+      "media": {
+        "src": "index",
+        "dir": "media",
+        "name": "Media",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "multi-picker-view": {
+    "components": {
+      "multi-picker-view": {
+        "src": "index",
+        "dir": "multi-picker-view",
+        "name": "MultiPickerView",
+        "slot": null,
+        "deps": [
+          {
+            "name": "picker-view",
+            "source": "packages"
+          },
+          {
+            "name": "spin",
+            "source": "packages"
+          }
+        ]
+      }
+    }
+  },
+  "navbar": {
+    "components": {
+      "navbar": {
+        "src": "index",
+        "dir": "navbar",
+        "name": "Navbar",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "notice-bar": {
+    "components": {
+      "notice-bar": {
+        "src": "index",
+        "dir": "notice-bar",
+        "name": "NoticeBar",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "notification": {
+    "components": {
+      "notification": {
+        "src": "index",
+        "dir": "notification",
+        "name": "Notification",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "pagination": {
+    "components": {
+      "pagination": {
+        "src": "index",
+        "dir": "pagination",
+        "name": "Pagination",
+        "slot": null,
+        "deps": [
+          {
+            "name": "button",
+            "source": "packages"
+          }
+        ]
+      }
+    }
+  },
+  "picker": {
+    "components": {
+      "picker": {
+        "src": "index",
+        "dir": "picker",
+        "name": "Picker",
+        "slot": null,
+        "deps": [
+          {
+            "name": "cascader-picker-view",
+            "source": "packages"
+          },
+          {
+            "name": "multi-picker-view",
+            "source": "packages"
+          },
+          {
+            "name": "popup",
+            "source": "packages"
+          }
+        ]
+      }
+    }
+  },
+  "picker-view": {
+    "components": {
+      "picker-view": {
+        "src": "index",
+        "dir": "picker-view",
+        "name": "PickerView",
+        "slot": null,
+        "deps": [
+          {
+            "name": "spin",
+            "source": "packages"
+          }
+        ]
+      }
+    }
+  },
+  "popover": {
+    "components": {
+      "popover": {
+        "src": "index",
+        "dir": "popover",
+        "name": "Popover",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "popup": {
+    "components": {
+      "popup": {
+        "src": "index",
+        "dir": "popup",
+        "name": "Popup",
+        "slot": null,
+        "deps": [
+          {
+            "name": "animation-group",
+            "source": "self"
+          },
+          {
+            "name": "backdrop",
+            "source": "self"
+          },
+          {
+            "name": "safe-area",
+            "source": "self"
+          }
+        ]
+      }
+    }
+  },
+  "popup-select": {
+    "components": {
+      "popup-select": {
+        "src": "index",
+        "dir": "popup-select",
+        "name": "PopupSelect",
+        "slot": null,
+        "deps": [
+          {
+            "name": "popup",
+            "source": "packages"
+          },
+          {
+            "name": "prompt",
+            "source": "packages"
+          }
+        ]
+      }
+    }
+  },
+  "progress": {
+    "components": {
+      "progress": {
+        "src": "index",
+        "dir": "progress",
+        "name": "Progress",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "prompt": {
+    "components": {
+      "prompt": {
+        "src": "index",
+        "dir": "prompt",
+        "name": "Prompt",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "qrcode": {
+    "components": {
+      "qrcode": {
+        "src": "index",
+        "dir": "qrcode",
+        "name": "Qrcode",
+        "slot": null,
+        "deps": [
+          {
+            "name": "icon",
+            "source": "packages"
+          },
+          {
+            "name": "spin",
+            "source": "packages"
+          }
+        ]
+      }
+    }
+  },
+  "radio": {
+    "components": {
+      "radio": {
+        "src": "index",
+        "dir": "radio",
+        "name": "Radio",
+        "slot": null,
+        "deps": [
+          {
+            "name": "list-item",
+            "source": "packages"
+          },
+          {
+            "name": "selectable",
+            "source": "packages"
+          }
+        ]
+      },
+      "group": {
+        "src": "group",
+        "dir": "radio-group",
+        "name": "RadioGroup",
+        "slot": "Group",
+        "deps": [
+          {
+            "name": "list",
+            "source": "packages"
+          },
+          {
+            "name": "radio",
+            "source": "self"
+          }
+        ]
+      }
+    }
+  },
+  "rater": {
+    "components": {
+      "rater": {
+        "src": "index",
+        "dir": "rater",
+        "name": "Rater",
+        "slot": null,
+        "deps": [
+          {
+            "name": "icon",
+            "source": "packages"
+          }
+        ]
+      }
+    }
+  },
+  "refresher": {
+    "components": {
+      "refresher": {
+        "src": "index",
+        "dir": "refresher",
+        "name": "Refresher",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "result": {
+    "components": {
+      "result": {
+        "src": "index",
+        "dir": "result",
+        "name": "Result",
+        "slot": null,
+        "deps": [
+          {
+            "name": "button",
+            "source": "packages"
+          }
+        ]
+      }
+    }
+  },
+  "safe-area": {
+    "components": {
+      "safe-area": {
+        "src": "index",
+        "dir": "safe-area",
+        "name": "SafeArea",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "search-bar": {
+    "components": {
+      "search-bar": {
+        "src": "index",
+        "dir": "search-bar",
+        "name": "SearchBar",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "segmented-control": {
+    "components": {
+      "segmented-control": {
+        "src": "index",
+        "dir": "segmented-control",
+        "name": "SegmentedControl",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "select": {
+    "components": {
+      "select": {
+        "src": "index",
+        "dir": "select",
+        "name": "Select",
+        "slot": null,
+        "deps": [
+          {
+            "name": "popup-select",
+            "source": "packages"
+          }
+        ]
+      }
+    }
+  },
+  "selectable": {
+    "components": {
+      "selectable": {
+        "src": "index",
+        "dir": "selectable",
+        "name": "Selectable",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "selector-group": {
+    "components": {
+      "selector-group": {
+        "src": "index",
+        "dir": "selector-group",
+        "name": "SelectorGroup",
+        "slot": null,
+        "deps": [
+          {
+            "name": "selectable",
+            "source": "packages"
+          }
+        ]
+      }
+    }
+  },
+  "skeleton": {
+    "components": {
+      "skeleton": {
+        "src": "index",
+        "dir": "skeleton",
+        "name": "Skeleton",
+        "slot": null,
+        "deps": null
+      },
+      "skeleton-avatar": {
+        "src": "skeleton-avatar",
+        "dir": "skeleton-avatar",
+        "name": "SkeletonAvatar",
+        "slot": "Avatar",
+        "deps": null
+      },
+      "skeleton-paragraph": {
+        "src": "skeleton-paragraph",
+        "dir": "skeleton-paragraph",
+        "name": "SkeletonParagraph",
+        "slot": "Paragraph",
+        "deps": null
+      }
+    }
+  },
+  "slider": {
+    "components": {
+      "slider": {
+        "src": "index",
+        "dir": "slider",
+        "name": "Slider",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "spin": {
+    "components": {
+      "spin": {
+        "src": "index",
+        "dir": "spin",
+        "name": "Spin",
+        "slot": null,
+        "deps": [
+          {
+            "name": "animation-group",
+            "source": "packages"
+          }
+        ]
+      }
+    }
+  },
+  "steps": {
+    "components": {
+      "steps": {
+        "src": "index",
+        "dir": "steps",
+        "name": "Steps",
+        "slot": null,
+        "deps": [
+          {
+            "name": "step",
+            "source": "self"
+          }
+        ]
+      },
+      "step": {
+        "src": "step",
+        "dir": "step",
+        "name": "Step",
+        "slot": "Step",
+        "deps": [
+          {
+            "name": "icon",
+            "source": "packages"
+          }
+        ]
+      }
+    }
+  },
+  "sticky": {
+    "components": {
+      "sticky": {
+        "src": "index",
+        "dir": "sticky",
+        "name": "Sticky",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "swipe-action": {
+    "components": {
+      "swipe-action": {
+        "src": "index",
+        "dir": "swipe-action",
+        "name": "SwipeAction",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "switch": {
+    "components": {
+      "switch": {
+        "src": "index",
+        "dir": "switch",
+        "name": "Switch",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "tabbar": {
+    "components": {
+      "tabbar": {
+        "src": "index",
+        "dir": "tabbar",
+        "name": "Tabbar",
+        "slot": null,
+        "deps": [
+          {
+            "name": "tabbar-item",
+            "source": "self"
+          }
+        ]
+      },
+      "tabbar-item": {
+        "src": "tabbar-item",
+        "dir": "tabbar-item",
+        "name": "TabbarItem",
+        "slot": "Item",
+        "deps": null
+      }
+    }
+  },
+  "tabs": {
+    "components": {
+      "tabs": {
+        "src": "index",
+        "dir": "tabs",
+        "name": "Tabs",
+        "slot": null,
+        "deps": [
+          {
+            "name": "tab",
+            "source": "self"
+          }
+        ]
+      },
+      "tab": {
+        "src": "tab",
+        "dir": "tab",
+        "name": "Tab",
+        "slot": "Tab",
+        "deps": null
+      }
+    }
+  },
+  "tag": {
+    "components": {
+      "tag": {
+        "src": "index",
+        "dir": "tag",
+        "name": "Tag",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "textarea": {
+    "components": {
+      "textarea": {
+        "src": "index",
+        "dir": "textarea",
+        "name": "Textarea",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "timeago": {
+    "components": {
+      "timeago": {
+        "src": "index",
+        "dir": "timeago",
+        "name": "Timeago",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "timeline": {
+    "components": {
+      "timeline": {
+        "src": "index",
+        "dir": "timeline",
+        "name": "Timeline",
+        "slot": null,
+        "deps": [
+          {
+            "name": "timeline-item",
+            "source": "self"
+          }
+        ]
+      },
+      "timeline-item": {
+        "src": "timeline-item",
+        "dir": "timeline-item",
+        "name": "TimelineItem",
+        "slot": "Item",
+        "deps": null
+      }
+    }
+  },
+  "toast": {
+    "components": {
+      "toast": {
+        "src": "index",
+        "dir": "toast",
+        "name": "Toast",
+        "slot": null,
+        "deps": [
+          {
+            "name": "icon",
+            "source": "packages"
+          },
+          {
+            "name": "popup",
+            "source": "packages"
+          }
+        ]
+      }
+    }
+  },
+  "toptips": {
+    "components": {
+      "toptips": {
+        "src": "index",
+        "dir": "toptips",
+        "name": "Toptips",
+        "slot": null,
+        "deps": [
+          {
+            "name": "animation-group",
+            "source": "packages"
+          },
+          {
+            "name": "icon",
+            "source": "packages"
+          }
+        ]
+      }
+    }
+  },
+  "touch-view": {
+    "components": {
+      "touch-view": {
+        "src": "index",
+        "dir": "touch-view",
+        "name": "TouchView",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "upload": {
+    "components": {
+      "upload": {
+        "src": "index",
+        "dir": "upload",
+        "name": "Upload",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "vcode": {
+    "components": {
+      "vcode": {
+        "src": "index",
+        "dir": "vcode",
+        "name": "Vcode",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "virtual-list": {
+    "components": {
+      "virtual-list": {
+        "src": "index",
+        "dir": "virtual-list",
+        "name": "VirtualList",
+        "slot": null,
+        "deps": [
+          {
+            "name": "virtual-item",
+            "source": "self"
+          }
+        ]
+      },
+      "item": {
+        "src": "item",
+        "dir": "virtual-list-item",
+        "name": "VirtualListItem",
+        "slot": "Item",
+        "deps": null
+      }
+    }
+  },
+  "water-mark": {
+    "components": {
+      "water-mark": {
+        "src": "index",
+        "dir": "water-mark",
+        "name": "WaterMark",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "white-space": {
+    "components": {
+      "white-space": {
+        "src": "index",
+        "dir": "white-space",
+        "name": "WhiteSpace",
+        "slot": null,
+        "deps": null
+      }
+    }
+  },
+  "wing-blank": {
+    "components": {
+      "wing-blank": {
+        "src": "index",
+        "dir": "wing-blank",
+        "name": "WingBlank",
+        "slot": null,
+        "deps": null
+      }
+    }
+  }
+}

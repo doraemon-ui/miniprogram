@@ -90,7 +90,7 @@
   - [WaterMark 水印](water-mark.md)
 
 - 操作反馈
-  - [ActionSheet 上拉菜单](actionsheet.md)
+  - [ActionSheet 上拉菜单](action-sheet.md)
   - [Backdrop 背景幕](backdrop.md)
   - [Circle 进度环](circle.md)
   - [Dialog 对话框](dialog.md)

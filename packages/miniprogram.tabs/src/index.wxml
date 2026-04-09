@@ -1,0 +1,36 @@
+<block wx:if="{{ scroll }}">
+  <view class="dora-class {{ classes.wrap }}">
+    <view class="{{ classes.prev }}" wx:if="{{ scroll && showPrevMask }}"></view>
+    <view class="{{ classes.next }}" wx:if="{{ scroll && showNextMask }}"></view>
+    <scroll-view
+      wx:if="{{ direction === 'horizontal' }}"
+      scroll-x
+      scroll-left="{{ scrollLeft }}"
+      scroll-with-animation
+      enhanced
+      show-scrollbar="{{ false }}"
+      class="{{ classes.scrollView }}"
+      bindscroll="onScrollFix"
+      style="{{ scrollViewStyle }}"
+    >
+      <slot></slot>
+    </scroll-view>
+    <scroll-view
+      wx:else
+      scroll-y
+      scroll-top="{{ scrollTop }}"
+      scroll-with-animation
+      enhanced
+      show-scrollbar="{{ false }}"
+      class="{{ classes.scrollView }}"
+      bindscroll="onScrollFix"
+    >
+      <slot></slot>
+    </scroll-view>
+  </view>
+</block>
+<view wx:else class="dora-class {{ classes.wrap }}">
+  <view class="{{ classes.scrollView }}" style="{{ scrollViewStyle }}">
+    <slot></slot>
+  </view>
+</view>

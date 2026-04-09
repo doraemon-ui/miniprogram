@@ -1,0 +1,55 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-notification {
+  position: absolute;
+  top: -128rpx;
+  right: 0;
+  left: 0;
+  z-index: var(--dora-z-index-notification,1100);
+  z-index: var(--dora-z-index-notification,1100);
+  width: 100%;
+  min-height: 256rpx;
+  padding-top: 128rpx;
+  font-size: 26rpx;
+  color: #fff;
+  background-color: var(--dora-notification-bg,#1f2324);
+  background-color: var(--dora-notification-bg,#1f2324)
+}
+.dora-notification__content {
+  display: -ms-flexbox;
+  display: flex;
+  padding: 10rpx 20rpx 20rpx;
+  -ms-flex-align: start;
+  align-items: flex-start
+}
+.dora-notification__hd {
+  width: 32rpx;
+  height: 32rpx
+}
+.dora-notification__image {
+  width: 100%;
+  height: 100%
+}
+.dora-notification__bd {
+  width: 100%;
+  margin: 0 12rpx
+}
+.dora-notification__title {
+  font-weight: 700
+}
+.dora-notification__text {
+  line-height: 1
+}
+.dora-notification__ft {
+  position: absolute;
+  bottom: 6rpx;
+  left: 50%;
+  width: 64rpx;
+  height: 10rpx;
+  background: #fff;
+  border-radius: 5rpx;
+  opacity: .5;
+  transform: translate3d(-50%,0,0)
+}

@@ -1,0 +1,38 @@
+<view class="dora-class {{ classes.wrap }}">
+  <view class="{{ classes.bd }}" style="{{ bodyStyle }}">
+    <canvas
+      type="2d"
+      id="{{ prefixCls }}"
+      style="width: 100%; height: 100%;"
+      catchtouchstart="onTouchStart"
+      catchtouchmove="onTouchMove"
+      catchtouchend="onTouchEnd"
+    >
+    </canvas>
+  </view>
+  <view class="{{ classes.ft }}">
+    <block wx:if="{{ hasFooter }}">
+      <dora-button
+        dora-class="{{ classes.button }}"
+        size="small"
+        type="light"
+        bind:click="clear"
+        wx:if="{{ cancelText }}"
+      >
+        {{ cancelText }}
+      </dora-button>
+      <dora-button
+        dora-class="{{ classes.button }}"
+        size="small"
+        type="balanced"
+        bind:click="submit"
+        wx:if="{{ confirmText }}"
+      >
+        {{ confirmText }}
+      </dora-button>
+    </block>
+    <block wx:else>
+      <slot name="footer"></slot>
+    </block>
+  </view>
+</view>

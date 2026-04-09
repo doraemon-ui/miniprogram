@@ -1,0 +1,61 @@
+@import './variables.less';
+
+// Media styles
+// -----------------------------
+.@{media-prefix-cls} {
+  position: relative;
+  display: flex;
+  padding: 30rpx;
+  overflow: hidden;
+
+  &--align-flex-start {
+    align-items: flex-start;
+  }
+
+  &--align-flex-end {
+    align-items: flex-end;
+  }
+
+  &--align-center {
+    align-items: center;
+  }
+
+  &--align-stretch {
+    align-items: stretch;
+  }
+
+  &--align-baseline {
+    align-items: baseline;
+  }
+
+  &__hd {
+    margin-right: 0.8em;
+    text-align: center;
+  }
+
+  &__thumb {
+    width: 120rpx;
+    height: 120rpx;
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+  }
+
+  &__bd {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__title {
+    font-weight: 400;
+    font-size: 34rpx;
+    .ellipsis();
+  }
+
+  &__desc {
+    color: var(--dora-color-text-secondary, #999);
+    font-size: 26rpx;
+    line-height: 1.2;
+    .ellipsisLn(2);
+  }
+}

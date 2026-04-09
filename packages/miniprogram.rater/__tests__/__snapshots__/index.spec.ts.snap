@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rater mount correctly 1`] = `
+<dora-rater>
+  <wx-view
+    class="dora-class dora-rater"
+    bind:touchmove="onTouchMove"
+  >
+    <wx-view
+      class="dora-rater__star"
+      data-index="{{0}}"
+      bind:tap="onTap"
+    >
+      <wx-view
+        class="dora-rater__box"
+        style="color: #ccc; margin-right: 2px; font-size: 25px; width: 25px; height: 25px; line-height: 25px"
+      >
+        <wx-view
+          class="dora-rater__inner"
+        >
+          ★
+        </wx-view>
+      </wx-view>
+    </wx-view>
+    <wx-view
+      class="dora-rater__star"
+      data-index="{{1}}"
+      bind:tap="onTap"
+    >
+      <wx-view
+        class="dora-rater__box"
+        style="color: #ccc; margin-right: 2px; font-size: 25px; width: 25px; height: 25px; line-height: 25px"
+      >
+        <wx-view
+          class="dora-rater__inner"
+        >
+          ★
+        </wx-view>
+      </wx-view>
+    </wx-view>
+    <wx-view
+      class="dora-rater__star"
+      data-index="{{2}}"
+      bind:tap="onTap"
+    >
+      <wx-view
+        class="dora-rater__box"
+        style="color: #ccc; margin-right: 2px; font-size: 25px; width: 25px; height: 25px; line-height: 25px"
+      >
+        <wx-view
+          class="dora-rater__inner"
+        >
+          ★
+        </wx-view>
+      </wx-view>
+    </wx-view>
+    <wx-view
+      class="dora-rater__star"
+      data-index="{{3}}"
+      bind:tap="onTap"
+    >
+      <wx-view
+        class="dora-rater__box"
+        style="color: #ccc; margin-right: 2px; font-size: 25px; width: 25px; height: 25px; line-height: 25px"
+      >
+        <wx-view
+          class="dora-rater__inner"
+        >
+          ★
+        </wx-view>
+      </wx-view>
+    </wx-view>
+    <wx-view
+      class="dora-rater__star"
+      data-index="{{4}}"
+      bind:tap="onTap"
+    >
+      <wx-view
+        class="dora-rater__box"
+        style="color: #ccc; margin-right: 2px; font-size: 25px; width: 25px; height: 25px; line-height: 25px"
+      >
+        <wx-view
+          class="dora-rater__inner"
+        >
+          ★
+        </wx-view>
+      </wx-view>
+    </wx-view>
+  </wx-view>
+</dora-rater>
+`;

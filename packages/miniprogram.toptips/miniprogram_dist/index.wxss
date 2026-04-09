@@ -1,0 +1,42 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-toptips {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999
+}
+.dora-toptips__content {
+  position: relative;
+  padding: 10rpx;
+  font-size: 28rpx;
+  color: #fff;
+  word-wrap: break-word;
+  word-break: break-all;
+  transition: background-color .3s
+}
+.dora-toptips__content--success {
+  background-color: #52c41a
+}
+.dora-toptips__content--info {
+  background-color: #1890ff
+}
+.dora-toptips__content--warn {
+  background-color: #faad14
+}
+.dora-toptips__content--cancel {
+  background-color: #ff4d4f
+}
+.dora-toptips__icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%)
+}
+.dora-toptips__text {
+  display: block;
+  text-align: center;
+  padding: 0 52rpx
+}

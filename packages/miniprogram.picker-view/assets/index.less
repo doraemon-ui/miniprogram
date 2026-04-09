@@ -1,0 +1,88 @@
+@import './variables.less';
+
+.@{picker-view-prefix-cls} {
+  display: block;
+  position: relative;
+  height: @picker-item-height * 7;
+  overflow: hidden;
+  width: 100%;
+  flex: 1;
+
+  &--left {
+    text-align: left;
+  }
+  &--center {
+    text-align: center;
+  }
+  &--right {
+    text-align: right;
+  }
+
+  &__mask,
+  &__indicator {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  &__mask {
+    top: 0;
+    height: 100%;
+    margin: 0 auto;
+    background-image:
+      linear-gradient(180deg, hsla(0, 0%, 100%, 0.95), hsla(0, 0%, 100%, 0.6)),
+      linear-gradient(0deg, hsla(0, 0%, 100%, 0.95), hsla(0, 0%, 100%, 0.6));
+    background-position: top, bottom;
+    background-size: 100% @picker-item-height * 3;
+    background-repeat: no-repeat;
+  }
+
+  &__indicator {
+    box-sizing: border-box;
+    height: @picker-item-height;
+    top: @picker-item-height * 3;
+    border-top: 1rpx solid var(--dora-border-color, #ddd);
+    border-bottom: 1rpx solid var(--dora-border-color, #ddd);
+  }
+
+  &__content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    padding: @picker-item-height * 3 0;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--dora-font-size-lg, 32rpx);
+    height: @picker-item-height;
+    line-height: @picker-item-height;
+    color: #000;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    &--disabled {
+      opacity: 0.45;
+    }
+
+    &--selected {
+      font-size: 34rpx;
+      .@{picker-view-prefix-cls}__image {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  &__image {
+    display: inline-block;
+    height: calc(@picker-item-height * 0.6);
+    width: calc(@picker-item-height * 0.6);
+  }
+}

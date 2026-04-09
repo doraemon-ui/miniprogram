@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "dora-multi-picker-view": "@doraemon-ui/miniprogram.multi-picker-view/index"
+  }
+}

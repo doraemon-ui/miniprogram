@@ -1,0 +1,79 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-textarea {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center
+}
+.dora-textarea__label {
+  margin-left: 0;
+  margin-right: 12rpx;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 210rpx;
+  -ms-flex-item-align: start;
+  align-self: flex-start
+}
+.dora-textarea__control {
+  -ms-flex: 1;
+  flex: 1
+}
+.dora-textarea__item {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  -webkit-appearance: none;
+  background-color: transparent;
+  font-size: inherit;
+  color: inherit;
+  height: 1.47058824em;
+  min-height: 1.47058824em;
+  line-height: 1.47058824
+}
+.dora-textarea__extra {
+  color: rgba(var(--dora-text-color-rgb,0,0,0),.45);
+  color: rgba(var(--dora-text-color-rgb,0,0,0),.45);
+  margin-left: 12rpx
+}
+.dora-textarea__error {
+  margin-left: 12rpx
+}
+.dora-textarea__clear {
+  display: none
+}
+.dora-textarea--focus .dora-textarea__clear {
+  display: block
+}
+.dora-textarea--disabled {
+  opacity: var(--dora-disabled-opacity,.3);
+  opacity: var(--dora-disabled-opacity,.3);
+  cursor: not-allowed
+}
+.dora-textarea--error .dora-textarea__control {
+  color: var(--dora-color-assertive,#eb445a);
+  color: var(--dora-color-assertive,#eb445a)
+}
+.dora-textarea__count {
+  position: absolute;
+  bottom: -12rpx;
+  right: 0;
+  color: rgba(var(--dora-text-color-rgb,0,0,0),.45);
+  color: rgba(var(--dora-text-color-rgb,0,0,0),.45);
+  font-size: 28rpx;
+  line-height: 1.47058824
+}
+.dora-textarea__current {
+  color: rgba(var(--dora-text-color-rgb,0,0,0),.55);
+  color: rgba(var(--dora-text-color-rgb,0,0,0),.55)
+}
+.dora-textarea--has-count .dora-textarea__control {
+  padding-bottom: 20rpx
+}
+.dora-textarea__keyboard-accessory {
+  max-height: 400rpx
+}

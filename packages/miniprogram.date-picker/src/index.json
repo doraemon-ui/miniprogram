@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "dora-popup": "../../miniprogram.popup/src/index",
+    "dora-date-picker-view": "../../miniprogram.date-picker-view/src/index"
+  }
+}

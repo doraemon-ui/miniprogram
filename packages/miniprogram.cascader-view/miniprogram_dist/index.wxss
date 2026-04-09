@@ -1,0 +1,64 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-cascader-view {
+  position: relative;
+  font-size: var(--dora-cascader-view-font-size,28rpx);
+  font-size: var(--dora-cascader-view-font-size,28rpx);
+  line-height: 1.5;
+  color: var(--dora-cascader-view-color,rgba(var(--dora-text-color-rgb,0,0,0),.55));
+  color: var(--dora-cascader-view-color,rgba(var(--dora-text-color-rgb,0,0,0),.55));
+  background-color: var(--dora-cascader-view-inner-bg,var(--dora-component-background-color,#fff));
+  background-color: var(--dora-cascader-view-inner-bg,var(--dora-component-background-color,#fff));
+  overflow: hidden
+}
+.dora-cascader-view__hd {
+  position: relative;
+  width: 100%
+}
+.dora-cascader-view__hd::after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 1PX;
+  border-bottom: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  border-bottom: 1PX solid var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  color: var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  color: var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  transform-origin: 0 100%;
+  transform: scaleY(.5)
+}
+.dora-cascader-view__bd {
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: var(--dora-cascader-view-bg,var(--dora-color-step-10,#e6e6e6));
+  background-color: var(--dora-cascader-view-bg,var(--dora-color-step-10,#e6e6e6))
+}
+.dora-cascader-view__inner-scroll {
+  display: block;
+  height: inherit;
+  width: 50%;
+  -ms-flex: 0 0 50%;
+  flex: 0 0 50%;
+  background-color: var(--dora-cascader-view-inner-bg,var(--dora-component-background-color,#fff));
+  background-color: var(--dora-cascader-view-inner-bg,var(--dora-component-background-color,#fff))
+}
+.dora-cascader-view__inner-scroll--full {
+  width: 100%;
+  -ms-flex: 0 0 100%;
+  flex: 0 0 100%;
+  background-color: var(--dora-cascader-view-inner-bg,var(--dora-component-background-color,#fff))!important;
+  background-color: var(--dora-cascader-view-inner-bg,var(--dora-component-background-color,#fff))!important
+}
+.dora-cascader-view__inner-scroll:nth-child(2n) {
+  background-color: var(--dora-cascader-view-bg,var(--dora-color-step-10,#e6e6e6));
+  background-color: var(--dora-cascader-view-bg,var(--dora-color-step-10,#e6e6e6))
+}
+.dora-cascader-view__scroll-view {
+  max-height: var(--dora-cascader-view-scroll-view-size,540rpx);
+  max-height: var(--dora-cascader-view-scroll-view-size,540rpx)
+}

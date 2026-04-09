@@ -1,0 +1,38 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-popup-picker {
+  background: #fff
+}
+.dora-popup-picker__toolbar {
+  border-bottom: 2rpx solid var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
+  border-bottom: 2rpx solid var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9))
+}
+.dora-popup-picker__inner {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 20rpx 24rpx
+}
+.dora-popup-picker__cancel,
+.dora-popup-picker__confirm {
+  color: var(--dora-color-balanced,#2dd36f);
+  color: var(--dora-color-balanced,#2dd36f);
+  font-size: 28rpx
+}
+.dora-popup-picker__title {
+  color: rgba(var(--dora-text-color-rgb,0,0,0),.55);
+  color: rgba(var(--dora-text-color-rgb,0,0,0),.55);
+  font-size: 30rpx;
+  font-weight: 500
+}
+.dora-popup-picker__hover {
+  opacity: .75
+}
+.dora-popup-picker__disabled {
+  color: #c7c7cc
+}

@@ -1,7 +1,19 @@
 import type { TouchEvent } from '@doraemon-ui/miniprogram.core-js'
 
+/**
+ * TouchPoint类型定义
+ */
 export type TouchPoint = {
+  /**
+   * x
+   * @type {number}
+   */
   x: number
+
+  /**
+   * y
+   * @type {number}
+   */
   y: number
 }
 
@@ -49,6 +61,9 @@ export const getPointsDistance = (p1: TouchPoint, p2: TouchPoint): number => {
   return Math.sqrt(xMove * xMove + yMove * yMove)
 }
 
+/**
+ * SwipeDirection类型定义
+ */
 export type SwipeDirection = 'Left' | 'Right' | 'Up' | 'Down'
 
 /**

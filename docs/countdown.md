@@ -1,120 +1,67 @@
-# CountDown 倒计时
+# Countdown Countdown
 
-用于展现倒计时。
+@doraemon-ui/miniprogram.countdown
+
+## 安装
+
+我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
+
+```bash
+npm install --save @doraemon-ui/miniprogram.countdown
+# or
+yarn add @doraemon-ui/miniprogram.countdown
+```
+
+如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
 
 ## 使用指南
 
-### 示例
+### 在 page.json 中引入组件
 
-```html
-<view class="page">
-  <view class="page__hd">
-    <view class="page__title">CountDown</view>
-    <view class="page__desc">倒计时</view>
-  </view>
-  <view class="page__bd">
-    <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell weui-cell_input weui-cell_vcode">
-        <view class="weui-cell__hd">
-          <view class="weui-label">手机号</view>
-        </view>
-        <view class="weui-cell__bd">
-          <input class="weui-input" placeholder="请输入手机号" />
-        </view>
-        <view class="weui-cell__ft">
-          <view class="weui-vcode-btn" bindtap="vcode"
-            >{{ c2 || '获取验证码' }}</view
-          >
-        </view>
-      </view>
-    </view>
-    <view class="text-center">
-      <view class="countdown">{{ c1 }}</view>
-      <view class="countdown">{{ c3 }}</view>
-    </view>
-    <view class="weui-btn-area text-center">
-      <button type="primary" size="mini" bindtap="stop">Stop</button>
-      <button type="primary" size="mini" bindtap="start">Start</button>
-      <button type="primary" size="mini" bindtap="update">Update</button>
-    </view>
-  </view>
-</view>
-```
+[json](./playground/countdown/pages/index/index.json ':include :type=code')
 
-```js
-import { $wuxCountDown } from '../../dist/index'
+### 示例代码
 
-Page({
-  data: {},
-  onLoad() {
-    this.c1 = new $wuxCountDown({
-      date: 'June 7, 2087 15:03:25',
-      render(date) {
-        const years = this.leadingZeros(date.years, 4) + ' 年 '
-        const days = this.leadingZeros(date.days, 3) + ' 天 '
-        const hours = this.leadingZeros(date.hours, 2) + ' 时 '
-        const min = this.leadingZeros(date.min, 2) + ' 分 '
-        const sec = this.leadingZeros(date.sec, 2) + ' 秒 '
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/DoraemonUI)
 
-        this.setData({
-          c1: years + days + hours + min + sec,
-        })
-      },
-    })
+<!-- tabs:start -->
 
-    this.c3 = new $wuxCountDown({
-      date: +new Date() + 60000 * 20,
-      render(date) {
-        const min = this.leadingZeros(date.min, 2) + ' 分 '
-        const sec = this.leadingZeros(date.sec, 2) + ' 秒 '
+#### **WXML**
 
-        this.setData({
-          c3: min + sec,
-        })
-      },
-    })
-  },
-  vcode() {
-    if (this.c2 && this.c2.interval) return !1
-    this.c2 = new $wuxCountDown({
-      date: +new Date() + 60000,
-      onEnd() {
-        this.setData({
-          c2: '重新获取验证码',
-        })
-      },
-      render(date) {
-        const sec = this.leadingZeros(date.sec, 2) + ' 秒 '
-        date.sec !== 0 &&
-          this.setData({
-            c2: sec,
-          })
-      },
-    })
-  },
-  stop() {
-    this.c3.stop()
-  },
-  start() {
-    this.c3.start()
-  },
-  update() {
-    this.c3.update(+new Date() + 60000 * 30)
-  },
-})
-```
+[wxml](./playground/countdown/pages/index/index.wxml ':include :type=code')
 
-## 视频演示
+#### **JAVASCRIPT**
 
-[CountDown](./_media/countdown.mp4 ':include :type=iframe width=375px height=667px')
+[js](./playground/countdown/pages/index/index.js ':include :type=code')
+
+#### **WXSS**
+
+[wxss](./playground/countdown/pages/index/index.wxss ':include :type=code')
+
+<!-- tabs:end -->
 
 ## API
 
-| 参数            | 类型       | 描述                   | 默认值                |
-| --------------- | ---------- | ---------------------- | --------------------- |
-| options         | `object`   | 配置项                 | -                     |
-| options.date    | `string`   | 日期                   | June 7, 2087 15:03:25 |
-| options.refresh | `number`   | 刷新时间               | 1000                  |
-| options.offset  | `number`   | 偏移量                 | 0                     |
-| options.onEnd   | `function` | 倒计时结束后的回调函数 | -                     |
-| options.render  | `function` | 渲染组件的回调函数     | -                     |
+### Countdown props
+
+| 参数      | 类型     | 描述           | 默认值         |
+| --------- | -------- | -------------- | -------------- |
+| prefixCls | `string` | 自定义类名前缀 | dora-countdown |
+
+### Countdown slot
+
+| 名称 | 描述       |
+| ---- | ---------- |
+| -    | 自定义内容 |
+
+### Countdown externalClasses
+
+| 名称       | 描述         |
+| ---------- | ------------ |
+| dora-class | 根节点样式类 |
+
+## CSS Variables
+
+| 属性         | 描述     | 默认值 | 全局变量 |
+| ------------ | -------- | ------ | -------- |
+| --text-color | 文字颜色 | `#fff` | -        |

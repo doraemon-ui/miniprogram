@@ -1,0 +1,27 @@
+@import './variables.less';
+
+// WaterMark styles
+// -----------------------------
+.@{water-mark-prefix-cls} {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 2000;
+  pointer-events: none;
+  background-repeat: repeat;
+  box-sizing: border-box;
+
+  &--full-page {
+    position: fixed;
+  }
+
+  &__canvas {
+    position: absolute;
+    left: -9999em;
+    top: -9999em;
+    opacity: 0;
+    visibility: hidden;
+  }
+}

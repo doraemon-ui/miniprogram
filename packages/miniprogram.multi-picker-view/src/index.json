@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "dora-picker-view": "../../miniprogram.picker-view/src/index",
+    "dora-spin": "../../miniprogram.spin/src/index"
+  }
+}

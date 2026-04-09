@@ -1,0 +1,34 @@
+@import './variables.less';
+
+// DatePicker styles
+// -----------------------------
+.@{date-picker-prefix-cls} {
+  background: #fff;
+
+  &__toolbar {
+    border-bottom: 1px solid @border-color-split;
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20rpx 24rpx;
+  }
+
+  &__cancel,
+  &__confirm {
+    color: @balanced;
+    font-size: 28rpx;
+  }
+
+  &__title {
+    color: @heading-color;
+    font-size: 30rpx;
+    font-weight: 500;
+  }
+
+  &__hover {
+    opacity: 0.75;
+  }
+}

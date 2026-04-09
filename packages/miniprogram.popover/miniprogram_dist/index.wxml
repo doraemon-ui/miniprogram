@@ -1,0 +1,17 @@
+<dora-backdrop wx:if="{{ mask && popoverVisible }}" bind:click="onMaskClick" />
+<view class="dora-class {{ classes.wrap }}" style="{{ extStyle + popoverStyle }}">
+  <dora-animation-group in="{{ popoverVisible }}" classNames="{{ classNames }}" bind:enter="onEnter">
+    <view class="{{ classes.content }}">
+      <view class="{{ classes.arrow }}"></view>
+      <view class="{{ classes.inner }}">
+        <view class="{{ classes.title }}" wx:if="{{ title }}">{{ title }}</view>
+        <slot name="title" wx:else></slot>
+        <view class="{{ classes.innerContent }}" wx:if="{{ content }}">{{ content }}</view>
+        <slot name="content" wx:else></slot>
+      </view>
+    </view>
+  </dora-animation-group>
+</view>
+<view class="{{ classes.element }}" catchtap="onClick" wx:if="{{ useSlot && !slotRect }}">
+  <slot></slot>
+</view>

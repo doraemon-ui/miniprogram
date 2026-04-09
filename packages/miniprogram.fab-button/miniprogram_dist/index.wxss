@@ -1,0 +1,216 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-fab-button {
+  position: fixed;
+  z-index: 1000;
+  cursor: pointer
+}
+.dora-fab-button--center {
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%,-50%,0)
+}
+.dora-fab-button--topLeft {
+  left: 30rpx;
+  top: 30rpx
+}
+.dora-fab-button--topRight {
+  right: 30rpx;
+  top: 30rpx
+}
+.dora-fab-button--bottomLeft {
+  left: 30rpx;
+  bottom: 30rpx
+}
+.dora-fab-button--bottomRight {
+  right: 30rpx;
+  bottom: 30rpx
+}
+.dora-fab-button--vertical.dora-fab-button--bottomLeft .dora-fab-button__label,
+.dora-fab-button--vertical.dora-fab-button--topLeft .dora-fab-button__label {
+  left: 120rpx
+}
+.dora-fab-button--vertical.dora-fab-button--bottomRight .dora-fab-button__label,
+.dora-fab-button--vertical.dora-fab-button--center .dora-fab-button__label,
+.dora-fab-button--vertical.dora-fab-button--topRight .dora-fab-button__label {
+  right: 120rpx
+}
+.dora-fab-button__action {
+  width: var(--dora-fab-button-action-size,96rpx);
+  width: var(--dora-fab-button-action-size,96rpx);
+  height: var(--dora-fab-button-action-size,96rpx);
+  height: var(--dora-fab-button-action-size,96rpx);
+  position: relative;
+  border-radius: 50%;
+  z-index: 1000;
+  background-color: var(--dora-fab-button-balanced-bg,#33cd5f);
+  background-color: var(--dora-fab-button-balanced-bg,#33cd5f);
+  color: #fff;
+  overflow: visible;
+  transition-duration: .3s;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  box-shadow: var(--dora-fab-button-box-shadow,0 4rpx 12rpx rgba(0,0,0,.18));
+  box-shadow: var(--dora-fab-button-box-shadow,0 4rpx 12rpx rgba(0,0,0,.18));
+  right: 0;
+  bottom: 0
+}
+.dora-fab-button--hover {
+  transition-duration: 0s;
+  opacity: .8!important
+}
+.dora-fab-button__action--hide-shadow {
+  box-shadow: none!important
+}
+.dora-fab-button__icon {
+  display: inline-block;
+  width: var(--dora-fab-button-icon-size,40rpx);
+  width: var(--dora-fab-button-icon-size,40rpx);
+  height: var(--dora-fab-button-icon-size,40rpx);
+  height: var(--dora-fab-button-icon-size,40rpx);
+  font-size: var(--dora-fab-button-icon-size,40rpx);
+  font-size: var(--dora-fab-button-icon-size,40rpx);
+  line-height: 1
+}
+.dora-fab-button__text {
+  display: inline-block;
+  width: var(--dora-fab-button-icon-size,40rpx);
+  width: var(--dora-fab-button-icon-size,40rpx);
+  height: var(--dora-fab-button-icon-size,40rpx);
+  height: var(--dora-fab-button-icon-size,40rpx);
+  font-size: var(--dora-fab-button-icon-size,40rpx);
+  font-size: var(--dora-fab-button-icon-size,40rpx);
+  line-height: 1;
+  transition: transform 150ms cubic-bezier(.4,0,1,1)
+}
+.dora-fab-button__text--rotate {
+  transform: scale(1) rotate(135deg)
+}
+.dora-fab-button__button {
+  border: 0;
+  border-radius: 50%;
+  overflow: visible;
+  color: #fff!important;
+  background-color: var(--dora-fab-button-balanced-bg,#33cd5f)!important;
+  background-color: var(--dora-fab-button-balanced-bg,#33cd5f)!important;
+  transition-duration: .3s;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  box-shadow: var(--dora-fab-button-box-shadow,0 4rpx 12rpx rgba(0,0,0,.18));
+  box-shadow: var(--dora-fab-button-box-shadow,0 4rpx 12rpx rgba(0,0,0,.18));
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: 2;
+  width: 100%!important;
+  height: 100%;
+  padding: 0
+}
+.dora-fab-button__button--hover {
+  transition-duration: 0s;
+  opacity: .8!important
+}
+.dora-fab-button__button--disabled {
+  opacity: var(--dora-fab-button-disabled-opacity,.4)!important;
+  opacity: var(--dora-fab-button-disabled-opacity,.4)!important;
+  cursor: not-allowed!important
+}
+.dora-fab-button__button--hide-shadow {
+  box-shadow: none!important
+}
+.dora-fab-button__label {
+  position: absolute;
+  top: 50%;
+  padding: var(--dora-fab-button-label-padding,8rpx 14rpx);
+  padding: var(--dora-fab-button-label-padding,8rpx 14rpx);
+  font-size: 24rpx;
+  background: var(--dora-fab-button-label-bg,rgba(0,0,0,.75));
+  background: var(--dora-fab-button-label-bg,rgba(0,0,0,.75));
+  border-radius: 8rpx;
+  color: var(--dora-fab-button-label-color,#fff);
+  color: var(--dora-fab-button-label-color,#fff);
+  pointer-events: none;
+  white-space: nowrap;
+  opacity: 0;
+  box-sizing: border-box;
+  transform: translate3d(0,-50%,0);
+  transition: all .3s
+}
+.dora-fab-button--vertical.dora-fab-button--opened .dora-fab-button__label {
+  opacity: 1
+}
+.dora-fab-button__backdrop {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: var(--dora-fab-button-backdrop-bg,rgba(0,0,0,.25));
+  background: var(--dora-fab-button-backdrop-bg,rgba(0,0,0,.25))
+}
+.dora-fab-button--light .dora-fab-button__action,
+.dora-fab-button--light .dora-fab-button__button,
+.dora-fab-button--light .dora-fab-button__button--disabled {
+  background-color: var(--dora-fab-button-light-bg,#fff)!important;
+  background-color: var(--dora-fab-button-light-bg,#fff)!important
+}
+.dora-fab-button--stable .dora-fab-button__action,
+.dora-fab-button--stable .dora-fab-button__button,
+.dora-fab-button--stable .dora-fab-button__button--disabled {
+  background-color: var(--dora-fab-button-stable-bg,#f8f8f8)!important;
+  background-color: var(--dora-fab-button-stable-bg,#f8f8f8)!important
+}
+.dora-fab-button--positive .dora-fab-button__action,
+.dora-fab-button--positive .dora-fab-button__button,
+.dora-fab-button--positive .dora-fab-button__button--disabled {
+  background-color: var(--dora-fab-button-positive-bg,#387ef5)!important;
+  background-color: var(--dora-fab-button-positive-bg,#387ef5)!important
+}
+.dora-fab-button--calm .dora-fab-button__action,
+.dora-fab-button--calm .dora-fab-button__button,
+.dora-fab-button--calm .dora-fab-button__button--disabled {
+  background-color: var(--dora-fab-button-calm-bg,#11c1f3)!important;
+  background-color: var(--dora-fab-button-calm-bg,#11c1f3)!important
+}
+.dora-fab-button--assertive .dora-fab-button__action,
+.dora-fab-button--assertive .dora-fab-button__button,
+.dora-fab-button--assertive .dora-fab-button__button--disabled {
+  background-color: var(--dora-fab-button-assertive-bg,#ef473a)!important;
+  background-color: var(--dora-fab-button-assertive-bg,#ef473a)!important
+}
+.dora-fab-button--balanced .dora-fab-button__action,
+.dora-fab-button--balanced .dora-fab-button__button,
+.dora-fab-button--balanced .dora-fab-button__button--disabled {
+  background-color: var(--dora-fab-button-balanced-bg,#33cd5f)!important;
+  background-color: var(--dora-fab-button-balanced-bg,#33cd5f)!important
+}
+.dora-fab-button--energized .dora-fab-button__action,
+.dora-fab-button--energized .dora-fab-button__button,
+.dora-fab-button--energized .dora-fab-button__button--disabled {
+  background-color: var(--dora-fab-button-energized-bg,#ffc900)!important;
+  background-color: var(--dora-fab-button-energized-bg,#ffc900)!important
+}
+.dora-fab-button--royal .dora-fab-button__action,
+.dora-fab-button--royal .dora-fab-button__button,
+.dora-fab-button--royal .dora-fab-button__button--disabled {
+  background-color: var(--dora-fab-button-royal-bg,#886aea)!important;
+  background-color: var(--dora-fab-button-royal-bg,#886aea)!important
+}
+.dora-fab-button--dark .dora-fab-button__action,
+.dora-fab-button--dark .dora-fab-button__button,
+.dora-fab-button--dark .dora-fab-button__button--disabled {
+  background-color: var(--dora-fab-button-dark-bg,#444)!important;
+  background-color: var(--dora-fab-button-dark-bg,#444)!important
+}

@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WhiteSpace mount correctly 1`] = `
+<dora-white-space>
+  <wx-view
+    class="dora-class dora-white-space dora-white-space--default"
+    style="; "
+    bind:tap="onTap"
+  />
+</dora-white-space>
+`;

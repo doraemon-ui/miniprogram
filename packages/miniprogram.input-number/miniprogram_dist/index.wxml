@@ -1,0 +1,33 @@
+<view class="dora-class {{ classes.wrap }}">
+  <view
+    bindlongpress="onLongpress"
+    bindtap="onTap"
+    bindtouchend="onTouchEnd"
+    touchcancel="onTouchCancel"
+    data-type="sub"
+    class="dora-sub-class {{ classes.sub }}"
+  >
+    <dora-icon dora-class="{{ classes.icon }}" type="ios-remove"></dora-icon>
+  </view>
+  <view class="dora-control-class {{ classes.control }}">
+    <input
+      bindinput="onInput"
+      bindfocus="onFocus"
+      bindblur="onBlur"
+      value="{{ inputValue }}"
+      disabled="{{ disabled || readOnly }}"
+      type="digit"
+      class="dora-input-class {{ classes.input }}"
+    />
+  </view>
+  <view
+    bindlongpress="onLongpress"
+    bindtap="onTap"
+    bindtouchend="onTouchEnd"
+    touchcancel="onTouchCancel"
+    data-type="add"
+    class="dora-add-class {{ classes.add }}"
+  >
+    <dora-icon dora-class="{{ classes.icon }}" type="ios-add"></dora-icon>
+  </view>
+</view>

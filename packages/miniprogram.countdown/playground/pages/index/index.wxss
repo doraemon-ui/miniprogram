@@ -1,0 +1,22 @@
+.text-center {
+  text-align: center;
+}
+
+.countdown {
+  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+  font-size: 32rpx;
+  color: #33cd5f;
+  margin: 20rpx 0;
+}
+
+.vcode-row {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button-sp-area {
+  display: flex;
+  justify-content: center;
+  gap: 16rpx;
+}
+

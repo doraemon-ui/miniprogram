@@ -1,146 +1,67 @@
-# Prompt 提示信息
+# Prompt Prompt
 
-用于展现异常流提示信息。
+@doraemon-ui/miniprogram.prompt
+
+## 安装
+
+我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
+
+```bash
+npm install --save @doraemon-ui/miniprogram.prompt
+# or
+yarn add @doraemon-ui/miniprogram.prompt
+```
+
+如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
 
 ## 使用指南
 
 ### 在 page.json 中引入组件
 
-```json
-{
-  "navigationBarTitleText": "Prompt",
-  "usingComponents": {
-    "wux-prompt": "../../dist/prompt/index"
-  }
-}
-```
+[json](./playground/prompt/pages/index/index.json ':include :type=code')
 
-### 示例
+### 示例代码
 
-```html
-<view class="page">
-  <view class="page__bd">
-    <view class="weui-tab">
-      <view class="weui-navbar">
-        <block wx:for-items="{{ tabs}}" wx:key="{{ index }}">
-          <view
-            data-id="{{ index }}"
-            class="weui-navbar__item {{ activeIndex == index ? 'weui-bar__item_on' : '' }}"
-            bindtap="tabClick"
-          >
-            <view class="weui-navbar__title">{{ item }}</view>
-          </view>
-        </block>
-        <view
-          class="weui-navbar__slider"
-          style="left: {{ sliderLeft }}px; transform: translateX({{ sliderOffset }}px); -webkit-transform: translateX({{ sliderOffset }}px);"
-        ></view>
-      </view>
-      <view class="weui-tab__panel">
-        <view class="weui-tab__content" hidden="{{ activeIndex !== 0 }}">
-          <wux-prompt
-            visible="{{ activeIndex === 0 }}"
-            title="{{ msg1.title }}"
-            text="{{ msg1.text }}"
-          />
-        </view>
-        <view class="weui-tab__content" hidden="{{ activeIndex !== 1 }}">
-          <wux-prompt
-            visible="{{ activeIndex === 1 }}"
-            icon="{{ msg2.icon }}"
-            title="{{ msg2.title }}"
-            text="{{ msg2.text }}"
-            buttons="{{ msg2.buttons }}"
-            bind:click="buttonClicked"
-          />
-        </view>
-        <view class="weui-tab__content" hidden="{{ activeIndex !== 2 }}">
-          <wux-prompt
-            visible="{{ activeIndex === 2 }}"
-            icon="{{ msg3.icon }}"
-            title="{{ msg3.title }}"
-          />
-        </view>
-      </view>
-    </view>
-  </view>
-</view>
-```
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/DoraemonUI)
 
-```js
-const sliderWidth = 96
+<!-- tabs:start -->
 
-Page({
-  data: {
-    tabs: ['全部', '待收货', '待评价'],
-    activeIndex: 0,
-    sliderOffset: 0,
-    sliderLeft: 0,
-    msg1: {
-      title: '空空如也',
-      text: '暂时没有相关数据',
-    },
-    msg2: {
-      icon: '../../assets/images/iconfont-order.png',
-      title: '您还没有相关的订单',
-      text: '可以去看看有哪些想买',
-      buttons: [
-        {
-          text: '随便逛逛',
-        },
-      ],
-    },
-    msg3: {
-      icon: '../../assets/images/iconfont-empty.png',
-      title: '暂无待评价订单',
-    },
-  },
-  onLoad() {
-    this.getSystemInfo()
-  },
-  getSystemInfo() {
-    const that = this
-    wx.getSystemInfo({
-      success(res) {
-        that.setData({
-          sliderLeft:
-            (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
-        })
-      },
-    })
-  },
-  tabClick(e) {
-    const { offsetLeft, dataset } = e.currentTarget
-    const { id } = dataset
+#### **WXML**
 
-    this.setData({
-      sliderOffset: offsetLeft,
-      activeIndex: id,
-    })
-  },
-  buttonClicked(e) {
-    console.log(e)
-  },
-})
-```
+[wxml](./playground/prompt/pages/index/index.wxml ':include :type=code')
 
-## 视频演示
+#### **JAVASCRIPT**
 
-[Prompt](./_media/prompt.mp4 ':include :type=iframe width=375px height=667px')
+[js](./playground/prompt/pages/index/index.js ':include :type=code')
+
+#### **WXSS**
+
+[wxss](./playground/prompt/pages/index/index.wxss ':include :type=code')
+
+<!-- tabs:end -->
 
 ## API
 
 ### Prompt props
 
-| 参数           | 类型            | 描述                                                                    | 默认值              |
-| -------------- | --------------- | ----------------------------------------------------------------------- | ------------------- |
-| prefixCls      | `string`        | 自定义类名前缀                                                          | wux-prompt          |
-| classNames     | `any`           | 过渡的类名，更多内置过渡效果请参考 [AnimationGroup](animation-group.md) | wux-animate--fadeIn |
-| icon           | `string`        | 图标                                                                    | -                   |
-| title          | `string`        | 标题                                                                    | -                   |
-| text           | `string`        | 文本                                                                    | -                   |
-| buttons        | `array`         | 按钮                                                                    | []                  |
-| buttons[].text | `string`        | 按钮的文本                                                              | -                   |
-| visible        | `boolean`       | 是否显示组件                                                            | false               |
-| wrapStyle      | `string,object` | 自定义样式                                                              | -                   |
-| bind:click     | `function`      | 按钮点击事件                                                            | -                   |
+| 参数      | 类型     | 描述           | 默认值      |
+| --------- | -------- | -------------- | ----------- |
+| prefixCls | `string` | 自定义类名前缀 | dora-prompt |
+
+### Prompt slot
+
+| 名称 | 描述       |
+| ---- | ---------- |
+| -    | 自定义内容 |
+
+### Prompt externalClasses
+
+| 名称       | 描述         |
+| ---------- | ------------ |
+| dora-class | 根节点样式类 |
+
+## CSS Variables
+
+| 属性         | 描述     | 默认值 | 全局变量 |
+| ------------ | -------- | ------ | -------- |
+| --text-color | 文字颜色 | `#fff` | -        |

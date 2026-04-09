@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "dora-animation-group": "../../miniprogram.animation-group/src/index"
+  }
+}

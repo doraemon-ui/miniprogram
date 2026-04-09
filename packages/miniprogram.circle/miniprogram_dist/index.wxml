@@ -1,0 +1,6 @@
+<view class="dora-class {{ classes.wrap }}" style="{{ style }}">
+  <canvas type="2d" style="{{ style }}" id="{{ classes.wrap }}" />
+  <view class="{{ classes.inner }}">
+    <slot></slot>
+  </view>
+</view>

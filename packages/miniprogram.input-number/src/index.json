@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "dora-icon": "../../miniprogram.icon/src/index"
+  }
+}

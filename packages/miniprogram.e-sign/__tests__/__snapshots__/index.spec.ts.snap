@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ESign mount correctly 1`] = `
+<dora-e-sign>
+  <wx-view
+    class="dora-class dora-e-sign"
+  >
+    <wx-view
+      class="dora-e-sign__bd"
+      style="width: auto;  height: 200px;  "
+    >
+      <wx-canvas
+        id="dora-e-sign"
+        style="width: 100%; height: 100%;"
+        type="2d"
+        catch:touchend="onTouchEnd"
+        catch:touchmove="onTouchMove"
+        catch:touchstart="onTouchStart"
+      />
+    </wx-view>
+    <wx-view
+      class="dora-e-sign__ft"
+    >
+      <dora-button
+        doraClass="dora-e-sign__button"
+        type="light"
+        bind:click="clear"
+      >
+        <wx-button
+          appParameter=""
+          class="dora-class dora-button dora-color dora-color--positive dora-button--small dora-button--solid"
+          disabled="{{false}}"
+          formType=""
+          hoverClass="dora-hover-class dora-button--activated"
+          hoverStartTime="{{20}}"
+          hoverStayTime="{{70}}"
+          hoverStopPropagation="{{false}}"
+          lang="en"
+          loading="{{false}}"
+          openType=""
+          phoneNumberNoQuotaToast="{{true}}"
+          sendMessageImg=""
+          sendMessagePath=""
+          sendMessageTitle=""
+          sessionFrom=""
+          showMessageCard="{{false}}"
+          bind:agreeprivacyauthorization="onAgreePrivacyAuthorization"
+          bind:chooseavatar="onChooseAvatar"
+          bind:contact="onContact"
+          bind:createliveactivity="onCreateLiveActivity"
+          bind:error="onError"
+          bind:getphonenumber="onGetPhoneNumber"
+          bind:getrealtimephonenumber="onGetRealtimePhoneNumber"
+          bind:getuserinfo="onGetUserInfo"
+          bind:launchapp="onLaunchApp"
+          bind:opensetting="onOpenSetting"
+          bind:tap="onClick"
+        >
+          
+        重置
+      
+        </wx-button>
+      </dora-button>
+      <dora-button
+        doraClass="dora-e-sign__button"
+        type="balanced"
+        bind:click="submit"
+      >
+        <wx-button
+          appParameter=""
+          class="dora-class dora-button dora-color dora-color--positive dora-button--small dora-button--solid"
+          disabled="{{false}}"
+          formType=""
+          hoverClass="dora-hover-class dora-button--activated"
+          hoverStartTime="{{20}}"
+          hoverStayTime="{{70}}"
+          hoverStopPropagation="{{false}}"
+          lang="en"
+          loading="{{false}}"
+          openType=""
+          phoneNumberNoQuotaToast="{{true}}"
+          sendMessageImg=""
+          sendMessagePath=""
+          sendMessageTitle=""
+          sessionFrom=""
+          showMessageCard="{{false}}"
+          bind:agreeprivacyauthorization="onAgreePrivacyAuthorization"
+          bind:chooseavatar="onChooseAvatar"
+          bind:contact="onContact"
+          bind:createliveactivity="onCreateLiveActivity"
+          bind:error="onError"
+          bind:getphonenumber="onGetPhoneNumber"
+          bind:getrealtimephonenumber="onGetRealtimePhoneNumber"
+          bind:getuserinfo="onGetUserInfo"
+          bind:launchapp="onLaunchApp"
+          bind:opensetting="onOpenSetting"
+          bind:tap="onClick"
+        >
+          
+        确定
+      
+        </wx-button>
+      </dora-button>
+    </wx-view>
+  </wx-view>
+</dora-e-sign>
+`;

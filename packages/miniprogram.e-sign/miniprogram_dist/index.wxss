@@ -1,0 +1,37 @@
+@import '../../@doraemon-ui/style/var.wxss';
+
+@import '../../@doraemon-ui/style/color.wxss';
+
+.dora-e-sign {
+  padding: var(--dora-e-sign-padding,24rpx);
+  padding: var(--dora-e-sign-padding,24rpx)
+}
+.dora-e-sign__bd {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border: 2rpx dotted var(--dora-e-sign-border-color,var(--dora-border-color,var(--dora-color-step-10,#e6e6e6)));
+  border: 2rpx dotted var(--dora-e-sign-border-color,var(--dora-border-color,var(--dora-color-step-10,#e6e6e6)));
+  border-radius: var(--dora-e-sign-bd-border-radius,var(--dora-border-radius,16rpx));
+  border-radius: var(--dora-e-sign-bd-border-radius,var(--dora-border-radius,16rpx));
+  overflow: hidden
+}
+.dora-e-sign__ft {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: end;
+  justify-content: flex-end
+}
+.dora-e-sign__button {
+  padding-left: var(--dora-e-sign-button-padding,24rpx);
+  padding-left: var(--dora-e-sign-button-padding,24rpx);
+  padding-right: var(--dora-e-sign-button-padding,24rpx);
+  padding-right: var(--dora-e-sign-button-padding,24rpx);
+  margin-top: var(--dora-e-sign-button-margin,18rpx);
+  margin-top: var(--dora-e-sign-button-margin,18rpx);
+  margin-left: var(--dora-e-sign-button-margin,18rpx);
+  margin-left: var(--dora-e-sign-button-margin,18rpx)
+}

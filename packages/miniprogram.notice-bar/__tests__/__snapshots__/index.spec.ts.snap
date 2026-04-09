@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NoticeBar mount correctly 1`] = `
+<dora-notice-bar>
+  <wx-view
+    class="dora-class dora-notice-bar"
+    bind:tap="onClick"
+  >
+    <wx-view
+      class="dora-notice-bar__hd"
+    >
+      <wx-image
+        class="dora-notice-bar__icon"
+        src="data:image/gif;base64,R0lGODlhAQABAAAAACw="
+      />
+    </wx-view>
+    <wx-view
+      class="dora-notice-bar__bd"
+    >
+      <wx-view
+        class="dora-notice-bar__marquee-container"
+      >
+        <wx-view
+          class="dora-notice-bar__marquee"
+          style="transform: translate3d(0px, 0px, 0px)"
+        />
+      </wx-view>
+    </wx-view>
+  </wx-view>
+</dora-notice-bar>
+`;
