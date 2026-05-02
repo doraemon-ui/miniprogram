@@ -1,6 +1,6 @@
 import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import type { TouchEvent } from '@doraemon-ui/miniprogram.core-js'
-import type { CanvasContext2D, CanvasNode, DataUrlOptions, ESignCanvasRef, ESignFileType, TouchLikeEvent } from './types'
+import type { CanvasContext2D, CanvasNode, DataUrlOptions, ESignCanvasRef, ESignFileType } from './types'
 import { useRef, getSystemInfoSync, getTouchPoints } from '@doraemon-ui/miniprogram.shared'
 import type { MiniprogramNodeRef, MiniprogramPublicInstance } from '@doraemon-ui/miniprogram.shared'
 
@@ -221,7 +221,7 @@ class ESign extends Doraemon {
   /**
    * 手指触摸后移动
    */
-  onTouchMove(e: TouchLikeEvent) {
+  onTouchMove(e: TouchEvent) {
     const ref = this.resolveCanvasRef()
     if (!ref) return false
     if (this.isCanvasEmpty) {

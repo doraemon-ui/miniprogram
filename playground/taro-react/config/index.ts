@@ -1,4 +1,3 @@
-import path from 'node:path'
 import { defineConfig } from '@tarojs/cli'
 import type { UserConfigExport } from '@tarojs/cli'
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
@@ -19,11 +18,7 @@ export default defineConfig<'webpack5'>(async (merge, { command, mode }) => {
     },
     sourceRoot: 'src',
     outputRoot: 'dist',
-    plugins: [
-      '@tarojs/plugin-generator',
-      '@doraemon-ui/taro-react/plugin/taro-react-plugin',
-      // path.resolve(__dirname, '../node_modules/@doraemon-ui/taro-react/plugin/taro-react-plugin.ts'),
-    ],
+    plugins: ['@tarojs/plugin-generator', '@doraemon-ui/taro-react/plugin/taro-react-plugin'],
     defineConstants: {},
     copy: {
       patterns: [],

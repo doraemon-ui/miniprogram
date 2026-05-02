@@ -4,7 +4,7 @@
   "packages": [
     "demos/*",
     "packages/*",
-    "playground/**"
+    "playground/*"
   ],
   "command": {
     "publish": {

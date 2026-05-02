@@ -1,5 +1,5 @@
 import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
-import type { TabbarChangeDetail, TabbarPosition, TabbarSafeArea } from './types'
+import type { TabbarChangeDetail, TabbarKeyItem, TabbarPosition, TabbarSafeArea } from './types'
 const { classNames, styleToCssString } = Doraemon.util
 
 @Component({
@@ -109,7 +109,7 @@ class Tabbar extends Doraemon {
 
   tabbarStyle: string = ''
   activeKey: string = ''
-  keys: Array<Record<string, unknown>> = []
+  keys: TabbarKeyItem[] = []
 
   get classes() {
     const p = this.prefixCls

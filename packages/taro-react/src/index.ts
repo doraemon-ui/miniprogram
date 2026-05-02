@@ -303,5 +303,5 @@ export {
   VirtualListItem,
   WaterMark,
   WhiteSpace,
-  WingBlank,
+  WingBlank
 }

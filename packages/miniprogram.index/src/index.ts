@@ -213,7 +213,10 @@ class Index extends Doraemon {
   async getNavPoints() {
     const navColCls = `.${this.prefixCls}__nav-col`
     const navItemCls = `.${this.prefixCls}__nav-item`
-    const list = (await useRectAll([navColCls, navItemCls], this._renderProxy)) as unknown as [Array<{ height: number }>, Array<PointNode>]
+    const list = (await useRectAll([navColCls, navItemCls], this._renderProxy)) as unknown as [
+      Array<{ height: number }>,
+      Array<IndexPointNode>,
+    ]
     const cols = list[0] || []
     const items = list[1] || []
     if (!cols.length && !items.length) return
@@ -223,7 +226,7 @@ class Index extends Doraemon {
 
   getTargetFromPoint(y: number) {
     const points = this.points
-    let target: PointNode | undefined
+    let target: IndexPointNode | undefined
     for (let i = points.length - 1; i >= 0; i--) {
       const [a, b] = points[i].offsets
       if ((i === points.length - 1 && y > b) || (i === 0 && y < a) || (y >= a && y <= b)) {

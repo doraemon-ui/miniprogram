@@ -4,6 +4,7 @@
     "module": "commonjs",
     "removeComments": false,
     "preserveConstEnums": true,
+    "ignoreDeprecations": "6.0",
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "noImplicitAny": false,
@@ -18,7 +19,7 @@
     "allowJs": true,
     "resolveJsonModule": true,
     "typeRoots": ["node_modules/@types"],
-    "types": ["@doraemon-ui/taro-react"],
+    "types": [],
     "paths": {
       // TS5090 leading './'
       "@/*": ["./src/*"]

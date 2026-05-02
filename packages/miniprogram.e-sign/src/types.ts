@@ -87,32 +87,6 @@ export interface CanvasContext2D {
 export type CanvasNode = WechatMiniprogram.Canvas
 
 /**
- * TouchLikeEvent类型定义
- */
-export type TouchLikeEvent = {
-  /**
-   * touches
-   * @type {Array<{ pageX: number; pageY: number }>}
-   */
-  touches?: Array<{ pageX: number; pageY: number }>
-
-  /**
-   * changedTouches
-   * @type {Array<{ pageX: number; pageY: number }>}
-   */
-  changedTouches?: Array<{ pageX: number; pageY: number }>
-
-  /**
-   * currentTarget
-   * @type {{}
-   */
-  currentTarget?: {
-    offsetLeft?: number
-    offsetTop?: number
-  }
-}
-
-/**
  * ESignCanvasRef接口定义
  */
 export interface ESignCanvasRef {
