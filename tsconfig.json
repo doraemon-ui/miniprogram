@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "ignoreDeprecations": "6.0",
+    "isolatedModules": true,
     "target": "esnext",
     "module": "es2015",
     "moduleResolution": "bundler",

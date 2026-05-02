@@ -3,7 +3,9 @@ module.exports = {
   verbose: true,
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
-  testURL: 'https://jest.test',
+  testEnvironmentOptions: {
+    url: 'https://jest.test',
+  },
   moduleFileExtensions: ['js', 'ts', 'tsx'],
   transformIgnorePatterns: [
     '/node_modules/(?!.*(@doraemon-ui|miniprogram-simulate))',
