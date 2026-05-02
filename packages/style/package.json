@@ -20,6 +20,7 @@
     "preversion": "pnpm clean && pnpm build && pnpm test"
   },
   "devDependencies": {
+    "@types/less": "^3.0.8",
     "@types/node": "^25.5.2",
     "cross-env": "^7.0.3",
     "jest": "^30.3.0",
