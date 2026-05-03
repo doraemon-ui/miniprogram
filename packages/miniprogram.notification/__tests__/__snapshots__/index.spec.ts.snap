@@ -4,7 +4,7 @@ exports[`Notification mount correctly 1`] = `
 <dora-notification>
   <wx-view
     class="dora-class dora-notification"
-    hover-class="dora-hover-class dora-notification--hover"
+    hoverClass="dora-hover-class dora-notification--hover"
     style=""
     bind:tap="onClick"
   />

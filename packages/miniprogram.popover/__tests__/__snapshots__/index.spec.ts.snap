@@ -4,7 +4,7 @@ exports[`Popover mount correctly 1`] = `
 <dora-popover>
   <wx-view
     class="dora-class dora-popover"
-    hover-class="dora-hover-class dora-popover--hover"
+    hoverClass="dora-hover-class dora-popover--hover"
     style=""
     bind:tap="onClick"
   />

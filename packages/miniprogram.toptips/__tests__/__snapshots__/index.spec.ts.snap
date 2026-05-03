@@ -3,7 +3,7 @@
 exports[`Toptips mount correctly 1`] = `
 <dora-toptips>
   <dora-animation-group
-    dora-class="dora-toptips"
+    doraClass="dora-toptips"
   />
 </dora-toptips>
 `;

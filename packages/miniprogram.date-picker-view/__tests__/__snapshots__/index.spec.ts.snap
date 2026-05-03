@@ -11,7 +11,7 @@ exports[`DatePickerView mount correctly 1`] = `
         class="dora-class dora-spin dora-spin--default dora-spin--nested"
       >
         <dora-animation-group
-          dora-class="dora-spin__spinning--nested"
+          doraClass="dora-spin__spinning--nested"
         />
         <wx-view
           class="dora-spin__container dora-spin__container--blur"

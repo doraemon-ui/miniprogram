@@ -14,7 +14,7 @@ exports[`InputNumber mount correctly 1`] = `
       bind:touchend="onTouchEnd"
     >
       <dora-icon
-        dora-class="dora-input-number__icon"
+        doraClass="dora-input-number__icon"
       >
         <wx-view
           class="dora-class doraicons doraicons-ios-remove"
@@ -46,7 +46,7 @@ exports[`InputNumber mount correctly 1`] = `
       bind:touchend="onTouchEnd"
     >
       <dora-icon
-        dora-class="dora-input-number__icon"
+        doraClass="dora-input-number__icon"
       >
         <wx-view
           class="dora-class doraicons doraicons-ios-add"

@@ -4,10 +4,10 @@ exports[`TouchView mount correctly 1`] = `
 <dora-touch-view>
   <wx-view
     class="dora-touch-view"
-    hover-class="none"
-    hover-start-time="{{20}}"
-    hover-stay-time="{{70}}"
-    hover-stop-propagation="{{false}}"
+    hoverClass="none"
+    hoverStartTime="{{20}}"
+    hoverStayTime="{{70}}"
+    hoverStopPropagation="{{false}}"
     style="; "
     catch:tap="onClick"
   />

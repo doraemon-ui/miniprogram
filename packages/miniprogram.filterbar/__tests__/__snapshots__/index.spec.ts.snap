@@ -4,7 +4,7 @@ exports[`Filterbar mount correctly 1`] = `
 <dora-filterbar>
   <wx-view
     class="dora-class dora-filterbar"
-    hover-class="dora-hover-class dora-filterbar--hover"
+    hoverClass="dora-hover-class dora-filterbar--hover"
     style=""
     bind:tap="onClick"
   />

@@ -16,7 +16,7 @@ exports[`AnimationGroup should support to trigger event 1`] = `
       class="dora-class dora-class-a dora-class-b dora-class-c dora-animation-group dora-animate--fadeIn-enter-done"
       style=""
       bind:tap="onClick"
-      catch:touchmove="{{ disableScroll ? 'onTouchMove' : '' }}"
+      catch:touchmove=""
       bind:transitionend="onTransitionEnd"
     >
       dora-animation-group

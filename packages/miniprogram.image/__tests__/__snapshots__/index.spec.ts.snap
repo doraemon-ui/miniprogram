@@ -4,7 +4,7 @@ exports[`Image mount correctly 1`] = `
 <dora-image>
   <wx-view
     class="dora-class dora-image"
-    hover-class="dora-hover-class dora-image--hover"
+    hoverClass="dora-hover-class dora-image--hover"
     style=""
     bind:tap="onClick"
   />

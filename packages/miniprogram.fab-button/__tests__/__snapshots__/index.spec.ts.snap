@@ -8,7 +8,7 @@ exports[`FabButton mount correctly 1`] = `
   >
     <wx-view
       class="dora-fab-button__action"
-      hover-class="dora-fab-button--hover"
+      hoverClass="dora-fab-button--hover"
     >
       <wx-image
         class="dora-fab-button__text"

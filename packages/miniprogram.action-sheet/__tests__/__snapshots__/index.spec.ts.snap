@@ -19,7 +19,7 @@ exports[`ActionSheet mount correctly 1`] = `
         bind:click="onMaskClick"
       >
         <dora-animation-group
-          dora-class="dora-backdrop"
+          doraClass="dora-backdrop"
           id="dora-animation-group"
           bind:click="onClick"
           bind:enter="onShow"
@@ -28,7 +28,7 @@ exports[`ActionSheet mount correctly 1`] = `
         />
       </dora-backdrop>
       <dora-animation-group
-        dora-class="dora-popup__body"
+        doraClass="dora-popup__body"
         id="dora-animation-group"
         bind:enter="onShow"
         bind:entered="onShowed"

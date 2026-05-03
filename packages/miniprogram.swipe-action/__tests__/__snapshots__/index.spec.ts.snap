@@ -15,7 +15,7 @@ exports[`SwipeAction mount correctly 1`] = `
       class="dora-swipe__content"
       style=""
       catch:touchend="onTouchEnd"
-      capture-bind:touchmove="onTouchMove"
+      catch:touchmove=""
       bind:touchstart="onTouchStart"
     />
   </wx-view>

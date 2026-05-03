@@ -21,16 +21,10 @@ exports[`Slider mount correctly 1`] = `
         <wx-view
           class="dora-slider__handle dora-slider__handle--last "
           data-index="{{0}}"
-          data-meta="{{undefined}}"
-          data-meta="{{undefined}}"
-          data-meta="{{undefined}}"
-          data-meta="{{undefined}}"
-          data-meta="{{undefined}}"
-          data-meta="{{undefined}}"
-          data-meta="{{undefined}}"
+          data-meta=""
           style="left: 0%; "
           bind:touchend="onTouchEnd"
-          capture-bind:touchmove="onTouchMove"
+          catch:touchmove=""
           bind:touchstart="onTouchStart"
         />
       </wx-view>

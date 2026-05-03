@@ -3,7 +3,7 @@
 exports[`Backdrop mount correctly 1`] = `
 <dora-backdrop>
   <dora-animation-group
-    dora-class="dora-backdrop"
+    doraClass="dora-backdrop"
     id="dora-animation-group"
     bind:click="onClick"
     bind:enter="onShow"

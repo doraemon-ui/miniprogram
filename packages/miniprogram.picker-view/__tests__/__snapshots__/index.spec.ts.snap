@@ -7,13 +7,13 @@ exports[`PickerView mount correctly 1`] = `
       class="dora-class dora-spin dora-spin--default dora-spin--nested"
     >
       <dora-animation-group
-        dora-class="dora-spin__spinning--nested"
+        doraClass="dora-spin__spinning--nested"
       >
         <wx-view
           class="dora-class dora-class-a dora-class-b dora-class-c  dora-animate--fadeIn-exit"
           style=""
           bind:tap="onClick"
-          catch:touchmove="{{ disableScroll ? 'onTouchMove' : '' }}"
+          catch:touchmove=""
           bind:transitionend="onTransitionEnd"
         >
           <wx-view

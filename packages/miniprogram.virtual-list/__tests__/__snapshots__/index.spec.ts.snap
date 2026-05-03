@@ -8,12 +8,12 @@ exports[`VirtualList mount correctly 1`] = `
   >
     <wx-scroll-view
       class="dora-virtual-list__scroll-view"
-      enable-back-to-top="{{false}}"
-      lower-threshold="{{50}}"
-      scroll-top="{{0}}"
-      scroll-with-animation="{{false}}"
-      scroll-y="{{true}}"
-      upper-threshold="{{50}}"
+      enableBackToTop="{{false}}"
+      lowerThreshold="{{50}}"
+      scrollTop="{{0}}"
+      scrollWithAnimation="{{false}}"
+      scrollY="{{true}}"
+      upperThreshold="{{50}}"
       bind:scroll="scrollHandler"
       bind:scrolltolower="onScrollToLower"
       bind:scrolltoupper="onScrollToUpper"

@@ -3,10 +3,10 @@
 exports[`Switch mount correctly 1`] = `
 <dora-switch>
   <wx-view
-    aria-checked="{{false}}"
-    aria-disabled="{{false}}"
-    aria-label="switch"
-    aria-role="switch"
+    ariaChecked="{{false}}"
+    ariaDisabled="{{false}}"
+    ariaLabel="switch"
+    ariaRole="switch"
     class="dora-class dora-switch dora-switch--balanced"
   >
     <wx-view

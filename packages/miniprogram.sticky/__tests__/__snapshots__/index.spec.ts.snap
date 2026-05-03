@@ -4,7 +4,7 @@ exports[`Sticky mount correctly 1`] = `
 <dora-sticky>
   <wx-view
     class="dora-class dora-sticky"
-    hover-class="dora-hover-class dora-sticky--hover"
+    hoverClass="dora-hover-class dora-sticky--hover"
     style=""
     bind:tap="onClick"
   />

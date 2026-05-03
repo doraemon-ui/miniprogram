@@ -4,7 +4,7 @@ exports[`Grid mount correctly 1`] = `
 <dora-grid>
   <wx-view
     class="dora-class dora-grid"
-    hover-class="dora-hover-class dora-grid--hover"
+    hoverClass="dora-hover-class dora-grid--hover"
     style=""
     bind:tap="onClick"
   />

@@ -4,7 +4,7 @@ exports[`Prompt mount correctly 1`] = `
 <dora-prompt>
   <wx-view
     class="dora-class dora-prompt"
-    hover-class="dora-hover-class dora-prompt--hover"
+    hoverClass="dora-hover-class dora-prompt--hover"
     style=""
     bind:tap="onClick"
   />

@@ -5,7 +5,7 @@ exports[`Refresher mount correctly 1`] = `
   <wx-view
     style="transition: transform .4s; transform: translate3d(0px, 0px, 0px) scale(1);"
     bind:touchend="onTouchEnd"
-    capture-bind:touchmove="onTouchMove"
+    catch:touchmove=""
     bind:touchstart="onTouchStart"
   >
     <wx-view

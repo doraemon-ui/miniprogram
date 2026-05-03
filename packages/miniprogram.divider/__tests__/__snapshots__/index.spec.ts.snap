@@ -9,6 +9,8 @@ exports[`Divider mount correctly 1`] = `
       class="dora-divider__text"
     >
       
+    
+    
     </wx-view>
   </wx-view>
 </dora-divider>
