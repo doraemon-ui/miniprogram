@@ -1,9 +1,12 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Grid mount correctly 1`] = `
-<dora-grids>
+<dora-grid>
   <wx-view
-    class="dora-class dora-grids dora-grids--bordered"
+    class="dora-class dora-grid"
+    hover-class="dora-hover-class dora-grid--hover"
+    style=""
+    bind:tap="onClick"
   />
-</dora-grids>
+</dora-grid>
 `;

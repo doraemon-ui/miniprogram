@@ -1,9 +1,9 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Backdrop mount correctly 1`] = `
 <dora-backdrop>
   <dora-animation-group
-    doraClass="dora-backdrop"
+    dora-class="dora-backdrop"
     id="dora-animation-group"
     bind:click="onClick"
     bind:enter="onShow"

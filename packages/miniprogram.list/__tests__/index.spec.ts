@@ -1,5 +1,10 @@
 import path from 'path'
 import simulate from 'miniprogram-simulate'
+import type { RootComponent, Component } from 'miniprogram-simulate'
+
+function getComponentInstance(wrapper: RootComponent<any, any, any> | Component<any, any, any>): any {
+  return wrapper.instance.$component as unknown as any
+}
 
 let listID: string
 let listItemID: string
@@ -77,7 +82,7 @@ describe('List', () => {
     )
     wrapper.attach(document.createElement('parent-wrapper'))
     const list = wrapper.querySelector('#dora-list-item')
-    const $comp = list.instance.$component as any
+    const $comp = getComponentInstance(list)
     const listItem = list.querySelector('.dora-list-item')
 
     listItem.dispatchEvent('tap')
@@ -149,7 +154,7 @@ describe('List', () => {
     )
     wrapper.attach(document.createElement('parent-wrapper'))
     const list = wrapper.querySelector('#dora-list')
-    const $comp = list.instance.$component as any
+    const $comp = getComponentInstance(list)
     const listItem = wrapper.querySelector('#dora-list-item')
     expect(list.querySelectorAll('.dora-list').length).toBe(1)
     expect(list.querySelectorAll('.dora-list__ft').length).toBe(1)

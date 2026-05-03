@@ -10,4 +10,6 @@ import { defineComponentHOC, Doraemon, Component } from '../src'
 })
 class TestComp extends Doraemon {}
 
+export { TestComp }
+
 export default defineComponentHOC()(TestComp)

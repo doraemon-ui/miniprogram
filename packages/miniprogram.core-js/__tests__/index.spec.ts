@@ -1,5 +1,13 @@
 import path from 'path'
 import simulate from 'miniprogram-simulate'
+import type { RootComponent, Component } from 'miniprogram-simulate'
+import type { MyCompInstance } from './types'
+import { Doraemon, Component as ComponentDecorator } from '../src'
+import type { Config } from '../src'
+
+function getComponentInstance(wrapper: RootComponent<any, any, any> | Component<any, any, any>): MyCompInstance {
+  return wrapper.instance.$component as unknown as MyCompInstance
+}
 
 let id: string
 
@@ -11,14 +19,14 @@ describe('CoreJs', () => {
   test('data: should collect from class properties', () => {
     const wrapper = simulate.render(id)
     wrapper.attach(document.createElement('parent-wrapper'))
-    const $comp = wrapper.instance.$component as any
+    const $comp = getComponentInstance(wrapper)
     expect($comp.a).toBe('hello')
   })
 
   test('data: should collect from decorated class properties', () => {
     const wrapper = simulate.render(id)
     wrapper.attach(document.createElement('parent-wrapper'))
-    const $comp = wrapper.instance.$component as any
+    const $comp = getComponentInstance(wrapper)
     expect($comp.field1).toBe('field1')
     expect($comp.field2).toBe('field2')
   })
@@ -26,14 +34,14 @@ describe('CoreJs', () => {
   test('computed', () => {
     const wrapper = simulate.render(id)
     wrapper.attach(document.createElement('parent-wrapper'))
-    const $comp = wrapper.instance.$component as any
+    const $comp = getComponentInstance(wrapper)
     expect($comp.b).toBe(2)
   })
 
   test('methods', async () => {
     const wrapper = simulate.render(id)
     wrapper.attach(document.createElement('parent-wrapper'))
-    const $comp = wrapper.instance.$component as any
+    const $comp = getComponentInstance(wrapper)
     $comp.hello()
     await simulate.sleep(0)
     expect($comp.msg).toBe('hi')
@@ -47,22 +55,22 @@ describe('CoreJs', () => {
   test('class name', () => {
     const wrapper = simulate.render(id)
     wrapper.attach(document.createElement('parent-wrapper'))
-    const $comp = wrapper.instance.$component as any
+    const $comp = getComponentInstance(wrapper)
     expect($comp.$options.name).toBe('MyComp')
   })
 
   test('prop decorator', () => {
     const wrapper = simulate.render(id)
     wrapper.attach(document.createElement('parent-wrapper'))
-    const $comp = wrapper.instance.$component as any
+    const $comp = getComponentInstance(wrapper)
     expect($comp.bar).toBe('3q')
-    expect($comp.$options.props.bar).toEqual({ type: String, default: '3q' })
+    expect(($comp.$options.props as Record<string, unknown>).bar).toEqual({ type: String, default: '3q' })
   })
 
   test('watch decorator', async () => {
     const wrapper = simulate.render(id)
     wrapper.attach(document.createElement('parent-wrapper'))
-    const $comp = wrapper.instance.$component as any
+    const $comp = getComponentInstance(wrapper)
     expect($comp.changed).toBe(false)
     $comp.a = 'hi'
     await simulate.sleep(0)
@@ -98,7 +106,7 @@ describe('CoreJs', () => {
     )
     wrapper.attach(document.createElement('parent-wrapper'))
     const myComp = wrapper.querySelector('#my-comp')
-    const $comp = myComp.instance.$component as any
+    const $comp = getComponentInstance(myComp)
 
     $comp.resetCount()
     await simulate.sleep(0)
@@ -170,5 +178,32 @@ describe('CoreJs', () => {
     const testComp = wrapper.querySelectorAll('.test-comp')
     expect(testComp.length).toBe(1)
     expect(wrapper.toJSON()).toMatchSnapshot()
+  })
+})
+
+describe('CoreJs internals', () => {
+  test('$data getter should return undefined before _renderProxy is set', () => {
+    const vm = new Doraemon()
+    expect(vm.$data).toBeUndefined()
+  })
+
+  test('$props getter should return undefined before _renderProxy is set', () => {
+    const vm = new Doraemon()
+    expect(vm.$props).toBeUndefined()
+  })
+
+  test('Component.registerHooks should add hooks without error', () => {
+    expect(() => {
+      ComponentDecorator.registerHooks(['customHook1', 'customHook2'])
+    }).not.toThrow()
+  })
+
+  test('Doraemon.config setter should warn in dev mode', () => {
+    const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {})
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const config = Doraemon.config
+    Doraemon.config = {} as Config
+    expect(consoleSpy).toHaveBeenCalled()
+    consoleSpy.mockRestore()
   })
 })

@@ -1,9 +1,12 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Prompt mount correctly 1`] = `
 <dora-prompt>
-  <dora-animation-group
-    doraClass="dora-prompt"
+  <wx-view
+    class="dora-class dora-prompt"
+    hover-class="dora-hover-class dora-prompt--hover"
+    style=""
+    bind:tap="onClick"
   />
 </dora-prompt>
 `;

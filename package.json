@@ -68,7 +68,8 @@
     "publish:beta": "lerna publish prerelease --include-merged-tags --allow-branch '**' --pre-dist-tag beta --preid beta --force-git-tag",
     "publish:omega": "lerna publish prerelease --include-merged-tags --allow-branch '**' --pre-dist-tag omega --preid omega --force-git-tag",
     "release": "lerna publish --conventional-commits --conventional-graduate --include-merged-tags --changelog-preset angular",
-    "preinstall": "npx only-allow pnpm"
+    "preinstall": "npx only-allow pnpm",
+    "test": "lerna run test --stream"
   },
   "husky": {
     "hooks": {

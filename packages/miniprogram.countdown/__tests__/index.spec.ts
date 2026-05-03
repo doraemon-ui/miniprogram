@@ -1,4 +1,4 @@
-import Countdown from '../src'
+import Countdown from '../src/countdown'
 
 describe('Countdown', () => {
   beforeEach(() => {

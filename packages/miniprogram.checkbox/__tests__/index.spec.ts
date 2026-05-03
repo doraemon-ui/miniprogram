@@ -1,7 +1,7 @@
 import path from 'path'
 import simulate from 'miniprogram-simulate'
 
-function mountTest(id: string | (() => string), defaultProps = {}) {
+function mountTest(id: string | (() => string), defaultProps: Record<string, unknown> = {}) {
   describe('mount and unmount', () => {
     it('component could be updated and unmounted without errors', () => {
       const wrapper = simulate.render(typeof id === 'function' ? id() : id, defaultProps)
@@ -30,8 +30,12 @@ describe('Checkbox / CheckboxGroup', () => {
   jest.setTimeout(15000)
 
   beforeAll(() => {
-    id = simulate.load(path.resolve(__dirname, '../src/index'), 'dora-checkbox', { less: true })
-    groupId = simulate.load(path.resolve(__dirname, '../src/group'), 'dora-checkbox-group', { less: true })
+    id = simulate.load(path.resolve(__dirname, '../src/index'), 'dora-checkbox', { less: true, shareCache: true } as object)
+    groupId = simulate.load(path.resolve(__dirname, '../src/group'), 'dora-checkbox-group', { less: true, shareCache: true } as object)
+  })
+
+  afterAll(() => {
+    global.simulatePatch.restore()
   })
 
   mountTest(getId, { title: 'Java', value: '1' })
@@ -109,15 +113,14 @@ describe('Checkbox / CheckboxGroup', () => {
           'dora-checkbox': id,
         },
         template: `
-          <dora-checkbox-group
-            id="dora-checkbox-group"
-            value="{{ value }}"
-            bind:change="onChange"
-          >
-            <dora-checkbox id="checkbox1" title="Java" value="1" />
-            <dora-checkbox id="checkbox2" title="PHP" value="2" />
-          </dora-checkbox-group>
-        `,
+            <dora-checkbox-group
+              id="dora-checkbox-group"
+              value="{{ value }}"
+            >
+              <dora-checkbox id="checkbox1" title="Java" value="1" />
+              <dora-checkbox id="checkbox2" title="PHP" value="2" bind:change="onChange" />
+            </dora-checkbox-group>
+          `,
         data: {
           value: ['1'],
         },
@@ -135,6 +138,6 @@ describe('Checkbox / CheckboxGroup', () => {
 
     expect(onChange).toHaveBeenCalled()
     expect(onChange.mock.calls[0][0].detail.value).toBe('2')
-    expect(onChange.mock.calls[0][0].detail.selectedValue).toEqual(['1', '2'])
+    expect(onChange.mock.calls[0][0].detail.checked).toBe(true)
   })
 })

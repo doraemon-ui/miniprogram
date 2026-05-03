@@ -1,27 +1,9 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Toptips mount correctly 1`] = `
 <dora-toptips>
   <dora-animation-group
-    classNames="dora-animate--slideInDown"
-    doraClass="dora-toptips"
-    in="{{false}}"
-  >
-    <wx-view
-      class="dora-toptips__content dora-toptips__content--cancel"
-    >
-      <dora-icon
-        color="#fff"
-        doraClass="dora-toptips__icon"
-        size="21"
-        type="cancel"
-      />
-      <wx-text
-        class="dora-toptips__text"
-      >
-        
-      </wx-text>
-    </wx-view>
-  </dora-animation-group>
+    dora-class="dora-toptips"
+  />
 </dora-toptips>
 `;

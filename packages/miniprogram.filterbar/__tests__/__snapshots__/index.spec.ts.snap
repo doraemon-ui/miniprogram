@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Filterbar mount correctly 1`] = `
+<dora-filterbar>
+  <wx-view
+    class="dora-class dora-filterbar"
+    hover-class="dora-hover-class dora-filterbar--hover"
+    style=""
+    bind:tap="onClick"
+  />
+</dora-filterbar>
+`;

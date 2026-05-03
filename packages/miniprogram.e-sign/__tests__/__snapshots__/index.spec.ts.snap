@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`ESign mount correctly 1`] = `
 <dora-e-sign>
@@ -22,28 +22,28 @@ exports[`ESign mount correctly 1`] = `
       class="dora-e-sign__ft"
     >
       <dora-button
-        doraClass="dora-e-sign__button"
+        dora-class="dora-e-sign__button"
         type="light"
         bind:click="clear"
       >
         <wx-button
-          appParameter=""
+          app-parameter=""
           class="dora-class dora-button dora-color dora-color--positive dora-button--small dora-button--solid"
           disabled="{{false}}"
-          formType=""
-          hoverClass="dora-hover-class dora-button--activated"
-          hoverStartTime="{{20}}"
-          hoverStayTime="{{70}}"
-          hoverStopPropagation="{{false}}"
+          form-type=""
+          hover-class="dora-hover-class dora-button--activated"
+          hover-start-time="{{20}}"
+          hover-stay-time="{{70}}"
+          hover-stop-propagation="{{false}}"
           lang="en"
           loading="{{false}}"
-          openType=""
-          phoneNumberNoQuotaToast="{{true}}"
-          sendMessageImg=""
-          sendMessagePath=""
-          sendMessageTitle=""
-          sessionFrom=""
-          showMessageCard="{{false}}"
+          open-type=""
+          phone-number-no-quota-toast="{{true}}"
+          send-message-img=""
+          send-message-path=""
+          send-message-title=""
+          session-from=""
+          show-message-card="{{false}}"
           bind:agreeprivacyauthorization="onAgreePrivacyAuthorization"
           bind:chooseavatar="onChooseAvatar"
           bind:contact="onContact"
@@ -56,34 +56,32 @@ exports[`ESign mount correctly 1`] = `
           bind:opensetting="onOpenSetting"
           bind:tap="onClick"
         >
-          
-        重置
-      
+          重置
         </wx-button>
       </dora-button>
       <dora-button
-        doraClass="dora-e-sign__button"
+        dora-class="dora-e-sign__button"
         type="balanced"
         bind:click="submit"
       >
         <wx-button
-          appParameter=""
+          app-parameter=""
           class="dora-class dora-button dora-color dora-color--positive dora-button--small dora-button--solid"
           disabled="{{false}}"
-          formType=""
-          hoverClass="dora-hover-class dora-button--activated"
-          hoverStartTime="{{20}}"
-          hoverStayTime="{{70}}"
-          hoverStopPropagation="{{false}}"
+          form-type=""
+          hover-class="dora-hover-class dora-button--activated"
+          hover-start-time="{{20}}"
+          hover-stay-time="{{70}}"
+          hover-stop-propagation="{{false}}"
           lang="en"
           loading="{{false}}"
-          openType=""
-          phoneNumberNoQuotaToast="{{true}}"
-          sendMessageImg=""
-          sendMessagePath=""
-          sendMessageTitle=""
-          sessionFrom=""
-          showMessageCard="{{false}}"
+          open-type=""
+          phone-number-no-quota-toast="{{true}}"
+          send-message-img=""
+          send-message-path=""
+          send-message-title=""
+          session-from=""
+          show-message-card="{{false}}"
           bind:agreeprivacyauthorization="onAgreePrivacyAuthorization"
           bind:chooseavatar="onChooseAvatar"
           bind:contact="onContact"
@@ -96,9 +94,7 @@ exports[`ESign mount correctly 1`] = `
           bind:opensetting="onOpenSetting"
           bind:tap="onClick"
         >
-          
-        确定
-      
+          确定
         </wx-button>
       </dora-button>
     </wx-view>

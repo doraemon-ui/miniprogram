@@ -14,3 +14,5 @@ export type {
   ComponentCustomProperties,
   ComponentInternalInstance,
 } from './init'
+
+export type { Config } from './config'

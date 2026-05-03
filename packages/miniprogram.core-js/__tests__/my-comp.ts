@@ -1,4 +1,7 @@
 import { defineComponentHOC, Doraemon, Component, Prop, Watch, Emit, Event } from '../src'
+import type { CustomEvent } from '../src'
+
+const { classNames, styleToCssString } = Doraemon.util
 
 const valueDecorator =
   (value: any) =>
@@ -34,6 +37,7 @@ const getterDecorator =
       type: Number,
     },
   },
+  expose: ['a', 'b', 'field1', 'field2', 'msg', 'changed', 'count', 'hello', 'resetCount', 'increment', 'decrement', 'promise'],
 })
 class MyComp extends Doraemon {
   foo: number
@@ -44,10 +48,20 @@ class MyComp extends Doraemon {
   })
   bar: string
 
+  @Prop({
+    type: Object,
+    default: null,
+  })
+  wrapStyle: Partial<CSSStyleDeclaration>
+
   a: string = 'hello'
 
   get b() {
     return this.foo + 1
+  }
+
+  get containerStyle() {
+    return this.wrapStyle ? styleToCssString(this.wrapStyle) : ''
   }
 
   @valueDecorator('field1')
@@ -78,7 +92,7 @@ class MyComp extends Doraemon {
 
   @Event()
   @Emit()
-  increment(e) {
+  increment(e: CustomEvent) {
     this.count = e.target.value + 1
   }
 
@@ -105,5 +119,7 @@ class MyComp extends Doraemon {
 
   observer() {}
 }
+
+export { MyComp }
 
 export default defineComponentHOC()(MyComp)

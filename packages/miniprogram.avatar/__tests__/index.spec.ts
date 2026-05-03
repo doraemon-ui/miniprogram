@@ -1,12 +1,18 @@
 import path from 'path'
 import simulate from 'miniprogram-simulate'
+import type { RootComponent, Component } from 'miniprogram-simulate'
+import type { AvatarInstance } from '../src/types'
 import { useRect } from '@doraemon-ui/miniprogram.shared'
+
+function getComponentInstance(wrapper: RootComponent<any, any, any> | Component<any, any, any>): AvatarInstance {
+  return wrapper.instance.$component as unknown as AvatarInstance
+}
 
 jest.mock('@doraemon-ui/miniprogram.shared', () => ({
   useRect: jest.fn(),
 }))
 
-function mountTest(id: string | (() => string), defaultProps = {}) {
+function mountTest(id: string | (() => string), defaultProps: Record<string, unknown> = {}) {
   describe('mount and unmount', () => {
     it('component could be updated and unmounted without errors', () => {
       const wrapper = simulate.render(typeof id === 'function' ? id() : id, defaultProps)
@@ -67,7 +73,7 @@ describe('Avatar', () => {
     const wrapper = simulate.render(compId)
     wrapper.attach(document.createElement('parent-wrapper'))
     const avatar = wrapper.querySelector('#avatar')
-    const $comp = avatar.instance.$component as any
+    const $comp = getComponentInstance(avatar)
 
     expect(avatar.querySelectorAll('.dora-avatar').length).toBe(1)
 
@@ -105,7 +111,7 @@ describe('Avatar', () => {
     const wrapper = simulate.render(compId)
     wrapper.attach(document.createElement('parent-wrapper'))
     const avatar = wrapper.querySelector('#avatar')
-    const $comp = avatar.instance.$component as any
+    const $comp = getComponentInstance(avatar)
     return { wrapper, avatar, $comp }
   }
 

@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`FabButton mount correctly 1`] = `
 <dora-fab-button>
@@ -8,7 +8,7 @@ exports[`FabButton mount correctly 1`] = `
   >
     <wx-view
       class="dora-fab-button__action"
-      hoverClass="dora-fab-button--hover"
+      hover-class="dora-fab-button--hover"
     >
       <wx-image
         class="dora-fab-button__text"

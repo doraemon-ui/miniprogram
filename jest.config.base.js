@@ -7,14 +7,12 @@ module.exports = {
     url: 'https://jest.test',
   },
   moduleFileExtensions: ['js', 'ts', 'tsx'],
-  transformIgnorePatterns: [
-    '/node_modules/(?!.*(@doraemon-ui|miniprogram-simulate))',
-  ],
+  transformIgnorePatterns: ['/node_modules/(?!.*(@doraemon-ui|miniprogram-simulate))'],
   transform: {
     '.+\\.jsx?$': [
       'babel-jest',
       {
-        'rootMode': 'upward',
+        rootMode: 'upward',
       },
     ],
     '.+\\.tsx?$': 'ts-jest',
@@ -25,13 +23,6 @@ module.exports = {
   ],
   // coverageProvider: 'v8',
   coverageDirectory: '<rootDir>/.coverage-report',
-  collectCoverageFrom: [
-    'src/**/*.{js,jsx,ts,tsx}',
-    '!index.js',
-    '!**/node_modules/**',
-    '!**/*.d.ts',
-  ],
-  snapshotSerializers: [
-    '<rootDir>/../../node_modules/miniprogram-simulate/jest-snapshot-plugin',
-  ],
+  collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}', '!index.js', '!**/node_modules/**', '!**/*.d.ts', '!src/**/types.ts'],
+  snapshotSerializers: ['<rootDir>/../../node_modules/miniprogram-simulate/jest-snapshot-plugin'],
 }

@@ -1,9 +1,12 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Gallery mount correctly 1`] = `
 <dora-gallery>
-  <dora-animation-group
-    doraClass="dora-gallery"
+  <wx-view
+    class="dora-class dora-gallery"
+    hover-class="dora-hover-class dora-gallery--hover"
+    style=""
+    bind:tap="onClick"
   />
 </dora-gallery>
 `;

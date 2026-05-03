@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Slider mount correctly 1`] = `
 <dora-slider>
@@ -21,10 +21,16 @@ exports[`Slider mount correctly 1`] = `
         <wx-view
           class="dora-slider__handle dora-slider__handle--last "
           data-index="{{0}}"
-          data-meta=""
+          data-meta="{{undefined}}"
+          data-meta="{{undefined}}"
+          data-meta="{{undefined}}"
+          data-meta="{{undefined}}"
+          data-meta="{{undefined}}"
+          data-meta="{{undefined}}"
+          data-meta="{{undefined}}"
           style="left: 0%; "
           bind:touchend="onTouchEnd"
-          catch:touchmove=""
+          capture-bind:touchmove="onTouchMove"
           bind:touchstart="onTouchStart"
         />
       </wx-view>

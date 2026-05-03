@@ -1,12 +1,12 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Switch mount correctly 1`] = `
 <dora-switch>
   <wx-view
-    ariaChecked="{{false}}"
-    ariaDisabled="{{false}}"
-    ariaLabel="switch"
-    ariaRole="switch"
+    aria-checked="{{false}}"
+    aria-disabled="{{false}}"
+    aria-label="switch"
+    aria-role="switch"
     class="dora-class dora-switch dora-switch--balanced"
   >
     <wx-view

@@ -1,7 +1,13 @@
 import path from 'path'
 import simulate from 'miniprogram-simulate'
+import type { RootComponent, Component } from 'miniprogram-simulate'
+import type { ActionSheetInstance } from '../src/types'
 
-function mountTest(id: string | (() => string), defaultProps = {}) {
+function getComponentInstance(wrapper: RootComponent<any, any, any> | Component<any, any, any>): ActionSheetInstance {
+  return wrapper.instance.$component as unknown as ActionSheetInstance
+}
+
+function mountTest(id: string | (() => string), defaultProps: Record<string, unknown> = {}) {
   describe('mount and unmount', () => {
     it('component could be updated and unmounted without errors', () => {
       const wrapper = simulate.render(typeof id === 'function' ? id() : id, defaultProps)
@@ -79,7 +85,7 @@ describe('ActionSheet', () => {
     const wrapper = simulate.render(compId)
     wrapper.attach(document.createElement('parent-wrapper'))
     const actionSheet = wrapper.querySelector('#action-sheet')
-    const $comp = actionSheet.instance.$component as any
+    const $comp = getComponentInstance(actionSheet)
     return { wrapper, actionSheet, $comp }
   }
 

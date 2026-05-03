@@ -1,7 +1,7 @@
 import path from 'path'
 import simulate from 'miniprogram-simulate'
 
-function mountTest(id: string | (() => string), defaultProps = {}) {
+function mountTest(id: string | (() => string), defaultProps: Record<string, unknown> = {}) {
   describe('mount and unmount', () => {
     it('component could be updated and unmounted without errors', () => {
       const wrapper = simulate.render(typeof id === 'function' ? id() : id, defaultProps)
@@ -14,11 +14,11 @@ function mountTest(id: string | (() => string), defaultProps = {}) {
   })
 }
 
-let radioId: string
+let id: string
 let groupId: string
 
 function getRadioId() {
-  return radioId
+  return id
 }
 
 function getGroupId() {
@@ -29,15 +29,19 @@ describe('Radio / RadioGroup', () => {
   jest.setTimeout(15000)
 
   beforeAll(() => {
-    radioId = simulate.load(path.resolve(__dirname, '../src/index'), 'dora-radio', { less: true })
-    groupId = simulate.load(path.resolve(__dirname, '../src/group'), 'dora-radio-group', { less: true })
+    id = simulate.load(path.resolve(__dirname, '../src/index'), 'dora-radio', { less: true, shareCache: true } as object)
+    groupId = simulate.load(path.resolve(__dirname, '../src/group'), 'dora-radio-group', { less: true, shareCache: true } as object)
+  })
+
+  afterAll(() => {
+    global.simulatePatch.restore()
   })
 
   mountTest(getRadioId, { title: 'Java', value: '1' })
   mountTest(getGroupId, { value: '1', options: [{ title: 'Java', value: '1' }] })
 
   test('radio should sync checked prop to inputChecked', async () => {
-    const wrapper = simulate.render(radioId, { title: 'Java', value: '1', checked: false })
+    const wrapper = simulate.render(id, { title: 'Java', value: '1', checked: false })
     wrapper.attach(document.createElement('parent-wrapper'))
     expect(wrapper.data.inputChecked).toBe(false)
     wrapper.setData({ checked: true })
@@ -50,7 +54,7 @@ describe('Radio / RadioGroup', () => {
     const wrapper = simulate.render(
       simulate.load({
         usingComponents: {
-          'dora-radio': radioId,
+          'dora-radio': id,
         },
         template: `
           <dora-radio
@@ -100,7 +104,7 @@ describe('Radio / RadioGroup', () => {
       simulate.load({
         usingComponents: {
           'dora-radio-group': groupId,
-          'dora-radio': radioId,
+          'dora-radio': id,
         },
         template: `
           <dora-radio-group

@@ -1,7 +1,13 @@
 import path from 'path'
 import simulate from 'miniprogram-simulate'
+import type { RootComponent, Component } from 'miniprogram-simulate'
+import type { PaginationInstance } from '../src/types'
 
-function mountTest(id: string | (() => string), defaultProps = {}) {
+function getComponentInstance(wrapper: RootComponent<any, any, any> | Component<any, any, any>): PaginationInstance {
+  return wrapper.instance.$component as unknown as PaginationInstance
+}
+
+function mountTest(id: string | (() => string), defaultProps: Record<string, unknown> = {}) {
   describe('mount and unmount', () => {
     it('component could be updated and unmounted without errors', () => {
       const wrapper = simulate.render(typeof id === 'function' ? id() : id, defaultProps)
@@ -46,7 +52,7 @@ describe('Pagination', () => {
   test('should support to change simple', () => {
     const wrapper = simulate.render(id, { simple: true })
     wrapper.attach(document.createElement('parent-wrapper'))
-    const $comp = wrapper.instance.$component as any
+    const $comp = getComponentInstance(wrapper)
     expect($comp.simple).toBe(true)
     $comp.simple = false
     expect($comp.simple).toBe(false)
@@ -84,19 +90,19 @@ describe('Pagination', () => {
     )
     wrapper.attach(document.createElement('parent-wrapper'))
     const pagination = wrapper.querySelector('#dora-pagination')
-    const $comp = pagination.instance.$component as any
+    const $comp = getComponentInstance(pagination)
     const prevButton = pagination.querySelector('.dora-pagination__prev >>> .dora-button')
     const nextButton = pagination.querySelector('.dora-pagination__next >>> .dora-button')
 
     expect($comp.activeIndex).toBe(3)
     expect(pagination.querySelectorAll('.dora-pagination__number').length).toBe(1)
 
-    prevButton.dispatchEvent('tap')
+    prevButton.dispatchEvent('click')
     await simulate.sleep(0)
     expect(onPrev).toHaveBeenCalled()
     expect($comp.activeIndex).toBe(2)
 
-    nextButton.dispatchEvent('tap')
+    nextButton.dispatchEvent('click')
     await simulate.sleep(0)
     expect(onNext).toHaveBeenCalled()
     expect($comp.activeIndex).toBe(3)

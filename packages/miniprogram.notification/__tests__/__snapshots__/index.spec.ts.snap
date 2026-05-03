@@ -1,10 +1,12 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Notification mount correctly 1`] = `
 <dora-notification>
-  <dora-animation-group
-    doraClass="dora-notification"
-    bind:click="onClick"
+  <wx-view
+    class="dora-class dora-notification"
+    hover-class="dora-hover-class dora-notification--hover"
+    style=""
+    bind:tap="onClick"
   />
 </dora-notification>
 `;

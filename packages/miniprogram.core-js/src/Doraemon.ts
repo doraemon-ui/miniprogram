@@ -11,6 +11,7 @@ export {
   type ComponentPublicInstance,
   type ComponentCustomProperties,
   type ComponentInternalInstance,
+  type Config,
 } from './instance'
 
 export { defineComponentHOC, toNative } from './miniprogram/defineComponentHOC'

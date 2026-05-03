@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`SwipeAction mount correctly 1`] = `
 <dora-swipe-action>
@@ -15,7 +15,7 @@ exports[`SwipeAction mount correctly 1`] = `
       class="dora-swipe__content"
       style=""
       catch:touchend="onTouchEnd"
-      catch:touchmove=""
+      capture-bind:touchmove="onTouchMove"
       bind:touchstart="onTouchStart"
     />
   </wx-view>

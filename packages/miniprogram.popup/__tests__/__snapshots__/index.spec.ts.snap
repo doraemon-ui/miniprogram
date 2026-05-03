@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Popup mount correctly 1`] = `
 <dora-popup>
@@ -10,21 +10,21 @@ exports[`Popup mount correctly 1`] = `
     bind:touchstart="onTouchStart"
   >
     <dora-backdrop
-      disableScroll="{{true}}"
       id="dora-backdrop"
-      transparent="{{false}}"
-      wrapStyle="{{null}}"
-      zIndex="{{null}}"
       bind:click="onMaskClick"
-    />
+    >
+      <dora-animation-group
+        dora-class="dora-backdrop"
+        id="dora-animation-group"
+        bind:click="onClick"
+        bind:enter="onShow"
+        bind:entered="onShowed"
+        bind:exited="onClosed"
+      />
+    </dora-backdrop>
     <dora-animation-group
-      classNames="dora-animate--fadeIn"
-      doraClass="dora-popup__body"
+      dora-class="dora-popup__body"
       id="dora-animation-group"
-      in="{{false}}"
-      mountOnEnter="{{true}}"
-      unmountOnExit="{{true}}"
-      wrapStyle="{{Object {}}}"
       bind:enter="onShow"
       bind:entered="onShowed"
       bind:exited="onClosed"

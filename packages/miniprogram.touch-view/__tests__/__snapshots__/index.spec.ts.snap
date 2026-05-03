@@ -1,13 +1,13 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`TouchView mount correctly 1`] = `
 <dora-touch-view>
   <wx-view
     class="dora-touch-view"
-    hoverClass="none"
-    hoverStartTime="{{20}}"
-    hoverStayTime="{{70}}"
-    hoverStopPropagation="{{false}}"
+    hover-class="none"
+    hover-start-time="{{20}}"
+    hover-stay-time="{{70}}"
+    hover-stop-propagation="{{false}}"
     style="; "
     catch:tap="onClick"
   />

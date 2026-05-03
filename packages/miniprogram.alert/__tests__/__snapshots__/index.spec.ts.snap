@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Alert mount correctly 1`] = `
 <dora-alert>
@@ -6,9 +6,8 @@ exports[`Alert mount correctly 1`] = `
     <wx-view
       class="dora-class dora-class-a dora-class-b dora-class-c  "
       style=""
-      bind:animationend=""
       bind:tap="onClick"
-      catch:touchmove=""
+      catch:touchmove="{{ disableScroll ? 'onTouchMove' : '' }}"
       bind:transitionend="onTransitionEnd"
     >
       <wx-view

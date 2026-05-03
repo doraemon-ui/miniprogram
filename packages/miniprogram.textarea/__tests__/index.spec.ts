@@ -2,7 +2,7 @@ import path from 'path'
 import simulate from 'miniprogram-simulate'
 import * as shared from '@doraemon-ui/miniprogram.shared'
 
-function mountTest(id: string | (() => string), defaultProps = {}) {
+function mountTest(id: string | (() => string), defaultProps: Record<string, unknown> = {}) {
   describe('mount and unmount', () => {
     it('component could be updated and unmounted without errors', () => {
       const wrapper = simulate.render(typeof id === 'function' ? id() : id, defaultProps)

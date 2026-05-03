@@ -1,11 +1,24 @@
-<view
-  class="dora-class dora-class-a dora-class-b dora-class-c {{ wrapCls }} {{ animateCss }}"
-  bindtap="onClick"
-  catchtouchmove="{{ disableScroll ? 'onTouchMove' : '' }}"
-  bindtransitionend="{{ type === 'transition' ? 'onTransitionEnd' : '' }}"
-  bindanimationend="{{ type === 'animation' ? 'onAnimationEnd' : '' }}"
-  style="{{ containerStyle }}"
-  wx:if="{{ show }}"
->
-  <slot></slot>
-</view>
+<block wx:if="{{ type === 'transition' }}">
+  <view
+    class="dora-class dora-class-a dora-class-b dora-class-c {{ wrapCls }} {{ animateCss }}"
+    bindtap="onClick"
+    catchtouchmove="{{ disableScroll ? 'onTouchMove' : '' }}"
+    bindtransitionend="onTransitionEnd"
+    style="{{ containerStyle }}"
+    wx:if="{{ show }}"
+  >
+    <slot></slot>
+  </view>
+</block>
+<block wx:elif="{{ type === 'animation' }}">
+  <view
+    class="dora-class dora-class-a dora-class-b dora-class-c {{ wrapCls }} {{ animateCss }}"
+    bindtap="onClick"
+    catchtouchmove="{{ disableScroll ? 'onTouchMove' : '' }}"
+    bindanimationend="onAnimationEnd"
+    style="{{ containerStyle }}"
+    wx:if="{{ show }}"
+  >
+    <slot></slot>
+  </view>
+</block>

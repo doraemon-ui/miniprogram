@@ -1,7 +1,13 @@
 import path from 'path'
 import simulate from 'miniprogram-simulate'
+import type { RootComponent, Component } from 'miniprogram-simulate'
+import type { ButtonInstance } from '../src/types'
 
-function mountTest(id: string | (() => string), defaultProps = {}) {
+function getComponentInstance(wrapper: RootComponent<any, any, any> | Component<any, any, any>): ButtonInstance {
+  return wrapper.instance.$component as unknown as ButtonInstance
+}
+
+function mountTest(id: string | (() => string), defaultProps: Record<string, unknown> = {}) {
   describe('mount and unmount', () => {
     it('component could be updated and unmounted without errors', () => {
       const wrapper = simulate.render(typeof id === 'function' ? id() : id, defaultProps)
@@ -55,27 +61,31 @@ describe('Button', () => {
   test('should support to change loading', () => {
     const wrapper = simulate.render(id, { loading: true })
     wrapper.attach(document.createElement('parent-wrapper'))
-    const $comp = wrapper.instance.$component as any
-    expect($comp.loading).toBe(true)
-    $comp.loading = false
-    expect($comp.loading).toBe(false)
+    const $comp = getComponentInstance(wrapper)
+    expect($comp.$props.loading).toBe(true)
+    wrapper.setData({ loading: false })
+    expect($comp.$props.loading).toBe(false)
   })
 
   test('should support to change strong', () => {
     const wrapper = simulate.render(id, { strong: true })
     wrapper.attach(document.createElement('parent-wrapper'))
-    const $comp = wrapper.instance.$component as any
+    const $comp = getComponentInstance(wrapper)
+    expect($comp.$props.strong).toBe(true)
     expect(wrapper.querySelectorAll('.dora-button--strong').length).toBe(1)
-    $comp.strong = false
+    wrapper.setData({ strong: false })
+    expect($comp.$props.strong).toBe(false)
     expect(wrapper.querySelectorAll('.dora-button--strong').length).toBe(0)
   })
 
   test('should support to change disabled', () => {
     const wrapper = simulate.render(id, { disabled: true })
     wrapper.attach(document.createElement('parent-wrapper'))
-    const $comp = wrapper.instance.$component as any
+    const $comp = getComponentInstance(wrapper)
+    expect($comp.$props.disabled).toBe(true)
     expect(wrapper.querySelectorAll('.dora-button--disabled').length).toBe(1)
-    $comp.disabled = false
+    wrapper.setData({ disabled: false })
+    expect($comp.$props.disabled).toBe(false)
     expect(wrapper.querySelectorAll('.dora-button--disabled').length).toBe(0)
   })
 
@@ -123,7 +133,7 @@ describe('Button', () => {
     )
     wrapper.attach(document.createElement('parent-wrapper'))
     const button = wrapper.querySelector('#dora-button')
-    const $comp = button.instance.$component as any
+    const $comp = getComponentInstance(button)
     const nativeButton = button.querySelector('.dora-button')
 
     nativeButton.dispatchEvent('tap')
@@ -146,7 +156,7 @@ describe('Button', () => {
     nativeButton.dispatchEvent('opensetting')
     await simulate.sleep(0)
     expect($comp.$props.openType).toBe('openSetting')
-    expect(onGetPhoneNumber).toHaveBeenCalled()
+    expect(onOpenSetting).toHaveBeenCalled()
 
     wrapper.setData({ openType: 'contact' })
     nativeButton.dispatchEvent('contact')

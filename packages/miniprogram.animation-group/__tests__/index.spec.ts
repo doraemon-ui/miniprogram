@@ -1,7 +1,13 @@
 import path from 'path'
 import simulate from 'miniprogram-simulate'
+import type { RootComponent, Component } from 'miniprogram-simulate'
+import type { AnimationGroupInstance } from '../src/types'
 
-function mountTest(id: string | (() => string), defaultProps = {}) {
+function getComponentInstance(wrapper: RootComponent<any, any, any> | Component<any, any, any>): AnimationGroupInstance {
+  return wrapper.instance.$component as unknown as AnimationGroupInstance
+}
+
+function mountTest(id: string | (() => string), defaultProps: Record<string, unknown> = {}) {
   describe('mount and unmount', () => {
     it('component could be updated and unmounted without errors', () => {
       const wrapper = simulate.render(typeof id === 'function' ? id() : id, defaultProps)
@@ -80,7 +86,7 @@ describe('AnimationGroup', () => {
     )
     wrapper.attach(document.createElement('parent-wrapper'))
     const animationGroup = wrapper.querySelector('#dora-animation-group')
-    const $comp = animationGroup.instance.$component as any
+    const $comp = getComponentInstance(animationGroup)
 
     wrapper.setData({ in: true })
     await simulate.sleep(1000 / 60)
@@ -144,7 +150,7 @@ describe('AnimationGroup', () => {
     )
     wrapper.attach(document.createElement('parent-wrapper'))
     const animationGroup = wrapper.querySelector('#dora-animation-group')
-    const $comp = animationGroup.instance.$component as any
+    const $comp = getComponentInstance(animationGroup)
 
     wrapper.setData({ in: true })
     await simulate.sleep(1000 / 60)

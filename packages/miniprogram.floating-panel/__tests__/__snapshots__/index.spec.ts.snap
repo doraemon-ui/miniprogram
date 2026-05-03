@@ -1,24 +1,12 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`FloatingPanel mount correctly 1`] = `
 <dora-floating-panel>
   <wx-view
     class="dora-class dora-floating-panel"
-    style="height: 800px;  transform: translate3d(0, calc(100% + -800px), 0);  transition: none;  "
-  >
-    <wx-view
-      class="dora-floating-panel__hd"
-      catch:touchend="onTouchEnd"
-      catch:touchmove="onTouchMove"
-      catch:touchstart="onTouchStart"
-    >
-      <wx-view
-        class="dora-floating-panel__bar"
-      />
-    </wx-view>
-    <wx-view
-      class="dora-floating-panel__bd"
-    />
-  </wx-view>
+    hover-class="dora-hover-class dora-floating-panel--hover"
+    style=""
+    bind:tap="onClick"
+  />
 </dora-floating-panel>
 `;

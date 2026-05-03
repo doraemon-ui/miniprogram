@@ -1,8 +1,8 @@
 {
   "component": true,
   "usingComponents": {
-    "dora-animation-group": "../../animation-group/src/index",
-    "dora-backdrop": "../../backdrop/src/index",
-    "dora-safe-area": "../../safe-area/src/index"
+    "dora-animation-group": "../../miniprogram.animation-group/src/index",
+    "dora-backdrop": "../../miniprogram.backdrop/src/index",
+    "dora-safe-area": "../../miniprogram.safe-area/src/index"
   }
 }

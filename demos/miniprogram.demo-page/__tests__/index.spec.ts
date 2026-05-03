@@ -1,7 +1,13 @@
 import path from 'path'
 import simulate from 'miniprogram-simulate'
+import type { RootComponent, Component } from 'miniprogram-simulate'
+import type { DemoPageInstance } from '../src/types'
 
-function mountTest(id: string | (() => string), defaultProps = {}) {
+function getComponentInstance(wrapper: RootComponent<any, any, any> | Component<any, any, any>): DemoPageInstance {
+  return wrapper.instance.$component as unknown as DemoPageInstance
+}
+
+function mountTest(id: string | (() => string), defaultProps: Record<string, unknown> = {}) {
   describe('mount and unmount', () => {
     it('component could be updated and unmounted without errors', () => {
       const wrapper = simulate.render(typeof id === 'function' ? id() : id, defaultProps)
@@ -52,7 +58,7 @@ describe('DemoPage', () => {
     )
     wrapper.attach(document.createElement('parent-wrapper'))
     const myComp = wrapper.querySelector('#my-comp')
-    const $comp = myComp.instance.$component as any
+    const $comp = getComponentInstance(myComp)
     await simulate.sleep(0)
     expect($comp.isAuto).toBe(false)
     myComp.setData({ darkmode: 'auto' })

@@ -1,7 +1,13 @@
 import path from 'path'
 import simulate from 'miniprogram-simulate'
+import type { RootComponent, Component } from 'miniprogram-simulate'
+import type { AlertInstance } from '../src/types'
 
-function mountTest(id: string | (() => string), defaultProps = {}) {
+function getComponentInstance(wrapper: RootComponent<any, any, any> | Component<any, any, any>): AlertInstance {
+  return wrapper.instance.$component as unknown as AlertInstance
+}
+
+function mountTest(id: string | (() => string), defaultProps: Record<string, unknown> = {}) {
   describe('mount and unmount', () => {
     it('component could be updated and unmounted without errors', () => {
       const wrapper = simulate.render(typeof id === 'function' ? id() : id, defaultProps)
@@ -89,7 +95,7 @@ describe('Alert', () => {
     )
     wrapper.attach(document.createElement('parent-wrapper'))
     const alert = wrapper.querySelector('#dora-alert')
-    const $comp = alert.instance.$component as any
+    const $comp = getComponentInstance(alert)
     expect($comp.visible).toBe(true)
     const close = alert.querySelector('.dora-alert__closable')
     close.dispatchEvent('tap')

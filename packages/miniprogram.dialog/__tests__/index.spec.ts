@@ -1,7 +1,13 @@
 import path from 'path'
 import simulate from 'miniprogram-simulate'
+import type { RootComponent, Component } from 'miniprogram-simulate'
+import type { DialogInstance } from '../src/types'
 
-function mountTest(id: string | (() => string), defaultProps = {}) {
+function getComponentInstance(wrapper: RootComponent<any, any, any> | Component<any, any, any>): DialogInstance {
+  return wrapper.instance.$component as unknown as DialogInstance
+}
+
+function mountTest(id: string | (() => string), defaultProps: Record<string, unknown> = {}) {
   describe('mount and unmount', () => {
     it('component could be updated and unmounted without errors', () => {
       const wrapper = simulate.render(typeof id === 'function' ? id() : id, defaultProps)
@@ -43,7 +49,7 @@ describe('Dialog', () => {
   test('should support to change visible', () => {
     const wrapper = simulate.render(id, { visible: false })
     wrapper.attach(document.createElement('parent-wrapper'))
-    const $comp = wrapper.instance.$component as any
+    const $comp = getComponentInstance(wrapper)
     expect($comp.visible).toBe(false)
     $comp.visible = true
     expect($comp.visible).toBe(true)
@@ -52,7 +58,7 @@ describe('Dialog', () => {
   test('should support to change zIndex', () => {
     const wrapper = simulate.render(id, { zIndex: 9999 })
     wrapper.attach(document.createElement('parent-wrapper'))
-    const $comp = wrapper.instance.$component as any
+    const $comp = getComponentInstance(wrapper)
     expect($comp.zIndex).toBe(9999)
   })
 
@@ -86,7 +92,7 @@ describe('Dialog', () => {
     )
     wrapper.attach(document.createElement('parent-wrapper'))
     const dialog = wrapper.querySelector('#dora-dialog')
-    const $comp = dialog.instance.$component as any
+    const $comp = getComponentInstance(dialog)
     const popup = dialog.querySelector('#dora-popup')
     const backdrop = popup.querySelector('#dora-backdrop')
     const animationGroup = popup.querySelector('#dora-animation-group')
@@ -144,7 +150,7 @@ describe('Dialog', () => {
     )
     wrapper.attach(document.createElement('parent-wrapper'))
     const dialog = wrapper.querySelector('#dora-dialog')
-    const $comp = dialog.instance.$component as any
+    const $comp = getComponentInstance(dialog)
     const popup = dialog.querySelector('#dora-popup')
     const animationGroup = popup.querySelector('#dora-animation-group')
 

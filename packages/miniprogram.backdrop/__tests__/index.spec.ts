@@ -1,7 +1,13 @@
 import path from 'path'
 import simulate from 'miniprogram-simulate'
+import type { RootComponent, Component } from 'miniprogram-simulate'
+import type { BackdropInstance } from '../src/types'
 
-function mountTest(id: string | (() => string), defaultProps = {}) {
+function getComponentInstance(wrapper: RootComponent<any, any, any> | Component<any, any, any>): BackdropInstance {
+  return wrapper.instance.$component as unknown as BackdropInstance
+}
+
+function mountTest(id: string | (() => string), defaultProps: Record<string, unknown> = {}) {
   describe('mount and unmount', () => {
     it('component could be updated and unmounted without errors', () => {
       const wrapper = simulate.render(typeof id === 'function' ? id() : id, defaultProps)
@@ -43,7 +49,7 @@ describe('Backdrop', () => {
   test('should support to change transparent', () => {
     const wrapper = simulate.render(id, { transparent: true })
     wrapper.attach(document.createElement('parent-wrapper'))
-    const $comp = wrapper.instance.$component as any
+    const $comp = getComponentInstance(wrapper)
     expect($comp.transparent).toBe(true)
     $comp.transparent = false
     expect($comp.transparent).toBe(false)
@@ -52,7 +58,7 @@ describe('Backdrop', () => {
   test('should support to change disableScroll', () => {
     const wrapper = simulate.render(id, { disableScroll: false })
     wrapper.attach(document.createElement('parent-wrapper'))
-    const $comp = wrapper.instance.$component as any
+    const $comp = getComponentInstance(wrapper)
     expect($comp.disableScroll).toBe(false)
     $comp.disableScroll = true
     expect($comp.disableScroll).toBe(true)
@@ -61,7 +67,7 @@ describe('Backdrop', () => {
   test('should support to change visible', () => {
     const wrapper = simulate.render(id, { visible: false })
     wrapper.attach(document.createElement('parent-wrapper'))
-    const $comp = wrapper.instance.$component as any
+    const $comp = getComponentInstance(wrapper)
     expect($comp.visible).toBe(false)
     $comp.visible = true
     expect($comp.visible).toBe(true)
@@ -70,7 +76,7 @@ describe('Backdrop', () => {
   test('should support to change zIndex', () => {
     const wrapper = simulate.render(id, { zIndex: 9999 })
     wrapper.attach(document.createElement('parent-wrapper'))
-    const $comp = wrapper.instance.$component as any
+    const $comp = getComponentInstance(wrapper)
     expect($comp.zIndex).toBe(9999)
   })
 
@@ -112,7 +118,7 @@ describe('Backdrop', () => {
     )
     wrapper.attach(document.createElement('parent-wrapper'))
     const backdrop = wrapper.querySelector('#dora-backdrop')
-    const $comp = backdrop.instance.$component as any
+    const $comp = getComponentInstance(backdrop)
     const animationGroup = backdrop.querySelector('#dora-animation-group')
 
     wrapper.setData({ visible: true })

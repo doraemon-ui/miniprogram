@@ -95,6 +95,71 @@
 // // 运行主函数
 // main()
 
+// // #!/usr/bin/env node
+
+// const fs = require('fs')
+// const path = require('path')
+
+// // 当前工作目录
+// const currentDir = process.cwd()
+// console.log('当前工作目录:', currentDir)
+
+// // packages 路径
+// const basePath = path.join(currentDir, 'packages')
+// console.log('扫描路径:', basePath)
+
+// function main() {
+//   console.log('开始扫描 packages 目录...')
+
+//   if (!fs.existsSync(basePath)) {
+//     console.error(`错误：${basePath} 目录不存在！`)
+//     process.exit(1)
+//   }
+
+//   const items = fs.readdirSync(basePath)
+
+//   // 找到所有 miniprogram.xx 目录
+//   const targetDirs = items.filter((item) => {
+//     const fullPath = path.join(basePath, item)
+//     return item.startsWith('miniprogram.') && fs.statSync(fullPath).isDirectory()
+//   })
+
+//   if (targetDirs.length === 0) {
+//     console.log('没有找到符合条件的 miniprogram.xx 目录')
+//     return
+//   }
+
+//   console.log(`找到 ${targetDirs.length} 个组件目录`)
+
+//   let deletedCount = 0
+
+//   targetDirs.forEach((dirName) => {
+//     const typesPath = path.join(basePath, dirName, 'src', 'types.ts')
+
+//     console.log(`\n检查: ${dirName}`)
+
+//     if (fs.existsSync(typesPath)) {
+//       try {
+//         fs.unlinkSync(typesPath)
+//         console.log(`✅ 已删除: ${dirName}/src/types.ts`)
+//         deletedCount++
+//       } catch (error) {
+//         console.error(`❌ 删除失败 ${dirName}: ${error.message}`)
+//       }
+//     } else {
+//       console.log(`⏭️  跳过: ${dirName} (没有 types.ts)`)
+//     }
+//   })
+
+//   console.log(`\n📊 统计：扫描 ${targetDirs.length} 个组件，删除 ${deletedCount} 个 types.ts`)
+
+//   if (deletedCount > 0) {
+//     console.log('\n✨ 清理完成！')
+//   }
+// }
+
+// main()
+
 // #!/usr/bin/env node
 
 const fs = require('fs')
@@ -134,24 +199,25 @@ function main() {
   let deletedCount = 0
 
   targetDirs.forEach((dirName) => {
-    const typesPath = path.join(basePath, dirName, 'src', 'types.ts')
+    const snapshotPath = path.join(basePath, dirName, '__tests__', '__snapshots__')
 
     console.log(`\n检查: ${dirName}`)
 
-    if (fs.existsSync(typesPath)) {
+    if (fs.existsSync(snapshotPath)) {
       try {
-        fs.unlinkSync(typesPath)
-        console.log(`✅ 已删除: ${dirName}/src/types.ts`)
+        // 删除 __snapshots__ 文件夹
+        fs.rmSync(snapshotPath, { recursive: true, force: true })
+        console.log(`✅ 已删除: ${dirName}/__tests__/__snapshots__`)
         deletedCount++
       } catch (error) {
-        console.error(`❌ 删除失败 ${dirName}: ${error.message}`)
+        console.error(`❌ 删除失败 ${dirName}/__tests__/__snapshots__: ${error.message}`)
       }
     } else {
-      console.log(`⏭️  跳过: ${dirName} (没有 types.ts)`)
+      console.log(`⏭️  跳过: ${dirName} (没有 __tests__/__snapshots__)`)
     }
   })
 
-  console.log(`\n📊 统计：扫描 ${targetDirs.length} 个组件，删除 ${deletedCount} 个 types.ts`)
+  console.log(`\n📊 统计：扫描 ${targetDirs.length} 个组件，删除 ${deletedCount} 个 __snapshots__ 文件夹`)
 
   if (deletedCount > 0) {
     console.log('\n✨ 清理完成！')

@@ -69,6 +69,7 @@ const darkmodeSync = (darkmode: SysThemeType) => {
       default: Doraemon.config.darkmode,
     },
   },
+  expose: ['isAuto', 'isManual', 'onIconClick'],
 })
 class DemoPage extends Doraemon {
   /**
@@ -198,5 +199,7 @@ class DemoPage extends Doraemon {
     this.onDarkmodeChange(this.darkmode as DarkMode)
   }
 }
+
+export { DemoPage }
 
 export default defineComponentHOC()(DemoPage)

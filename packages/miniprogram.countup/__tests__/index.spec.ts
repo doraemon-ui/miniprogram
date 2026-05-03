@@ -1,4 +1,4 @@
-import CountUp from '../src'
+import CountUp from '../src/countup'
 
 describe('CountUp', () => {
   beforeEach(() => {

@@ -1,11 +1,11 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Refresher mount correctly 1`] = `
 <dora-refresher>
   <wx-view
     style="transition: transform .4s; transform: translate3d(0px, 0px, 0px) scale(1);"
     bind:touchend="onTouchEnd"
-    catch:touchmove=""
+    capture-bind:touchmove="onTouchMove"
     bind:touchstart="onTouchStart"
   >
     <wx-view

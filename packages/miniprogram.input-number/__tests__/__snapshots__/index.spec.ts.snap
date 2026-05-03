@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`InputNumber mount correctly 1`] = `
 <dora-input-number>
@@ -14,7 +14,7 @@ exports[`InputNumber mount correctly 1`] = `
       bind:touchend="onTouchEnd"
     >
       <dora-icon
-        doraClass="dora-input-number__icon"
+        dora-class="dora-input-number__icon"
       >
         <wx-view
           class="dora-class doraicons doraicons-ios-remove"
@@ -46,7 +46,7 @@ exports[`InputNumber mount correctly 1`] = `
       bind:touchend="onTouchEnd"
     >
       <dora-icon
-        doraClass="dora-input-number__icon"
+        dora-class="dora-input-number__icon"
       >
         <wx-view
           class="dora-class doraicons doraicons-ios-add"

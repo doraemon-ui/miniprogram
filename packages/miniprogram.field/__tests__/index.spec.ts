@@ -5,7 +5,7 @@ jest.mock('@doraemon-ui/miniprogram.shared', () => ({
   useRect: jest.fn(() => Promise.resolve({ top: 10, left: 10, width: 100, height: 30 })),
 }))
 
-function mountTest(id: string | (() => string), defaultProps = {}) {
+function mountTest(id: string | (() => string), defaultProps: Record<string, unknown> = {}) {
   describe('mount and unmount', () => {
     it('component could be updated and unmounted without errors', () => {
       const wrapper = simulate.render(typeof id === 'function' ? id() : id, defaultProps)

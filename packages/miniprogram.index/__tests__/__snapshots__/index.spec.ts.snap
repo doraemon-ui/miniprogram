@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Index mount correctly 1`] = `
 <dora-index>
@@ -7,8 +7,8 @@ exports[`Index mount correctly 1`] = `
     style="height: 300px;  "
   >
     <wx-scroll-view
-      scrollTop="{{0}}"
-      scrollY="{{true}}"
+      scroll-top="{{0}}"
+      scroll-y="{{true}}"
       style="height: 300px;  "
       bind:scroll="onScroll"
     />

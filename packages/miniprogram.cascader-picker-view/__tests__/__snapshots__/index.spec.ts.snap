@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`CascaderPickerView mount correctly 1`] = `
 <dora-cascader-picker-view>
@@ -11,14 +11,13 @@ exports[`CascaderPickerView mount correctly 1`] = `
         class="dora-class dora-spin dora-spin--default dora-spin--nested"
       >
         <dora-animation-group
-          doraClass="dora-spin__spinning--nested"
+          dora-class="dora-spin__spinning--nested"
         >
           <wx-view
             class="dora-class dora-class-a dora-class-b dora-class-c  dora-animate--fadeIn-exit"
             style=""
-            bind:animationend=""
             bind:tap="onClick"
-            catch:touchmove=""
+            catch:touchmove="{{ disableScroll ? 'onTouchMove' : '' }}"
             bind:transitionend="onTransitionEnd"
           >
             <wx-view
@@ -57,7 +56,7 @@ exports[`CascaderPickerView mount correctly 1`] = `
           <wx-view
             class="dora-class dora-picker"
             data-picker-value="{{
-              Array [
+              [
                 "a",
                 "a1",
               ]
@@ -75,7 +74,7 @@ exports[`CascaderPickerView mount correctly 1`] = `
                   class="dora-class dora-spin dora-spin--default dora-spin--nested"
                 >
                   <dora-animation-group
-                    doraClass="dora-spin__spinning--nested"
+                    dora-class="dora-spin__spinning--nested"
                   />
                   <wx-view
                     class="dora-spin__container dora-spin__container--blur"
@@ -85,7 +84,13 @@ exports[`CascaderPickerView mount correctly 1`] = `
                       data-picker-col-label="label"
                       data-picker-col-value="value"
                       data-picker-value=""
-                      style=""
+                      style="{{undefined}}"
+                      style="{{undefined}}"
+                      style="{{undefined}}"
+                      style="{{undefined}}"
+                      style="{{undefined}}"
+                      style="{{undefined}}"
+                      style="{{undefined}}"
                       bind:touchcancel="onTouchEnd"
                       bind:touchend="onTouchEnd"
                       catch:touchmove="onTouchMove"
@@ -120,7 +125,7 @@ exports[`CascaderPickerView mount correctly 1`] = `
                   class="dora-class dora-spin dora-spin--default dora-spin--nested"
                 >
                   <dora-animation-group
-                    doraClass="dora-spin__spinning--nested"
+                    dora-class="dora-spin__spinning--nested"
                   />
                   <wx-view
                     class="dora-spin__container dora-spin__container--blur"
@@ -130,7 +135,11 @@ exports[`CascaderPickerView mount correctly 1`] = `
                       data-picker-col-label="label"
                       data-picker-col-value="value"
                       data-picker-value=""
-                      style=""
+                      style="{{undefined}}"
+                      style="{{undefined}}"
+                      style="{{undefined}}"
+                      style="{{undefined}}"
+                      style="{{undefined}}"
                       bind:touchcancel="onTouchEnd"
                       bind:touchend="onTouchEnd"
                       catch:touchmove="onTouchMove"

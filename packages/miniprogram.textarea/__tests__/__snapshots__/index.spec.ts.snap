@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Textarea mount correctly 1`] = `
 <dora-textarea>
@@ -9,25 +9,25 @@ exports[`Textarea mount correctly 1`] = `
       class="dora-textarea__control"
     >
       <wx-textarea
-        adjustPosition="{{true}}"
-        autoHeight="{{false}}"
+        adjust-position="{{true}}"
+        auto-height="{{false}}"
         class="dora-textarea__item"
-        confirmHold="{{false}}"
-        confirmType="return"
+        confirm-hold="{{false}}"
+        confirm-type="return"
         cursor="{{-1}}"
-        cursorSpacing="{{11}}"
+        cursor-spacing="{{11}}"
+        disable-default-padding="{{false}}"
         disabled="{{false}}"
-        disableDefaultPadding="{{false}}"
         fixed="{{false}}"
         focus="{{false}}"
-        holdKeyboard="{{false}}"
+        hold-keyboard="{{false}}"
         maxlength="{{140}}"
         placeholder=""
-        placeholderClass="textarea-placeholder"
-        placeholderStyle="; "
-        selectionEnd="{{-1}}"
-        selectionStart="{{-1}}"
-        showConfirmBar="{{true}}"
+        placeholder-class="textarea-placeholder"
+        placeholder-style="; "
+        selection-end="{{-1}}"
+        selection-start="{{-1}}"
+        show-confirm-bar="{{true}}"
         style=""
         value=""
         bind:blur="onBlur"

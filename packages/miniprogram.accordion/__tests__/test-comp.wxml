@@ -7,6 +7,7 @@
   bind:change="onChange"
 >
   <dora-accordion-panel
+    id="panel-1"
     key="key1"
     thumb="http://cdn.skyvow.cn/logo.png"
     title="Accordion 1"
@@ -20,6 +21,14 @@
     thumb="http://cdn.skyvow.cn/logo.png"
     title="Accordion 2"
     content="微信小程序自定义组件"
+    disabled="{{ false }}"
+    showArrow
+  />
+  <dora-accordion-panel
+    id="panel-3"
+    key="key3"
+    title="Accordion 3"
+    content="Content 3"
     disabled="{{ false }}"
     showArrow
   />

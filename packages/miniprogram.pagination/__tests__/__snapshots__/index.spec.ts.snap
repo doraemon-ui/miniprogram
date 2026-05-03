@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Pagination mount correctly 1`] = `
 <dora-pagination>
@@ -9,28 +9,28 @@ exports[`Pagination mount correctly 1`] = `
       class="dora-pagination__prev"
     >
       <dora-button
-        doraClass="dora-pagination__button"
+        dora-class="dora-pagination__button"
         type="light"
         bind:click="onPrev"
       >
         <wx-button
-          appParameter=""
+          app-parameter=""
           class="dora-class dora-button dora-color dora-color--positive dora-button--solid dora-button--disabled"
           disabled="{{true}}"
-          formType=""
-          hoverClass="dora-hover-class none"
-          hoverStartTime="{{20}}"
-          hoverStayTime="{{70}}"
-          hoverStopPropagation="{{false}}"
+          form-type=""
+          hover-class="dora-hover-class none"
+          hover-start-time="{{20}}"
+          hover-stay-time="{{70}}"
+          hover-stop-propagation="{{false}}"
           lang="en"
           loading="{{false}}"
-          openType=""
-          phoneNumberNoQuotaToast="{{true}}"
-          sendMessageImg=""
-          sendMessagePath=""
-          sendMessageTitle=""
-          sessionFrom=""
-          showMessageCard="{{false}}"
+          open-type=""
+          phone-number-no-quota-toast="{{true}}"
+          send-message-img=""
+          send-message-path=""
+          send-message-title=""
+          session-from=""
+          show-message-card="{{false}}"
           bind:agreeprivacyauthorization="onAgreePrivacyAuthorization"
           bind:chooseavatar="onChooseAvatar"
           bind:contact="onContact"
@@ -54,34 +54,33 @@ exports[`Pagination mount correctly 1`] = `
         1
       </wx-view>
       /0
-  
     </wx-view>
     <wx-view
       class="dora-pagination__next"
     >
       <dora-button
-        doraClass="dora-pagination__button"
+        dora-class="dora-pagination__button"
         type="light"
         bind:click="onNext"
       >
         <wx-button
-          appParameter=""
+          app-parameter=""
           class="dora-class dora-button dora-color dora-color--positive dora-button--solid dora-button--disabled"
           disabled="{{true}}"
-          formType=""
-          hoverClass="dora-hover-class none"
-          hoverStartTime="{{20}}"
-          hoverStayTime="{{70}}"
-          hoverStopPropagation="{{false}}"
+          form-type=""
+          hover-class="dora-hover-class none"
+          hover-start-time="{{20}}"
+          hover-stay-time="{{70}}"
+          hover-stop-propagation="{{false}}"
           lang="en"
           loading="{{false}}"
-          openType=""
-          phoneNumberNoQuotaToast="{{true}}"
-          sendMessageImg=""
-          sendMessagePath=""
-          sendMessageTitle=""
-          sessionFrom=""
-          showMessageCard="{{false}}"
+          open-type=""
+          phone-number-no-quota-toast="{{true}}"
+          send-message-img=""
+          send-message-path=""
+          send-message-title=""
+          session-from=""
+          show-message-card="{{false}}"
           bind:agreeprivacyauthorization="onAgreePrivacyAuthorization"
           bind:chooseavatar="onChooseAvatar"
           bind:contact="onContact"
