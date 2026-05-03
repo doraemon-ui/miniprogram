@@ -1,67 +1,20 @@
 /**
  * @doraemon-ui/miniprogram.pagination.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-02-22, 01:43:40.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
+ * Built on 2026-05-04, 00:42:23.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+
+import { Doraemon, Prop, Watch, Emit, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
+
+function _ts_decorate(decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    else for(var i = decorators.length - 1; i >= 0; i--)if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-import { defineComponentHOC, Doraemon, Component, Prop, Watch, Emit } from '@doraemon-ui/miniprogram.core-js';
+}
 const { classNames } = Doraemon.util;
 let Pagination = class Pagination extends Doraemon {
-    /**
-     * 自定义类名前缀
-     *
-     * @type {string}
-     * @memberof Pagination
-     */
-    prefixCls;
-    /**
-     * 形态
-     *
-     * @type {('button' | 'number' | 'pointer')}
-     * @memberof Pagination
-     */
-    mode;
-    /**
-     * 默认页号
-     *
-     * @type {number}
-     * @memberof Pagination
-     */
-    defaultCurrent;
-    /**
-     * 当前页号
-     *
-     * @type {number}
-     * @memberof Pagination
-     */
-    current;
-    /**
-     * 是否受控
-     *
-     * @type {boolean}
-     * @memberof Pagination
-     */
-    controlled;
-    /**
-     * 总页数
-     *
-     * @type {number}
-     * @memberof Pagination
-     */
-    total;
-    /**
-     * 是否隐藏数值
-     *
-     * @type {boolean}
-     * @memberof Pagination
-     */
-    simple;
     get classes() {
         const { prefixCls } = this;
         const wrap = classNames(prefixCls);
@@ -80,10 +33,9 @@ let Pagination = class Pagination extends Doraemon {
             active,
             pointer,
             dot,
-            next,
+            next
         };
     }
-    activeIndex = 1;
     watchCurrent(newVal) {
         if (this.controlled) {
             this.updated(newVal);
@@ -100,21 +52,21 @@ let Pagination = class Pagination extends Doraemon {
         }
         return {
             current,
-            type,
+            type
         };
     }
     onPrev() {
         const current = this.activeIndex - 1;
         this.onChange(current, 'prev');
         return {
-            current,
+            current
         };
     }
     onNext() {
         const current = this.activeIndex + 1;
         this.onChange(current, 'next');
         return {
-            current,
+            current
         };
     }
     mounted() {
@@ -122,63 +74,69 @@ let Pagination = class Pagination extends Doraemon {
         const activeIndex = controlled ? current : defaultCurrent;
         this.updated(activeIndex);
     }
+    constructor(...args){
+        super(...args);
+        this.activeIndex = 1;
+    }
 };
-__decorate([
+_ts_decorate([
     Prop({
         type: String,
-        default: 'button',
+        default: 'button'
     })
 ], Pagination.prototype, "mode", void 0);
-__decorate([
+_ts_decorate([
     Prop({
         type: Number,
-        default: 1,
+        default: 1
     })
 ], Pagination.prototype, "defaultCurrent", void 0);
-__decorate([
+_ts_decorate([
     Prop({
         type: Number,
-        default: 1,
+        default: 1
     })
 ], Pagination.prototype, "current", void 0);
-__decorate([
+_ts_decorate([
     Prop({
         type: Boolean,
-        default: false,
+        default: false
     })
 ], Pagination.prototype, "controlled", void 0);
-__decorate([
+_ts_decorate([
     Prop({
         type: Number,
-        default: 0,
+        default: 0
     })
 ], Pagination.prototype, "total", void 0);
-__decorate([
+_ts_decorate([
     Prop({
         type: Boolean,
-        default: false,
+        default: false
     })
 ], Pagination.prototype, "simple", void 0);
-__decorate([
+_ts_decorate([
     Watch('current')
 ], Pagination.prototype, "watchCurrent", null);
-__decorate([
+_ts_decorate([
     Emit('change')
 ], Pagination.prototype, "onChange", null);
-__decorate([
+_ts_decorate([
     Emit('prev')
 ], Pagination.prototype, "onPrev", null);
-__decorate([
+_ts_decorate([
     Emit('next')
 ], Pagination.prototype, "onNext", null);
-Pagination = __decorate([
+Pagination = _ts_decorate([
     Component({
         props: {
             prefixCls: {
                 type: String,
-                default: 'dora-pagination',
-            },
-        },
+                default: 'dora-pagination'
+            }
+        }
     })
 ], Pagination);
-export default defineComponentHOC()(Pagination);
+var index = defineComponentHOC()(Pagination);
+
+export { Pagination, index as default };

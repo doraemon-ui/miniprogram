@@ -1,66 +1,19 @@
 /**
  * @doraemon-ui/miniprogram.accordion.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-03-07, 15:47:52.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
+ * Built on 2026-05-04, 00:37:56.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+
+import { Prop, Watch, Emit, Component, defineComponentHOC, Doraemon } from '@doraemon-ui/miniprogram.core-js';
+
+function _ts_decorate(decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    else for(var i = decorators.length - 1; i >= 0; i--)if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-import { defineComponentHOC, Doraemon, Component, Emit, Watch, Prop } from '@doraemon-ui/miniprogram.core-js';
+}
 let Accordion = class Accordion extends Doraemon {
-    /**
-     * 自定义类名前缀
-     *
-     * @type {string}
-     * @memberof Accordion
-     */
-    prefixCls;
-    /**
-     * 默认激活 tab 面板的 key，当 `controlled` 为 `false` 时才生效
-     *
-     * @type {string[]}
-     * @memberof Accordion
-     */
-    defaultCurrent;
-    /**
-     * 用于手动激活 tab 面板的 key，当 `controlled` 为 `true` 时才生效
-     *
-     * @type {string[]}
-     * @memberof Accordion
-     */
-    current;
-    /**
-     * 是否受控
-     *
-     * @type {boolean}
-     * @memberof Accordion
-     */
-    controlled;
-    /**
-     * 是否手风琴模式
-     *
-     * @type {boolean}
-     * @memberof Accordion
-     */
-    accordion;
-    /**
-     * 标题
-     *
-     * @type {string}
-     * @memberof Accordion
-     */
-    title;
-    /**
-     * 描述
-     *
-     * @type {string}
-     * @memberof Accordion
-     */
-    label;
     get classes() {
         const { prefixCls } = this;
         const wrap = prefixCls;
@@ -71,11 +24,9 @@ let Accordion = class Accordion extends Doraemon {
             wrap,
             hd,
             bd,
-            ft,
+            ft
         };
     }
-    activeKey = [];
-    keys = [];
     watchCurrent(newVal) {
         if (this.controlled) {
             this.updated(newVal);
@@ -90,14 +41,14 @@ let Accordion = class Accordion extends Doraemon {
     updateCurrentAndIndex(activeKey) {
         const elements = this.$children;
         if (elements.length > 0) {
-            elements.forEach((element, index) => {
+            elements.forEach((element, index)=>{
                 const key = element.key || String(index);
                 const current = this.accordion ? activeKey[0] === key : activeKey.indexOf(key) !== -1;
                 element.updateCurrentAndIndex(current, key);
             });
         }
         if (this.keys.length !== elements.length) {
-            this.keys = elements.map((element) => element.$data);
+            this.keys = elements.map((element)=>element.$data);
         }
     }
     setActiveKey(activeKey) {
@@ -106,16 +57,22 @@ let Accordion = class Accordion extends Doraemon {
         }
         return {
             key: this.accordion ? activeKey[0] : activeKey,
-            keys: this.keys,
+            keys: this.keys
         };
     }
     onClickItem(key) {
-        let activeKey = [...this.activeKey];
+        let activeKey = [
+            ...this.activeKey
+        ];
         if (this.accordion) {
-            activeKey = activeKey[0] === key ? [] : [key];
-        }
-        else {
-            activeKey = activeKey.indexOf(key) !== -1 ? activeKey.filter((n) => n !== key) : [...activeKey, key];
+            activeKey = activeKey[0] === key ? [] : [
+                key
+            ];
+        } else {
+            activeKey = activeKey.indexOf(key) !== -1 ? activeKey.filter((n)=>n !== key) : [
+                ...activeKey,
+                key
+            ];
         }
         this.setActiveKey(activeKey);
     }
@@ -124,65 +81,73 @@ let Accordion = class Accordion extends Doraemon {
         const activeKey = controlled ? current : defaultCurrent;
         this.updated(activeKey);
     }
+    constructor(...args){
+        super(...args);
+        this.activeKey = [];
+        this.keys = [];
+    }
 };
-__decorate([
+_ts_decorate([
     Prop({
         type: Array,
-        default: [],
+        default: []
     })
 ], Accordion.prototype, "defaultCurrent", void 0);
-__decorate([
+_ts_decorate([
     Prop({
         type: Array,
-        default: [],
+        default: []
     })
 ], Accordion.prototype, "current", void 0);
-__decorate([
+_ts_decorate([
     Prop({
         type: Boolean,
-        default: false,
+        default: false
     })
 ], Accordion.prototype, "controlled", void 0);
-__decorate([
+_ts_decorate([
     Prop({
         type: Boolean,
-        default: false,
+        default: false
     })
 ], Accordion.prototype, "accordion", void 0);
-__decorate([
+_ts_decorate([
     Prop({
         type: String,
-        default: '',
+        default: ''
     })
 ], Accordion.prototype, "title", void 0);
-__decorate([
+_ts_decorate([
     Prop({
         type: String,
-        default: '',
+        default: ''
     })
 ], Accordion.prototype, "label", void 0);
-__decorate([
+_ts_decorate([
     Watch('current')
 ], Accordion.prototype, "watchCurrent", null);
-__decorate([
+_ts_decorate([
     Emit('change')
 ], Accordion.prototype, "setActiveKey", null);
-Accordion = __decorate([
+Accordion = _ts_decorate([
     Component({
         components: {
-            Panel: () => ({
-                module: './panel',
-                type: 'child',
-                observer: 'updated',
-            }),
+            Panel: ()=>({
+                    module: './panel',
+                    type: 'child',
+                    observer: 'updated'
+                })
         },
         props: {
             prefixCls: {
                 type: String,
-                default: 'dora-accordion',
-            },
-        },
+                default: 'dora-accordion'
+            }
+        }
     })
 ], Accordion);
-export { Accordion };
-export default defineComponentHOC({ multipleSlots: false })(Accordion);
+var index = defineComponentHOC({
+    multipleSlots: false
+})(Accordion);
+
+export { Accordion, index as default };

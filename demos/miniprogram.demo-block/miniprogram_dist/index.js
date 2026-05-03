@@ -1,42 +1,31 @@
 /**
  * @doraemon-ui/miniprogram.demo-block.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-02-22, 01:41:01.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
+ * Built on 2026-05-04, 00:37:53.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+
+import { Doraemon, Prop, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
+
+function _ts_decorate(decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    else for(var i = decorators.length - 1; i >= 0; i--)if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-import { defineComponentHOC, Doraemon, Component, Prop } from '@doraemon-ui/miniprogram.core-js';
+}
 const { classNames, styleToCssString } = Doraemon.util;
 let DemoBlock = class DemoBlock extends Doraemon {
-    /**
-     * 自定义类名前缀
-     *
-     * @type {string}
-     * @memberof DemoBlock
-     */
-    prefixCls;
-    title;
-    bordered;
-    padding;
-    background;
-    direction;
-    align;
     get classes() {
         const { prefixCls, bordered } = this;
         const wrap = prefixCls;
         const hd = `${prefixCls}__hd`;
         const bd = classNames(`${prefixCls}__bd`, {
-            [`${prefixCls}__bd--bordered`]: bordered,
+            [`${prefixCls}__bd--bordered`]: bordered
         });
         return {
             wrap,
             hd,
-            bd,
+            bd
         };
     }
     get bodyStyle() {
@@ -57,50 +46,52 @@ let DemoBlock = class DemoBlock extends Doraemon {
         return styleToCssString(bodyStyle);
     }
 };
-__decorate([
+_ts_decorate([
     Prop({
         type: String,
-        default: '',
+        default: ''
     })
 ], DemoBlock.prototype, "title", void 0);
-__decorate([
+_ts_decorate([
     Prop({
         type: Boolean,
-        default: false,
+        default: false
     })
 ], DemoBlock.prototype, "bordered", void 0);
-__decorate([
+_ts_decorate([
     Prop({
         type: String,
-        default: '',
+        default: ''
     })
 ], DemoBlock.prototype, "padding", void 0);
-__decorate([
+_ts_decorate([
     Prop({
         type: String,
-        default: '',
+        default: ''
     })
 ], DemoBlock.prototype, "background", void 0);
-__decorate([
+_ts_decorate([
     Prop({
         type: String,
-        default: '',
+        default: ''
     })
 ], DemoBlock.prototype, "direction", void 0);
-__decorate([
+_ts_decorate([
     Prop({
         type: String,
-        default: '',
+        default: ''
     })
 ], DemoBlock.prototype, "align", void 0);
-DemoBlock = __decorate([
+DemoBlock = _ts_decorate([
     Component({
         props: {
             prefixCls: {
                 type: String,
-                default: 'dora-demo-block',
-            },
-        },
+                default: 'dora-demo-block'
+            }
+        }
     })
 ], DemoBlock);
-export default defineComponentHOC()(DemoBlock);
+var index = defineComponentHOC()(DemoBlock);
+
+export { index as default };

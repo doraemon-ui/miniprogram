@@ -1,28 +1,25 @@
 @import '../../@doraemon-ui/style/var.wxss';
-
 @import '../../@doraemon-ui/style/color.wxss';
-
 .dora-demo-block__hd {
-  padding: 32rpx 32rpx 16rpx;
-  font-size: 28rpx;
-  color: rgba(0,0,0,.65);
-  color: rgba(var(--dora-text-color-rgb),.65);
+  padding: 16px 16px 8px;
+  font-size: 14px;
+  color: rgba(0,0,0,0.65);
+  color: rgba(var(--dora-text-color-rgb),0.65);
   width: 100%;
-  box-sizing: border-box
+  box-sizing: border-box;
 }
+
 .dora-demo-block__bd {
   position: relative;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -ms-flex-align: start;
   align-items: flex-start;
   background-color: #fafafa;
   background-color: var(--dora-background-color);
-  padding: 24rpx;
-  box-sizing: border-box
+  padding: 12px;
+  box-sizing: border-box;
 }
+
 .dora-demo-block__bd--bordered.dora-demo-block__bd::after {
   content: " ";
   position: absolute;
@@ -30,26 +27,26 @@
   left: 0;
   width: 200%;
   height: 200%;
-  transform: scale(.5);
+  transform: scale(0.5);
   transform-origin: 0 0;
   pointer-events: none;
   box-sizing: border-box;
-  border: 0 solid var(--dora-border-color,var(--dora-color-step-10,#e6e6e6));
-  border: 0 solid var(--dora-border-color,var(--dora-color-step-10,#e6e6e6));
-  border-top-width: var(--dora-border-width,1PX);
-  border-top-width: var(--dora-border-width,1PX);
-  border-bottom-width: var(--dora-border-width,1PX);
-  border-bottom-width: var(--dora-border-width,1PX)
+  border: 0 solid var(--dora-border-color, var(--dora-color-step-10, #e6e6e6));
+  border: 0 solid var(--dora-border-color, var(--dora-color-step-10, #e6e6e6));
+  border-top-width: var(--dora-border-width, 1px);
+  border-top-width: var(--dora-border-width, 1px);
+  border-bottom-width: var(--dora-border-width, 1px);
+  border-bottom-width: var(--dora-border-width, 1px);
 }
-.dora-demo-block__bd .dora-demo-block__button,
-.dora-demo-block__bd > button {
+
+.dora-demo-block__bd .dora-demo-block__button,.dora-demo-block__bd>button {
   padding: 0;
   margin: 0;
   border-radius: 0;
   color: inherit!important;
-  background: 0 0!important;
+  background: transparent!important;
   font-size: inherit;
-  font-weight: 400;
+  font-weight: normal;
   line-height: inherit;
   text-align: inherit;
   text-decoration: none;
@@ -58,24 +55,24 @@
   width: auto!important;
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
-  background-color: var(--dora-white,#fff)!important;
-  background-color: var(--dora-white,#fff)!important;
-  color: var(--dora-black,#000)!important;
-  color: var(--dora-black,#000)!important;
-  min-width: calc((24rpx * 1.5 * 3) + (24rpx * 1.5 * 3) + 32rpx * 3);
-  min-height: 96rpx!important;
-  line-height: 96rpx;
-  border-radius: var(--dora-border-radius,16rpx);
-  border-radius: var(--dora-border-radius,16rpx);
-  font-size: 32rpx;
-  padding-left: 24rpx;
-  padding-right: 24rpx;
-  margin-bottom: 24rpx;
+  background-color: var(--dora-white, #fff)!important;
+  background-color: var(--dora-white, #fff)!important;
+  color: var(--dora-black, #000)!important;
+  color: var(--dora-black, #000)!important;
+  min-width: calc((12px*1.5*3) + (12px*1.5*3) + 16px*3);
+  min-height: 48px!important;
+  line-height: 48px;
+  border-radius: var(--dora-border-radius, 8px);
+  border-radius: var(--dora-border-radius, 8px);
+  font-size: 16px;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-bottom: 12px;
   text-align: center;
-  text-overflow: ellipsis
+  text-overflow: ellipsis;
 }
-.dora-demo-block__bd .dora-demo-block__button::after,
-.dora-demo-block__bd > button::after {
+
+.dora-demo-block__bd .dora-demo-block__button::after,.dora-demo-block__bd>button::after {
   display: block;
   position: static;
   top: auto;
@@ -85,9 +82,9 @@
   border: none;
   border-radius: 0;
   transform: none;
-  transform-origin: 0 0
+  transform-origin: 0 0;
 }
-.dora-demo-block__bd .dora-demo-block__button:last-child,
-.dora-demo-block__bd > button:last-child {
-  margin-bottom: 0
+
+.dora-demo-block__bd .dora-demo-block__button:last-child,.dora-demo-block__bd>button:last-child {
+  margin-bottom: 0;
 }

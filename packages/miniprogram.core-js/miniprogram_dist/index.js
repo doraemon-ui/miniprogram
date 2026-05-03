@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.core-js.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-02-22, 01:40:35.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
+ * Built on 2026-05-04, 00:37:35.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 
 const LIFECYCLE_HOOKS = ['beforeCreate', 'created', 'mounted', 'destroyed', 'unmounted', 'errorCaptured'];
@@ -63,6 +63,10 @@ function nextTick(fn) {
     }
 }
 
+function getDefaultExportFromCjs (x) {
+	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
+}
+
 var classnames = {exports: {}};
 
 /*!
@@ -71,232 +75,266 @@ var classnames = {exports: {}};
 	http://jedwatson.github.io/classnames
 */
 
-(function (module) {
-/* global define */
+var hasRequiredClassnames;
 
-(function () {
+function requireClassnames () {
+	if (hasRequiredClassnames) return classnames.exports;
+	hasRequiredClassnames = 1;
+	(function (module) {
+		/* global define */
 
-	var hasOwn = {}.hasOwnProperty;
+		(function () {
 
-	function classNames () {
-		var classes = '';
+			var hasOwn = {}.hasOwnProperty;
 
-		for (var i = 0; i < arguments.length; i++) {
-			var arg = arguments[i];
-			if (arg) {
-				classes = appendClass(classes, parseValue(arg));
+			function classNames () {
+				var classes = '';
+
+				for (var i = 0; i < arguments.length; i++) {
+					var arg = arguments[i];
+					if (arg) {
+						classes = appendClass(classes, parseValue(arg));
+					}
+				}
+
+				return classes;
 			}
-		}
 
-		return classes;
-	}
+			function parseValue (arg) {
+				if (typeof arg === 'string' || typeof arg === 'number') {
+					return arg;
+				}
 
-	function parseValue (arg) {
-		if (typeof arg === 'string' || typeof arg === 'number') {
-			return arg;
-		}
+				if (typeof arg !== 'object') {
+					return '';
+				}
 
-		if (typeof arg !== 'object') {
-			return '';
-		}
+				if (Array.isArray(arg)) {
+					return classNames.apply(null, arg);
+				}
 
-		if (Array.isArray(arg)) {
-			return classNames.apply(null, arg);
-		}
+				if (arg.toString !== Object.prototype.toString && !arg.toString.toString().includes('[native code]')) {
+					return arg.toString();
+				}
 
-		if (arg.toString !== Object.prototype.toString && !arg.toString.toString().includes('[native code]')) {
-			return arg.toString();
-		}
+				var classes = '';
 
-		var classes = '';
+				for (var key in arg) {
+					if (hasOwn.call(arg, key) && arg[key]) {
+						classes = appendClass(classes, key);
+					}
+				}
 
-		for (var key in arg) {
-			if (hasOwn.call(arg, key) && arg[key]) {
-				classes = appendClass(classes, key);
+				return classes;
 			}
-		}
 
-		return classes;
-	}
+			function appendClass (value, newClass) {
+				if (!newClass) {
+					return value;
+				}
+			
+				if (value) {
+					return value + ' ' + newClass;
+				}
+			
+				return value + newClass;
+			}
 
-	function appendClass (value, newClass) {
-		if (!newClass) {
-			return value;
-		}
-	
-		if (value) {
-			return value + ' ' + newClass;
-		}
-	
-		return value + newClass;
-	}
-
-	if (module.exports) {
-		classNames.default = classNames;
-		module.exports = classNames;
-	} else {
-		window.classNames = classNames;
-	}
-}());
-}(classnames));
-
-var classNames = classnames.exports;
-
-/**
- * CSS properties which accept numbers but are not in units of "px".
- */
-var isUnitlessNumber$1 = {
-  boxFlex: true,
-  boxFlexGroup: true,
-  columnCount: true,
-  flex: true,
-  flexGrow: true,
-  flexPositive: true,
-  flexShrink: true,
-  flexNegative: true,
-  fontWeight: true,
-  lineClamp: true,
-  lineHeight: true,
-  opacity: true,
-  order: true,
-  orphans: true,
-  widows: true,
-  zIndex: true,
-  zoom: true,
-
-  // SVG-related properties
-  fillOpacity: true,
-  strokeDashoffset: true,
-  strokeOpacity: true,
-  strokeWidth: true
-};
-
-/**
- * @param {string} prefix vendor-specific prefix, eg: Webkit
- * @param {string} key style name, eg: transitionDuration
- * @return {string} style name prefixed with `prefix`, properly camelCased, eg:
- * WebkitTransitionDuration
- */
-function prefixKey(prefix, key) {
-  return prefix + key.charAt(0).toUpperCase() + key.substring(1);
+			if (module.exports) {
+				classNames.default = classNames;
+				module.exports = classNames;
+			} else {
+				window.classNames = classNames;
+			}
+		}()); 
+	} (classnames));
+	return classnames.exports;
 }
 
-/**
- * Support style names that may come passed in prefixed by adding permutations
- * of vendor prefixes.
- */
-var prefixes = ['Webkit', 'ms', 'Moz', 'O'];
+var classnamesExports = requireClassnames();
+var classNames = /*@__PURE__*/getDefaultExportFromCjs(classnamesExports);
 
-// Using Object.keys here, or else the vanilla for-in loop makes IE8 go into an
-// infinite loop, because it iterates over the newly added props too.
-Object.keys(isUnitlessNumber$1).forEach(function(prop) {
-  prefixes.forEach(function(prefix) {
-    isUnitlessNumber$1[prefixKey(prefix, prop)] = isUnitlessNumber$1[prop];
-  });
-});
+var CSSProperty_1;
+var hasRequiredCSSProperty;
 
-/**
- * Most style properties can be unset by doing .style[prop] = '' but IE8
- * doesn't like doing that with shorthand properties so for the properties that
- * IE8 breaks on, which are listed here, we instead unset each of the
- * individual properties. See http://bugs.jquery.com/ticket/12385.
- * The 4-value 'clock' properties like margin, padding, border-width seem to
- * behave without any problems. Curiously, list-style works too without any
- * special prodding.
- */
-var shorthandPropertyExpansions = {
-  background: {
-    backgroundImage: true,
-    backgroundPosition: true,
-    backgroundRepeat: true,
-    backgroundColor: true
-  },
-  border: {
-    borderWidth: true,
-    borderStyle: true,
-    borderColor: true
-  },
-  borderBottom: {
-    borderBottomWidth: true,
-    borderBottomStyle: true,
-    borderBottomColor: true
-  },
-  borderLeft: {
-    borderLeftWidth: true,
-    borderLeftStyle: true,
-    borderLeftColor: true
-  },
-  borderRight: {
-    borderRightWidth: true,
-    borderRightStyle: true,
-    borderRightColor: true
-  },
-  borderTop: {
-    borderTopWidth: true,
-    borderTopStyle: true,
-    borderTopColor: true
-  },
-  font: {
-    fontStyle: true,
-    fontVariant: true,
-    fontWeight: true,
-    fontSize: true,
-    lineHeight: true,
-    fontFamily: true
-  }
-};
+function requireCSSProperty () {
+	if (hasRequiredCSSProperty) return CSSProperty_1;
+	hasRequiredCSSProperty = 1;
 
-var CSSProperty = {
-  isUnitlessNumber: isUnitlessNumber$1,
-  shorthandPropertyExpansions: shorthandPropertyExpansions
-};
+	/**
+	 * CSS properties which accept numbers but are not in units of "px".
+	 */
+	var isUnitlessNumber = {
+	  boxFlex: true,
+	  boxFlexGroup: true,
+	  columnCount: true,
+	  flex: true,
+	  flexGrow: true,
+	  flexPositive: true,
+	  flexShrink: true,
+	  flexNegative: true,
+	  fontWeight: true,
+	  lineClamp: true,
+	  lineHeight: true,
+	  opacity: true,
+	  order: true,
+	  orphans: true,
+	  widows: true,
+	  zIndex: true,
+	  zoom: true,
 
-var CSSProperty_1 = CSSProperty;
+	  // SVG-related properties
+	  fillOpacity: true,
+	  strokeDashoffset: true,
+	  strokeOpacity: true,
+	  strokeWidth: true
+	};
 
-var msPattern = /^ms-/;
+	/**
+	 * @param {string} prefix vendor-specific prefix, eg: Webkit
+	 * @param {string} key style name, eg: transitionDuration
+	 * @return {string} style name prefixed with `prefix`, properly camelCased, eg:
+	 * WebkitTransitionDuration
+	 */
+	function prefixKey(prefix, key) {
+	  return prefix + key.charAt(0).toUpperCase() + key.substring(1);
+	}
 
-var _uppercasePattern = /([A-Z])/g;
+	/**
+	 * Support style names that may come passed in prefixed by adding permutations
+	 * of vendor prefixes.
+	 */
+	var prefixes = ['Webkit', 'ms', 'Moz', 'O'];
 
-/**
- * Hyphenates a camelcased string, for example:
- *
- *   > hyphenate('backgroundColor')
- *   < "background-color"
- *
- * For CSS style names, use `hyphenateStyleName` instead which works properly
- * with all vendor prefixes, including `ms`.
- *
- * @param {string} string
- * @return {string}
- */
-function hyphenate$1(string) {
-  return string.replace(_uppercasePattern, '-$1').toLowerCase();
+	// Using Object.keys here, or else the vanilla for-in loop makes IE8 go into an
+	// infinite loop, because it iterates over the newly added props too.
+	Object.keys(isUnitlessNumber).forEach(function(prop) {
+	  prefixes.forEach(function(prefix) {
+	    isUnitlessNumber[prefixKey(prefix, prop)] = isUnitlessNumber[prop];
+	  });
+	});
+
+	/**
+	 * Most style properties can be unset by doing .style[prop] = '' but IE8
+	 * doesn't like doing that with shorthand properties so for the properties that
+	 * IE8 breaks on, which are listed here, we instead unset each of the
+	 * individual properties. See http://bugs.jquery.com/ticket/12385.
+	 * The 4-value 'clock' properties like margin, padding, border-width seem to
+	 * behave without any problems. Curiously, list-style works too without any
+	 * special prodding.
+	 */
+	var shorthandPropertyExpansions = {
+	  background: {
+	    backgroundImage: true,
+	    backgroundPosition: true,
+	    backgroundRepeat: true,
+	    backgroundColor: true
+	  },
+	  border: {
+	    borderWidth: true,
+	    borderStyle: true,
+	    borderColor: true
+	  },
+	  borderBottom: {
+	    borderBottomWidth: true,
+	    borderBottomStyle: true,
+	    borderBottomColor: true
+	  },
+	  borderLeft: {
+	    borderLeftWidth: true,
+	    borderLeftStyle: true,
+	    borderLeftColor: true
+	  },
+	  borderRight: {
+	    borderRightWidth: true,
+	    borderRightStyle: true,
+	    borderRightColor: true
+	  },
+	  borderTop: {
+	    borderTopWidth: true,
+	    borderTopStyle: true,
+	    borderTopColor: true
+	  },
+	  font: {
+	    fontStyle: true,
+	    fontVariant: true,
+	    fontWeight: true,
+	    fontSize: true,
+	    lineHeight: true,
+	    fontFamily: true
+	  }
+	};
+
+	var CSSProperty = {
+	  isUnitlessNumber: isUnitlessNumber,
+	  shorthandPropertyExpansions: shorthandPropertyExpansions
+	};
+
+	CSSProperty_1 = CSSProperty;
+	return CSSProperty_1;
 }
 
-/**
- * Hyphenates a camelcased CSS property name, for example:
- *
- *   > hyphenateStyleName('backgroundColor')
- *   < "background-color"
- *   > hyphenateStyleName('MozTransition')
- *   < "-moz-transition"
- *   > hyphenateStyleName('msTransition')
- *   < "-ms-transition"
- *
- * As Modernizr suggests (http://modernizr.com/docs/#prefixed), an `ms` prefix
- * is converted to `-ms-`.
- *
- * @param {string} string
- * @return {string}
- */
-function hyphenateStyleName(string) {
-  return hyphenate$1(string).replace(msPattern, '-ms-');
+var CSSPropertyExports = requireCSSProperty();
+var CSSProperty = /*@__PURE__*/getDefaultExportFromCjs(CSSPropertyExports);
+
+var hyphenateStyleName_1;
+var hasRequiredHyphenateStyleName;
+
+function requireHyphenateStyleName () {
+	if (hasRequiredHyphenateStyleName) return hyphenateStyleName_1;
+	hasRequiredHyphenateStyleName = 1;
+
+	var msPattern = /^ms-/;
+
+	var _uppercasePattern = /([A-Z])/g;
+
+	/**
+	 * Hyphenates a camelcased string, for example:
+	 *
+	 *   > hyphenate('backgroundColor')
+	 *   < "background-color"
+	 *
+	 * For CSS style names, use `hyphenateStyleName` instead which works properly
+	 * with all vendor prefixes, including `ms`.
+	 *
+	 * @param {string} string
+	 * @return {string}
+	 */
+	function hyphenate(string) {
+	  return string.replace(_uppercasePattern, '-$1').toLowerCase();
+	}
+
+	/**
+	 * Hyphenates a camelcased CSS property name, for example:
+	 *
+	 *   > hyphenateStyleName('backgroundColor')
+	 *   < "background-color"
+	 *   > hyphenateStyleName('MozTransition')
+	 *   < "-moz-transition"
+	 *   > hyphenateStyleName('msTransition')
+	 *   < "-ms-transition"
+	 *
+	 * As Modernizr suggests (http://modernizr.com/docs/#prefixed), an `ms` prefix
+	 * is converted to `-ms-`.
+	 *
+	 * @param {string} string
+	 * @return {string}
+	 */
+	function hyphenateStyleName(string) {
+	  return hyphenate(string).replace(msPattern, '-ms-');
+	}
+
+	hyphenateStyleName_1 = hyphenateStyleName;
+	return hyphenateStyleName_1;
 }
 
-var hyphenateStyleName_1 = hyphenateStyleName;
+var hyphenateStyleNameExports = requireHyphenateStyleName();
+var hyphenateStyleName = /*@__PURE__*/getDefaultExportFromCjs(hyphenateStyleNameExports);
 
-/** @ts-ignore */
-const isUnitlessNumber = CSSProperty_1.isUnitlessNumber;
+/**
+ * @ts-ignore
+ */
+const isUnitlessNumber = CSSProperty.isUnitlessNumber;
 const isArray = Array.isArray;
 const keys = Object.keys;
 // Follows syntax at https://developer.mozilla.org/en-US/docs/Web/CSS/content,
@@ -310,7 +348,7 @@ function buildRule(key, value, exclude) {
         // prettier-ignore
         value = '\'' + value.replace(/'/g, '\\\'') + '\'';
     }
-    return hyphenateStyleName_1(key) + ': ' + value + ';  ';
+    return hyphenateStyleName(key) + ': ' + value + ';  ';
 }
 // css var prefix
 const cssVarPattern = /^--/;
@@ -341,7 +379,9 @@ function styleToCssString(rules, options = {
     }
     return result;
 }
-/** @ts-ignore */
+/**
+ * @ts-ignore
+ */
 
 function isEqual(x, y) {
     if (x === y) {
@@ -1229,7 +1269,9 @@ function callHook(vm, hook) {
                 handlers[i].call(vm);
             }
             catch (e) {
-                /** Ignore */
+                /**
+                 * Ignore
+                 */
             }
         }
     }

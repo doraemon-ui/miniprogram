@@ -30,7 +30,7 @@
   --opacity: 1;
   --activated-opacity: 1;
   --disabled-opacity: var(--dora-button-disabled-opacity, 0.5);
-  --border-width: var(--dora-button-border-width, var(--dora-border-width, 1PX));
+  --border-width: var(--dora-button-border-width, var(--dora-border-width, 1px));
   --border-style: var(--dora-button-border-style, var(--dora-border-style, solid));
   --border-color: var(--dora-button-border-color, var(--dora-color-positive, #3880ff));
   --text-color: var(--dora-color-positive-contrast, #fff);

@@ -1,27 +1,28 @@
 @import '../../@doraemon-ui/style/var.wxss';
-
 @import '../../@doraemon-ui/style/color.wxss';
-
 .dora-accordion {
   position: relative;
   border: none;
-  font-size: 32rpx;
+  font-size: 16px;
   line-height: 1.5;
-  overflow: hidden
+  overflow: hidden;
 }
+
 .dora-accordion__hd {
-  padding: 32rpx 32rpx 16rpx;
-  font-size: 28rpx;
-  color: rgba(var(--dora-text-color-rgb,0,0,0),.45);
-  color: rgba(var(--dora-text-color-rgb,0,0,0),.45);
+  padding: 16px 16px 8px;
+  font-size: 14px;
+  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
+  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
   width: 100%;
-  box-sizing: border-box
+  box-sizing: border-box;
 }
+
 .dora-accordion__bd {
   position: relative;
-  background-color: var(--dora-component-background-color,#fff);
-  background-color: var(--dora-component-background-color,#fff)
+  background-color: var(--dora-component-background-color, #fff);
+  background-color: var(--dora-component-background-color, #fff);
 }
+
 .dora-accordion__bd::after {
   content: " ";
   position: absolute;
@@ -29,20 +30,21 @@
   left: 0;
   width: 200%;
   height: 200%;
-  transform: scale(.5);
+  transform: scale(0.5);
   transform-origin: 0 0;
   pointer-events: none;
   box-sizing: border-box;
-  border: 0 solid var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
-  border: 0 solid var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
-  border-top-width: var(--dora-border-width,1PX);
-  border-top-width: var(--dora-border-width,1PX);
-  border-bottom-width: var(--dora-border-width,1PX);
-  border-bottom-width: var(--dora-border-width,1PX)
+  border: 0 solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  border: 0 solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  border-top-width: var(--dora-border-width, 1px);
+  border-top-width: var(--dora-border-width, 1px);
+  border-bottom-width: var(--dora-border-width, 1px);
+  border-bottom-width: var(--dora-border-width, 1px);
 }
+
 .dora-accordion__ft {
-  padding: 16rpx 32rpx 32rpx;
-  font-size: 28rpx;
-  color: rgba(var(--dora-text-color-rgb,0,0,0),.45);
-  color: rgba(var(--dora-text-color-rgb,0,0,0),.45)
+  padding: 8px 16px 16px;
+  font-size: 14px;
+  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
+  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
 }

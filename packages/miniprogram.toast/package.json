@@ -1,7 +1,7 @@
 {
   "name": "@doraemon-ui/miniprogram.toast",
   "private": false,
-  "version": "0.0.1-alpha.21",
+  "version": "0.0.1-alpha.22",
   "description": "miniprogram toast component for doraemon-ui",
   "author": "skyvow",
   "homepage": "",

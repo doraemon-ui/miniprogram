@@ -1,32 +1,27 @@
 /**
  * @doraemon-ui/miniprogram.touch-view.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-03-05, 17:42:17.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
+ * Built on 2026-05-04, 00:41:35.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+
+import { Doraemon, Prop, Watch, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
+
+function _ts_decorate(decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    else for(var i = decorators.length - 1; i >= 0; i--)if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js';
+}
 const { classNames, styleToCssString } = Doraemon.util;
 let TouchView = class TouchView extends Doraemon {
-    prefixCls;
-    hoverClass;
-    hoverStopPropagation;
-    hoverStartTime;
-    hoverStayTime;
-    wrapStyle;
-    extStyle = '';
     get classes() {
         const { prefixCls, hoverClass } = this;
         const wrap = classNames(prefixCls);
         const hover = hoverClass && hoverClass !== 'default' ? hoverClass : `${prefixCls}--hover`;
         return {
             wrap,
-            hover,
+            hover
         };
     }
     onWrapStyleChange(v) {
@@ -38,33 +33,54 @@ let TouchView = class TouchView extends Doraemon {
     mounted() {
         this.onWrapStyleChange(this.wrapStyle);
     }
+    constructor(...args){
+        super(...args);
+        this.extStyle = '';
+    }
 };
-__decorate([
-    Prop({ type: String, default: 'none' })
+_ts_decorate([
+    Prop({
+        type: String,
+        default: 'none'
+    })
 ], TouchView.prototype, "hoverClass", void 0);
-__decorate([
-    Prop({ type: Boolean, default: false })
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
 ], TouchView.prototype, "hoverStopPropagation", void 0);
-__decorate([
-    Prop({ type: Number, default: 20 })
+_ts_decorate([
+    Prop({
+        type: Number,
+        default: 20
+    })
 ], TouchView.prototype, "hoverStartTime", void 0);
-__decorate([
-    Prop({ type: Number, default: 70 })
+_ts_decorate([
+    Prop({
+        type: Number,
+        default: 70
+    })
 ], TouchView.prototype, "hoverStayTime", void 0);
-__decorate([
-    Prop({ type: null, default: '' })
+_ts_decorate([
+    Prop({
+        type: null,
+        default: ''
+    })
 ], TouchView.prototype, "wrapStyle", void 0);
-__decorate([
+_ts_decorate([
     Watch('wrapStyle')
 ], TouchView.prototype, "onWrapStyleChange", null);
-TouchView = __decorate([
+TouchView = _ts_decorate([
     Component({
         props: {
             prefixCls: {
                 type: String,
-                default: 'dora-touch-view',
-            },
-        },
+                default: 'dora-touch-view'
+            }
+        }
     })
 ], TouchView);
-export default defineComponentHOC()(TouchView);
+var index = defineComponentHOC()(TouchView);
+
+export { TouchView, index as default };

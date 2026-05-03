@@ -1,18 +1,20 @@
 /**
  * @doraemon-ui/miniprogram.checkbox.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-02-26, 19:38:28.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
+ * Built on 2026-05-04, 00:42:10.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+
+import { Doraemon, Prop, Watch, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
+import { getDefaultContext } from '@doraemon-ui/miniprogram.shared';
+import { checkboxGroupProps } from './props.js';
+
+function _ts_decorate(decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    else for(var i = decorators.length - 1; i >= 0; i--)if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-import { defineComponentHOC, Doraemon, Component, Prop, Watch, Event } from '@doraemon-ui/miniprogram.core-js';
-import { getDefaultContext } from '@doraemon-ui/miniprogram.shared';
-import { checkboxGroupProps } from './props';
+}
 const { classNames } = Doraemon.util;
 const defaultContext = {
     ...getDefaultContext(checkboxGroupProps, [
@@ -25,106 +27,11 @@ const defaultContext = {
         'iconPosition',
         'iconSize',
         'iconOn',
-        'iconOff',
+        'iconOff'
     ]),
-    withListComponent: false,
+    withListComponent: false
 };
-let CheckboxClass = class CheckboxClass extends Doraemon {
-    /**
-     * 自定义类名前缀
-     *
-     * @type {string}
-     * @memberof Checkbox
-     */
-    prefixCls;
-    /**
-     * `dora-list-item` 组件的类名前缀
-     *
-     * @type {string}
-     * @memberof Checkbox
-     */
-    cellPrefixCls;
-    /**
-     * `dora-selectable` 组件的类名前缀
-     *
-     * @type {string}
-     * @memberof Checkbox
-     */
-    selectablePrefixCls;
-    /**
-     * 标题
-     *
-     * @type {string}
-     * @memberof Checkbox
-     */
-    title;
-    /**
-     * 描述
-     *
-     * @type {string}
-     * @memberof Checkbox
-     */
-    label;
-    /**
-     * 额外信息（仅在 `withListComponent` 且 `iconPosition='left'` 时展示）
-     *
-     * @type {string}
-     * @memberof Checkbox
-     */
-    extra;
-    /**
-     * 值
-     *
-     * @type {string}
-     * @memberof Checkbox
-     */
-    value;
-    /**
-     * 是否选中（受控）
-     *
-     * @type {boolean}
-     * @memberof Checkbox
-     */
-    checked;
-    /**
-     * 是否禁用
-     *
-     * @type {boolean}
-     * @memberof Checkbox
-     */
-    disabled;
-    /**
-     * 是否只读
-     *
-     * @type {boolean}
-     * @memberof Checkbox
-     */
-    readOnly;
-    /**
-     * 选中颜色，支持预设色值或自定义色值
-     *
-     * @type {string}
-     * @memberof Checkbox
-     */
-    color;
-    /**
-     * 自定义样式
-     *
-     * @type {(string | Partial<CSSStyleDeclaration>)}
-     * @memberof Checkbox
-     */
-    wrapStyle;
-    /**
-     * 是否有底部横线
-     *
-     * @type {boolean}
-     * @memberof Checkbox
-     */
-    hasLine;
-    inputChecked = false;
-    index = 0;
-    isLast = false;
-    context = defaultContext;
+let Checkbox = class Checkbox extends Doraemon {
     get classes() {
         const { prefixCls } = this;
         const cell = classNames(prefixCls);
@@ -139,7 +46,7 @@ let CheckboxClass = class CheckboxClass extends Doraemon {
             iconPosition,
             iconSelectable,
             selectable,
-            selectableH,
+            selectableH
         };
     }
     onCheckedChange(newVal) {
@@ -148,8 +55,7 @@ let CheckboxClass = class CheckboxClass extends Doraemon {
     checkboxChange(e) {
         const { disabled, readOnly, context } = this;
         const { checked } = e.currentTarget;
-        if (disabled || context.disabled || readOnly || context.readOnly)
-            return;
+        if (disabled || context.disabled || readOnly || context.readOnly) return;
         this.onChange(checked);
     }
     changeValue(inputChecked = false, index = 0, isLast = false, context = defaultContext) {
@@ -163,13 +69,12 @@ let CheckboxClass = class CheckboxClass extends Doraemon {
         const item = {
             checked: inputChecked,
             value,
-            index,
+            index
         };
         const parent = this.$parent;
         if (parent && typeof parent.onChange === 'function') {
             parent.onChange(item);
-        }
-        else {
+        } else {
             this.$emit('change', item);
         }
     }
@@ -191,113 +96,160 @@ let CheckboxClass = class CheckboxClass extends Doraemon {
     mounted() {
         this.inputChecked = this.checked;
     }
+    constructor(...args){
+        super(...args);
+        this.inputChecked = false;
+        this.index = 0;
+        this.isLast = false;
+        this.context = defaultContext;
+    }
 };
-__decorate([
-    Prop({ type: String, default: 'dora-list-item' })
-], CheckboxClass.prototype, "cellPrefixCls", void 0);
-__decorate([
-    Prop({ type: String, default: 'dora-selectable' })
-], CheckboxClass.prototype, "selectablePrefixCls", void 0);
-__decorate([
-    Prop({ type: String, default: '' })
-], CheckboxClass.prototype, "title", void 0);
-__decorate([
-    Prop({ type: String, default: '' })
-], CheckboxClass.prototype, "label", void 0);
-__decorate([
-    Prop({ type: String, default: '' })
-], CheckboxClass.prototype, "extra", void 0);
-__decorate([
-    Prop({ type: String, default: '' })
-], CheckboxClass.prototype, "value", void 0);
-__decorate([
-    Prop({ type: Boolean, default: false })
-], CheckboxClass.prototype, "checked", void 0);
-__decorate([
-    Prop({ type: Boolean, default: false })
-], CheckboxClass.prototype, "disabled", void 0);
-__decorate([
-    Prop({ type: Boolean, default: false })
-], CheckboxClass.prototype, "readOnly", void 0);
-__decorate([
-    Prop({ type: String, default: 'balanced' })
-], CheckboxClass.prototype, "color", void 0);
-__decorate([
-    Prop({ type: null, default: '' })
-], CheckboxClass.prototype, "wrapStyle", void 0);
-__decorate([
-    Prop({ type: Boolean, default: true })
-], CheckboxClass.prototype, "hasLine", void 0);
-__decorate([
+_ts_decorate([
+    Prop({
+        type: String,
+        default: 'dora-list-item'
+    })
+], Checkbox.prototype, "cellPrefixCls", void 0);
+_ts_decorate([
+    Prop({
+        type: String,
+        default: 'dora-selectable'
+    })
+], Checkbox.prototype, "selectablePrefixCls", void 0);
+_ts_decorate([
+    Prop({
+        type: String,
+        default: ''
+    })
+], Checkbox.prototype, "title", void 0);
+_ts_decorate([
+    Prop({
+        type: String,
+        default: ''
+    })
+], Checkbox.prototype, "label", void 0);
+_ts_decorate([
+    Prop({
+        type: String,
+        default: ''
+    })
+], Checkbox.prototype, "extra", void 0);
+_ts_decorate([
+    Prop({
+        type: String,
+        default: ''
+    })
+], Checkbox.prototype, "value", void 0);
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
+], Checkbox.prototype, "checked", void 0);
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
+], Checkbox.prototype, "disabled", void 0);
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
+], Checkbox.prototype, "readOnly", void 0);
+_ts_decorate([
+    Prop({
+        type: String,
+        default: 'balanced'
+    })
+], Checkbox.prototype, "color", void 0);
+_ts_decorate([
+    Prop({
+        type: null,
+        default: ''
+    })
+], Checkbox.prototype, "wrapStyle", void 0);
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: true
+    })
+], Checkbox.prototype, "hasLine", void 0);
+_ts_decorate([
     Watch('checked')
-], CheckboxClass.prototype, "onCheckedChange", null);
-__decorate([
-    Event()
-], CheckboxClass.prototype, "checkboxChange", null);
-CheckboxClass = __decorate([
+], Checkbox.prototype, "onCheckedChange", null);
+Checkbox = _ts_decorate([
     Component({
         components: {
-            CheckboxGroup: () => ({
-                module: './group',
-                type: 'ancestor',
-            }),
+            CheckboxGroup: ()=>({
+                    module: './group',
+                    type: 'ancestor'
+                })
         },
         props: {
             prefixCls: {
                 type: String,
-                default: 'dora-checkbox',
+                default: 'dora-checkbox'
             },
             cellPrefixCls: {
                 type: String,
-                default: 'dora-list-item',
+                default: 'dora-list-item'
             },
             selectablePrefixCls: {
                 type: String,
-                default: 'dora-selectable',
+                default: 'dora-selectable'
             },
             title: {
                 type: String,
-                default: '',
+                default: ''
             },
             label: {
                 type: String,
-                default: '',
+                default: ''
             },
             extra: {
                 type: String,
-                default: '',
+                default: ''
             },
             value: {
                 type: String,
-                default: '',
+                default: ''
             },
             checked: {
                 type: Boolean,
-                default: false,
+                default: false
             },
             disabled: {
                 type: Boolean,
-                default: false,
+                default: false
             },
             readOnly: {
                 type: Boolean,
-                default: false,
+                default: false
             },
             color: {
                 type: String,
-                default: 'balanced',
+                default: 'balanced'
             },
             wrapStyle: {
                 type: null,
-                default: '',
+                default: ''
             },
             hasLine: {
                 type: Boolean,
-                default: true,
-            },
+                default: true
+            }
         },
-        expose: ['check', 'uncheck', 'toggle', 'setChecked', 'changeValue'],
+        expose: [
+            'check',
+            'uncheck',
+            'toggle',
+            'setChecked',
+            'changeValue'
+        ]
     })
-], CheckboxClass);
-export const Checkbox = defineComponentHOC()(CheckboxClass);
-export default Checkbox;
+], Checkbox);
+var index = defineComponentHOC()(Checkbox);
+
+export { Checkbox, index as default };

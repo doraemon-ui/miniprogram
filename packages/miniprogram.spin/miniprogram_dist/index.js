@@ -1,16 +1,18 @@
 /**
  * @doraemon-ui/miniprogram.spin.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-03-05, 18:01:59.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
+ * Built on 2026-05-04, 00:40:56.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+
+import { Doraemon, Prop, Watch, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
+
+function _ts_decorate(decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    else for(var i = decorators.length - 1; i >= 0; i--)if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js';
+}
 const { classNames, styleToCssString } = Doraemon.util;
 const presetColors = {
     light: '#ddd',
@@ -22,30 +24,19 @@ const presetColors = {
     assertive: '#ef473a',
     royal: '#886aea',
     dark: '#444',
-    default: 'default',
+    default: 'default'
 };
-const isPresetColor = (color) => {
-    if (!color)
-        return 'default';
+const isPresetColor = (color)=>{
+    if (!color) return 'default';
     return presetColors[color] ? presetColors[color] : color;
 };
 let Spin = class Spin extends Doraemon {
-    prefixCls;
-    classNames;
-    tip;
-    size;
-    spinning;
-    nested;
-    spinColor;
-    spinVisible = true;
-    dotStyle = '';
-    tipStyle = '';
     get classes() {
         const { prefixCls, size, nested, tip } = this;
         const wrap = classNames(prefixCls, {
             [`${prefixCls}--${size}`]: !!size,
             [`${prefixCls}--nested`]: nested,
-            [`${prefixCls}--show-text`]: !!tip,
+            [`${prefixCls}--show-text`]: !!tip
         });
         return {
             wrap,
@@ -54,56 +45,85 @@ let Spin = class Spin extends Doraemon {
             dot: `${prefixCls}__dot`,
             tip: `${prefixCls}__tip`,
             container: classNames(`${prefixCls}__container`, {
-                [`${prefixCls}__container--blur`]: this.spinVisible,
-            }),
+                [`${prefixCls}__container--blur`]: this.spinVisible
+            })
         };
     }
     onSpinningChange(v) {
-        if (this.nested)
-            this.spinVisible = v;
+        if (this.nested) this.spinVisible = v;
     }
     setStyles(spinColor) {
         const inputColor = isPresetColor(spinColor);
-        this.dotStyle = inputColor !== 'default' ? styleToCssString({ backgroundColor: inputColor }) : '';
-        this.tipStyle = inputColor !== 'default' ? styleToCssString({ color: inputColor }) : '';
+        this.dotStyle = inputColor !== 'default' ? styleToCssString({
+            backgroundColor: inputColor
+        }) : '';
+        this.tipStyle = inputColor !== 'default' ? styleToCssString({
+            color: inputColor
+        }) : '';
     }
     mounted() {
         this.setStyles(this.spinColor);
         this.onSpinningChange(this.spinning);
     }
+    constructor(...args){
+        super(...args);
+        this.spinVisible = true;
+        this.dotStyle = '';
+        this.tipStyle = '';
+    }
 };
-__decorate([
-    Prop({ type: null, default: 'dora-animate--fadeIn' })
+_ts_decorate([
+    Prop({
+        type: null,
+        default: 'dora-animate--fadeIn'
+    })
 ], Spin.prototype, "classNames", void 0);
-__decorate([
-    Prop({ type: String, default: '' })
+_ts_decorate([
+    Prop({
+        type: String,
+        default: ''
+    })
 ], Spin.prototype, "tip", void 0);
-__decorate([
-    Prop({ type: String, default: 'default' })
+_ts_decorate([
+    Prop({
+        type: String,
+        default: 'default'
+    })
 ], Spin.prototype, "size", void 0);
-__decorate([
-    Prop({ type: Boolean, default: true })
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: true
+    })
 ], Spin.prototype, "spinning", void 0);
-__decorate([
-    Prop({ type: Boolean, default: false })
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
 ], Spin.prototype, "nested", void 0);
-__decorate([
-    Prop({ type: String, default: 'default' })
+_ts_decorate([
+    Prop({
+        type: String,
+        default: 'default'
+    })
 ], Spin.prototype, "spinColor", void 0);
-__decorate([
+_ts_decorate([
     Watch('spinning')
 ], Spin.prototype, "onSpinningChange", null);
-__decorate([
+_ts_decorate([
     Watch('spinColor')
 ], Spin.prototype, "setStyles", null);
-Spin = __decorate([
+Spin = _ts_decorate([
     Component({
         props: {
             prefixCls: {
                 type: String,
-                default: 'dora-spin',
-            },
-        },
+                default: 'dora-spin'
+            }
+        }
     })
 ], Spin);
-export default defineComponentHOC()(Spin);
+var index = defineComponentHOC()(Spin);
+
+export { Spin, index as default };

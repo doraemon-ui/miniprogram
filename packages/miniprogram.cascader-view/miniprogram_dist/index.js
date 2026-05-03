@@ -1,30 +1,32 @@
 /**
  * @doraemon-ui/miniprogram.cascader-view.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-02-26, 02:09:44.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
+ * Built on 2026-05-04, 00:38:22.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+
+import { Doraemon, Prop, Watch, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
+
+function _ts_decorate(decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    else for(var i = decorators.length - 1; i >= 0; i--)if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js';
+}
 const { classNames, styleToCssString } = Doraemon.util;
 const DORA_CASCADER_VIEW = 'dora-cascader-view';
-export function getDefaultFieldNames() {
+function getDefaultFieldNames() {
     return {
         label: 'label',
         value: 'value',
         children: 'children',
-        disabled: 'disabled',
+        disabled: 'disabled'
     };
 }
-export function setFieldNames(fieldNames = {}) {
+function setFieldNames(fieldNames = {}) {
     return {
         ...getDefaultFieldNames(),
-        ...fieldNames,
+        ...fieldNames
     };
 }
 function arrayTreeFilter(data, filterFn, options) {
@@ -33,14 +35,13 @@ function arrayTreeFilter(data, filterFn, options) {
     const result = [];
     let level = 0;
     do {
-        const foundItem = children.filter((item) => filterFn(item, level))[0];
-        if (!foundItem)
-            break;
+        const foundItem = children.filter((item)=>filterFn(item, level))[0];
+        if (!foundItem) break;
         result.push(foundItem);
         const nextChildren = foundItem[childrenKeyName];
         children = Array.isArray(nextChildren) ? nextChildren : [];
         level += 1;
-    } while (children.length > 0);
+    }while (children.length > 0)
     return result;
 }
 function getOptionString(option, key) {
@@ -52,101 +53,23 @@ function getOptionChildren(option, key) {
     return Array.isArray(v) ? v : null;
 }
 function normalizeOptionList(options, valueKey) {
-    return (options || []).map((option, index) => {
+    return (options || []).map((option, index)=>{
         const v = option[valueKey];
         const __comp_unique_key = typeof v === 'string' || typeof v === 'number' ? v : index;
         return {
             ...option,
-            __comp_unique_key,
+            __comp_unique_key
         };
     });
 }
 let CascaderView = class CascaderView extends Doraemon {
-    /**
-     * 自定义类名前缀
-     *
-     * @type {string}
-     * @memberof CascaderView
-     */
-    prefixCls;
-    /**
-     * 默认值（非受控）
-     *
-     * @type {string[]}
-     * @memberof CascaderView
-     */
-    defaultValue;
-    /**
-     * 当前值（受控）
-     *
-     * @type {string[]}
-     * @memberof CascaderView
-     */
-    value;
-    /**
-     * 是否受控
-     *
-     * @type {boolean}
-     * @memberof CascaderView
-     */
-    controlled;
-    /**
-     * 级联选项
-     *
-     * @type {CascaderOption[]}
-     * @memberof CascaderView
-     */
-    options;
-    /**
-     * 是否占满宽度（双列布局变为单列）
-     *
-     * @type {boolean}
-     * @memberof CascaderView
-     */
-    full;
-    /**
-     * 占位文案
-     *
-     * @type {string}
-     * @memberof CascaderView
-     */
-    placeholder;
-    /**
-     * 自定义高度
-     *
-     * @type {(string | number)}
-     * @memberof CascaderView
-     */
-    height;
-    /**
-     * 是否跳过动画
-     *
-     * @type {boolean}
-     * @memberof CascaderView
-     */
-    skipAnimation;
-    /**
-     * 自定义字段名映射
-     *
-     * @type {Partial<CascaderFieldNames>}
-     * @memberof CascaderView
-     */
-    defaultFieldNames;
-    useFieldNames = false;
-    fieldNames = getDefaultFieldNames();
-    activeOptions = [];
-    activeIndex = 0;
-    bodyStyle = '';
-    activeValue = [];
-    showOptions = [];
-    scrollViewStyle = '';
     get classes() {
         const { prefixCls, full } = this;
         const wrap = classNames(prefixCls);
         const hd = `${prefixCls}__hd`;
         const bd = `${prefixCls}__bd`;
         const innerScroll = classNames(`${prefixCls}__inner-scroll`, {
-            [`${prefixCls}__inner-scroll--full`]: full,
+            [`${prefixCls}__inner-scroll--full`]: full
         });
         const scrollView = `${prefixCls}__scroll-view`;
         const ft = `${prefixCls}__ft`;
@@ -156,7 +79,7 @@ let CascaderView = class CascaderView extends Doraemon {
             bd,
             innerScroll,
             scrollView,
-            ft,
+            ft
         };
     }
     getFieldNames() {
@@ -186,18 +109,19 @@ let CascaderView = class CascaderView extends Doraemon {
         const { options } = this;
         const valueKey = this.getFieldName('value');
         const childrenKeyName = this.getFieldName('children');
-        return arrayTreeFilter(options, (option, level) => getOptionString(option, valueKey) === activeValue[level], {
-            childrenKeyName,
+        return arrayTreeFilter(options, (option, level)=>getOptionString(option, valueKey) === activeValue[level], {
+            childrenKeyName
         });
     }
     getShowOptions(activeValue) {
         const { options } = this;
         const valueKey = this.getFieldName('value');
         const childrenKey = this.getFieldName('children');
-        const childrenOptions = this.getActiveOptions(activeValue)
-            .map((activeOption) => getOptionChildren(activeOption, childrenKey))
-            .filter((n) => Array.isArray(n) && n.length > 0);
-        return [normalizeOptionList(options, valueKey), ...childrenOptions.map((list) => normalizeOptionList(list, valueKey))];
+        const childrenOptions = this.getActiveOptions(activeValue).map((activeOption)=>getOptionChildren(activeOption, childrenKey)).filter((n)=>Array.isArray(n) && n.length > 0);
+        return [
+            normalizeOptionList(options, valueKey),
+            ...childrenOptions.map((list)=>normalizeOptionList(list, valueKey))
+        ];
     }
     getMenus(activeValue = [], hasChildren) {
         const { placeholder } = this;
@@ -207,7 +131,7 @@ let CascaderView = class CascaderView extends Doraemon {
             const labelKey = this.getFieldName('label');
             const placeholderOption = {
                 [valueKey]: DORA_CASCADER_VIEW,
-                [labelKey]: placeholder,
+                [labelKey]: placeholder
             };
             activeOptions.push(placeholderOption);
         }
@@ -232,7 +156,7 @@ let CascaderView = class CascaderView extends Doraemon {
             activeValue,
             activeOptions,
             activeIndex,
-            showOptions,
+            showOptions
         };
         const shouldUpdateTransform = hasChildren || activeValue.length === showOptions.length;
         if (shouldUpdateTransform) {
@@ -248,24 +172,22 @@ let CascaderView = class CascaderView extends Doraemon {
         }
     }
     /**
-     * 更新级联数据
-     *
-     * @param {string[]} activeValue 当前选中值
-     * @memberof CascaderView
-     */
-    getCurrentOptions(activeValue = this.activeValue) {
+   * 更新级联数据
+   *
+   * @param {string[]} activeValue 当前选中值
+   * @memberof CascaderView
+   */ getCurrentOptions(activeValue = this.activeValue) {
         const optionIndex = Math.max(0, activeValue.length - 1);
         const activeOptions = this.getActiveOptions(activeValue);
         const currentOptions = activeOptions[optionIndex];
         if (currentOptions) {
             this.updated(currentOptions, optionIndex, true);
-        }
-        else {
+        } else {
             const valueKey = this.getFieldName('value');
             const labelKey = this.getFieldName('label');
             activeOptions.push({
                 [valueKey]: DORA_CASCADER_VIEW,
-                [labelKey]: this.placeholder,
+                [labelKey]: this.placeholder
             });
             const showOptions = this.getShowOptions(activeValue);
             const activeIndex = activeOptions.length - 1;
@@ -273,7 +195,7 @@ let CascaderView = class CascaderView extends Doraemon {
                 showOptions,
                 activeOptions,
                 activeIndex,
-                bodyStyle: '',
+                bodyStyle: ''
             });
         }
     }
@@ -294,7 +216,9 @@ let CascaderView = class CascaderView extends Doraemon {
         if (props.activeIndex !== undefined) {
             this.activeIndex = props.activeIndex;
             if (prevIndex !== props.activeIndex) {
-                this.$emit('tabsChange', { index: props.activeIndex });
+                this.$emit('tabsChange', {
+                    index: props.activeIndex
+                });
             }
         }
     }
@@ -303,47 +227,52 @@ let CascaderView = class CascaderView extends Doraemon {
         const i = this.full ? index : index - 1;
         return styleToCssString({
             transition: animating ? 'transform .3s' : 'none',
-            transform: `translate(${-50 * pt * Math.max(0, i)}%)`,
+            transform: `translate(${ -50 * pt * Math.max(0, i)}%)`
         });
     }
     /**
-     * 点击菜单时的回调函数
-     */
-    onTabsChange(e) {
+   * 点击菜单时的回调函数
+   */ onTabsChange(e) {
         const activeIndex = parseInt(e.detail.key, 10);
         const bodyStyle = this.getTransform(activeIndex);
         if (this.bodyStyle !== bodyStyle || this.activeIndex !== activeIndex) {
             this.bodyStyle = bodyStyle;
             this.activeIndex = activeIndex;
-            this.$emit('tabsChange', { index: activeIndex });
+            this.$emit('tabsChange', {
+                index: activeIndex
+            });
         }
     }
     /**
-     * 点击选项时的回调函数
-     */
-    onItemSelect(e) {
+   * 点击选项时的回调函数
+   */ onItemSelect(e) {
         const dataset = e.currentTarget.dataset;
         const optionIndex = typeof dataset.optionIndex === 'number' ? dataset.optionIndex : parseInt(String(dataset.optionIndex), 10);
         const { index } = e.detail;
         const { showOptions } = this;
         const item = showOptions[optionIndex]?.[index];
-        if (!item)
-            return;
+        if (!item) return;
         this.updated(item, optionIndex, !this.controlled, this.onChange);
     }
     /**
-     * 选择完成时的回调函数
-     */
-    onChange(currentOptions = {}, activeValue = []) {
+   * 选择完成时的回调函数
+   */ onChange(currentOptions = {}, activeValue = []) {
         const childrenKeyName = this.getFieldName('children');
         const values = this.getValue(activeValue);
         const hasChildren = !!getOptionChildren(currentOptions, childrenKeyName);
         if (currentOptions && currentOptions.isLeaf === false && !hasChildren) {
-            this.$emit('change', { ...values });
-            this.$emit('load', { value: values.value, options: values.options });
+            this.$emit('change', {
+                ...values
+            });
+            this.$emit('load', {
+                value: values.value,
+                options: values.options
+            });
             return;
         }
-        this.$emit('change', { ...values });
+        this.$emit('change', {
+            ...values
+        });
     }
     getValue(activeValue = this.activeValue) {
         const optionIndex = Math.max(0, activeValue.length - 1);
@@ -353,25 +282,25 @@ let CascaderView = class CascaderView extends Doraemon {
         const childrenKeyName = this.getFieldName('children');
         const children = currentOptions ? getOptionChildren(currentOptions, childrenKeyName) : null;
         const hasChildren = !!children && children.length > 0;
-        const options = activeOptions.filter((n) => getOptionString(n, valueKey) !== DORA_CASCADER_VIEW);
-        const value = options.map((n) => getOptionString(n, valueKey));
+        const options = activeOptions.filter((n)=>getOptionString(n, valueKey) !== DORA_CASCADER_VIEW);
+        const value = options.map((n)=>getOptionString(n, valueKey));
         if (currentOptions && currentOptions.isLeaf === false && !children) {
             return {
                 value,
                 options,
-                done: false,
+                done: false
             };
         }
         return {
             value,
             options,
-            done: !hasChildren,
+            done: !hasChildren
         };
     }
     updateStyle(height) {
         const scrollViewStyle = styleToCssString({
             height,
-            minHeight: height,
+            minHeight: height
         });
         if (this.scrollViewStyle !== scrollViewStyle) {
             this.scrollViewStyle = scrollViewStyle;
@@ -385,91 +314,138 @@ let CascaderView = class CascaderView extends Doraemon {
         this.getCurrentOptions(activeValue);
         this.updateStyle(this.height);
     }
+    constructor(...args){
+        super(...args);
+        this.useFieldNames = false;
+        this.fieldNames = getDefaultFieldNames();
+        this.activeOptions = [];
+        this.activeIndex = 0;
+        this.bodyStyle = '';
+        this.activeValue = [];
+        this.showOptions = [];
+        this.scrollViewStyle = '';
+    }
 };
-__decorate([
-    Prop({ type: Array, default: () => [] })
+_ts_decorate([
+    Prop({
+        type: Array,
+        default: ()=>[]
+    })
 ], CascaderView.prototype, "defaultValue", void 0);
-__decorate([
-    Prop({ type: Array, default: () => [] })
+_ts_decorate([
+    Prop({
+        type: Array,
+        default: ()=>[]
+    })
 ], CascaderView.prototype, "value", void 0);
-__decorate([
-    Prop({ type: Boolean, default: false })
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
 ], CascaderView.prototype, "controlled", void 0);
-__decorate([
-    Prop({ type: Array, default: () => [] })
+_ts_decorate([
+    Prop({
+        type: Array,
+        default: ()=>[]
+    })
 ], CascaderView.prototype, "options", void 0);
-__decorate([
-    Prop({ type: Boolean, default: false })
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
 ], CascaderView.prototype, "full", void 0);
-__decorate([
-    Prop({ type: String, default: '请选择' })
+_ts_decorate([
+    Prop({
+        type: String,
+        default: '请选择'
+    })
 ], CascaderView.prototype, "placeholder", void 0);
-__decorate([
-    Prop({ type: null, default: 'auto' })
+_ts_decorate([
+    Prop({
+        type: null,
+        default: 'auto'
+    })
 ], CascaderView.prototype, "height", void 0);
-__decorate([
-    Prop({ type: Boolean, default: false })
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
 ], CascaderView.prototype, "skipAnimation", void 0);
-__decorate([
-    Prop({ type: Object, default: () => getDefaultFieldNames() })
+_ts_decorate([
+    Prop({
+        type: Object,
+        default: ()=>getDefaultFieldNames()
+    })
 ], CascaderView.prototype, "defaultFieldNames", void 0);
-__decorate([
+_ts_decorate([
     Watch('value')
 ], CascaderView.prototype, "onValueChange", null);
-__decorate([
+_ts_decorate([
     Watch('options')
 ], CascaderView.prototype, "onOptionsChange", null);
-__decorate([
+_ts_decorate([
     Watch('height')
 ], CascaderView.prototype, "onHeightChange", null);
-__decorate([
+_ts_decorate([
     Watch('defaultFieldNames')
 ], CascaderView.prototype, "onDefaultFieldNamesChange", null);
-CascaderView = __decorate([
+CascaderView = _ts_decorate([
     Component({
         props: {
             prefixCls: {
                 type: String,
-                default: 'dora-cascader-view',
+                default: 'dora-cascader-view'
             },
             defaultValue: {
                 type: Array,
-                default: () => [],
+                default: ()=>[]
             },
             value: {
                 type: Array,
-                default: () => [],
+                default: ()=>[]
             },
             controlled: {
                 type: Boolean,
-                default: false,
+                default: false
             },
             options: {
                 type: Array,
-                default: () => [],
+                default: ()=>[]
             },
             full: {
                 type: Boolean,
-                default: false,
+                default: false
             },
             placeholder: {
                 type: String,
-                default: '请选择',
+                default: '请选择'
             },
             height: {
                 type: null,
-                default: 'auto',
+                default: 'auto'
             },
             skipAnimation: {
                 type: Boolean,
-                default: false,
+                default: false
             },
             defaultFieldNames: {
                 type: Object,
-                default: () => getDefaultFieldNames(),
-            },
+                default: ()=>getDefaultFieldNames()
+            }
         },
-        expose: ['getValue', 'getCurrentOptions'],
+        expose: [
+            'getValue',
+            'getCurrentOptions'
+        ]
     })
 ], CascaderView);
-export default defineComponentHOC({ externalClasses: ['dora-scroll-view-class'] })(CascaderView);
+var index = defineComponentHOC({
+    externalClasses: [
+        'dora-scroll-view-class'
+    ]
+})(CascaderView);
+
+export { CascaderView, index as default, getDefaultFieldNames, setFieldNames };

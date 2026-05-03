@@ -1,70 +1,74 @@
 @import '../../@doraemon-ui/style/var.wxss';
-
 @import '../../@doraemon-ui/style/color.wxss';
-
 .dora-list {
-  --font-size: var(--dora-list-font-size, 32rpx);
-  --header-font-size: var(--dora-list-header-font-size, 28rpx);
+  --font-size: var(--dora-list-font-size, 16px);
+  --header-font-size: var(--dora-list-header-font-size, 14px);
   --header-width: var(--dora-list-item-header-width, auto);
-  --thumb-size: var(--dora-list-item-thumb-size, 40rpx);
+  --thumb-size: var(--dora-list-item-thumb-size, 20px);
   position: relative;
   font-size: var(--font-size);
   font-size: var(--font-size);
   line-height: 1.5;
-  overflow: hidden
+  overflow: hidden;
 }
+
 .dora-list__hd {
-  padding: 32rpx 32rpx 16rpx;
+  padding: 16px 16px 8px;
   font-size: var(--header-font-size);
   font-size: var(--header-font-size);
-  color: rgba(var(--dora-text-color-rgb,0,0,0),.45);
-  color: rgba(var(--dora-text-color-rgb,0,0,0),.45);
+  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
+  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
   width: 100%;
-  box-sizing: border-box
+  box-sizing: border-box;
 }
+
 .dora-list__bd {
   position: relative;
-  background-color: var(--dora-component-background-color,#fff);
-  background-color: var(--dora-component-background-color,#fff);
-  overflow: hidden
+  background-color: var(--dora-component-background-color, #fff);
+  background-color: var(--dora-component-background-color, #fff);
+  overflow: hidden;
 }
-.dora-list--has-line > .dora-list__bd::after {
+
+.dora-list--has-line>.dora-list__bd::after {
   content: " ";
   position: absolute;
   top: 0;
   left: 0;
   width: 200%;
   height: 200%;
-  transform: scale(.5);
+  transform: scale(0.5);
   transform-origin: 0 0;
   pointer-events: none;
   box-sizing: border-box;
-  border: 0 solid var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
-  border: 0 solid var(--dora-border-color-split,var(--dora-color-step-15,#d9d9d9));
-  border-top-width: var(--dora-border-width,1PX);
-  border-top-width: var(--dora-border-width,1PX);
-  border-bottom-width: var(--dora-border-width,1PX);
-  border-bottom-width: var(--dora-border-width,1PX)
+  border: 0 solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  border: 0 solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  border-top-width: var(--dora-border-width, 1px);
+  border-top-width: var(--dora-border-width, 1px);
+  border-bottom-width: var(--dora-border-width, 1px);
+  border-bottom-width: var(--dora-border-width, 1px);
 }
+
 .dora-list__ft {
-  padding: 16rpx 32rpx 32rpx;
-  font-size: 28rpx;
-  color: rgba(var(--dora-text-color-rgb,0,0,0),.45);
-  color: rgba(var(--dora-text-color-rgb,0,0,0),.45)
+  padding: 8px 16px 16px;
+  font-size: 14px;
+  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
+  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
 }
+
 .dora-list--card {
-  margin: 32rpx
+  margin: 16px;
 }
-.dora-list--card > .dora-list__hd {
+
+.dora-list--card>.dora-list__hd {
   padding-left: 0;
-  padding-right: 0
+  padding-right: 0;
 }
-.dora-list--card > .dora-list__bd,
-.dora-list--card > .dora-list__ft {
-  border-radius: var(--dora-border-radius,16rpx);
-  border-radius: var(--dora-border-radius,16rpx)
+
+.dora-list--card>.dora-list__bd,.dora-list--card>.dora-list__ft {
+  border-radius: var(--dora-border-radius, 8px);
+  border-radius: var(--dora-border-radius, 8px);
 }
-.dora-list--card > .dora-list__bd::after,
-.dora-list--card > .dora-list__ft::after {
-  display: none!important
+
+.dora-list--card>.dora-list__bd::after,.dora-list--card>.dora-list__ft::after {
+  display: none!important;
 }

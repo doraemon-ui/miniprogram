@@ -1,37 +1,31 @@
 /**
  * @doraemon-ui/miniprogram.steps.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-03-05, 18:30:15.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
+ * Built on 2026-05-04, 00:41:00.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+
+import { Doraemon, Prop, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
+
+function _ts_decorate(decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    else for(var i = decorators.length - 1; i >= 0; i--)if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-import { defineComponentHOC, Doraemon, Component, Prop } from '@doraemon-ui/miniprogram.core-js';
+}
 const { classNames } = Doraemon.util;
-const defaultStatus = ['wait', 'process', 'finish', 'error'];
+const defaultStatus = [
+    'wait',
+    'process',
+    'finish',
+    'error'
+];
 const defaultIcon = 'ios-checkmark';
 let Step = class Step extends Doraemon {
-    prefixCls;
-    status;
-    title;
-    content;
-    icon;
-    width = '100%';
-    length = 1;
-    index = 0;
-    current = 0;
-    direction = 'horizontal';
-    hasIcon = false;
-    thumb = defaultIcon;
-    className = '';
     get classes() {
         const { prefixCls, direction } = this;
         const wrap = classNames(prefixCls, {
-            [`${prefixCls}--${direction}`]: direction,
+            [`${prefixCls}--${direction}`]: direction
         });
         return {
             wrap,
@@ -41,7 +35,7 @@ let Step = class Step extends Doraemon {
             bd: `${prefixCls}__bd`,
             title: `${prefixCls}__title`,
             content: `${prefixCls}__content`,
-            ft: `${prefixCls}__ft`,
+            ft: `${prefixCls}__ft`
         };
     }
     updateCurrent(opts = {}) {
@@ -67,33 +61,58 @@ let Step = class Step extends Doraemon {
     mounted() {
         this.updateCurrent();
     }
+    constructor(...args){
+        super(...args);
+        this.width = '100%';
+        this.length = 1;
+        this.index = 0;
+        this.current = 0;
+        this.direction = 'horizontal';
+        this.hasIcon = false;
+        this.thumb = defaultIcon;
+        this.className = '';
+    }
 };
-__decorate([
-    Prop({ type: String, default: '' })
+_ts_decorate([
+    Prop({
+        type: String,
+        default: ''
+    })
 ], Step.prototype, "status", void 0);
-__decorate([
-    Prop({ type: String, default: '' })
+_ts_decorate([
+    Prop({
+        type: String,
+        default: ''
+    })
 ], Step.prototype, "title", void 0);
-__decorate([
-    Prop({ type: String, default: '' })
+_ts_decorate([
+    Prop({
+        type: String,
+        default: ''
+    })
 ], Step.prototype, "content", void 0);
-__decorate([
-    Prop({ type: String, default: '' })
+_ts_decorate([
+    Prop({
+        type: String,
+        default: ''
+    })
 ], Step.prototype, "icon", void 0);
-Step = __decorate([
+Step = _ts_decorate([
     Component({
         components: {
-            Steps: () => ({
-                module: './index',
-                type: 'parent',
-            }),
+            Steps: ()=>({
+                    module: './index',
+                    type: 'parent'
+                })
         },
         props: {
             prefixCls: {
                 type: String,
-                default: 'dora-step',
-            },
-        },
+                default: 'dora-step'
+            }
+        }
     })
 ], Step);
-export default defineComponentHOC()(Step);
+var step = defineComponentHOC()(Step);
+
+export { Step, step as default };

@@ -1,73 +1,26 @@
 /**
  * @doraemon-ui/miniprogram.list.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-02-26, 17:53:04.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
+ * Built on 2026-05-04, 00:42:13.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-import { defineComponentHOC, Doraemon, Component, Prop } from '@doraemon-ui/miniprogram.core-js';
+
+import { Doraemon, Prop, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
 import { useRect } from '@doraemon-ui/miniprogram.shared';
+
+function _ts_decorate(decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for(var i = decorators.length - 1; i >= 0; i--)if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
 const { classNames, styleToCssString } = Doraemon.util;
-let ListClass = class ListClass extends Doraemon {
-    /**
-     * 自定义类名前缀
-     *
-     * @type {string}
-     * @memberof List
-     */
-    prefixCls;
-    /**
-     * 标题
-     *
-     * @type {string}
-     * @memberof List
-     */
-    title;
-    /**
-     * 描述
-     *
-     * @type {string}
-     * @memberof List
-     */
-    label;
-    /**
-     * 支持默认和卡片两种模式
-     *
-     * @type {('default' | 'card')}
-     * @memberof List
-     */
-    mode;
-    /**
-     * 是否有底部横线
-     *
-     * @type {boolean}
-     * @memberof List
-     */
-    hasLine;
-    /**
-     * 自定义样式
-     *
-     * @type {Partial<CSSStyleDeclaration>}
-     * @memberof List
-     */
-    wrapStyle;
-    /**
-     * 自定义 body 样式
-     *
-     * @type {Partial<CSSStyleDeclaration>}
-     * @memberof List
-     */
-    bodyStyle;
+let List = class List extends Doraemon {
     get classes() {
         const { prefixCls, mode, hasLine } = this;
         const wrap = classNames(prefixCls, {
             [`${prefixCls}--card`]: mode === 'card',
-            [`${prefixCls}--has-line`]: hasLine,
+            [`${prefixCls}--has-line`]: hasLine
         });
         const hd = `${prefixCls}__hd`;
         const bd = `${prefixCls}__bd`;
@@ -76,7 +29,7 @@ let ListClass = class ListClass extends Doraemon {
             wrap,
             hd,
             bd,
-            ft,
+            ft
         };
     }
     get containerStyle() {
@@ -89,7 +42,7 @@ let ListClass = class ListClass extends Doraemon {
         const elements = this.$children;
         if (elements.length > 0) {
             const lastIndex = elements.length - 1;
-            elements.forEach((element, index) => {
+            elements.forEach((element, index)=>{
                 element.updateIsLast(index === lastIndex);
             });
         }
@@ -101,59 +54,64 @@ let ListClass = class ListClass extends Doraemon {
         this.updateIsLast();
     }
 };
-__decorate([
+_ts_decorate([
     Prop({
         type: String,
-        default: '',
+        default: ''
     })
-], ListClass.prototype, "title", void 0);
-__decorate([
+], List.prototype, "title", void 0);
+_ts_decorate([
     Prop({
         type: String,
-        default: '',
+        default: ''
     })
-], ListClass.prototype, "label", void 0);
-__decorate([
+], List.prototype, "label", void 0);
+_ts_decorate([
     Prop({
         type: String,
-        default: 'default',
+        default: 'default'
     })
-], ListClass.prototype, "mode", void 0);
-__decorate([
+], List.prototype, "mode", void 0);
+_ts_decorate([
     Prop({
         type: Boolean,
-        default: true,
+        default: true
     })
-], ListClass.prototype, "hasLine", void 0);
-__decorate([
+], List.prototype, "hasLine", void 0);
+_ts_decorate([
     Prop({
         type: Object,
-        default: null,
+        default: null
     })
-], ListClass.prototype, "wrapStyle", void 0);
-__decorate([
+], List.prototype, "wrapStyle", void 0);
+_ts_decorate([
     Prop({
         type: Object,
-        default: null,
+        default: null
     })
-], ListClass.prototype, "bodyStyle", void 0);
-ListClass = __decorate([
+], List.prototype, "bodyStyle", void 0);
+List = _ts_decorate([
     Component({
         components: {
-            ListItem: () => ({
-                module: './item',
-                type: 'descendant',
-                observer: 'updateIsLast',
-            }),
+            ListItem: ()=>({
+                    module: './item',
+                    type: 'descendant',
+                    observer: 'updateIsLast'
+                })
         },
         props: {
             prefixCls: {
                 type: String,
-                default: 'dora-list',
-            },
+                default: 'dora-list'
+            }
         },
-        expose: ['getBoundingClientRect'],
+        expose: [
+            'getBoundingClientRect'
+        ]
     })
-], ListClass);
-export const List = defineComponentHOC({ multipleSlots: false })(ListClass);
-export default List;
+], List);
+var index = defineComponentHOC({
+    multipleSlots: false
+})(List);
+
+export { List, index as default };

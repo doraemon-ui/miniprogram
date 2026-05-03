@@ -1,44 +1,48 @@
 @import '../../@doraemon-ui/style/var.wxss';
-
 @import '../../@doraemon-ui/style/color.wxss';
-
 .dora-safe-area {
-  --inset-top: var(--dora-safe-area-inset-top, 88rpx);
-  --inset-bottom: var(--dora-safe-area-inset-bottom, 68rpx);
+  --inset-top: var(--dora-safe-area-inset-top, 44px);
+  --inset-bottom: var(--dora-safe-area-inset-bottom, 34px);
   --multiple: var(--dora-safe-area-multiple, 1);
   display: block;
   width: 100%;
-  box-sizing: border-box
+  box-sizing: border-box;
 }
+
 .dora-safe-area--position-top {
-  padding-top: calc(var(--inset-top) * var(--multiple));
-  padding-top: calc(var(--inset-top) * var(--multiple))
+  padding-top: calc(var(--inset-top)*var(--multiple));
+  padding-top: calc(var(--inset-top)*var(--multiple));
 }
+
 @supports (padding-top:constant(safe-area-inset-top)) {
   .dora-safe-area--position-top.dora-safe-area--supports {
-    padding-top: calc(constant(safe-area-inset-top) * var(--multiple));
-    padding-top: calc(constant(safe-area-inset-top) * var(--multiple))
+    padding-top: calc(constant(safe-area-inset-top)*var(--multiple));
+    padding-top: calc(constant(safe-area-inset-top)*var(--multiple));
   }
 }
+
 @supports (padding-top:env(safe-area-inset-top)) {
   .dora-safe-area--position-top.dora-safe-area--supports {
-    padding-top: calc(env(safe-area-inset-top) * var(--multiple));
-    padding-top: calc(env(safe-area-inset-top) * var(--multiple))
+    padding-top: calc(env(safe-area-inset-top)*var(--multiple));
+    padding-top: calc(env(safe-area-inset-top)*var(--multiple));
   }
 }
+
 .dora-safe-area--position-bottom {
-  padding-bottom: calc(var(--inset-bottom) * var(--multiple));
-  padding-bottom: calc(var(--inset-bottom) * var(--multiple))
+  padding-bottom: calc(var(--inset-bottom)*var(--multiple));
+  padding-bottom: calc(var(--inset-bottom)*var(--multiple));
 }
+
 @supports (padding-bottom:constant(safe-area-inset-bottom)) {
   .dora-safe-area--position-bottom.dora-safe-area--supports {
-    padding-bottom: calc(constant(safe-area-inset-bottom) * var(--multiple));
-    padding-bottom: calc(constant(safe-area-inset-bottom) * var(--multiple))
+    padding-bottom: calc(constant(safe-area-inset-bottom)*var(--multiple));
+    padding-bottom: calc(constant(safe-area-inset-bottom)*var(--multiple));
   }
 }
+
 @supports (padding-bottom:env(safe-area-inset-bottom)) {
   .dora-safe-area--position-bottom.dora-safe-area--supports {
-    padding-bottom: calc(env(safe-area-inset-bottom) * var(--multiple));
-    padding-bottom: calc(env(safe-area-inset-bottom) * var(--multiple))
+    padding-bottom: calc(env(safe-area-inset-bottom)*var(--multiple));
+    padding-bottom: calc(env(safe-area-inset-bottom)*var(--multiple));
   }
 }

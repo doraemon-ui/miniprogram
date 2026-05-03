@@ -1,40 +1,18 @@
 /**
  * @doraemon-ui/miniprogram.barcode.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-02-25, 23:44:14.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
+ * Built on 2026-05-04, 00:38:07.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
+
 /*
  * Copyright (c) 2014 Johannes Mittendorfer (http://johannes-mittendorfer.com)
  * Licensed under the MIT License (LICENSE.txt).
  *
  * Version 2.1.1
  * Build 2014-10-07
- */
-export default class EAN13 {
-    canvas;
-    ratio;
-    number;
-    settings;
-    constructor(canvas, ratio, number, options) {
-        this.canvas = canvas;
-        this.ratio = ratio || 1;
-        this.number = number;
-        this.settings = {
-            width: 200,
-            height: 100,
-            number: true,
-            prefix: true,
-            color: 'black',
-            debug: false,
-            onValid: () => { },
-            onInvalid: () => { },
-            onSuccess: () => { },
-            onError: () => { },
-            ...(options || {}),
-        };
-        this.init();
-    }
+ */ var EAN13;
+EAN13 = class EAN13 {
     init() {
         if (this.number.length === 12) {
             const checkDigit = this.generateCheckDigit(this.number);
@@ -43,8 +21,7 @@ export default class EAN13 {
         if (this.number.length === 13) {
             if (this.validate()) {
                 this.settings.onValid();
-            }
-            else {
+            } else {
                 this.settings.onInvalid();
             }
             const code = this.getCode();
@@ -53,26 +30,69 @@ export default class EAN13 {
         return this.settings.onError();
     }
     getCode() {
-        const x = ['0001101', '0011001', '0010011', '0111101', '0100011', '0110001', '0101111', '0111011', '0110111', '0001011'];
-        const y = ['0100111', '0110011', '0011011', '0100001', '0011101', '0111001', '0000101', '0010001', '0001001', '0010111'];
-        const z = ['1110010', '1100110', '1101100', '1000010', '1011100', '1001110', '1010000', '1000100', '1001000', '1110100'];
-        const countries = ['xxxxxx', 'xxyxyy', 'xxyyxy', 'xxyyyx', 'xyxxyy', 'xyyxxy', 'xyyyxx', 'xyxyxy', 'xyxyyx', 'xyyxyx'];
+        const x = [
+            '0001101',
+            '0011001',
+            '0010011',
+            '0111101',
+            '0100011',
+            '0110001',
+            '0101111',
+            '0111011',
+            '0110111',
+            '0001011'
+        ];
+        const y = [
+            '0100111',
+            '0110011',
+            '0011011',
+            '0100001',
+            '0011101',
+            '0111001',
+            '0000101',
+            '0010001',
+            '0001001',
+            '0010111'
+        ];
+        const z = [
+            '1110010',
+            '1100110',
+            '1101100',
+            '1000010',
+            '1011100',
+            '1001110',
+            '1010000',
+            '1000100',
+            '1001000',
+            '1110100'
+        ];
+        const countries = [
+            'xxxxxx',
+            'xxyxyy',
+            'xxyyxy',
+            'xxyyyx',
+            'xyxxyy',
+            'xyyxxy',
+            'xyyyxx',
+            'xyxyxy',
+            'xyxyyx',
+            'xyyxyx'
+        ];
         let code = '';
         const cEncoding = countries[parseInt(this.number.substr(0, 1), 10)].split('');
         const rawNumber = this.number.substr(1);
         const parts = rawNumber.split('');
         let i = 0;
-        while (i < 6) {
+        while(i < 6){
             if (cEncoding[i] === 'x') {
                 code += x[Number(parts[i])];
-            }
-            else {
+            } else {
                 code += y[Number(parts[i])];
             }
             i++;
         }
         i = 6;
-        while (i < 12) {
+        while(i < 12){
             code += z[Number(parts[i])];
             i++;
         }
@@ -90,16 +110,15 @@ export default class EAN13 {
             line_height: 0.9,
             font_size: 0.15,
             font_y: 1.03,
-            text_offset: 4.5,
+            text_offset: 4.5
         };
-        const width = this.settings.prefix ? this.settings.width - (this.settings.width * layout.prefix_offset) : this.settings.width;
+        const width = this.settings.prefix ? this.settings.width - this.settings.width * layout.prefix_offset : this.settings.width;
         let borderHeight = 0;
         let height = 0;
         if (this.settings.number) {
             borderHeight = layout.border_line_height_number * this.settings.height;
             height = layout.line_height * borderHeight;
-        }
-        else {
+        } else {
             borderHeight = layout.border_line_height * this.settings.height;
             height = borderHeight;
         }
@@ -121,7 +140,7 @@ export default class EAN13 {
         context.fillRect(left, 0, itemWidth, borderHeight);
         left = left + itemWidth;
         let i = 0;
-        while (i < 42) {
+        while(i < 42){
             if (lines[i] === '1') {
                 context.fillRect(left, 0, Math.floor(itemWidth) + 1, height);
             }
@@ -134,7 +153,7 @@ export default class EAN13 {
         context.fillRect(left, 0, itemWidth, borderHeight);
         left = left + itemWidth * 2;
         i = 42;
-        while (i < 84) {
+        while(i < 84){
             if (lines[i] === '1') {
                 context.fillRect(left, 0, Math.floor(itemWidth) + 1, height);
             }
@@ -152,20 +171,20 @@ export default class EAN13 {
             }
             let offset = itemWidth * layout.text_offset + (this.settings.prefix ? layout.prefix_offset * this.settings.width : 0);
             const charsLeft = this.number.substr(1, 6).split('');
-            charsLeft.forEach((value) => {
+            charsLeft.forEach((value)=>{
                 context.fillText(value, offset, borderHeight * layout.font_y);
                 offset += layout.font_stretch * width;
             });
             offset = 49 * itemWidth + (this.settings.prefix ? layout.prefix_offset * this.settings.width : 0) + layout.text_offset;
             const charsRight = this.number.substr(7).split('');
-            charsRight.forEach((value) => {
+            charsRight.forEach((value)=>{
                 context.fillText(value, offset, borderHeight * layout.font_y);
                 offset += layout.font_stretch * width;
             });
         }
         if (this.settings.debug) {
             const step = itemWidth * 2;
-            for (let x = 0; x <= width; x += step) {
+            for(let x = 0; x <= width; x += step){
                 context.beginPath();
                 context.rect(x, height * 0.4, itemWidth, height * 0.1);
                 context.fillStyle = 'red';
@@ -177,17 +196,37 @@ export default class EAN13 {
     generateCheckDigit(number) {
         let counter = 0;
         const chars = number.split('');
-        chars.forEach((value, key) => {
+        chars.forEach((value, key)=>{
             if (key % 2 === 0) {
                 counter += parseInt(value, 10);
-            }
-            else {
+            } else {
                 counter += 3 * parseInt(value, 10);
             }
         });
-        return (10 - (counter % 10)) % 10;
+        return (10 - counter % 10) % 10;
     }
     validate() {
         return parseInt(this.number.slice(-1), 10) === this.generateCheckDigit(this.number.slice(0, -1));
     }
-}
+    constructor(canvas, ratio, number, options){
+        this.canvas = canvas;
+        this.ratio = ratio || 1;
+        this.number = number;
+        this.settings = {
+            width: 200,
+            height: 100,
+            number: true,
+            prefix: true,
+            color: 'black',
+            debug: false,
+            onValid: ()=>{},
+            onInvalid: ()=>{},
+            onSuccess: ()=>{},
+            onError: ()=>{},
+            ...options || {}
+        };
+        this.init();
+    }
+};
+
+export { EAN13 as default };

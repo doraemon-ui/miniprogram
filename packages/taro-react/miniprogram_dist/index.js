@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/taro-react.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-03-07, 18:09:15.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
+ * Built on 2026-05-04, 00:42:39.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 
 import React, { forwardRef, createElement, Component, createRef, Children } from 'react';

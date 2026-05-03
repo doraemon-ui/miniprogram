@@ -1,109 +1,22 @@
 /**
  * @doraemon-ui/miniprogram.dialog.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-02-22, 01:44:27.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
+ * Built on 2026-05-04, 00:42:33.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+
+import { Doraemon, Prop, Watch, Event, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
+import * as dialog from './dialog.js';
+export { dialog };
+
+function _ts_decorate(decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    else for(var i = decorators.length - 1; i >= 0; i--)if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-import { defineComponentHOC, Doraemon, Component, Prop, Watch, Event } from '@doraemon-ui/miniprogram.core-js';
+}
 const { classNames } = Doraemon.util;
 let Dialog = class Dialog extends Doraemon {
-    /**
-     * 自定义类名前缀
-     *
-     * @type {string}
-     * @memberof Dialog
-     */
-    prefixCls;
-    /**
-     * 弹窗对应的自定义样式
-     *
-     * @type {Partial<CSSStyleDeclaration>}
-     * @memberof Dialog
-     */
-    bodyStyle;
-    /**
-     * 是否显示蒙层
-     *
-     * @type {boolean}
-     * @memberof Dialog
-     */
-    mask;
-    /**
-     * 点击蒙层是否允许关闭
-     *
-     * @type {boolean}
-     * @memberof Dialog
-     */
-    maskClosable;
-    /**
-     * 是否可见
-     *
-     * @type {boolean}
-     * @memberof Dialog
-     */
-    visible;
-    /**
-     * 设置蒙层的 z-index
-     *
-     * @type {number}
-     * @memberof Dialog
-     */
-    zIndex;
-    /**
-     * 是否显示关闭按钮
-     *
-     * @type {boolean}
-     * @memberof Dialog
-     */
-    closable;
-    /**
-     * 点击操作按钮后后是否关闭
-     *
-     * @type {boolean}
-     * @memberof Dialog
-     */
-    buttonClosable;
-    /**
-     * 是否显示垂直按钮布局
-     *
-     * @type {boolean}
-     * @memberof Dialog
-     */
-    verticalButtons;
-    /**
-     * 图片
-     *
-     * @type {string}
-     * @memberof Dialog
-     */
-    image;
-    /**
-     * 提示标题
-     *
-     * @type {string}
-     * @memberof Dialog
-     */
-    title;
-    /**
-     * 提示文本
-     *
-     * @type {string}
-     * @memberof Dialog
-     */
-    content;
-    /**
-     * 操作按钮列表
-     *
-     * @type {DialogButton[]}
-     * @memberof Dialog
-     */
-    buttons;
     get classes() {
         const { prefixCls, verticalButtons, buttons: _buttons } = this;
         const wrap = classNames(prefixCls);
@@ -117,20 +30,20 @@ let Dialog = class Dialog extends Doraemon {
         const close = `${prefixCls}__close`;
         const x = `${prefixCls}__close-x`;
         const buttons = classNames(`${prefixCls}__buttons`, {
-            [`${prefixCls}__buttons--${verticalButtons ? 'vertical' : 'horizontal'}`]: true,
+            [`${prefixCls}__buttons--${verticalButtons ? 'vertical' : 'horizontal'}`]: true
         });
-        const button = _buttons.map((button) => {
+        const button = _buttons.map((button)=>{
             const wrap = classNames(`${prefixCls}__button`, {
                 ['dora-color']: button.type,
                 [`dora-color--${button.type}`]: button.type ?? 'dark',
                 [`${prefixCls}__button--bold`]: button.bold,
                 [`${prefixCls}__button--disabled`]: button.disabled,
-                [`${button.className}`]: button.className,
+                [`${button.className}`]: button.className
             });
             const hover = button.hoverClass && button.hoverClass !== 'default' ? button.hoverClass : `${prefixCls}__button--hover`;
             return {
                 wrap,
-                hover,
+                hover
             };
         });
         return {
@@ -145,10 +58,9 @@ let Dialog = class Dialog extends Doraemon {
             img,
             x,
             buttons,
-            button,
+            button
         };
     }
-    popupVisible = false;
     onVisibleChange(visible) {
         this.setPopupVisible(visible);
     }
@@ -178,8 +90,18 @@ let Dialog = class Dialog extends Doraemon {
         const eventName = method.replace(/^on/, '').toLowerCase();
         if (!button.disabled) {
             await Promise.all([
-                button[method]?.({ method: eventName, button, index, detail: e.detail }),
-                this.$emit('action', { method: eventName, button, index, detail: e.detail }),
+                button[method]?.({
+                    method: eventName,
+                    button,
+                    index,
+                    detail: e.detail
+                }),
+                this.$emit('action', {
+                    method: eventName,
+                    button,
+                    index,
+                    detail: e.detail
+                })
             ]);
             if (closable) {
                 this.onClose();
@@ -219,125 +141,129 @@ let Dialog = class Dialog extends Doraemon {
     async onAgreePrivacyAuthorization(e) {
         await this.onAction(e, 'onAgreePrivacyAuthorization');
     }
+    constructor(...args){
+        super(...args);
+        this.popupVisible = false;
+    }
 };
-__decorate([
+_ts_decorate([
     Prop({
         type: Object,
-        default: null,
+        default: null
     })
 ], Dialog.prototype, "bodyStyle", void 0);
-__decorate([
+_ts_decorate([
     Prop({
         type: Boolean,
-        default: true,
+        default: true
     })
 ], Dialog.prototype, "mask", void 0);
-__decorate([
+_ts_decorate([
     Prop({
         type: Boolean,
-        default: true,
+        default: true
     })
 ], Dialog.prototype, "maskClosable", void 0);
-__decorate([
+_ts_decorate([
     Prop({
         type: Boolean,
-        default: false,
+        default: false
     })
 ], Dialog.prototype, "visible", void 0);
-__decorate([
+_ts_decorate([
     Prop({
         type: Number,
-        default: null,
+        default: null
     })
 ], Dialog.prototype, "zIndex", void 0);
-__decorate([
+_ts_decorate([
     Prop({
         type: Boolean,
-        default: false,
+        default: false
     })
 ], Dialog.prototype, "closable", void 0);
-__decorate([
+_ts_decorate([
     Prop({
         type: Boolean,
-        default: false,
+        default: false
     })
 ], Dialog.prototype, "buttonClosable", void 0);
-__decorate([
+_ts_decorate([
     Prop({
         type: Boolean,
-        default: false,
+        default: false
     })
 ], Dialog.prototype, "verticalButtons", void 0);
-__decorate([
+_ts_decorate([
     Prop({
         type: String,
-        default: '',
+        default: ''
     })
 ], Dialog.prototype, "image", void 0);
-__decorate([
+_ts_decorate([
     Prop({
         type: String,
-        default: '',
+        default: ''
     })
 ], Dialog.prototype, "title", void 0);
-__decorate([
+_ts_decorate([
     Prop({
         type: String,
-        default: '',
+        default: ''
     })
 ], Dialog.prototype, "content", void 0);
-__decorate([
+_ts_decorate([
     Prop({
         type: Array,
-        default: [],
+        default: []
     })
 ], Dialog.prototype, "buttons", void 0);
-__decorate([
+_ts_decorate([
     Watch('visible')
 ], Dialog.prototype, "onVisibleChange", null);
-__decorate([
+_ts_decorate([
     Event()
 ], Dialog.prototype, "onClick", null);
-__decorate([
+_ts_decorate([
     Event()
 ], Dialog.prototype, "onGetUserInfo", null);
-__decorate([
+_ts_decorate([
     Event()
 ], Dialog.prototype, "onContact", null);
-__decorate([
+_ts_decorate([
     Event()
 ], Dialog.prototype, "onGetPhoneNumber", null);
-__decorate([
+_ts_decorate([
     Event()
 ], Dialog.prototype, "onLaunchApp", null);
-__decorate([
+_ts_decorate([
     Event()
 ], Dialog.prototype, "onError", null);
-__decorate([
+_ts_decorate([
     Event()
 ], Dialog.prototype, "onOpenSetting", null);
-__decorate([
+_ts_decorate([
     Event()
 ], Dialog.prototype, "onChooseAvatar", null);
-__decorate([
+_ts_decorate([
     Event()
 ], Dialog.prototype, "onCreateLiveActivity", null);
-__decorate([
+_ts_decorate([
     Event()
 ], Dialog.prototype, "onGetRealtimePhoneNumber", null);
-__decorate([
+_ts_decorate([
     Event()
 ], Dialog.prototype, "onAgreePrivacyAuthorization", null);
-Dialog = __decorate([
+Dialog = _ts_decorate([
     Component({
         props: {
             prefixCls: {
                 type: String,
-                default: 'dora-dialog',
-            },
-        },
+                default: 'dora-dialog'
+            }
+        }
     })
 ], Dialog);
-export default defineComponentHOC()(Dialog);
-import * as dialog_1 from './dialog';
-export { dialog_1 as dialog };
+var index = defineComponentHOC()(Dialog);
+
+export { Dialog, index as default };

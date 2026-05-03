@@ -1,76 +1,79 @@
 /**
  * @doraemon-ui/miniprogram.checkbox.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-02-26, 19:38:28.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
+ * Built on 2026-05-04, 00:42:10.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
-export const checkboxGroupProps = {
+
+const checkboxGroupProps = {
     prefixCls: {
         type: String,
-        default: 'dora-checkbox-group',
+        default: 'dora-checkbox-group'
     },
     cellGroupPrefixCls: {
         type: String,
-        default: 'dora-list',
+        default: 'dora-list'
     },
     value: {
         type: Array,
-        default: () => [],
+        default: ()=>[]
     },
     name: {
         type: String,
-        default: '',
+        default: ''
     },
     title: {
         type: String,
-        default: '',
+        default: ''
     },
     label: {
         type: String,
-        default: '',
+        default: ''
     },
     options: {
         type: Array,
-        default: () => [],
+        default: ()=>[]
     },
     disabled: {
         type: Boolean,
-        default: false,
+        default: false
     },
     readOnly: {
         type: Boolean,
-        default: false,
+        default: false
     },
     mode: {
         type: String,
-        default: 'default',
+        default: 'default'
     },
     bodyStyle: {
         type: null,
-        default: '',
+        default: ''
     },
     hasLine: {
         type: Boolean,
-        default: true,
+        default: true
     },
     withListComponent: {
         type: Boolean,
-        default: true,
+        default: true
     },
     iconPosition: {
         type: String,
-        default: 'left',
+        default: 'left'
     },
     iconSize: {
         type: String,
-        default: '',
+        default: ''
     },
     iconOn: {
         type: String,
-        default: '',
+        default: ''
     },
     iconOff: {
         type: String,
-        default: '',
-    },
+        default: ''
+    }
 };
+
+export { checkboxGroupProps };

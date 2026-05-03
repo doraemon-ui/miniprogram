@@ -1,20 +1,19 @@
 /**
  * @doraemon-ui/miniprogram.timeline.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-03-06, 00:36:58.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
+ * Built on 2026-05-04, 00:41:28.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+
+import { Prop, Component, defineComponentHOC, Doraemon } from '@doraemon-ui/miniprogram.core-js';
+
+function _ts_decorate(decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    else for(var i = decorators.length - 1; i >= 0; i--)if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-import { defineComponentHOC, Doraemon, Component, Prop } from '@doraemon-ui/miniprogram.core-js';
+}
 let Timeline = class Timeline extends Doraemon {
-    prefixCls;
-    pending;
-    position;
     onChildrenChanged() {
         this.updateIsLastElement();
     }
@@ -26,7 +25,7 @@ let Timeline = class Timeline extends Doraemon {
         }
         if (elements.length > 0) {
             const lastIndex = elements.length - 1;
-            elements.forEach((element, index) => {
+            elements.forEach((element, index)=>{
                 const isLast = this.pending ? index === Math.max(0, lastIndex - 1) : index === lastIndex;
                 const isPending = this.pending && index === lastIndex;
                 if (element && typeof element.updateIsLastElement === 'function') {
@@ -35,7 +34,7 @@ let Timeline = class Timeline extends Doraemon {
                         isLast,
                         isPending,
                         pending: this.pending,
-                        position: this.position,
+                        position: this.position
                     });
                 }
             });
@@ -45,27 +44,35 @@ let Timeline = class Timeline extends Doraemon {
         this.updateIsLastElement();
     }
 };
-__decorate([
-    Prop({ type: Boolean, default: false })
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
 ], Timeline.prototype, "pending", void 0);
-__decorate([
-    Prop({ type: String, default: 'left' })
+_ts_decorate([
+    Prop({
+        type: String,
+        default: 'left'
+    })
 ], Timeline.prototype, "position", void 0);
-Timeline = __decorate([
+Timeline = _ts_decorate([
     Component({
         props: {
             prefixCls: {
                 type: String,
-                default: 'dora-timeline',
-            },
+                default: 'dora-timeline'
+            }
         },
         components: {
-            TimelineItem: () => ({
-                module: './timeline-item',
-                type: 'child',
-                observer: 'onChildrenChanged',
-            }),
-        },
+            TimelineItem: ()=>({
+                    module: './timeline-item',
+                    type: 'child',
+                    observer: 'onChildrenChanged'
+                })
+        }
     })
 ], Timeline);
-export default defineComponentHOC()(Timeline);
+var index = defineComponentHOC()(Timeline);
+
+export { Timeline, index as default };

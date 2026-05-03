@@ -1,39 +1,40 @@
 /**
  * @doraemon-ui/miniprogram.dialog.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-02-22, 01:44:27.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
+ * Built on 2026-05-04, 00:42:33.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
-import { getCurrentPage, findComponentNode, usePopupStateHOC, isObject, isString, isTrue, isFalse, } from '@doraemon-ui/miniprogram.shared';
-const mergeOptions = (selector, instance) => {
+
+import { findComponentNode, getCurrentPage, isString, isObject, usePopupStateHOC, isFalse, isTrue } from '@doraemon-ui/miniprogram.shared';
+
+const mergeOptions = (selector, instance)=>{
     let opts = {
         selector: '#dora-dialog',
-        instance: getCurrentPage(),
+        instance: getCurrentPage()
     };
     if (isString(selector)) {
         opts.selector = selector;
         if (instance) {
             opts.instance = instance;
         }
-    }
-    else if (isObject(selector)) {
+    } else if (isObject(selector)) {
         opts = {
             ...opts,
-            ...selector,
+            ...selector
         };
     }
     return opts;
 };
 const destroyFns = new Map();
 function clear() {
-    for (const [close] of destroyFns) {
+    for (const [close] of destroyFns){
         close();
         destroyFns.delete(close);
     }
 }
 function mountComponent(props, container, statePropName = 'visible') {
     const { render, destroy, update } = usePopupStateHOC(statePropName)(container);
-    const close = () => {
+    const close = ()=>{
         if (isTrue(container[statePropName])) {
             destroy(props.onClose);
             if (destroyFns.has(close)) {
@@ -46,26 +47,26 @@ function mountComponent(props, container, statePropName = 'visible') {
         render(props);
     }
     // rewrite close
-    container.onClose = () => {
+    container.onClose = ()=>{
         close();
     };
-    container.onClosed = () => {
+    container.onClosed = ()=>{
         props.onClosed?.();
     };
     return {
         destroy: close,
-        update,
+        update
     };
 }
 function show(props, selector, instance) {
     const options = mergeOptions(selector, instance);
     const comp = findComponentNode(options.selector, options.instance);
     const { destroy } = mountComponent(props, comp);
-    return () => destroy();
+    return ()=>destroy();
 }
 function alert(props, selector, instance) {
     const { confirmText, confirmType, onConfirm, ...restProps } = props;
-    return new Promise((resolve) => {
+    return new Promise((resolve)=>{
         show.call(null, {
             ...restProps,
             buttonClosable: true,
@@ -73,20 +74,20 @@ function alert(props, selector, instance) {
                 {
                     type: confirmType ?? 'balanced',
                     text: confirmText ?? '确定',
-                    onClick(...args) {
+                    onClick (...args) {
                         onConfirm?.(...args);
-                    },
-                },
+                    }
+                }
             ],
-            onClose: () => {
+            onClose: ()=>{
                 resolve();
-            },
+            }
         }, selector, instance);
     });
 }
 function confirm(props, selector, instance) {
     const { confirmText, confirmType, onConfirm, cancelText, cancelType, onCancel, ...restProps } = props;
-    return new Promise((resolve) => {
+    return new Promise((resolve)=>{
         show.call(null, {
             ...restProps,
             buttonClosable: true,
@@ -94,25 +95,26 @@ function confirm(props, selector, instance) {
                 {
                     type: cancelType ?? 'dark',
                     text: cancelText ?? '取消',
-                    async onClick(...args) {
+                    async onClick (...args) {
                         await onCancel?.(...args);
                         resolve(false);
-                    },
+                    }
                 },
                 {
                     type: confirmType ?? 'balanced',
                     text: confirmText ?? '确定',
-                    async onClick(...args) {
+                    async onClick (...args) {
                         await onConfirm?.(...args);
                         resolve(true);
-                    },
-                },
+                    }
+                }
             ],
-            onClose: () => {
+            onClose: ()=>{
                 restProps.onClose?.();
                 resolve(false);
-            },
+            }
         }, selector, instance);
     });
 }
-export { show, alert, confirm, clear };
+
+export { alert, clear, confirm, show };

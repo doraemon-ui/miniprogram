@@ -1,7 +1,5 @@
 @import '../../@doraemon-ui/style/var.wxss';
-
 @import '../../@doraemon-ui/style/color.wxss';
-
 .dora-refresher {
   position: absolute;
   top: -120rpx;
@@ -9,57 +7,67 @@
   left: 0;
   overflow: hidden;
   margin: auto;
-  height: 100rpx
+  height: 100rpx;
 }
+
 .dora-refresher--hidden {
-  visibility: hidden
+  visibility: hidden;
 }
+
 .dora-refresher--visible {
-  visibility: visible
+  visibility: visible;
 }
+
 .dora-refresher__content {
   position: absolute;
   bottom: 10rpx;
   left: 0;
   width: 100%;
-  color: rgba(var(--dora-text-color-rgb,0,0,0),.65);
-  color: rgba(var(--dora-text-color-rgb,0,0,0),.65);
+  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.65);
+  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.65);
   text-align: center;
-  font-size: 60rpx
+  font-size: 60rpx;
 }
+
 .dora-refresher__content--text {
-  bottom: 0
+  bottom: 0;
 }
-.dora-refresher__text-pulling,
+
+.dora-refresher__text-pulling,.dora-refresher__text-refreshing {
+  font-size: 16px;
+  line-height: 16px;
+}
+
 .dora-refresher__text-refreshing {
-  font-size: 32rpx;
-  line-height: 32rpx
+  display: none;
 }
-.dora-refresher__text-refreshing {
-  display: none
-}
+
 .dora-refresher__icon-pulling {
   padding: 14rpx 0;
-  transform: translateZ(0) rotate(0)
+  transform: translateZ(0) rotate(0deg);
 }
+
 .dora-refresher__icon-refreshing {
   padding: 14rpx 0;
-  display: none
+  display: none;
 }
+
 .dora-refresher__icon--arrow-down::before {
-  content: '↓'
+  content: "↓";
 }
+
 .dora-refresher__icon--refresher::before {
-  content: '⟳'
+  content: "⟳";
 }
-.dora-refresher--active.dora-refresher--refreshing .dora-refresher__icon-pulling,
-.dora-refresher--active.dora-refresher--refreshing .dora-refresher__text-pulling {
-  display: none
+
+.dora-refresher--active.dora-refresher--refreshing .dora-refresher__icon-pulling,.dora-refresher--active.dora-refresher--refreshing .dora-refresher__text-pulling {
+  display: none;
 }
-.dora-refresher--active.dora-refresher--refreshing .dora-refresher__icon-refreshing,
-.dora-refresher--active.dora-refresher--refreshing .dora-refresher__text-refreshing {
-  display: block
+
+.dora-refresher--active.dora-refresher--refreshing .dora-refresher__icon-refreshing,.dora-refresher--active.dora-refresher--refreshing .dora-refresher__text-refreshing {
+  display: block;
 }
+
 .dora-loader {
   overflow: hidden;
   margin: auto;
@@ -67,38 +75,41 @@
   font-size: 30rpx;
   position: relative;
   text-align: center;
-  display: none
+  display: none;
 }
+
 .dora-loader .dora-refresher__icon--refresher {
   display: inline-block;
-  margin: 0
+  margin: 0;
 }
+
 .dora-loader__text-loading {
-  margin-left: 12rpx
+  margin-left: 6px;
 }
+
 .dora-loader--hidden {
   visibility: hidden;
-  display: none
+  display: none;
 }
+
 .dora-loader--visible {
   visibility: visible;
-  display: block
+  display: block;
 }
+
 .dora-loader--end {
   visibility: visible;
-  display: block
+  display: block;
 }
+
 .dora-loader__content {
   position: absolute;
   width: 100%;
   top: 50%;
   transform: translateY(-50%);
-  color: rgba(var(--dora-text-color-rgb,0,0,0),.65);
-  color: rgba(var(--dora-text-color-rgb,0,0,0),.65);
-  display: -ms-flexbox;
+  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.65);
+  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.65);
   display: flex;
-  -ms-flex-align: center;
   align-items: center;
-  -ms-flex-pack: center;
-  justify-content: center
+  justify-content: center;
 }

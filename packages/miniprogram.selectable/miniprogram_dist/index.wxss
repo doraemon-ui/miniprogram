@@ -1,12 +1,11 @@
 @import '../../@doraemon-ui/style/var.wxss';
-
 @import '../../@doraemon-ui/style/color.wxss';
-
 .dora-selectable {
   position: relative;
   display: inline-block;
-  cursor: pointer
+  cursor: pointer;
 }
+
 .dora-selectable__input {
   position: absolute;
   top: 0;
@@ -16,9 +15,11 @@
   height: 100%;
   z-index: 2;
   border: 0 none;
+  -webkit-appearance: none;
   -moz-appearance: none;
-  appearance: none
+  appearance: none;
 }
+
 .dora-selectable__icon {
   display: inline-block;
   font-size: 0;
@@ -26,6 +27,6 @@
   position: relative;
   top: 0;
   left: 0;
-  margin-left: 12rpx;
-  margin-right: 12rpx
+  margin-left: 6px;
+  margin-right: 6px;
 }

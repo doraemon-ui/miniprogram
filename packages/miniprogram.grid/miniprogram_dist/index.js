@@ -1,79 +1,68 @@
 /**
  * @doraemon-ui/miniprogram.grid.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-02-26, 21:20:50.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
+ * Built on 2026-05-04, 00:39:13.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+
+import { Doraemon, Prop, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
+
+function _ts_decorate(decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    else for(var i = decorators.length - 1; i >= 0; i--)if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js';
-const { classNames } = Doraemon.util;
-let Grids = class Grids extends Doraemon {
-    prefixCls;
-    col;
-    bordered;
-    square;
+}
+const { classNames, styleToCssString } = Doraemon.util;
+let Grid = class Grid extends Doraemon {
     get classes() {
-        const { prefixCls, bordered } = this;
+        const { prefixCls, hoverClass, disabled } = this;
+        const wrap = classNames(prefixCls, {
+            [`${prefixCls}--disabled`]: disabled
+        });
+        const hover = hoverClass && hoverClass !== 'default' ? hoverClass : `${prefixCls}--hover`;
         return {
-            wrap: classNames(prefixCls, {
-                [`${prefixCls}--bordered`]: bordered,
-            }),
+            wrap,
+            hover
         };
     }
-    onPropsChange() {
-        this.changeCurrent();
+    get containerStyle() {
+        return this.wrapStyle ? styleToCssString(this.wrapStyle) : '';
     }
-    onChildrenChanged() {
-        this.changeCurrent();
-    }
-    changeCurrent() {
-        const elements = this.$children;
-        const colNum = Number(this.col) > 0 ? Number(this.col) : 1;
-        const width = `${100 / colNum}%`;
-        if (elements.length > 0) {
-            elements.forEach((element, index) => {
-                element.changeCurrent(width, this.bordered, this.square, index);
-            });
+    onClick() {
+        if (!this.disabled) {
+            this.$emit('click');
         }
     }
-    mounted() {
-        this.changeCurrent();
-    }
 };
-__decorate([
-    Prop({ type: Number, default: 3 })
-], Grids.prototype, "col", void 0);
-__decorate([
-    Prop({ type: Boolean, default: true })
-], Grids.prototype, "bordered", void 0);
-__decorate([
-    Prop({ type: Boolean, default: false })
-], Grids.prototype, "square", void 0);
-__decorate([
-    Watch('col'),
-    Watch('bordered'),
-    Watch('square')
-], Grids.prototype, "onPropsChange", null);
-Grids = __decorate([
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
+], Grid.prototype, "disabled", void 0);
+_ts_decorate([
+    Prop({
+        type: String,
+        default: 'default'
+    })
+], Grid.prototype, "hoverClass", void 0);
+_ts_decorate([
+    Prop({
+        type: Object,
+        default: null
+    })
+], Grid.prototype, "wrapStyle", void 0);
+Grid = _ts_decorate([
     Component({
-        components: {
-            Grid: () => ({
-                module: './item',
-                type: 'descendant',
-                observer: 'onChildrenChanged',
-            }),
-        },
         props: {
             prefixCls: {
                 type: String,
-                default: 'dora-grids',
-            },
-        },
+                default: 'dora-grid'
+            }
+        }
     })
-], Grids);
-export default defineComponentHOC()(Grids);
+], Grid);
+var index = defineComponentHOC()(Grid);
+
+export { Grid, index as default };

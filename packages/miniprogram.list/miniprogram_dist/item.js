@@ -1,105 +1,21 @@
 /**
  * @doraemon-ui/miniprogram.list.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-02-26, 17:53:04.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
+ * Built on 2026-05-04, 00:42:13.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+
+import { Doraemon, Prop, Event, Emit, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
+import { NATIVE_ROUTES, useNativeRoute } from '@doraemon-ui/miniprogram.shared';
+
+function _ts_decorate(decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    else for(var i = decorators.length - 1; i >= 0; i--)if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-import { defineComponentHOC, Doraemon, Component, Emit, Event, Prop } from '@doraemon-ui/miniprogram.core-js';
-import { useNativeRoute, NATIVE_ROUTES } from '@doraemon-ui/miniprogram.shared';
+}
 const { classNames, styleToCssString } = Doraemon.util;
-let ListItemClass = class ListItemClass extends Doraemon {
-    /**
-     * 自定义类名前缀
-     *
-     * @type {string}
-     * @memberof Button
-     */
-    prefixCls;
-    /**
-     * 左侧缩略图
-     *
-     * @type {string}
-     * @memberof ListItem
-     */
-    thumb;
-    /**
-     * 左侧标题
-     *
-     * @type {string}
-     * @memberof ListItem
-     */
-    title;
-    /**
-     * 标题下方的描述信息
-     *
-     * @type {string}
-     * @memberof ListItem
-     */
-    label;
-    /**
-     * 右侧内容
-     *
-     * @type {string}
-     * @memberof ListItem
-     */
-    extra;
-    /**
-     * 是否有底部横线
-     *
-     * @type {boolean}
-     * @memberof ListItem
-     */
-    hasLine;
-    /**
-     * 是否展示右侧箭头并开启尝试以 url 跳转
-     *
-     * @type {boolean}
-     * @memberof ListItem
-     */
-    isLink;
-    /**
-     * 对齐方式
-     *
-     * @type {('flex-start' | 'center')}
-     * @memberof ListItem
-     */
-    align;
-    /**
-     * 自定义样式
-     *
-     * @type {Partial<CSSStyleDeclaration>}
-     * @memberof ListItem
-     */
-    wrapStyle;
-    // native route props
-    url;
-    urlParams;
-    delta;
-    // openType!: NativeRouteOpenType
-    // native button props
-    // @see https://developers.weixin.qq.com/miniprogram/dev/component/button.html
-    disabled;
-    // openType!: NativeButtonOpenType
-    hoverClass;
-    hoverStopPropagation;
-    hoverStartTime;
-    hoverStayTime;
-    lang;
-    sessionFrom;
-    sendMessageTitle;
-    sendMessagePath;
-    sendMessageImg;
-    showMessageCard;
-    phoneNumberNoQuotaToast;
-    appParameter;
-    // union type
-    openType;
+let ListItem = class ListItem extends Doraemon {
     get classes() {
         const { prefixCls, hoverClass, isLast, hasLine, isLink, align, disabled } = this;
         const wrap = classNames(prefixCls, {
@@ -107,7 +23,7 @@ let ListItemClass = class ListItemClass extends Doraemon {
             [`${prefixCls}--has-line`]: hasLine,
             [`${prefixCls}--access`]: isLink,
             [`${prefixCls}--align-${align}`]: align,
-            [`${prefixCls}--disabled`]: disabled,
+            [`${prefixCls}--disabled`]: disabled
         });
         const hd = `${prefixCls}__hd`;
         const thumb = `${prefixCls}__thumb`;
@@ -126,13 +42,12 @@ let ListItemClass = class ListItemClass extends Doraemon {
             description,
             ft,
             arrow,
-            hover,
+            hover
         };
     }
     get containerStyle() {
         return this.wrapStyle ? styleToCssString(this.wrapStyle) : '';
     }
-    isLast = false;
     onClick() {
         if (!this.disabled) {
             this.$emit('click');
@@ -171,196 +86,203 @@ let ListItemClass = class ListItemClass extends Doraemon {
     }
     linkTo() {
         const { url, urlParams, isLink, openType: _ot, delta } = this;
-        const openType = (NATIVE_ROUTES.includes(_ot) ? _ot : 'navigateTo');
+        const openType = NATIVE_ROUTES.includes(_ot) ? _ot : 'navigateTo';
         if (isLink && url) {
             useNativeRoute({
                 url,
                 urlParams,
                 openType,
-                delta,
+                delta
             }, this._renderProxy);
         }
     }
     updateIsLast(isLast) {
-        this.$nextTick(() => {
+        this.$nextTick(()=>{
             if (isLast !== this.isLast) {
                 this.isLast = isLast;
             }
         });
     }
+    constructor(...args){
+        super(...args);
+        this.isLast = false;
+    }
 };
-__decorate([
+_ts_decorate([
     Prop({
         type: String,
-        default: '',
+        default: ''
     })
-], ListItemClass.prototype, "thumb", void 0);
-__decorate([
+], ListItem.prototype, "thumb", void 0);
+_ts_decorate([
     Prop({
         type: String,
-        default: '',
+        default: ''
     })
-], ListItemClass.prototype, "title", void 0);
-__decorate([
+], ListItem.prototype, "title", void 0);
+_ts_decorate([
     Prop({
         type: String,
-        default: '',
+        default: ''
     })
-], ListItemClass.prototype, "label", void 0);
-__decorate([
+], ListItem.prototype, "label", void 0);
+_ts_decorate([
     Prop({
         type: String,
-        default: '',
+        default: ''
     })
-], ListItemClass.prototype, "extra", void 0);
-__decorate([
+], ListItem.prototype, "extra", void 0);
+_ts_decorate([
     Prop({
         type: Boolean,
-        default: true,
+        default: true
     })
-], ListItemClass.prototype, "hasLine", void 0);
-__decorate([
+], ListItem.prototype, "hasLine", void 0);
+_ts_decorate([
     Prop({
         type: Boolean,
-        default: false,
+        default: false
     })
-], ListItemClass.prototype, "isLink", void 0);
-__decorate([
+], ListItem.prototype, "isLink", void 0);
+_ts_decorate([
     Prop({
         type: String,
-        default: 'center',
+        default: 'center'
     })
-], ListItemClass.prototype, "align", void 0);
-__decorate([
+], ListItem.prototype, "align", void 0);
+_ts_decorate([
     Prop({
         type: Object,
-        default: null,
+        default: null
     })
-], ListItemClass.prototype, "wrapStyle", void 0);
-__decorate([
+], ListItem.prototype, "wrapStyle", void 0);
+_ts_decorate([
     Event(),
     Emit('getuserinfo')
-], ListItemClass.prototype, "onGetUserInfo", null);
-__decorate([
+], ListItem.prototype, "onGetUserInfo", null);
+_ts_decorate([
     Event(),
     Emit('contact')
-], ListItemClass.prototype, "onContact", null);
-__decorate([
+], ListItem.prototype, "onContact", null);
+_ts_decorate([
     Event(),
     Emit('getphonenumber')
-], ListItemClass.prototype, "onGetPhoneNumber", null);
-__decorate([
+], ListItem.prototype, "onGetPhoneNumber", null);
+_ts_decorate([
     Event(),
     Emit('launchapp')
-], ListItemClass.prototype, "onLaunchApp", null);
-__decorate([
+], ListItem.prototype, "onLaunchApp", null);
+_ts_decorate([
     Event(),
     Emit('chooseavatar')
-], ListItemClass.prototype, "onChooseAvatar", null);
-__decorate([
+], ListItem.prototype, "onChooseAvatar", null);
+_ts_decorate([
     Event(),
     Emit('opensetting')
-], ListItemClass.prototype, "onOpenSetting", null);
-__decorate([
+], ListItem.prototype, "onOpenSetting", null);
+_ts_decorate([
     Event(),
     Emit('createliveactivity')
-], ListItemClass.prototype, "onCreateLiveActivity", null);
-__decorate([
+], ListItem.prototype, "onCreateLiveActivity", null);
+_ts_decorate([
     Event(),
     Emit('getrealtimephonenumber')
-], ListItemClass.prototype, "onGetRealtimePhoneNumber", null);
-__decorate([
+], ListItem.prototype, "onGetRealtimePhoneNumber", null);
+_ts_decorate([
     Event(),
     Emit('agreeprivacyauthorization')
-], ListItemClass.prototype, "onAgreePrivacyAuthorization", null);
-__decorate([
+], ListItem.prototype, "onAgreePrivacyAuthorization", null);
+_ts_decorate([
     Event(),
     Emit('error')
-], ListItemClass.prototype, "onError", null);
-ListItemClass = __decorate([
+], ListItem.prototype, "onError", null);
+ListItem = _ts_decorate([
     Component({
         components: {
-            List: () => ({
-                module: './index',
-                type: 'ancestor',
-            }),
+            List: ()=>({
+                    module: './index',
+                    type: 'ancestor'
+                })
         },
         props: {
             prefixCls: {
                 type: String,
-                default: 'dora-list-item',
+                default: 'dora-list-item'
             },
             url: {
                 type: String,
-                default: '',
+                default: ''
             },
             urlParams: {
                 type: Object,
-                default: null,
+                default: null
             },
             delta: {
                 type: Number,
-                default: 1,
+                default: 1
             },
             disabled: {
                 type: Boolean,
-                default: false,
+                default: false
             },
             openType: {
                 type: String,
-                default: '',
+                default: ''
             },
             hoverClass: {
                 type: String,
-                default: 'default',
+                default: 'default'
             },
             hoverStopPropagation: {
                 type: Boolean,
-                default: false,
+                default: false
             },
             hoverStartTime: {
                 type: Number,
-                default: 20,
+                default: 20
             },
             hoverStayTime: {
                 type: Number,
-                default: 70,
+                default: 70
             },
             lang: {
                 type: String,
-                default: 'en',
+                default: 'en'
             },
             sessionFrom: {
                 type: String,
-                default: '',
+                default: ''
             },
             sendMessageTitle: {
                 type: String,
-                default: '',
+                default: ''
             },
             sendMessagePath: {
                 type: String,
-                default: '',
+                default: ''
             },
             sendMessageImg: {
                 type: String,
-                default: '',
+                default: ''
             },
             showMessageCard: {
                 type: Boolean,
-                default: false,
+                default: false
             },
             phoneNumberNoQuotaToast: {
                 type: Boolean,
-                default: true,
+                default: true
             },
             appParameter: {
                 type: String,
-                default: '',
-            },
+                default: ''
+            }
         },
-        expose: ['updateIsLast'],
+        expose: [
+            'updateIsLast'
+        ]
     })
-], ListItemClass);
-export const ListItem = defineComponentHOC()(ListItemClass);
-export default ListItem;
+], ListItem);
+var item = defineComponentHOC()(ListItem);
+
+export { ListItem, item as default };

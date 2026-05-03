@@ -1,77 +1,56 @@
 /**
  * @doraemon-ui/miniprogram.input-number.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-02-27, 01:41:52.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
+ * Built on 2026-05-04, 00:39:26.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+
+import { Doraemon, Prop, Watch, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
+import NP from './utils.js';
+
+function _ts_decorate(decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    else for(var i = decorators.length - 1; i >= 0; i--)if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js';
-import NP from './utils';
+}
 const { classNames } = Doraemon.util;
 const MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER || Math.pow(2, 53) - 1;
-const toNumberWhenUserInput = (num) => {
-    if (/\.\d*0$/.test(num) || num.length > 16)
-        return num;
-    if (Number.isNaN(Number(num)))
-        return num;
+const toNumberWhenUserInput = (num)=>{
+    if (/\.\d*0$/.test(num) || num.length > 16) return num;
+    if (Number.isNaN(Number(num))) return num;
     return Number(num);
 };
-const getValidValue = (value, min, max) => {
+const getValidValue = (value, min, max)=>{
     let val = Number.parseFloat(String(value));
-    if (Number.isNaN(val))
-        return value;
-    if (val < min)
-        val = min;
-    if (val > max)
-        val = max;
+    if (Number.isNaN(val)) return value;
+    if (val < min) val = min;
+    if (val > max) val = max;
     return val;
 };
 let InputNumber = class InputNumber extends Doraemon {
-    prefixCls;
-    shape;
-    min;
-    max;
-    step;
-    defaultValue;
-    value;
-    disabled;
-    readOnly;
-    longpress;
-    color;
-    controlled;
-    digits;
-    inputValue = 0;
-    disabledMin = false;
-    disabledMax = false;
-    timeout = null;
-    inputTime = null;
     get classes() {
         const { prefixCls, shape, color, disabled, readOnly, disabledMin, disabledMax } = this;
         return {
             wrap: classNames(prefixCls, {
-                [`${prefixCls}--${shape}`]: shape,
+                [`${prefixCls}--${shape}`]: shape
             }),
             sub: classNames(`${prefixCls}__selector`, {
                 [`${prefixCls}__selector--sub`]: true,
                 [`${prefixCls}__selector--${color}`]: true,
-                [`${prefixCls}__selector--disabled`]: disabled || readOnly || disabledMin,
+                [`${prefixCls}__selector--disabled`]: disabled || readOnly || disabledMin
             }),
             add: classNames(`${prefixCls}__selector`, {
                 [`${prefixCls}__selector--add`]: true,
                 [`${prefixCls}__selector--${color}`]: true,
-                [`${prefixCls}__selector--disabled`]: disabled || readOnly || disabledMax,
+                [`${prefixCls}__selector--disabled`]: disabled || readOnly || disabledMax
             }),
             icon: `${prefixCls}__icon`,
             control: `${prefixCls}__control`,
             input: classNames(`${prefixCls}__input`, {
                 [`${prefixCls}__input--disabled`]: disabled,
-                [`${prefixCls}__input--readonly`]: readOnly,
-            }),
+                [`${prefixCls}__input--readonly`]: readOnly
+            })
         };
     }
     onValueChange(newVal) {
@@ -97,31 +76,30 @@ let InputNumber = class InputNumber extends Doraemon {
         }
         this.updated(inputValue);
         if (runCallbacks) {
-            this.$emit('change', { value: inputValue });
+            this.$emit('change', {
+                value: inputValue
+            });
         }
     }
     calculation(type, isLoop) {
-        if (this.disabled || this.readOnly)
-            return;
+        if (this.disabled || this.readOnly) return;
         const current = Number(this.inputValue);
         const value = Number.isNaN(current) ? 0 : current;
         if (type === 'add') {
-            if (this.disabledMax)
-                return;
+            if (this.disabledMax) return;
             this.setValue(NP.plus(value, this.step));
         }
         if (type === 'sub') {
-            if (this.disabledMin)
-                return;
+            if (this.disabledMin) return;
             this.setValue(NP.minus(value, this.step));
         }
         if (this.longpress && isLoop) {
-            this.timeout = setTimeout(() => this.calculation(type, isLoop), 100);
+            this.timeout = setTimeout(()=>this.calculation(type, isLoop), 100);
         }
     }
     onInput(e) {
         this.clearInputTimer();
-        this.inputTime = setTimeout(() => {
+        this.inputTime = setTimeout(()=>{
             const value = toNumberWhenUserInput(e.detail.value);
             this.setValue(value);
         }, 300);
@@ -134,13 +112,12 @@ let InputNumber = class InputNumber extends Doraemon {
         this.$emit('blur', e.detail);
     }
     onLongpress(e) {
-        const type = (e.currentTarget?.dataset?.type || 'add');
-        if (this.longpress)
-            this.calculation(type, true);
+        const type = e.currentTarget?.dataset?.type || 'add';
+        if (this.longpress) this.calculation(type, true);
     }
     onTap(e) {
-        const type = (e.currentTarget?.dataset?.type || 'add');
-        if (!this.longpress || (this.longpress && !this.timeout)) {
+        const type = e.currentTarget?.dataset?.type || 'add';
+        if (!this.longpress || this.longpress && !this.timeout) {
             this.calculation(type, false);
         }
     }
@@ -170,70 +147,160 @@ let InputNumber = class InputNumber extends Doraemon {
         this.clearTimer();
         this.clearInputTimer();
     }
+    constructor(...args){
+        super(...args);
+        this.inputValue = 0;
+        this.disabledMin = false;
+        this.disabledMax = false;
+        this.timeout = null;
+        this.inputTime = null;
+    }
 };
-__decorate([
-    Prop({ type: String, default: 'square' })
+_ts_decorate([
+    Prop({
+        type: String,
+        default: 'square'
+    })
 ], InputNumber.prototype, "shape", void 0);
-__decorate([
-    Prop({ type: Number, default: -MAX_SAFE_INTEGER })
+_ts_decorate([
+    Prop({
+        type: Number,
+        default: -MAX_SAFE_INTEGER
+    })
 ], InputNumber.prototype, "min", void 0);
-__decorate([
-    Prop({ type: Number, default: MAX_SAFE_INTEGER })
+_ts_decorate([
+    Prop({
+        type: Number,
+        default: MAX_SAFE_INTEGER
+    })
 ], InputNumber.prototype, "max", void 0);
-__decorate([
-    Prop({ type: Number, default: 1 })
+_ts_decorate([
+    Prop({
+        type: Number,
+        default: 1
+    })
 ], InputNumber.prototype, "step", void 0);
-__decorate([
-    Prop({ type: Number, default: 0 })
+_ts_decorate([
+    Prop({
+        type: Number,
+        default: 0
+    })
 ], InputNumber.prototype, "defaultValue", void 0);
-__decorate([
-    Prop({ type: Number, default: 0 })
+_ts_decorate([
+    Prop({
+        type: Number,
+        default: 0
+    })
 ], InputNumber.prototype, "value", void 0);
-__decorate([
-    Prop({ type: Boolean, default: true })
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: true
+    })
 ], InputNumber.prototype, "disabled", void 0);
-__decorate([
-    Prop({ type: Boolean, default: false })
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
 ], InputNumber.prototype, "readOnly", void 0);
-__decorate([
-    Prop({ type: Boolean, default: false })
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
 ], InputNumber.prototype, "longpress", void 0);
-__decorate([
-    Prop({ type: String, default: 'balanced' })
+_ts_decorate([
+    Prop({
+        type: String,
+        default: 'balanced'
+    })
 ], InputNumber.prototype, "color", void 0);
-__decorate([
-    Prop({ type: Boolean, default: false })
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
 ], InputNumber.prototype, "controlled", void 0);
-__decorate([
-    Prop({ type: Number, default: -1 })
+_ts_decorate([
+    Prop({
+        type: Number,
+        default: -1
+    })
 ], InputNumber.prototype, "digits", void 0);
-__decorate([
+_ts_decorate([
     Watch('value')
 ], InputNumber.prototype, "onValueChange", null);
-__decorate([
+_ts_decorate([
     Watch('inputValue'),
     Watch('min'),
     Watch('max')
 ], InputNumber.prototype, "onRangeChange", null);
-InputNumber = __decorate([
+InputNumber = _ts_decorate([
     Component({
         props: {
-            prefixCls: { type: String, default: 'dora-input-number' },
-            shape: { type: String, default: 'square' },
-            min: { type: Number, default: -MAX_SAFE_INTEGER },
-            max: { type: Number, default: MAX_SAFE_INTEGER },
-            step: { type: Number, default: 1 },
-            defaultValue: { type: Number, default: 0 },
-            value: { type: Number, default: 0 },
-            disabled: { type: Boolean, default: true },
-            readOnly: { type: Boolean, default: false },
-            longpress: { type: Boolean, default: false },
-            color: { type: String, default: 'balanced' },
-            controlled: { type: Boolean, default: false },
-            digits: { type: Number, default: -1 },
-        },
+            prefixCls: {
+                type: String,
+                default: 'dora-input-number'
+            },
+            shape: {
+                type: String,
+                default: 'square'
+            },
+            min: {
+                type: Number,
+                default: -MAX_SAFE_INTEGER
+            },
+            max: {
+                type: Number,
+                default: MAX_SAFE_INTEGER
+            },
+            step: {
+                type: Number,
+                default: 1
+            },
+            defaultValue: {
+                type: Number,
+                default: 0
+            },
+            value: {
+                type: Number,
+                default: 0
+            },
+            disabled: {
+                type: Boolean,
+                default: true
+            },
+            readOnly: {
+                type: Boolean,
+                default: false
+            },
+            longpress: {
+                type: Boolean,
+                default: false
+            },
+            color: {
+                type: String,
+                default: 'balanced'
+            },
+            controlled: {
+                type: Boolean,
+                default: false
+            },
+            digits: {
+                type: Number,
+                default: -1
+            }
+        }
     })
 ], InputNumber);
-export default defineComponentHOC({
-    externalClasses: ['dora-sub-class', 'dora-control-class', 'dora-input-class', 'dora-add-class'],
+var index = defineComponentHOC({
+    externalClasses: [
+        'dora-sub-class',
+        'dora-control-class',
+        'dora-input-class',
+        'dora-add-class'
+    ]
 })(InputNumber);
+
+export { InputNumber, index as default };

@@ -60,8 +60,8 @@ page {
   --dora-color-dark-contrast: #fff;
 }
 @media (prefers-color-scheme: dark) {
-  page [data-dora-theme="auto"],
-  page [data-dora-theme="dark"] {
+  page [data-dora-theme='auto'],
+  page [data-dora-theme='dark'] {
     --dora-background-color: #0d0d0d;
     --dora-background-color-rgb: 13, 13, 13;
     --dora-text-color: #fff;
@@ -122,7 +122,7 @@ page {
     --dora-color-dark-contrast: #000;
   }
 }
-page [data-dora-theme="dark"] {
+page [data-dora-theme='dark'] {
   --dora-background-color: #0d0d0d;
   --dora-background-color-rgb: 13, 13, 13;
   --dora-text-color: #fff;
@@ -183,7 +183,7 @@ page [data-dora-theme="dark"] {
   --dora-color-dark-contrast: #000;
 }
 page {
-  --dora-default-font: -apple-system-font, "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --dora-default-font: -apple-system-font, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
   --dora-font-family: var(--dora-default-font);
   --dora-safe-area-top: env(safe-area-inset-top);
   --dora-safe-area-top: constant(safe-area-inset-top);

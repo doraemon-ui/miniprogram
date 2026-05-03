@@ -1,46 +1,27 @@
 /**
  * @doraemon-ui/miniprogram.fab-button.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-02-27, 00:50:35.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
+ * Built on 2026-05-04, 00:38:51.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+
+import { Doraemon, Prop, Watch, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
+import { useRect } from '@doraemon-ui/miniprogram.shared';
+
+function _ts_decorate(decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    else for(var i = decorators.length - 1; i >= 0; i--)if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-import { Doraemon, Component, Prop, Watch, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
-import { useRect } from '@doraemon-ui/miniprogram.shared';
+}
 const { classNames } = Doraemon.util;
 const defaultAction = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAAAAYLlVAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAHdElNRQfhBAQLCR5MtjrbAAAAjUlEQVRo3u3ZMRKAIAxEUbDirp4nXnctFFDHBtDQ/O1Nnk6aHUMgZCBKMkmmNAtgOmL9M+IQQGVM95zljy8DAAAAAAAAAAAAAACALsDZcppSx7Q+WdtUvA5xffUtrjeA8/qQ21S9gc15/3Nfzw0M5O0G2kM5BQAAAAAAAAAAAAAAQGk33q0qZ/p/Q/JFdmei9usomnwIAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE3LTA0LTA0VDExOjA5OjMwKzA4OjAw1U4c3wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxNy0wNC0wNFQxMTowOTozMCswODowMKQTpGMAAAAASUVORK5CYII=';
-const setTransform = (translate = 0, scale = 1, delay = 300, isHorizontal = true) => {
+const setTransform = (translate = 0, scale = 1, delay = 300, isHorizontal = true)=>{
     const duration = `transition-duration: ${delay}ms`;
     const transform = `transform: scale(${scale}) translate3d(${isHorizontal ? translate : 0}px, ${isHorizontal ? 0 : translate}px, 0)`;
     return `opacity: 1; ${duration}; ${transform}`;
 };
 let FabButton = class FabButton extends Doraemon {
-    prefixCls;
-    hoverClass;
-    theme;
-    position;
-    action;
-    actionRotate;
-    hideShadow;
-    backdrop;
-    buttons;
-    direction;
-    spaceBetween;
-    duration;
-    scale;
-    reverse;
-    sAngle;
-    eAngle;
-    defaultVisible;
-    visible;
-    controlled;
-    buttonStyle = [];
-    buttonVisible = false;
     get classes() {
         const { prefixCls, position, theme, direction, reverse, buttonVisible, hideShadow, actionRotate, buttons, hoverClass } = this;
         const wrap = classNames(prefixCls, {
@@ -48,22 +29,22 @@ let FabButton = class FabButton extends Doraemon {
             [`${prefixCls}--${theme}`]: theme,
             [`${prefixCls}--${direction}`]: direction,
             [`${prefixCls}--reverse`]: reverse,
-            [`${prefixCls}--opened`]: buttonVisible,
+            [`${prefixCls}--opened`]: buttonVisible
         });
         const action = classNames(`${prefixCls}__action`, {
-            [`${prefixCls}__action--hide-shadow`]: hideShadow,
+            [`${prefixCls}__action--hide-shadow`]: hideShadow
         });
         const text = classNames(`${prefixCls}__text`, {
-            [`${prefixCls}__text--rotate`]: buttonVisible && actionRotate,
+            [`${prefixCls}__text--rotate`]: buttonVisible && actionRotate
         });
-        const button = (buttons || []).map((item) => {
+        const button = (buttons || []).map((item)=>{
             return {
                 wrap: classNames(`${prefixCls}__button`, {
                     [`${prefixCls}__button--hide-shadow`]: !!item.hideShadow,
                     [`${prefixCls}__button--disabled`]: !!item.disabled,
-                    [String(item.className || '')]: !!item.className,
+                    [String(item.className || '')]: !!item.className
                 }),
-                hover: item.hoverClass && item.hoverClass !== 'default' ? item.hoverClass : `${prefixCls}__button--hover`,
+                hover: item.hoverClass && item.hoverClass !== 'default' ? item.hoverClass : `${prefixCls}__button--hover`
             };
         });
         const hover = hoverClass && hoverClass !== 'default' ? hoverClass : `${prefixCls}--hover`;
@@ -75,7 +56,7 @@ let FabButton = class FabButton extends Doraemon {
             icon: `${prefixCls}__icon`,
             label: `${prefixCls}__label`,
             backdrop: `${prefixCls}__backdrop`,
-            hover,
+            hover
         };
     }
     onVisibleChange(newVal) {
@@ -96,18 +77,20 @@ let FabButton = class FabButton extends Doraemon {
         if (!this.controlled) {
             this.updated(buttonVisible);
         }
-        this.$emit('change', { value: buttonVisible });
+        this.$emit('change', {
+            value: buttonVisible
+        });
     }
     onToggle() {
         this.onChange(!this.buttonVisible);
     }
     onTap(e) {
         const index = typeof e?.currentTarget?.dataset?.index === 'number' ? e.currentTarget.dataset.index : -1;
-        const value = (e?.currentTarget?.dataset?.value || {});
+        const value = e?.currentTarget?.dataset?.value || {};
         const params = {
             index,
             value,
-            buttons: this.buttons,
+            buttons: this.buttons
         };
         if (!value.disabled) {
             this.$emit('click', params);
@@ -120,25 +103,24 @@ let FabButton = class FabButton extends Doraemon {
         const sign = this.reverse ? 1 : -1;
         const isHorizontal = direction === 'horizontal';
         if (isReset) {
-            buttons.forEach(() => {
+            buttons.forEach(()=>{
                 buttonStyle.push('opacity: 0; transform: translate3d(0, 0, 0)');
             });
             this.buttonStyle = buttonStyle;
             return;
         }
-        void useRect(`.${prefixCls}__action`, this._renderProxy).then((rect) => {
+        void useRect(`.${prefixCls}__action`, this._renderProxy).then((rect)=>{
             if (!rect || typeof rect.width !== 'number') {
                 return;
             }
             if (direction === 'horizontal' || direction === 'vertical') {
-                buttons.forEach((_, index) => {
+                buttons.forEach((_, index)=>{
                     const offset = sign * (rect.width + spaceBetween) * (index + 1);
                     buttonStyle.push(setTransform(offset, scale, duration, isHorizontal));
                 });
-            }
-            else {
+            } else {
                 const radius = rect.width + spaceBetween;
-                buttons.forEach((_, index) => {
+                buttons.forEach((_, index)=>{
                     buttonStyle.push(this.getCircleStyle(index, radius));
                 });
             }
@@ -149,10 +131,10 @@ let FabButton = class FabButton extends Doraemon {
         const { sAngle, eAngle, duration, scale } = this;
         const length = this.buttons.length;
         const { max, sin, cos, PI } = Math;
-        const startAngle = (sAngle * PI) / 180;
-        const endAngle = (eAngle * PI) / 180;
+        const startAngle = sAngle * PI / 180;
+        const endAngle = eAngle * PI / 180;
         const points = endAngle % (2 * PI) === 0 ? length : max(1, length - 1);
-        const currentAngle = startAngle + ((endAngle - startAngle) / points) * index;
+        const currentAngle = startAngle + (endAngle - startAngle) / points * index;
         const x = Number((sin(currentAngle) * radius).toFixed(6));
         const y = Number((cos(currentAngle) * radius).toFixed(6));
         const transform = `transform: scale(${scale}) translate3d(${x}px, ${y}px, 0)`;
@@ -161,8 +143,8 @@ let FabButton = class FabButton extends Doraemon {
     emitOpenTypeEvent(name, e) {
         const eventLike = e;
         this.$emit(name, {
-            ...(eventLike.detail || {}),
-            ...(eventLike.currentTarget?.dataset || {}),
+            ...eventLike.detail || {},
+            ...eventLike.currentTarget?.dataset || {}
         });
     }
     bindgetuserinfo(e) {
@@ -190,65 +172,124 @@ let FabButton = class FabButton extends Doraemon {
         const buttonVisible = this.controlled ? this.visible : this.defaultVisible;
         this.updated(buttonVisible);
     }
+    constructor(...args){
+        super(...args);
+        this.buttonStyle = [];
+        this.buttonVisible = false;
+    }
 };
-__decorate([
-    Prop({ type: String, default: 'default' })
+_ts_decorate([
+    Prop({
+        type: String,
+        default: 'default'
+    })
 ], FabButton.prototype, "hoverClass", void 0);
-__decorate([
-    Prop({ type: String, default: 'balanced' })
+_ts_decorate([
+    Prop({
+        type: String,
+        default: 'balanced'
+    })
 ], FabButton.prototype, "theme", void 0);
-__decorate([
-    Prop({ type: String, default: 'bottomRight' })
+_ts_decorate([
+    Prop({
+        type: String,
+        default: 'bottomRight'
+    })
 ], FabButton.prototype, "position", void 0);
-__decorate([
-    Prop({ type: String, default: defaultAction })
+_ts_decorate([
+    Prop({
+        type: String,
+        default: defaultAction
+    })
 ], FabButton.prototype, "action", void 0);
-__decorate([
-    Prop({ type: Boolean, default: true })
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: true
+    })
 ], FabButton.prototype, "actionRotate", void 0);
-__decorate([
-    Prop({ type: Boolean, default: false })
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
 ], FabButton.prototype, "hideShadow", void 0);
-__decorate([
-    Prop({ type: Boolean, default: false })
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
 ], FabButton.prototype, "backdrop", void 0);
-__decorate([
-    Prop({ type: Array, default: () => [] })
+_ts_decorate([
+    Prop({
+        type: Array,
+        default: ()=>[]
+    })
 ], FabButton.prototype, "buttons", void 0);
-__decorate([
-    Prop({ type: String, default: 'horizontal' })
+_ts_decorate([
+    Prop({
+        type: String,
+        default: 'horizontal'
+    })
 ], FabButton.prototype, "direction", void 0);
-__decorate([
-    Prop({ type: Number, default: 10 })
+_ts_decorate([
+    Prop({
+        type: Number,
+        default: 10
+    })
 ], FabButton.prototype, "spaceBetween", void 0);
-__decorate([
-    Prop({ type: Number, default: 300 })
+_ts_decorate([
+    Prop({
+        type: Number,
+        default: 300
+    })
 ], FabButton.prototype, "duration", void 0);
-__decorate([
-    Prop({ type: Number, default: 0.9 })
+_ts_decorate([
+    Prop({
+        type: Number,
+        default: 0.9
+    })
 ], FabButton.prototype, "scale", void 0);
-__decorate([
-    Prop({ type: Boolean, default: false })
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
 ], FabButton.prototype, "reverse", void 0);
-__decorate([
-    Prop({ type: Number, default: 0 })
+_ts_decorate([
+    Prop({
+        type: Number,
+        default: 0
+    })
 ], FabButton.prototype, "sAngle", void 0);
-__decorate([
-    Prop({ type: Number, default: 360 })
+_ts_decorate([
+    Prop({
+        type: Number,
+        default: 360
+    })
 ], FabButton.prototype, "eAngle", void 0);
-__decorate([
-    Prop({ type: Boolean, default: false })
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
 ], FabButton.prototype, "defaultVisible", void 0);
-__decorate([
-    Prop({ type: Boolean, default: false })
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
 ], FabButton.prototype, "visible", void 0);
-__decorate([
-    Prop({ type: Boolean, default: false })
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
 ], FabButton.prototype, "controlled", void 0);
-__decorate([
+_ts_decorate([
     Watch('visible')
 ], FabButton.prototype, "onVisibleChange", null);
-__decorate([
+_ts_decorate([
     Watch('buttons'),
     Watch('direction'),
     Watch('spaceBetween'),
@@ -257,86 +298,88 @@ __decorate([
     Watch('sAngle'),
     Watch('eAngle')
 ], FabButton.prototype, "forceUpdateButtonStyle", null);
-FabButton = __decorate([
+FabButton = _ts_decorate([
     Component({
         props: {
             prefixCls: {
                 type: String,
-                default: 'dora-fab-button',
+                default: 'dora-fab-button'
             },
             hoverClass: {
                 type: String,
-                default: 'default',
+                default: 'default'
             },
             theme: {
                 type: String,
-                default: 'balanced',
+                default: 'balanced'
             },
             position: {
                 type: String,
-                default: 'bottomRight',
+                default: 'bottomRight'
             },
             action: {
                 type: String,
-                default: defaultAction,
+                default: defaultAction
             },
             actionRotate: {
                 type: Boolean,
-                default: true,
+                default: true
             },
             hideShadow: {
                 type: Boolean,
-                default: false,
+                default: false
             },
             backdrop: {
                 type: Boolean,
-                default: false,
+                default: false
             },
             buttons: {
                 type: Array,
-                default: () => [],
+                default: ()=>[]
             },
             direction: {
                 type: String,
-                default: 'horizontal',
+                default: 'horizontal'
             },
             spaceBetween: {
                 type: Number,
-                default: 10,
+                default: 10
             },
             duration: {
                 type: Number,
-                default: 300,
+                default: 300
             },
             scale: {
                 type: Number,
-                default: 0.9,
+                default: 0.9
             },
             reverse: {
                 type: Boolean,
-                default: false,
+                default: false
             },
             sAngle: {
                 type: Number,
-                default: 0,
+                default: 0
             },
             eAngle: {
                 type: Number,
-                default: 360,
+                default: 360
             },
             defaultVisible: {
                 type: Boolean,
-                default: false,
+                default: false
             },
             visible: {
                 type: Boolean,
-                default: false,
+                default: false
             },
             controlled: {
                 type: Boolean,
-                default: false,
-            },
-        },
+                default: false
+            }
+        }
     })
 ], FabButton);
-export default defineComponentHOC()(FabButton);
+var index = defineComponentHOC()(FabButton);
+
+export { FabButton, index as default };

@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.demo-shared.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-02-22, 01:40:18.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
+ * Built on 2026-05-04, 00:37:31.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 
 let 主题 = '一天掉多少根头发';

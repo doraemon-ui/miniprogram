@@ -1,6 +1,3 @@
 {
-  "component": true,
-  "usingComponents": {
-    "dora-divider": "@doraemon-ui/miniprogram.divider/index"
-  }
+  "component": true
 }

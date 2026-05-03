@@ -1,7 +1,5 @@
 @import '../../@doraemon-ui/style/var.wxss';
-
 @import '../../@doraemon-ui/style/color.wxss';
-
 .dora-vcode {
-  position: static
+  position: static;
 }

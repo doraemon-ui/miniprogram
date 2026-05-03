@@ -1,68 +1,39 @@
 /**
  * @doraemon-ui/miniprogram.slider.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-03-05, 17:32:04.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
+ * Built on 2026-05-04, 00:40:53.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+
+import { Doraemon, Prop, Watch, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
+import { getPointsNumber, getTouchPoints, useRect } from '@doraemon-ui/miniprogram.shared';
+
+function _ts_decorate(decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    else for(var i = decorators.length - 1; i >= 0; i--)if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js';
-import { getPointsNumber, getTouchPoints, useRect } from '@doraemon-ui/miniprogram.shared';
+}
 const { classNames, styleToCssString } = Doraemon.util;
-const getPrecision = (step) => {
+const getPrecision = (step)=>{
     const stepString = String(step);
     return stepString.indexOf('.') >= 0 ? stepString.length - stepString.indexOf('.') - 1 : 0;
 };
-const checkValuePrecision = (val, step, min) => {
+const checkValuePrecision = (val, step, min)=>{
     const safeStep = step || 1;
     const closestStep = Math.round((val - min) / safeStep) * safeStep + min;
     const precision = getPrecision(safeStep);
     return parseFloat(closestStep.toFixed(precision));
 };
-const getStyles = (value) => {
-    return Array.isArray(value) ? value.map((n) => styleToCssString(n)) : styleToCssString(value);
+const getStyles = (value)=>{
+    return Array.isArray(value) ? value.map((n)=>styleToCssString(n)) : styleToCssString(value);
 };
 let Slider = class Slider extends Doraemon {
-    prefixCls;
-    min;
-    max;
-    step;
-    defaultValue;
-    value;
-    controlled;
-    disabled;
-    showMark;
-    showValue;
-    tipFormatter;
-    markStyle;
-    handleStyle;
-    trackStyle;
-    railStyle;
-    wrapStyle;
-    offsets = [];
-    inputValue = [];
-    extMarkStyle = '';
-    extHandleStyle = '';
-    extTrackStyle = '';
-    extRailStyle = '';
-    extWrapStyle = '';
-    marks = [];
-    isTouched = false;
-    isMoved = false;
-    last = 0;
-    startX = 0;
-    moveX = 0;
-    startPos = 0;
-    movedLocal = false;
     get classes() {
         const { prefixCls, disabled, tipFormatter } = this;
         const wrap = classNames(prefixCls, {
             [`${prefixCls}--disabled`]: disabled,
-            [`${prefixCls}--has-tip`]: !!tipFormatter,
+            [`${prefixCls}--has-tip`]: !!tipFormatter
         });
         return {
             wrap,
@@ -72,22 +43,19 @@ let Slider = class Slider extends Doraemon {
             mark: `${prefixCls}__mark`,
             track: `${prefixCls}__track`,
             handle: `${prefixCls}__handle`,
-            max: `${prefixCls}__max`,
+            max: `${prefixCls}__max`
         };
     }
     get showMin() {
-        if (typeof this.showValue === 'object' && this.showValue)
-            return !!this.showValue.min;
+        if (typeof this.showValue === 'object' && this.showValue) return !!this.showValue.min;
         return !!this.showValue;
     }
     get showMax() {
-        if (typeof this.showValue === 'object' && this.showValue)
-            return !!this.showValue.max;
+        if (typeof this.showValue === 'object' && this.showValue) return !!this.showValue.max;
         return !!this.showValue;
     }
     onValuePropChange(v) {
-        if (this.controlled)
-            this.updated(v);
+        if (this.controlled) this.updated(v);
     }
     onMarkStyleChange(v) {
         this.extMarkStyle = getStyles(v);
@@ -106,15 +74,16 @@ let Slider = class Slider extends Doraemon {
     }
     onMarkDepsChange() {
         this.getMarks();
-        this.offsets = this.inputValue.map((n) => this.calcOffset(this.checkValue(n)));
+        this.offsets = this.inputValue.map((n)=>this.calcOffset(this.checkValue(n)));
     }
     updated(inputValue = []) {
-        this.inputValue = [...inputValue];
-        this.offsets = this.inputValue.map((n) => this.calcOffset(this.checkValue(n)));
+        this.inputValue = [
+            ...inputValue
+        ];
+        this.offsets = this.inputValue.map((n)=>this.calcOffset(this.checkValue(n)));
     }
     onTouchStart(e) {
-        if (this.disabled || getPointsNumber(e) > 1)
-            return;
+        if (this.disabled || getPointsNumber(e) > 1) return;
         const { index } = e.currentTarget.dataset;
         this.movedLocal = false;
         this.startX = getTouchPoints(e).x;
@@ -125,62 +94,62 @@ let Slider = class Slider extends Doraemon {
         this.isMoved = false;
     }
     onTouchMove(e) {
-        if (this.disabled || getPointsNumber(e) > 1)
-            return;
+        if (this.disabled || getPointsNumber(e) > 1) return;
         const { index } = e.currentTarget.dataset;
         this.movedLocal = true;
         this.isMoved = true;
         this.moveX = getTouchPoints(e).x;
-        useRect(`.${this.prefixCls}__rail`, this._renderProxy).then((rect) => {
-            if (!rect || !this.movedLocal)
-                return;
-            const diffX = ((this.moveX - this.startX) / rect.width) * 100;
-            const nextOffsets = [...this.offsets];
+        useRect(`.${this.prefixCls}__rail`, this._renderProxy).then((rect)=>{
+            if (!rect || !this.movedLocal) return;
+            const diffX = (this.moveX - this.startX) / rect.width * 100;
+            const nextOffsets = [
+                ...this.offsets
+            ];
             const offset = this.checkValue(this.startPos + diffX, 0, 100);
             const currentValue = this.calcValue(offset);
             const prevValue = this.inputValue[index - 1];
             const nextValue = this.inputValue[index + 1];
             nextOffsets[index] = this.calcOffset(currentValue);
-            if (index > 0 && prevValue > currentValue)
-                nextOffsets[index] = this.calcOffset(prevValue);
-            if (index < this.inputValue.length - 1 && nextValue < currentValue)
-                nextOffsets[index] = this.calcOffset(nextValue);
+            if (index > 0 && prevValue > currentValue) nextOffsets[index] = this.calcOffset(prevValue);
+            if (index < this.inputValue.length - 1 && nextValue < currentValue) nextOffsets[index] = this.calcOffset(nextValue);
             if (this.inputValue[index] !== currentValue) {
                 const value = this.getValue(nextOffsets);
-                if (!this.controlled)
-                    this.updated(value);
-                this.$emit('change', { offsets: nextOffsets, value });
+                if (!this.controlled) this.updated(value);
+                this.$emit('change', {
+                    offsets: nextOffsets,
+                    value
+                });
             }
         });
     }
     onTouchEnd(e) {
-        if (this.disabled || getPointsNumber(e) > 1 || !this.movedLocal)
-            return;
+        if (this.disabled || getPointsNumber(e) > 1 || !this.movedLocal) return;
         this.movedLocal = false;
         this.isTouched = false;
         this.isMoved = false;
         const value = this.getValue(this.offsets);
-        this.$emit('afterChange', { offsets: this.offsets, value });
+        this.$emit('afterChange', {
+            offsets: this.offsets,
+            value
+        });
     }
     calcValue(ratio) {
-        return this.trimValue((ratio * (this.max - this.min)) / 100 + this.min);
+        return this.trimValue(ratio * (this.max - this.min) / 100 + this.min);
     }
     calcOffset(value) {
         const ratio = (value - this.min) / (this.max - this.min || 1);
         return ratio * 100;
     }
     checkValue(val, min = this.min, max = this.max) {
-        if (val <= min)
-            return min;
-        if (val >= max)
-            return max;
+        if (val <= min) return min;
+        if (val >= max) return max;
         return val;
     }
     trimValue(val) {
         return checkValuePrecision(this.checkValue(val), this.step, this.min);
     }
     getValue(offsets = this.offsets) {
-        return offsets.map((offset) => this.calcValue(offset));
+        return offsets.map((offset)=>this.calcValue(offset));
     }
     getMarks() {
         if (!this.showMark) {
@@ -189,21 +158,19 @@ let Slider = class Slider extends Doraemon {
         }
         const count = (this.max - this.min) / (this.step || 1);
         const marks = [];
-        const offset = (100 * (this.step || 1)) / (this.max - this.min || 1);
-        for (let i = 1; i < count; i++)
-            marks.push(i * offset);
+        const offset = 100 * (this.step || 1) / (this.max - this.min || 1);
+        for(let i = 1; i < count; i++)marks.push(i * offset);
         this.marks = marks;
     }
     formatTip(value) {
         return (this.tipFormatter || '').replace(/\{d\}/g, `${value}`);
     }
     getTrackStyle(index) {
-        if (this.inputValue.length <= 1)
-            return `width: ${this.offsets[index] || 0}%`;
+        if (this.inputValue.length <= 1) return `width: ${this.offsets[index] || 0}%`;
         return `left: ${this.offsets[index] || 0}%; width: ${(this.offsets[index + 1] || 0) - (this.offsets[index] || 0)}%`;
     }
     getIndexedStyle(style, index) {
-        return Array.isArray(style) ? (style[index] || '') : (style || '');
+        return Array.isArray(style) ? style[index] || '' : style || '';
     }
     getMarkStyle(index) {
         return this.getIndexedStyle(this.extMarkStyle, index);
@@ -221,20 +188,23 @@ let Slider = class Slider extends Doraemon {
         return steps * lengthPerStep * (this.max - this.min) * 0.01 + this.min;
     }
     onRailClick(e) {
-        if (this.disabled || getPointsNumber(e) > 1)
-            return;
-        useRect(`.${this.prefixCls}__rail-wrap`, this._renderProxy).then((rect) => {
-            const position = ((getTouchPoints(e).x - rect.left) / Math.ceil(rect.width)) * (this.max - this.min) + this.min;
+        if (this.disabled || getPointsNumber(e) > 1) return;
+        useRect(`.${this.prefixCls}__rail-wrap`, this._renderProxy).then((rect)=>{
+            const position = (getTouchPoints(e).x - rect.left) / Math.ceil(rect.width) * (this.max - this.min) + this.min;
             const targetValue = this.getValueByPosition(position);
             const indexLength = this.inputValue.length - 1;
             const range = indexLength > 0;
-            const nextOffsets = [...this.offsets];
-            let nextSliderValue = [...this.inputValue];
+            const nextOffsets = [
+                ...this.offsets
+            ];
+            let nextSliderValue = [
+                ...this.inputValue
+            ];
             let currentIndex = 0;
             if (range) {
                 let prevIndex = 0;
                 let nextIndex = null;
-                for (let i = indexLength; i >= 0; i--) {
+                for(let i = indexLength; i >= 0; i--){
                     if (this.inputValue[i] <= targetValue) {
                         prevIndex = i;
                         break;
@@ -243,32 +213,36 @@ let Slider = class Slider extends Doraemon {
                 if (prevIndex === indexLength) {
                     nextIndex = prevIndex;
                     prevIndex = nextIndex - 1;
-                }
-                else {
+                } else {
                     nextIndex = prevIndex + 1;
                 }
                 if (Math.abs(targetValue - this.inputValue[prevIndex]) > Math.abs(targetValue - this.inputValue[nextIndex])) {
                     currentIndex = nextIndex;
                     nextSliderValue[nextIndex] = targetValue;
-                }
-                else {
+                } else {
                     currentIndex = prevIndex;
                     nextSliderValue[prevIndex] = targetValue;
                 }
-            }
-            else {
-                nextSliderValue = [targetValue];
+            } else {
+                nextSliderValue = [
+                    targetValue
+                ];
             }
             nextOffsets[currentIndex] = this.calcOffset(targetValue);
             if (this.inputValue[currentIndex] !== targetValue) {
-                if (!this.controlled)
-                    this.updated(nextSliderValue);
-                this.$emit('change', { offsets: nextOffsets, value: nextSliderValue });
-                this.$emit('afterChange', { offsets: nextOffsets, value: nextSliderValue });
+                if (!this.controlled) this.updated(nextSliderValue);
+                this.$emit('change', {
+                    offsets: nextOffsets,
+                    value: nextSliderValue
+                });
+                this.$emit('afterChange', {
+                    offsets: nextOffsets,
+                    value: nextSliderValue
+                });
             }
         });
     }
-    noop() { }
+    noop() {}
     mounted() {
         const inputValue = this.controlled ? this.value : this.defaultValue;
         this.getMarks();
@@ -279,83 +253,152 @@ let Slider = class Slider extends Doraemon {
         this.onRailStyleChange(this.railStyle);
         this.onWrapStyleChange(this.wrapStyle);
     }
+    constructor(...args){
+        super(...args);
+        this.offsets = [];
+        this.inputValue = [];
+        this.extMarkStyle = '';
+        this.extHandleStyle = '';
+        this.extTrackStyle = '';
+        this.extRailStyle = '';
+        this.extWrapStyle = '';
+        this.marks = [];
+        this.isTouched = false;
+        this.isMoved = false;
+        this.last = 0;
+        this.startX = 0;
+        this.moveX = 0;
+        this.startPos = 0;
+        this.movedLocal = false;
+    }
 };
-__decorate([
-    Prop({ type: Number, default: 0 })
+_ts_decorate([
+    Prop({
+        type: Number,
+        default: 0
+    })
 ], Slider.prototype, "min", void 0);
-__decorate([
-    Prop({ type: Number, default: 100 })
+_ts_decorate([
+    Prop({
+        type: Number,
+        default: 100
+    })
 ], Slider.prototype, "max", void 0);
-__decorate([
-    Prop({ type: Number, default: 1 })
+_ts_decorate([
+    Prop({
+        type: Number,
+        default: 1
+    })
 ], Slider.prototype, "step", void 0);
-__decorate([
-    Prop({ type: Array, default: [0] })
+_ts_decorate([
+    Prop({
+        type: Array,
+        default: [
+            0
+        ]
+    })
 ], Slider.prototype, "defaultValue", void 0);
-__decorate([
-    Prop({ type: Array, default: [0] })
+_ts_decorate([
+    Prop({
+        type: Array,
+        default: [
+            0
+        ]
+    })
 ], Slider.prototype, "value", void 0);
-__decorate([
-    Prop({ type: Boolean, default: false })
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
 ], Slider.prototype, "controlled", void 0);
-__decorate([
-    Prop({ type: Boolean, default: false })
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
 ], Slider.prototype, "disabled", void 0);
-__decorate([
-    Prop({ type: Boolean, default: false })
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
 ], Slider.prototype, "showMark", void 0);
-__decorate([
-    Prop({ type: null, default: false })
+_ts_decorate([
+    Prop({
+        type: null,
+        default: false
+    })
 ], Slider.prototype, "showValue", void 0);
-__decorate([
-    Prop({ type: String, default: '{d}' })
+_ts_decorate([
+    Prop({
+        type: String,
+        default: '{d}'
+    })
 ], Slider.prototype, "tipFormatter", void 0);
-__decorate([
-    Prop({ type: null, default: '' })
+_ts_decorate([
+    Prop({
+        type: null,
+        default: ''
+    })
 ], Slider.prototype, "markStyle", void 0);
-__decorate([
-    Prop({ type: null, default: '' })
+_ts_decorate([
+    Prop({
+        type: null,
+        default: ''
+    })
 ], Slider.prototype, "handleStyle", void 0);
-__decorate([
-    Prop({ type: null, default: '' })
+_ts_decorate([
+    Prop({
+        type: null,
+        default: ''
+    })
 ], Slider.prototype, "trackStyle", void 0);
-__decorate([
-    Prop({ type: null, default: '' })
+_ts_decorate([
+    Prop({
+        type: null,
+        default: ''
+    })
 ], Slider.prototype, "railStyle", void 0);
-__decorate([
-    Prop({ type: null, default: '' })
+_ts_decorate([
+    Prop({
+        type: null,
+        default: ''
+    })
 ], Slider.prototype, "wrapStyle", void 0);
-__decorate([
+_ts_decorate([
     Watch('value')
 ], Slider.prototype, "onValuePropChange", null);
-__decorate([
+_ts_decorate([
     Watch('markStyle')
 ], Slider.prototype, "onMarkStyleChange", null);
-__decorate([
+_ts_decorate([
     Watch('handleStyle')
 ], Slider.prototype, "onHandleStyleChange", null);
-__decorate([
+_ts_decorate([
     Watch('trackStyle')
 ], Slider.prototype, "onTrackStyleChange", null);
-__decorate([
+_ts_decorate([
     Watch('railStyle')
 ], Slider.prototype, "onRailStyleChange", null);
-__decorate([
+_ts_decorate([
     Watch('wrapStyle')
 ], Slider.prototype, "onWrapStyleChange", null);
-__decorate([
+_ts_decorate([
     Watch('min'),
     Watch('max'),
     Watch('step')
 ], Slider.prototype, "onMarkDepsChange", null);
-Slider = __decorate([
+Slider = _ts_decorate([
     Component({
         props: {
             prefixCls: {
                 type: String,
-                default: 'dora-slider',
-            },
-        },
+                default: 'dora-slider'
+            }
+        }
     })
 ], Slider);
-export default defineComponentHOC()(Slider);
+var index = defineComponentHOC()(Slider);
+
+export { Slider, index as default };

@@ -1,68 +1,71 @@
 /**
  * @doraemon-ui/miniprogram.picker-view.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-03-05, 18:58:32.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
+ * Built on 2026-05-04, 00:40:01.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
-export const props = {
+
+const props = {
     prefixCls: {
         type: String,
-        default: 'dora-picker-view',
+        default: 'dora-picker-view'
     },
     defaultValue: {
         type: String,
-        default: '',
+        default: ''
     },
     value: {
         type: String,
-        default: '',
+        default: ''
     },
     controlled: {
         type: Boolean,
-        default: false,
+        default: false
     },
     itemHeight: {
         type: Number,
-        default: 34,
+        default: 34
     },
     itemStyle: {
         type: null,
-        default: '',
+        default: ''
     },
     indicatorStyle: {
         type: null,
-        default: '',
+        default: ''
     },
     indicatorClass: {
         type: String,
-        default: '',
+        default: ''
     },
     maskStyle: {
         type: null,
-        default: '',
+        default: ''
     },
     maskClass: {
         type: String,
-        default: '',
+        default: ''
     },
     labelAlign: {
         type: String,
-        default: 'center',
+        default: 'center'
     },
     loading: {
         type: Boolean,
-        default: false,
+        default: false
     },
     options: {
         type: Array,
-        default: [],
+        default: []
     },
     defaultFieldNames: {
         type: Object,
         default: {
             label: 'label',
             value: 'value',
-            disabled: 'disabled',
-        },
-    },
+            disabled: 'disabled'
+        }
+    }
 };
+
+export { props };

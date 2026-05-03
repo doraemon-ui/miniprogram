@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.shared.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-02-26, 17:28:26.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
+ * Built on 2026-05-04, 00:37:46.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 
 const check = (it) => {

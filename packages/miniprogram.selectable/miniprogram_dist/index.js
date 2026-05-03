@@ -1,16 +1,18 @@
 /**
  * @doraemon-ui/miniprogram.selectable.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-02-26, 00:53:01.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
+ * Built on 2026-05-04, 00:40:43.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+
+import { Doraemon, Prop, Watch, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
+
+function _ts_decorate(decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    else for(var i = decorators.length - 1; i >= 0; i--)if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js';
+}
 const { classNames, styleToCssString } = Doraemon.util;
 const presetColors = {
     light: '#ddd',
@@ -21,52 +23,26 @@ const presetColors = {
     energized: '#ffc900',
     assertive: '#ef473a',
     royal: '#886aea',
-    dark: '#444',
+    dark: '#444'
 };
-const isPresetColor = (color) => {
-    if (!color)
-        return '';
+const isPresetColor = (color)=>{
+    if (!color) return '';
     return presetColors[color] ? presetColors[color] : color;
 };
 let Selectable = class Selectable extends Doraemon {
-    /**
-     * 自定义类名前缀
-     *
-     * @type {string}
-     * @memberof Selectable
-     */
-    prefixCls;
-    type;
-    value;
-    defaultChecked;
-    checked;
-    disabled;
-    readOnly;
-    color;
-    controlled;
-    wrapStyle;
-    iconSize;
-    iconOn;
-    iconOff;
-    inputChecked = false;
-    inputColor = '';
-    extStyle = '';
-    innerIconSize = 23;
-    innerIconOn = 'success';
-    innerIconOff = 'circle';
     get classes() {
         const { prefixCls, inputChecked, disabled, readOnly } = this;
         const wrap = classNames(prefixCls, {
             [`${prefixCls}--checked`]: inputChecked,
             [`${prefixCls}--disabled`]: disabled,
-            [`${prefixCls}--readonly`]: readOnly,
+            [`${prefixCls}--readonly`]: readOnly
         });
         const input = `${prefixCls}__input`;
         const icon = `${prefixCls}__icon`;
         return {
             wrap,
             input,
-            icon,
+            icon
         };
     }
     updated(inputChecked) {
@@ -81,8 +57,7 @@ let Selectable = class Selectable extends Doraemon {
             this.innerIconSize = useDefaultSize ? 23 : parseInt(iconSize, 10);
             this.innerIconOn = useDefaultIcon ? 'success' : iconOn;
             this.innerIconOff = useDefaultIcon ? 'circle' : iconOff;
-        }
-        else if (type === 'radio') {
+        } else if (type === 'radio') {
             this.innerIconSize = useDefaultSize ? 16 : parseInt(iconSize, 10);
             this.innerIconOn = useDefaultIcon ? 'success_no_circle' : iconOn;
             this.innerIconOff = useDefaultIcon ? '' : iconOff;
@@ -104,12 +79,11 @@ let Selectable = class Selectable extends Doraemon {
     }
     onChange() {
         const { value, inputChecked, disabled, readOnly, controlled, type } = this;
-        if (disabled || readOnly)
-            return;
+        if (disabled || readOnly) return;
         const item = {
             checked: !inputChecked,
             value,
-            type,
+            type
         };
         if (!controlled) {
             this.updated(!inputChecked);
@@ -123,114 +97,165 @@ let Selectable = class Selectable extends Doraemon {
         this.extStyle = styleToCssString(this.wrapStyle);
         this.updateTypeIcons(this.type, this.iconSize, this.iconOn, this.iconOff);
     }
+    constructor(...args){
+        super(...args);
+        this.inputChecked = false;
+        this.inputColor = '';
+        this.extStyle = '';
+        this.innerIconSize = 23;
+        this.innerIconOn = 'success';
+        this.innerIconOff = 'circle';
+    }
 };
-__decorate([
-    Prop({ type: String, default: 'checkbox' })
+_ts_decorate([
+    Prop({
+        type: String,
+        default: 'checkbox'
+    })
 ], Selectable.prototype, "type", void 0);
-__decorate([
-    Prop({ type: String, default: '' })
+_ts_decorate([
+    Prop({
+        type: String,
+        default: ''
+    })
 ], Selectable.prototype, "value", void 0);
-__decorate([
-    Prop({ type: Boolean, default: false })
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
 ], Selectable.prototype, "defaultChecked", void 0);
-__decorate([
-    Prop({ type: Boolean, default: false })
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
 ], Selectable.prototype, "checked", void 0);
-__decorate([
-    Prop({ type: Boolean, default: false })
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
 ], Selectable.prototype, "disabled", void 0);
-__decorate([
-    Prop({ type: Boolean, default: false })
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
 ], Selectable.prototype, "readOnly", void 0);
-__decorate([
-    Prop({ type: String, default: 'balanced' })
+_ts_decorate([
+    Prop({
+        type: String,
+        default: 'balanced'
+    })
 ], Selectable.prototype, "color", void 0);
-__decorate([
-    Prop({ type: Boolean, default: false })
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
 ], Selectable.prototype, "controlled", void 0);
-__decorate([
-    Prop({ type: null, default: '' })
+_ts_decorate([
+    Prop({
+        type: null,
+        default: ''
+    })
 ], Selectable.prototype, "wrapStyle", void 0);
-__decorate([
-    Prop({ type: String, default: '' })
+_ts_decorate([
+    Prop({
+        type: String,
+        default: ''
+    })
 ], Selectable.prototype, "iconSize", void 0);
-__decorate([
-    Prop({ type: String, default: '' })
+_ts_decorate([
+    Prop({
+        type: String,
+        default: ''
+    })
 ], Selectable.prototype, "iconOn", void 0);
-__decorate([
-    Prop({ type: String, default: '' })
+_ts_decorate([
+    Prop({
+        type: String,
+        default: ''
+    })
 ], Selectable.prototype, "iconOff", void 0);
-__decorate([
+_ts_decorate([
     Watch('checked')
 ], Selectable.prototype, "onCheckedChange", null);
-__decorate([
+_ts_decorate([
     Watch('color')
 ], Selectable.prototype, "onColorChange", null);
-__decorate([
+_ts_decorate([
     Watch('wrapStyle')
 ], Selectable.prototype, "onWrapStyleChange", null);
-__decorate([
+_ts_decorate([
     Watch('type'),
     Watch('iconSize'),
     Watch('iconOn'),
     Watch('iconOff')
 ], Selectable.prototype, "onIconPropsChange", null);
-Selectable = __decorate([
+Selectable = _ts_decorate([
     Component({
         props: {
             prefixCls: {
                 type: String,
-                default: 'dora-selectable',
+                default: 'dora-selectable'
             },
             type: {
                 type: String,
-                default: 'checkbox',
+                default: 'checkbox'
             },
             value: {
                 type: String,
-                default: '',
+                default: ''
             },
             defaultChecked: {
                 type: Boolean,
-                default: false,
+                default: false
             },
             checked: {
                 type: Boolean,
-                default: false,
+                default: false
             },
             disabled: {
                 type: Boolean,
-                default: false,
+                default: false
             },
             readOnly: {
                 type: Boolean,
-                default: false,
+                default: false
             },
             color: {
                 type: String,
-                default: 'balanced',
+                default: 'balanced'
             },
             controlled: {
                 type: Boolean,
-                default: false,
+                default: false
             },
             wrapStyle: {
                 type: null,
-                default: '',
+                default: ''
             },
             iconSize: {
                 type: String,
-                default: '',
+                default: ''
             },
             iconOn: {
                 type: String,
-                default: '',
+                default: ''
             },
             iconOff: {
                 type: String,
-                default: '',
-            },
-        },
+                default: ''
+            }
+        }
     })
 ], Selectable);
-export default defineComponentHOC({ externalClasses: ['dora-input-class'] })(Selectable);
+var index = defineComponentHOC({
+    externalClasses: [
+        'dora-input-class'
+    ]
+})(Selectable);
+
+export { Selectable, index as default };

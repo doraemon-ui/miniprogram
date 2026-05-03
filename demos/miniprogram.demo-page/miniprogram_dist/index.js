@@ -1,93 +1,74 @@
 /**
  * @doraemon-ui/miniprogram.demo-page.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-02-22, 01:42:28.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
+ * Built on 2026-05-04, 00:41:57.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+
+import { Doraemon, Prop, Watch, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
+import { canUseMP, miniprogramThis } from '@doraemon-ui/miniprogram.shared';
+
+function _ts_decorate(decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    else for(var i = decorators.length - 1; i >= 0; i--)if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js';
-import { miniprogramThis, canUseMP } from '@doraemon-ui/miniprogram.shared';
+}
 const { classNames } = Doraemon.util;
 var DarkMode;
-(function (DarkMode) {
+(function(DarkMode) {
     DarkMode["AUTO"] = "auto";
     DarkMode["LIGHT"] = "light";
     DarkMode["DARK"] = "dark";
 })(DarkMode || (DarkMode = {}));
-const getSysTheme = () => {
+const getSysTheme = ()=>{
     let theme;
     try {
         theme = miniprogramThis.getSystemInfoSync().theme;
-    }
-    catch (e) {
-        theme = DarkMode.LIGHT;
+    } catch (e) {
+        theme = "light";
     }
     return theme;
 };
 const presetThemeRecord = {
     light: {
         backgroundColor: '#fafafa',
-        backgroundTextStyle: DarkMode.LIGHT,
+        backgroundTextStyle: "light",
         navigationBarBackgroundColor: '#fafafa',
-        navigationBarTextStyle: 'black',
+        navigationBarTextStyle: 'black'
     },
     dark: {
         backgroundColor: '#0d0d0d',
-        backgroundTextStyle: DarkMode.DARK,
+        backgroundTextStyle: "dark",
         navigationBarBackgroundColor: '#0d0d0d',
-        navigationBarTextStyle: 'white',
-    },
+        navigationBarTextStyle: 'white'
+    }
 };
-const darkmodeSync = (darkmode) => {
+const darkmodeSync = (darkmode)=>{
     const theme = presetThemeRecord[darkmode];
     if (canUseMP()) {
         miniprogramThis.setBackgroundTextStyle({
-            textStyle: theme.backgroundTextStyle,
+            textStyle: theme.backgroundTextStyle
         });
         miniprogramThis.setBackgroundColor({
-            backgroundColor: theme.backgroundColor,
+            backgroundColor: theme.backgroundColor
         });
         miniprogramThis.setNavigationBarColor({
             frontColor: theme.navigationBarTextStyle === 'black' ? '#000000' : '#ffffff',
-            backgroundColor: theme.navigationBarBackgroundColor,
+            backgroundColor: theme.navigationBarBackgroundColor
         });
     }
 };
 let DemoPage = class DemoPage extends Doraemon {
-    /**
-     * 自定义类名前缀
-     *
-     * @type {string}
-     * @memberof DemoPage
-     */
-    prefixCls;
-    /**
-     * 当前的主题
-     *
-     * @type {string}
-     * @memberof DemoPage
-     */
-    darkmode;
-    clickable;
-    spacing;
-    title;
-    desc;
     get classes() {
         const { prefixCls, spacing, sysTheme, curTheme, darkmode: _darkmode } = this;
         const wrap = prefixCls;
         const hd = `${prefixCls}__hd`;
         const title = `${prefixCls}__title`;
         const desc = `${prefixCls}__desc`;
-        const darkmode = classNames(`${prefixCls}__darkmode`, `${prefixCls}__iconfont`, (curTheme === DarkMode.AUTO ? sysTheme === DarkMode.DARK : curTheme === DarkMode.DARK)
-            ? `${prefixCls}__iconfont-dark`
-            : `${prefixCls}__iconfont-light`);
+        const darkmode = classNames(`${prefixCls}__darkmode`, `${prefixCls}__iconfont`, (curTheme === "auto" ? sysTheme === "dark" : curTheme === "dark") ? `${prefixCls}__iconfont-dark` : `${prefixCls}__iconfont-light`);
         const bd = classNames(`${prefixCls}__bd`, {
-            [`${prefixCls}__bd--spacing`]: spacing,
+            [`${prefixCls}__bd--spacing`]: spacing
         });
         return {
             wrap,
@@ -95,23 +76,18 @@ let DemoPage = class DemoPage extends Doraemon {
             title,
             desc,
             darkmode,
-            bd,
+            bd
         };
     }
     onWatchDarmode(darkmode) {
         this.onDarkmodeChange(darkmode);
     }
-    isAuto = false;
-    isManual = false;
-    isRegister = false;
-    curTheme = DarkMode.AUTO;
-    sysTheme = getSysTheme();
     onIconClick() {
         if (!this.clickable) {
             return;
         }
         const curTheme = this.isManual ? this.curTheme : getSysTheme();
-        const theme = curTheme === DarkMode.DARK ? DarkMode.LIGHT : DarkMode.DARK;
+        const theme = curTheme === "dark" ? "light" : "dark";
         this.isManual = true;
         this.setTheme(theme);
         darkmodeSync(theme);
@@ -125,73 +101,88 @@ let DemoPage = class DemoPage extends Doraemon {
         if (this.isRegister) {
             return;
         }
-        const cb = ({ theme }) => {
+        const cb = ({ theme })=>{
             this.sysTheme = theme;
             this.isRegister = true;
             this.isManual = false;
-            this.setTheme(DarkMode.AUTO);
+            this.setTheme("auto");
         };
         if (canUseMP()) {
             miniprogramThis.onThemeChange(cb);
-        }
-        else if (theme) {
-            cb({ theme });
+        } else if (theme) {
+            cb({
+                theme
+            });
         }
     }
     onDarkmodeChange(darkmode) {
-        const isAuto = darkmode === DarkMode.AUTO;
+        const isAuto = darkmode === "auto";
         if (isAuto) {
             this.onThemeChange();
-        }
-        else if (canUseMP()) {
+        } else if (canUseMP()) {
             miniprogramThis.offThemeChange();
         }
         this.isAuto = isAuto;
-        this.setTheme(DarkMode.AUTO);
+        this.setTheme("auto");
     }
     mounted() {
         this.onDarkmodeChange(this.darkmode);
     }
+    constructor(...args){
+        super(...args);
+        this.isAuto = false;
+        this.isManual = false;
+        this.isRegister = false;
+        this.curTheme = "auto";
+        this.sysTheme = getSysTheme();
+    }
 };
-__decorate([
+_ts_decorate([
     Prop({
         type: Boolean,
-        default: false,
+        default: false
     })
 ], DemoPage.prototype, "clickable", void 0);
-__decorate([
+_ts_decorate([
     Prop({
         type: Boolean,
-        default: false,
+        default: false
     })
 ], DemoPage.prototype, "spacing", void 0);
-__decorate([
+_ts_decorate([
     Prop({
         type: String,
-        default: '',
+        default: ''
     })
 ], DemoPage.prototype, "title", void 0);
-__decorate([
+_ts_decorate([
     Prop({
         type: String,
-        default: '',
+        default: ''
     })
 ], DemoPage.prototype, "desc", void 0);
-__decorate([
+_ts_decorate([
     Watch('darkmode')
 ], DemoPage.prototype, "onWatchDarmode", null);
-DemoPage = __decorate([
+DemoPage = _ts_decorate([
     Component({
         props: {
             prefixCls: {
                 type: String,
-                default: 'dora-demo-page',
+                default: 'dora-demo-page'
             },
             darkmode: {
                 type: String,
-                default: Doraemon.config.darkmode,
-            },
+                default: Doraemon.config.darkmode
+            }
         },
+        expose: [
+            'isAuto',
+            'isManual',
+            'onIconClick'
+        ]
     })
 ], DemoPage);
-export default defineComponentHOC()(DemoPage);
+var index = defineComponentHOC()(DemoPage);
+
+export { DemoPage, index as default };

@@ -1,13 +1,13 @@
 /**
  * @doraemon-ui/miniprogram.input-number.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-02-27, 01:41:52.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.23.
+ * Built on 2026-05-04, 00:39:26.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
+
 /**
  * number-precision (trimmed for input-number)
- */
-function strip(num, precision = 12) {
+ */ function strip(num, precision = 12) {
     return +Number.parseFloat(num.toPrecision(precision));
 }
 function digitLength(num) {
@@ -26,7 +26,7 @@ function times(num1, num2) {
     const num1Changed = float2Fixed(num1);
     const num2Changed = float2Fixed(num2);
     const baseNum = digitLength(num1) + digitLength(num2);
-    return (num1Changed * num2Changed) / Math.pow(10, baseNum);
+    return num1Changed * num2Changed / Math.pow(10, baseNum);
 }
 function plus(num1, num2) {
     const baseNum = Math.pow(10, Math.max(digitLength(num1), digitLength(num2)));
@@ -45,9 +45,11 @@ function round(num, ratio) {
     const base = Math.pow(10, ratio);
     return divide(Math.round(times(num, base)), base);
 }
-export default {
+var NP = {
     strip,
     plus,
     minus,
-    round,
+    round
 };
+
+export { NP as default };
