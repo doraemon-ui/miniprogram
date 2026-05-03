@@ -16,8 +16,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@doraemon-ui/miniprogram.backdrop": "^0.0.1-alpha.19",
-    "@doraemon-ui/miniprogram.demo-block": "^0.0.1-alpha.13",
-    "@doraemon-ui/miniprogram.demo-page": "^0.0.1-alpha.14"
+    "@doraemon-ui/miniprogram.backdrop": "workspace:*",
+    "@doraemon-ui/miniprogram.demo-block": "workspace:*",
+    "@doraemon-ui/miniprogram.demo-page": "workspace:*"
   }
 }

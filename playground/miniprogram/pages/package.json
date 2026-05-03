@@ -14,10 +14,10 @@
   "author": "skyvow <724355924@qq.com>",
   "license": "MIT",
   "dependencies": {
-    "@doraemon-ui/miniprogram.accordion": "0.0.2-alpha.42",
-    "@doraemon-ui/miniprogram.button": "0.0.2-alpha.44",
-    "@doraemon-ui/miniprogram.list": "0.0.2-alpha.42",
-    "@doraemon-ui/miniprogram.pagination": "0.0.2-alpha.43"
+    "@doraemon-ui/miniprogram.accordion": "workspace:*",
+    "@doraemon-ui/miniprogram.button": "workspace:*",
+    "@doraemon-ui/miniprogram.list": "workspace:*",
+    "@doraemon-ui/miniprogram.pagination": "workspace:*"
   },
   "publishConfig": {
     "access": "public"

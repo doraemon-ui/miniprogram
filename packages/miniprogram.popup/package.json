@@ -25,12 +25,12 @@
     "preversion": "pnpm clean && pnpm build && pnpm test"
   },
   "dependencies": {
-    "@doraemon-ui/miniprogram.animation-group": "0.0.1-alpha.20",
-    "@doraemon-ui/miniprogram.backdrop": "0.0.1-alpha.22",
-    "@doraemon-ui/miniprogram.core-js": "0.0.2-alpha.33",
-    "@doraemon-ui/miniprogram.safe-area": "0.0.1-alpha.14",
-    "@doraemon-ui/miniprogram.shared": "0.0.1-alpha.13",
-    "@doraemon-ui/style": "0.0.1-alpha.10"
+    "@doraemon-ui/miniprogram.animation-group": "workspace:*",
+    "@doraemon-ui/miniprogram.backdrop": "workspace:*",
+    "@doraemon-ui/miniprogram.core-js": "workspace:*",
+    "@doraemon-ui/miniprogram.safe-area": "workspace:*",
+    "@doraemon-ui/miniprogram.shared": "workspace:*",
+    "@doraemon-ui/style": "workspace:*"
   },
   "devDependencies": {
     "@doraemon-ui/miniprogram.cli": "0.0.2-alpha.55",

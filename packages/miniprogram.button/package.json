@@ -25,12 +25,12 @@
     "preversion": "pnpm clean && pnpm build && pnpm test"
   },
   "dependencies": {
-    "@doraemon-ui/miniprogram.core-js": "0.0.2-alpha.33",
-    "@doraemon-ui/style": "0.0.1-alpha.10"
+    "@doraemon-ui/miniprogram.core-js": "workspace:*",
+    "@doraemon-ui/style": "workspace:*"
   },
   "devDependencies": {
     "@doraemon-ui/miniprogram.cli": "0.0.2-alpha.55",
-    "@doraemon-ui/miniprogram.shared": "0.0.1-alpha.13",
+    "@doraemon-ui/miniprogram.shared": "workspace:*",
     "@types/node": "^25.5.2",
     "cross-env": "^7.0.3",
     "jest": "^30.3.0",
