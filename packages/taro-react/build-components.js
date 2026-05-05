@@ -65,6 +65,97 @@ function getFileStem(packageName, moduleName) {
   return moduleName
 }
 
+/**
+ * Extract property names and their type annotations from a TypeScript interface definition.
+ * Handles nested braces via brace counting. Returns [{name, type}] pairs.
+ */
+function extractInterfaceMembers(sourceCode, interfaceName) {
+  const startRegex = new RegExp(`export\\s+interface\\s+${interfaceName}\\s*(?:extends\\s+[^{]+)?\\{`)
+  const startMatch = sourceCode.match(startRegex)
+  if (!startMatch) return []
+
+  const startIndex = startMatch.index + startMatch[0].length - 1 // position of '{'
+  let braceCount = 1
+  let i = startIndex + 1
+
+  while (braceCount > 0 && i < sourceCode.length) {
+    if (sourceCode[i] === '{') braceCount++
+    else if (sourceCode[i] === '}') braceCount--
+    i++
+  }
+
+  const body = sourceCode.slice(startIndex + 1, i - 1)
+  const members = []
+  // Capture property name and type expression (everything after ':' to end of line)
+  const propRegex = /^\s*(\w+)(?:\?\s*)?:\s*(.+)$/gm
+  let propMatch
+  while ((propMatch = propRegex.exec(body)) !== null) {
+    const typeExpr = propMatch[2].trim().replace(/\s*\/\/.*$/, '').trim()
+    members.push({ name: propMatch[1], type: typeExpr })
+  }
+
+  return members
+}
+
+/**
+ * Map TypeScript type expression to a literal default value for Taro's createElement registry.
+ * The registry values are only parsed by TaroNormalModulesPlugin (AST-level, not runtime),
+ * so these defaults just need to be syntactically valid literal expressions.
+ */
+function getDefaultValue(typeExpr) {
+  const t = typeExpr.trim()
+
+  // Simple primitive types
+  if (t === 'string') return "''"
+  if (t === 'boolean') return 'false'
+  if (t === 'number') return '0'
+  if (t === 'undefined') return 'undefined'
+  if (t === 'null') return 'null'
+
+  // Array types: string[], T[], Array<T>, T[] | null
+  if (/\[\]$/.test(t) || /^Array\s*[<]/.test(t)) return '[]'
+
+  // Object-like types: object, {}, Partial<T>, Record<K,V>, Omit<T,K>, etc.
+  if (t === 'object' || t === '{}') return '{}'
+  if (/^(Partial|Record|Omit|Pick|Required|Readonly|Exclude|Extract|NonNullable)\s*[<]/.test(t)) return '{}'
+
+  // Union types — estimate from the first non-complex member
+  if (t.includes('|')) {
+    const parts = t.split('|').map(s => s.trim())
+    // Detect unions mixing primitive string with object-like types
+    const hasString = parts.includes('string')
+    const hasObjectLike = parts.some(p => /^(Partial|Record|Omit|Pick|CSS)/.test(p) || p === 'object' || p === '{}')
+    if (hasString && hasObjectLike) return 'null'
+    // If any part is a string literal ('xxx'), default to that
+    const strLit = parts.find(p => /^'[^']*'$/.test(p))
+    if (strLit) return strLit
+    // If any part is 'null', skip it and check the next
+    const nonNull = parts.filter(p => p !== 'null')
+    if (nonNull.length > 0) return getDefaultValue(nonNull[0])
+  }
+
+  // String literal type
+  if (/^'[^']*'$/.test(t)) return t
+
+  // Reference types — assume string-like by default
+  return "''"
+}
+
+/**
+ * Extract emitted event names from a component's source code.
+ * Scans for this.$emit('eventName', ...) calls with static string literals.
+ * Returns unique event names like ['change', 'close', 'confirm'].
+ */
+function extractEmitEvents(sourceCode) {
+  const events = new Set()
+  const regex = /this\.\$emit\(['"]([a-zA-Z]\w*)['"]/g
+  let match
+  while ((match = regex.exec(sourceCode)) !== null) {
+    events.add(match[1])
+  }
+  return [...events]
+}
+
 function getPkgDepsPackage(packageName) {
   if (PKG_DEPS[packageName]) return PKG_DEPS[packageName]
   const normalized = packageName.replace(/-/g, '')
@@ -102,6 +193,23 @@ function createComponentDefinition(packageName, componentMeta, typesSourceCode) 
   const componentDir = (componentMeta && componentMeta.dir) || (moduleName === 'index' ? packageName : moduleName)
   const compoundSlot = (componentMeta && componentMeta.slot) || null
 
+  // Extract prop names and types from the native Props interface
+  const propNames = extractInterfaceMembers(typesSourceCode, propsName)
+
+  // Compute default values from types for Taro's createElement registry
+  const propNamesWithDefaults = propNames.map(p => ({
+    name: p.name,
+    type: p.type,
+    defaultValue: getDefaultValue(p.type),
+  }))
+
+  // Extract emitted events from component source to generate event handler props
+  const emitEvents = extractEmitEvents(moduleSourceCode)
+  const eventHandlerProps = emitEvents.map(eventName => ({
+    name: 'on' + eventName.charAt(0).toUpperCase() + eventName.slice(1),
+    eventName,
+  }))
+
   return {
     packageName,
     moduleName,
@@ -114,6 +222,8 @@ function createComponentDefinition(packageName, componentMeta, typesSourceCode) 
     componentKey,
     componentDir,
     compoundSlot,
+    propNames: propNamesWithDefaults,
+    eventHandlerProps,
   }
 }
 
@@ -155,7 +265,16 @@ function buildTypesFile(definitions, packageName) {
 }
 
 function buildHostFile(definition) {
-  return [
+  // Build React.createElement registry props (including event handlers)
+  const allRegistryProps = [...(definition.propNames || [])]
+  if (definition.eventHandlerProps && definition.eventHandlerProps.length > 0) {
+    for (const ep of definition.eventHandlerProps) {
+      allRegistryProps.push({ name: ep.name, defaultValue: 'undefined' })
+    }
+  }
+
+  const lines = [
+    "import React from 'react'",
     // eslint-disable-next-line quotes
     "import { createHostComponent } from '@/hooks/hostComponent'",
     `import type { ${definition.propsName}, ${definition.exposeName} } from './types'`,
@@ -164,7 +283,19 @@ function buildHostFile(definition) {
     '',
     `${definition.className}.displayName = 'Dora${definition.className}'`,
     '',
-  ].join('\n')
+  ]
+
+  // React.createElement call for Taro's AST-based prop registration (tree-shakeable)
+  if (allRegistryProps.length > 0) {
+    const propLines = allRegistryProps.map(p => `  ${p.name}: ${p.defaultValue}`)
+    lines.push(`// Props registry for Taro WXML template generator`)
+    lines.push(`React.createElement('${definition.tag}', {`)
+    lines.push(propLines.join(',\n') + ',')
+    lines.push('})')
+    lines.push('')
+  }
+
+  return lines.join('\n')
 }
 
 function buildBarrelFile(definitions) {

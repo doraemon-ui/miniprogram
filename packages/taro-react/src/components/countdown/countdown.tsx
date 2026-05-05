@@ -1,3 +1,4 @@
+import React from 'react'
 import { createHostComponent } from '@/hooks/hostComponent'
 import type { CountdownProps, CountdownExpose } from './types'
 
