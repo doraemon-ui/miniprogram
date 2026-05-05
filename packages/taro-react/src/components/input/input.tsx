@@ -1,6 +1,11 @@
+import React from 'react'
 import { createHostComponent } from '../../hooks/hostComponent'
 import type { InputProps, InputExpose } from './types'
 
+// NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
+// TaroNormalModulesPlugin scans React.createElement() args at AST level and cannot
+// resolve spread operators (..._defaultProps), so props must be literal object
+// expressions in both createHostComponent and React.createElement for Taro to detect them.
 export const Input = createHostComponent<InputProps, InputExpose>('dora-input',
 {
   prefixCls: 'dora-input',
@@ -44,3 +49,54 @@ export const Input = createHostComponent<InputProps, InputExpose>('dora-input',
 })
 
 Input.displayName = 'DoraInput'
+
+// Props registry for Taro WXML template generator.
+// Values are all '' because TaroNormalModulesPlugin only scans key names.
+React.createElement('dora-input', {
+  prefixCls: '',
+  type: '',
+  password: '',
+  placeholder: '',
+  placeholderStyle: '',
+  placeholderClass: '',
+  maxlength: '',
+  cursorSpacing: '',
+  focus: '',
+  confirmType: '',
+  alwaysEmbed: '',
+  confirmHold: '',
+  cursor: '',
+  selectionStart: '',
+  selectionEnd: '',
+  adjustPosition: '',
+  holdKeyboard: '',
+  safePasswordCertPath: '',
+  safePasswordLength: '',
+  safePasswordTimeStamp: '',
+  safePasswordNonce: '',
+  safePasswordSalt: '',
+  safePasswordCustomHash: '',
+  label: '',
+  extra: '',
+  defaultValue: '',
+  value: '',
+  controlled: '',
+  disabled: '',
+  readOnly: '',
+  clear: '',
+  error: '',
+  labelWrap: '',
+  requiredMark: '',
+  onlyShowClearWhenFocus: '',
+  min: '',
+  max: '',
+  visibilityToggle: '',
+  onChange: '',
+  onFocus: '',
+  onBlur: '',
+  onConfirm: '',
+  onKeyboardheightchange: '',
+  onNicknamereview: '',
+  onClear: '',
+  onError: '',
+})

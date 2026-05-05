@@ -13,10 +13,14 @@ const TARO_SRC_ROOT = path.join(TARO_ROOT, 'src')
 const TARO_COMPONENTS_ROOT = path.join(TARO_SRC_ROOT, 'components')
 const JSX_DTS_PATH = path.join(TARO_SRC_ROOT, 'jsx.d.ts')
 const ENTRY_INDEX_PATH = path.join(TARO_SRC_ROOT, 'index.ts')
-const PROPS_REGISTRY_PATH = path.join(TARO_SRC_ROOT, 'component-props-registry.ts')
 const PACKAGE_JSON_PATH = path.join(TARO_ROOT, 'package.json')
 
 const PKG_DEPS = readJsonIfExists(PKG_DEPS_PATH) || {}
+
+// When true, React.createElement registry uses real prop default values.
+// When false (default), all values are set to empty string '' since
+// TaroNormalModulesPlugin only scans property NAMES (keys), not values.
+const USE_REAL_REGISTRY_VALUES = false
 
 function unique(arr) {
   return [...new Set(arr)]
@@ -287,16 +291,46 @@ function buildHostFile(definition) {
     defaultPropsArg = `,\n{\n${entries.join(',\n')},\n}`
   }
 
-  return [
+  // Build React.createElement registry props (including event handlers)
+  const allRegistryProps = [...(definition.propNames || [])]
+  if (definition.eventHandlerProps && definition.eventHandlerProps.length > 0) {
+    for (const ep of definition.eventHandlerProps) {
+      allRegistryProps.push({ name: ep.name, defaultValue: 'undefined' })
+    }
+  }
+
+  const lines = [
+    "import React from 'react'",
     // eslint-disable-next-line quotes
     "import { createHostComponent } from '../../hooks/hostComponent'",
     `import type { ${definition.propsName}, ${definition.exposeName} } from './types'`,
     '',
+    `// NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.`,
+    `// TaroNormalModulesPlugin scans React.createElement() args at AST level and cannot`,
+    `// resolve spread operators (..._defaultProps), so props must be literal object`,
+    `// expressions in both createHostComponent and React.createElement for Taro to detect them.`,
     `export const ${definition.className} = createHostComponent<${definition.propsName}, ${definition.exposeName}>('${definition.tag}'${defaultPropsArg})`,
     '',
     `${definition.className}.displayName = 'Dora${definition.className}'`,
     '',
-  ].join('\n')
+  ]
+
+  // React.createElement call for Taro's AST-based prop registration (tree-shakeable).
+  // TaroNormalModulesPlugin only scans property KEY names — values are irrelevant.
+  if (allRegistryProps.length > 0) {
+    const registryValue = USE_REAL_REGISTRY_VALUES
+      ? (p) => p.defaultValue
+      : () => "''"
+    const propLines = allRegistryProps.map(p => `  ${p.name}: ${registryValue(p)}`)
+    lines.push(`// Props registry for Taro WXML template generator.`)
+    lines.push(`// Values are all '' because TaroNormalModulesPlugin only scans key names.`)
+    lines.push(`React.createElement('${definition.tag}', {`)
+    lines.push(propLines.join(',\n') + ',')
+    lines.push('})')
+    lines.push('')
+  }
+
+  return lines.join('\n')
 }
 
 function buildBarrelFile(definitions) {
@@ -417,7 +451,6 @@ function buildEntryIndex(componentDirs) {
 
   const lines = [
     ...imports,
-    "import './component-props-registry'",
     '',
     ...exports,
     '',
@@ -840,33 +873,6 @@ function extractEmitEvents(sourceCode) {
   return [...events]
 }
 
-function buildPropsRegistry(registryEntries) {
-  const lines = [
-    "// This file registers component props with Taro's WXML template generator.",
-    '// It is parsed by TaroNormalModulesPlugin at build time to discover',
-    '// third-party component prop names.',
-    "import React from 'react'",
-    '',
-  ]
-
-  for (const entry of registryEntries) {
-    if (!entry.propNames || entry.propNames.length === 0) continue
-
-    const propLines = entry.propNames.map(({ name, defaultValue }) => `  ${name}: ${defaultValue}`)
-    lines.push(
-      `// ${entry.tag}`,
-      `React.createElement('${entry.tag}', {`,
-      `${propLines.join(',\n')},`,
-      '})',
-      '',
-    )
-  }
-
-  lines.push('// End of props registry')
-  lines.push('')
-  return lines.join('\n')
-}
-
 function updatePackageDependencies(packageNames) {
   const pkg = readJsonIfExists(PACKAGE_JSON_PATH)
   if (!pkg) return
@@ -961,21 +967,8 @@ function main() {
   writeFile(ENTRY_INDEX_PATH, buildEntryIndex(unique(usedComponentDirs)))
   updatePackageDependencies(unique(usedPackages))
 
-  // Generate component props registry for Taro WXML template generator
-  const registryEntries = allDefinitions.map((d) => {
-    const allPropNames = [...(d.propNames || [])]
-    if (d.eventHandlerProps && d.eventHandlerProps.length > 0) {
-      for (const ep of d.eventHandlerProps) {
-        allPropNames.push({ name: ep.name, defaultValue: 'undefined' })
-      }
-    }
-    return { tag: d.tag, propNames: allPropNames }
-  }).filter((d) => d.propNames.length > 0)
-  writeFile(PROPS_REGISTRY_PATH, buildPropsRegistry(registryEntries))
-
   console.log(`[${DRY_RUN ? 'dry-run' : 'write'}] updated: src/jsx.d.ts`)
   console.log(`[${DRY_RUN ? 'dry-run' : 'write'}] updated: src/index.ts`)
-  console.log(`[${DRY_RUN ? 'dry-run' : 'write'}] updated: src/component-props-registry.ts`)
   console.log(`[${DRY_RUN ? 'dry-run' : 'write'}] updated: package.json dependencies`)
 }
 

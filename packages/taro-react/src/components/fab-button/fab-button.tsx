@@ -1,6 +1,11 @@
+import React from 'react'
 import { createHostComponent } from '../../hooks/hostComponent'
 import type { FabButtonProps, FabButtonExpose } from './types'
 
+// NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
+// TaroNormalModulesPlugin scans React.createElement() args at AST level and cannot
+// resolve spread operators (..._defaultProps), so props must be literal object
+// expressions in both createHostComponent and React.createElement for Taro to detect them.
 export const FabButton = createHostComponent<FabButtonProps, FabButtonExpose>('dora-fab-button',
 {
   prefixCls: 'dora-fab-button',
@@ -25,3 +30,29 @@ export const FabButton = createHostComponent<FabButtonProps, FabButtonExpose>('d
 })
 
 FabButton.displayName = 'DoraFabButton'
+
+// Props registry for Taro WXML template generator.
+// Values are all '' because TaroNormalModulesPlugin only scans key names.
+React.createElement('dora-fab-button', {
+  prefixCls: '',
+  hoverClass: '',
+  theme: '',
+  position: '',
+  action: '',
+  actionRotate: '',
+  hideShadow: '',
+  backdrop: '',
+  buttons: '',
+  direction: '',
+  spaceBetween: '',
+  duration: '',
+  scale: '',
+  reverse: '',
+  sAngle: '',
+  eAngle: '',
+  defaultVisible: '',
+  visible: '',
+  controlled: '',
+  onChange: '',
+  onClick: '',
+})

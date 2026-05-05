@@ -99,7 +99,6 @@ import VirtualListItem from './components/virtual-list-item'
 import WaterMark from './components/water-mark'
 import WhiteSpace from './components/white-space'
 import WingBlank from './components/wing-blank'
-import './component-props-registry'
 
 export * from './components/accordion'
 export * from './components/accordion-panel'

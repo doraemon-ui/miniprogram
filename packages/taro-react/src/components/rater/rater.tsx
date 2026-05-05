@@ -1,6 +1,11 @@
+import React from 'react'
 import { createHostComponent } from '../../hooks/hostComponent'
 import type { RaterProps, RaterExpose } from './types'
 
+// NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
+// TaroNormalModulesPlugin scans React.createElement() args at AST level and cannot
+// resolve spread operators (..._defaultProps), so props must be literal object
+// expressions in both createHostComponent and React.createElement for Taro to detect them.
 export const Rater = createHostComponent<RaterProps, RaterExpose>('dora-rater',
 {
   prefixCls: 'dora-rater',
@@ -20,3 +25,23 @@ export const Rater = createHostComponent<RaterProps, RaterExpose>('dora-rater',
 })
 
 Rater.displayName = 'DoraRater'
+
+// Props registry for Taro WXML template generator.
+// Values are all '' because TaroNormalModulesPlugin only scans key names.
+React.createElement('dora-rater', {
+  prefixCls: '',
+  max: '',
+  icon: '',
+  star: '',
+  defaultValue: '',
+  value: '',
+  activeColor: '',
+  margin: '',
+  fontSize: '',
+  disabled: '',
+  allowHalf: '',
+  allowClear: '',
+  allowTouchMove: '',
+  controlled: '',
+  onChange: '',
+})
