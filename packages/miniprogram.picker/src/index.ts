@@ -83,12 +83,12 @@ class Picker extends Doraemon {
   itemHeight: number
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   itemStyle: unknown
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   indicatorStyle: unknown
   @Prop({
@@ -98,7 +98,7 @@ class Picker extends Doraemon {
   indicatorClass: string
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   maskStyle: unknown
   @Prop({

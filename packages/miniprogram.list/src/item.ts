@@ -216,7 +216,7 @@ class ListItem extends Doraemon {
   appParameter!: string
 
   // union type
-  openType!: NativeButtonOpenType | NativeRouteOpenType
+  openType!: NativeButtonOpenType | NativeRouteOpenType | ''
 
   get classes() {
     const { prefixCls, hoverClass, isLast, hasLine, isLink, align, disabled } = this

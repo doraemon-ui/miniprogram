@@ -1,6 +1,9 @@
-import { createHostComponent } from '@/hooks/hostComponent'
+import { createHostComponent } from '../../hooks/hostComponent'
 import type { LoadingProps, LoadingExpose } from './types'
 
-export const Loading = createHostComponent<LoadingProps, LoadingExpose>('dora-loading')
+export const Loading = createHostComponent<LoadingProps, LoadingExpose>('dora-loading',
+{
+  prefixCls: 'dora-loading',
+})
 
 Loading.displayName = 'DoraLoading'

@@ -87,7 +87,7 @@ class Card extends Doraemon {
    */
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   thumbStyle: CardThumbStyle
 

@@ -168,6 +168,13 @@ export interface CheckboxProps {
  */
 export interface CheckboxExpose {
   /**
+   * 值
+   *
+   * @type {string}
+   */
+  value?: string
+
+  /**
    * 更新内部值
    *
    * @return {void}

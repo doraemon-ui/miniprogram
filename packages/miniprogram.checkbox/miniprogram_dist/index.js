@@ -1,11 +1,11 @@
 /**
  * @doraemon-ui/miniprogram.checkbox.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:42:10.
+ * Built on 2026-05-05, 20:21:13.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 
-import { Doraemon, Prop, Watch, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
+import { Doraemon, Prop, Watch, Event, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
 import { getDefaultContext } from '@doraemon-ui/miniprogram.shared';
 import { checkboxGroupProps } from './props.js';
 
@@ -179,6 +179,9 @@ _ts_decorate([
 _ts_decorate([
     Watch('checked')
 ], Checkbox.prototype, "onCheckedChange", null);
+_ts_decorate([
+    Event()
+], Checkbox.prototype, "checkboxChange", null);
 Checkbox = _ts_decorate([
     Component({
         components: {
@@ -242,6 +245,7 @@ Checkbox = _ts_decorate([
             }
         },
         expose: [
+            'value',
             'check',
             'uncheck',
             'toggle',

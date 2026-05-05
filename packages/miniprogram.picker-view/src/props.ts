@@ -21,11 +21,11 @@ export const props = {
   },
   itemStyle: {
     type: null,
-    default: '',
+    default: null,
   },
   indicatorStyle: {
     type: null,
-    default: '',
+    default: null,
   },
   indicatorClass: {
     type: String,
@@ -33,7 +33,7 @@ export const props = {
   },
   maskStyle: {
     type: null,
-    default: '',
+    default: null,
   },
   maskClass: {
     type: String,

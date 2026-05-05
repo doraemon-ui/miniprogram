@@ -1,4 +1,4 @@
-import type { BasicComponent } from '@/types'
+import type { BasicComponent } from '../../types'
 
 export interface CountupProps extends BasicComponent {}
 

@@ -73,7 +73,7 @@ class Input extends Doraemon {
   placeholder: string
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   placeholderStyle: PlaceholderStyle
   @Prop({

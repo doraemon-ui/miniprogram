@@ -69,7 +69,7 @@ const defaultContext: RadioContext = {
     },
     wrapStyle: {
       type: null,
-      default: '',
+      default: null,
     },
     hasLine: {
       type: Boolean,
@@ -215,7 +215,7 @@ class Radio extends Doraemon {
    */
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   wrapStyle: string | Partial<CSSStyleDeclaration>
 

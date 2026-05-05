@@ -1,5 +1,5 @@
 import type { SkeletonProps as NativeSkeletonProps, SkeletonExpose as NativeSkeletonExpose } from '@doraemon-ui/miniprogram.skeleton'
-import type { BasicComponent } from '@/types'
+import type { BasicComponent } from '../../types'
 
 export interface SkeletonProps extends NativeSkeletonProps, BasicComponent {}
 

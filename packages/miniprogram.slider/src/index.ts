@@ -167,7 +167,7 @@ class Slider extends Doraemon {
    */
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   markStyle: unknown
 
@@ -179,7 +179,7 @@ class Slider extends Doraemon {
    */
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   handleStyle: unknown
 
@@ -191,7 +191,7 @@ class Slider extends Doraemon {
    */
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   trackStyle: unknown
 
@@ -203,7 +203,7 @@ class Slider extends Doraemon {
    */
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   railStyle: unknown
 
@@ -215,7 +215,7 @@ class Slider extends Doraemon {
    */
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   wrapStyle: unknown
 

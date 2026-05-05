@@ -31,16 +31,16 @@ export interface ButtonProps {
   /**
    * 扩展模式
    *
-   * @type {('block' | 'full')}
+   * @type {('block' | 'full' | '')}
    */
-  expand?: 'block' | 'full'
+  expand?: 'block' | 'full' | ''
 
   /**
    * 按钮的形状
    *
-   * @type {('rounded' | 'rectangular')}
+   * @type {('rounded' | 'rectangular' | '')}
    */
-  shape?: 'rounded' | 'rectangular'
+  shape?: 'rounded' | 'rectangular' | ''
 
   /**
    * 按钮的大小
@@ -73,17 +73,16 @@ export interface ButtonProps {
   /**
    * 用于 form 组件，点击后触发的表单事件类型
    *
-   * @type {('submit' | 'reset')}
+   * @type {('submit' | 'reset' | '')}
    */
-  formType?: 'submit' | 'reset'
+  formType?: 'submit' | 'reset' | ''
 
   /**
    * 微信开放能力
    *
-   * @type {NativeButtonOpenType}
+   * @type {(NativeButtonOpenType | '')}
    */
-  openType?: NativeButtonOpenType
-
+  openType?: NativeButtonOpenType | ''
   /**
    * 按钮按下时的自定义样式类
    *

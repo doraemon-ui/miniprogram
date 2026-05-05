@@ -1,6 +1,10 @@
 import type { SwipeActionProps as NativeSwipeActionProps, SwipeActionExpose as NativeSwipeActionExpose } from '@doraemon-ui/miniprogram.swipe-action'
-import type { BasicComponent } from '@/types'
+import type { BasicComponent } from '../../types'
 
-export interface SwipeActionProps extends NativeSwipeActionProps, BasicComponent {}
+export interface SwipeActionProps extends NativeSwipeActionProps, BasicComponent {
+  onClick?: (event: any) => void
+  onOpen?: (event: any) => void
+  onClose?: (event: any) => void
+}
 
 export interface SwipeActionExpose extends NativeSwipeActionExpose {}

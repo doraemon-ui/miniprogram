@@ -48,7 +48,7 @@ class WaterMark extends Doraemon {
    */
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   content: string | string[]
 

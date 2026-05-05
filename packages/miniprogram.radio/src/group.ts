@@ -240,7 +240,7 @@ class RadioGroup extends Doraemon {
    */
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   bodyStyle: string | Partial<CSSStyleDeclaration>
 

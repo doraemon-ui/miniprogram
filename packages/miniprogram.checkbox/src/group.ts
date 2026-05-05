@@ -281,7 +281,7 @@ class CheckboxGroup extends Doraemon {
         )
         .filter((node) => {
           const child = node as unknown as CheckboxInstance
-          return typeof child.changeValue === 'function' && typeof child.value === 'string' && typeof child.title === 'string'
+          return typeof child.changeValue === 'function'
         })
 
       setChildrenValues(children)

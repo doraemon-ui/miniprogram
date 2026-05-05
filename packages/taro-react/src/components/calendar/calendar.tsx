@@ -1,6 +1,9 @@
-import { createHostComponent } from '@/hooks/hostComponent'
+import { createHostComponent } from '../../hooks/hostComponent'
 import type { CalendarProps, CalendarExpose } from './types'
 
-export const Calendar = createHostComponent<CalendarProps, CalendarExpose>('dora-calendar')
+export const Calendar = createHostComponent<CalendarProps, CalendarExpose>('dora-calendar',
+{
+  prefixCls: 'dora-calendar',
+})
 
 Calendar.displayName = 'DoraCalendar'

@@ -41,7 +41,7 @@ export const checkboxGroupProps = {
   },
   bodyStyle: {
     type: null,
-    default: '',
+    default: null,
   },
   hasLine: {
     type: Boolean,

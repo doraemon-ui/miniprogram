@@ -77,7 +77,7 @@ class PickerView extends Doraemon {
    */
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   itemStyle: unknown
 
@@ -89,7 +89,7 @@ class PickerView extends Doraemon {
    */
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   indicatorStyle: unknown
 
@@ -113,7 +113,7 @@ class PickerView extends Doraemon {
    */
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   maskStyle: unknown
 

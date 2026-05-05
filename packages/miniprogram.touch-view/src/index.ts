@@ -74,7 +74,7 @@ class TouchView extends Doraemon {
    */
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   wrapStyle: string | Partial<CSSStyleDeclaration>
 

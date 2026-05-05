@@ -1,4 +1,4 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+import { defineComponentHOC, Doraemon, Component, Prop, Watch, Event } from '@doraemon-ui/miniprogram.core-js'
 import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
 import { getDefaultContext } from '@doraemon-ui/miniprogram.shared'
 import { checkboxGroupProps } from './props'
@@ -84,7 +84,7 @@ const defaultContext: CheckboxContext = {
       default: true,
     },
   },
-  expose: ['check', 'uncheck', 'toggle', 'setChecked', 'changeValue'],
+  expose: ['value', 'check', 'uncheck', 'toggle', 'setChecked', 'changeValue'],
 })
 class Checkbox extends Doraemon {
   /**
@@ -223,7 +223,7 @@ class Checkbox extends Doraemon {
    */
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   wrapStyle: string | Partial<CSSStyleDeclaration>
 
@@ -268,6 +268,7 @@ class Checkbox extends Doraemon {
     this.inputChecked = newVal
   }
 
+  @Event()
   checkboxChange(e: CustomEvent<CheckboxChangeDetail>) {
     const { disabled, readOnly, context } = this
     const { checked } = e.currentTarget

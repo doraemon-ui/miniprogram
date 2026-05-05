@@ -100,11 +100,13 @@ module.exports = (ctx) => {
 
     for (const filePath of sourceFiles) {
       const code = fs.readFileSync(filePath, 'utf8')
-      const scriptKind =
-        filePath.endsWith('.tsx') ? ts.ScriptKind.TSX :
-          filePath.endsWith('.ts') ? ts.ScriptKind.TS :
-            filePath.endsWith('.jsx') ? ts.ScriptKind.JSX :
-              ts.ScriptKind.JS
+      const scriptKind = filePath.endsWith('.tsx')
+        ? ts.ScriptKind.TSX
+        : filePath.endsWith('.ts')
+          ? ts.ScriptKind.TS
+          : filePath.endsWith('.jsx')
+            ? ts.ScriptKind.JSX
+            : ts.ScriptKind.JS
       const sourceFile = ts.createSourceFile(filePath, code, ts.ScriptTarget.Latest, true, scriptKind)
 
       const localNameToDirs = new Map()
@@ -153,7 +155,12 @@ module.exports = (ctx) => {
       const isImportIdentifier = (node) => {
         let current = node
         while (current) {
-          if (ts.isImportClause(current) || ts.isImportSpecifier(current) || ts.isImportDeclaration(current) || ts.isNamespaceImport(current)) {
+          if (
+            ts.isImportClause(current) ||
+            ts.isImportSpecifier(current) ||
+            ts.isImportDeclaration(current) ||
+            ts.isNamespaceImport(current)
+          ) {
             return true
           }
           if (ts.isSourceFile(current)) return false
@@ -329,26 +336,25 @@ module.exports = (ctx) => {
     const baseMap = { ...usingComponentsToInject }
 
     const entryMarkerRE = new RegExp(`\\n?[ \\t]*${escapeRegExp(sourceInjectStart)}[\\s\\S]*?${escapeRegExp(sourceInjectEnd)}\\n?`, 'm')
-    const wrapperMarkerRE = new RegExp(`\\n?[ \\t]*${escapeRegExp(sourceInjectWrapStart)}[\\s\\S]*?${escapeRegExp(sourceInjectWrapEnd)}\\n?`, 'm')
-    const cleaned = source
-      .replace(wrapperMarkerRE, '')
-      .replace(entryMarkerRE, '')
+    const wrapperMarkerRE = new RegExp(
+      `\\n?[ \\t]*${escapeRegExp(sourceInjectWrapStart)}[\\s\\S]*?${escapeRegExp(sourceInjectWrapEnd)}\\n?`,
+      'm',
+    )
+    const cleaned = source.replace(wrapperMarkerRE, '').replace(entryMarkerRE, '')
 
     let next = cleaned
     {
-      const scriptKind =
-        appConfigPath.endsWith('.tsx') ? ts.ScriptKind.TSX :
-          appConfigPath.endsWith('.ts') ? ts.ScriptKind.TS :
-            appConfigPath.endsWith('.jsx') ? ts.ScriptKind.JSX :
-              ts.ScriptKind.JS
+      const scriptKind = appConfigPath.endsWith('.tsx')
+        ? ts.ScriptKind.TSX
+        : appConfigPath.endsWith('.ts')
+          ? ts.ScriptKind.TS
+          : appConfigPath.endsWith('.jsx')
+            ? ts.ScriptKind.JSX
+            : ts.ScriptKind.JS
       const sourceFile = ts.createSourceFile(appConfigPath, next, ts.ScriptTarget.Latest, true, scriptKind)
       let configObject = null
       const findConfigObject = (node) => {
-        if (
-          ts.isCallExpression(node)
-          && node.arguments.length > 0
-          && ts.isObjectLiteralExpression(node.arguments[0])
-        ) {
+        if (ts.isCallExpression(node) && node.arguments.length > 0 && ts.isObjectLiteralExpression(node.arguments[0])) {
           const exprText = node.expression.getText(sourceFile)
           if (exprText === 'defineAppConfig' || exprText.endsWith('.defineAppConfig')) {
             configObject = node.arguments[0]
@@ -360,13 +366,12 @@ module.exports = (ctx) => {
       findConfigObject(sourceFile)
       if (!configObject) return
 
-      const usingProperty = configObject.properties.find((prop) =>
-        ts.isPropertyAssignment(prop)
-        && (
-          (ts.isIdentifier(prop.name) && prop.name.text === 'usingComponents')
-          || (ts.isStringLiteral(prop.name) && prop.name.text === 'usingComponents')
-        )
-        && ts.isObjectLiteralExpression(prop.initializer)
+      const usingProperty = configObject.properties.find(
+        (prop) =>
+          ts.isPropertyAssignment(prop) &&
+          ((ts.isIdentifier(prop.name) && prop.name.text === 'usingComponents') ||
+            (ts.isStringLiteral(prop.name) && prop.name.text === 'usingComponents')) &&
+          ts.isObjectLiteralExpression(prop.initializer),
       )
 
       if (usingProperty && ts.isObjectLiteralExpression(usingProperty.initializer)) {
@@ -415,10 +420,11 @@ module.exports = (ctx) => {
     if (!(await fs.pathExists(filePath))) return
     const source = await fs.readFile(filePath, 'utf8')
     const entryMarkerRE = new RegExp(`\\n?[ \\t]*${escapeRegExp(sourceInjectStart)}[\\s\\S]*?${escapeRegExp(sourceInjectEnd)}\\n?`, 'm')
-    const wrapperMarkerRE = new RegExp(`\\n?[ \\t]*${escapeRegExp(sourceInjectWrapStart)}[\\s\\S]*?${escapeRegExp(sourceInjectWrapEnd)}\\n?`, 'm')
-    const restored = source
-      .replace(wrapperMarkerRE, '')
-      .replace(entryMarkerRE, '')
+    const wrapperMarkerRE = new RegExp(
+      `\\n?[ \\t]*${escapeRegExp(sourceInjectWrapStart)}[\\s\\S]*?${escapeRegExp(sourceInjectWrapEnd)}\\n?`,
+      'm',
+    )
+    const restored = source.replace(wrapperMarkerRE, '').replace(entryMarkerRE, '')
     if (restored !== source) {
       await fs.writeFile(filePath, restored, 'utf8')
       if (debug) console.log('[doraemon-taro-react-plugin] source app.config restored')

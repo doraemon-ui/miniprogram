@@ -126,7 +126,7 @@ class Selectable extends Doraemon {
   controlled: boolean
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   wrapStyle: string | Partial<CSSStyleDeclaration>
   @Prop({

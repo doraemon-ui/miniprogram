@@ -90,7 +90,7 @@ class DatePickerView extends Doraemon {
    */
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   itemStyle: unknown
 
@@ -102,7 +102,7 @@ class DatePickerView extends Doraemon {
    */
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   indicatorStyle: unknown
 
@@ -126,7 +126,7 @@ class DatePickerView extends Doraemon {
    */
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   maskStyle: unknown
 

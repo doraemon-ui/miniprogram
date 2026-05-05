@@ -46,7 +46,7 @@ class TimelineItem extends Doraemon {
    */
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   dotStyle: string | Partial<CSSStyleDeclaration>
 

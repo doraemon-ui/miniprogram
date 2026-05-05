@@ -63,7 +63,7 @@ class SearchBar extends Doraemon {
    */
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   placeholderStyle: string | Partial<CSSStyleDeclaration>
 

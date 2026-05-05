@@ -1,6 +1,6 @@
 import React, { Component, Children, createRef, forwardRef, createElement } from 'react'
 import type { CSSProperties, Ref, MutableRefObject } from 'react'
-import type { BasicComponent } from '@/types'
+import type { BasicComponent } from '../types'
 
 function styleToString(style?: CSSProperties): string {
   if (!style) return ''
@@ -38,40 +38,41 @@ class HostComponent<Props extends BasicComponent, Expose> extends Component<
     }
   }
 
-  _transformProps(props: Record<string, any>) {
-    const result: Record<string, any> = {}
+  // _transformProps(props: Record<string, any>) {
+  //   const result: Record<string, any> = {}
 
-    Object.keys(props).forEach((key) => {
-      const value = props[key]
+  //   Object.keys(props).forEach((key) => {
+  //     const value = props[key]
 
-      if (key.startsWith('on') && typeof value === 'function') {
-        const eventName = key[2].toLowerCase() + key.slice(3)
+  //     if (key.startsWith('on') && typeof value === 'function') {
+  //       const eventName = key[2].toLowerCase() + key.slice(3)
 
-        result[`bind${eventName}`] = value
-      } else {
-        result[key] = value
-      }
-    })
+  //       result[`bind${eventName}`] = value
+  //     } else {
+  //       result[key] = value
+  //     }
+  //   })
 
-    return result
-  }
+  //   return result
+  // }
 
   render() {
     const { compName, className, style, children, forwardedRef, ...rest } = this.props
-    const nativeProps = this._transformProps(rest)
-    console.log('nativeProps====', nativeProps)
+    // const nativeProps = this._transformProps(rest)
+    console.log('nativeProps====', rest)
     const Comp = compName as any
     return (
-      <Comp ref={this.nativeRef} dora-class={className} dora-style={styleToString(style)} {...nativeProps}>
+      <Comp ref={this.nativeRef} dora-class={className} dora-style={styleToString(style)} {...rest}>
         {Children.toArray(children)}
       </Comp>
     )
   }
 }
 
-export function createHostComponent<Props extends BasicComponent, Expose>(compName: string) {
+export function createHostComponent<Props extends BasicComponent, Expose>(compName: string, defaultProps?: Partial<Props>) {
   return forwardRef<Expose, Props>((props, ref) =>
     createElement(HostComponent, {
+      ...defaultProps,
       ...props,
       compName,
       forwardedRef: ref,

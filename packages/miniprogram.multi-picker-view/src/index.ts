@@ -79,7 +79,7 @@ class MultiPickerView extends Doraemon {
    */
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   itemStyle: unknown
 
@@ -91,7 +91,7 @@ class MultiPickerView extends Doraemon {
    */
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   indicatorStyle: unknown
 
@@ -115,7 +115,7 @@ class MultiPickerView extends Doraemon {
    */
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   maskStyle: unknown
 

@@ -88,7 +88,7 @@ class CascaderPickerView extends Doraemon {
    */
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   itemStyle: unknown
 
@@ -100,7 +100,7 @@ class CascaderPickerView extends Doraemon {
    */
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   indicatorStyle: unknown
 
@@ -124,7 +124,7 @@ class CascaderPickerView extends Doraemon {
    */
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   maskStyle: unknown
 

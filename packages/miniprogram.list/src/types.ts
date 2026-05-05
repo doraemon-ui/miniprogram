@@ -102,9 +102,9 @@ export interface ListItemProps {
   /**
    * 微信开放能力或路由打开方式
    *
-   * @type {(NativeButtonOpenType | NativeRouteOpenType)}
+   * @type {(NativeButtonOpenType | NativeRouteOpenType | '')}
    */
-  openType?: NativeButtonOpenType | NativeRouteOpenType
+  openType?: NativeButtonOpenType | NativeRouteOpenType | ''
 
   /**
    * 点击态类名

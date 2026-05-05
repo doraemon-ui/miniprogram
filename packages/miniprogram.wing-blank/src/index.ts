@@ -39,7 +39,7 @@ class WingBlank extends Doraemon {
    */
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   bodyStyle: string | Partial<CSSStyleDeclaration>
   extStyle: string = ''

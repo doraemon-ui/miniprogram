@@ -1,6 +1,46 @@
-import { createHostComponent } from '@/hooks/hostComponent'
+import { createHostComponent } from '../../hooks/hostComponent'
 import type { InputProps, InputExpose } from './types'
 
-export const Input = createHostComponent<InputProps, InputExpose>('dora-input')
+export const Input = createHostComponent<InputProps, InputExpose>('dora-input',
+{
+  prefixCls: 'dora-input',
+  type: 'text',
+  password: false,
+  placeholder: '',
+  placeholderStyle: null,
+  placeholderClass: 'input-placeholder',
+  maxlength: 140,
+  cursorSpacing: 11,
+  focus: false,
+  confirmType: 'done',
+  alwaysEmbed: false,
+  confirmHold: false,
+  cursor: -1,
+  selectionStart: -1,
+  selectionEnd: -1,
+  adjustPosition: true,
+  holdKeyboard: false,
+  safePasswordCertPath: null,
+  safePasswordLength: null,
+  safePasswordTimeStamp: null,
+  safePasswordNonce: null,
+  safePasswordSalt: null,
+  safePasswordCustomHash: null,
+  label: '',
+  extra: '',
+  defaultValue: '',
+  value: '',
+  controlled: false,
+  disabled: false,
+  readOnly: false,
+  clear: false,
+  error: false,
+  labelWrap: false,
+  requiredMark: false,
+  onlyShowClearWhenFocus: true,
+  min: null,
+  max: null,
+  visibilityToggle: false,
+})
 
 Input.displayName = 'DoraInput'

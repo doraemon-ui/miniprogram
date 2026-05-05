@@ -147,7 +147,7 @@ class DatePicker extends Doraemon {
    */
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   itemStyle: unknown
 
@@ -159,7 +159,7 @@ class DatePicker extends Doraemon {
    */
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   indicatorStyle: unknown
 
@@ -183,7 +183,7 @@ class DatePicker extends Doraemon {
    */
   @Prop({
     type: null,
-    default: '',
+    default: null,
   })
   maskStyle: unknown
 

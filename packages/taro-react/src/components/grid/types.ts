@@ -1,6 +1,8 @@
 import type { GridProps as NativeGridProps, GridExpose as NativeGridExpose } from '@doraemon-ui/miniprogram.grid'
-import type { BasicComponent } from '@/types'
+import type { BasicComponent } from '../../types'
 
-export interface GridProps extends NativeGridProps, BasicComponent {}
+export interface GridProps extends NativeGridProps, BasicComponent {
+  onClick?: (event: any) => void
+}
 
 export interface GridExpose extends NativeGridExpose {}
