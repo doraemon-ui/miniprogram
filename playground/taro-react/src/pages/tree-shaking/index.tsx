@@ -54,7 +54,7 @@ export default function TreeShakingTestPage() {
         <Checkbox value="orange" title="Orange" />
       </CheckboxGroup>
 
-      {/* <dora-checkbox-group value={['apple']} title="Fruits">
+      {/* <dora-checkbox-group value={value} title="Fruits" onChange={onChange}>
         <dora-checkbox value="apple" title="Apple" />
         <dora-checkbox value="orange" title="Orange" />
       </dora-checkbox-group> */}
