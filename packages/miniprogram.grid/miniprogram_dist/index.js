@@ -1,60 +1,79 @@
 /**
  * @doraemon-ui/miniprogram.grid.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:39:13.
+ * Built on 2026-05-07, 22:10:21.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 
-import { Doraemon, Prop, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
+import { Doraemon, Prop, Watch, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
 
 function _ts_decorate(decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc, d;
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for(var i = decorators.length - 1; i >= 0; i--)if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 }
-const { classNames, styleToCssString } = Doraemon.util;
+const { classNames } = Doraemon.util;
 let Grid = class Grid extends Doraemon {
     get classes() {
-        const { prefixCls, hoverClass, disabled } = this;
+        const { prefixCls, bordered } = this;
         const wrap = classNames(prefixCls, {
-            [`${prefixCls}--disabled`]: disabled
+            [`${prefixCls}--bordered`]: bordered
         });
-        const hover = hoverClass && hoverClass !== 'default' ? hoverClass : `${prefixCls}--hover`;
         return {
-            wrap,
-            hover
+            wrap
         };
     }
-    get containerStyle() {
-        return this.wrapStyle ? styleToCssString(this.wrapStyle) : '';
+    onPropsChange() {
+        this.changeCurrent();
     }
-    onClick() {
-        if (!this.disabled) {
-            this.$emit('click');
+    changeCurrent() {
+        const elements = this.$children;
+        const { col, bordered, square } = this;
+        const colNum = col > 0 ? col : 1;
+        const width = `${100 / colNum}%`;
+        if (elements.length > 0) {
+            elements.forEach((element, index)=>{
+                element.changeCurrent(width, bordered, square, index);
+            });
         }
     }
+    onChildrenChanged() {
+        this.changeCurrent();
+    }
 };
+_ts_decorate([
+    Prop({
+        type: Number,
+        default: 3
+    })
+], Grid.prototype, "col", void 0);
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: true
+    })
+], Grid.prototype, "bordered", void 0);
 _ts_decorate([
     Prop({
         type: Boolean,
         default: false
     })
-], Grid.prototype, "disabled", void 0);
+], Grid.prototype, "square", void 0);
 _ts_decorate([
-    Prop({
-        type: String,
-        default: 'default'
-    })
-], Grid.prototype, "hoverClass", void 0);
-_ts_decorate([
-    Prop({
-        type: Object,
-        default: null
-    })
-], Grid.prototype, "wrapStyle", void 0);
+    Watch('col'),
+    Watch('bordered'),
+    Watch('square')
+], Grid.prototype, "onPropsChange", null);
 Grid = _ts_decorate([
     Component({
+        components: {
+            GridItem: ()=>({
+                    module: './item',
+                    type: 'child',
+                    observer: 'onChildrenChanged'
+                })
+        },
         props: {
             prefixCls: {
                 type: String,

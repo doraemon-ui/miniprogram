@@ -9,6 +9,7 @@ import type {
   RadioGroupDatasetIndex,
   RadioGroupOption,
   RadioIconPosition,
+  RadioInstance,
   RenderProxySelector,
   RenderProxyWithComponent,
 } from './types'
@@ -47,70 +48,6 @@ function normalizeOptions(options: RadioGroupOption[]) {
     prefixCls: {
       type: String,
       default: 'dora-radio-group',
-    },
-    cellGroupPrefixCls: {
-      type: String,
-      default: 'dora-list',
-    },
-    value: {
-      type: String,
-      default: '',
-    },
-    name: {
-      type: String,
-      default: '',
-    },
-    title: {
-      type: String,
-      default: '',
-    },
-    label: {
-      type: String,
-      default: '',
-    },
-    options: {
-      type: Array,
-      default: () => [],
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    readOnly: {
-      type: Boolean,
-      default: false,
-    },
-    mode: {
-      type: String,
-      default: 'default',
-    },
-    bodyStyle: {
-      type: null,
-      default: '',
-    },
-    hasLine: {
-      type: Boolean,
-      default: true,
-    },
-    withListComponent: {
-      type: Boolean,
-      default: true,
-    },
-    iconPosition: {
-      type: String,
-      default: 'right',
-    },
-    iconSize: {
-      type: String,
-      default: '',
-    },
-    iconOn: {
-      type: String,
-      default: '',
-    },
-    iconOff: {
-      type: String,
-      default: '',
     },
   },
   expose: ['getValue', 'getBoundingClientRect', 'changeValue'],
@@ -395,8 +332,8 @@ class RadioGroup extends Doraemon {
         typeof proxy.selectAllComponents === 'function'
           ? proxy.selectAllComponents(showOptions.length > 0 ? `.${prefixCls}__radio` : 'dora-radio')
           : []
-      const relationNodes = proxy.getRelationNodes('./index')
-      const rawNodes = (selectedNodes && selectedNodes.length > 0 ? selectedNodes : relationNodes) || []
+      const childrenNodes = this.$children as RadioInstance[]
+      const rawNodes = (selectedNodes && selectedNodes.length > 0 ? selectedNodes : childrenNodes) || []
 
       const children = rawNodes
         .map((node) => ((node as RenderProxyWithComponent).$component ? (node as RenderProxyWithComponent).$component : node))

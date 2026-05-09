@@ -14,8 +14,8 @@
   right: 0;
   height: var(--dora-badge-height, 18px);
   height: var(--dora-badge-height, 18px);
-  border-radius: var(--dora-badge-height, 18px)/2;
-  border-radius: var(--dora-badge-height, 18px)/2;
+  border-radius: calc(var(--dora-badge-height, 18px)/2);
+  border-radius: calc(var(--dora-badge-height, 18px)/2);
   min-width: var(--dora-badge-height, 18px);
   min-width: var(--dora-badge-height, 18px);
   background: var(--dora-badge-bg, #ed3f14);

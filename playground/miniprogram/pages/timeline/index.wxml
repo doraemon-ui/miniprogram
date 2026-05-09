@@ -1,0 +1,52 @@
+<demo-page
+  darkmode="auto"
+  title="Timeline"
+  desc="时间轴"
+  clickable
+  spacing
+>
+  <demo-block title="默认">
+    <dora-timeline>
+      <dora-timeline-item content="2018-10-24 v1.0.0" />
+      <dora-timeline-item content="2018-10-25 v1.0.1" />
+      <dora-timeline-item content="2018-10-26 v1.0.2" />
+      <dora-timeline-item content="2018-10-27 v1.0.3" />
+    </dora-timeline>
+  </demo-block>
+
+  <demo-block title="Position = alternate">
+    <dora-timeline position="alternate">
+      <dora-timeline-item content="2018-10-24 v1.0.0" />
+      <dora-timeline-item content="2018-10-25 v1.0.1" />
+      <dora-timeline-item content="2018-10-26 v1.0.2" />
+      <dora-timeline-item content="2018-10-27 v1.0.3" />
+    </dora-timeline>
+  </demo-block>
+
+  <demo-block title="Pending">
+    <dora-timeline pending>
+      <dora-timeline-item content="2018-10-24 v1.0.0" />
+      <dora-timeline-item content="2018-10-25 v1.0.1" />
+      <dora-timeline-item content="2018-10-26 v1.0.2" />
+      <dora-timeline-item content="2018-10-27 v1.0.3" />
+    </dora-timeline>
+  </demo-block>
+
+  <demo-block title="自定义节点">
+    <dora-timeline>
+      <dora-timeline-item>
+        <view>2018-10-24 v1.0.0</view>
+      </dora-timeline-item>
+      <dora-timeline-item custom>
+        <dora-icon slot="dot" type="ios-time" size="{{ 23 }}" />
+        <view>2018-10-25 v1.0.1</view>
+      </dora-timeline-item>
+      <dora-timeline-item dotStyle="border-color: #33cd5f; color: #33cd5f">
+        <view>2018-10-26 v1.0.2</view>
+      </dora-timeline-item>
+      <dora-timeline-item dotStyle="border-color: #ef473a; color: #ef473a">
+        <view>2018-10-27 v1.0.3</view>
+      </dora-timeline-item>
+    </dora-timeline>
+  </demo-block>
+</demo-page>

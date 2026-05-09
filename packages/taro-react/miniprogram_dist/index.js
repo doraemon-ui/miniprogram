@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/taro-react.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-06, 01:39:09.
+ * Built on 2026-05-09, 19:19:21.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 
@@ -156,7 +156,7 @@ React.createElement('dora-action-sheet', {
 const Alert = createHostComponent('dora-alert', {
     prefixCls: 'dora-alert',
     classNames: 'dora-animate--fadeIn',
-    theme: 'balanced',
+    color: 'positive',
     thumb: '',
     title: '',
     label: '',
@@ -168,7 +168,7 @@ Alert.displayName = 'DoraAlert';
 React.createElement('dora-alert', {
     prefixCls: '',
     classNames: '',
-    theme: '',
+    color: '',
     thumb: '',
     title: '',
     label: '',
@@ -1168,20 +1168,43 @@ React.createElement('dora-gallery', {
 // expressions in both createHostComponent and React.createElement for Taro to detect them.
 const Grid = createHostComponent('dora-grid', {
     prefixCls: 'dora-grid',
-    disabled: false,
-    hoverClass: 'default',
-    wrapStyle: null,
+    col: 3,
+    bordered: true,
+    square: false,
 });
 Grid.displayName = 'DoraGrid';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
 React.createElement('dora-grid', {
     prefixCls: '',
-    disabled: '',
+    col: '',
+    bordered: '',
+    square: '',
+});
+
+// NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
+// TaroNormalModulesPlugin scans React.createElement() args at AST level and cannot
+// resolve spread operators (..._defaultProps), so props must be literal object
+// expressions in both createHostComponent and React.createElement for Taro to detect them.
+const GridItem = createHostComponent('dora-grid-item', {
+    prefixCls: 'dora-grid-item',
+    hoverClass: 'default',
+    thumb: '',
+    label: '',
+});
+GridItem.displayName = 'DoraGridItem';
+// Props registry for Taro WXML template generator.
+// Values are all '' because TaroNormalModulesPlugin only scans key names.
+React.createElement('dora-grid-item', {
+    prefixCls: '',
     hoverClass: '',
-    wrapStyle: '',
+    thumb: '',
+    label: '',
     onClick: '',
 });
+
+const InnerGrid = Grid;
+InnerGrid.Item = GridItem;
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
 // TaroNormalModulesPlugin scans React.createElement() args at AST level and cannot
@@ -1588,7 +1611,7 @@ MultiPickerView.displayName = 'DoraMultiPickerView';
 // expressions in both createHostComponent and React.createElement for Taro to detect them.
 const Navbar = createHostComponent('dora-navbar', {
     prefixCls: 'dora-navbar',
-    theme: 'light',
+    color: 'light',
     title: '',
     leftText: '',
     rightText: '',
@@ -1598,7 +1621,7 @@ Navbar.displayName = 'DoraNavbar';
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
 React.createElement('dora-navbar', {
     prefixCls: '',
-    theme: '',
+    color: '',
     title: '',
     leftText: '',
     rightText: '',
@@ -2293,7 +2316,7 @@ React.createElement('dora-search-bar', {
 // expressions in both createHostComponent and React.createElement for Taro to detect them.
 const SegmentedControl = createHostComponent('dora-segmented-control', {
     prefixCls: 'dora-segmented-control',
-    theme: 'balanced',
+    color: 'positive',
     defaultCurrent: 0,
     current: 0,
     values: [],
@@ -2305,7 +2328,7 @@ SegmentedControl.displayName = 'DoraSegmentedControl';
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
 React.createElement('dora-segmented-control', {
     prefixCls: '',
-    theme: '',
+    color: '',
     defaultCurrent: '',
     current: '',
     values: '',
@@ -2387,7 +2410,7 @@ React.createElement('dora-selectable', {
 // expressions in both createHostComponent and React.createElement for Taro to detect them.
 const SelectorGroup = createHostComponent('dora-selector-group', {
     prefixCls: 'dora-selector-group',
-    theme: 'balanced',
+    color: 'positive',
     shape: 'default',
     columns: 3,
     gap: 8,
@@ -2404,7 +2427,7 @@ SelectorGroup.displayName = 'DoraSelectorGroup';
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
 React.createElement('dora-selector-group', {
     prefixCls: '',
-    theme: '',
+    color: '',
     shape: '',
     columns: '',
     gap: '',
@@ -2700,7 +2723,7 @@ const Tabbar = createHostComponent('dora-tabbar', {
     defaultCurrent: '',
     current: '',
     controlled: false,
-    theme: 'balanced',
+    color: 'positive',
     backgroundColor: '#fff',
     position: '',
     safeArea: false,
@@ -2713,7 +2736,7 @@ React.createElement('dora-tabbar', {
     defaultCurrent: '',
     current: '',
     controlled: '',
-    theme: '',
+    color: '',
     backgroundColor: '',
     position: '',
     safeArea: '',
@@ -2754,7 +2777,7 @@ const Tabs = createHostComponent('dora-tabs', {
     current: '',
     scroll: false,
     controlled: false,
-    theme: 'balanced',
+    color: 'positive',
     direction: 'horizontal',
     justify: 'space-around',
     activeLineMode: 'auto',
@@ -2768,7 +2791,7 @@ React.createElement('dora-tabs', {
     current: '',
     scroll: '',
     controlled: '',
-    theme: '',
+    color: '',
     direction: '',
     justify: '',
     activeLineMode: '',
@@ -3232,4 +3255,4 @@ React.createElement('dora-wing-blank', {
     bodyStyle: '',
 });
 
-export { InnerAccordion as Accordion, AccordionPanel, ActionSheet, Alert, AnimationGroup, Avatar, Backdrop, Badge, Barcode, Button, Calendar, Card, Cascader, CascaderPickerView, CascaderView, InnerCheckbox as Checkbox, CheckboxGroup, Circle, Col, Countdown, Countup, DatePicker, DatePickerView, Dialog, Divider, ESign, Ellipsis, FabButton, Field, Filterbar, FloatingPanel, Footer, Form, Gallery, Grid, Icon, Image, InnerIndex as Index, IndexItem, Input, InputNumber, Keyboard, Landscape, InnerList as List, ListItem, Loading, Media, MultiPickerView, Navbar, NoticeBar, Notification, Pagination, Picker, PickerView, Popover, Popup, PopupSelect, Progress, Prompt, Qrcode, InnerRadio as Radio, RadioGroup, Rater, Refresher, Result, InnerRow as Row, SafeArea, SearchBar, SegmentedControl, Select, Selectable, SelectorGroup, InnerSkeleton as Skeleton, SkeletonAvatar, SkeletonParagraph, Slider, Spin, Step, InnerSteps as Steps, Sticky, SwipeAction, Switch, Tab, InnerTabbar as Tabbar, TabbarItem, InnerTabs as Tabs, Tag, Textarea, Timeago, InnerTimeline as Timeline, TimelineItem, Toast, Toptips, TouchView, Upload, Vcode, InnerVirtualList as VirtualList, VirtualListItem, WaterMark, WhiteSpace, WingBlank };
+export { InnerAccordion as Accordion, AccordionPanel, ActionSheet, Alert, AnimationGroup, Avatar, Backdrop, Badge, Barcode, Button, Calendar, Card, Cascader, CascaderPickerView, CascaderView, InnerCheckbox as Checkbox, CheckboxGroup, Circle, Col, Countdown, Countup, DatePicker, DatePickerView, Dialog, Divider, ESign, Ellipsis, FabButton, Field, Filterbar, FloatingPanel, Footer, Form, Gallery, InnerGrid as Grid, GridItem, Icon, Image, InnerIndex as Index, IndexItem, Input, InputNumber, Keyboard, Landscape, InnerList as List, ListItem, Loading, Media, MultiPickerView, Navbar, NoticeBar, Notification, Pagination, Picker, PickerView, Popover, Popup, PopupSelect, Progress, Prompt, Qrcode, InnerRadio as Radio, RadioGroup, Rater, Refresher, Result, InnerRow as Row, SafeArea, SearchBar, SegmentedControl, Select, Selectable, SelectorGroup, InnerSkeleton as Skeleton, SkeletonAvatar, SkeletonParagraph, Slider, Spin, Step, InnerSteps as Steps, Sticky, SwipeAction, Switch, Tab, InnerTabbar as Tabbar, TabbarItem, InnerTabs as Tabs, Tag, Textarea, Timeago, InnerTimeline as Timeline, TimelineItem, Toast, Toptips, TouchView, Upload, Vcode, InnerVirtualList as VirtualList, VirtualListItem, WaterMark, WhiteSpace, WingBlank };

@@ -1,5 +1,6 @@
 import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
+import type { PresetColor } from '@doraemon-ui/miniprogram.shared'
 import type { SelectorFieldNames } from './types'
 const { classNames } = Doraemon.util
 
@@ -21,16 +22,16 @@ class SelectorGroup extends Doraemon {
   prefixCls!: string
 
   /**
-   * 主题
+   * 颜色
    *
-   * @type {string}
+   * @type {PresetColor}
    * @memberof SelectorGroup
    */
   @Prop({
     type: String,
-    default: 'balanced',
+    default: 'positive',
   })
-  theme: string
+  color: PresetColor
 
   /**
    * 形状
@@ -156,10 +157,12 @@ class SelectorGroup extends Doraemon {
   inputValue: string[] = []
 
   get classes() {
-    const { prefixCls, theme, shape } = this
+    const { prefixCls, color, shape } = this
     const finalShape = ['rounded', 'rectangular'].includes(shape) ? shape : ''
     const wrap = classNames(prefixCls, {
-      [`${prefixCls}--${theme}`]: !!theme,
+      [`${prefixCls}--${color}`]: !!color,
+      ['dora-color']: !!color,
+      [`dora-color--${color}`]: !!color,
     })
     return {
       wrap,

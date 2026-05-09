@@ -1,0 +1,39 @@
+<demo-page
+  darkmode="auto"
+  title="Ellipsis"
+  desc="文本省略"
+  clickable
+  spacing
+>
+  <demo-block title="尾部省略">
+    <dora-ellipsis direction="end" content="{{ content }}" bind:click="onContentClick" />
+  </demo-block>
+  <demo-block title="头部省略">
+    <dora-ellipsis direction="start" content="{{ content }}" />
+  </demo-block>
+  <demo-block title="中间省略">
+    <dora-ellipsis direction="middle" content="{{ content }}" />
+  </demo-block>
+  <demo-block title="多行省略">
+    <dora-ellipsis rows="{{ 3 }}" content="{{ content }}" />
+  </demo-block>
+  <demo-block title="展开收起">
+    <dora-ellipsis expandText="展开" collapseText="收起" content="{{ content }}" />
+  </demo-block>
+  <demo-block title="仅展开">
+    <dora-ellipsis direction="end" expandText="展开" content="{{ content }}" />
+    <dora-ellipsis direction="start" expandText="展开" content="{{ content }}" />
+    <dora-ellipsis direction="middle" expandText="展开" content="{{ content }}" />
+  </demo-block>
+  <demo-block title="默认展开">
+    <dora-ellipsis defaultExpanded expandText="展开" collapseText="收起" content="{{ content }}" />
+  </demo-block>
+  <demo-block title="emoji">
+    <dora-ellipsis expandText="展开" collapseText="收起" content="🐮🐮🐮🐶🐶🐶🐱🐱🐱🐯🐯🐯🐻🐻🐻🐮🐮🐮🐶🐶🐶🐱🐱🐱🐯🐯🐯🐻🐻🐻" />
+  </demo-block>
+  <demo-block title="数字或英文">
+    <dora-ellipsis dora-class="word-break" expandText="展开" collapseText="收起" content="6666666666666666666666666666666666666666666666666666" />
+    <dora-ellipsis dora-class="word-break" expandText="展开" collapseText="收起" content="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" />
+    <view class="tip">当文本内容中包含大量数字或英文时，手动添加 word-break 可获得更好的省略效果。</view>
+  </demo-block>
+</demo-page>

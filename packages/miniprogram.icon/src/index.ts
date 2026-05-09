@@ -3,10 +3,12 @@ const { classNames, styleToCssString } = Doraemon.util
 
 @Component({
   props: {
+
     prefixCls: {
       type: String,
       default: 'doraicons',
     },
+  
   },
 })
 class Icon extends Doraemon {

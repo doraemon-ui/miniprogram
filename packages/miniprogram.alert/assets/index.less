@@ -7,8 +7,8 @@
 // @prop --font-size: Font size of the alert
 // -----------------------------
 .@{alert-prefix-cls} {
-  --text-color: #get-color(balanced, contrast) [];
-  --background-color: #get-color(balanced) [];
+  --text-color: #get-color(positive, contrast) [];
+  --background-color: #get-color(positive) [];
   --border-radius: @alert-border-radius;
   --font-size: @alert-font-size;
 
@@ -63,4 +63,10 @@
       --text-color: #get-color(@name, contrast)[];
     }
   });
+
+  // Alert Colors
+  &.@{dora-prefix}-color {
+    --background-color: #current-color(base)[];
+    --text-color: #current-color(contrast)[];
+  }
 }

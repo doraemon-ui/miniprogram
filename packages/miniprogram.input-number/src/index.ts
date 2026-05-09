@@ -21,19 +21,9 @@ const getValidValue = (value: number | string, min: number, max: number) => {
 
 @Component({
   props: {
+
     prefixCls: { type: String, default: 'dora-input-number' },
-    shape: { type: String, default: 'square' },
-    min: { type: Number, default: -MAX_SAFE_INTEGER },
-    max: { type: Number, default: MAX_SAFE_INTEGER },
-    step: { type: Number, default: 1 },
-    defaultValue: { type: Number, default: 0 },
-    value: { type: Number, default: 0 },
-    disabled: { type: Boolean, default: true },
-    readOnly: { type: Boolean, default: false },
-    longpress: { type: Boolean, default: false },
-    color: { type: String, default: 'balanced' },
-    controlled: { type: Boolean, default: false },
-    digits: { type: Number, default: -1 },
+  
   },
 })
 class InputNumber extends Doraemon {

@@ -1,0 +1,51 @@
+<demo-page darkmode="auto" title="InputNumber" desc="数字输入框" clickable spacing>
+  <demo-block title="默认">
+    <dora-list>
+      <dora-list-item title="数量">
+        <dora-input-number defaultValue="{{ 1024 }}" slot="footer" />
+      </dora-list-item>
+    </dora-list>
+  </demo-block>
+
+  <demo-block title="主题色">
+    <dora-list>
+      <dora-list-item title="Balanced"><dora-input-number color="balanced" slot="footer" /></dora-list-item>
+      <dora-list-item title="Positive"><dora-input-number color="positive" slot="footer" /></dora-list-item>
+      <dora-list-item title="Assertive"><dora-input-number color="assertive" slot="footer" /></dora-list-item>
+      <dora-list-item title="Dark"><dora-input-number color="dark" slot="footer" /></dora-list-item>
+    </dora-list>
+  </demo-block>
+
+  <demo-block title="圆形按钮">
+    <dora-list>
+      <dora-list-item title="数量"><dora-input-number shape="circle" color="balanced" slot="footer" /></dora-list-item>
+    </dora-list>
+  </demo-block>
+
+  <demo-block title="监听 onChange">
+    <dora-list>
+      <dora-list-item title="数量">
+        <dora-input-number disabled="{{ false }}" value="{{ value }}" controlled min="{{ -10 }}" max="{{ 10 }}" bind:change="onChange" slot="footer" />
+      </dora-list-item>
+    </dora-list>
+  </demo-block>
+
+  <demo-block title="更多配置">
+    <dora-list>
+      <dora-list-item title="步长 0.5"><dora-input-number step="{{ 0.5 }}" slot="footer" /></dora-list-item>
+      <dora-list-item title="范围 -5~8"><dora-input-number defaultValue="{{ 1 }}" min="{{ -5 }}" max="{{ 8 }}" slot="footer" /></dora-list-item>
+      <dora-list-item title="可输入"><dora-input-number disabled="{{ false }}" slot="footer" /></dora-list-item>
+      <dora-list-item title="长按"><dora-input-number longpress slot="footer" /></dora-list-item>
+    </dora-list>
+  </demo-block>
+
+  <demo-block title="循环输出">
+    <dora-list>
+      <block wx:for="{{ items }}" wx:key="id">
+        <dora-list-item title="{{ item.text }}">
+          <dora-input-number defaultValue="{{ item.value }}" slot="footer" />
+        </dora-list-item>
+      </block>
+    </dora-list>
+  </demo-block>
+</demo-page>

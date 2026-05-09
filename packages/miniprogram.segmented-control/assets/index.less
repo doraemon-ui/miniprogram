@@ -1,17 +1,10 @@
 @import './variables.less';
 
-.segment(@theme, @color) {
-  &--@{theme} &__item {
-    color: @color;
-    border-color: @color;
-
-    &--current {
-      background: @color;
-      color: @segment-default-color;
-    }
-  }
-}
-
+// SegmentedControl styles
+// @prop --text-color: Text color of the navbar
+// @prop --border-color: Border color of the button
+// @prop --activated-background-color: Background color of the button when pressed
+// -----------------------------
 .@{segmented-control-prefix-cls} {
   display: flex;
   border-radius: @segment-radius;
@@ -20,8 +13,10 @@
   opacity: 1;
   margin: @segment-margin;
 
+  .segment-color(#get-color(positive)[]);
+
   &--disabled {
-    opacity: 0.45;
+    opacity: @disabled-opacity;
   }
 
   &__item {
@@ -29,12 +24,14 @@
     flex: 1;
     justify-content: center;
     align-items: center;
-    color: @segment-balanced-bg;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--border-color);
+    color: var(--text-color);
     font-size: @segment-font-size;
     line-height: 1;
     transition: background 0.3s;
     position: relative;
-    border: 1px solid @segment-balanced-bg;
     width: 100%;
     box-sizing: border-box;
     border-left-width: 0;
@@ -49,18 +46,21 @@
     }
 
     &--current {
-      background: @segment-balanced-bg;
-      color: @segment-default-color;
+      background: var(--activated-background-color);
+      color: @text-color-inverse;
     }
   }
 
-  .segment(light, @segment-light-bg);
-  .segment(stable, @segment-stable-bg);
-  .segment(positive, @segment-positive-bg);
-  .segment(calm, @segment-calm-bg);
-  .segment(assertive, @segment-assertive-bg);
-  .segment(balanced, @segment-balanced-bg);
-  .segment(energized, @segment-energized-bg);
-  .segment(royal, @segment-royal-bg);
-  .segment(dark, @segment-dark-bg);
+  // Segment Colors
+  &.@{dora-prefix}-color {
+    .segment-color(#current-color(base)[]);
+  }
+}
+
+.segment-color(
+@color,
+) {
+  --text-color: @color;
+  --border-color: @color;
+  --activated-background-color: @color;
 }

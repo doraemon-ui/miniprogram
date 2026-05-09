@@ -22,10 +22,10 @@
     "miniprogram"
   ],
   "scripts": {
-    "build:dev": "cross-env NODE_ENV=development tsx build.ts && pnpm build:plugin",
-    "build:components": "node build-components.js",
-    "build:plugin": "tsc -p plugin/tsconfig.json",
     "build": "cross-env NODE_ENV=production tsx build.ts && pnpm build:plugin",
+    "build:components": "node build-components.js",
+    "build:dev": "cross-env NODE_ENV=development tsx build.ts && pnpm build:plugin",
+    "build:plugin": "tsc -p plugin/tsconfig.json",
     "clean": "cross-env rimraf miniprogram_dist",
     "prettier": "prettier --check \"{src,plugin}/**/*.{js,ts,jsx,tsx,json,less,css,md}\"",
     "prettier:fix": "prettier --write \"{src,plugin}/**/*.{js,ts,jsx,tsx,json,less,css,md}\"",

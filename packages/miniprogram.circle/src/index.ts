@@ -17,54 +17,12 @@ const easeInOutCubic = (a: number, b: number, c: number, d: number) => {
 
 @Component({
   props: {
+
     prefixCls: {
       type: String,
       default: 'dora-circle',
     },
-    percent: {
-      type: Number,
-      default: 0,
-    },
-    strokeWidth: {
-      type: Number,
-      default: 10,
-    },
-    size: {
-      type: Number,
-      default: 120,
-    },
-    lineCap: {
-      type: String,
-      default: 'round',
-    },
-    backgroundColor: {
-      type: String,
-      default: '#f3f3f3',
-    },
-    color: {
-      type: String,
-      default: '#33cd5f',
-    },
-    sAngle: {
-      type: Number,
-      default: 0,
-    },
-    counterclockwise: {
-      type: Boolean,
-      default: false,
-    },
-    speed: {
-      type: Number,
-      default: 2000,
-    },
-    animate: {
-      type: Boolean,
-      default: true,
-    },
-    background: {
-      type: Boolean,
-      default: true,
-    },
+  
   },
 })
 class Circle extends Doraemon {

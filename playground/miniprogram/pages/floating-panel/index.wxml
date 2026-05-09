@@ -1,0 +1,11 @@
+<demo-page
+  darkmode="auto"
+  title="miniprogram.floating-panel"
+  desc="miniprogram.floating-panel"
+  clickable
+  spacing
+>
+  <demo-block title="Basic">
+    <dora-floating-panel>miniprogram.floating-panel</dora-floating-panel>
+  </demo-block>
+</demo-page>

@@ -8,15 +8,15 @@
 
 .@{timeline-item-prefix-cls} {
   @timeline-font-size: @font-size-base;
-  @timeline-width: 2rpx;
+  @timeline-width: 1px;
   @timeline-color: @border-color-base;
-  @timeline-dot-size: 12rpx;
+  @timeline-dot-size: 6px;
   @timeline-dot-bg: #fff;
-  @timeline-dot-border-width: 2rpx;
+  @timeline-dot-border-width: 1px;
   @timeline-dot-color: #387ef5;
 
   position: relative;
-  padding: 0 0 24rpx;
+  padding: 0 0 12px;
   margin: 0;
   font-size: @timeline-font-size;
   box-sizing: border-box;
@@ -25,7 +25,7 @@
     height: 100%;
     border-left: @timeline-width solid @timeline-color;
     position: absolute;
-    left: 10rpx;
+    left: 5px;
     top: 0;
     box-sizing: border-box;
   }
@@ -41,9 +41,9 @@
     box-sizing: border-box;
 
     &--custom {
-      margin-left: 2rpx !important;
-      left: 10rpx;
-      top: 16rpx;
+      margin-left: 1px !important;
+      left: 5px;
+      top: 8px;
       border: 0;
       border-radius: 0;
       width: auto;
@@ -55,9 +55,9 @@
   }
 
   &__content {
-    padding: 0 0 20rpx 40rpx;
+    padding: 0 0 10px 20px;
     position: relative;
-    top: -10rpx;
+    top: -5px;
     width: 100%;
     box-sizing: border-box;
   }
@@ -78,13 +78,13 @@
 
   &--right &__dot {
     left: 100%;
-    margin-left: -10rpx;
+    margin-left: -5px;
   }
 
   &--right &__content {
     text-align: right;
     right: 0;
-    left: -40rpx;
+    left: -20px;
   }
 
   &--alternate&--right &__tail,
@@ -95,7 +95,7 @@
   &--alternate&--right &__dot,
   &--alternate&--left &__dot {
     left: 50%;
-    margin-left: -10rpx;
+    margin-left: -5px;
   }
 
   &--alternate&--right &__content {

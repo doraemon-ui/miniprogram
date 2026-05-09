@@ -1,0 +1,14 @@
+.input {
+  width: 100%;
+  padding: 10px 12px;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.barcode {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto;
+}
+

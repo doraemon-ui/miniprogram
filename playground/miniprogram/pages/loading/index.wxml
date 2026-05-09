@@ -1,0 +1,7 @@
+<dora-loading id="dora-loading" />
+
+<demo-page darkmode="auto" title="Loading" desc="指示器" clickable spacing>
+  <demo-block title="Actions">
+    <dora-button block type="light" bind:click="showLoading">加载中提示</dora-button>
+  </demo-block>
+</demo-page>

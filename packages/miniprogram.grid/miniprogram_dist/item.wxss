@@ -1,0 +1,88 @@
+@import '../../@doraemon-ui/style/var.wxss';
+@import '../../@doraemon-ui/style/color.wxss';
+.dora-grid-item {
+  position: relative;
+  float: left;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.dora-grid-item--bordered::before {
+  content: " ";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 1px;
+  bottom: 0;
+  border-right: 1px solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  border-right: 1px solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  color: var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  color: var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  transform-origin: 100%0;
+  transform: scaleX(0.5);
+}
+
+.dora-grid-item--bordered::after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  border-bottom: 1px solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  border-bottom: 1px solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  color: var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  color: var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  transform-origin: 0 100%;
+  transform: scaleY(0.5);
+}
+
+.dora-grid-item--hover {
+  background-color: var(--dora-active-state-bg, var(--dora-color-step-10, #e6e6e6));
+  background-color: var(--dora-active-state-bg, var(--dora-color-step-10, #e6e6e6));
+}
+
+.dora-grid-item__thumb {
+  width: 28px;
+  height: 28px;
+  display: block;
+  margin: 0 auto;
+}
+
+.dora-grid-item__label {
+  text-align: center;
+  color: var(--dora-black, #000);
+  color: var(--dora-black, #000);
+  font-size: 14px;
+  margin-top: 6px;
+  width: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+
+.dora-grid-item__inner {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  padding: 16px 8px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dora-grid-item--square .dora-grid-item__content {
+  position: relative;
+  display: block;
+  content: " ";
+  padding-bottom: 100%;
+}
+
+.dora-grid-item--square .dora-grid-item__inner {
+  position: absolute;
+  top: 50%;
+  transform: translate3d(0,-50%,0);
+}

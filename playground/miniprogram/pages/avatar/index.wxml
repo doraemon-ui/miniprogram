@@ -1,0 +1,40 @@
+<demo-page
+  darkmode="auto"
+  title="miniprogram.avatar"
+  desc="miniprogram.avatar"
+  clickable
+  spacing
+>
+  <demo-block title="Basic">
+    <dora-avatar>DA</dora-avatar>
+  </demo-block>
+
+  <demo-block title="Image">
+    <dora-avatar
+      src="https://cdn.skyvow.cn/logo.png"
+    />
+  </demo-block>
+
+  <demo-block title="Size">
+    <dora-avatar
+      size="small"
+      body-style="{{ { marginRight: '12px' } }}"
+    >S</dora-avatar>
+    <dora-avatar
+      size="default"
+      body-style="{{ { marginRight: '12px' } }}"
+    >M</dora-avatar>
+    <dora-avatar size="large">L</dora-avatar>
+  </demo-block>
+
+  <demo-block title="Shape & Scale">
+    <dora-avatar
+      shape="square"
+      body-style="{{ { marginRight: '12px' } }}"
+    >A</dora-avatar>
+    <dora-avatar
+      shape="square"
+      scale
+    >Doraemon UI</dora-avatar>
+  </demo-block>
+</demo-page>

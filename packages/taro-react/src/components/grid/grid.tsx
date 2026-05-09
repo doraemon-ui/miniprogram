@@ -9,9 +9,9 @@ import type { GridProps, GridExpose } from './types'
 export const Grid = createHostComponent<GridProps, GridExpose>('dora-grid',
 {
   prefixCls: 'dora-grid',
-  disabled: false,
-  hoverClass: 'default',
-  wrapStyle: null,
+  col: 3,
+  bordered: true,
+  square: false,
 })
 
 Grid.displayName = 'DoraGrid'
@@ -20,8 +20,7 @@ Grid.displayName = 'DoraGrid'
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
 React.createElement('dora-grid', {
   prefixCls: '',
-  disabled: '',
-  hoverClass: '',
-  wrapStyle: '',
-  onClick: '',
+  col: '',
+  bordered: '',
+  square: '',
 })

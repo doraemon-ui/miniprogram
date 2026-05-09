@@ -1,5 +1,5 @@
 import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
-import type { RadioChangeItem, RadioContext, SelectableChangeDetail } from './types'
+import type { RadioChangeItem, RadioContext, RadioGroupInstance, SelectableChangeDetail } from './types'
 
 const { classNames } = Doraemon.util
 
@@ -26,54 +26,6 @@ const defaultContext: RadioContext = {
     prefixCls: {
       type: String,
       default: 'dora-radio',
-    },
-    cellPrefixCls: {
-      type: String,
-      default: 'dora-list-item',
-    },
-    selectablePrefixCls: {
-      type: String,
-      default: 'dora-selectable',
-    },
-    thumb: {
-      type: String,
-      default: '',
-    },
-    title: {
-      type: String,
-      default: '',
-    },
-    label: {
-      type: String,
-      default: '',
-    },
-    value: {
-      type: String,
-      default: '',
-    },
-    checked: {
-      type: Boolean,
-      default: false,
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    readOnly: {
-      type: Boolean,
-      default: false,
-    },
-    color: {
-      type: String,
-      default: 'balanced',
-    },
-    wrapStyle: {
-      type: null,
-      default: null,
-    },
-    hasLine: {
-      type: Boolean,
-      default: true,
     },
   },
   expose: ['check', 'uncheck', 'toggle', 'setChecked', 'changeValue', 'value', 'title'],
@@ -283,7 +235,7 @@ class Radio extends Doraemon {
       value,
       index,
     }
-    const parent = this.$parent as unknown as { onChange?: (item: RadioChangeItem) => void } | undefined
+    const parent = this.$parent as RadioGroupInstance | undefined
     if (parent && typeof parent.onChange === 'function') {
       parent.onChange(item)
     } else {

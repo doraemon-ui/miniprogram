@@ -1,0 +1,11 @@
+<demo-page
+  darkmode="auto"
+  title="miniprogram.filterbar"
+  desc="miniprogram.filterbar"
+  clickable
+  spacing
+>
+  <demo-block title="Basic">
+    <dora-filterbar>miniprogram.filterbar</dora-filterbar>
+  </demo-block>
+</demo-page>

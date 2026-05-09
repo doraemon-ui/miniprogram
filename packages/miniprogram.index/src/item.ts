@@ -17,10 +17,6 @@ const { classNames } = Doraemon.util
       type: String,
       default: 'dora-index-item',
     },
-    name: {
-      type: String,
-      default: '',
-    },
   },
 })
 class IndexItem extends Doraemon {
@@ -53,9 +49,7 @@ class IndexItem extends Doraemon {
   }
 
   getParentInstance() {
-    const proxy = this._renderProxy as unknown as { getRelationNodes?: (path: string) => Array<{ $component?: unknown }> } | undefined
-    const nodes = (proxy?.getRelationNodes?.('./index') || []).map((node) => node.$component).filter(Boolean) as unknown as IndexExpose[]
-    return nodes[0]
+    return this.$parent as IndexExpose | undefined
   }
 
   refreshBrief() {

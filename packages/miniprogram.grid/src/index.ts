@@ -1,7 +1,15 @@
-import { defineComponentHOC, Doraemon, Component, Prop } from '@doraemon-ui/miniprogram.core-js'
-const { classNames, styleToCssString } = Doraemon.util
+import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+import type { GridItemInstance } from './types'
+const { classNames } = Doraemon.util
 
 @Component({
+  components: {
+    GridItem: () => ({
+      module: './item',
+      type: 'child',
+      observer: 'onChildrenChanged',
+    }),
+  },
   props: {
     prefixCls: {
       type: String,
@@ -19,7 +27,31 @@ class Grid extends Doraemon {
   prefixCls!: string
 
   /**
-   * 是否禁用
+   * 列数
+   *
+   * @type {number}
+   * @memberof Grid
+   */
+  @Prop({
+    type: Number,
+    default: 3,
+  })
+  col: number
+
+  /**
+   * 是否有边框
+   *
+   * @type {boolean}
+   * @memberof Grid
+   */
+  @Prop({
+    type: Boolean,
+    default: true,
+  })
+  bordered: boolean
+
+  /**
+   * 每个格子是否固定为正方形
    *
    * @type {boolean}
    * @memberof Grid
@@ -28,53 +60,41 @@ class Grid extends Doraemon {
     type: Boolean,
     default: false,
   })
-  disabled: boolean
-
-  /**
-   * 点击态类名
-   *
-   * @type {string}
-   * @memberof Grid
-   */
-  @Prop({
-    type: String,
-    default: 'default',
-  })
-  hoverClass: string
-
-  /**
-   * 外层样式
-   *
-   * @type {Partial<CSSStyleDeclaration>}
-   * @memberof Grid
-   */
-  @Prop({
-    type: Object,
-    default: null,
-  })
-  wrapStyle: Partial<CSSStyleDeclaration>
+  square: boolean
 
   get classes() {
-    const { prefixCls, hoverClass, disabled } = this
+    const { prefixCls, bordered } = this
     const wrap = classNames(prefixCls, {
-      [`${prefixCls}--disabled`]: disabled,
+      [`${prefixCls}--bordered`]: bordered,
     })
-    const hover = hoverClass && hoverClass !== 'default' ? hoverClass : `${prefixCls}--hover`
 
     return {
       wrap,
-      hover,
     }
   }
 
-  get containerStyle() {
-    return this.wrapStyle ? styleToCssString(this.wrapStyle) : ''
+  @Watch('col')
+  @Watch('bordered')
+  @Watch('square')
+  onPropsChange() {
+    this.changeCurrent()
   }
 
-  onClick() {
-    if (!this.disabled) {
-      this.$emit('click')
+  changeCurrent() {
+    const elements = this.$children as GridItemInstance[]
+    const { col, bordered, square } = this
+    const colNum = col > 0 ? col : 1
+    const width = `${100 / colNum}%`
+
+    if (elements.length > 0) {
+      elements.forEach((element, index) => {
+        element.changeCurrent(width, bordered, square, index)
+      })
     }
+  }
+
+  onChildrenChanged() {
+    this.changeCurrent()
   }
 }
 

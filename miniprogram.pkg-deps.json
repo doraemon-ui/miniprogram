@@ -469,6 +469,13 @@
         "name": "Grid",
         "slot": null,
         "deps": null
+      },
+      "item": {
+        "src": "item",
+        "dir": "grid-item",
+        "name": "GridItem",
+        "slot": "Item",
+        "deps": null
       }
     }
   },
@@ -773,15 +780,15 @@
         "deps": [
           {
             "name": "animation-group",
-            "source": "self"
+            "source": "packages"
           },
           {
             "name": "backdrop",
-            "source": "self"
+            "source": "packages"
           },
           {
             "name": "safe-area",
-            "source": "self"
+            "source": "packages"
           }
         ]
       }
@@ -1131,8 +1138,8 @@
           }
         ]
       },
-      "tabbar-item": {
-        "src": "tabbar-item",
+      "item": {
+        "src": "item",
         "dir": "tabbar-item",
         "name": "TabbarItem",
         "slot": "Item",
@@ -1210,8 +1217,8 @@
           }
         ]
       },
-      "timeline-item": {
-        "src": "timeline-item",
+      "item": {
+        "src": "item",
         "dir": "timeline-item",
         "name": "TimelineItem",
         "slot": "Item",

@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "Toptips",
+  "usingComponents": {
+    "demo-page": "@doraemon-ui/miniprogram.demo-page",
+    "demo-block": "@doraemon-ui/miniprogram.demo-block",
+    "dora-button": "@doraemon-ui/miniprogram.button/index",
+    "dora-toptips": "@doraemon-ui/miniprogram.toptips/index"
+  }
+}

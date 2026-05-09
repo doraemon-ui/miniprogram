@@ -1,0 +1,65 @@
+<demo-page
+  darkmode="auto"
+  title="Toast"
+  desc="轻提示"
+  clickable
+>
+  <demo-block title="Basic">
+    <block>
+      <button class="button" bindtap="show">轻提示</button>
+      <dora-toast id="dora-toast-show" bind:close="onclose" />
+    </block>
+  </demo-block>
+  <demo-block title="With icon">
+     <block>
+      <button class="button" bindtap="success">成功</button>
+      <dora-toast id="dora-toast-success" />
+    </block>
+    <block>
+      <button class="button" bindtap="error">失败</button>
+      <dora-toast id="dora-toast-error" />
+    </block>
+    <block>
+      <button class="button" bindtap="warning">警告</button>
+      <dora-toast id="dora-toast-warning" />
+    </block>
+    <block>
+      <button class="button" bindtap="loading">加载中</button>
+      <dora-toast id="dora-toast-loading" />
+    </block>
+  </demo-block>
+  <demo-block title="More">
+    <block>
+      <button class="button" bindtap="top">顶部提示</button>
+      <dora-toast id="dora-toast-top" />
+    </block>
+    <block>
+      <button class="button" bindtap="bottom">底部提示</button>
+      <dora-toast id="dora-toast-bottom" />
+    </block>
+    <block>
+      <button class="button" bindtap="image">自定义图片</button>
+      <dora-toast id="dora-toast-image" />
+    </block>
+    <block>
+      <button class="button" bindtap="mask">不允许背景点击</button>
+      <dora-toast id="dora-toast-mask" />
+    </block>
+    <block>
+      <button class="button" bindtap="custom">更多图标</button>
+      <dora-toast id="dora-toast-custom" />
+    </block>
+  </demo-block>
+  <demo-block title="Clear">
+    <block>
+      <button class="button" bindtap="noclear">显示</button>
+      <dora-toast id="dora-toast-noclear" />
+    </block>
+    <block>
+      <button class="button" bindtap="clear">清除</button>
+    </block>
+    <block>
+      <button class="button" bindtap="clear">关闭</button>
+    </block>
+  </demo-block>
+</demo-page>

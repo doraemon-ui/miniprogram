@@ -1,15 +1,12 @@
 import { defineComponentHOC, Doraemon, Component, Prop } from '@doraemon-ui/miniprogram.core-js'
-import { useRect } from '@doraemon-ui/miniprogram.shared'
-import type { MiniprogramPublicInstance } from '@doraemon-ui/miniprogram.shared'
-import type { ActiveLineMode, TabContext, TabsDirection, TabsTheme } from './types'
+import { getDefaultContext, useRect } from '@doraemon-ui/miniprogram.shared'
+import type { TabContext, TabsInstance } from './types'
+import { tabsProps } from './props'
 
 const { classNames } = Doraemon.util
 
 const defaultContext: TabContext = {
-  scroll: false,
-  theme: 'balanced',
-  direction: 'horizontal',
-  activeLineMode: 'auto',
+  ...(getDefaultContext(tabsProps, ['scroll', 'color', 'direction', 'activeLineMode']) as TabContext),
 }
 
 @Component({
@@ -20,10 +17,10 @@ const defaultContext: TabContext = {
     }),
   },
   props: {
-    prefixCls: { type: String, default: 'dora-tabs__tab' },
-    key: { type: String, default: '' },
-    title: { type: String, default: '' },
-    disabled: { type: Boolean, default: false },
+    prefixCls: {
+      type: String,
+      default: 'dora-tabs__tab',
+    },
   },
 })
 class Tab extends Doraemon {
@@ -72,50 +69,47 @@ class Tab extends Doraemon {
   disabled: boolean
 
   current: boolean = false
-  tabContext: TabContext = defaultContext
+  context: TabContext = defaultContext
 
   get classes() {
-    const { prefixCls, disabled, current } = this
-    const ctx = this.tabContext || defaultContext
-    const { direction, scroll, theme, activeLineMode } = ctx
+    const { prefixCls, disabled, current, context } = this
     const wrap = classNames(prefixCls, {
-      [`${prefixCls}--${direction}`]: direction,
-      [`${prefixCls}--${theme}`]: theme,
-      [`${prefixCls}--scroll`]: scroll,
+      ['dora-color']: context?.color,
+      [`dora-color--${context?.color}`]: context?.color,
+      [`${prefixCls}--${context?.direction}`]: context?.direction,
+      [`${prefixCls}--scroll`]: context?.scroll,
       [`${prefixCls}--current`]: current,
       [`${prefixCls}--disabled`]: disabled,
     })
     const title = `${prefixCls}-title`
     const bar = classNames(`${prefixCls}-bar`, {
-      [`${prefixCls}-bar--${activeLineMode}`]: activeLineMode,
+      [`${prefixCls}-bar--${context?.activeLineMode}`]: context?.activeLineMode,
     })
 
     return { wrap, title, bar }
   }
 
-  activeTabRef() {
+  async activeTabRef() {
     const prefixCls = this.prefixCls
-    return useRect(`.${prefixCls}`, this._renderProxy as unknown as MiniprogramPublicInstance).then((activeTab: any) => {
-      return {
-        activeTabLeft: activeTab.left,
-        activeTabWidth: activeTab.width,
-        activeTabTop: activeTab.top,
-        activeTabHeight: activeTab.height,
-      }
-    })
+    const activeTab = await useRect(`.${prefixCls}`, this._renderProxy)
+    return {
+      activeTabLeft: activeTab.left,
+      activeTabWidth: activeTab.width,
+      activeTabTop: activeTab.top,
+      activeTabHeight: activeTab.height,
+    }
   }
 
-  changeCurrent({ current, context = defaultContext }: { current: boolean; context?: TabContext }) {
+  changeCurrent({ current, context = defaultContext }: { current: boolean; context: TabContext }) {
     this.current = current
-    this.tabContext = context
+    this.context = context
   }
 
   onTap() {
     const { key, disabled } = this
     if (disabled) return
     this.$emit('click', { key })
-    const parents = (this._renderProxy as any)?.getRelationNodes?.('./index') || []
-    const parent = parents[0]?.$component as any
+    const parent = this.$parent as TabsInstance | undefined
     parent?.setActiveKey?.(key)
   }
 }

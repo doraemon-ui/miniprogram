@@ -1,0 +1,24 @@
+<demo-page
+  darkmode="auto"
+  title="Barcode"
+  desc="条形码"
+  clickable
+  spacing
+>
+  <demo-block title="输入13位条形码，即时输入即时生成">
+    <input class="input" value="{{ number }}" bindinput="onChange" />
+    <view class="barcode">
+      <dora-barcode
+        number="{{ number }}"
+        options="{{ options }}"
+        width="200"
+        height="100"
+        bind:valid="onValid"
+        bind:invalid="onInvalid"
+        bind:success="onSuccess"
+        bind:error="onError"
+        bind:load="onLoad"
+      />
+    </view>
+  </demo-block>
+</demo-page>

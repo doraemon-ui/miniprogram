@@ -9,12 +9,12 @@
   background-color: #f7f7f7;
 
   &__hd {
-    height: 80rpx;
+    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #1f2324;
-    font-size: 30rpx;
+    font-size: 15px;
     position: relative;
 
     &::after {
@@ -23,7 +23,7 @@
   }
 
   &__bd {
-    margin: 30rpx 80rpx;
+    margin: 15px 40px;
     display: flex;
     position: relative;
     background-color: @keyboard-bg;
@@ -31,7 +31,7 @@
 
   &__input {
     width: 100%;
-    padding: 8rpx;
+    padding: 4px;
     height: @keyboard-input-size;
     min-height: @keyboard-input-size;
     text-align: center;
@@ -44,7 +44,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100rpx;
+    height: 50px;
 
     &:not(:last-child)::after {
       content: '';
@@ -85,16 +85,16 @@
 
   &__title {
     overflow: hidden;
-    padding: 20rpx 0 12rpx;
+    padding: 10px 0 6px;
     color: #222;
-    margin-bottom: 2rpx;
-    font-size: 24rpx;
+    margin-bottom: 1px;
+    font-size: 12px;
     text-align: center;
     background-color: @keyboard-bg;
   }
 
   &__numbers {
-    font-size: 48rpx;
+    font-size: 24px;
     background-color: @keyboard-bg;
   }
 
@@ -108,7 +108,7 @@
     width: 1%;
     flex: 1;
     color: #222;
-    height: 100rpx;
+    height: 50px;
     position: relative;
     justify-content: center;
     align-items: center;
@@ -131,7 +131,7 @@
   &__number:last-child &__text:last-child,
   &__number:last-child &__text:nth-last-child(3) {
     background-color: #f7f7f7;
-    font-size: 30rpx;
+    font-size: 15px;
     color: #686868;
   }
 }

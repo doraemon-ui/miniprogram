@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.demo-block.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:37:53.
+ * Built on 2026-05-07, 21:16:22.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 

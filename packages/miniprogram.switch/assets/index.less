@@ -3,12 +3,12 @@
 // Switch styles
 // -----------------------------
 .@{switch-prefix-cls} {
-  @switch-height: 62rpx;
+  @switch-height: 31px;
   @switch-bg: #dfdfdf;
   @switch-color: #33cd5f;
   @disabled-opacity: 0.5;
 
-  @switch-handle-height: @switch-height - 2rpx;
+  @switch-handle-height: @switch-height - 1px;
   @switch-spin-height: @switch-handle-height / 2;
   @switch-spin-margin: (@switch-handle-height - @switch-spin-height) / 2;
 
@@ -21,9 +21,9 @@
 
   &__input {
     position: relative;
-    min-width: 104rpx;
+    min-width: 52px;
     height: @switch-height;
-    border: 1rpx solid @switch-bg;
+    border: 0.50px solid @switch-bg;
     outline: 0;
     border-radius: @switch-height / 2;
     box-sizing: border-box;
@@ -53,7 +53,7 @@
       height: @switch-handle-height;
       border-radius: @switch-handle-height / 2;
       background-color: #fff;
-      box-shadow: 0 2rpx 6rpx rgba(0, 0, 0, 0.4);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
       transition: left 0.35s cubic-bezier(0.4, 0.4, 0.25, 1.35);
     }
 
@@ -66,7 +66,7 @@
       }
 
       &::after {
-        left: calc(~'100% - 58rpx');
+        left: calc(~'100% - 29px');
       }
     }
 
@@ -84,12 +84,12 @@
     align-items: center;
     height: 100%;
     transition: margin 0.2s;
-    margin: 0 16rpx 0 72rpx;
+    margin: 0 8px 0 36px;
   }
 
   &--checked &__text {
     color: @text-color-inverse;
-    margin: 0 70rpx 0 20rpx;
+    margin: 0 35px 0 10px;
   }
 
   &__spin {
@@ -99,7 +99,7 @@
     z-index: 10;
     width: @switch-spin-height;
     height: @switch-spin-height;
-    border: 3rpx solid rgba(255, 255, 255, 0.35);
+    border: 1.50px solid rgba(255, 255, 255, 0.35);
     border-top-color: #fff;
     border-radius: 50%;
     animation: dora-switch-spin-rotate 1s linear infinite;

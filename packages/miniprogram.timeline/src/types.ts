@@ -1,7 +1,7 @@
 import type { ComponentPublicInstance } from '@doraemon-ui/miniprogram.core-js'
 
 import type { Timeline } from './index'
-import type { TimelineItem } from './timeline-item'
+import type { TimelineItem } from './item'
 
 /**
  * TimelinePosition类型定义

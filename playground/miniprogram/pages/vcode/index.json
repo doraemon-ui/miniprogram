@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "Vcode",
+  "usingComponents": {
+    "demo-page": "@doraemon-ui/miniprogram.demo-page",
+    "demo-block": "@doraemon-ui/miniprogram.demo-block",
+    "dora-button": "@doraemon-ui/miniprogram.button/index",
+    "dora-vcode": "@doraemon-ui/miniprogram.vcode/index"
+  }
+}

@@ -1,5 +1,5 @@
 import { defineComponentHOC, Doraemon, Component, Prop } from '@doraemon-ui/miniprogram.core-js'
-import type { TimelinePosition } from './types'
+import type { TimelineItemInstance, TimelinePosition } from './types'
 
 @Component({
   props: {
@@ -10,7 +10,7 @@ import type { TimelinePosition } from './types'
   },
   components: {
     TimelineItem: () => ({
-      module: './timeline-item',
+      module: './item',
       type: 'child',
       observer: 'onChildrenChanged',
     }),
@@ -54,14 +54,10 @@ class Timeline extends Doraemon {
   }
 
   updateIsLastElement() {
-    const proxy = this._renderProxy as any
-    let elements: any[] = []
-    if (proxy && typeof proxy.getRelationNodes === 'function') {
-      elements = proxy.getRelationNodes('./timeline-item') || []
-    }
+    const elements = (this.$children || []) as TimelineItemInstance[]
     if (elements.length > 0) {
       const lastIndex = elements.length - 1
-      elements.forEach((element, index) => {
+      elements.forEach((element: TimelineItemInstance, index: number) => {
         const isLast = this.pending ? index === Math.max(0, lastIndex - 1) : index === lastIndex
         const isPending = this.pending && index === lastIndex
         if (element && typeof element.updateIsLastElement === 'function') {

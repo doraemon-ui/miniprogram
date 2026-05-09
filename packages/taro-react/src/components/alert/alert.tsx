@@ -10,7 +10,7 @@ export const Alert = createHostComponent<AlertProps, AlertExpose>('dora-alert',
 {
   prefixCls: 'dora-alert',
   classNames: 'dora-animate--fadeIn',
-  theme: 'balanced',
+  color: 'positive',
   thumb: '',
   title: '',
   label: '',
@@ -24,7 +24,7 @@ Alert.displayName = 'DoraAlert'
 React.createElement('dora-alert', {
   prefixCls: '',
   classNames: '',
-  theme: '',
+  color: '',
   thumb: '',
   title: '',
   label: '',

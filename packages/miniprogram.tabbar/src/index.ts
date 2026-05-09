@@ -1,17 +1,21 @@
 import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
-import type { TabbarChangeDetail, TabbarKeyItem, TabbarPosition, TabbarSafeArea } from './types'
+import type { PresetColor } from '@doraemon-ui/miniprogram.shared'
+import type { TabbarChangeDetail, TabbarKeyItem, TabbarPosition, TabbarSafeArea, TabbarItemInstance } from './types'
 const { classNames, styleToCssString } = Doraemon.util
 
 @Component({
   components: {
     TabbarItem: () => ({
-      module: './tabbar-item',
+      module: './item',
       type: 'child',
       observer: 'onChildrenChanged',
     }),
   },
   props: {
-    prefixCls: { type: String, default: 'dora-tabbar' },
+    prefixCls: {
+      type: String,
+      default: 'dora-tabbar',
+    },
   },
 })
 class Tabbar extends Doraemon {
@@ -60,16 +64,16 @@ class Tabbar extends Doraemon {
   controlled: boolean
 
   /**
-   * 主题
+   * 颜色
    *
-   * @type {string}
+   * @type {PresetColor}
    * @memberof Tabbar
    */
   @Prop({
     type: String,
-    default: 'balanced',
+    default: 'positive',
   })
-  theme: string
+  color: PresetColor
 
   /**
    * 背景色
@@ -116,15 +120,11 @@ class Tabbar extends Doraemon {
     return {
       wrap: classNames(p, {
         [`${p}--${this.position}`]: !!this.position,
+        ['dora-color']: !!this.color,
+        [`dora-color--${this.color}`]: !!this.color,
       }),
       tabbar: `${p}-wrap`,
     }
-  }
-
-  private getChildrenItems() {
-    const proxy = this._renderProxy as any
-    const nodes = proxy && typeof proxy.getRelationNodes === 'function' ? proxy.getRelationNodes('./tabbar-item') || [] : []
-    return nodes.map((n: any) => n?.$component).filter(Boolean)
   }
 
   @Watch('current')
@@ -147,17 +147,17 @@ class Tabbar extends Doraemon {
   }
 
   changeCurrent(activeKey: string) {
-    const elements = this.getChildrenItems()
-    elements.forEach((element: any, index: number) => {
-      const itemKey = element.tabKey || String(index)
+    const elements = this.$children as TabbarItemInstance[]
+    elements.forEach((element, index) => {
+      const itemKey = element.key || String(index)
       const current = itemKey === activeKey
       if (element && typeof element.changeCurrent === 'function') {
-        element.changeCurrent(current, itemKey, this.theme, elements.length)
+        element.changeCurrent(current, itemKey, this.color, elements.length)
       }
     })
     if (this.keys.length !== elements.length) {
-      this.keys = elements.map((element: any) => ({
-        key: element.tabKey,
+      this.keys = elements.map((element) => ({
+        key: element.key,
         title: element.title,
         disabled: element.disabled,
       }))

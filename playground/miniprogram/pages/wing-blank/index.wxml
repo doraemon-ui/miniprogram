@@ -1,0 +1,25 @@
+<demo-page
+  darkmode="auto"
+  title="WingBlank"
+  desc="两翼留白"
+  clickable
+  spacing
+>
+  <demo-block title="Basic">
+    <dora-wing-blank size="small">
+      <view>Wux</view>
+    </dora-wing-blank>
+    <dora-white-space />
+    <dora-wing-blank size="default">
+      <view>Wux</view>
+    </dora-wing-blank>
+    <dora-white-space />
+    <dora-wing-blank size="large">
+      <view>Wux</view>
+    </dora-wing-blank>
+    <dora-white-space />
+    <dora-wing-blank bodyStyle="margin-left: 40rpx; margin-right: 40rpx">
+      <view>Wux</view>
+    </dora-wing-blank>
+  </demo-block>
+</demo-page>

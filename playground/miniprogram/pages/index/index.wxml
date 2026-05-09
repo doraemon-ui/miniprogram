@@ -2,7 +2,7 @@
   <view class="logo">
     <view class="logo__bd">
       <image class="logo__img" src="http://cdn.skyvow.cn/logo.png" />
-      <view class="logo__text">miniprogram for doraemon-ui</view>
+      <view class="logo__text">doraemon-ui</view>
     </view>
     <view class="logo__ft">一套组件化、可复用、易扩展的微信小程序 UI 组件库</view>
   </view>

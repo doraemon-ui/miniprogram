@@ -2,12 +2,12 @@
 
 .@{search-bar-prefix-cls} {
   position: relative;
-  padding: 16rpx 20rpx;
+  padding: 8px 10px;
   display: flex;
   box-sizing: border-box;
   background-color: @search-bar-bg;
-  border-top: 1rpx solid var(--dora-border-color, #ddd);
-  border-bottom: 1rpx solid var(--dora-border-color, #ddd);
+  border-top: 0.50px solid var(--dora-border-color, #ddd);
+  border-bottom: 0.50px solid var(--dora-border-color, #ddd);
 
   &__form {
     position: relative;
@@ -22,8 +22,8 @@
 
   &__box {
     position: relative;
-    padding-left: 60rpx;
-    padding-right: 60rpx;
+    padding-left: 30px;
+    padding-right: 30px;
     height: 100%;
     width: 100%;
     box-sizing: border-box;
@@ -32,7 +32,7 @@
 
   &__control {
     height: @search-bar-input-height;
-    padding: 8rpx 0;
+    padding: 4px 0;
     box-sizing: border-box;
   }
 
@@ -54,10 +54,10 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 1rpx;
-    right: 1rpx;
-    bottom: 1rpx;
-    left: 1rpx;
+    top: 0.50px;
+    right: 0.50px;
+    bottom: 0.50px;
+    left: 0.50px;
     z-index: 2;
     border-radius: @search-bar-radius;
     text-align: center;
@@ -69,11 +69,11 @@
     display: inline-block;
     font-size: @search-bar-font-size;
     vertical-align: middle;
-    margin-left: 16rpx;
+    margin-left: 8px;
   }
 
   &__cancel {
-    margin-left: 20rpx;
+    margin-left: 10px;
     line-height: @search-bar-input-height;
     color: var(--dora-color-primary, #33cd5f);
     white-space: nowrap;
@@ -85,16 +85,16 @@
 
   &__search {
     position: absolute;
-    left: 20rpx;
-    top: 14rpx;
+    left: 10px;
+    top: 7px;
   }
 
   &__clear {
     display: block;
     position: absolute;
-    top: 14rpx;
+    top: 7px;
     right: 0;
-    padding: 0 20rpx;
+    padding: 0 10px;
   }
 
   &--disabled {

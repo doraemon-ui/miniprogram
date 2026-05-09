@@ -9,7 +9,7 @@ import type { SelectorGroupProps, SelectorGroupExpose } from './types'
 export const SelectorGroup = createHostComponent<SelectorGroupProps, SelectorGroupExpose>('dora-selector-group',
 {
   prefixCls: 'dora-selector-group',
-  theme: 'balanced',
+  color: 'positive',
   shape: 'default',
   columns: 3,
   gap: 8,
@@ -28,7 +28,7 @@ SelectorGroup.displayName = 'DoraSelectorGroup'
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
 React.createElement('dora-selector-group', {
   prefixCls: '',
-  theme: '',
+  color: '',
   shape: '',
   columns: '',
   gap: '',

@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-    "dora-tabbar-item": "./tabbar-item"
+    "dora-safe-area": "@doraemon-ui/miniprogram.safe-area/index",
+    "dora-tabbar-item": "./item"
   }
 }

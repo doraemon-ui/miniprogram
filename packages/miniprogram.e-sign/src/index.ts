@@ -34,46 +34,12 @@ async function toDataURL({ width, height, type = 'png', quality = 1 }: DataUrlOp
 @Component({
   expose: ['resize'],
   props: {
+
     prefixCls: {
       type: String,
       default: 'dora-e-sign',
     },
-    type: {
-      type: String,
-      default: 'png',
-    },
-    width: {
-      type: null,
-      default: 'auto',
-    },
-    height: {
-      type: Number,
-      default: 200,
-    },
-    bgColor: {
-      type: String,
-      default: '#ffffff',
-    },
-    lineWidth: {
-      type: Number,
-      default: 3,
-    },
-    lineColor: {
-      type: String,
-      default: '#000000',
-    },
-    hasFooter: {
-      type: Boolean,
-      default: true,
-    },
-    cancelText: {
-      type: String,
-      default: '重置',
-    },
-    confirmText: {
-      type: String,
-      default: '确定',
-    },
+  
   },
 })
 class ESign extends Doraemon {

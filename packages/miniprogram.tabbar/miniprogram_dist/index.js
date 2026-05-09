@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.tabbar.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:41:12.
+ * Built on 2026-05-09, 20:17:36.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 
@@ -19,15 +19,12 @@ let Tabbar = class Tabbar extends Doraemon {
         const p = this.prefixCls;
         return {
             wrap: classNames(p, {
-                [`${p}--${this.position}`]: !!this.position
+                [`${p}--${this.position}`]: !!this.position,
+                ['dora-color']: !!this.color,
+                [`dora-color--${this.color}`]: !!this.color
             }),
             tabbar: `${p}-wrap`
         };
-    }
-    getChildrenItems() {
-        const proxy = this._renderProxy;
-        const nodes = proxy && typeof proxy.getRelationNodes === 'function' ? proxy.getRelationNodes('./tabbar-item') || [] : [];
-        return nodes.map((n)=>n?.$component).filter(Boolean);
     }
     onCurrentChange(v) {
         if (this.controlled) this.updated(v);
@@ -43,17 +40,17 @@ let Tabbar = class Tabbar extends Doraemon {
         this.changeCurrent(activeKey);
     }
     changeCurrent(activeKey) {
-        const elements = this.getChildrenItems();
+        const elements = this.$children;
         elements.forEach((element, index)=>{
-            const itemKey = element.tabKey || String(index);
+            const itemKey = element.key || String(index);
             const current = itemKey === activeKey;
             if (element && typeof element.changeCurrent === 'function') {
-                element.changeCurrent(current, itemKey, this.theme, elements.length);
+                element.changeCurrent(current, itemKey, this.color, elements.length);
             }
         });
         if (this.keys.length !== elements.length) {
             this.keys = elements.map((element)=>({
-                    key: element.tabKey,
+                    key: element.key,
                     title: element.title,
                     disabled: element.disabled
                 }));
@@ -108,9 +105,9 @@ _ts_decorate([
 _ts_decorate([
     Prop({
         type: String,
-        default: 'balanced'
+        default: 'positive'
     })
-], Tabbar.prototype, "theme", void 0);
+], Tabbar.prototype, "color", void 0);
 _ts_decorate([
     Prop({
         type: String,
@@ -143,7 +140,7 @@ Tabbar = _ts_decorate([
     Component({
         components: {
             TabbarItem: ()=>({
-                    module: './tabbar-item',
+                    module: './item',
                     type: 'child',
                     observer: 'onChildrenChanged'
                 })

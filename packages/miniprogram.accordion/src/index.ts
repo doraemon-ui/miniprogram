@@ -6,7 +6,7 @@ import type { PanelInstance } from './types'
     Panel: () => ({
       module: './panel',
       type: 'child',
-      observer: 'updated',
+      observer: 'onChildrenChanged',
     }),
   },
   props: {
@@ -168,6 +168,10 @@ class Accordion extends Doraemon {
     }
 
     this.setActiveKey(activeKey)
+  }
+
+  onChildrenChanged() {
+    this.updated()
   }
 
   mounted() {

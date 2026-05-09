@@ -1,0 +1,17 @@
+<demo-page title="SelectorGroup" desc="选择组" spacing>
+  <demo-block title="简单 options">
+    <dora-selector-group options="{{ stringOptions }}" defaultValue="{{ value1 }}" />
+  </demo-block>
+
+  <demo-block title="单选">
+    <dora-selector-group options="{{ options }}" defaultValue="{{ value2 }}" />
+  </demo-block>
+
+  <demo-block title="多选">
+    <dora-selector-group options="{{ options }}" defaultValue="{{ value3 }}" multiple />
+  </demo-block>
+
+  <demo-block title="Controlled">
+    <dora-selector-group options="{{ options }}" value="{{ value4 }}" controlled bind:change="onChange" />
+  </demo-block>
+</demo-page>

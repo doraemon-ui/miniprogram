@@ -6,7 +6,7 @@
 
 .dora-timeline-item {
   position: relative;
-  padding: 0 0 24rpx;
+  padding: 0 0 12px;
   margin: 0;
   font-size: 14px;
   box-sizing: border-box;
@@ -14,29 +14,29 @@
 
 .dora-timeline-item__tail {
   height: 100%;
-  border-left: 2rpx solid var(--dora-border-color, var(--dora-color-step-10, #e6e6e6));
-  border-left: 2rpx solid var(--dora-border-color, var(--dora-color-step-10, #e6e6e6));
+  border-left: 1px solid var(--dora-border-color, var(--dora-color-step-10, #e6e6e6));
+  border-left: 1px solid var(--dora-border-color, var(--dora-color-step-10, #e6e6e6));
   position: absolute;
-  left: 10rpx;
+  left: 5px;
   top: 0;
   box-sizing: border-box;
 }
 
 .dora-timeline-item__dot {
-  width: 12rpx;
-  height: 12rpx;
+  width: 6px;
+  height: 6px;
   background-color: #fff;
   border-radius: 50%;
-  border: 2rpx solid #387ef5;
+  border: 1px solid #387ef5;
   position: absolute;
   color: #387ef5;
   box-sizing: border-box;
 }
 
 .dora-timeline-item__dot--custom {
-  margin-left: 2rpx!important;
-  left: 10rpx;
-  top: 16rpx;
+  margin-left: 1px!important;
+  left: 5px;
+  top: 8px;
   border: 0;
   border-radius: 0;
   width: auto;
@@ -47,9 +47,9 @@
 }
 
 .dora-timeline-item__content {
-  padding: 0 0 20rpx 40rpx;
+  padding: 0 0 10px 20px;
   position: relative;
-  top: -10rpx;
+  top: -5px;
   width: 100%;
   box-sizing: border-box;
 }
@@ -69,13 +69,13 @@
 
 .dora-timeline-item--right .dora-timeline-item__dot {
   left: 100%;
-  margin-left: -10rpx;
+  margin-left: -5px;
 }
 
 .dora-timeline-item--right .dora-timeline-item__content {
   text-align: right;
   right: 0;
-  left: -40rpx;
+  left: -20px;
 }
 
 .dora-timeline-item--alternate.dora-timeline-item--right .dora-timeline-item__tail,.dora-timeline-item--alternate.dora-timeline-item--left .dora-timeline-item__tail {
@@ -84,7 +84,7 @@
 
 .dora-timeline-item--alternate.dora-timeline-item--right .dora-timeline-item__dot,.dora-timeline-item--alternate.dora-timeline-item--left .dora-timeline-item__dot {
   left: 50%;
-  margin-left: -10rpx;
+  margin-left: -5px;
 }
 
 .dora-timeline-item--alternate.dora-timeline-item--right .dora-timeline-item__content {

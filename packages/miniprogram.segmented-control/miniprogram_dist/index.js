@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.segmented-control.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:40:37.
+ * Built on 2026-05-09, 15:16:11.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 
@@ -16,9 +16,10 @@ function _ts_decorate(decorators, target, key, desc) {
 const { classNames } = Doraemon.util;
 let SegmentedControl = class SegmentedControl extends Doraemon {
     get classes() {
-        const { prefixCls, theme, disabled } = this;
+        const { prefixCls, color, disabled } = this;
         const wrap = classNames(prefixCls, {
-            [`${prefixCls}--${theme}`]: !!theme,
+            ['dora-color']: color,
+            [`dora-color--${color}`]: color,
             [`${prefixCls}--disabled`]: disabled
         });
         return {
@@ -57,9 +58,9 @@ let SegmentedControl = class SegmentedControl extends Doraemon {
 _ts_decorate([
     Prop({
         type: String,
-        default: 'balanced'
+        default: 'positive'
     })
-], SegmentedControl.prototype, "theme", void 0);
+], SegmentedControl.prototype, "color", void 0);
 _ts_decorate([
     Prop({
         type: Number,

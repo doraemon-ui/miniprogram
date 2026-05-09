@@ -35,54 +35,6 @@ const defaultContext: CheckboxContext = {
       type: String,
       default: 'dora-checkbox',
     },
-    cellPrefixCls: {
-      type: String,
-      default: 'dora-list-item',
-    },
-    selectablePrefixCls: {
-      type: String,
-      default: 'dora-selectable',
-    },
-    title: {
-      type: String,
-      default: '',
-    },
-    label: {
-      type: String,
-      default: '',
-    },
-    extra: {
-      type: String,
-      default: '',
-    },
-    value: {
-      type: String,
-      default: '',
-    },
-    checked: {
-      type: Boolean,
-      default: false,
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    readOnly: {
-      type: Boolean,
-      default: false,
-    },
-    color: {
-      type: String,
-      default: 'balanced',
-    },
-    wrapStyle: {
-      type: null,
-      default: '',
-    },
-    hasLine: {
-      type: Boolean,
-      default: true,
-    },
   },
   expose: ['value', 'check', 'uncheck', 'toggle', 'setChecked', 'changeValue'],
 })

@@ -1,4 +1,4 @@
-import { TimelineItem } from './timeline-item'
+import { TimelineItem } from './item'
 
 export type { TimelineItemProps, TimelineItemExpose } from './types'
 

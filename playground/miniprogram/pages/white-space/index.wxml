@@ -1,0 +1,18 @@
+<demo-page
+  darkmode="auto"
+  title="WhiteSpace"
+  desc="上下留白"
+  clickable
+  spacing
+>
+  <demo-block title="Basic">
+    <dora-white-space size="small" />
+    <view>Wux</view>
+    <dora-white-space size="default" />
+    <view>Wux</view>
+    <dora-white-space size="large" />
+    <view>Wux</view>
+    <dora-white-space bodyStyle="height: 40rpx" />
+    <view>Wux</view>
+  </demo-block>
+</demo-page>

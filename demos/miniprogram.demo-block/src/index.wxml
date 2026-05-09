@@ -1,4 +1,4 @@
-<view class="{{ classes.wrap }}">
+<view class="dora-class {{ classes.wrap }}">
   <view class="{{ classes.hd }}" wx:if="{{ title }}">
     {{ title }}
   </view>

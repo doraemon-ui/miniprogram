@@ -9,7 +9,7 @@ import type { SegmentedControlProps, SegmentedControlExpose } from './types'
 export const SegmentedControl = createHostComponent<SegmentedControlProps, SegmentedControlExpose>('dora-segmented-control',
 {
   prefixCls: 'dora-segmented-control',
-  theme: 'balanced',
+  color: 'positive',
   defaultCurrent: 0,
   current: 0,
   values: [],
@@ -23,7 +23,7 @@ SegmentedControl.displayName = 'DoraSegmentedControl'
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
 React.createElement('dora-segmented-control', {
   prefixCls: '',
-  theme: '',
+  color: '',
   defaultCurrent: '',
   current: '',
   values: '',

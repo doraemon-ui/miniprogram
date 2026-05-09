@@ -1,0 +1,12 @@
+<demo-page darkmode="auto" title="Progress" desc="进度条" clickable spacing>
+  <demo-block title="Status">
+    <dora-progress status="normal" percent="50" />
+    <dora-progress status="progress" percent="50" />
+    <dora-progress status="error" percent="50" />
+    <dora-progress status="success" percent="50" />
+  </demo-block>
+  <demo-block title="Dynamic">
+    <dora-progress showInfo percent="{{ percent }}" />
+    <dora-button block type="light" bind:click="add">Add</dora-button>
+  </demo-block>
+</demo-page>

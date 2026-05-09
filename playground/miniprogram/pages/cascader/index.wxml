@@ -1,0 +1,58 @@
+<dora-cascader
+  visible="{{ visible1 }}"
+  default-value="{{ value1 }}"
+  title="所在地区"
+  options="{{ options1 }}"
+  bind:close="onClose1"
+  bind:change="onChange1"
+  bind:confirm="onConfirm1"
+/>
+
+<dora-cascader
+  visible="{{ visible2 }}"
+  controlled
+  value="{{ value2 }}"
+  title="所在地区"
+  options="{{ options2 }}"
+  bind:close="onClose2"
+  bind:change="onChange2"
+  bind:load="onLoadOptions"
+/>
+
+<dora-cascader
+  visible="{{ visible3 }}"
+  controlled
+  value="{{ value3 }}"
+  title="Your city"
+  cancelText="cancel"
+  confirmText="ok"
+  options="{{ options3 }}"
+  full
+  height="540rpx"
+  bind:close="onClose3"
+  bind:change="onChange3"
+  bind:confirm="onConfirm3"
+  bind:tabsChange="onTabsChange3"
+/>
+
+<dora-cascader
+  visible="{{ visible4 }}"
+  default-value="{{ value4 }}"
+  title="所在地区"
+  options="{{ fieldNamesOptions }}"
+  defaultFieldNames="{{ fieldNames }}"
+  bind:close="onClose4"
+  bind:change="onChange4"
+  bind:confirm="onConfirm4"
+/>
+
+<demo-page darkmode="auto" title="Cascader" desc="级联选择器" clickable spacing>
+  <demo-block title="Cascader">
+    <dora-list title="Cascader">
+      <dora-list-item title="Default" extra="{{ title1 }}" bind:click="onOpen1" />
+      <dora-list-item title="Async" extra="{{ title2 }}" bind:click="onOpen2" />
+      <dora-list-item title="Controlled" extra="{{ title3 }}" bind:click="onOpen3" />
+      <dora-list-item title="Custom FieldName" extra="{{ title4 }}" bind:click="onOpen4" />
+    </dora-list>
+  </demo-block>
+</demo-page>

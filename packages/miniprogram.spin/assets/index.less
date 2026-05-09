@@ -23,7 +23,7 @@
       display: block;
       position: absolute;
       height: 100%;
-      max-height: 640rpx;
+      max-height: 320px;
       width: 100%;
       z-index: 4;
     }
@@ -37,7 +37,7 @@
     position: absolute;
     top: 50%;
     width: 100%;
-    padding-top: 12rpx;
+    padding-top: 6px;
     text-shadow: 0 1px 2px #fff;
   }
 
@@ -58,8 +58,8 @@
   }
 
   &__dot {
-    width: 18rpx;
-    height: 18rpx;
+    width: 9px;
+    height: 9px;
     border-radius: 100%;
     background-color: @spin-color;
     transform: scale(0.75);
@@ -92,7 +92,7 @@
   }
 
   &--show-text&--nested &__dots {
-    margin-top: -(@spin-dot-size-base / 2) - 20rpx;
+    margin-top: -(@spin-dot-size-base / 2) - 10px;
   }
 
   &__container {
@@ -115,11 +115,11 @@
     margin: -(@spin-dot-size-sm / 2);
   }
   &--small &__dot {
-    width: 12rpx;
-    height: 12rpx;
+    width: 6px;
+    height: 6px;
   }
   &--small&--show-text&--nested &__dots {
-    margin-top: -(@spin-dot-size-sm / 2) - 20rpx;
+    margin-top: -(@spin-dot-size-sm / 2) - 10px;
   }
 
   &--large &__dots {
@@ -130,11 +130,11 @@
     margin: -(@spin-dot-size-lg / 2);
   }
   &--large &__dot {
-    width: 28rpx;
-    height: 28rpx;
+    width: 14px;
+    height: 14px;
   }
   &--large&--show-text&--nested &__dots {
-    margin-top: -(@spin-dot-size-lg / 2) - 20rpx;
+    margin-top: -(@spin-dot-size-lg / 2) - 10px;
   }
 }
 

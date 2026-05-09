@@ -1,0 +1,29 @@
+<demo-page
+  darkmode="auto"
+  title="CascaderView"
+  desc="级联选择视图"
+  clickable
+  spacing
+>
+  <demo-block title="Default">
+    <dora-cascader-view options="{{ options1 }}" bind:change="onChange1" />
+  </demo-block>
+  <demo-block title="Full">
+    <dora-cascader-view full options="{{ options1 }}" bind:change="onChange1" />
+  </demo-block>
+  <demo-block title="Custom Height">
+    <dora-cascader-view height="540rpx" options="{{ options1 }}" bind:change="onChange1" />
+  </demo-block>
+  <demo-block title="Skip Animation">
+    <dora-cascader-view skipAnimation options="{{ options1 }}" bind:change="onChange1" />
+  </demo-block>
+  <demo-block title="Custom FieldName">
+    <dora-cascader-view options="{{ fieldNamesOptions }}" defaultFieldNames="{{ fieldNames }}" />
+  </demo-block>
+  <demo-block title="Controlled">
+    <dora-cascader-view controlled value="{{ value2 }}" options="{{ options2 }}" bind:change="onChange2" bind:tabsChange="onTabsChange2" />
+  </demo-block>
+  <demo-block title="Async">
+    <dora-cascader-view controlled value="{{ value3 }}" options="{{ options3 }}" bind:change="onChange3" bind:load="onLoadOptions" />
+  </demo-block>
+</demo-page>

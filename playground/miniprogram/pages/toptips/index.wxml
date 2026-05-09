@@ -1,0 +1,18 @@
+<demo-page
+  darkmode="auto"
+  title="Toptips"
+  desc="顶部提示"
+  clickable
+  spacing
+>
+  <dora-toptips id="dora-toptips" />
+
+  <demo-block title="基础">
+    <dora-button block type="light" bind:click="showToptips1">Show</dora-button>
+    <dora-button block type="light" bind:click="showToptips2">Success</dora-button>
+    <dora-button block type="light" bind:click="showToptips3">Info</dora-button>
+    <dora-button block type="light" bind:click="showToptips4">Warn</dora-button>
+    <dora-button block type="light" bind:click="showToptips5">Error</dora-button>
+    <dora-button block type="light" bind:click="showToptips6">Use return value to close</dora-button>
+  </demo-block>
+</demo-page>

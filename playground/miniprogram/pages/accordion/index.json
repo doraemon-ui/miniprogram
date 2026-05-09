@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "Accordion",
+  "usingComponents": {
+    "demo-page": "@doraemon-ui/miniprogram.demo-page/index",
+    "demo-block": "@doraemon-ui/miniprogram.demo-block/index",
+    "dora-accordion": "@doraemon-ui/miniprogram.accordion/index",
+    "dora-accordion-panel": "@doraemon-ui/miniprogram.accordion/panel"
+  }
+}

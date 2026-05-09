@@ -1,0 +1,92 @@
+<demo-page darkmode="auto" title="Checkbox" desc="复选框" clickable spacing>
+  <demo-block title="IconPosition">
+    <button bindtap="toggleIconPosition">iconPosition: {{ iconPosition }}</button>
+  </demo-block>
+
+  <form bindsubmit="formSubmit">
+    <demo-block title="Default">
+      <dora-checkbox-group iconPosition="{{ iconPosition }}" name="a" value="{{ value1 }}" title="Default" bind:change="onChange1">
+        <dora-checkbox color="light" title="Light" value="1" />
+        <dora-checkbox color="stable" title="Stable" value="2" />
+        <dora-checkbox color="positive" title="Positive" value="3" />
+        <dora-checkbox color="calm" title="Calm" value="4" />
+        <dora-checkbox color="balanced" title="Balanced" value="5" />
+        <dora-checkbox color="energized" title="Energized" value="6" />
+        <dora-checkbox color="assertive" title="Assertive" value="7" />
+        <dora-checkbox color="royal" title="Royal" value="8" />
+        <dora-checkbox color="dark" title="Dark" value="9" />
+      </dora-checkbox-group>
+    </demo-block>
+
+    <demo-block title="Label">
+      <dora-checkbox-group iconPosition="{{ iconPosition }}" name="b" value="{{ value2 }}" title="Label" bind:change="onChange2">
+        <dora-checkbox title="Java" label="details" value="1" />
+        <dora-checkbox title="PHP" label="details" value="2" />
+      </dora-checkbox-group>
+    </demo-block>
+
+    <demo-block title="Extra">
+      <dora-checkbox-group iconPosition="{{ iconPosition }}" name="c" value="{{ value3 }}" title="Extra" bind:change="onChange3">
+        <dora-checkbox title="Java" extra="extra" value="1" />
+        <dora-checkbox title="PHP" extra="extra" value="2" />
+      </dora-checkbox-group>
+    </demo-block>
+
+    <demo-block title="Disabled & readOnly">
+      <dora-checkbox-group iconPosition="{{ iconPosition }}" name="d" value="{{ value4 }}" title="Disabled & readOnly" bind:change="onChange4">
+        <dora-checkbox title="Java" value="1" disabled />
+        <dora-checkbox title="PHP" value="2" />
+        <dora-checkbox title="AV" value="3" readOnly />
+      </dora-checkbox-group>
+    </demo-block>
+
+    <demo-block title="Disable for the checkbox group">
+      <dora-checkbox-group iconPosition="{{ iconPosition }}" name="f" disabled value="{{ value4 }}" title="Disable for the checkbox group" bind:change="onChange4">
+        <dora-checkbox title="Java" value="1" />
+        <dora-checkbox title="PHP" value="2" />
+      </dora-checkbox-group>
+    </demo-block>
+
+    <demo-block title="ReadOnly for the checkbox group（options）">
+      <dora-checkbox-group iconPosition="{{ iconPosition }}" name="g" readOnly value="{{ value5 }}" options="{{ options }}" title="ReadOnly for the checkbox group" bind:change="onChange5" />
+    </demo-block>
+
+    <demo-block title="Options">
+      <dora-checkbox-group iconPosition="{{ iconPosition }}" name="h" value="{{ value5 }}" options="{{ options }}" title="Options" bind:change="onChange5" />
+    </demo-block>
+
+    <demo-block title="Custom icon style">
+      <dora-checkbox-group
+        iconPosition="{{ iconPosition }}"
+        name="i"
+        iconSize="16"
+        iconOn="success_no_circle"
+        iconOff=""
+        value="{{ value5 }}"
+        options="{{ options }}"
+        title="Custom icon style"
+        bind:change="onChange5"
+      />
+    </demo-block>
+
+    <demo-block title="Card List">
+      <dora-checkbox-group iconPosition="{{ iconPosition }}" name="j" mode="card" value="{{ value5 }}" options="{{ options }}" title="Card List" bind:change="onChange5" />
+    </demo-block>
+
+    <demo-block title="配合 List 使用（非 CheckboxGroup）">
+      <dora-list title="配合 List 使用">
+        <block wx:for="{{ options }}" wx:for-item="option" wx:key="value">
+          <dora-list-item title="{{ option.title }}" data-checkbox-ref="{{ 'checkbox_ref_' + index }}" bind:click="onItemClick">
+            <dora-checkbox slot="header" id="{{ 'checkbox_ref_' + index }}" value="{{ option.value }}" />
+          </dora-list-item>
+        </block>
+      </dora-list>
+    </demo-block>
+
+    <demo-block title="Form">
+      <view class="btn-area">
+        <button formType="submit">Submit</button>
+      </view>
+    </demo-block>
+  </form>
+</demo-page>

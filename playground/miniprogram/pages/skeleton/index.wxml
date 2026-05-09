@@ -1,0 +1,32 @@
+<demo-page title="Skeleton" desc="骨架屏" spacing>
+  <demo-block title="Default">
+    <dora-skeleton>
+      <dora-skeleton-paragraph />
+    </dora-skeleton>
+  </demo-block>
+
+  <demo-block title="Rounded">
+    <dora-skeleton active>
+      <dora-skeleton-paragraph rounded />
+    </dora-skeleton>
+  </demo-block>
+
+  <demo-block title="Rows = 4">
+    <dora-skeleton active>
+      <dora-skeleton-paragraph rows="{{ 4 }}" />
+    </dora-skeleton>
+  </demo-block>
+
+  <demo-block title="With avatar">
+    <dora-skeleton>
+      <dora-row>
+        <dora-col span="{{ 2 }}">
+          <dora-skeleton-avatar active />
+        </dora-col>
+        <dora-col span="{{ 10 }}">
+          <dora-skeleton-paragraph active />
+        </dora-col>
+      </dora-row>
+    </dora-skeleton>
+  </demo-block>
+</demo-page>

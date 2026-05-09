@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.navbar.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:39:48.
+ * Built on 2026-05-09, 14:25:02.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 
@@ -16,9 +16,10 @@ function _ts_decorate(decorators, target, key, desc) {
 const { classNames } = Doraemon.util;
 let Navbar = class Navbar extends Doraemon {
     get classes() {
-        const { prefixCls, theme } = this;
+        const { prefixCls, color } = this;
         const wrap = classNames(prefixCls, {
-            [`${prefixCls}--${theme}`]: theme
+            ['dora-color']: color,
+            [`dora-color--${color}`]: color
         });
         return {
             wrap,
@@ -40,7 +41,7 @@ _ts_decorate([
         type: String,
         default: 'light'
     })
-], Navbar.prototype, "theme", void 0);
+], Navbar.prototype, "color", void 0);
 _ts_decorate([
     Prop({
         type: String,

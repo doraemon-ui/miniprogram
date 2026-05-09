@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.badge.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:38:03.
+ * Built on 2026-05-09, 19:59:51.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 

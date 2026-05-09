@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "Layout",
+  "usingComponents": {
+    "demo-page": "@doraemon-ui/miniprogram.demo-page/index",
+    "demo-block": "@doraemon-ui/miniprogram.demo-block/index",
+    "dora-row": "@doraemon-ui/miniprogram.layout/index",
+    "dora-col": "@doraemon-ui/miniprogram.layout/col"
+  }
+}

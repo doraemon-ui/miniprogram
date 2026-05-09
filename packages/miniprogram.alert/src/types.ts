@@ -26,7 +26,7 @@ export interface AlertProps {
    *
    * @type {PresetColor}
    */
-  theme?: PresetColor
+  color?: PresetColor
 
   /**
    * 缩略图

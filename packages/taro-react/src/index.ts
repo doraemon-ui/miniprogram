@@ -33,6 +33,7 @@ import Footer from './components/footer'
 import Form from './components/form'
 import Gallery from './components/gallery'
 import Grid from './components/grid'
+import GridItem from './components/grid-item'
 import Icon from './components/icon'
 import Image from './components/image'
 import Index from './components/index'
@@ -135,6 +136,7 @@ export * from './components/footer'
 export * from './components/form'
 export * from './components/gallery'
 export * from './components/grid'
+export * from './components/grid-item'
 export * from './components/icon'
 export * from './components/image'
 export * from './components/index'
@@ -238,6 +240,7 @@ export {
   Form,
   Gallery,
   Grid,
+  GridItem,
   Icon,
   Image,
   Index,

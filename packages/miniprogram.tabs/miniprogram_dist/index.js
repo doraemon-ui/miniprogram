@@ -1,12 +1,13 @@
 /**
  * @doraemon-ui/miniprogram.tabs.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:41:15.
+ * Built on 2026-05-09, 16:12:04.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 
-import { Doraemon, Prop, Watch, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
+import { Doraemon, Watch, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
 import { useRef } from '@doraemon-ui/miniprogram.shared';
+import { tabsProps } from './props.js';
 
 function _ts_decorate(decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -56,20 +57,19 @@ let Tabs = class Tabs extends Doraemon {
             next
         };
     }
-    tabsContainerRef() {
+    async tabsContainerRef() {
         const prefixCls = this.prefixCls;
-        return useRef(`.${prefixCls}__scroll-view`, this._renderProxy).then((container)=>{
-            return {
-                containerWidth: container.width,
-                containerHeight: container.height,
-                containerScrollWidth: container.scrollWidth,
-                containerScrollHeight: container.scrollHeight,
-                containerScrollLeft: container.scrollLeft,
-                containerScrollTop: container.scrollTop,
-                containerOffsetX: container.left,
-                containerOffsetY: container.top
-            };
-        });
+        const container = await useRef(`.${prefixCls}__scroll-view`, this._renderProxy);
+        return {
+            containerWidth: container.width,
+            containerHeight: container.height,
+            containerScrollWidth: container.scrollWidth,
+            containerScrollHeight: container.scrollHeight,
+            containerScrollLeft: container.scrollLeft,
+            containerScrollTop: container.scrollTop,
+            containerOffsetX: container.left,
+            containerOffsetY: container.top
+        };
     }
     onScrollFix() {
         const { direction } = this;
@@ -124,16 +124,11 @@ let Tabs = class Tabs extends Doraemon {
             this.onScrollFix();
         }
     }
-    getChildrenTabs() {
-        const nodes = this._renderProxy?.getRelationNodes?.('./tab') || [];
-        return nodes.map((n)=>n?.$component).filter(Boolean);
-    }
     onChildrenChanged() {
-        // 关系节点变动时，刷新 keys 和 active 状态
         this.updated(this.activeKey);
     }
     updated(value = this.activeKey) {
-        const children = this.getChildrenTabs();
+        const children = this.$children;
         const elements = children.map((c)=>({
                 key: c.key,
                 title: c.title,
@@ -146,7 +141,7 @@ let Tabs = class Tabs extends Doraemon {
         }
         const context = {
             scroll: this.scroll,
-            theme: this.theme,
+            color: this.color,
             direction: this.direction,
             activeLineMode: this.activeLineMode
         };
@@ -201,54 +196,6 @@ let Tabs = class Tabs extends Doraemon {
     }
 };
 _ts_decorate([
-    Prop({
-        type: String,
-        default: ''
-    })
-], Tabs.prototype, "defaultCurrent", void 0);
-_ts_decorate([
-    Prop({
-        type: String,
-        default: ''
-    })
-], Tabs.prototype, "current", void 0);
-_ts_decorate([
-    Prop({
-        type: Boolean,
-        default: false
-    })
-], Tabs.prototype, "scroll", void 0);
-_ts_decorate([
-    Prop({
-        type: Boolean,
-        default: false
-    })
-], Tabs.prototype, "controlled", void 0);
-_ts_decorate([
-    Prop({
-        type: String,
-        default: 'balanced'
-    })
-], Tabs.prototype, "theme", void 0);
-_ts_decorate([
-    Prop({
-        type: String,
-        default: 'horizontal'
-    })
-], Tabs.prototype, "direction", void 0);
-_ts_decorate([
-    Prop({
-        type: String,
-        default: 'space-around'
-    })
-], Tabs.prototype, "justify", void 0);
-_ts_decorate([
-    Prop({
-        type: String,
-        default: 'auto'
-    })
-], Tabs.prototype, "activeLineMode", void 0);
-_ts_decorate([
     Watch('current')
 ], Tabs.prototype, "onCurrentChange", null);
 _ts_decorate([
@@ -263,44 +210,7 @@ Tabs = _ts_decorate([
                     observer: 'onChildrenChanged'
                 })
         },
-        props: {
-            prefixCls: {
-                type: String,
-                default: 'dora-tabs'
-            },
-            defaultCurrent: {
-                type: String,
-                default: ''
-            },
-            current: {
-                type: String,
-                default: ''
-            },
-            scroll: {
-                type: Boolean,
-                default: false
-            },
-            controlled: {
-                type: Boolean,
-                default: false
-            },
-            theme: {
-                type: String,
-                default: 'balanced'
-            },
-            direction: {
-                type: String,
-                default: 'horizontal'
-            },
-            justify: {
-                type: String,
-                default: 'space-around'
-            },
-            activeLineMode: {
-                type: String,
-                default: 'auto'
-            }
-        },
+        props: tabsProps,
         expose: [
             'setActiveKey'
         ]

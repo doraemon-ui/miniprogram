@@ -1,5 +1,6 @@
 import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
+import type { PresetColor } from '@doraemon-ui/miniprogram.shared'
 import type { SegmentedControlChangeDetail } from './types'
 const { classNames } = Doraemon.util
 
@@ -23,14 +24,14 @@ class SegmentedControl extends Doraemon {
   /**
    * 主题
    *
-   * @type {string}
+   * @type {PresetColor}
    * @memberof SegmentedControl
    */
   @Prop({
     type: String,
-    default: 'balanced',
+    default: 'positive',
   })
-  theme: string
+  color: PresetColor
 
   /**
    * 默认选中项
@@ -95,9 +96,10 @@ class SegmentedControl extends Doraemon {
   activeKey: number = 0
 
   get classes() {
-    const { prefixCls, theme, disabled } = this
+    const { prefixCls, color, disabled } = this
     const wrap = classNames(prefixCls, {
-      [`${prefixCls}--${theme}`]: !!theme,
+      ['dora-color']: color,
+      [`dora-color--${color}`]: color,
       [`${prefixCls}--disabled`]: disabled,
     })
     return {

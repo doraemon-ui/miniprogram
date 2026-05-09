@@ -1,0 +1,70 @@
+{
+  "libVersion": "3.15.2",
+  "projectname": "doraemon-ui",
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "badge/index",
+          "pathName": "badge/index",
+          "query": "",
+          "scene": null,
+          "launchMode": "default"
+        },
+        {
+          "name": "tabbar/index",
+          "pathName": "tabbar/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "tabs/index",
+          "pathName": "tabs/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "segmented-control/index",
+          "pathName": "segmented-control/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "swipe-action/index",
+          "pathName": "swipe-action/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "accordion/index",
+          "pathName": "accordion/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        }
+      ]
+    }
+  },
+  "setting": {
+    "urlCheck": false,
+    "coverView": true,
+    "lazyloadPlaceholderEnable": false,
+    "skylineRenderEnable": false,
+    "preloadBackgroundData": false,
+    "autoAudits": false,
+    "useApiHook": true,
+    "showShadowRootInWxmlPanel": false,
+    "useStaticServer": false,
+    "useLanDebug": false,
+    "showES6CompileOption": false,
+    "compileHotReLoad": true,
+    "checkInvalidKey": true,
+    "ignoreDevUnusedFiles": true,
+    "bigPackageSizeSupport": true,
+    "useIsolateContext": true
+  }
+}

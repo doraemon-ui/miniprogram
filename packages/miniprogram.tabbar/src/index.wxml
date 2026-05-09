@@ -1,5 +1,15 @@
 <view class="dora-class {{ classes.wrap }}" style="{{ tabbarStyle }}">
+  <dora-safe-area
+    safeArea="{{ safeArea }}"
+    wrapStyle="{{ { backgroundColor } }}"
+    wx:if="{{ safeArea && position === 'top' }}"
+  />
   <view class="{{ classes.tabbar }}">
     <slot></slot>
   </view>
+  <dora-safe-area
+    safeArea="{{ safeArea }}"
+    wrapStyle="{{ { backgroundColor } }}"
+    wx:if="{{ safeArea && position === 'bottom' }}"
+  />
 </view>

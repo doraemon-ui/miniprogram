@@ -1,0 +1,11 @@
+<demo-page
+  darkmode="auto"
+  title="miniprogram.sticky"
+  desc="miniprogram.sticky"
+  clickable
+  spacing
+>
+  <demo-block title="Basic">
+    <dora-sticky>miniprogram.sticky</dora-sticky>
+  </demo-block>
+</demo-page>

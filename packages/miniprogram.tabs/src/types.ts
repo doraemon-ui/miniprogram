@@ -1,12 +1,9 @@
 import type { ComponentPublicInstance } from '@doraemon-ui/miniprogram.core-js'
+import type { PresetColor } from '@doraemon-ui/miniprogram.shared'
 
 import type { Tabs } from './index'
 import type { Tab } from './tab'
 
-/**
- * TabsTheme类型定义
- */
-export type TabsTheme = 'light' | 'stable' | 'positive' | 'calm' | 'assertive' | 'balanced' | 'energized' | 'royal' | 'dark'
 /**
  * TabsDirection类型定义
  */
@@ -27,10 +24,10 @@ export interface TabContext {
   scroll: boolean
 
   /**
-   * theme
-   * @type {TabsTheme}
+   * 主题
+   * @type {PresetColor}
    */
-  theme: TabsTheme
+  color: PresetColor
 
   /**
    * direction
@@ -130,7 +127,7 @@ export interface TabExpose {
    *
    * @return {void}
    */
-  changeCurrent: (payload: { current: boolean; context?: TabContext }) => void
+  changeCurrent: (payload: { current: boolean; context: TabContext }) => void
 }
 
 /**
@@ -174,10 +171,10 @@ export interface TabsProps {
   controlled?: boolean
 
   /**
-   * theme
-   * @type {TabsTheme}
+   * 主题
+   * @type {PresetColor}
    */
-  theme?: TabsTheme
+  color?: PresetColor
 
   /**
    * direction

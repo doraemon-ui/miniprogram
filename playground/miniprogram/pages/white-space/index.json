@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "WhiteSpace",
+  "usingComponents": {
+    "demo-page": "@doraemon-ui/miniprogram.demo-page",
+    "demo-block": "@doraemon-ui/miniprogram.demo-block",
+    "dora-white-space": "@doraemon-ui/miniprogram.white-space/index"
+  }
+}

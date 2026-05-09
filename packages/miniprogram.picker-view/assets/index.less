@@ -43,8 +43,8 @@
     box-sizing: border-box;
     height: @picker-item-height;
     top: @picker-item-height * 3;
-    border-top: 1rpx solid var(--dora-border-color, #ddd);
-    border-bottom: 1rpx solid var(--dora-border-color, #ddd);
+    border-top: 0.50px solid var(--dora-border-color, #ddd);
+    border-bottom: 0.50px solid var(--dora-border-color, #ddd);
   }
 
   &__content {
@@ -60,7 +60,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: var(--dora-font-size-lg, 32rpx);
+    font-size: var(--dora-font-size-lg, 16px);
     height: @picker-item-height;
     line-height: @picker-item-height;
     color: #000;
@@ -73,7 +73,7 @@
     }
 
     &--selected {
-      font-size: 34rpx;
+      font-size: 17px;
       .@{picker-view-prefix-cls}__image {
         transform: scale(1.1);
       }

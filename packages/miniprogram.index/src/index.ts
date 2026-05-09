@@ -26,22 +26,6 @@ const findActiveByPosition = (scrollTop: number, offsetY: number, children: Inde
       type: String,
       default: 'dora-index',
     },
-    height: {
-      type: null,
-      default: 300,
-    },
-    showIndicator: {
-      type: Boolean,
-      default: true,
-    },
-    indicatorPosition: {
-      type: String,
-      default: 'center',
-    },
-    parentOffsetTop: {
-      type: Number,
-      default: 0,
-    },
   },
 })
 class Index extends Doraemon {
@@ -131,13 +115,7 @@ class Index extends Doraemon {
   }
 
   getChildrenNodes(): IndexItemInstance[] {
-    const nodes = (
-      (this._renderProxy as unknown as { getRelationNodes?: (path: string) => Array<{ $component?: unknown }> }).getRelationNodes?.(
-        './item',
-      ) || []
-    )
-      .map((node) => node.$component)
-      .filter(Boolean) as IndexItemInstance[]
+    const nodes = this.$children as IndexItemInstance[] || []
     return nodes
   }
 

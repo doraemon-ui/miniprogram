@@ -28,7 +28,7 @@ const getterDecorator =
     TestComp: () => ({
       module: './test-comp',
       type: 'child',
-      observer: 'observer',
+      observer: 'onChildrenChanged',
     }),
   },
   props: {
@@ -117,7 +117,7 @@ class MyComp extends Doraemon {
     throw new Error('errorCaptured')
   }
 
-  observer() {}
+  onChildrenChanged() {}
 }
 
 export { MyComp }

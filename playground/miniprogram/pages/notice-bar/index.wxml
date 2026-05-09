@@ -1,0 +1,34 @@
+<demo-page darkmode="auto" title="NoticeBar" desc="通告栏" clickable spacing>
+  <demo-block title="Default">
+    <dora-notice-bar content="微信小程序自定义组件 https://github.com/wux-weapp/wux-weapp" />
+  </demo-block>
+  <demo-block title="Loop = true">
+    <dora-notice-bar loop>微信小程序自定义组件 https://github.com/wux-weapp/wux-weapp</dora-notice-bar>
+  </demo-block>
+  <demo-block title="Speed = 100">
+    <dora-notice-bar loop speed="100" content="微信小程序自定义组件 https://github.com/wux-weapp/wux-weapp" />
+  </demo-block>
+  <demo-block title="Leading = 3000">
+    <dora-notice-bar loop leading="3000" content="微信小程序自定义组件 https://github.com/wux-weapp/wux-weapp" />
+  </demo-block>
+  <demo-block title="Trailing = 1500">
+    <dora-notice-bar loop trailing="1500" content="微信小程序自定义组件 https://github.com/wux-weapp/wux-weapp" />
+  </demo-block>
+  <demo-block title="No Icon">
+    <dora-notice-bar icon="" content="微信小程序自定义组件 https://github.com/wux-weapp/wux-weapp" />
+  </demo-block>
+  <demo-block title="Mode = closable">
+    <dora-notice-bar mode="closable" content="微信小程序自定义组件 https://github.com/wux-weapp/wux-weapp" />
+  </demo-block>
+  <demo-block title="Mode = link">
+    <dora-notice-bar mode="link" action="" content="微信小程序自定义组件 https://github.com/wux-weapp/wux-weapp" bind:click="onClick">
+      <text slot="footer" style="color: #a1a1a1; margin-left: 10px;">去看看</text>
+    </dora-notice-bar>
+  </demo-block>
+  <demo-block title="Custom Style">
+    <dora-notice-bar dora-class="notice-bar" icon="" content="微信小程序自定义组件 https://github.com/wux-weapp/wux-weapp" />
+  </demo-block>
+  <demo-block title="Async & slot">
+    <dora-notice-bar id="dora-notice-bar">{{ content }}</dora-notice-bar>
+  </demo-block>
+</demo-page>

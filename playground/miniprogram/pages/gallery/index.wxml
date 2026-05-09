@@ -1,0 +1,11 @@
+<demo-page
+  darkmode="auto"
+  title="miniprogram.gallery"
+  desc="miniprogram.gallery"
+  clickable
+  spacing
+>
+  <demo-block title="Basic">
+    <dora-gallery>miniprogram.gallery</dora-gallery>
+  </demo-block>
+</demo-page>

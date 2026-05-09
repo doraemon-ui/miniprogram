@@ -1,0 +1,24 @@
+<demo-page title="Spin" desc="加载中" spacing>
+  <demo-block title="Default">
+    <dora-spin />
+  </demo-block>
+
+  <demo-block title="Color">
+    <dora-spin spinColor="#33cd5f" />
+  </demo-block>
+
+  <demo-block title="Size">
+    <dora-spin size="small" />
+    <dora-spin size="default" />
+    <dora-spin size="large" />
+  </demo-block>
+
+  <demo-block title="Nested">
+    <dora-spin nested spinning="{{ spinning }}" tip="Loading...">
+      <view>微信小程序自定义组件 https://github.com/wux-weapp/wux-weapp</view>
+      <view>微信小程序自定义组件 https://github.com/wux-weapp/wux-weapp</view>
+      <view>微信小程序自定义组件 https://github.com/wux-weapp/wux-weapp</view>
+    </dora-spin>
+    <dora-button block type="light" bind:click="onClick">Switch State</dora-button>
+  </demo-block>
+</demo-page>

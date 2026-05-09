@@ -1,20 +1,17 @@
 @import './variables.less';
 
 // Navbar styles
+// @prop --text-color: Text color of the navbar
+// @prop --background-color: Background color of the navbar
 // -----------------------------
-.navbar-style(@theme, @bg-color, @color) {
-  &--@{theme} {
-    background-color: @bg-color;
-    color: @color;
-  }
-}
-
 .@{navbar-prefix-cls} {
   display: flex;
   align-items: center;
   height: @navbar-size;
-  background-color: @navbar-light-bg;
-  color: @navbar-default-color;
+  background-color: var(--background-color);
+  color: var(--text-color);
+
+  .navbar-color(#get-color(light)[], @text-color);
 
   &__left,
   &__title,
@@ -32,7 +29,7 @@
 
   &__title {
     justify-content: center;
-    font-size: calc(@navbar-font-size + 4rpx);
+    font-size: calc(@navbar-font-size + 2px);
     white-space: nowrap;
   }
 
@@ -42,13 +39,24 @@
     margin-right: @navbar-margin;
   }
 
-  .navbar-style(light, @navbar-light-bg, @navbar-default-color);
-  .navbar-style(stable, @navbar-stable-bg, @navbar-default-color);
-  .navbar-style(positive, @navbar-positive-bg, @navbar-active-color);
-  .navbar-style(calm, @navbar-calm-bg, @navbar-active-color);
-  .navbar-style(assertive, @navbar-assertive-bg, @navbar-active-color);
-  .navbar-style(balanced, @navbar-balanced-bg, @navbar-active-color);
-  .navbar-style(energized, @navbar-energized-bg, @navbar-active-color);
-  .navbar-style(royal, @navbar-royal-bg, @navbar-active-color);
-  .navbar-style(dark, @navbar-dark-bg, @navbar-active-color);
+  // Navbar Colors
+  &.@{dora-prefix}-color {
+    .navbar-color(#current-color(base)[], @text-color-inverse);
+  }
+
+  &.@{dora-prefix}-color.@{dora-prefix}-color--light {
+    .navbar-color(#current-color(base)[], @text-color);
+  }
+
+  &.@{dora-prefix}-color.@{dora-prefix}-color--stable {
+    .navbar-color(#current-color(base)[], @text-color);
+  }
+}
+
+.navbar-color(
+@bg-color,
+@color,
+) {
+  --text-color: @color;
+  --background-color: @bg-color;
 }

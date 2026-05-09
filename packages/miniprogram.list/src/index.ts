@@ -9,7 +9,7 @@ const { classNames, styleToCssString } = Doraemon.util
     ListItem: () => ({
       module: './item',
       type: 'descendant',
-      observer: 'updateIsLast',
+      observer: 'onChildrenChanged',
     }),
   },
   props: {
@@ -135,6 +135,10 @@ class List extends Doraemon {
         element.updateIsLast(index === lastIndex)
       })
     }
+  }
+
+  onChildrenChanged() {
+    this.updateIsLast()
   }
 
   getBoundingClientRect() {

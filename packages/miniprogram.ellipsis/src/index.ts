@@ -8,34 +8,12 @@ function getSubString(chars: string[], start: number, end: number) {
 
 @Component({
   props: {
+
     prefixCls: {
       type: String,
       default: 'dora-ellipsis',
     },
-    content: {
-      type: String,
-      default: '',
-    },
-    direction: {
-      type: String,
-      default: 'end',
-    },
-    defaultExpanded: {
-      type: Boolean,
-      default: false,
-    },
-    expandText: {
-      type: String,
-      default: '',
-    },
-    collapseText: {
-      type: String,
-      default: '',
-    },
-    rows: {
-      type: Number,
-      default: 1,
-    },
+  
   },
 })
 class Ellipsis extends Doraemon {

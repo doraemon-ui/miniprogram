@@ -1,6 +1,7 @@
 import { defineComponentHOC, Doraemon, Component, Prop } from '@doraemon-ui/miniprogram.core-js'
 import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
-import type { NavbarClickDetail, NavbarTheme } from './types'
+import type { PresetColor } from '@doraemon-ui/miniprogram.shared'
+import type { NavbarClickDetail } from './types'
 
 const { classNames } = Doraemon.util
 
@@ -24,14 +25,14 @@ class Navbar extends Doraemon {
   /**
    * 主题
    *
-   * @type {NavbarTheme}
+   * @type {PresetColor}
    * @memberof Navbar
    */
   @Prop({
     type: String,
     default: 'light',
   })
-  theme: NavbarTheme
+  color: PresetColor
 
   /**
    * 标题
@@ -70,9 +71,10 @@ class Navbar extends Doraemon {
   rightText: string
 
   get classes() {
-    const { prefixCls, theme } = this
+    const { prefixCls, color } = this
     const wrap = classNames(prefixCls, {
-      [`${prefixCls}--${theme}`]: theme,
+      ['dora-color']: color,
+      [`dora-color--${color}`]: color,
     })
 
     return {

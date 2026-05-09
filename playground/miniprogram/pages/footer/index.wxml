@@ -1,0 +1,11 @@
+<demo-page
+  darkmode="auto"
+  title="miniprogram.footer"
+  desc="miniprogram.footer"
+  clickable
+  spacing
+>
+  <demo-block title="Basic">
+    <dora-footer>miniprogram.footer</dora-footer>
+  </demo-block>
+</demo-page>

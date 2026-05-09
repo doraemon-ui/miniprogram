@@ -1,0 +1,32 @@
+<demo-page title="SwipeAction" desc="滑动操作" spacing>
+  <demo-block title="Have left and right buttons">
+    <dora-swipe-action autoClose left="{{ left }}" right="{{ right }}" bind:click="onClick">
+      <view style="padding: 24rpx; background: #fff;">Have left and right buttons</view>
+    </dora-swipe-action>
+  </demo-block>
+  <demo-block title="Only left buttons">
+    <dora-swipe-action autoClose left="{{ left }}">
+      <view style="padding: 24rpx; background: #fff;">Only left buttons</view>
+    </dora-swipe-action>
+  </demo-block>
+  <demo-block title="Only right buttons">
+    <dora-swipe-action autoClose right="{{ right }}">
+      <view style="padding: 24rpx; background: #fff;">Only right buttons</view>
+    </dora-swipe-action>
+  </demo-block>
+  <demo-block title="Use slots">
+    <dora-swipe-action autoClose useSlots>
+      <view slot="left">
+        <view style="height: 100%;display:flex;align-items:center;padding:0 24rpx;background:#108ee9;color:#fff;">
+          <dora-icon type="ios-heart" color="#fff" />
+        </view>
+      </view>
+      <view slot="right" bindtap="onShare">
+        <view style="height: 100%;display:flex;align-items:center;padding:0 24rpx;background:#f4333c;color:#fff;">
+          <dora-icon type="ios-share-alt" color="#fff" />
+        </view>
+      </view>
+      <view style="padding: 24rpx; background: #fff;">UseSlots</view>
+    </dora-swipe-action>
+  </demo-block>
+</demo-page>

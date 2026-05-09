@@ -1,7 +1,8 @@
 import type { ComponentPublicInstance } from '@doraemon-ui/miniprogram.core-js'
+import type { PresetColor } from '@doraemon-ui/miniprogram.shared'
 
 import type { Tabbar } from './index'
-import type { TabbarItem } from './tabbar-item'
+import type { TabbarItem } from './item'
 
 /**
  * TabbarPosition类型定义
@@ -82,10 +83,10 @@ export interface TabbarProps {
   controlled?: boolean
 
   /**
-   * theme
-   * @type {string}
+   * color
+   * @type {PresetColor}
    */
-  theme?: string
+  color?: PresetColor
 
   /**
    * backgroundColor
@@ -130,10 +131,10 @@ export interface TabbarItemProps {
   prefixCls?: string
 
   /**
-   * tabKey
+   * key
    * @type {string}
    */
-  tabKey?: string
+  key?: string
 
   /**
    * title
@@ -151,19 +152,14 @@ export interface TabbarItemProps {
 /**
  * TabbarItemExpose接口定义
  */
-export interface TabbarItemExpose {}
-
-/**
- * TabbarItemInternalMethods接口定义
- */
-export interface TabbarItemInternalMethods {
-  changeCurrent(current: boolean, index: string, theme: string, length: number): void
+export interface TabbarItemExpose {
+  changeCurrent(current: boolean, index: string, color: PresetColor, length: number): void
 }
 
 /**
  * TabbarItemInstance类型定义
  */
-export type TabbarItemInstance = ComponentPublicInstance<TabbarItem, TabbarItemProps, TabbarItemExpose> & TabbarItemInternalMethods
+export type TabbarItemInstance = ComponentPublicInstance<TabbarItem, TabbarItemProps, TabbarItemExpose>
 /**
  * TabbarInstance类型定义
  */

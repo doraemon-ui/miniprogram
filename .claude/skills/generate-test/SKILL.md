@@ -1,7 +1,7 @@
 ---
 name: generate-test
 description: 自动生成 miniprogram 组件测试文件。适用于需要编写基于 miniprogram 组件测试的开发者，特别是小程序组件的单元测试。
-allowed-tools: Bash(npm *), Read, Grep
+allowed-tools: Bash(npm *), Read, Grep, Write
 ---
 
 # 生成 miniprogram 组件测试文件

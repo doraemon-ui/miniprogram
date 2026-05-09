@@ -1,0 +1,33 @@
+<demo-page title="Slider" desc="滑动选择器" spacing>
+  <demo-block title="Default">
+    <dora-slider defaultValue="{{ [10] }}" />
+  </demo-block>
+
+  <demo-block title="Custom tip">
+    <dora-slider defaultValue="{{ [10] }}" tipFormatter="{d} %" />
+  </demo-block>
+
+  <demo-block title="Disabled">
+    <dora-slider defaultValue="{{ [10] }}" disabled />
+  </demo-block>
+
+  <demo-block title="Show value">
+    <dora-slider defaultValue="{{ [10] }}" showValue />
+  </demo-block>
+
+  <demo-block title="Step = 10">
+    <dora-slider defaultValue="{{ [10] }}" showValue step="{{ 10 }}" />
+  </demo-block>
+
+  <demo-block title="Controlled">
+    <dora-slider value="{{ value }}" controlled bind:change="onChange" bind:afterChange="afterChange" />
+  </demo-block>
+
+  <demo-block title="Range = 2">
+    <dora-slider defaultValue="{{ [10, 30] }}" />
+  </demo-block>
+
+  <demo-block title="Range = 3">
+    <dora-slider defaultValue="{{ [10, 30, 50] }}" />
+  </demo-block>
+</demo-page>

@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "Tabs",
+  "usingComponents": {
+    "demo-page": "@doraemon-ui/miniprogram.demo-page/index",
+    "demo-block": "@doraemon-ui/miniprogram.demo-block/index",
+    "dora-tabs": "@doraemon-ui/miniprogram.tabs/index",
+    "dora-tab": "@doraemon-ui/miniprogram.tabs/tab",
+    "dora-badge": "@doraemon-ui/miniprogram.badge/index"
+  }
+}

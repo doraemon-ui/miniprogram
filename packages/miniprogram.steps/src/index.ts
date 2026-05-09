@@ -14,14 +14,6 @@ import type { StepInstance } from './types'
       type: String,
       default: 'dora-steps',
     },
-    current: {
-      type: Number,
-      default: 0,
-    },
-    direction: {
-      type: String,
-      default: 'horizontal',
-    },
   },
 })
 class Steps extends Doraemon {
@@ -44,8 +36,8 @@ class Steps extends Doraemon {
   }
 
   private getChildrenSteps(): StepInstance[] {
-    const nodes = (this._renderProxy as any)?.getRelationNodes?.('./step') || []
-    return nodes.map((n: any) => n?.$component).filter(Boolean)
+    const nodes = this.$children as StepInstance[] || []
+    return nodes.filter(Boolean)
   }
 
   onChildrenChanged() {
@@ -55,7 +47,7 @@ class Steps extends Doraemon {
   updateCurrent() {
     const elements = this.getChildrenSteps()
     const { current, direction } = this
-    elements.forEach((element, index) => {
+    elements.forEach((element: StepInstance, index: number) => {
       element.updateCurrent({
         length: elements.length,
         index,

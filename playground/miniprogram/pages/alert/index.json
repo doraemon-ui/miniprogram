@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "Alert",
+  "usingComponents": {
+    "demo-page": "@doraemon-ui/miniprogram.demo-page/index",
+    "demo-block": "@doraemon-ui/miniprogram.demo-block/index",
+    "dora-alert": "@doraemon-ui/miniprogram.alert/index",
+    "dora-icon": "@doraemon-ui/miniprogram.icon/index"
+  }
+}

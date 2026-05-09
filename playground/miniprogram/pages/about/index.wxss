@@ -1,0 +1,59 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60rpx 0;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.userinfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.userinfo-avatar {
+    width: 128rpx;
+    height: 128rpx;
+    margin: 20rpx;
+    border-radius: 50%;
+}
+
+.userinfo-nickname {
+    color: rgba(0, 0, 0, .85);
+}
+
+.userinfo-desc {
+    color: rgba(0, 0, 0, .45);
+}
+
+.grid-box {
+    margin-bottom: 60rpx;
+}
+
+.grid-title {
+    font-size: 48rpx;
+    font-weight: 500;
+    color: rgba(0, 0, 0, .85);
+    margin-bottom: 20rpx;
+}
+
+.grid-desc {
+    display: flex;
+    font-size: 28rpx;
+    line-height: 1;
+    align-items: center;
+    color: rgba(0, 0, 0, .45);
+}
+
+.grid-icon {
+    width: 36rpx;
+    margin-right: 10rpx;
+}
+
+.icon {
+    width: 44rpx;
+    margin-right: 10rpx;
+}

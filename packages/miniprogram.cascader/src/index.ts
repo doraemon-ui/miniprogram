@@ -19,58 +19,6 @@ export function getDefaultFieldNames(): CascaderFieldNames {
       type: String,
       default: 'dora-cascader',
     },
-    defaultValue: {
-      type: Array,
-      default: () => [],
-    },
-    value: {
-      type: Array,
-      default: () => [],
-    },
-    controlled: {
-      type: Boolean,
-      default: false,
-    },
-    title: {
-      type: String,
-      default: '',
-    },
-    cancelText: {
-      type: String,
-      default: '取消',
-    },
-    confirmText: {
-      type: String,
-      default: '确定',
-    },
-    options: {
-      type: Array,
-      default: () => [],
-    },
-    full: {
-      type: Boolean,
-      default: false,
-    },
-    height: {
-      type: null,
-      default: 'auto',
-    },
-    chooseTitle: {
-      type: String,
-      default: '请选择',
-    },
-    visible: {
-      type: Boolean,
-      default: false,
-    },
-    skipAnimation: {
-      type: Boolean,
-      default: false,
-    },
-    defaultFieldNames: {
-      type: Object,
-      default: () => getDefaultFieldNames(),
-    },
   },
   expose: ['getValue', 'close'],
 })

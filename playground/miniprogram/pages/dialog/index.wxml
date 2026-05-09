@@ -1,0 +1,130 @@
+<demo-page
+  darkmode="auto"
+  title="Dialog"
+  desc="对话框"
+  clickable
+>
+  <demo-block title="基础用法">
+    <block>
+      <button class="button" bindtap="show">显示对话框</button>
+      <dora-dialog id="dora-dialog-show" />
+    </block>
+    <block>
+      <button class="button" bindtap="alert">显示警告框</button>
+      <dora-dialog id="dora-dialog-alert" />
+    </block>
+    <block>
+      <button class="button" bindtap="confirm">显示确认框</button>
+      <dora-dialog id="dora-dialog-confirm" />
+    </block>
+    <block>
+      <button class="button" bindtap="custom">自定义关闭操作</button>
+      <dora-dialog id="dora-dialog-custom" />
+    </block>
+  </demo-block>
+  <demo-block title="微信开放能力">
+    <block>
+      <button class="button" bindtap="getUserInfo">获取用户信息</button>
+      <dora-dialog id="dora-dialog-getUserInfo" />
+    </block>
+    <block>
+      <button class="button" bindtap="getPhoneNumber">获取用户手机号</button>
+      <dora-dialog id="dora-dialog-getPhoneNumber" />
+    </block>
+    <block>
+      <button class="button" bindtap="contact">打开客服会话</button>
+      <dora-dialog id="dora-dialog-contact" />
+    </block>
+    <block>
+      <button class="button" bindtap="openSetting">打开授权设置页</button>
+      <dora-dialog id="dora-dialog-openSetting" />
+    </block>
+    <block>
+      <button class="button" bindtap="launchApp">打开 APP</button>
+      <dora-dialog id="dora-dialog-launchApp" />
+    </block>
+  </demo-block>  
+  <demo-block title="声明式">
+    <block>
+      <button class="button" bindtap="onShow1">最简单的对话框</button>
+      <dora-dialog
+        title="天气箱"
+        buttonClosable
+        buttons="{{ [{ text: '哇嘎哒' }] }}"
+        visible="{{ visible1 }}"
+        bind:close="onClose1"
+        bind:closed="onClosed1"
+      />
+    </block>
+    <block>
+      <button class="button" bindtap="onShow2">只显示内容</button>
+      <dora-dialog
+        content="打开就下雨的☔️"
+        buttonClosable
+        buttons="{{ [{ text: '哇嘎哒' }] }}"
+        visible="{{ visible2 }}"
+        bind:close="onClose2"
+        bind:closed="onClosed2"
+      />
+    </block>
+    <block>
+      <button class="button" bindtap="onShow3">自定义内容区域</button>
+      <dora-dialog
+        title="注意"
+        buttonClosable
+        buttons="{{ [{ text: '哇嘎哒' }] }}"
+        visible="{{ visible3 }}"
+        bind:close="onClose3"
+        bind:closed="onClosed3"
+      >
+        <view style="text-align: left">
+          <view>超人手套是哆啦A梦的一个出现过数次的道具，戴上去之后就能发出很大的力量</view>
+          <view>使用方法见，<text style="color: #428cff">操作指引</text></view>
+        </view>
+      </dora-dialog>
+    </block>
+    <block>
+      <button class="button" bindtap="onShow4">有标题和图片</button>
+      <dora-dialog
+        image="http://cdn.skyvow.cn/ilove/static/wx_mini_qrcode.jpg"
+        title="iLove恋爱小事"
+        content="记录您的幸福瞬间 & 传递爱的讯息！快邀请你的另一半，一起来体验吧~"
+        buttonClosable
+        buttons="{{ [{ text: '哇嘎哒' }] }}"
+        visible="{{ visible4 }}"
+        bind:close="onClose4"
+        bind:closed="onClosed4"
+      />
+    </block>
+    <block>
+      <button class="button" bindtap="onShow5">超长文本</button>
+      <dora-dialog
+        title="哆啦A梦生气了"
+        buttonClosable
+        buttons="{{ [{ text: '哇嘎哒' }] }}"
+        visible="{{ visible5 }}"
+        bind:close="onClose5"
+        bind:closed="onClosed5"
+      >
+        <scroll-view scroll-y="true" style="height: 30vh">
+          <block wx:for="{{ content5 }}" wx:key="index">
+            <view style="margin: 10px 0; text-align: left;">{{ item }}</view>
+          </block>
+        </scroll-view>
+      </dora-dialog>
+    </block>
+    <block>
+      <button class="button" bindtap="onShow6">垂直按钮</button>
+      <dora-dialog
+        title="哆啦A梦常用道具"
+        content="所有道具中明确出现次数最多的是哪一款？"
+        buttonClosable
+        verticalButtons
+        buttons="{{ [{ text: '竹蜻蜓', bold: true }, { text: '时光机', bold: true }, { text: '任意门', type: 'assertive' }] }}"
+        visible="{{ visible6 }}"
+        bind:close="onClose6"
+        bind:closed="onClosed6"
+      />
+    </block>
+  </demo-block>
+</demo-page>

@@ -4,30 +4,12 @@ const { classNames } = Doraemon.util
 
 @Component({
   props: {
+
     prefixCls: {
       type: String,
       default: 'dora-divider',
     },
-    position: {
-      type: String,
-      default: 'center',
-    },
-    dashed: {
-      type: Boolean,
-      default: false,
-    },
-    text: {
-      type: String,
-      default: '',
-    },
-    showText: {
-      type: Boolean,
-      default: true,
-    },
-    direction: {
-      type: String,
-      default: 'horizontal',
-    },
+  
   },
 })
 class Divider extends Doraemon {

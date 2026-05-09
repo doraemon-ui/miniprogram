@@ -1,5 +1,5 @@
 <demo-page title="Switch" desc="滑动开关" spacing>
-  <demo-block title="Themes">
+  <demo-block title="Colors">
     <dora-switch color="light" value="{{ value1 }}" bind:change="onChange1" />
     <dora-switch color="stable" value="{{ value1 }}" bind:change="onChange1" />
     <dora-switch color="positive" value="{{ value1 }}" bind:change="onChange1" />

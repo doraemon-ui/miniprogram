@@ -32,6 +32,7 @@ import type { FloatingPanelProps } from './components/floating-panel/types'
 import type { FooterProps } from './components/footer/types'
 import type { FormProps } from './components/form/types'
 import type { GalleryProps } from './components/gallery/types'
+import type { GridItemProps } from './components/grid-item/types'
 import type { GridProps } from './components/grid/types'
 import type { IconProps } from './components/icon/types'
 import type { ImageProps } from './components/image/types'
@@ -137,6 +138,7 @@ declare global {
       'dora-footer': FooterProps
       'dora-form': FormProps
       'dora-gallery': GalleryProps
+      'dora-grid-item': GridItemProps
       'dora-grid': GridProps
       'dora-icon': IconProps
       'dora-image': ImageProps

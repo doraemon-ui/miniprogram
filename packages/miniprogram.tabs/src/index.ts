@@ -1,7 +1,8 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+import { defineComponentHOC, Doraemon, Component, Watch } from '@doraemon-ui/miniprogram.core-js'
 import { useRef } from '@doraemon-ui/miniprogram.shared'
-import type { MiniprogramPublicInstance } from '@doraemon-ui/miniprogram.shared'
-import type { ActiveLineMode, TabContext, TabInstance, TabsChangeDetail, TabsDirection, TabsTheme } from './types'
+import type { PresetColor } from '@doraemon-ui/miniprogram.shared'
+import type { ActiveLineMode, TabContext, TabInstance, TabsChangeDetail, TabsDirection } from './types'
+import { tabsProps } from './props'
 
 const { classNames, styleToCssString } = Doraemon.util
 
@@ -27,44 +28,7 @@ const getActiveKey = (elements: Array<{ key: string; disabled?: boolean }>, acti
       observer: 'onChildrenChanged',
     }),
   },
-  props: {
-    prefixCls: {
-      type: String,
-      default: 'dora-tabs',
-    },
-    defaultCurrent: {
-      type: String,
-      default: '',
-    },
-    current: {
-      type: String,
-      default: '',
-    },
-    scroll: {
-      type: Boolean,
-      default: false,
-    },
-    controlled: {
-      type: Boolean,
-      default: false,
-    },
-    theme: {
-      type: String,
-      default: 'balanced',
-    },
-    direction: {
-      type: String,
-      default: 'horizontal',
-    },
-    justify: {
-      type: String,
-      default: 'space-around',
-    },
-    activeLineMode: {
-      type: String,
-      default: 'auto',
-    },
-  },
+  props: tabsProps,
   expose: ['setActiveKey'],
 })
 class Tabs extends Doraemon {
@@ -76,11 +40,13 @@ class Tabs extends Doraemon {
    */
   prefixCls!: string
 
-  @Prop({
-    type: String,
-    default: '',
-  })
-  defaultCurrent: string
+  /**
+   * 默认当前激活项
+   *
+   * @type {string}
+   * @memberof Tabs
+   */
+  defaultCurrent!: string
 
   /**
    * 当前激活项
@@ -88,11 +54,7 @@ class Tabs extends Doraemon {
    * @type {string}
    * @memberof Tabs
    */
-  @Prop({
-    type: String,
-    default: '',
-  })
-  current: string
+  current!: string
 
   /**
    * 是否可滚动
@@ -100,11 +62,7 @@ class Tabs extends Doraemon {
    * @type {boolean}
    * @memberof Tabs
    */
-  @Prop({
-    type: Boolean,
-    default: false,
-  })
-  scroll: boolean
+  scroll!: boolean
 
   /**
    * 是否受控
@@ -112,23 +70,15 @@ class Tabs extends Doraemon {
    * @type {boolean}
    * @memberof Tabs
    */
-  @Prop({
-    type: Boolean,
-    default: false,
-  })
-  controlled: boolean
+  controlled!: boolean
 
   /**
    * 主题
    *
-   * @type {TabsTheme}
+   * @type {PresetColor}
    * @memberof Tabs
    */
-  @Prop({
-    type: String,
-    default: 'balanced',
-  })
-  theme: TabsTheme
+  color!: PresetColor
 
   /**
    * 方向
@@ -136,11 +86,7 @@ class Tabs extends Doraemon {
    * @type {TabsDirection}
    * @memberof Tabs
    */
-  @Prop({
-    type: String,
-    default: 'horizontal',
-  })
-  direction: TabsDirection
+  direction!: TabsDirection
 
   /**
    * 对齐方式
@@ -148,11 +94,7 @@ class Tabs extends Doraemon {
    * @type {string}
    * @memberof Tabs
    */
-  @Prop({
-    type: String,
-    default: 'space-around',
-  })
-  justify: string
+  justify!: string
 
   /**
    * 激活线模式
@@ -160,11 +102,7 @@ class Tabs extends Doraemon {
    * @type {ActiveLineMode}
    * @memberof Tabs
    */
-  @Prop({
-    type: String,
-    default: 'auto',
-  })
-  activeLineMode: ActiveLineMode
+  activeLineMode!: ActiveLineMode
 
   activeKey: string = ''
   keys: Array<{ key: string; title: string; disabled: boolean }> = []
@@ -206,20 +144,19 @@ class Tabs extends Doraemon {
     }
   }
 
-  tabsContainerRef() {
+  async tabsContainerRef() {
     const prefixCls = this.prefixCls
-    return useRef(`.${prefixCls}__scroll-view`, this._renderProxy as unknown as MiniprogramPublicInstance).then((container: any) => {
-      return {
-        containerWidth: container.width,
-        containerHeight: container.height,
-        containerScrollWidth: container.scrollWidth,
-        containerScrollHeight: container.scrollHeight,
-        containerScrollLeft: container.scrollLeft,
-        containerScrollTop: container.scrollTop,
-        containerOffsetX: container.left,
-        containerOffsetY: container.top,
-      }
-    })
+    const container = await useRef(`.${prefixCls}__scroll-view`, this._renderProxy)
+    return {
+      containerWidth: container.width,
+      containerHeight: container.height,
+      containerScrollWidth: container.scrollWidth,
+      containerScrollHeight: container.scrollHeight,
+      containerScrollLeft: container.scrollLeft,
+      containerScrollTop: container.scrollTop,
+      containerOffsetX: container.left,
+      containerOffsetY: container.top,
+    }
   }
 
   onScrollFix() {
@@ -294,18 +231,12 @@ class Tabs extends Doraemon {
     }
   }
 
-  private getChildrenTabs(): TabInstance[] {
-    const nodes = (this._renderProxy as any)?.getRelationNodes?.('./tab') || []
-    return nodes.map((n: any) => n?.$component).filter(Boolean)
-  }
-
   onChildrenChanged() {
-    // 关系节点变动时，刷新 keys 和 active 状态
     this.updated(this.activeKey)
   }
 
   updated(value: string = this.activeKey) {
-    const children = this.getChildrenTabs()
+    const children = this.$children as TabInstance[]
     const elements = children.map((c) => ({ key: c.key, title: c.title, disabled: !!c.disabled }))
     const activeKey = getActiveKey(elements, value) || ''
 
@@ -316,7 +247,7 @@ class Tabs extends Doraemon {
 
     const context: TabContext = {
       scroll: this.scroll,
-      theme: this.theme,
+      color: this.color,
       direction: this.direction,
       activeLineMode: this.activeLineMode,
     }
@@ -349,7 +280,7 @@ class Tabs extends Doraemon {
 
   setStyles(justify: string) {
     if (this.direction === 'horizontal') {
-      const scrollViewStyle = styleToCssString({ 'justify-content': justify } as any)
+      const scrollViewStyle = styleToCssString({ 'justify-content': justify })
       if (this.scrollViewStyle !== scrollViewStyle) {
         this.scrollViewStyle = scrollViewStyle
       }

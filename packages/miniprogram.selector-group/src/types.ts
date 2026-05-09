@@ -1,4 +1,5 @@
 import type { ComponentPublicInstance } from '@doraemon-ui/miniprogram.core-js'
+import type { PresetColor } from '@doraemon-ui/miniprogram.shared'
 
 import type { SelectorGroup } from './index'
 
@@ -107,11 +108,11 @@ export interface SelectorGroupProps {
   prefixCls?: string
 
   /**
-   * 主题
+   * 颜色
    *
-   * @type {string}
+   * @type {PresetColor}
    */
-  theme?: string
+  color?: PresetColor
 
   /**
    * 形状

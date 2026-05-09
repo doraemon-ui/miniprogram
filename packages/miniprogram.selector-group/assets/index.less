@@ -1,40 +1,35 @@
 @import './variables.less';
 
-.selector-group(@theme, @color) {
-  &--@{theme} &__grid-item--current {
-    color: @color;
-    background-color: fade(lighten(@color, 30%), 40%);
-  }
-
-  &--@{theme} &__check-mark {
-    border-bottom-color: @color;
-    border-right-color: @color;
-  }
-}
-
+// Selector styles
+// @prop --activated-text-color: Text color of the selected item
+// @prop --activated-background-color: Background color of the selected item
+// @prop --check-mark-color: Color of the check mark
+// -----------------------------
 .@{selector-group-prefix-cls} {
   --selector-group-columns: 3;
-  --selector-group-column-gap: 16rpx;
+  --selector-group-column-gap: 8px;
 
   overflow: hidden;
-  font-size: var(--dora-font-size-md, 28rpx);
+  font-size: var(--dora-font-size-md, 14px);
   line-height: var(--dora-line-height-md, 1.5);
+
+  .selector-color(#get-color(positive)[]);
 
   &__grid {
     display: grid;
-    grid-column-gap: var(--selector-group-column-gap, 16rpx);
-    column-gap: var(--selector-group-column-gap, 16rpx);
-    grid-row-gap: var(--selector-group-column-gap, 16rpx);
-    row-gap: var(--selector-group-column-gap, 16rpx);
+    grid-column-gap: var(--selector-group-column-gap, 8px);
+    column-gap: var(--selector-group-column-gap, 8px);
+    grid-row-gap: var(--selector-group-column-gap, 8px);
+    row-gap: var(--selector-group-column-gap, 8px);
     grid-template-columns: repeat(var(--selector-group-columns, 3), minmax(0, 1fr));
     align-items: stretch;
 
     &-item {
-      padding: 16rpx 32rpx;
+      padding: 8px 16px;
       position: relative;
       background-color: var(--dora-bg-color, #f7f7f7);
       border: none;
-      border-radius: var(--dora-radius-sm, 8rpx);
+      border-radius: var(--dora-radius-sm, 4px);
       color: var(--dora-color-title, #333);
       opacity: 1;
       display: inline-block;
@@ -43,7 +38,7 @@
       vertical-align: top;
 
       &--rounded {
-        border-radius: 9999rpx;
+        border-radius: 4999.50px;
       }
 
       &--rectangular {
@@ -51,8 +46,8 @@
       }
 
       &--current {
-        color: var(--dora-color-primary, #33cd5f);
-        background-color: fade(lighten(#33cd5f, 30%), 40%);
+        color: var(--activated-text-color);
+        background-color: var(--activated-background-color);
         border: none;
       }
 
@@ -63,7 +58,7 @@
   }
 
   &__desc {
-    font-size: var(--dora-font-size-sm, 24rpx);
+    font-size: var(--dora-font-size-sm, 12px);
     color: var(--dora-color-text-secondary, #999);
   }
 
@@ -74,17 +69,17 @@
     bottom: 0;
     width: 0;
     height: 0;
-    border-top: 16rpx solid transparent;
-    border-bottom: 16rpx solid #33cd5f;
-    border-left: 20rpx solid transparent;
-    border-right: 20rpx solid #33cd5f;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid var(--check-mark-color);
+    border-left: 10px solid transparent;
+    border-right: 10px solid var(--check-mark-color);
 
     &-icon {
       position: absolute;
       left: 0;
       top: 0;
-      height: 12rpx;
-      width: 16rpx;
+      height: 6px;
+      width: 8px;
     }
   }
 
@@ -103,13 +98,14 @@
     border: 0 none;
   }
 
-  .selector-group(light, #ddd);
-  .selector-group(stable, #b2b2b2);
-  .selector-group(positive, #387ef5);
-  .selector-group(calm, #11c1f3);
-  .selector-group(assertive, #ef473a);
-  .selector-group(balanced, #33cd5f);
-  .selector-group(energized, #ffc900);
-  .selector-group(royal, #886aea);
-  .selector-group(dark, #444);
+  // Selector Colors
+  &.@{dora-prefix}-color {
+    .selector-color(#current-color(base)[]);
+  }
+}
+
+.selector-color(@bg-color) {
+  --activated-text-color: @bg-color;
+  --activated-background-color: fade(lighten(@bg-color, 30%), 40%);
+  --check-mark-color: @bg-color;
 }

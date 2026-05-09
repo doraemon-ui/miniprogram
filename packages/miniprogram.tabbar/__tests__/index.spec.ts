@@ -43,7 +43,7 @@ describe('Tabbar', () => {
   test('should update active key safely', () => {
     const wrapper = simulate.render(id, {
       defaultCurrent: '1',
-      theme: 'positive',
+      color: 'positive',
     })
     wrapper.attach(document.createElement('parent-wrapper'))
     const comp = wrapper.instance as any

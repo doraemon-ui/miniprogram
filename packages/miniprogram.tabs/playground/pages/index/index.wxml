@@ -3,73 +3,92 @@
   title="Tabs"
   desc="标签页"
   clickable
-  spacing
 >
-  <demo-block title="Default">
+  <demo-block padding="0" title="Default">
     <dora-tabs defaultCurrent="tab1">
-      <dora-tab key="tab1" title="Tab 1" bind:click="onTabClick"></dora-tab>
-      <dora-tab key="tab2" title="Tab 2" bind:click="onTabClick"></dora-tab>
-      <dora-tab key="tab3" title="Tab 3" bind:click="onTabClick"></dora-tab>
+      <dora-tab key="tab1" title="Tab 1"></dora-tab>
+      <dora-tab key="tab2" title="Tab 2"></dora-tab>
+      <dora-tab key="tab3" title="Tab 3"></dora-tab>
     </dora-tabs>
   </demo-block>
 
-  <demo-block title="Theme = positive">
-    <dora-tabs defaultCurrent="tab2" theme="positive">
-      <dora-tab key="tab1" title="Tab 1" bind:click="onTabClick"></dora-tab>
-      <dora-tab key="tab2" title="Tab 2" bind:click="onTabClick"></dora-tab>
-      <dora-tab key="tab3" title="Tab 3" bind:click="onTabClick"></dora-tab>
+  <demo-block padding="0" title="Color = balanced">
+    <dora-tabs defaultCurrent="tab2" color="balanced">
+      <dora-tab key="tab1" title="Tab 1"></dora-tab>
+      <dora-tab key="tab2" title="Tab 2"></dora-tab>
+      <dora-tab key="tab3" title="Tab 3"></dora-tab>
     </dora-tabs>
   </demo-block>
 
-  <demo-block title="ActiveLineMode = full">
+  <demo-block padding="0" title="ActiveLineMode = full">
     <dora-tabs defaultCurrent="tab3" activeLineMode="full">
-      <dora-tab key="tab1" title="Tab 1" bind:click="onTabClick"></dora-tab>
-      <dora-tab key="tab2" title="Tab 2" bind:click="onTabClick"></dora-tab>
-      <dora-tab key="tab3" title="Tab 3" bind:click="onTabClick"></dora-tab>
+      <dora-tab key="tab1" title="Tab 1"></dora-tab>
+      <dora-tab key="tab2" title="Tab 2"></dora-tab>
+      <dora-tab key="tab3" title="Tab 3"></dora-tab>
     </dora-tabs>
   </demo-block>
 
-  <demo-block title="Direction = vertical">
+  <demo-block padding="0" title="Direction = vertical">
     <dora-tabs defaultCurrent="tab1" direction="vertical">
-      <dora-tab key="tab1" title="Tab 1" bind:click="onTabClick"></dora-tab>
-      <dora-tab key="tab2" title="Tab 2" bind:click="onTabClick"></dora-tab>
-      <dora-tab key="tab3" title="Tab 3" bind:click="onTabClick"></dora-tab>
+      <dora-tab key="tab1" title="Tab 1"></dora-tab>
+      <dora-tab key="tab2" title="Tab 2"></dora-tab>
+      <dora-tab key="tab3" title="Tab 3"></dora-tab>
     </dora-tabs>
   </demo-block>
 
-  <demo-block title="Disabled tab">
+  <demo-block padding="0" title="Disabled tab">
     <dora-tabs defaultCurrent="tab1">
-      <dora-tab key="tab1" title="Tab 1" bind:click="onTabClick"></dora-tab>
-      <dora-tab disabled key="tab2" title="Tab 2" bind:click="onTabClick"></dora-tab>
-      <dora-tab key="tab3" title="Tab 3" bind:click="onTabClick"></dora-tab>
+      <dora-tab key="tab1" title="Tab 1"></dora-tab>
+      <dora-tab disabled key="tab2" title="Tab 2"></dora-tab>
+      <dora-tab key="tab3" title="Tab 3"></dora-tab>
     </dora-tabs>
   </demo-block>
 
-  <demo-block title="Controlled + Scroll">
+  <demo-block padding="0" title="Controlled + Scroll">
     <dora-tabs controlled scroll current="{{ current }}" bind:change="onChange">
-      <dora-tab key="tab1" title="Tab 1" bind:click="onTabClick"></dora-tab>
-      <dora-tab key="tab2" title="Tab 2" bind:click="onTabClick"></dora-tab>
-      <dora-tab key="tab3" title="Tab 3" bind:click="onTabClick"></dora-tab>
-      <dora-tab key="tab4" title="Tab 4" bind:click="onTabClick"></dora-tab>
-      <dora-tab key="tab5" title="Tab 5" bind:click="onTabClick"></dora-tab>
-      <dora-tab key="tab6" title="Tab 6" bind:click="onTabClick"></dora-tab>
-      <dora-tab key="tab7" title="Tab 7" bind:click="onTabClick"></dora-tab>
-      <dora-tab key="tab8" title="Tab 8" bind:click="onTabClick"></dora-tab>
-      <dora-tab key="tab9" title="Tab 9" bind:click="onTabClick"></dora-tab>
+      <dora-tab key="tab1" title="Tab 1"></dora-tab>
+      <dora-tab key="tab2" title="Tab 2"></dora-tab>
+      <dora-tab key="tab3" title="Tab 3"></dora-tab>
+      <dora-tab key="tab4" title="Tab 4"></dora-tab>
+      <dora-tab key="tab5" title="Tab 5"></dora-tab>
+      <dora-tab key="tab6" title="Tab 6"></dora-tab>
+      <dora-tab key="tab7" title="Tab 7"></dora-tab>
+      <dora-tab key="tab8" title="Tab 8"></dora-tab>
+      <dora-tab key="tab9" title="Tab 9"></dora-tab>
     </dora-tabs>
   </demo-block>
 
-  <demo-block title="Badge">
+  <demo-block padding="0" title="Badge">
     <dora-tabs controlled current="{{ current }}" bind:change="onChange">
-      <dora-tab key="tab1" bind:click="onTabClick">
+      <dora-tab key="tab1">
         <dora-badge count="3">Tab 1</dora-badge>
       </dora-tab>
-      <dora-tab key="tab2" bind:click="onTabClick">
+      <dora-tab key="tab2">
         <dora-badge count="1024">Tab 2</dora-badge>
       </dora-tab>
-      <dora-tab key="tab3" bind:click="onTabClick">
+      <dora-tab key="tab3">
         <dora-badge dot>Tab 3</dora-badge>
       </dora-tab>
     </dora-tabs>
+  </demo-block>
+
+  <demo-block padding="0" title="With Swiper">
+    <dora-tabs
+      dora-class="bordered"
+      controlled
+      current="{{ key }}"
+      bindchange="onTabsChange"
+    >
+      <block wx:for="{{ tabs }}" wx:key="key">
+        <dora-tab key="{{ item.key }}" title="{{ item.title }}"></dora-tab>
+      </block>
+    </dora-tabs>
+    <swiper current="{{ index }}" bindchange="onSwiperChange">
+      <block wx:for="{{ tabs }}" wx:key="key">
+        <swiper-item>
+          <view class="content">{{ item.content }}</view>
+        </swiper-item>
+      </block>
+    </swiper>
   </demo-block>
 </demo-page>

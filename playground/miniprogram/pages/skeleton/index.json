@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "Skeleton",
+  "usingComponents": {
+    "demo-page": "@doraemon-ui/miniprogram.demo-page/index",
+    "demo-block": "@doraemon-ui/miniprogram.demo-block/index",
+    "dora-skeleton": "@doraemon-ui/miniprogram.skeleton/index",
+    "dora-skeleton-avatar": "@doraemon-ui/miniprogram.skeleton/skeleton-avatar",
+    "dora-skeleton-paragraph": "@doraemon-ui/miniprogram.skeleton/skeleton-paragraph",
+    "dora-row": "@doraemon-ui/miniprogram.layout/index",
+    "dora-col": "@doraemon-ui/miniprogram.layout/col"
+  }
+}

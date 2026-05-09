@@ -1,0 +1,13 @@
+<dora-landscape visible="{{ visible1 }}" bind:close="onClose1">
+  <image src="http://cdn.skyvow.cn/redpacket.png" style="height: 700rpx;" />
+</dora-landscape>
+<dora-landscape visible="{{ visible2 }}" bind:close="onClose2" mask="{{ false }}">
+  <image src="http://cdn.skyvow.cn/redpacket.png" style="height: 700rpx;" />
+</dora-landscape>
+
+<demo-page darkmode="auto" title="Landscape" desc="压屏窗" clickable spacing>
+  <demo-block title="Actions">
+    <dora-button block type="light" bind:click="onOpen1">Default</dora-button>
+    <dora-button block type="light" bind:click="onOpen2">No mask</dora-button>
+  </demo-block>
+</demo-page>

@@ -2,15 +2,21 @@
 @import '../../@doraemon-ui/style/color.wxss';
 .dora-segmented-control {
   display: flex;
-  border-radius: 10rpx;
+  border-radius: var(--dora-border-radius-sm, 4px);
+  border-radius: var(--dora-border-radius-sm, 4px);
   overflow: hidden;
-  min-height: 54rpx;
+  min-height: var(--dora-segmented-control-size, 27px);
+  min-height: var(--dora-segmented-control-size, 27px);
   opacity: 1;
-  margin: 0 0 20rpx;
+  margin: 0 0 9px;
+  --text-color: var(--dora-color-positive, #3880ff);
+  --border-color: var(--dora-color-positive, #3880ff);
+  --activated-background-color: var(--dora-color-positive, #3880ff);
 }
 
 .dora-segmented-control--disabled {
-  opacity: 0.45;
+  opacity: var(--dora-disabled-opacity, 0.3);
+  opacity: var(--dora-disabled-opacity, 0.3);
 }
 
 .dora-segmented-control__item {
@@ -18,12 +24,17 @@
   flex: 1;
   justify-content: center;
   align-items: center;
-  color: #33cd5f;
-  font-size: 28rpx;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--border-color);
+  border-color: var(--border-color);
+  color: var(--text-color);
+  color: var(--text-color);
+  font-size: var(--dora-segmented-control-font-size, 14px);
+  font-size: var(--dora-segmented-control-font-size, 14px);
   line-height: 1;
   transition: background 0.3s;
   position: relative;
-  border: 1px solid #33cd5f;
   width: 100%;
   box-sizing: border-box;
   border-left-width: 0;
@@ -31,104 +42,24 @@
 
 .dora-segmented-control__item:first-child {
   border-left-width: 1px;
-  border-radius: 10rpx 0 0 10rpx;
+  border-radius: var(--dora-border-radius-sm, 4px)0 0 var(--dora-border-radius-sm, 4px);
+  border-radius: var(--dora-border-radius-sm, 4px)0 0 var(--dora-border-radius-sm, 4px);
 }
 
 .dora-segmented-control__item:last-child {
-  border-radius: 0 10rpx 10rpx 0;
+  border-radius: 0 var(--dora-border-radius-sm, 4px) var(--dora-border-radius-sm, 4px)0;
+  border-radius: 0 var(--dora-border-radius-sm, 4px) var(--dora-border-radius-sm, 4px)0;
 }
 
 .dora-segmented-control__item--current {
-  background: #33cd5f;
-  color: #fff;
+  background: var(--activated-background-color);
+  background: var(--activated-background-color);
+  color: var(--dora-white, #fff);
+  color: var(--dora-white, #fff);
 }
 
-.dora-segmented-control--light .dora-segmented-control__item {
-  color: #ddd;
-  border-color: #ddd;
-}
-
-.dora-segmented-control--light .dora-segmented-control__item--current {
-  background: #ddd;
-  color: #fff;
-}
-
-.dora-segmented-control--stable .dora-segmented-control__item {
-  color: #ddd;
-  border-color: #ddd;
-}
-
-.dora-segmented-control--stable .dora-segmented-control__item--current {
-  background: #ddd;
-  color: #fff;
-}
-
-.dora-segmented-control--positive .dora-segmented-control__item {
-  color: #0faeff;
-  border-color: #0faeff;
-}
-
-.dora-segmented-control--positive .dora-segmented-control__item--current {
-  background: #0faeff;
-  color: #fff;
-}
-
-.dora-segmented-control--calm .dora-segmented-control__item {
-  color: #11c1f3;
-  border-color: #11c1f3;
-}
-
-.dora-segmented-control--calm .dora-segmented-control__item--current {
-  background: #11c1f3;
-  color: #fff;
-}
-
-.dora-segmented-control--assertive .dora-segmented-control__item {
-  color: #ef473a;
-  border-color: #ef473a;
-}
-
-.dora-segmented-control--assertive .dora-segmented-control__item--current {
-  background: #ef473a;
-  color: #fff;
-}
-
-.dora-segmented-control--balanced .dora-segmented-control__item {
-  color: #33cd5f;
-  border-color: #33cd5f;
-}
-
-.dora-segmented-control--balanced .dora-segmented-control__item--current {
-  background: #33cd5f;
-  color: #fff;
-}
-
-.dora-segmented-control--energized .dora-segmented-control__item {
-  color: #ffc900;
-  border-color: #ffc900;
-}
-
-.dora-segmented-control--energized .dora-segmented-control__item--current {
-  background: #ffc900;
-  color: #fff;
-}
-
-.dora-segmented-control--royal .dora-segmented-control__item {
-  color: #886aea;
-  border-color: #886aea;
-}
-
-.dora-segmented-control--royal .dora-segmented-control__item--current {
-  background: #886aea;
-  color: #fff;
-}
-
-.dora-segmented-control--dark .dora-segmented-control__item {
-  color: #444;
-  border-color: #444;
-}
-
-.dora-segmented-control--dark .dora-segmented-control__item--current {
-  background: #444;
-  color: #fff;
+.dora-segmented-control.dora-color {
+  --text-color: var(--dora-color-base);
+  --border-color: var(--dora-color-base);
+  --activated-background-color: var(--dora-color-base);
 }

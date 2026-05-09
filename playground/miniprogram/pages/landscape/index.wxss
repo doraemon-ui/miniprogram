@@ -1,0 +1,6 @@
+.popup__button {
+  display: block;
+  flex: 1;
+  color: #33cd5f;
+  position: relative;
+}

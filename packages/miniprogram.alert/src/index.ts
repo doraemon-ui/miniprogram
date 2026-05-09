@@ -32,16 +32,16 @@ class Alert extends Doraemon {
   classNames: string
 
   /**
-   * 主题色
+   * 颜色
    *
    * @type {PresetColor}
    * @memberof Alert
    */
   @Prop({
     type: String,
-    default: 'balanced',
+    default: 'positive',
   })
-  theme: PresetColor
+  color: PresetColor
 
   /**
    * 缩略图
@@ -97,9 +97,11 @@ class Alert extends Doraemon {
   visible: boolean = true
 
   get classes() {
-    const { prefixCls, theme } = this
+    const { prefixCls, color } = this
     const wrap = classNames(prefixCls, {
-      [`${prefixCls}--${theme}`]: theme,
+      [`${prefixCls}--${color}`]: color,
+      ['dora-color']: !!color,
+      [`dora-color--${color}`]: !!color,
     })
     const hd = `${prefixCls}__hd`
     const thumb = `${prefixCls}__thumb`

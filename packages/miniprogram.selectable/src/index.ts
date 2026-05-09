@@ -21,58 +21,12 @@ const isPresetColor = (color: string) => {
 
 @Component({
   props: {
+
     prefixCls: {
       type: String,
       default: 'dora-selectable',
     },
-    type: {
-      type: String,
-      default: 'checkbox',
-    },
-    value: {
-      type: String,
-      default: '',
-    },
-    defaultChecked: {
-      type: Boolean,
-      default: false,
-    },
-    checked: {
-      type: Boolean,
-      default: false,
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    readOnly: {
-      type: Boolean,
-      default: false,
-    },
-    color: {
-      type: String,
-      default: 'balanced',
-    },
-    controlled: {
-      type: Boolean,
-      default: false,
-    },
-    wrapStyle: {
-      type: null,
-      default: '',
-    },
-    iconSize: {
-      type: String,
-      default: '',
-    },
-    iconOn: {
-      type: String,
-      default: '',
-    },
-    iconOff: {
-      type: String,
-      default: '',
-    },
+  
   },
 })
 class Selectable extends Doraemon {

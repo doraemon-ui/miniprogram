@@ -1,15 +1,9 @@
 @import './variables.less';
 
-.tab-style(@theme, @color) {
-  &--@{theme} &-bar {
-    background: @color;
-  }
-
-  &--@{theme}&--current {
-    color: @color;
-  }
-}
-
+// Tab styles
+// @prop --activated-text-color: Text color of the tab when pressed
+// @prop --background-color: Background color of the tab
+// -----------------------------
 .@{tabs-prefix-cls} {
   &__tab {
     flex: 1;
@@ -24,6 +18,8 @@
     padding: 0 @tabs-scrolling-size;
     cursor: pointer;
 
+    .tab-color(#get-color(positive)[]);
+
     &-bar {
       display: block;
       width: calc(~'100%' - @tabs-scrolling-size * 2);
@@ -32,7 +28,7 @@
       position: absolute;
       bottom: 0;
       left: @tabs-scrolling-size;
-      background: @tabs-bar-balanced-bg;
+      background: var(--background-color);
       border-radius: @tabs-bar-size;
 
       &--full {
@@ -53,7 +49,7 @@
     }
 
     &--current {
-      color: @tabs-bar-balanced-bg;
+      color: var(--activated-text-color);
     }
 
     &--horizontal&--scroll {
@@ -66,14 +62,16 @@
       cursor: not-allowed;
     }
 
-    .tab-style(light, @tabs-bar-light-bg);
-    .tab-style(stable, @tabs-bar-stable-bg);
-    .tab-style(positive, @tabs-bar-positive-bg);
-    .tab-style(calm, @tabs-bar-calm-bg);
-    .tab-style(assertive, @tabs-bar-assertive-bg);
-    .tab-style(balanced, @tabs-bar-balanced-bg);
-    .tab-style(energized, @tabs-bar-energized-bg);
-    .tab-style(royal, @tabs-bar-royal-bg);
-    .tab-style(dark, @tabs-bar-dark-bg);
+    // Tab Colors
+    &.@{dora-prefix}-color {
+      .tab-color(#current-color(base)[]);
+    }
   }
+}
+
+.tab-color(
+@bg-color,
+) {
+  --activated-text-color: @bg-color;
+  --background-color: @bg-color;
 }

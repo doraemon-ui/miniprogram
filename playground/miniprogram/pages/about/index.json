@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "About",
+  "usingComponents": {
+    "dora-list": "@doraemon-ui/miniprogram.list/index",
+    "dora-list-item": "@doraemon-ui/miniprogram.list/item"
+  }
+}

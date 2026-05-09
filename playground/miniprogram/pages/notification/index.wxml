@@ -1,0 +1,11 @@
+<demo-page
+  darkmode="auto"
+  title="miniprogram.notification"
+  desc="miniprogram.notification"
+  clickable
+  spacing
+>
+  <demo-block title="Basic">
+    <dora-notification>miniprogram.notification</dora-notification>
+  </demo-block>
+</demo-page>

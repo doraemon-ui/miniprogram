@@ -1,0 +1,17 @@
+<demo-page
+  darkmode="auto"
+  title="Calendar"
+  desc="日历"
+  clickable
+  spacing
+>
+  <dora-calendar id="dora-calendar" />
+  <demo-block title="Calendar">
+    <dora-list>
+      <dora-list-item title="单选" extra="{{ displayValue1 }}" bind:click="openCalendar1" is-link />
+      <dora-list-item title="多选" extra="{{ displayValue2 }}" bind:click="openCalendar2" is-link />
+      <dora-list-item title="Direction = Vertical" extra="{{ displayValue3 }}" bind:click="openCalendar3" is-link />
+      <dora-list-item title="MinDate & MaxDate" extra="{{ displayValue4 }}" bind:click="openCalendar4" is-link />
+    </dora-list>
+  </demo-block>
+</demo-page>

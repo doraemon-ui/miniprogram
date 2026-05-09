@@ -1,0 +1,27 @@
+<demo-page
+  darkmode="auto"
+  title="Timeago"
+  desc="多久之前"
+  clickable
+  spacing
+>
+  <demo-block title="切换语言">
+    <dora-segmented-control values="{{ langs }}" bind:change="onChange" />
+  </demo-block>
+
+  <demo-block title="默认">
+    <dora-timeago to="{{ to }}" lang="{{ lang }}" />
+  </demo-block>
+
+  <demo-block title="自动刷新">
+    <dora-timeago to="{{ to }}" lang="{{ lang }}" refreshable />
+  </demo-block>
+
+  <demo-block title="指定 from">
+    <dora-timeago to="2018-12-12" from="2019-01-01" lang="{{ lang }}" />
+  </demo-block>
+
+  <demo-block title="未来时间">
+    <dora-timeago to="2030-10-24" lang="{{ lang }}" />
+  </demo-block>
+</demo-page>

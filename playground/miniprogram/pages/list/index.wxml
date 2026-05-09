@@ -1,0 +1,63 @@
+<demo-page
+  darkmode="auto"
+  title="List"
+  desc="列表"
+  clickable
+>
+  <dora-list title="带说明的列表项">
+    <dora-list-item title="标题文字"></dora-list-item>
+    <dora-list-item title="禁用状态" disabled></dora-list-item>
+  </dora-list>
+  <dora-list title="带图标、说明的列表项">
+    <dora-list-item thumb="http://cdn.skyvow.cn/logo.png" title="标题文字" extra="说明文字"></dora-list-item>
+    <dora-list-item thumb="http://cdn.skyvow.cn/logo.png" title="标题文字" extra="说明文字"></dora-list-item>
+  </dora-list>
+  <dora-list title="带跳转的列表项" label="底部说明文字">
+    <dora-list-item title="标题文字" is-link extra="说明文字"></dora-list-item>
+    <dora-list-item title="标题文字" is-link label="附加描述" extra="说明文字"></dora-list-item>
+    <dora-list-item title="只显示箭头" is-link></dora-list-item>
+    <dora-list-item title="跳转到首页" is-link url="/index/index" open-type="navigateTo"></dora-list-item>
+  </dora-list>
+  <dora-list title="微信开放能力">
+    <dora-list-item title="打开客服会话" is-link open-type="contact" bind:contact="onContact"></dora-list-item>
+    <dora-list-item title="触发用户转发" is-link open-type="share"></dora-list-item>
+    <dora-list-item title="打开“意见反馈”页面" is-link open-type="feedback"></dora-list-item>
+    <dora-list-item title="获取用户手机号" is-link open-type="getPhoneNumber" bind:getphonenumber="onGotPhoneNumber"></dora-list-item>
+    <dora-list-item title="手机号实时验证" is-link open-type="getRealtimePhoneNumber" bind:getrealtimephonenumber="onGetRealtimePhoneNumber"></dora-list-item>
+    <dora-list-item title="获取用户信息" is-link open-type="getUserInfo" bind:getuserinfo="onGetUserInfo"></dora-list-item>
+    <dora-list-item title="打开 APP" app-parameter="wechat" is-link open-type="launchApp" bind:launchapp="onLaunchApp" bind:error="onError"></dora-list-item>
+    <dora-list-item title="打开授权设置页" is-link open-type="openSetting" bind:opensetting="onOpenSetting"></dora-list-item>
+    <dora-list-item title="获取用户头像" is-link open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar"></dora-list-item>
+    <dora-list-item title="用户同意隐私协议" is-link open-type="agreePrivacyAuthorization" bind:agreeprivacyauthorization="onAgreePrivacyAuthorization"></dora-list-item>
+  </dora-list>
+  <dora-list title="自定义插槽">
+    <dora-list-item title="自定义缩略图">
+      <image slot="header" src="http://cdn.skyvow.cn/logo.png" style="width: var(--thumb-size); height: var(--thumb-size); display: block;" />
+    </dora-list-item>
+    <dora-list-item>
+      <view slot="title">自定义标题1</view>
+    </dora-list-item>
+    <dora-list-item title="">
+      <view>自定义标题2</view>
+    </dora-list-item>
+    <dora-list-item title="自定义标题下方的描述信息">
+      <view slot="label">附加描述</view>
+    </dora-list-item>
+    <dora-list-item title="自定义右侧内容">
+      <view slot="footer">说明文字</view>
+    </dora-list-item>
+    <dora-list-item title="自定义箭头" hover-class="none">
+      <icon slot="arrow" type="clear" color="#B2B2B2" size="14" />
+    </dora-list-item>
+  </dora-list>
+  <dora-list title="CSS 变量" wrapStyle="{{ wrapStyle }}">
+    <dora-list-item title="Body 内容的字体大小=17px"></dora-list-item>
+    <dora-list-item title="头部的字体大小=15px"></dora-list-item>
+    <dora-list-item thumb="http://cdn.skyvow.cn/logo.png" title="列表项 thumb 图片的大小=25px"></dora-list-item>
+  </dora-list>
+  <dora-list mode="card" title="卡片列表">
+    <dora-list-item title="扣款方式" extra="按照支付设置的顺序扣款" is-link></dora-list-item>
+    <dora-list-item title="月限额" extra="500元" is-link></dora-list-item>
+    <dora-list-item title="关于我们" is-link url="/index/index" open-type="navigateTo"></dora-list-item>
+  </dora-list>
+</demo-page>

@@ -9,7 +9,7 @@ import type { NavbarProps, NavbarExpose } from './types'
 export const Navbar = createHostComponent<NavbarProps, NavbarExpose>('dora-navbar',
 {
   prefixCls: 'dora-navbar',
-  theme: 'light',
+  color: 'light',
   title: '',
   leftText: '',
   rightText: '',
@@ -21,7 +21,7 @@ Navbar.displayName = 'DoraNavbar'
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
 React.createElement('dora-navbar', {
   prefixCls: '',
-  theme: '',
+  color: '',
   title: '',
   leftText: '',
   rightText: '',

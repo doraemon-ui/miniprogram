@@ -1,4 +1,5 @@
 import type { ComponentPublicInstance } from '@doraemon-ui/miniprogram.core-js'
+import type { PresetColor } from '@doraemon-ui/miniprogram.shared'
 
 import type { SegmentedControl } from './index'
 
@@ -33,9 +34,9 @@ export interface SegmentedControlProps {
   /**
    * 主题
    *
-   * @type {string}
+   * @type {PresetColor}
    */
-  theme?: string
+  color?: PresetColor
 
   /**
    * 默认选中项

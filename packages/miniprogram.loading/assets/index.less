@@ -8,7 +8,7 @@
   top: 50%;
   left: 50%;
   background: var(--dora-loading-bg, rgba(58, 58, 58, 0.95));
-  font-size: var(--dora-font-size-md, 28rpx);
+  font-size: var(--dora-font-size-md, 14px);
   line-height: var(--dora-line-height-md, 1.5);
   text-align: center;
   border-radius: @border-radius-base;
@@ -16,15 +16,15 @@
   transform: translate3d(-50%, -50%, 0);
 
   &__content {
-    min-width: 236rpx;
-    padding: 18rpx 30rpx;
+    min-width: 118px;
+    padding: 9px 15px;
     box-sizing: border-box;
 
     &--has-icon {
-      padding: 30rpx;
+      padding: 15px;
 
       .@{loading-prefix-cls}__text {
-        margin-top: 12rpx;
+        margin-top: 6px;
       }
     }
   }
@@ -40,9 +40,9 @@
       .encoded-svg-background(loading);
       background-repeat: no-repeat;
       background-size: 100%;
-      margin: 10rpx 0 0 !important;
-      width: 76rpx;
-      height: 76rpx;
+      margin: 5px 0 0 !important;
+      width: 38px;
+      height: 38px;
       vertical-align: baseline;
     }
   }

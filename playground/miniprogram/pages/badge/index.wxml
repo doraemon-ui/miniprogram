@@ -1,0 +1,86 @@
+<demo-page darkmode="auto" title="miniprogram.badge" desc="徽章" clickable>
+  <demo-block dora-class="example">
+    <dora-badge dot>
+      <view class="example__badge"></view>
+    </dora-badge>
+  </demo-block>
+  <demo-block dora-class="example">
+    <dora-badge count="0" show-zero>
+      <view class="example__badge"></view>
+    </dora-badge>
+  </demo-block>
+  <demo-block dora-class="example">
+    <dora-badge count="3">
+      <view class="example__badge"></view>
+    </dora-badge>
+  </demo-block>
+  <demo-block dora-class="example">
+    <dora-badge count="100">
+      <view class="example__badge"></view>
+    </dora-badge>
+  </demo-block>
+  <demo-block dora-class="example">
+    <dora-badge count="9999" overflow-count="1024" hide-shadow>
+      <view class="example__badge"></view>
+    </dora-badge>
+  </demo-block>
+  <demo-block dora-class="example">
+    <dora-badge count="66" />
+  </demo-block>
+  <demo-block dora-class="example">
+    <dora-badge title="新消息!" />
+  </demo-block>
+  <demo-block dora-class="example">
+    <dora-badge count="88" dora-class-badge="bg-green" />
+  </demo-block>
+  <demo-block dora-class="example">
+    <dora-badge status="success" />
+  </demo-block>
+  <demo-block dora-class="example">
+    <dora-badge status="error" />
+  </demo-block>
+  <demo-block dora-class="example">
+    <dora-badge status="default" />
+  </demo-block>
+  <demo-block dora-class="example">
+    <dora-badge status="processing" />
+  </demo-block>
+  <demo-block dora-class="example">
+    <dora-badge status="warning" />
+  </demo-block>
+  <demo-block dora-class="example">
+    <dora-badge status="success" text="Success" />
+  </demo-block>
+  <demo-block dora-class="example">
+    <dora-badge status="error" text="Error" />
+  </demo-block>
+  <demo-block dora-class="example">
+    <dora-badge status="default" text="Default" />
+  </demo-block>
+  <demo-block dora-class="example">
+    <dora-badge status="processing" text="Processing" />
+  </demo-block>
+  <demo-block dora-class="example">
+    <dora-badge status="warning" text="Warning" />
+  </demo-block>
+  <demo-block dora-class="example">
+    <dora-badge dot position="topLeft" backgroundColor="#52c41a">
+      <view class="example__badge"></view>
+    </dora-badge>
+  </demo-block>
+  <demo-block dora-class="example">
+    <dora-badge dot position="topRight" backgroundColor="#1890ff">
+      <view class="example__badge"></view>
+    </dora-badge>
+  </demo-block>
+  <demo-block dora-class="example">
+    <dora-badge dot position="bottomLeft" backgroundColor="#f5222d">
+      <view class="example__badge"></view>
+    </dora-badge>
+  </demo-block>
+  <demo-block dora-class="example">
+    <dora-badge dot position="bottomRight" backgroundColor="#faad14">
+      <view class="example__badge"></view>
+    </dora-badge>
+  </demo-block>
+</demo-page>

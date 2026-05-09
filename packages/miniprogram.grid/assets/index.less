@@ -3,5 +3,18 @@
 // Grid styles
 // -----------------------------
 .@{grid-prefix-cls} {
-  position: static;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: @grid-bg;
+
+  &--bordered {
+    &::before {
+      .setTopLine(@border-color-split);
+    }
+
+    &::after {
+      .setLeftLine(@border-color-split);
+    }
+  }
 }

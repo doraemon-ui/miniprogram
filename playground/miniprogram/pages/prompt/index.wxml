@@ -1,0 +1,11 @@
+<demo-page
+  darkmode="auto"
+  title="miniprogram.prompt"
+  desc="miniprogram.prompt"
+  clickable
+  spacing
+>
+  <demo-block title="Basic">
+    <dora-prompt>miniprogram.prompt</dora-prompt>
+  </demo-block>
+</demo-page>

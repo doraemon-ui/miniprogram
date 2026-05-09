@@ -1,0 +1,11 @@
+<demo-page
+  darkmode="auto"
+  title="miniprogram.popover"
+  desc="miniprogram.popover"
+  clickable
+  spacing
+>
+  <demo-block title="Basic">
+    <dora-popover>miniprogram.popover</dora-popover>
+  </demo-block>
+</demo-page>

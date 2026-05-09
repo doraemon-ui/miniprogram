@@ -10,11 +10,11 @@
   position: relative;
   display: inline-block;
   box-sizing: border-box;
-  padding: 0 10rpx;
+  padding: 0 5px;
   vertical-align: top;
 
   &--vertical {
-    padding-bottom: 60rpx;
+    padding-bottom: 30px;
 
     .@{step-prefix-cls}__hd {
       float: left;
@@ -22,18 +22,18 @@
     .@{step-prefix-cls}__bd {
       overflow: hidden;
       display: block;
-      margin-left: 80rpx;
+      margin-left: 40px;
       margin-top: 0;
       text-align: left;
       clear: inherit;
     }
     .@{step-prefix-cls}__ft {
       position: absolute;
-      left: 38rpx;
+      left: 19px;
       top: 0;
       height: 100%;
       width: @steps-line-size;
-      padding: 60rpx 0 8rpx;
+      padding: 30px 0 4px;
       margin-left: 0;
       &::after {
         width: @steps-line-size;
@@ -46,9 +46,9 @@
     position: absolute;
     left: 50%;
     width: 100%;
-    top: 24rpx;
-    padding: 0 48rpx;
-    margin-left: 6rpx;
+    top: 12px;
+    padding: 0 24px;
+    margin-left: 3px;
     box-sizing: border-box;
 
     &::after {
@@ -60,14 +60,14 @@
       width: 100%;
       transition: background 0.3s;
       position: relative;
-      left: -4rpx;
+      left: -2px;
     }
   }
 
   &__icon {
     box-sizing: border-box;
     font-size: @steps-icon-size / 2;
-    line-height: @steps-icon-size - 2rpx;
+    line-height: @steps-icon-size - 1px;
     width: @steps-icon-size;
     height: 100%;
     border-radius: 50%;
@@ -132,20 +132,20 @@
   }
 
   &__bd {
-    margin-top: 20rpx;
+    margin-top: 10px;
     text-align: center;
     clear: both;
   }
 
   &__title {
-    font-size: var(--dora-font-size-lg, 32rpx);
+    font-size: var(--dora-font-size-lg, 16px);
     font-weight: 700;
     color: var(--dora-color-title, #333);
   }
 
   &__content {
-    font-size: var(--dora-font-size-sm, 24rpx);
-    margin-top: 6rpx;
+    font-size: var(--dora-font-size-sm, 12px);
+    margin-top: 3px;
     color: var(--dora-color-text-base, #666);
   }
 }

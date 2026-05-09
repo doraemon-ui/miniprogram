@@ -1,0 +1,70 @@
+<demo-page
+  darkmode="auto"
+  title="Radio"
+  desc="单选框"
+  clickable
+  spacing
+>
+  <demo-block title="IconPosition Right">
+    <form bindsubmit="formSubmit">
+      <dora-radio-group iconPosition="right" name="a" value="{{ value1 }}" title="Default" bind:change="onChange1">
+        <dora-radio color="light" title="Light" value="1" />
+        <dora-radio color="stable" title="Stable" value="2" />
+        <dora-radio color="positive" title="Positive" value="3" />
+      </dora-radio-group>
+
+      <dora-radio-group iconPosition="right" name="b" value="{{ value2 }}" title="Label" bind:change="onChange2">
+        <dora-radio title="Java" label="details" value="1" />
+        <dora-radio title="PHP" label="details" value="2" />
+      </dora-radio-group>
+
+      <dora-radio-group iconPosition="right" name="c" value="{{ value3 }}" title="Thumb" bind:change="onChange3">
+        <dora-radio thumb="{{ thumb }}" title="Java" value="1" />
+        <dora-radio thumb="{{ thumb }}" title="PHP" value="2" />
+      </dora-radio-group>
+
+      <dora-radio-group iconPosition="right" name="d" title="Disabled & readOnly" value="{{ value4 }}" bind:change="onChange4">
+        <dora-radio title="Java" value="1" disabled />
+        <dora-radio title="PHP" value="2" />
+        <dora-radio title="AV" value="3" readOnly />
+      </dora-radio-group>
+
+      <dora-radio-group iconPosition="right" name="e" disabled value="{{ value4 }}" title="Disable for the group" bind:change="onChange4">
+        <dora-radio title="Java" value="1" />
+        <dora-radio title="PHP" value="2" />
+      </dora-radio-group>
+
+      <dora-radio-group iconPosition="right" name="f" value="{{ value5 }}" options="{{ options }}" title="Options" bind:change="onChange5" />
+      <dora-radio-group
+        iconPosition="right"
+        name="g"
+        iconSize="23"
+        iconOn="success"
+        iconOff="circle"
+        value="{{ value5 }}"
+        options="{{ options }}"
+        title="Custom icon style"
+        bind:change="onChange5"
+      />
+      <dora-radio-group iconPosition="right" name="h" mode="card" value="{{ value5 }}" options="{{ options }}" title="Card List" bind:change="onChange5" />
+
+      <view class="btn-area">
+        <button formType="submit">Submit</button>
+      </view>
+    </form>
+  </demo-block>
+
+  <demo-block title="IconPosition Left">
+    <dora-radio-group iconPosition="left" value="{{ value5 }}" options="{{ options }}" title="Options" bind:change="onChange5" />
+  </demo-block>
+
+  <demo-block title="配合 List 使用（非 RadioGroup）">
+    <dora-list title="配合 List 使用">
+      <block wx:for="{{ options }}" wx:for-item="option" wx:key="value">
+        <dora-list-item title="{{ option.title }}" data-value="{{ option.value }}" bind:click="onItemClick">
+          <dora-radio slot="footer" value="{{ option.value }}" checked="{{ value6 === option.value }}" />
+        </dora-list-item>
+      </block>
+    </dora-list>
+  </demo-block>
+</demo-page>

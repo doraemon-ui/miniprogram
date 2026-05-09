@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.timeline.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:41:28.
+ * Built on 2026-05-09, 19:35:51.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 
@@ -18,11 +18,7 @@ let Timeline = class Timeline extends Doraemon {
         this.updateIsLastElement();
     }
     updateIsLastElement() {
-        const proxy = this._renderProxy;
-        let elements = [];
-        if (proxy && typeof proxy.getRelationNodes === 'function') {
-            elements = proxy.getRelationNodes('./timeline-item') || [];
-        }
+        const elements = this.$children || [];
         if (elements.length > 0) {
             const lastIndex = elements.length - 1;
             elements.forEach((element, index)=>{
@@ -66,7 +62,7 @@ Timeline = _ts_decorate([
         },
         components: {
             TimelineItem: ()=>({
-                    module: './timeline-item',
+                    module: './item',
                     type: 'child',
                     observer: 'onChildrenChanged'
                 })

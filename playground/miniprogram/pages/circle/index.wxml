@@ -1,0 +1,18 @@
+<demo-page darkmode="auto" title="Circle" desc="进度环" clickable spacing>
+  <demo-block title="Color">
+    <dora-circle percent="80" color="#387ef5">#387ef5</dora-circle>
+  </demo-block>
+
+  <demo-block title="BackgroundColor">
+    <dora-circle percent="80" backgroundColor="#ef473a">#ef473a</dora-circle>
+  </demo-block>
+
+  <demo-block title="Size">
+    <dora-circle percent="80" size="90">80%</dora-circle>
+  </demo-block>
+
+  <demo-block title="Other">
+    <dora-circle percent="{{ percent }}">{{ percent + '%' }}</dora-circle>
+    <dora-button expand="block" color="light" bind:click="add">Add</dora-button>
+  </demo-block>
+</demo-page>

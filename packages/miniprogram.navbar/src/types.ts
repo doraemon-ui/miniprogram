@@ -1,11 +1,8 @@
 import type { ComponentPublicInstance } from '@doraemon-ui/miniprogram.core-js'
+import type { PresetColor } from '@doraemon-ui/miniprogram.shared'
 
 import type { Navbar } from './index'
 
-/**
- * NavbarTheme类型定义
- */
-export type NavbarTheme = 'light' | 'dark'
 /**
  * NavbarClickType类型定义
  */
@@ -36,9 +33,9 @@ export interface NavbarProps {
   /**
    * 主题
    *
-   * @type {NavbarTheme}
+   * @type {PresetColor}
    */
-  theme?: NavbarTheme
+  color?: PresetColor
 
   /**
    * 标题
