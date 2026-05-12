@@ -1,104 +1,22 @@
 import type { ComponentPublicInstance } from '@doraemon-ui/miniprogram.core-js'
+import type { MiniprogramCanvasRenderingContext2D } from '@doraemon-ui/miniprogram.shared'
 
 import type { ESign } from './index'
-
-/**
- * ESignFileType类型定义
- */
-export type ESignFileType = 'png' | 'jpg' | 'jpeg' | 'webp'
-
-/**
- * DataUrlOptions接口定义
- */
-export interface DataUrlOptions {
-  /**
-   * width
-   * @type {number}
-   */
-  width: number
-
-  /**
-   * height
-   * @type {number}
-   */
-  height: number
-
-  /**
-   * type
-   * @type {ESignFileType}
-   */
-  type?: ESignFileType
-
-  /**
-   * quality
-   * @type {number}
-   */
-  quality?: number
-}
-
-/**
- * CanvasContext2D接口定义
- */
-export interface CanvasContext2D {
-  beginPath: () => void
-  lineTo: (x: number, y: number) => void
-  stroke: () => void
-  scale: (x: number, y: number) => void
-  clearRect: (x: number, y: number, width: number, height: number) => void
-  closePath: () => void
-  fillRect: (x: number, y: number, width: number, height: number) => void
-  getImageData: (sx: number, sy: number, sw: number, sh: number) => unknown
-  putImageData: (imagedata: unknown, dx: number, dy: number) => void
-
-  /**
-   * lineWidth
-   * @type {number}
-   */
-  lineWidth: number
-
-  /**
-   * strokeStyle
-   * @type {string}
-   */
-  strokeStyle: string
-
-  /**
-   * lineCap
-   * @type {string}
-   */
-  lineCap: string
-
-  /**
-   * lineJoin
-   * @type {string}
-   */
-  lineJoin: string
-
-  /**
-   * fillStyle
-   * @type {string}
-   */
-  fillStyle: string
-}
-
-/**
- * CanvasNode类型定义
- */
-export type CanvasNode = WechatMiniprogram.Canvas
 
 /**
  * ESignCanvasRef接口定义
  */
 export interface ESignCanvasRef {
-  /**
-   * value
-   * @type {CanvasContext2D}
-   */
-  value: CanvasContext2D
+  ctx: MiniprogramCanvasRenderingContext2D
   clear: () => void
   draw: () => Promise<string>
-  resize: (createCanvasContext: () => Promise<ESignCanvasRef>) => void
+  resize: (updateCanvasContext: () => Promise<ESignCanvasRef>) => void
 }
+
+/**
+ * ESignFileType类型定义
+ */
+export type ESignFileType = 'png' | 'jpg' | 'jpeg' | 'webp'
 
 /**
  * ESignProps接口定义

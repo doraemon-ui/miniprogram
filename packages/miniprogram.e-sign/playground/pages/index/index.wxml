@@ -3,18 +3,17 @@
   title="ESign"
   desc="电子签名"
   clickable
-  spacing
 >
-  <demo-block title="Default">
+  <demo-block padding="0" title="Default">
     <dora-e-sign bind:signing="onSigning" bind:clear="onClear" bind:submit="onSubmit" />
   </demo-block>
-  <demo-block title="Custom lineColor">
+  <demo-block padding="0" title="Custom lineColor">
     <dora-e-sign lineColor="#ff0000" bind:signing="onSigning" bind:clear="onClear" bind:submit="onSubmit" />
   </demo-block>
-  <demo-block title="Custom lineWidth">
+  <demo-block padding="0" title="Custom lineWidth">
     <dora-e-sign lineWidth="{{ 6 }}" bind:signing="onSigning" bind:clear="onClear" bind:submit="onSubmit" />
   </demo-block>
-  <demo-block title="Custom bgColor">
+  <demo-block padding="0" title="Custom bgColor">
     <dora-e-sign bgColor="#cccccc" bind:signing="onSigning" bind:clear="onClear" bind:submit="onSubmit" />
   </demo-block>
 </demo-page>

@@ -1,10 +1,8 @@
 import { Doraemon, Component, Prop, Watch, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js'
+import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
 import { useRect } from '@doraemon-ui/miniprogram.shared'
 import type { FabButtonClassItem as ButtonClassItem, FabButtonDirection, FabButtonOption, FabButtonPosition, FabButtonTheme } from './types'
 const { classNames } = Doraemon.util
-
-const defaultAction =
-  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAAAAYLlVAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAHdElNRQfhBAQLCR5MtjrbAAAAjUlEQVRo3u3ZMRKAIAxEUbDirp4nXnctFFDHBtDQ/O1Nnk6aHUMgZCBKMkmmNAtgOmL9M+IQQGVM95zljy8DAAAAAAAAAAAAAACALsDZcppSx7Q+WdtUvA5xffUtrjeA8/qQ21S9gc15/3Nfzw0M5O0G2kM5BQAAAAAAAAAAAAAAQGk33q0qZ/p/Q/JFdmei9usomnwIAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE3LTA0LTA0VDExOjA5OjMwKzA4OjAw1U4c3wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxNy0wNC0wNFQxMTowOTozMCswODowMKQTpGMAAAAASUVORK5CYII='
 
 const setTransform = (translate = 0, scale = 1, delay = 300, isHorizontal = true) => {
   const duration = `transition-duration: ${delay}ms`
@@ -43,7 +41,8 @@ class FabButton extends Doraemon {
 
   @Prop({
     type: String,
-    default: defaultAction,
+    default:
+      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAAAAYLlVAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAHdElNRQfhBAQLCR5MtjrbAAAAjUlEQVRo3u3ZMRKAIAxEUbDirp4nXnctFFDHBtDQ/O1Nnk6aHUMgZCBKMkmmNAtgOmL9M+IQQGVM95zljy8DAAAAAAAAAAAAAACALsDZcppSx7Q+WdtUvA5xffUtrjeA8/qQ21S9gc15/3Nfzw0M5O0G2kM5BQAAAAAAAAAAAAAAQGk33q0qZ/p/Q/JFdmei9usomnwIAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE3LTA0LTA0VDExOjA5OjMwKzA4OjAw1U4c3wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxNy0wNC0wNFQxMTowOTozMCswODowMKQTpGMAAAAASUVORK5CYII=',
   })
   action: string
 
@@ -209,9 +208,8 @@ class FabButton extends Doraemon {
     this.onChange(!this.buttonVisible)
   }
 
-  onTap(e: WechatMiniprogram.BaseEvent<Record<string, unknown>>) {
-    const index = typeof e?.currentTarget?.dataset?.index === 'number' ? e.currentTarget.dataset.index : -1
-    const value = (e?.currentTarget?.dataset?.value || {}) as FabButtonOption
+  onTap(e: CustomEvent<{}, {}, { index: number; value: FabButtonOption }>) {
+    const { index, value } = e.currentTarget.dataset
     const params = {
       index,
       value,
@@ -272,45 +270,32 @@ class FabButton extends Doraemon {
     return `opacity: 1; transition-duration: ${duration}ms; ${transform}`
   }
 
-  emitOpenTypeEvent(name: string, e: WechatMiniprogram.BaseEvent<Record<string, unknown>>) {
-    const eventLike = e as unknown as {
-      detail?: Record<string, unknown>
-      currentTarget?: {
-        dataset?: Record<string, unknown>
-      }
-    }
-    this.$emit(name, {
-      ...(eventLike.detail || {}),
-      ...(eventLike.currentTarget?.dataset || {}),
-    })
+  bindgetuserinfo(e: CustomEvent) {
+    this.$emit('getuserinfo', { ...e.detail, ...e.currentTarget.dataset })
   }
 
-  bindgetuserinfo(e: WechatMiniprogram.BaseEvent<Record<string, unknown>>) {
-    this.emitOpenTypeEvent('getuserinfo', e)
+  bindcontact(e: CustomEvent) {
+    this.$emit('contact', { ...e.detail, ...e.currentTarget.dataset })
   }
 
-  bindcontact(e: WechatMiniprogram.BaseEvent<Record<string, unknown>>) {
-    this.emitOpenTypeEvent('contact', e)
+  bindgetphonenumber(e: CustomEvent) {
+    this.$emit('getphonenumber', { ...e.detail, ...e.currentTarget.dataset })
   }
 
-  bindgetphonenumber(e: WechatMiniprogram.BaseEvent<Record<string, unknown>>) {
-    this.emitOpenTypeEvent('getphonenumber', e)
+  bindopensetting(e: CustomEvent) {
+    this.$emit('opensetting', { ...e.detail, ...e.currentTarget.dataset })
   }
 
-  bindopensetting(e: WechatMiniprogram.BaseEvent<Record<string, unknown>>) {
-    this.emitOpenTypeEvent('opensetting', e)
+  bindlaunchapp(e: CustomEvent) {
+    this.$emit('launchapp', { ...e.detail, ...e.currentTarget.dataset })
   }
 
-  bindlaunchapp(e: WechatMiniprogram.BaseEvent<Record<string, unknown>>) {
-    this.emitOpenTypeEvent('launchapp', e)
+  bindchooseavatar(e: CustomEvent) {
+    this.$emit('chooseavatar', { ...e.detail, ...e.currentTarget.dataset })
   }
 
-  bindchooseavatar(e: WechatMiniprogram.BaseEvent<Record<string, unknown>>) {
-    this.emitOpenTypeEvent('chooseavatar', e)
-  }
-
-  onError(e: WechatMiniprogram.BaseEvent<Record<string, unknown>>) {
-    this.emitOpenTypeEvent('error', e)
+  onError(e: CustomEvent) {
+    this.$emit('error', { ...e.detail, ...e.currentTarget.dataset })
   }
 
   mounted() {

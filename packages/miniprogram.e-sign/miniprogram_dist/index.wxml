@@ -15,7 +15,7 @@
       <dora-button
         dora-class="{{ classes.button }}"
         size="small"
-        type="light"
+        color="light"
         bind:click="clear"
         wx:if="{{ cancelText }}"
       >
@@ -24,7 +24,7 @@
       <dora-button
         dora-class="{{ classes.button }}"
         size="small"
-        type="balanced"
+        color="positive"
         bind:click="submit"
         wx:if="{{ confirmText }}"
       >

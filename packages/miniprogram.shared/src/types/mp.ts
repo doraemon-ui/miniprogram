@@ -29,6 +29,12 @@ export type MiniprogramPublicInstance = MiniprogramPageInstance | MiniprogramCom
 export type MiniprogramElement = WechatMiniprogram.NodesRef
 
 /**
+ * MiniprogramCanvas类型定义
+ */
+export type MiniprogramCanvas = WechatMiniprogram.Canvas
+export type MiniprogramCanvasRenderingContext2D = WechatMiniprogram.CanvasRenderingContext.CanvasRenderingContext2D
+
+/**
  * MiniprogramCustomEvent类型定义
  */
 export type MiniprogramCustomEvent<

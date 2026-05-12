@@ -1,87 +1,62 @@
 @import '../../@doraemon-ui/style/var.wxss';
 @import '../../@doraemon-ui/style/color.wxss';
 .dora-avatar {
-  --container-size: 40px;
-  --container-size-sm: 32px;
-  --container-size-lg: 48px;
-  --font-size: 14px;
-  --font-size-sm: 12px;
-  --font-size-lg: 16px;
-  --square-border-radius: var(--dora-border-radius, 8px);
   box-sizing: border-box;
   display: inline-block;
   text-align: center;
-  background-color: var(--dora-component-background-color, #fff);
-  background-color: var(--dora-component-background-color, #fff);
-  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.65);
-  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.65);
+  background: var(--dora-color-step-20, #cccccc);
+  background: var(--dora-color-step-20, #cccccc);
+  color: var(--dora-white, #fff);
+  color: var(--dora-white, #fff);
   white-space: nowrap;
   position: relative;
   overflow: hidden;
   vertical-align: middle;
-  width: var(--container-size);
-  width: var(--container-size);
-  height: var(--container-size);
-  height: var(--container-size);
-  line-height: var(--container-size);
-  line-height: var(--container-size);
-  font-size: var(--font-size);
-  font-size: var(--font-size);
-  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: calc(32px/2);
+  font-size: 18px;
 }
 
 .dora-avatar .dora-avatar__string {
-  line-height: var(--container-size);
-  line-height: var(--container-size);
+  line-height: 32px;
 }
 
 .dora-avatar--small {
-  width: var(--container-size-sm);
-  width: var(--container-size-sm);
-  height: var(--container-size-sm);
-  height: var(--container-size-sm);
-  line-height: var(--container-size-sm);
-  line-height: var(--container-size-sm);
-  font-size: var(--font-size-sm);
-  font-size: var(--font-size-sm);
-  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  border-radius: calc(24px/2);
+  font-size: 14px;
 }
 
 .dora-avatar--small .dora-avatar__string {
-  line-height: var(--container-size-sm);
-  line-height: var(--container-size-sm);
+  line-height: 24px;
 }
 
 .dora-avatar--large {
-  width: var(--container-size-lg);
-  width: var(--container-size-lg);
-  height: var(--container-size-lg);
-  height: var(--container-size-lg);
-  line-height: var(--container-size-lg);
-  line-height: var(--container-size-lg);
-  font-size: var(--font-size-lg);
-  font-size: var(--font-size-lg);
-  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: calc(40px/2);
+  font-size: 24px;
 }
 
 .dora-avatar--large .dora-avatar__string {
-  line-height: var(--container-size-lg);
-  line-height: var(--container-size-lg);
+  line-height: 40px;
 }
 
 .dora-avatar--square {
-  border-radius: var(--square-border-radius);
-  border-radius: var(--square-border-radius);
+  border-radius: var(--dora-border-radius, 8px);
+  border-radius: var(--dora-border-radius, 8px);
 }
 
 .dora-avatar--thumb {
-  background-color: transparent;
+  background: transparent;
 }
 
-.dora-avatar__thumb {
+.dora-avatar__image {
   width: 100%;
   height: 100%;
-  display: block;
-  -o-object-fit: cover;
-  object-fit: cover;
 }

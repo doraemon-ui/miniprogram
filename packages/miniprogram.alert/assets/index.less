@@ -1,25 +1,19 @@
 @import './variables.less';
 
 // Alert styles
-// @prop --text-color: Text color of the alert
 // @prop --background-color: Background color of the alert
-// @prop --border-radius: Border radius of the alert
-// @prop --font-size: Font size of the alert
 // -----------------------------
 .@{alert-prefix-cls} {
-  --text-color: #get-color(positive, contrast) [];
-  --background-color: #get-color(positive) [];
-  --border-radius: @alert-border-radius;
-  --font-size: @alert-font-size;
-
   padding: @alert-padding-vertical @alert-padding-horizontal;
   position: relative;
   display: flex;
   align-items: center;
-  border-radius: var(--border-radius);
-  font-size: var(--font-size);
-  color: var(--text-color);
+  border-radius: @alert-border-radius;
+  font-size: @alert-font-size;
+  color: @text-color-inverse;
   background-color: var(--background-color);
+
+  .alert-color(#get-color(positive)[]);
 
   &__thumb {
     .square(@alert-thumb-size);
@@ -56,17 +50,14 @@
     cursor: pointer;
   }
 
-  each(@colors, {
-    @name: @key;
-    &--@{name} {
-      --background-color: #get-color(@name)[];
-      --text-color: #get-color(@name, contrast)[];
-    }
-  });
-
   // Alert Colors
   &.@{dora-prefix}-color {
-    --background-color: #current-color(base)[];
-    --text-color: #current-color(contrast)[];
+    .alert-color(#current-color(base)[]);
   }
+}
+
+.alert-color(
+@bg-color,
+) {
+  --background-color: @bg-color;
 }

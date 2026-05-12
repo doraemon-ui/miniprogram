@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.shared.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:37:46.
+ * Built on 2026-05-09, 21:19:18.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 
@@ -41,6 +41,162 @@ function getCurrentPage() {
  */
 function findComponentNode(selector, instance = getCurrentPage()) {
     return instance?.selectComponent(selector) || null;
+}
+
+const fakeMediaResult = (request, response) => {
+    if ('type' in response) {
+        return response;
+    }
+    if (request.mediaType.includes('video')) {
+        return {
+            tempFiles: [
+                {
+                    tempFilePath: response.tempFilePath,
+                    size: response.size,
+                    duration: response.duration,
+                    height: response.height,
+                    width: response.width,
+                    thumbTempFilePath: response.tempFilePath,
+                    fileType: 'video',
+                },
+            ],
+            type: 'video',
+        };
+    }
+    const { tempFilePaths = [], tempFiles = [] } = response;
+    return {
+        tempFiles: tempFilePaths.map((tempFilePath, index) => ({
+            tempFilePath: tempFiles[index].path || tempFilePath,
+            size: tempFiles[index].size,
+            fileType: 'image',
+        })),
+        type: 'image',
+    };
+};
+/**
+ * ## 拍摄或从手机相册中选择图片或视频。
+ *
+ * @see https://developers.weixin.qq.com/miniprogram/dev/api/media/video/wx.chooseMedia.html
+ * @export
+ * @param {*} options
+ * @return {*}
+ */
+function chooseMedia(options) {
+    const { count = 9, mediaType = ['image', 'video'], sourceType = ['album', 'camera'], maxDuration = 10, sizeType = ['original', 'compressed'], camera = 'back', 
+    // @deprecated
+    compressed = true, ...resetCbs } = options;
+    const success = (res) => {
+        if (resetCbs.success) {
+            resetCbs.success(fakeMediaResult(options, res));
+        }
+    };
+    if (typeof miniprogramThis.chooseMedia === 'function') {
+        return miniprogramThis.chooseMedia({ ...options, success });
+    }
+    if (mediaType.includes('video')) {
+        const videoOptions = {
+            sourceType,
+            compressed,
+            maxDuration: options.maxDuration === undefined ? 60 : maxDuration,
+            camera,
+            ...resetCbs,
+            success,
+        };
+        return miniprogramThis.chooseVideo(videoOptions);
+    }
+    const imageOptions = {
+        count,
+        sizeType,
+        sourceType,
+        ...resetCbs,
+        success,
+    };
+    return miniprogramThis.chooseImage(imageOptions);
+}
+function uploadFile(options) {
+    const { url, filePath, name = 'file', header = {}, formData = {}, timeout = 20, enableProfile = true, enableHttp2 = false, ...resetCbs } = options;
+    return miniprogramThis.uploadFile({
+        url,
+        filePath,
+        name,
+        header,
+        formData,
+        timeout,
+        enableProfile,
+        enableHttp2,
+        ...resetCbs,
+    });
+}
+function getSystemInfoSync(keys = ['window', 'device', 'appBase']) {
+    return typeof miniprogramThis.getWindowInfo === 'function'
+        ? keys.reduce((acc, key) => ({
+            ...acc,
+            ...miniprogramThis[`get${key.charAt(0).toUpperCase() + key.substring(1)}Info`](),
+        }), {})
+        : miniprogramThis.getSystemInfoSync();
+}
+function vibrateShort(options) {
+    if (getSystemInfoSync(['window', 'device']).platform === 'devtools') {
+        return Promise.resolve();
+    }
+    return miniprogramThis.vibrateShort(options);
+}
+function getMenuButtonBoundingClientRectSync() {
+    let menuRect;
+    try {
+        menuRect = miniprogramThis.getMenuButtonBoundingClientRect ? miniprogramThis.getMenuButtonBoundingClientRect() : null;
+        if (menuRect === null) {
+            throw 'getMenuButtonBoundingClientRect error';
+        }
+        // 取值为 0 的情况  有可能 width 不为 0, top 为 0 的情况
+        if (!menuRect.width || !menuRect.top || !menuRect.left || !menuRect.height) {
+            throw 'getMenuButtonBoundingClientRect error';
+        }
+    }
+    catch (e) {
+        const windowInfo = getSystemInfoSync(['window', 'device']);
+        const isIOS = !!(windowInfo.system.toLowerCase().search('ios') + 1);
+        const height = 32; // 胶囊的高度
+        let width = 88; // 胶囊的宽度
+        let gap = 4; // 胶囊按钮上下间距 使导航内容居中
+        if (windowInfo.platform === 'android') {
+            gap = 8;
+            width = 96;
+        }
+        else if (windowInfo.platform === 'devtools') {
+            if (isIOS) {
+                gap = 5.5; // 开发工具中 ios 手机
+            }
+            else {
+                gap = 7.5; // 开发工具中 android 和其他手机
+            }
+        }
+        // 开启 wifi 的情况下修复 statusBarHeight 值获取不到
+        if (!windowInfo.statusBarHeight) {
+            windowInfo.statusBarHeight = windowInfo.screenHeight - windowInfo.windowHeight - 20;
+        }
+        // 获取不到胶囊信息就自定义重置一个
+        menuRect = {
+            bottom: windowInfo.statusBarHeight + gap + height,
+            height,
+            left: windowInfo.windowWidth - width - 10,
+            right: windowInfo.windowWidth - 10,
+            top: windowInfo.statusBarHeight + gap,
+            width,
+        };
+    }
+    return menuRect;
+}
+function nextTick(cb) {
+    if (typeof miniprogramThis.nextTick === 'function') {
+        return miniprogramThis.nextTick(cb);
+    }
+    else if (typeof Promise !== 'undefined') {
+        return Promise.resolve().then(cb);
+    }
+    else {
+        setTimeout(() => cb(), 0);
+    }
 }
 
 function isDate(obj) {
@@ -409,6 +565,97 @@ function useComputedStyle(selector, ...args) {
     });
 }
 
+async function getCanvasRef(canvasId, vm) {
+    const res = await useRef(`#${canvasId}`, vm);
+    if (!res) {
+        return Promise.reject({
+            errMsg: 'Canvas is not supported in the current environment.',
+        });
+    }
+    return res.node;
+}
+function createImage({ imageWidth, imageHeight, imageUrl }, canvas) {
+    return new Promise((resolve, reject) => {
+        if (typeof canvas.createImage === 'function') {
+            const ratio = getSystemInfoSync(['window']).pixelRatio;
+            const ctx = canvas.getContext('2d');
+            const img = canvas.createImage();
+            img.onload = () => {
+                ctx.drawImage(img, (-imageWidth * ratio) / 2, (-imageHeight * ratio) / 2, imageWidth * ratio, imageHeight * ratio);
+                resolve(imageUrl);
+            };
+            img.onerror = () => {
+                reject({
+                    errMsg: 'Image creation failed in canvas.createImage.',
+                });
+            };
+            img.src = imageUrl;
+        }
+        else {
+            reject({
+                errMsg: 'Canvas.createImage is not a function.',
+            });
+        }
+    });
+}
+/**
+ * 把当前画布指定区域的内容导出生成指定大小的图片
+ */
+function toDataURL({ width, height, type = 'png', quality = 1 }, canvas) {
+    return new Promise((resolve) => {
+        if (typeof canvas.toDataURL === 'function') {
+            // 基础库 2.11.0 开始支持
+            // @see https://developers.weixin.qq.com/miniprogram/dev/api/canvas/Canvas.toDataURL.html
+            const fileType = type === 'jpg' || type === 'jpeg' ? 'jpeg' : type;
+            resolve(canvas.toDataURL(`image/${fileType}`, quality));
+        }
+        else if (typeof miniprogramThis.canvasToTempFilePath === 'function') {
+            // 基础库 1.9.6 开始支持
+            // @see https://developers.weixin.qq.com/miniprogram/dev/api/canvas/wx.canvasToTempFilePath.html
+            const ratio = getSystemInfoSync(['window']).pixelRatio;
+            const fileType = type === 'jpg' || type === 'jpeg' ? 'jpg' : 'png';
+            miniprogramThis.canvasToTempFilePath({
+                destWidth: width * ratio,
+                destHeight: height * ratio,
+                canvas,
+                fileType,
+                quality,
+                success: (res) => resolve(res.tempFilePath),
+                fail: () => resolve(''),
+            });
+        }
+        else {
+            resolve('');
+        }
+    });
+}
+function downloadImage(imageUrl) {
+    return new Promise((resolve, reject) => {
+        if (/^http/.test(imageUrl) &&
+            // @ts-ignore
+            !/^http:\/\/tmp/.test(imageUrl)) {
+            miniprogramThis.downloadFile({
+                url: imageUrl,
+                success: (res) => {
+                    if (res.statusCode === 200) {
+                        resolve(res.tempFilePath);
+                    }
+                    else {
+                        reject({ errMsg: res.errMsg });
+                    }
+                },
+                fail(err) {
+                    reject(err);
+                },
+            });
+        }
+        else {
+            // 支持本地地址
+            resolve(imageUrl);
+        }
+    });
+}
+
 /**
  * 获取触摸点位置信息
  */
@@ -453,162 +700,6 @@ const getPointsDistance = (p1, p2) => {
 const getSwipeDirection = (x1, x2, y1, y2) => {
     return Math.abs(x1 - x2) >= Math.abs(y1 - y2) ? (x1 - x2 > 0 ? 'Left' : 'Right') : y1 - y2 > 0 ? 'Up' : 'Down';
 };
-
-const fakeMediaResult = (request, response) => {
-    if ('type' in response) {
-        return response;
-    }
-    if (request.mediaType.includes('video')) {
-        return {
-            tempFiles: [
-                {
-                    tempFilePath: response.tempFilePath,
-                    size: response.size,
-                    duration: response.duration,
-                    height: response.height,
-                    width: response.width,
-                    thumbTempFilePath: response.tempFilePath,
-                    fileType: 'video',
-                },
-            ],
-            type: 'video',
-        };
-    }
-    const { tempFilePaths = [], tempFiles = [] } = response;
-    return {
-        tempFiles: tempFilePaths.map((tempFilePath, index) => ({
-            tempFilePath: tempFiles[index].path || tempFilePath,
-            size: tempFiles[index].size,
-            fileType: 'image',
-        })),
-        type: 'image',
-    };
-};
-/**
- * ## 拍摄或从手机相册中选择图片或视频。
- *
- * @see https://developers.weixin.qq.com/miniprogram/dev/api/media/video/wx.chooseMedia.html
- * @export
- * @param {*} options
- * @return {*}
- */
-function chooseMedia(options) {
-    const { count = 9, mediaType = ['image', 'video'], sourceType = ['album', 'camera'], maxDuration = 10, sizeType = ['original', 'compressed'], camera = 'back', 
-    // @deprecated
-    compressed = true, ...resetCbs } = options;
-    const success = (res) => {
-        if (resetCbs.success) {
-            resetCbs.success(fakeMediaResult(options, res));
-        }
-    };
-    if (typeof miniprogramThis.chooseMedia === 'function') {
-        return miniprogramThis.chooseMedia({ ...options, success });
-    }
-    if (mediaType.includes('video')) {
-        const videoOptions = {
-            sourceType,
-            compressed,
-            maxDuration: options.maxDuration === undefined ? 60 : maxDuration,
-            camera,
-            ...resetCbs,
-            success,
-        };
-        return miniprogramThis.chooseVideo(videoOptions);
-    }
-    const imageOptions = {
-        count,
-        sizeType,
-        sourceType,
-        ...resetCbs,
-        success,
-    };
-    return miniprogramThis.chooseImage(imageOptions);
-}
-function uploadFile(options) {
-    const { url, filePath, name = 'file', header = {}, formData = {}, timeout = 20, enableProfile = true, enableHttp2 = false, ...resetCbs } = options;
-    return miniprogramThis.uploadFile({
-        url,
-        filePath,
-        name,
-        header,
-        formData,
-        timeout,
-        enableProfile,
-        enableHttp2,
-        ...resetCbs,
-    });
-}
-function getSystemInfoSync(keys = ['window', 'device', 'appBase']) {
-    return typeof miniprogramThis.getWindowInfo === 'function'
-        ? keys.reduce((acc, key) => ({
-            ...acc,
-            ...miniprogramThis[`get${key.charAt(0).toUpperCase() + key.substring(1)}Info`](),
-        }), {})
-        : miniprogramThis.getSystemInfoSync();
-}
-function vibrateShort(options) {
-    if (getSystemInfoSync(['window', 'device']).platform === 'devtools') {
-        return Promise.resolve();
-    }
-    return miniprogramThis.vibrateShort(options);
-}
-function getMenuButtonBoundingClientRectSync() {
-    let menuRect;
-    try {
-        menuRect = miniprogramThis.getMenuButtonBoundingClientRect ? miniprogramThis.getMenuButtonBoundingClientRect() : null;
-        if (menuRect === null) {
-            throw 'getMenuButtonBoundingClientRect error';
-        }
-        // 取值为 0 的情况  有可能 width 不为 0, top 为 0 的情况
-        if (!menuRect.width || !menuRect.top || !menuRect.left || !menuRect.height) {
-            throw 'getMenuButtonBoundingClientRect error';
-        }
-    }
-    catch (e) {
-        const windowInfo = getSystemInfoSync(['window', 'device']);
-        const isIOS = !!(windowInfo.system.toLowerCase().search('ios') + 1);
-        const height = 32; // 胶囊的高度
-        let width = 88; // 胶囊的宽度
-        let gap = 4; // 胶囊按钮上下间距 使导航内容居中
-        if (windowInfo.platform === 'android') {
-            gap = 8;
-            width = 96;
-        }
-        else if (windowInfo.platform === 'devtools') {
-            if (isIOS) {
-                gap = 5.5; // 开发工具中 ios 手机
-            }
-            else {
-                gap = 7.5; // 开发工具中 android 和其他手机
-            }
-        }
-        // 开启 wifi 的情况下修复 statusBarHeight 值获取不到
-        if (!windowInfo.statusBarHeight) {
-            windowInfo.statusBarHeight = windowInfo.screenHeight - windowInfo.windowHeight - 20;
-        }
-        // 获取不到胶囊信息就自定义重置一个
-        menuRect = {
-            bottom: windowInfo.statusBarHeight + gap + height,
-            height,
-            left: windowInfo.windowWidth - width - 10,
-            right: windowInfo.windowWidth - 10,
-            top: windowInfo.statusBarHeight + gap,
-            width,
-        };
-    }
-    return menuRect;
-}
-function nextTick(cb) {
-    if (typeof miniprogramThis.nextTick === 'function') {
-        return miniprogramThis.nextTick(cb);
-    }
-    else if (typeof Promise !== 'undefined') {
-        return Promise.resolve().then(cb);
-    }
-    else {
-        setTimeout(() => cb(), 0);
-    }
-}
 
 /**
  * openType 属性可选值为 navigateTo、redirectTo、switchTab、navigateBack、reLaunch
@@ -681,6 +772,10 @@ var dom = {
     findComponentNode,
     getCurrentPage,
     miniprogramThis,
+    getCanvasRef,
+    downloadImage,
+    createImage,
+    toDataURL,
     useQuery,
     useSelector,
     useSelectorAll,
@@ -709,4 +804,4 @@ var index = {
     ...util,
 };
 
-export { NATIVE_ROUTES, buildURL, canUseMP, chooseMedia, index as default, dom, findComponentNode, getCurrentPage, getDefaultContext, getMenuButtonBoundingClientRectSync, getPointsDistance, getPointsNumber, getSwipeDirection, getSystemInfoSync, getTouchPoints, isDate, isDef, isEqualPoints, isFalse, isNearbyPoints, isObject, isPromise, isString, isTrue, isUndef, miniprogramThis, nextTick, noop, omit, pxToNumber, sleep, uploadFile, useComputedStyle, useNativeRoute, usePopupStateHOC, useQuery, useRect, useRectAll, useRef, useRefAll, useScrollOffset, useSelector, useSelectorAll, util, vibrateShort };
+export { NATIVE_ROUTES, buildURL, canUseMP, chooseMedia, createImage, index as default, dom, downloadImage, findComponentNode, getCanvasRef, getCurrentPage, getDefaultContext, getMenuButtonBoundingClientRectSync, getPointsDistance, getPointsNumber, getSwipeDirection, getSystemInfoSync, getTouchPoints, isDate, isDef, isEqualPoints, isFalse, isNearbyPoints, isObject, isPromise, isString, isTrue, isUndef, miniprogramThis, nextTick, noop, omit, pxToNumber, sleep, toDataURL, uploadFile, useComputedStyle, useNativeRoute, usePopupStateHOC, useQuery, useRect, useRectAll, useRef, useRefAll, useScrollOffset, useSelector, useSelectorAll, util, vibrateShort };

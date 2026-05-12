@@ -1,5 +1,5 @@
 <view class="dora-class {{ classes.wrap }}" style="{{ extStyle }}">
-    <image src="{{ src }}" wx:if="{{ src }}" />
+    <image class="{{ classes.image }}" src="{{ src }}" wx:if="{{ src }}" />
     <text class="{{ classes.string }}" style="{{ childrenStyle }}" wx:else>
         <slot></slot>
     </text>

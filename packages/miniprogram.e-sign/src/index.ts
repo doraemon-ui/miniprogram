@@ -1,45 +1,18 @@
 import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import type { TouchEvent } from '@doraemon-ui/miniprogram.core-js'
-import type { CanvasContext2D, CanvasNode, DataUrlOptions, ESignCanvasRef, ESignFileType } from './types'
-import { useRef, getSystemInfoSync, getTouchPoints } from '@doraemon-ui/miniprogram.shared'
-import type { MiniprogramNodeRef, MiniprogramPublicInstance } from '@doraemon-ui/miniprogram.shared'
+import type { ESignFileType, ESignCanvasRef } from './types'
+import { useRef, getSystemInfoSync, getTouchPoints, toDataURL, getCanvasRef } from '@doraemon-ui/miniprogram.shared'
+import type { MiniprogramNodeRef } from '@doraemon-ui/miniprogram.shared'
 
 const { classNames, styleToCssString } = Doraemon.util
-
-async function toDataURL({ width, height, type = 'png', quality = 1 }: DataUrlOptions, canvas: CanvasNode): Promise<string> {
-  const fileType = type === 'jpg' || type === 'jpeg' ? 'jpeg' : type
-  if (typeof (canvas as unknown as { toDataURL?: (mimeType: string, ratio: number) => string }).toDataURL === 'function') {
-    const fn = (canvas as unknown as { toDataURL: (mimeType: string, ratio: number) => string }).toDataURL
-    return fn.call(canvas, `image/${fileType}`, quality)
-  }
-
-  if (typeof wx !== 'undefined' && typeof wx.canvasToTempFilePath === 'function') {
-    const ratio = (getSystemInfoSync(['window']).pixelRatio as number) || 1
-    const tempFileType = type === 'jpg' || type === 'jpeg' ? 'jpg' : 'png'
-    return await new Promise((resolve) => {
-      wx.canvasToTempFilePath({
-        destWidth: width * ratio,
-        destHeight: height * ratio,
-        canvas,
-        fileType: tempFileType,
-        quality,
-        success: (res) => resolve(res.tempFilePath || ''),
-        fail: () => resolve(''),
-      })
-    })
-  }
-  return ''
-}
 
 @Component({
   expose: ['resize'],
   props: {
-
     prefixCls: {
       type: String,
       default: 'dora-e-sign',
     },
-  
   },
 })
 class ESign extends Doraemon {
@@ -131,7 +104,8 @@ class ESign extends Doraemon {
 
   isCanvasEmpty: boolean = true
   bodyStyle: string = ''
-  canvasRef: Promise<ESignCanvasRef> | ESignCanvasRef | null = null
+  canvasRef: Promise<ESignCanvasRef> | null = null
+  wrapRef: Promise<MiniprogramNodeRef> | null = null
 
   get classes() {
     const { prefixCls } = this
@@ -154,58 +128,55 @@ class ESign extends Doraemon {
     this.resize()
   }
 
-  async getCanvasNode(canvasId: string): Promise<CanvasNode> {
-    const ref = (await useRef(`#${canvasId}`, this._renderProxy as unknown as MiniprogramPublicInstance)) as unknown as MiniprogramNodeRef
-    return ref.node as unknown as CanvasNode
-  }
+  /**
+   * 获取并缓存 wrap ref
+   */
+  getWrapRef(forceUpdate: boolean = false) {
+    if (!this.wrapRef || forceUpdate) {
+      this.wrapRef = useRef(`.${this.prefixCls}__bd`, this._renderProxy)
+    }
 
-  resolveCanvasRef(): Promise<ESignCanvasRef> | null {
-    const ref = this.canvasRef
-    if (!ref) return null
-    return typeof (ref as Promise<ESignCanvasRef>).then === 'function'
-      ? (ref as Promise<ESignCanvasRef>)
-      : Promise.resolve(ref as ESignCanvasRef)
+    return this.wrapRef
   }
 
   /**
    * 手指触摸动作开始
    */
   onTouchStart() {
-    const ref = this.resolveCanvasRef()
-    if (!ref) return false
+    if (!this.canvasRef) return
     const props = this
-    void ref.then(({ value: ctx }) => {
+    void this.canvasRef.then(({ ctx }) => {
       if (!ctx) return
       ctx.beginPath()
       ctx.lineWidth = props.lineWidth || 3
       ctx.strokeStyle = props.lineColor || '#000000'
       this.$emit('start')
     })
-    return true
   }
 
   /**
    * 手指触摸后移动
    */
   onTouchMove(e: TouchEvent) {
-    const ref = this.resolveCanvasRef()
-    if (!ref) return false
+    if (!this.canvasRef) return false
     if (this.isCanvasEmpty) {
       this.isCanvasEmpty = false
     }
 
-    const touch = getTouchPoints(e)
-    const mouseX = touch.x - (e.currentTarget?.offsetLeft || 0)
-    const mouseY = touch.y - (e.currentTarget?.offsetTop || 0)
-    void ref.then(({ value: ctx }) => {
-      if (!ctx) return
+    Promise.all([this.wrapRef, this.canvasRef]).then(([wrapRef, { ctx }]) => {
+      if (!wrapRef || !ctx) return
+      const touch = getTouchPoints(e)
+      const offsetLeft = wrapRef.clientLeft + wrapRef.left
+      const offsetTop = wrapRef.clientTop + wrapRef.top
+      const mouseX = touch.x - offsetLeft
+      const mouseY = touch.y - offsetTop
+
       ctx.lineCap = 'round'
       ctx.lineJoin = 'round'
       ctx.lineTo(mouseX, mouseY)
       ctx.stroke()
       this.$emit('signing', { mouseX, mouseY })
     })
-    return true
   }
 
   /**
@@ -228,66 +199,65 @@ class ESign extends Doraemon {
     }
   }
 
-  async createCanvasContext(props: {
-    prefixCls: string
-    width: string | number
-    height: number
-    bgColor: string
-    type: ESignFileType
-  }): Promise<ESignCanvasRef> {
-    const getWrapRef = async () => {
-      if (props.width === 'auto') {
-        const wrap = (await useRef(
-          `.${props.prefixCls}__bd`,
-          this._renderProxy as unknown as MiniprogramPublicInstance,
-        )) as unknown as MiniprogramNodeRef
-        return { width: wrap.clientWidth, height: wrap.clientHeight }
-      }
-      return { width: Number(props.width), height: props.height }
-    }
+  async createCanvasContext(
+    props: {
+      prefixCls: string
+      width: string | number
+      height: number
+      bgColor: string
+      type: ESignFileType
+    },
+    forceUpdate: boolean = false,
+  ): Promise<ESignCanvasRef> {
+    const renderCanvas = () => {
+      return this.getWrapRef(forceUpdate).then(({ clientWidth: width, clientHeight: height }) => {
+        return getCanvasRef(props.prefixCls, this._renderProxy).then((canvas) => {
+          const ctx = canvas.getContext('2d')
+          const ratio = getSystemInfoSync(['window']).pixelRatio
+          const canvasWidth = width * ratio
+          const canvasHeight = height * ratio
+          const setCanvasBgColor = (ctx) => {
+            if (ctx && props.bgColor) {
+              ctx.fillStyle = props.bgColor
+              ctx.fillRect(0, 0, width, height)
+            }
+          }
 
-    const { width, height } = await getWrapRef()
-    const canvas = await this.getCanvasNode(props.prefixCls)
-    const ctx = canvas.getContext('2d') as unknown as CanvasContext2D
-    const ratio = (getSystemInfoSync(['window']).pixelRatio as number) || 1
-    const canvasWidth = width * ratio
-    const canvasHeight = height * ratio
-    const setCanvasBgColor = () => {
-      if (props.bgColor) {
-        ctx.fillStyle = props.bgColor
-        ctx.fillRect(0, 0, width, height)
-      }
-    }
+          canvas.width = canvasWidth
+          canvas.height = canvasHeight
 
-    canvas.width = canvasWidth
-    canvas.height = canvasHeight
-    ctx.scale(ratio, ratio)
-    setCanvasBgColor()
+          ctx.scale(ratio, ratio)
+          setCanvasBgColor(ctx)
 
-    const clear = () => {
-      ctx.clearRect(0, 0, width, height)
-      ctx.closePath()
-      setCanvasBgColor()
-    }
+          const clear = () => {
+            ctx.clearRect(0, 0, width, height)
+            ctx.closePath()
+            // reset canvas bgColor
+            setCanvasBgColor(ctx)
+          }
 
-    const draw = () => {
-      return toDataURL({ width, height, type: props.type }, canvas)
-    }
+          const draw = () => {
+            return toDataURL({ width, height, type: props.type }, canvas)
+          }
 
-    const resize = (create: () => Promise<ESignCanvasRef>) => {
-      const data = ctx.getImageData(0, 0, canvasWidth, canvasHeight)
-      void create().then(({ value: newCtx }) => {
-        newCtx.putImageData(data, 0, 0)
+          const resize = (updateCanvasContext: () => Promise<ESignCanvasRef>) => {
+            const data = ctx.getImageData(0, 0, canvasWidth, canvasHeight)
+            updateCanvasContext().then(({ ctx: newCtx }) => {
+              newCtx.putImageData(data, 0, 0)
+            })
+          }
+
+          return { ctx, clear, draw, resize }
+        })
       })
     }
 
-    return { value: ctx, clear, draw, resize }
+    return Promise.resolve().then(renderCanvas)
   }
 
   clear() {
-    const ref = this.resolveCanvasRef()
-    if (!ref) return
-    void ref.then(({ clear }) => {
+    if (!this.canvasRef) return
+    void this.canvasRef.then(({ clear }) => {
       if (typeof clear === 'function') {
         clear()
       }
@@ -301,9 +271,8 @@ class ESign extends Doraemon {
       this.$emit('submit', { base64Url: '' })
       return
     }
-    const ref = this.resolveCanvasRef()
-    if (!ref) return
-    void ref.then(({ draw }) => {
+    if (!this.canvasRef) return
+    void this.canvasRef.then(({ draw }) => {
       if (typeof draw === 'function') {
         void draw().then((base64Url) => {
           this.$emit('submit', { base64Url })
@@ -315,11 +284,10 @@ class ESign extends Doraemon {
   }
 
   resize() {
-    const ref = this.resolveCanvasRef()
-    if (!ref) return
-    void ref.then(({ resize }) => {
+    if (!this.canvasRef) return
+    void this.canvasRef.then(({ resize }) => {
       resize(() => {
-        const nextRef = this.createCanvasContext(this)
+        const nextRef = this.createCanvasContext(this, true)
         this.canvasRef = nextRef
         return nextRef
       })

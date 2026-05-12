@@ -3,7 +3,6 @@
   title="Card"
   desc="卡片"
   clickable
-  spacing
 >
   <demo-block title="Default">
     <dora-card title="卡片标题" extra="额外内容">

@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.divider.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:38:41.
+ * Built on 2026-05-10, 00:41:44.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 
@@ -66,26 +66,6 @@ Divider = _ts_decorate([
             prefixCls: {
                 type: String,
                 default: 'dora-divider'
-            },
-            position: {
-                type: String,
-                default: 'center'
-            },
-            dashed: {
-                type: Boolean,
-                default: false
-            },
-            text: {
-                type: String,
-                default: ''
-            },
-            showText: {
-                type: Boolean,
-                default: true
-            },
-            direction: {
-                type: String,
-                default: 'horizontal'
             }
         }
     })

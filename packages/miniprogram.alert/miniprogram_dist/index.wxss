@@ -1,23 +1,20 @@
 @import '../../@doraemon-ui/style/var.wxss';
 @import '../../@doraemon-ui/style/color.wxss';
 .dora-alert {
-  --text-color: var(--dora-color-balanced-contrast, #fff);
-  --background-color: var(--dora-color-balanced, #2dd36f);
-  --border-radius: var(--dora-alert-border-radius, var(--dora-border-radius-sm, 4px));
-  --font-size: var(--dora-alert-font-size, 14px);
-  padding: var(--dora-alert-padding-vertical, 10px) var(--dora-alert-padding-horizontal, 15px);
-  padding: var(--dora-alert-padding-vertical, 10px) var(--dora-alert-padding-horizontal, 15px);
+  padding: var(--dora-alert-padding-vertical, 12px) var(--dora-alert-padding-horizontal, 16px);
+  padding: var(--dora-alert-padding-vertical, 12px) var(--dora-alert-padding-horizontal, 16px);
   position: relative;
   display: flex;
   align-items: center;
-  border-radius: var(--border-radius);
-  border-radius: var(--border-radius);
-  font-size: var(--font-size);
-  font-size: var(--font-size);
-  color: var(--text-color);
-  color: var(--text-color);
+  border-radius: var(--dora-alert-border-radius, var(--dora-border-radius-sm, 4px));
+  border-radius: var(--dora-alert-border-radius, var(--dora-border-radius-sm, 4px));
+  font-size: var(--dora-alert-font-size, 14px);
+  font-size: var(--dora-alert-font-size, 14px);
+  color: var(--dora-white, #fff);
+  color: var(--dora-white, #fff);
   background-color: var(--background-color);
   background-color: var(--background-color);
+  --background-color: var(--dora-color-positive, #3880ff);
 }
 
 .dora-alert__thumb {
@@ -59,47 +56,6 @@
   cursor: pointer;
 }
 
-.dora-alert--light {
-  --background-color: var(--dora-color-light, #f4f5f8);
-  --text-color: var(--dora-color-light-contrast, #000);
-}
-
-.dora-alert--stable {
-  --background-color: var(--dora-color-stable, #92949c);
-  --text-color: var(--dora-color-stable-contrast, #fff);
-}
-
-.dora-alert--positive {
-  --background-color: var(--dora-color-positive, #3880ff);
-  --text-color: var(--dora-color-positive-contrast, #fff);
-}
-
-.dora-alert--calm {
-  --background-color: var(--dora-color-calm, #3dc2ff);
-  --text-color: var(--dora-color-calm-contrast, #fff);
-}
-
-.dora-alert--balanced {
-  --background-color: var(--dora-color-balanced, #2dd36f);
-  --text-color: var(--dora-color-balanced-contrast, #fff);
-}
-
-.dora-alert--energized {
-  --background-color: var(--dora-color-energized, #ffc409);
-  --text-color: var(--dora-color-energized-contrast, #000);
-}
-
-.dora-alert--assertive {
-  --background-color: var(--dora-color-assertive, #eb445a);
-  --text-color: var(--dora-color-assertive-contrast, #fff);
-}
-
-.dora-alert--royal {
-  --background-color: var(--dora-color-royal, #8a63d2);
-  --text-color: var(--dora-color-royal-contrast, #fff);
-}
-
-.dora-alert--dark {
-  --background-color: var(--dora-color-dark, #222428);
-  --text-color: var(--dora-color-dark-contrast, #fff);
+.dora-alert.dora-color {
+  --background-color: var(--dora-color-base);
 }

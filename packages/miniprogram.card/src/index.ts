@@ -1,4 +1,5 @@
 import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
 import type { CardAction, CardThumbStyle } from './types'
 const { classNames, styleToCssString } = Doraemon.util
 
@@ -160,7 +161,7 @@ class Card extends Doraemon {
   }
 
   updateThumbStyle(newVal: CardThumbStyle) {
-    this.extStyle = styleToCssString(newVal as any)
+    this.extStyle = styleToCssString(newVal)
   }
 
   @Watch('thumbStyle')
@@ -168,8 +169,8 @@ class Card extends Doraemon {
     this.updateThumbStyle(newVal)
   }
 
-  onAction(e: WechatMiniprogram.TouchEvent) {
-    const dataset = (e.currentTarget as any).dataset as any
+  onAction(e: CustomEvent<{}, {}, { index: number }>) {
+    const dataset = e.currentTarget.dataset
     const index = dataset.index
     const actions = this.actions || []
     const action = actions[index]

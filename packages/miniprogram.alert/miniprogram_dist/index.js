@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.alert.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:42:00.
+ * Built on 2026-05-09, 20:39:23.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 
@@ -16,9 +16,10 @@ function _ts_decorate(decorators, target, key, desc) {
 const { classNames } = Doraemon.util;
 let Alert = class Alert extends Doraemon {
     get classes() {
-        const { prefixCls, theme } = this;
+        const { prefixCls, color } = this;
         const wrap = classNames(prefixCls, {
-            [`${prefixCls}--${theme}`]: theme
+            ['dora-color']: !!color,
+            [`dora-color--${color}`]: !!color
         });
         const hd = `${prefixCls}__hd`;
         const thumb = `${prefixCls}__thumb`;
@@ -67,9 +68,9 @@ _ts_decorate([
 _ts_decorate([
     Prop({
         type: String,
-        default: 'balanced'
+        default: 'positive'
     })
-], Alert.prototype, "theme", void 0);
+], Alert.prototype, "color", void 0);
 _ts_decorate([
     Prop({
         type: String,

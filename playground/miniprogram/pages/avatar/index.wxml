@@ -1,40 +1,37 @@
-<demo-page
-  darkmode="auto"
-  title="miniprogram.avatar"
-  desc="miniprogram.avatar"
-  clickable
-  spacing
->
-  <demo-block title="Basic">
-    <dora-avatar>DA</dora-avatar>
+<demo-page darkmode="auto" title="miniprogram.avatar" desc="头像" clickable>
+  <demo-block title="Default">
+    <view>
+      <dora-avatar size="small">U</dora-avatar>
+      <dora-avatar>U</dora-avatar>
+      <dora-avatar size="large">U</dora-avatar>
+    </view>
   </demo-block>
-
-  <demo-block title="Image">
-    <dora-avatar
-      src="https://cdn.skyvow.cn/logo.png"
-    />
+  <demo-block title="Shape = square">
+    <view>
+      <dora-avatar shape="square" size="small">U</dora-avatar>
+      <dora-avatar shape="square">U</dora-avatar>
+      <dora-avatar shape="square" size="large">U</dora-avatar>
+    </view>
   </demo-block>
-
-  <demo-block title="Size">
-    <dora-avatar
-      size="small"
-      body-style="{{ { marginRight: '12px' } }}"
-    >S</dora-avatar>
-    <dora-avatar
-      size="default"
-      body-style="{{ { marginRight: '12px' } }}"
-    >M</dora-avatar>
-    <dora-avatar size="large">L</dora-avatar>
+  <demo-block title="Custom Style">
+    <view>
+      <dora-avatar dora-class="dora-avatar--custom" size="small">U</dora-avatar>
+      <dora-avatar body-style="background-color: #11c1f3">U</dora-avatar>
+      <dora-avatar body-style="background-color: #33cd5f" size="large">U</dora-avatar>
+    </view>
   </demo-block>
-
-  <demo-block title="Shape & Scale">
-    <dora-avatar
-      shape="square"
-      body-style="{{ { marginRight: '12px' } }}"
-    >A</dora-avatar>
-    <dora-avatar
-      shape="square"
-      scale
-    >Doraemon UI</dora-avatar>
+  <demo-block title="Scale">
+    <view>
+      <dora-avatar scale size="small">dora</dora-avatar>
+      <dora-avatar scale>Weapp</dora-avatar>
+      <dora-avatar scale size="large">Skyvow</dora-avatar>
+    </view>
+  </demo-block>
+  <demo-block title="Src">
+    <view>
+      <dora-avatar size="small" src="http://cdn.skyvow.cn/logo.png" />
+      <dora-avatar src="http://cdn.skyvow.cn/logo.png" />
+      <dora-avatar size="large" src="http://cdn.skyvow.cn/logo.png" />
+    </view>
   </demo-block>
 </demo-page>

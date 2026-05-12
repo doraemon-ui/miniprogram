@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.ellipsis.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:38:48.
+ * Built on 2026-05-10, 00:29:15.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 
@@ -38,7 +38,7 @@ let Ellipsis = class Ellipsis extends Doraemon {
     /**
    * 展开/收起
    */ setExpanded(e) {
-        const expanded = String(e?.target?.dataset?.expanded || '0');
+        const expanded = String(e.currentTarget.dataset.expanded || '0');
         this.expanded = expanded === '1';
         this.calcEllipsised();
     }
@@ -152,30 +152,6 @@ Ellipsis = _ts_decorate([
             prefixCls: {
                 type: String,
                 default: 'dora-ellipsis'
-            },
-            content: {
-                type: String,
-                default: ''
-            },
-            direction: {
-                type: String,
-                default: 'end'
-            },
-            defaultExpanded: {
-                type: Boolean,
-                default: false
-            },
-            expandText: {
-                type: String,
-                default: ''
-            },
-            collapseText: {
-                type: String,
-                default: ''
-            },
-            rows: {
-                type: Number,
-                default: 1
             }
         }
     })

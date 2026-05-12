@@ -5,11 +5,60 @@
     "miniprogram": {
       "list": [
         {
-          "name": "badge/index",
-          "pathName": "badge/index",
+          "name": "ellipsis/index",
+          "pathName": "ellipsis/index",
           "query": "",
           "scene": null,
           "launchMode": "default"
+        },
+        {
+          "name": "e-sign/index",
+          "pathName": "e-sign/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "divider/index",
+          "pathName": "divider/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "card/index",
+          "pathName": "card/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "barcode/index",
+          "pathName": "barcode/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "avatar/index",
+          "pathName": "avatar/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "alert/index",
+          "pathName": "alert/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "badge/index",
+          "pathName": "badge/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         },
         {
           "name": "tabbar/index",

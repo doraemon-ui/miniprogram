@@ -1,12 +1,12 @@
 /**
  * @doraemon-ui/miniprogram.barcode.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:38:07.
+ * Built on 2026-05-09, 21:36:02.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 
 import { Prop, Watch, Component, defineComponentHOC, Doraemon } from '@doraemon-ui/miniprogram.core-js';
-import { useRef, getSystemInfoSync } from '@doraemon-ui/miniprogram.shared';
+import { getSystemInfoSync, getCanvasRef, toDataURL } from '@doraemon-ui/miniprogram.shared';
 import EAN13 from './barcode.js';
 
 function _ts_decorate(decorators, target, key, desc) {
@@ -19,47 +19,14 @@ const defaultOptions = {
     number: true,
     prefix: true,
     color: 'black',
-    debug: false,
-    onValid: ()=>{},
-    onInvalid: ()=>{},
-    onSuccess: ()=>{},
-    onError: ()=>{}
+    debug: false
 };
-async function toDataURL({ width, height, type = 'png', quality = 1 }, canvas) {
-    const fileType = type === 'jpg' || type === 'jpeg' ? 'jpeg' : type;
-    if (typeof canvas.toDataURL === 'function') {
-        const fn = canvas.toDataURL;
-        return fn.call(canvas, `image/${fileType}`, quality);
-    }
-    if (typeof wx !== 'undefined' && typeof wx.canvasToTempFilePath === 'function') {
-        const ratio = getSystemInfoSync([
-            'window'
-        ]).pixelRatio || 1;
-        const tempFileType = type === 'jpg' || type === 'jpeg' ? 'jpg' : 'png';
-        return await new Promise((resolve)=>{
-            wx.canvasToTempFilePath({
-                destWidth: width * ratio,
-                destHeight: height * ratio,
-                canvas,
-                fileType: tempFileType,
-                quality,
-                success: (res)=>resolve(res.tempFilePath || ''),
-                fail: ()=>resolve('')
-            });
-        });
-    }
-    return '';
-}
 let Barcode = class Barcode extends Doraemon {
     onPropsChange() {
         this.draw().catch(()=>{
         /**
        * Ignore
        */ });
-    }
-    async getCanvasNode(canvasId) {
-        const ref = await useRef(`#${canvasId}`, this._renderProxy);
-        return ref.node;
     }
     async draw(opts = {}) {
         const props = {
@@ -81,39 +48,7 @@ let Barcode = class Barcode extends Doraemon {
         const ratio = getSystemInfoSync([
             'window'
         ]).pixelRatio || 1;
-        const canvas = await this.getCanvasNode(canvasId);
-        const emit = (event, detail)=>{
-            if (detail !== undefined) {
-                this.$emit(event, detail);
-            } else {
-                this.$emit(event);
-            }
-        };
-        const buildHook = (hookName)=>{
-            const userCb = mergedOptions[hookName];
-            return async ()=>{
-                if (typeof userCb === 'function') {
-                    userCb();
-                }
-                if (hookName === 'onSuccess') {
-                    const base64Url = await toDataURL({
-                        width,
-                        height
-                    }, canvas);
-                    try {
-                        const ctx = canvas.getContext('2d');
-                        ctx.restore?.();
-                    } catch (e) {
-                    /**
-             * Ignore
-             */ }
-                    emit('load', {
-                        base64Url
-                    });
-                }
-                emit(hookName.replace(/^on/, '').toLowerCase());
-            };
-        };
+        const canvas = await getCanvasRef(canvasId, this._renderProxy);
         new EAN13(canvas, ratio, value, Object.assign({
             width,
             height
@@ -123,16 +58,32 @@ let Barcode = class Barcode extends Doraemon {
             color: mergedOptions.color,
             debug: mergedOptions.debug,
             onValid: ()=>{
-                void buildHook('onValid')();
+                this.$emit('valid');
             },
             onInvalid: ()=>{
-                void buildHook('onInvalid')();
+                this.$emit('invalid');
             },
-            onSuccess: ()=>{
-                void buildHook('onSuccess')();
+            onSuccess: async ()=>{
+                const base64Url = await toDataURL({
+                    width,
+                    height
+                }, canvas);
+                try {
+                    const ctx = canvas.getContext('2d');
+                    ctx.restore?.();
+                } catch (e) {
+                /**
+               * Ignore
+               */ }
+                this.$emit('load', {
+                    base64Url
+                });
+                this.$emit('success', {
+                    base64Url
+                });
             },
             onError: ()=>{
-                void buildHook('onError')();
+                this.$emit('error');
             }
         }));
     }

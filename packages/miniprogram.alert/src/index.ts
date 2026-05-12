@@ -99,7 +99,6 @@ class Alert extends Doraemon {
   get classes() {
     const { prefixCls, color } = this
     const wrap = classNames(prefixCls, {
-      [`${prefixCls}--${color}`]: color,
       ['dora-color']: !!color,
       [`dora-color--${color}`]: !!color,
     })

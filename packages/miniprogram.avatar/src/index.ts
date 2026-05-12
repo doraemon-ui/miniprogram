@@ -1,4 +1,5 @@
 import { useRect } from '@doraemon-ui/miniprogram.shared'
+import type { MiniprogramPublicInstance } from '@doraemon-ui/miniprogram.shared'
 import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 
 const { classNames, styleToCssString } = Doraemon.util
@@ -116,10 +117,12 @@ class Avatar extends Doraemon {
       [`${prefixCls}--thumb`]: src,
     })
     const string = `${prefixCls}__string`
+    const image = `${prefixCls}__image`
 
     return {
       wrap,
       string,
+      image,
     }
   }
 
@@ -131,7 +134,7 @@ class Avatar extends Doraemon {
    */
   setScale() {
     const { prefixCls } = this
-    useRect([`.${prefixCls}`, `.${prefixCls}__string`], this._renderProxy).then(([parent, child]) => {
+    useRect([`.${prefixCls}`, `.${prefixCls}__string`], this._renderProxy as unknown as MiniprogramPublicInstance).then(([parent, child]) => {
       if (!parent || !child) {
         return
       }
@@ -168,7 +171,9 @@ class Avatar extends Doraemon {
    * @memberof Avatar
    */
   mounted() {
-    if (!this.src && this.scale) {
+    const { bodyStyle, src, scale } = this
+    this.onBodyStyleChanged(bodyStyle)
+    if (!src && scale) {
       this.setScale()
     }
   }

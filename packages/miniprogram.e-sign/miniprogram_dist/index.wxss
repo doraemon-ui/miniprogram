@@ -22,12 +22,12 @@
 }
 
 .dora-e-sign__button {
-  padding-left: var(--dora-e-sign-button-padding, 12px);
-  padding-left: var(--dora-e-sign-button-padding, 12px);
-  padding-right: var(--dora-e-sign-button-padding, 12px);
-  padding-right: var(--dora-e-sign-button-padding, 12px);
-  margin-top: var(--dora-e-sign-button-margin, 9px);
-  margin-top: var(--dora-e-sign-button-margin, 9px);
-  margin-left: var(--dora-e-sign-button-margin, 9px);
-  margin-left: var(--dora-e-sign-button-margin, 9px);
+  padding-left: var(--dora-e-sign-button-padding, 12px)!important;
+  padding-left: var(--dora-e-sign-button-padding, 12px)!important;
+  padding-right: var(--dora-e-sign-button-padding, 12px)!important;
+  padding-right: var(--dora-e-sign-button-padding, 12px)!important;
+  margin-top: var(--dora-e-sign-button-margin, 9px)!important;
+  margin-top: var(--dora-e-sign-button-margin, 9px)!important;
+  margin-left: var(--dora-e-sign-button-margin, 9px)!important;
+  margin-left: var(--dora-e-sign-button-margin, 9px)!important;
 }

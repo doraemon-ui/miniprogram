@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.avatar.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:42:03.
+ * Built on 2026-05-09, 21:01:30.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 
@@ -30,9 +30,11 @@ let Avatar = class Avatar extends Doraemon {
             [`${prefixCls}--thumb`]: src
         });
         const string = `${prefixCls}__string`;
+        const image = `${prefixCls}__image`;
         return {
             wrap,
-            string
+            string,
+            image
         };
     }
     /**
@@ -74,7 +76,9 @@ let Avatar = class Avatar extends Doraemon {
    * @description 当无图片且开启了缩放时，自动计算文字缩放比例
    * @memberof Avatar
    */ mounted() {
-        if (!this.src && this.scale) {
+        const { bodyStyle, src, scale } = this;
+        this.onBodyStyleChanged(bodyStyle);
+        if (!src && scale) {
             this.setScale();
         }
     }
@@ -115,7 +119,7 @@ _ts_decorate([
 _ts_decorate([
     Prop({
         type: null,
-        default: ''
+        default: null
     })
 ], Avatar.prototype, "bodyStyle", void 0);
 _ts_decorate([

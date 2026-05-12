@@ -1,12 +1,12 @@
 /**
  * @doraemon-ui/miniprogram.e-sign.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:38:45.
+ * Built on 2026-05-10, 00:21:34.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 
 import { Doraemon, Prop, Watch, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
-import { useRef, getTouchPoints, getSystemInfoSync } from '@doraemon-ui/miniprogram.shared';
+import { useRef, getTouchPoints, getCanvasRef, getSystemInfoSync, toDataURL } from '@doraemon-ui/miniprogram.shared';
 
 function _ts_decorate(decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -15,31 +15,6 @@ function _ts_decorate(decorators, target, key, desc) {
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 }
 const { classNames, styleToCssString } = Doraemon.util;
-async function toDataURL({ width, height, type = 'png', quality = 1 }, canvas) {
-    const fileType = type === 'jpg' || type === 'jpeg' ? 'jpeg' : type;
-    if (typeof canvas.toDataURL === 'function') {
-        const fn = canvas.toDataURL;
-        return fn.call(canvas, `image/${fileType}`, quality);
-    }
-    if (typeof wx !== 'undefined' && typeof wx.canvasToTempFilePath === 'function') {
-        const ratio = getSystemInfoSync([
-            'window'
-        ]).pixelRatio || 1;
-        const tempFileType = type === 'jpg' || type === 'jpeg' ? 'jpg' : 'png';
-        return await new Promise((resolve)=>{
-            wx.canvasToTempFilePath({
-                destWidth: width * ratio,
-                destHeight: height * ratio,
-                canvas,
-                fileType: tempFileType,
-                quality,
-                success: (res)=>resolve(res.tempFilePath || ''),
-                fail: ()=>resolve('')
-            });
-        });
-    }
-    return '';
-}
 let ESign = class ESign extends Doraemon {
     get classes() {
         const { prefixCls } = this;
@@ -57,43 +32,44 @@ let ESign = class ESign extends Doraemon {
         });
         this.resize();
     }
-    async getCanvasNode(canvasId) {
-        const ref = await useRef(`#${canvasId}`, this._renderProxy);
-        return ref.node;
-    }
-    resolveCanvasRef() {
-        const ref = this.canvasRef;
-        if (!ref) return null;
-        return typeof ref.then === 'function' ? ref : Promise.resolve(ref);
+    /**
+   * 获取并缓存 wrap ref
+   */ getWrapRef(forceUpdate = false) {
+        if (!this.wrapRef || forceUpdate) {
+            this.wrapRef = useRef(`.${this.prefixCls}__bd`, this._renderProxy);
+        }
+        return this.wrapRef;
     }
     /**
    * 手指触摸动作开始
    */ onTouchStart() {
-        const ref = this.resolveCanvasRef();
-        if (!ref) return false;
+        if (!this.canvasRef) return;
         const props = this;
-        void ref.then(({ value: ctx })=>{
+        void this.canvasRef.then(({ ctx })=>{
             if (!ctx) return;
             ctx.beginPath();
             ctx.lineWidth = props.lineWidth || 3;
             ctx.strokeStyle = props.lineColor || '#000000';
             this.$emit('start');
         });
-        return true;
     }
     /**
    * 手指触摸后移动
    */ onTouchMove(e) {
-        const ref = this.resolveCanvasRef();
-        if (!ref) return false;
+        if (!this.canvasRef) return false;
         if (this.isCanvasEmpty) {
             this.isCanvasEmpty = false;
         }
-        const touch = getTouchPoints(e);
-        const mouseX = touch.x - (e.currentTarget?.offsetLeft || 0);
-        const mouseY = touch.y - (e.currentTarget?.offsetTop || 0);
-        void ref.then(({ value: ctx })=>{
-            if (!ctx) return;
+        Promise.all([
+            this.wrapRef,
+            this.canvasRef
+        ]).then(([wrapRef, { ctx }])=>{
+            if (!wrapRef || !ctx) return;
+            const touch = getTouchPoints(e);
+            const offsetLeft = wrapRef.clientLeft + wrapRef.left;
+            const offsetTop = wrapRef.clientTop + wrapRef.top;
+            const mouseX = touch.x - offsetLeft;
+            const mouseY = touch.y - offsetTop;
             ctx.lineCap = 'round';
             ctx.lineJoin = 'round';
             ctx.lineTo(mouseX, mouseY);
@@ -103,7 +79,6 @@ let ESign = class ESign extends Doraemon {
                 mouseY
             });
         });
-        return true;
     }
     /**
    * 手指触摸动作结束
@@ -122,67 +97,59 @@ let ESign = class ESign extends Doraemon {
             this.bodyStyle = bodyStyle;
         }
     }
-    async createCanvasContext(props) {
-        const getWrapRef = async ()=>{
-            if (props.width === 'auto') {
-                const wrap = await useRef(`.${props.prefixCls}__bd`, this._renderProxy);
-                return {
-                    width: wrap.clientWidth,
-                    height: wrap.clientHeight
-                };
-            }
-            return {
-                width: Number(props.width),
-                height: props.height
-            };
-        };
-        const { width, height } = await getWrapRef();
-        const canvas = await this.getCanvasNode(props.prefixCls);
-        const ctx = canvas.getContext('2d');
-        const ratio = getSystemInfoSync([
-            'window'
-        ]).pixelRatio || 1;
-        const canvasWidth = width * ratio;
-        const canvasHeight = height * ratio;
-        const setCanvasBgColor = ()=>{
-            if (props.bgColor) {
-                ctx.fillStyle = props.bgColor;
-                ctx.fillRect(0, 0, width, height);
-            }
-        };
-        canvas.width = canvasWidth;
-        canvas.height = canvasHeight;
-        ctx.scale(ratio, ratio);
-        setCanvasBgColor();
-        const clear = ()=>{
-            ctx.clearRect(0, 0, width, height);
-            ctx.closePath();
-            setCanvasBgColor();
-        };
-        const draw = ()=>{
-            return toDataURL({
-                width,
-                height,
-                type: props.type
-            }, canvas);
-        };
-        const resize = (create)=>{
-            const data = ctx.getImageData(0, 0, canvasWidth, canvasHeight);
-            void create().then(({ value: newCtx })=>{
-                newCtx.putImageData(data, 0, 0);
+    async createCanvasContext(props, forceUpdate = false) {
+        const renderCanvas = ()=>{
+            return this.getWrapRef(forceUpdate).then(({ clientWidth: width, clientHeight: height })=>{
+                return getCanvasRef(props.prefixCls, this._renderProxy).then((canvas)=>{
+                    const ctx = canvas.getContext('2d');
+                    const ratio = getSystemInfoSync([
+                        'window'
+                    ]).pixelRatio;
+                    const canvasWidth = width * ratio;
+                    const canvasHeight = height * ratio;
+                    const setCanvasBgColor = (ctx)=>{
+                        if (ctx && props.bgColor) {
+                            ctx.fillStyle = props.bgColor;
+                            ctx.fillRect(0, 0, width, height);
+                        }
+                    };
+                    canvas.width = canvasWidth;
+                    canvas.height = canvasHeight;
+                    ctx.scale(ratio, ratio);
+                    setCanvasBgColor(ctx);
+                    const clear = ()=>{
+                        ctx.clearRect(0, 0, width, height);
+                        ctx.closePath();
+                        // reset canvas bgColor
+                        setCanvasBgColor(ctx);
+                    };
+                    const draw = ()=>{
+                        return toDataURL({
+                            width,
+                            height,
+                            type: props.type
+                        }, canvas);
+                    };
+                    const resize = (updateCanvasContext)=>{
+                        const data = ctx.getImageData(0, 0, canvasWidth, canvasHeight);
+                        updateCanvasContext().then(({ ctx: newCtx })=>{
+                            newCtx.putImageData(data, 0, 0);
+                        });
+                    };
+                    return {
+                        ctx,
+                        clear,
+                        draw,
+                        resize
+                    };
+                });
             });
         };
-        return {
-            value: ctx,
-            clear,
-            draw,
-            resize
-        };
+        return Promise.resolve().then(renderCanvas);
     }
     clear() {
-        const ref = this.resolveCanvasRef();
-        if (!ref) return;
-        void ref.then(({ clear })=>{
+        if (!this.canvasRef) return;
+        void this.canvasRef.then(({ clear })=>{
             if (typeof clear === 'function') {
                 clear();
             }
@@ -197,9 +164,8 @@ let ESign = class ESign extends Doraemon {
             });
             return;
         }
-        const ref = this.resolveCanvasRef();
-        if (!ref) return;
-        void ref.then(({ draw })=>{
+        if (!this.canvasRef) return;
+        void this.canvasRef.then(({ draw })=>{
             if (typeof draw === 'function') {
                 void draw().then((base64Url)=>{
                     this.$emit('submit', {
@@ -214,11 +180,10 @@ let ESign = class ESign extends Doraemon {
         });
     }
     resize() {
-        const ref = this.resolveCanvasRef();
-        if (!ref) return;
-        void ref.then(({ resize })=>{
+        if (!this.canvasRef) return;
+        void this.canvasRef.then(({ resize })=>{
             resize(()=>{
-                const nextRef = this.createCanvasContext(this);
+                const nextRef = this.createCanvasContext(this, true);
                 this.canvasRef = nextRef;
                 return nextRef;
             });
@@ -233,6 +198,7 @@ let ESign = class ESign extends Doraemon {
         this.isCanvasEmpty = true;
         this.bodyStyle = '';
         this.canvasRef = null;
+        this.wrapRef = null;
     }
 };
 _ts_decorate([
@@ -303,42 +269,6 @@ ESign = _ts_decorate([
             prefixCls: {
                 type: String,
                 default: 'dora-e-sign'
-            },
-            type: {
-                type: String,
-                default: 'png'
-            },
-            width: {
-                type: null,
-                default: 'auto'
-            },
-            height: {
-                type: Number,
-                default: 200
-            },
-            bgColor: {
-                type: String,
-                default: '#ffffff'
-            },
-            lineWidth: {
-                type: Number,
-                default: 3
-            },
-            lineColor: {
-                type: String,
-                default: '#000000'
-            },
-            hasFooter: {
-                type: Boolean,
-                default: true
-            },
-            cancelText: {
-                type: String,
-                default: '重置'
-            },
-            confirmText: {
-                type: String,
-                default: '确定'
             }
         }
     })

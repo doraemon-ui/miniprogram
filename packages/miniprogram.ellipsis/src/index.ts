@@ -1,4 +1,5 @@
 import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
 import type { EllipsisDirection, EllipsisTextRange } from './types'
 const { classNames, styleToCssString } = Doraemon.util
 
@@ -8,12 +9,10 @@ function getSubString(chars: string[], start: number, end: number) {
 
 @Component({
   props: {
-
     prefixCls: {
       type: String,
       default: 'dora-ellipsis',
     },
-  
   },
 })
 class Ellipsis extends Doraemon {
@@ -138,8 +137,8 @@ class Ellipsis extends Doraemon {
   /**
    * 展开/收起
    */
-  setExpanded(e: WechatMiniprogram.BaseEvent<{ expanded?: string | number }>) {
-    const expanded = String(e?.target?.dataset?.expanded || '0')
+  setExpanded(e: CustomEvent<{}, {}, { expanded?: string | number }>) {
+    const expanded = String(e.currentTarget.dataset.expanded || '0')
     this.expanded = expanded === '1'
     this.calcEllipsised()
   }

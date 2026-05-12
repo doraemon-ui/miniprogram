@@ -2,6 +2,7 @@ export * from './canUseMP'
 export * from './findComponentNode'
 export * from './getCurrentPage'
 export * from './global'
+export * from './useCanvasAPI'
 export * from './useDOM'
 export * from './useGesture'
 export * from './useNativeAPI'
@@ -12,6 +13,7 @@ import { canUseMP } from './canUseMP'
 import { findComponentNode } from './findComponentNode'
 import { getCurrentPage } from './getCurrentPage'
 import { miniprogramThis } from './global'
+import { getCanvasRef, downloadImage, createImage, toDataURL } from './useCanvasAPI'
 import { useQuery, useSelector, useSelectorAll, useRef, useRefAll, useRect, useRectAll, useScrollOffset, useComputedStyle } from './useDOM'
 import { getTouchPoints, getPointsNumber, isEqualPoints, isNearbyPoints, getPointsDistance, getSwipeDirection } from './useGesture'
 import { getSystemInfoSync, getMenuButtonBoundingClientRectSync } from './useNativeAPI'
@@ -23,6 +25,10 @@ export default {
   findComponentNode,
   getCurrentPage,
   miniprogramThis,
+  getCanvasRef,
+  downloadImage,
+  createImage,
+  toDataURL,
   useQuery,
   useSelector,
   useSelectorAll,
