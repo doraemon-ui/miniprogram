@@ -11,7 +11,7 @@
   background-color: var(--background-color);
   color: var(--text-color);
 
-  .navbar-color(#get-color(light)[], @text-color);
+  .navbar-color(#get-color(light)[], @title-color);
 
   &__left,
   &__title,
@@ -45,11 +45,11 @@
   }
 
   &.@{dora-prefix}-color.@{dora-prefix}-color--light {
-    .navbar-color(#current-color(base)[], @text-color);
+    .navbar-color(#current-color(base)[], @title-color);
   }
 
   &.@{dora-prefix}-color.@{dora-prefix}-color--stable {
-    .navbar-color(#current-color(base)[], @text-color);
+    .navbar-color(#current-color(base)[], @title-color);
   }
 }
 

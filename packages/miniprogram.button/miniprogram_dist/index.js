@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.button.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:42:07.
+ * Built on 2026-05-20, 21:43:29.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 
@@ -300,6 +300,18 @@ Button = _ts_decorate([
             phoneNumberNoQuotaToast: {
                 type: Boolean,
                 default: true
+            },
+            needShowEntrance: {
+                type: Boolean,
+                default: true
+            },
+            entrancePath: {
+                type: String,
+                default: ''
+            },
+            createliveactivity: {
+                type: Boolean,
+                default: false
             },
             appParameter: {
                 type: String,

@@ -36,9 +36,9 @@
   --text-color: var(--dora-color-positive-contrast, #fff);
   --activated-text-color: var(--dora-color-positive-contrast, #fff);
   --background-color: var(--dora-color-positive, #3880ff);
-  --activated-background-color: var(--dora-color-positive-active, #055fff);
+  --activated-background-color: var(--dora-color-positive-active, #3171e0);
   --border-color: var(--dora-color-positive, #3880ff);
-  --activated-border-color: var(--dora-color-positive-active, #055fff);
+  --activated-border-color: var(--dora-color-positive-active, #3171e0);
   --border-radius: var(--dora-button-border-radius, var(--dora-border-radius, 8px));
   --font-size: 16px;
   --height: 48px;
@@ -46,29 +46,29 @@
   --padding-end: 12px;
   padding-top: unset;
   padding-bottom: unset;
+  padding-left: 12px;
   padding-left: var(--padding-start);
-  padding-left: var(--padding-start);
+  padding-right: 12px;
   padding-right: var(--padding-end);
-  padding-right: var(--padding-end);
+  min-width: calc((12px*1.5) + (12px*1.5) + 16px);
   min-width: calc((var(--padding-start)*1.5) + (var(--padding-end)*1.5) + var(--font-size));
-  min-width: calc((var(--padding-start)*1.5) + (var(--padding-end)*1.5) + var(--font-size));
+  min-height: 48px!important;
   min-height: var(--height)!important;
-  min-height: var(--height)!important;
+  font-size: 16px;
   font-size: var(--font-size);
-  font-size: var(--font-size);
+  line-height: calc(48px - 1px*2);
   line-height: calc(var(--height) - var(--border-width)*2);
-  line-height: calc(var(--height) - var(--border-width)*2);
+  opacity: 1;
   opacity: var(--opacity);
-  opacity: var(--opacity);
+  border-radius: 8px;
   border-radius: var(--border-radius);
-  border-radius: var(--border-radius);
+  border: 1px solid #3880ff;
   border: var(--border-width) var(--border-style) var(--border-color);
-  border: var(--border-width) var(--border-style) var(--border-color);
+  border-color: #3880ff!important;
   border-color: var(--border-color)!important;
-  border-color: var(--border-color)!important;
+  background-color: #3880ff!important;
   background-color: var(--background-color)!important;
-  background-color: var(--background-color)!important;
-  color: var(--text-color)!important;
+  color: #fff!important;
   color: var(--text-color)!important;
 }
 
@@ -103,8 +103,8 @@
 
 .dora-button--clear {
   --activated-opacity: var(--dora-button-clear-activated-opacity, 0.4);
-  --text-color: var(--dora-color-positive-active, #055fff);
-  --activated-text-color: var(--dora-color-positive-active, #055fff);
+  --text-color: var(--dora-color-positive-active, #3171e0);
+  --activated-text-color: var(--dora-color-positive-active, #3171e0);
   --background-color: transparent;
   --activated-background-color: transparent;
   --border-color: transparent;
@@ -145,9 +145,9 @@
   --block-margin-bottom: 9px;
   width: 100%!important;
   contain: content!important;
+  margin-top: 9px;
   margin-top: var(--block-margin-top);
-  margin-top: var(--block-margin-top);
-  margin-bottom: var(--block-margin-bottom);
+  margin-bottom: 9px;
   margin-bottom: var(--block-margin-bottom);
 }
 
@@ -182,19 +182,19 @@
 
 .dora-button--disabled {
   cursor: default;
-  opacity: var(--disabled-opacity)!important;
+  opacity: 0.5!important;
   opacity: var(--disabled-opacity)!important;
   pointer-events: none;
 }
 
 .dora-button--activated {
+  opacity: 1!important;
   opacity: var(--activated-opacity)!important;
-  opacity: var(--activated-opacity)!important;
+  border-color: #055fff!important;
   border-color: var(--activated-border-color)!important;
-  border-color: var(--activated-border-color)!important;
+  background-color: #055fff!important;
   background-color: var(--activated-background-color)!important;
-  background-color: var(--activated-background-color)!important;
-  color: var(--activated-text-color)!important;
+  color: #fff!important;
   color: var(--activated-text-color)!important;
 }
 

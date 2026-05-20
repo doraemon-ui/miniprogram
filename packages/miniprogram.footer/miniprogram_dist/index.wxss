@@ -6,9 +6,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #fff;
   background-color: var(--dora-component-background-color, #fff);
-  background-color: var(--dora-component-background-color, #fff);
-  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.65);
+  color: rgba(0,0,0,0.65);
   color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.65);
   font-size: 13px;
 }
@@ -19,7 +19,7 @@
 
 .dora-footer__links {
   margin: 9px 0;
-  color: var(--link-color);
+  color: #3880ff;
   color: var(--link-color);
   white-space: nowrap;
 }
@@ -34,7 +34,7 @@
   display: flex;
   align-items: center;
   margin: 9px 0;
-  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
+  color: rgba(0,0,0,0.45);
   color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
 }
 
@@ -49,9 +49,9 @@
   white-space: nowrap;
   margin-right: 16px;
   font-size: 12px;
+  background-color: #e6e6e6;
   background-color: var(--dora-color-step-10, #e6e6e6);
-  background-color: var(--dora-color-step-10, #e6e6e6);
-  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
+  color: rgba(0,0,0,0.45);
   color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
   padding: 5px 11px;
   border-radius: 100px;
@@ -63,9 +63,9 @@
 
 .dora-footer__chip--link {
   cursor: pointer;
+  color: #3880ff;
   color: var(--link-color);
-  color: var(--link-color);
-  background-color: var(--chip-link-background-color);
+  background-color: rgba(56,128,255,0.12);
   background-color: var(--chip-link-background-color);
 }
 
