@@ -1,11 +1,12 @@
 /**
  * @doraemon-ui/miniprogram.footer.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:39:04.
+ * Built on 2026-05-14, 13:35:57.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 
 import { Doraemon, Prop, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
+import { useNativeRoute } from '@doraemon-ui/miniprogram.shared';
 
 function _ts_decorate(decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc, d;
@@ -13,46 +14,81 @@ function _ts_decorate(decorators, target, key, desc) {
     else for(var i = decorators.length - 1; i >= 0; i--)if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 }
-const { classNames, styleToCssString } = Doraemon.util;
+const { classNames } = Doraemon.util;
 let Footer = class Footer extends Doraemon {
     get classes() {
-        const { prefixCls, hoverClass, disabled } = this;
-        const wrap = classNames(prefixCls, {
-            [`${prefixCls}--disabled`]: disabled
-        });
-        const hover = hoverClass && hoverClass !== 'default' ? hoverClass : `${prefixCls}--hover`;
+        const { prefixCls, color } = this;
         return {
-            wrap,
-            hover
+            wrap: classNames(prefixCls, {
+                'dora-color': color,
+                [`dora-color--${color}`]: color
+            }),
+            label: `${prefixCls}__label`,
+            content: `${prefixCls}__content`,
+            links: `${prefixCls}__links`,
+            link: `${prefixCls}__link`,
+            chips: `${prefixCls}__chips`,
+            chip: `${prefixCls}__chip`,
+            chipLink: `${prefixCls}__chip--link`
         };
     }
-    get containerStyle() {
-        return this.wrapStyle ? styleToCssString(this.wrapStyle) : '';
-    }
-    onClick() {
-        if (!this.disabled) {
-            this.$emit('click');
+    onLinkClick(e) {
+        const { index } = e.currentTarget.dataset;
+        const item = this.links[index];
+        if (!item) return;
+        if (item.url !== undefined) {
+            useNativeRoute({
+                url: item.url,
+                urlParams: item.urlParams,
+                openType: item.openType,
+                delta: item.delta
+            }, this);
         }
+        this.$emit('linkClick', {
+            item,
+            index
+        });
+    }
+    onChipClick(e) {
+        const { index } = e.currentTarget.dataset;
+        const item = this.chips[index];
+        if (!item || item.type !== 'link') return;
+        this.$emit('chipClick', {
+            item,
+            index
+        });
     }
 };
 _ts_decorate([
     Prop({
-        type: Boolean,
-        default: false
+        type: String,
+        default: 'positive'
     })
-], Footer.prototype, "disabled", void 0);
+], Footer.prototype, "color", void 0);
 _ts_decorate([
     Prop({
         type: String,
-        default: 'default'
+        default: ''
     })
-], Footer.prototype, "hoverClass", void 0);
+], Footer.prototype, "label", void 0);
 _ts_decorate([
     Prop({
-        type: Object,
-        default: null
+        type: String,
+        default: ''
     })
-], Footer.prototype, "wrapStyle", void 0);
+], Footer.prototype, "content", void 0);
+_ts_decorate([
+    Prop({
+        type: Array,
+        default: ()=>[]
+    })
+], Footer.prototype, "links", void 0);
+_ts_decorate([
+    Prop({
+        type: Array,
+        default: ()=>[]
+    })
+], Footer.prototype, "chips", void 0);
 Footer = _ts_decorate([
     Component({
         props: {

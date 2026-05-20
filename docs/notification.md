@@ -2,17 +2,15 @@
 
 @doraemon-ui/miniprogram.notification
 
-## 安装
+顶部通知条组件，支持图片、标题、文案、自动关闭、点击回调，以及 `show()` 返回可手动关闭并可 `then()` 的句柄。
 
-我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
+## 安装
 
 ```bash
 npm install --save @doraemon-ui/miniprogram.notification
 # or
 yarn add @doraemon-ui/miniprogram.notification
 ```
-
-如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
 
 ## 使用指南
 
@@ -24,44 +22,44 @@ yarn add @doraemon-ui/miniprogram.notification
 
 [在开发者工具中预览效果](https://developers.weixin.qq.com/s/DoraemonUI)
 
-<!-- tabs:start -->
-
-#### **WXML**
+#### WXML
 
 [wxml](./playground/notification/pages/index/index.wxml ':include :type=code')
 
-#### **JAVASCRIPT**
+#### JAVASCRIPT
 
 [js](./playground/notification/pages/index/index.js ':include :type=code')
-
-#### **WXSS**
-
-[wxss](./playground/notification/pages/index/index.wxss ':include :type=code')
-
-<!-- tabs:end -->
 
 ## API
 
 ### Notification props
 
-| 参数      | 类型     | 描述           | 默认值            |
-| --------- | -------- | -------------- | ----------------- |
-| prefixCls | `string` | 自定义类名前缀 | dora-notification |
+| 参数 | 类型 | 描述 | 默认值 |
+| --- | --- | --- | --- |
+| prefixCls | `string` | 自定义类名前缀 | `dora-notification` |
 
-### Notification slot
+### Notification expose
 
-| 名称 | 描述       |
-| ---- | ---------- |
-| -    | 自定义内容 |
+| 方法 | 描述 |
+| --- | --- |
+| show(options) | 显示通知并返回关闭句柄 |
+| hide() | 关闭通知 |
 
-### Notification externalClasses
+### show(options)
 
-| 名称       | 描述         |
-| ---------- | ------------ |
-| dora-class | 根节点样式类 |
+| 参数 | 类型 | 描述 |
+| --- | --- | --- |
+| image | `string` | 左侧图片 |
+| title | `string` | 标题 |
+| text | `string` | 文案 |
+| data | `Record<string, unknown> \| null` | 点击和关闭时透传的数据 |
+| duration | `number` | 自动关闭时间，毫秒 |
+| onClick | `(data) => void` | 点击时回调 |
+| onClose | `(data) => void` | 关闭时回调 |
 
-## CSS Variables
+### Notification events
 
-| 属性         | 描述     | 默认值 | 全局变量 |
-| ------------ | -------- | ------ | -------- |
-| --text-color | 文字颜色 | `#fff` | -        |
+| 事件名 | 描述 |
+| --- | --- |
+| click | 点击通知时触发 |
+| close | 关闭通知时触发 |

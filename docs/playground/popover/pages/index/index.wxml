@@ -1,11 +1,107 @@
-<demo-page
-  darkmode="auto"
-  title="miniprogram.popover"
-  desc="miniprogram.popover"
-  clickable
-  spacing
->
-  <demo-block title="Basic">
-    <dora-popover>miniprogram.popover</dora-popover>
+<demo-page darkmode="auto" title="Popover" desc="气泡框">
+  <demo-block title="Placement">
+    <view class="button-sp-area">
+      <dora-popover placement="topLeft" title="Title" content="Content">
+        <button size="mini">topLeft</button>
+      </dora-popover>
+    </view>
+    <view class="button-sp-area">
+      <dora-popover placement="top" title="Title" content="Content">
+        <button size="mini">top</button>
+      </dora-popover>
+    </view>
+    <view class="button-sp-area">
+      <dora-popover placement="topRight" title="Title" content="Content">
+        <button size="mini">topRight</button>
+      </dora-popover>
+    </view>
+    <view class="button-sp-area text-left">
+      <dora-popover placement="rightTop" title="Title" content="Content">
+        <button size="mini">rightTop</button>
+      </dora-popover>
+    </view>
+    <view class="button-sp-area text-left">
+      <dora-popover placement="right" title="Title" content="Content">
+        <button size="mini">right</button>
+      </dora-popover>
+    </view>
+    <view class="button-sp-area text-left">
+      <dora-popover placement="rightBottom" title="Title" content="Content">
+        <button size="mini">rightBottom</button>
+      </dora-popover>
+    </view>
+    <view class="button-sp-area">
+      <dora-popover placement="bottomRight" title="Title" content="Content">
+        <button size="mini">bottomRight</button>
+      </dora-popover>
+    </view>
+    <view class="button-sp-area">
+      <dora-popover placement="bottom" title="Title" content="Content">
+        <button size="mini">bottom</button>
+      </dora-popover>
+    </view>
+    <view class="button-sp-area">
+      <dora-popover placement="bottomLeft" title="Title" content="Content">
+        <button size="mini">bottomLeft</button>
+      </dora-popover>
+    </view>
+    <view class="button-sp-area text-right">
+      <dora-popover placement="leftBottom" title="Title" content="Content">
+        <button size="mini">leftBottom</button>
+      </dora-popover>
+    </view>
+    <view class="button-sp-area text-right">
+      <dora-popover placement="left" title="Title" content="Content">
+        <button size="mini">left</button>
+      </dora-popover>
+    </view>
+    <view class="button-sp-area text-right">
+      <dora-popover placement="leftTop" title="Title" content="Content">
+        <button size="mini">leftTop</button>
+      </dora-popover>
+    </view>
+  </demo-block>
+
+  <demo-block title="Default Visible">
+    <view class="button-sp-area text-left">
+      <dora-popover defaultVisible placement="rightBottom" title="Title" content="Content">
+        <button size="mini">rightBottom</button>
+      </dora-popover>
+    </view>
+  </demo-block>
+
+  <demo-block title="Custom Style">
+    <view class="button-sp-area">
+      <dora-popover placement="top" title="Title" content="Content" body-style="width: 300px;">
+        <button size="mini">top</button>
+      </dora-popover>
+    </view>
+  </demo-block>
+
+  <demo-block title="Theme = dark">
+    <view class="button-sp-area">
+      <dora-popover theme="dark" placement="top" title="Title" content="Content">
+        <button size="mini">top</button>
+      </dora-popover>
+    </view>
+  </demo-block>
+
+  <demo-block title="Slot">
+    <view class="button-sp-area">
+      <dora-popover placement="top">
+        <button size="mini">top</button>
+        <view slot="title" class="slot-title">Title</view>
+        <view slot="content" class="slot-content">Content</view>
+      </dora-popover>
+    </view>
+  </demo-block>
+
+  <demo-block title="Controlled">
+    <view class="button-sp-area">
+      <dora-popover visible="{{ visible }}" controlled placement="top" title="Title" bind:change="onChange">
+        <view slot="content" class="slot-content" bindtap="hide">Close</view>
+        <button size="mini">top</button>
+      </dora-popover>
+    </view>
   </demo-block>
 </demo-page>

@@ -1,18 +1,14 @@
-# Prompt Prompt
+# Prompt 提示页
 
 @doraemon-ui/miniprogram.prompt
 
 ## 安装
-
-我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
 
 ```bash
 npm install --save @doraemon-ui/miniprogram.prompt
 # or
 yarn add @doraemon-ui/miniprogram.prompt
 ```
-
-如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
 
 ## 使用指南
 
@@ -44,24 +40,26 @@ yarn add @doraemon-ui/miniprogram.prompt
 
 ### Prompt props
 
-| 参数      | 类型     | 描述           | 默认值      |
-| --------- | -------- | -------------- | ----------- |
-| prefixCls | `string` | 自定义类名前缀 | dora-prompt |
+| 参数 | 类型 | 描述 | 默认值 |
+| --- | --- | --- | --- |
+| prefixCls | `string` | 自定义类名前缀 | `dora-prompt` |
+| classNames | `ClassNames` | 进出场动画类名 | `dora-animate--fadeIn` |
+| icon | `string` | 图标地址 | 内置空状态图标 |
+| title | `string` | 标题 | `''` |
+| text | `string` | 描述文案 | `''` |
+| buttons | `PromptButton[]` | 底部按钮列表 | `[]` |
+| visible | `boolean` | 是否显示 | `false` |
+| wrapStyle | `string \| Partial<CSSStyleDeclaration>` | 外层样式 | `''` |
 
-### Prompt slot
+### Prompt events
 
-| 名称 | 描述       |
-| ---- | ---------- |
-| -    | 自定义内容 |
-
-### Prompt externalClasses
-
-| 名称       | 描述         |
-| ---------- | ------------ |
-| dora-class | 根节点样式类 |
-
-## CSS Variables
-
-| 属性         | 描述     | 默认值 | 全局变量 |
-| ------------ | -------- | ------ | -------- |
-| --text-color | 文字颜色 | `#fff` | -        |
+| 事件名 | 描述 |
+| --- | --- |
+| click | 点击普通按钮时触发 |
+| getuserinfo | `open-type="getUserInfo"` 回调 |
+| contact | `open-type="contact"` 回调 |
+| getphonenumber | `open-type="getPhoneNumber"` 回调 |
+| opensetting | `open-type="openSetting"` 回调 |
+| launchapp | `open-type="launchApp"` 回调 |
+| chooseavatar | `open-type="chooseAvatar"` 回调 |
+| error | 开放能力错误回调 |

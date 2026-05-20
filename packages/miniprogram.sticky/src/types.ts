@@ -1,6 +1,20 @@
 import type { ComponentPublicInstance } from '@doraemon-ui/miniprogram.core-js'
 
 import type { Sticky } from './index'
+import type { StickyItem } from './item'
+
+export interface StickyItemProps {
+  prefixCls?: string
+  title?: string
+  content?: string
+}
+
+export interface StickyItemExpose {
+  onScroll(scrollTop: number): void
+  updated(index: number): void
+}
+
+export type StickyItemInstance = ComponentPublicInstance<StickyItem, StickyItemProps, StickyItemExpose>
 
 /**
  * StickyProps接口定义
@@ -8,37 +22,24 @@ import type { Sticky } from './index'
 export interface StickyProps {
   /**
    * 自定义类名前缀
-   *
-   * @type {string}
    */
   prefixCls?: string
 
   /**
-   * 是否禁用
-   *
-   * @type {boolean}
+   * 页面滚动距离
    */
-  disabled?: boolean
-
-  /**
-   * 点击态类名
-   *
-   * @type {string}
-   */
-  hoverClass?: string
-
-  /**
-   * 外层样式
-   *
-   * @type {Partial<CSSStyleDeclaration>}
-   */
-  wrapStyle?: Partial<CSSStyleDeclaration>
+  scrollTop?: number
 }
 
 /**
  * StickyExpose接口定义
  */
-export interface StickyExpose {}
+export interface StickyExpose {
+  onScroll(scrollTop?: number): void
+  updated(): void
+  emitStick(detail: { index: number }): { index: number }
+  emitUnstick(detail: { index: number }): { index: number }
+}
 
 /**
  * StickyInstance类型定义

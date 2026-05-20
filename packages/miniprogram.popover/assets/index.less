@@ -1,7 +1,249 @@
 @import './variables.less';
 
 // Popover styles
+// @prop --background-color: Background color of the popover
+// @prop --text-color: Text color of the popover
+// @prop --title-color: Text color of the popover title
+// @prop --dark-background-color: Background color of the popover in dark mode
+// @prop --dark-text-color: Text color of the popover in dark mode
+// @prop --dark-title-color: Text color of the popover title in dark mode
+// @prop --min-width: Minimum width of the popover
+// @prop --border-radius: Border radius of the popover
+// @prop --font-size: Font size of the popover text
+// @prop --line-height: Line height of the popover text
+// @prop --z-index: Z-index of the popover
 // -----------------------------
 .@{popover-prefix-cls} {
-  position: static;
+  --z-index: @popover-z-index;
+  --background-color: @popover-background-color;
+  --text-color: @popover-text-color;
+  --title-color: @popover-title-color;
+  --dark-background-color: @popover-dark-background-color;
+  --dark-text-color: @popover-dark-text-color;
+  --dark-title-color: @popover-dark-title-color;
+  --min-width: @popover-min-width;
+  --border-radius: @popover-border-radius;
+  --font-size: @popover-font-size;
+  --line-height: @popover-line-height;
+
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  color: var(--text-color);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: var(--z-index);
+  cursor: auto;
+  user-select: text;
+  white-space: normal;
+  font-weight: 400;
+  text-align: left;
+
+  &::after {
+    content: '';
+    position: absolute;
+    background: fade(@white-value, 1%);
+  }
+
+  &__container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  &__element {
+    display: inline-block;
+    line-height: 1;
+  }
+
+  &--color-dark &__inner {
+    background-color: var(--dark-background-color);
+  }
+
+  &--color-dark&--placement-top &__arrow,
+  &--color-dark&--placement-topLeft &__arrow,
+  &--color-dark&--placement-topRight &__arrow {
+    border-top-color: var(--dark-background-color);
+  }
+
+  &--color-dark&--placement-right &__arrow,
+  &--color-dark&--placement-rightBottom &__arrow,
+  &--color-dark&--placement-rightTop &__arrow {
+    border-right-color: var(--dark-background-color);
+  }
+
+  &--color-dark&--placement-bottom &__arrow,
+  &--color-dark&--placement-bottomLeft &__arrow,
+  &--color-dark&--placement-bottomRight &__arrow {
+    border-bottom-color: var(--dark-background-color);
+  }
+
+  &--color-dark&--placement-left &__arrow,
+  &--color-dark&--placement-leftBottom &__arrow,
+  &--color-dark&--placement-leftTop &__arrow {
+    border-left-color: var(--dark-background-color);
+  }
+
+  &--color-dark &__inner,
+  &--color-dark &__title {
+    color: var(--dark-text-color);
+  }
+
+  &--placement-top,
+  &--placement-topLeft,
+  &--placement-topRight {
+    padding-bottom: @popover-distance;
+  }
+
+  &--placement-right,
+  &--placement-rightBottom,
+  &--placement-rightTop {
+    padding-left: @popover-distance;
+  }
+
+  &--placement-bottom,
+  &--placement-bottomLeft,
+  &--placement-bottomRight {
+    padding-top: @popover-distance;
+  }
+
+  &--placement-left,
+  &--placement-leftBottom,
+  &--placement-leftTop {
+    padding-right: @popover-distance;
+  }
+
+  &__inner {
+    background-color: var(--background-color);
+    background-clip: padding-box;
+    border-radius: var(--border-radius);
+    box-shadow: @box-shadow-base;
+    color: var(--text-color);
+  }
+
+  &__title {
+    position: relative;
+    min-width: var(--min-width);
+    margin: 0;
+    padding: 5px 16px 4px;
+    min-height: 32px;
+    box-sizing: border-box;
+    color: var(--title-color);
+    font-weight: 500;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1px;
+      background: @border-color-split;
+      transform: scaleY(0.5);
+      transform-origin: center bottom;
+    }
+  }
+
+  &__inner-content {
+    padding: 12px 16px;
+  }
+
+  &__arrow {
+    width: 0;
+    height: 0;
+    position: absolute;
+    display: block;
+    border-color: transparent;
+    border-style: solid;
+    border-width: sqrt(@popover-arrow-width * @popover-arrow-width * 2);
+  }
+
+  &--placement-top &__arrow,
+  &--placement-topLeft &__arrow,
+  &--placement-topRight &__arrow {
+    bottom: 4px;
+    border-bottom-width: 0;
+    border-top-color: var(--background-color);
+  }
+
+  &--placement-top &__arrow {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &--placement-topLeft &__arrow {
+    left: 16px;
+  }
+
+  &--placement-topRight &__arrow {
+    right: 16px;
+  }
+
+  &--placement-right &__arrow,
+  &--placement-rightBottom &__arrow,
+  &--placement-rightTop &__arrow {
+    left: 4px;
+    border-left-width: 0;
+    border-right-color: var(--background-color);
+  }
+
+  &--placement-right &__arrow {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &--placement-rightTop &__arrow {
+    top: 12px;
+  }
+
+  &--placement-rightBottom &__arrow {
+    bottom: 12px;
+  }
+
+  &--placement-bottom &__arrow,
+  &--placement-bottomLeft &__arrow,
+  &--placement-bottomRight &__arrow {
+    top: 4px;
+    border-top-width: 0;
+    border-bottom-color: var(--background-color);
+  }
+
+  &--placement-bottom &__arrow {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &--placement-bottomLeft &__arrow {
+    left: 16px;
+  }
+
+  &--placement-bottomRight &__arrow {
+    right: 16px;
+  }
+
+  &--placement-left &__arrow,
+  &--placement-leftBottom &__arrow,
+  &--placement-leftTop &__arrow {
+    right: 4px;
+    border-right-width: 0;
+    border-left-color: var(--background-color);
+  }
+
+  &--placement-left &__arrow {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &--placement-leftTop &__arrow {
+    top: 12px;
+  }
+
+  &--placement-leftBottom &__arrow {
+    bottom: 12px;
+  }
 }

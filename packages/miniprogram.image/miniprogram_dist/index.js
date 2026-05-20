@@ -1,64 +1,228 @@
 /**
  * @doraemon-ui/miniprogram.image.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:39:16.
+ * Built on 2026-05-18, 01:08:49.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 
-import { Doraemon, Prop, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
+import { Doraemon, Prop, Watch, Event, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
+import { getFontSize } from '@doraemon-ui/miniprogram.shared';
 
 function _ts_decorate(decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc, d;
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for(var i = decorators.length - 1; i >= 0; i--)if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 }
 const { classNames, styleToCssString } = Doraemon.util;
+const EMPTY = 'empty';
+const LOADING = 'loading';
+const LOADED = 'loaded';
+const ERROR = 'error';
+const UNMOUNTED = 'unmounted';
 let Image = class Image extends Doraemon {
     get classes() {
-        const { prefixCls, hoverClass, disabled } = this;
+        const { prefixCls, shape, mode, status, empty, loading, error } = this;
         const wrap = classNames(prefixCls, {
-            [`${prefixCls}--disabled`]: disabled
+            [`${prefixCls}--${shape}`]: shape,
+            [`${prefixCls}--${mode}`]: mode,
+            [`${prefixCls}--${status}`]: status
         });
-        const hover = hoverClass && hoverClass !== 'default' ? hoverClass : `${prefixCls}--hover`;
+        const inner = `${prefixCls}__inner`;
+        const thumb = `${prefixCls}__thumb`;
+        const mask = classNames(`${prefixCls}__mask`, {
+            [`${prefixCls}__mask--text`]: empty || loading || error
+        });
+        const text = `${prefixCls}__text`;
         return {
             wrap,
-            hover
+            inner,
+            thumb,
+            mask,
+            text
         };
     }
-    get containerStyle() {
-        return this.wrapStyle ? styleToCssString(this.wrapStyle) : '';
+    get rootStyle() {
+        const { styles } = this;
+        return styles?.root ? styleToCssString(styles.root) : '';
     }
-    onClick() {
-        if (!this.disabled) {
-            this.$emit('click');
+    get imageStyle() {
+        const { styles } = this;
+        return styles?.image ? styleToCssString(styles.image) : '';
+    }
+    onSrcChange(src) {
+        this.updated(src);
+    }
+    onWidthChange() {
+        this.updateStyle(this.width, this.height);
+    }
+    onHeightChange() {
+        this.updateStyle(this.width, this.height);
+    }
+    updated(src) {
+        this.updateStatus(src ? LOADING : this.unmountOnEmpty ? UNMOUNTED : EMPTY);
+    }
+    updateStyle(width, height) {
+        this.internalRootStyle = styleToCssString({
+            width: getFontSize(width),
+            height: getFontSize(height)
+        });
+    }
+    updateStatus(status) {
+        if (this.status !== status) {
+            this.status = status;
         }
+        this.$emit('change', {
+            status
+        });
+    }
+    onLoad(e) {
+        this.updateStatus(LOADED);
+        this.$emit('load', {
+            ...e.detail,
+            status: LOADED
+        });
+    }
+    onError(e) {
+        const status = this.unmountOnError ? UNMOUNTED : ERROR;
+        this.updateStatus(status);
+        this.$emit('error', {
+            ...e.detail,
+            status
+        });
+    }
+    onTap(e) {
+        this.$emit('click', {
+            ...e.detail,
+            status: this.status
+        });
+    }
+    mounted() {
+        this.updateStyle(this.width, this.height);
+        this.updated(this.src);
+    }
+    constructor(...args){
+        super(...args);
+        this.status = EMPTY;
+        this.internalRootStyle = '';
     }
 };
+_ts_decorate([
+    Prop({
+        type: String,
+        default: ''
+    })
+], Image.prototype, "src", void 0);
+_ts_decorate([
+    Prop({
+        type: String,
+        default: 'scaleToFill'
+    })
+], Image.prototype, "mode", void 0);
 _ts_decorate([
     Prop({
         type: Boolean,
         default: false
     })
-], Image.prototype, "disabled", void 0);
+], Image.prototype, "webp", void 0);
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
+], Image.prototype, "lazyLoad", void 0);
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
+], Image.prototype, "showMenuByLongpress", void 0);
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
+], Image.prototype, "forceHttps", void 0);
 _ts_decorate([
     Prop({
         type: String,
-        default: 'default'
+        default: 'normal'
     })
-], Image.prototype, "hoverClass", void 0);
+], Image.prototype, "shape", void 0);
 _ts_decorate([
     Prop({
-        type: Object,
-        default: null
+        type: null,
+        default: 300
     })
-], Image.prototype, "wrapStyle", void 0);
+], Image.prototype, "width", void 0);
+_ts_decorate([
+    Prop({
+        type: null,
+        default: 225
+    })
+], Image.prototype, "height", void 0);
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
+], Image.prototype, "unmountOnEmpty", void 0);
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
+], Image.prototype, "unmountOnError", void 0);
+_ts_decorate([
+    Prop({
+        type: String,
+        default: ''
+    })
+], Image.prototype, "empty", void 0);
+_ts_decorate([
+    Prop({
+        type: String,
+        default: ''
+    })
+], Image.prototype, "loading", void 0);
+_ts_decorate([
+    Prop({
+        type: String,
+        default: ''
+    })
+], Image.prototype, "error", void 0);
+_ts_decorate([
+    Watch('src')
+], Image.prototype, "onSrcChange", null);
+_ts_decorate([
+    Watch('width')
+], Image.prototype, "onWidthChange", null);
+_ts_decorate([
+    Watch('height')
+], Image.prototype, "onHeightChange", null);
+_ts_decorate([
+    Event()
+], Image.prototype, "onLoad", null);
+_ts_decorate([
+    Event()
+], Image.prototype, "onError", null);
+_ts_decorate([
+    Event()
+], Image.prototype, "onTap", null);
 Image = _ts_decorate([
     Component({
         props: {
             prefixCls: {
                 type: String,
                 default: 'dora-image'
+            },
+            classNames: {
+                type: Object,
+                default: ()=>({})
+            },
+            styles: {
+                type: Object,
+                default: ()=>({})
             }
         }
     })

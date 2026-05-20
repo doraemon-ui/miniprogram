@@ -1,0 +1,16 @@
+.example {
+  display: inline-block;
+  margin: 12px;
+}
+
+.example__badge {
+  width: 42px;
+  height: 42px;
+  background: #ddd;
+  border-radius: 4px;
+  display: block;
+}
+
+.bg-green {
+  background-color: #52c41a !important;
+}

@@ -1,64 +1,62 @@
 /**
  * @doraemon-ui/miniprogram.core-js.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-07, 16:42:22.
+ * Built on 2026-05-19, 17:42:31.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 
-const LIFECYCLE_HOOKS = ['beforeCreate', 'created', 'mounted', 'destroyed', 'unmounted', 'errorCaptured'];
+const LIFECYCLE_HOOKS = [
+    'beforeCreate',
+    'created',
+    'mounted',
+    'destroyed',
+    'unmounted',
+    'errorCaptured'
+];
 
 const config = {
     /**
-     * 取消所有的日志与警告
-     */
-    silent: false,
+   * 取消所有的日志与警告
+   */ silent: false,
     /**
-     * 当前的主题
-     */
-    darkmode: 'auto',
+   * 当前的主题
+   */ darkmode: 'auto',
     /**
-     * 是否记录性能
-     */
-    performance: false,
+   * 是否记录性能
+   */ performance: false,
     /**
-     * 警告函数
-     */
-    warnHandler: null,
+   * 警告函数
+   */ warnHandler: null,
     /**
-     * 生命周期钩子函数
-     */
-    _lifecycleHooks: LIFECYCLE_HOOKS,
+   * 生命周期钩子函数
+   */ _lifecycleHooks: LIFECYCLE_HOOKS
 };
 
 const hasConsole = typeof console !== 'undefined';
 function warn(msg, vm) {
     if (config.warnHandler) {
         config.warnHandler.call(null, msg);
-    }
-    else if (hasConsole && !config.silent) {
+    } else if (hasConsole && !config.silent) {
         console.error(`[Doraemon warn]: ${msg}`);
     }
 }
 
-const check = (it) => {
+const check = (it)=>{
     return it && typeof it.env && it;
 };
 const miniprogramThis = check(typeof wx === 'object' && wx);
 /**
  * miniporgram environment sniffing
- */
-const inMiniprogram = !!miniprogramThis;
+ */ const inMiniprogram = !!miniprogramThis;
 /**
  * development mode
- */
-const isDev = "production" !== 'production';
-// export const isDev = true
+ */ const isDev = "production" !== 'production' // export const isDev = true
+;
 
 function nextTick(fn) {
     if (inMiniprogram && typeof miniprogramThis.nextTick === 'function') {
         miniprogramThis.nextTick(fn);
-    }
-    else {
+    } else {
         setTimeout(fn, 0);
     }
 }
@@ -69,86 +67,62 @@ function getDefaultExportFromCjs (x) {
 
 var classnames = {exports: {}};
 
-/*!
-	Copyright (c) 2018 Jed Watson.
-	Licensed under the MIT License (MIT), see
-	http://jedwatson.github.io/classnames
-*/
-
 var hasRequiredClassnames;
-
-function requireClassnames () {
-	if (hasRequiredClassnames) return classnames.exports;
-	hasRequiredClassnames = 1;
-	(function (module) {
-		/* global define */
-
-		(function () {
-
-			var hasOwn = {}.hasOwnProperty;
-
-			function classNames () {
-				var classes = '';
-
-				for (var i = 0; i < arguments.length; i++) {
-					var arg = arguments[i];
-					if (arg) {
-						classes = appendClass(classes, parseValue(arg));
-					}
-				}
-
-				return classes;
-			}
-
-			function parseValue (arg) {
-				if (typeof arg === 'string' || typeof arg === 'number') {
-					return arg;
-				}
-
-				if (typeof arg !== 'object') {
-					return '';
-				}
-
-				if (Array.isArray(arg)) {
-					return classNames.apply(null, arg);
-				}
-
-				if (arg.toString !== Object.prototype.toString && !arg.toString.toString().includes('[native code]')) {
-					return arg.toString();
-				}
-
-				var classes = '';
-
-				for (var key in arg) {
-					if (hasOwn.call(arg, key) && arg[key]) {
-						classes = appendClass(classes, key);
-					}
-				}
-
-				return classes;
-			}
-
-			function appendClass (value, newClass) {
-				if (!newClass) {
-					return value;
-				}
-			
-				if (value) {
-					return value + ' ' + newClass;
-				}
-			
-				return value + newClass;
-			}
-
-			if (module.exports) {
-				classNames.default = classNames;
-				module.exports = classNames;
-			} else {
-				window.classNames = classNames;
-			}
-		}()); 
-	} (classnames));
-	return classnames.exports;
+function requireClassnames() {
+    if (hasRequiredClassnames) return classnames.exports;
+    hasRequiredClassnames = 1;
+    (function(module) {
+        /* global define */ (function() {
+            var hasOwn = {}.hasOwnProperty;
+            function classNames() {
+                var classes = '';
+                for(var i = 0; i < arguments.length; i++){
+                    var arg = arguments[i];
+                    if (arg) {
+                        classes = appendClass(classes, parseValue(arg));
+                    }
+                }
+                return classes;
+            }
+            function parseValue(arg) {
+                if (typeof arg === 'string' || typeof arg === 'number') {
+                    return arg;
+                }
+                if (typeof arg !== 'object') {
+                    return '';
+                }
+                if (Array.isArray(arg)) {
+                    return classNames.apply(null, arg);
+                }
+                if (arg.toString !== Object.prototype.toString && !arg.toString.toString().includes('[native code]')) {
+                    return arg.toString();
+                }
+                var classes = '';
+                for(var key in arg){
+                    if (hasOwn.call(arg, key) && arg[key]) {
+                        classes = appendClass(classes, key);
+                    }
+                }
+                return classes;
+            }
+            function appendClass(value, newClass) {
+                if (!newClass) {
+                    return value;
+                }
+                if (value) {
+                    return value + ' ' + newClass;
+                }
+                return value + newClass;
+            }
+            if (module.exports) {
+                classNames.default = classNames;
+                module.exports = classNames;
+            } else {
+                window.classNames = classNames;
+            }
+        })();
+    })(classnames);
+    return classnames.exports;
 }
 
 var classnamesExports = requireClassnames();
@@ -156,65 +130,60 @@ var classNames = /*@__PURE__*/getDefaultExportFromCjs(classnamesExports);
 
 var CSSProperty_1;
 var hasRequiredCSSProperty;
-
-function requireCSSProperty () {
-	if (hasRequiredCSSProperty) return CSSProperty_1;
-	hasRequiredCSSProperty = 1;
-
-	/**
+function requireCSSProperty() {
+    if (hasRequiredCSSProperty) return CSSProperty_1;
+    hasRequiredCSSProperty = 1;
+    /**
 	 * CSS properties which accept numbers but are not in units of "px".
-	 */
-	var isUnitlessNumber = {
-	  boxFlex: true,
-	  boxFlexGroup: true,
-	  columnCount: true,
-	  flex: true,
-	  flexGrow: true,
-	  flexPositive: true,
-	  flexShrink: true,
-	  flexNegative: true,
-	  fontWeight: true,
-	  lineClamp: true,
-	  lineHeight: true,
-	  opacity: true,
-	  order: true,
-	  orphans: true,
-	  widows: true,
-	  zIndex: true,
-	  zoom: true,
-
-	  // SVG-related properties
-	  fillOpacity: true,
-	  strokeDashoffset: true,
-	  strokeOpacity: true,
-	  strokeWidth: true
-	};
-
-	/**
+	 */ var isUnitlessNumber = {
+        boxFlex: true,
+        boxFlexGroup: true,
+        columnCount: true,
+        flex: true,
+        flexGrow: true,
+        flexPositive: true,
+        flexShrink: true,
+        flexNegative: true,
+        fontWeight: true,
+        lineClamp: true,
+        lineHeight: true,
+        opacity: true,
+        order: true,
+        orphans: true,
+        widows: true,
+        zIndex: true,
+        zoom: true,
+        // SVG-related properties
+        fillOpacity: true,
+        strokeDashoffset: true,
+        strokeOpacity: true,
+        strokeWidth: true
+    };
+    /**
 	 * @param {string} prefix vendor-specific prefix, eg: Webkit
 	 * @param {string} key style name, eg: transitionDuration
 	 * @return {string} style name prefixed with `prefix`, properly camelCased, eg:
 	 * WebkitTransitionDuration
-	 */
-	function prefixKey(prefix, key) {
-	  return prefix + key.charAt(0).toUpperCase() + key.substring(1);
-	}
-
-	/**
+	 */ function prefixKey(prefix, key) {
+        return prefix + key.charAt(0).toUpperCase() + key.substring(1);
+    }
+    /**
 	 * Support style names that may come passed in prefixed by adding permutations
 	 * of vendor prefixes.
-	 */
-	var prefixes = ['Webkit', 'ms', 'Moz', 'O'];
-
-	// Using Object.keys here, or else the vanilla for-in loop makes IE8 go into an
-	// infinite loop, because it iterates over the newly added props too.
-	Object.keys(isUnitlessNumber).forEach(function(prop) {
-	  prefixes.forEach(function(prefix) {
-	    isUnitlessNumber[prefixKey(prefix, prop)] = isUnitlessNumber[prop];
-	  });
-	});
-
-	/**
+	 */ var prefixes = [
+        'Webkit',
+        'ms',
+        'Moz',
+        'O'
+    ];
+    // Using Object.keys here, or else the vanilla for-in loop makes IE8 go into an
+    // infinite loop, because it iterates over the newly added props too.
+    Object.keys(isUnitlessNumber).forEach(function(prop) {
+        prefixes.forEach(function(prefix) {
+            isUnitlessNumber[prefixKey(prefix, prop)] = isUnitlessNumber[prop];
+        });
+    });
+    /**
 	 * Most style properties can be unset by doing .style[prop] = '' but IE8
 	 * doesn't like doing that with shorthand properties so for the properties that
 	 * IE8 breaks on, which are listed here, we instead unset each of the
@@ -222,56 +191,53 @@ function requireCSSProperty () {
 	 * The 4-value 'clock' properties like margin, padding, border-width seem to
 	 * behave without any problems. Curiously, list-style works too without any
 	 * special prodding.
-	 */
-	var shorthandPropertyExpansions = {
-	  background: {
-	    backgroundImage: true,
-	    backgroundPosition: true,
-	    backgroundRepeat: true,
-	    backgroundColor: true
-	  },
-	  border: {
-	    borderWidth: true,
-	    borderStyle: true,
-	    borderColor: true
-	  },
-	  borderBottom: {
-	    borderBottomWidth: true,
-	    borderBottomStyle: true,
-	    borderBottomColor: true
-	  },
-	  borderLeft: {
-	    borderLeftWidth: true,
-	    borderLeftStyle: true,
-	    borderLeftColor: true
-	  },
-	  borderRight: {
-	    borderRightWidth: true,
-	    borderRightStyle: true,
-	    borderRightColor: true
-	  },
-	  borderTop: {
-	    borderTopWidth: true,
-	    borderTopStyle: true,
-	    borderTopColor: true
-	  },
-	  font: {
-	    fontStyle: true,
-	    fontVariant: true,
-	    fontWeight: true,
-	    fontSize: true,
-	    lineHeight: true,
-	    fontFamily: true
-	  }
-	};
-
-	var CSSProperty = {
-	  isUnitlessNumber: isUnitlessNumber,
-	  shorthandPropertyExpansions: shorthandPropertyExpansions
-	};
-
-	CSSProperty_1 = CSSProperty;
-	return CSSProperty_1;
+	 */ var shorthandPropertyExpansions = {
+        background: {
+            backgroundImage: true,
+            backgroundPosition: true,
+            backgroundRepeat: true,
+            backgroundColor: true
+        },
+        border: {
+            borderWidth: true,
+            borderStyle: true,
+            borderColor: true
+        },
+        borderBottom: {
+            borderBottomWidth: true,
+            borderBottomStyle: true,
+            borderBottomColor: true
+        },
+        borderLeft: {
+            borderLeftWidth: true,
+            borderLeftStyle: true,
+            borderLeftColor: true
+        },
+        borderRight: {
+            borderRightWidth: true,
+            borderRightStyle: true,
+            borderRightColor: true
+        },
+        borderTop: {
+            borderTopWidth: true,
+            borderTopStyle: true,
+            borderTopColor: true
+        },
+        font: {
+            fontStyle: true,
+            fontVariant: true,
+            fontWeight: true,
+            fontSize: true,
+            lineHeight: true,
+            fontFamily: true
+        }
+    };
+    var CSSProperty = {
+        isUnitlessNumber: isUnitlessNumber,
+        shorthandPropertyExpansions: shorthandPropertyExpansions
+    };
+    CSSProperty_1 = CSSProperty;
+    return CSSProperty_1;
 }
 
 var CSSPropertyExports = requireCSSProperty();
@@ -279,16 +245,12 @@ var CSSProperty = /*@__PURE__*/getDefaultExportFromCjs(CSSPropertyExports);
 
 var hyphenateStyleName_1;
 var hasRequiredHyphenateStyleName;
-
-function requireHyphenateStyleName () {
-	if (hasRequiredHyphenateStyleName) return hyphenateStyleName_1;
-	hasRequiredHyphenateStyleName = 1;
-
-	var msPattern = /^ms-/;
-
-	var _uppercasePattern = /([A-Z])/g;
-
-	/**
+function requireHyphenateStyleName() {
+    if (hasRequiredHyphenateStyleName) return hyphenateStyleName_1;
+    hasRequiredHyphenateStyleName = 1;
+    var msPattern = /^ms-/;
+    var _uppercasePattern = /([A-Z])/g;
+    /**
 	 * Hyphenates a camelcased string, for example:
 	 *
 	 *   > hyphenate('backgroundColor')
@@ -299,12 +261,10 @@ function requireHyphenateStyleName () {
 	 *
 	 * @param {string} string
 	 * @return {string}
-	 */
-	function hyphenate(string) {
-	  return string.replace(_uppercasePattern, '-$1').toLowerCase();
-	}
-
-	/**
+	 */ function hyphenate(string) {
+        return string.replace(_uppercasePattern, '-$1').toLowerCase();
+    }
+    /**
 	 * Hyphenates a camelcased CSS property name, for example:
 	 *
 	 *   > hyphenateStyleName('backgroundColor')
@@ -319,21 +279,16 @@ function requireHyphenateStyleName () {
 	 *
 	 * @param {string} string
 	 * @return {string}
-	 */
-	function hyphenateStyleName(string) {
-	  return hyphenate(string).replace(msPattern, '-ms-');
-	}
-
-	hyphenateStyleName_1 = hyphenateStyleName;
-	return hyphenateStyleName_1;
+	 */ function hyphenateStyleName(string) {
+        return hyphenate(string).replace(msPattern, '-ms-');
+    }
+    hyphenateStyleName_1 = hyphenateStyleName;
+    return hyphenateStyleName_1;
 }
 
 var hyphenateStyleNameExports = requireHyphenateStyleName();
 var hyphenateStyleName = /*@__PURE__*/getDefaultExportFromCjs(hyphenateStyleNameExports);
 
-/**
- * @ts-ignore
- */
 const isUnitlessNumber = CSSProperty.isUnitlessNumber;
 const isArray = Array.isArray;
 const keys = Object.keys;
@@ -343,8 +298,7 @@ const unquotedContentValueRegex = /^(normal|none|(\b(url\([^)]*\)|chapter_counte
 function buildRule(key, value, exclude) {
     if (key.toString().match(exclude) === null && !isUnitlessNumber[key] && typeof value === 'number') {
         value = '' + value + 'px';
-    }
-    else if (key === 'content' && !unquotedContentValueRegex.test(value)) {
+    } else if (key === 'content' && !unquotedContentValueRegex.test(value)) {
         // prettier-ignore
         value = '\'' + value.replace(/'/g, '\\\'') + '\'';
     }
@@ -353,7 +307,7 @@ function buildRule(key, value, exclude) {
 // css var prefix
 const cssVarPattern = /^--/;
 function styleToCssString(rules, options = {
-    exclude: cssVarPattern,
+    exclude: cssVarPattern
 }) {
     const exclude = options ? options.exclude : null;
     if (typeof rules === 'string') {
@@ -365,23 +319,19 @@ function styleToCssString(rules, options = {
         return result;
     }
     const styleKeys = keys(rules);
-    for (let j = 0, l = styleKeys.length; j < l; j++) {
+    for(let j = 0, l = styleKeys.length; j < l; j++){
         const styleKey = styleKeys[j];
         const value = rules[styleKey];
         if (isArray(value)) {
-            for (let i = 0, len = value.length; i < len; i++) {
+            for(let i = 0, len = value.length; i < len; i++){
                 result += buildRule(styleKey, value[i], exclude);
             }
-        }
-        else {
+        } else {
             result += buildRule(styleKey, value, exclude);
         }
     }
     return result;
 }
-/**
- * @ts-ignore
- */
 
 function isEqual(x, y) {
     if (x === y) {
@@ -393,13 +343,12 @@ function isEqual(x, y) {
     if (Object.keys(x).length != Object.keys(y).length) {
         return false;
     }
-    for (var prop in x) {
+    for(var prop in x){
         if (y.hasOwnProperty(prop)) {
             if (!isEqual(x[prop], y[prop])) {
                 return false;
             }
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -408,27 +357,25 @@ function isEqual(x, y) {
 
 /**
  * Check whether an object has the property.
- */
-const hasOwnProperty = Object.prototype.hasOwnProperty;
+ */ const hasOwnProperty = Object.prototype.hasOwnProperty;
 function hasOwn(obj, key) {
     return hasOwnProperty.call(obj, key);
 }
 
 /**
  * Check if a string starts with $ or _
- */
-function isReserved(str) {
+ */ function isReserved(str) {
     const c = (str + '').charCodeAt(0);
     return c === 0x24 || c === 0x5f;
 }
 
-function noop(...args) { }
+function noop(...args) {}
 
 const sharedPropertyDefinition = {
     enumerable: true,
     configurable: true,
     get: noop,
-    set: noop,
+    set: noop
 };
 function proxy(target, sourceKey, key) {
     sharedPropertyDefinition.get = function proxyGetter() {
@@ -438,7 +385,7 @@ function proxy(target, sourceKey, key) {
     sharedPropertyDefinition.set = function proxySetter(val) {
         const vm = this;
         vm._renderProxy.setData({
-            [key]: val,
+            [key]: val
         });
     };
     Object.defineProperty(target, key, sharedPropertyDefinition);
@@ -447,12 +394,11 @@ function initProxy(vm) {
     const props = vm.$options.props;
     const keys = Object.keys(vm._renderProxy.data);
     let i = keys.length;
-    while (i--) {
+    while(i--){
         const key = keys[i];
         if (props && hasOwn(props, key)) {
             continue;
-        }
-        else if (!isReserved(key)) {
+        } else if (!isReserved(key)) {
             // 在 extend 时，静态 props & computed 已经在组件的原型上代理
             // 所以只需要在实例上代理其他的 props
             if (!(key in vm)) {
@@ -468,8 +414,7 @@ let cid = 1;
  *
  * @param {ComponentOptions<Doraemon>} [extendOptions={}]
  * @returns
- */
-function extend(extendOptions = {}) {
+ */ function extend(extendOptions = {}) {
     const Super = this;
     const SuperId = Super.cid;
     const cachedCtors = extendOptions._Ctor || (extendOptions._Ctor = {});
@@ -503,13 +448,13 @@ function extend(extendOptions = {}) {
 }
 function initProps$1(Component) {
     const props = Component.options.props || {};
-    for (const key in props) {
+    for(const key in props){
         proxy(Component.prototype, 'data', key);
     }
 }
 function initComputed$1(Component) {
     const computed = Component.options.computed || {};
-    for (const key in computed) {
+    for(const key in computed){
         proxy(Component.prototype, 'data', key);
     }
 }
@@ -518,30 +463,11 @@ const util = {
     warn,
     isEqual,
     classNames,
-    styleToCssString,
+    styleToCssString
 };
 
 let uid = 0;
 class Doraemon {
-    // private properties
-    _isDoraemon = false;
-    _isMounted = false;
-    _isDestroyed = false;
-    _hasHookEvent = false;
-    /**
-     * miniprogram component instance
-     *
-     * @type {ComponentRenderProxy<Doraemon>}
-     * @memberof Doraemon
-     */
-    _renderProxy;
-    // exposed properties via expose()
-    _exposed;
-    _exposeProxy;
-    _uid;
-    _self;
-    // public properties
-    $options;
     get $root() {
         return undefined;
     }
@@ -560,24 +486,12 @@ class Doraemon {
     get $props() {
         return undefined;
     }
-    $emit;
-    $nextTick;
     /**
-     * Creates an instance of Doraemon.
-     *
-     * @param {ComponentOptions<Doraemon>} [options]
-     * @memberof Doraemon
-     */
-    constructor(options) {
-        this._init(options);
-    }
-    /**
-     * init.
-     *
-     * @param {ComponentOptions<Doraemon>} [options]
-     * @memberof Doraemon
-     */
-    _init(options) {
+   * init.
+   *
+   * @param {ComponentOptions<Doraemon>} [options]
+   * @memberof Doraemon
+   */ _init(options) {
         const vm = this;
         vm._uid = uid++;
         vm._isDoraemon = true;
@@ -585,45 +499,51 @@ class Doraemon {
         vm._self = vm;
     }
     /**
-     * proxy miniprogram component instance.
-     *
-     * @param {ComponentRenderProxy<Doraemon>} vm
-     * @memberof Doraemon
-     */
-    _render(vm) {
+   * proxy miniprogram component instance.
+   *
+   * @param {ComponentRenderProxy<Doraemon>} vm
+   * @memberof Doraemon
+   */ _render(vm) {
         this._renderProxy = vm;
     }
-    // constructor information
-    static cid = 0;
-    static options = Object.create(null);
-    static nextTick = nextTick;
-    static extend = extend;
     static get config() {
         return config;
     }
     static set config(_) {
     }
     /**
-     * exposed util methods.
-     *
-     * @static
-     * @memberof Doraemon
-     */
-    static util = util;
-    static super;
-    static superOptions;
-    static extendOptions;
-    static sealedOptions;
+   * Creates an instance of Doraemon.
+   *
+   * @param {ComponentOptions<Doraemon>} [options]
+   * @memberof Doraemon
+   */ constructor(options){
+        // private properties
+        this._isDoraemon = false;
+        this._isMounted = false;
+        this._isDestroyed = false;
+        this._hasHookEvent = false;
+        this._init(options);
+    }
 }
+// constructor information
+Doraemon.cid = 0;
+Doraemon.options = Object.create(null);
+Doraemon.nextTick = nextTick;
+Doraemon.extend = extend;
+/**
+   * exposed util methods.
+   *
+   * @static
+   * @memberof Doraemon
+   */ Doraemon.util = util;
 
 /**
  * Convert an Array-like object to a real Array.
- */
-function toArray(list, start) {
+ */ function toArray(list, start) {
     start = start || 0;
     let i = list.length - start;
     const ret = new Array(i);
-    while (i--) {
+    while(i--){
         ret[i] = list[i + start];
     }
     return ret;
@@ -631,18 +551,18 @@ function toArray(list, start) {
 
 function stateMixin(Component) {
     const dataDef = {};
-    dataDef.get = function () {
+    dataDef.get = function() {
         const vm = this;
         return vm._renderProxy ? vm._renderProxy.data : undefined;
     };
     const propsDef = {};
-    propsDef.get = function () {
+    propsDef.get = function() {
         const vm = this;
         if (vm._renderProxy) {
             const ret = {};
             const props = vm.$options.props;
             if (props) {
-                for (const key in props) {
+                for(const key in props){
                     ret[key] = vm._renderProxy.properties[key];
                 }
             }
@@ -654,12 +574,12 @@ function stateMixin(Component) {
     Object.defineProperty(Component.prototype, '$props', propsDef);
 }
 function renderMixin(Component) {
-    Component.prototype.$nextTick = function (fn) {
+    Component.prototype.$nextTick = function(fn) {
         return nextTick(fn);
     };
 }
 function eventsMixin(Component) {
-    Component.prototype.$emit = function (event) {
+    Component.prototype.$emit = function(event) {
         const vm = this;
         const args = toArray(arguments, 1);
         if (vm._renderProxy) {
@@ -673,16 +593,18 @@ stateMixin(Doraemon);
 eventsMixin(Doraemon);
 renderMixin(Doraemon);
 
-const fakeArray = { __proto__: [] };
+const fakeArray = {
+    __proto__: []
+};
 const hasProto = fakeArray instanceof Array;
 
 function isPrimitive(value) {
     const type = typeof value;
-    return value == null || (type !== 'object' && type !== 'function');
+    return value == null || type !== 'object' && type !== 'function';
 }
 
 function createDecorator(factory) {
-    return (target, key, index) => {
+    return (target, key, index)=>{
         const Ctor = typeof target === 'function' ? target : target.constructor;
         if (!Ctor.__decorators__) {
             Ctor.__decorators__ = [];
@@ -690,15 +612,18 @@ function createDecorator(factory) {
         if (typeof index !== 'number') {
             index = undefined;
         }
-        Ctor.__decorators__.push((options) => factory(options, key, index));
+        Ctor.__decorators__.push((options)=>factory(options, key, index));
     };
 }
-const $internalHooks = ['data', ...LIFECYCLE_HOOKS];
+const $internalHooks = [
+    'data',
+    ...LIFECYCLE_HOOKS
+];
 function componentFactory(Component, options = {}) {
     options.name = options.name || Component._componentTag || Component.name;
     // prototype props.
     const proto = Component.prototype;
-    Object.getOwnPropertyNames(proto).forEach(function (key) {
+    Object.getOwnPropertyNames(proto).forEach(function(key) {
         if (key === 'constructor') {
             return;
         }
@@ -712,31 +637,31 @@ function componentFactory(Component, options = {}) {
             // methods
             if (typeof descriptor.value === 'function') {
                 (options.methods || (options.methods = {}))[key] = descriptor.value;
-            }
-            else {
+            } else {
                 (options.mixins || (options.mixins = [])).push({
-                    data() {
-                        return { [key]: descriptor.value };
-                    },
+                    data () {
+                        return {
+                            [key]: descriptor.value
+                        };
+                    }
                 });
             }
-        }
-        else if (descriptor.get || descriptor.set) {
+        } else if (descriptor.get || descriptor.set) {
             (options.computed || (options.computed = {}))[key] = {
                 get: descriptor.get,
-                set: descriptor.set,
+                set: descriptor.set
             };
         }
     });
     (options.mixins || (options.mixins = [])).push({
-        data() {
+        data () {
             return collectDataFromConstructor(this, Component);
-        },
+        }
     });
     // decorate options
     const decorators = Component.__decorators__;
     if (decorators) {
-        decorators.forEach((fn) => fn(options));
+        decorators.forEach((fn)=>fn(options));
         delete Component.__decorators__;
     }
     // find super
@@ -748,7 +673,7 @@ function componentFactory(Component, options = {}) {
 }
 function forwardStaticMembers(Extended, Original, Super) {
     // We have to use getOwnPropertyNames since Babel registers methods as non-enumerable
-    Object.getOwnPropertyNames(Original).forEach((key) => {
+    Object.getOwnPropertyNames(Original).forEach((key)=>{
         // `prototype` should not be overwritten
         if (key === 'prototype') {
             return;
@@ -774,28 +699,28 @@ function forwardStaticMembers(Extended, Original, Super) {
 function collectDataFromConstructor(vm, Component) {
     // override _init to prevent to init as Doraemon instance
     const originalInit = Component.prototype._init;
-    Component.prototype._init = function () {
+    Component.prototype._init = function() {
         // proxy to actual vm
         const keys = Object.getOwnPropertyNames(vm);
         const props = vm.$options.props || {};
         if (props) {
-            for (const key in props) {
+            for(const key in props){
                 if (!this.hasOwnProperty(key)) {
                     keys.push(key);
                 }
             }
         }
-        keys.forEach((key) => {
+        keys.forEach((key)=>{
             if (key.charAt(0) !== '_') {
                 Object.defineProperty(this, key, {
-                    get: () => vm[key],
+                    get: ()=>vm[key],
                     // set: value => { vm[key] = value },
-                    set: (value) => {
+                    set: (value)=>{
                         if (!(props && hasOwn(props, key))) {
                             vm[key] = value !== undefined ? value : null;
                         }
                     },
-                    configurable: true,
+                    configurable: true
                 });
             }
         });
@@ -806,7 +731,7 @@ function collectDataFromConstructor(vm, Component) {
     Component.prototype._init = originalInit;
     // create plain data object
     const plainData = {};
-    Object.keys(data).forEach((key) => {
+    Object.keys(data).forEach((key)=>{
         if (data[key] !== undefined) {
             plainData[key] = data[key];
         }
@@ -817,7 +742,7 @@ function Component$1(options) {
     if (typeof options === 'function') {
         return componentFactory(options);
     }
-    return function (Component) {
+    return function(Component) {
         return componentFactory(Component, options);
     };
 }
@@ -826,36 +751,32 @@ Component$1.registerHooks = function registerHooks(keys) {
 };
 
 function isPromise(obj) {
-    return obj instanceof Promise || (obj && typeof obj.then === 'function');
+    return obj instanceof Promise || obj && typeof obj.then === 'function';
 }
 
 const hyphenateRE = /\B([A-Z])/g;
-const hyphenate = (str) => str.replace(hyphenateRE, '-$1').toLowerCase();
+const hyphenate = (str)=>str.replace(hyphenateRE, '-$1').toLowerCase();
 /**
  * decorator of an event-emitter function
  *
  * @param  event The name of the event
  * @return MethodDecorator
- */
-function Emit(event) {
-    return function (_target, propertyKey, descriptor) {
+ */ function Emit(event) {
+    return function(_target, propertyKey, descriptor) {
         const key = hyphenate(propertyKey);
         const original = descriptor.value;
         descriptor.value = function emitter(...args) {
-            const emit = (returnValue) => {
+            const emit = (returnValue)=>{
                 const emitName = event || key;
                 if (returnValue === undefined) {
                     if (args.length === 0) {
                         this.$emit(emitName);
-                    }
-                    else if (args.length === 1) {
+                    } else if (args.length === 1) {
                         this.$emit(emitName, args[0]);
-                    }
-                    else {
+                    } else {
                         this.$emit(emitName, ...args);
                     }
-                }
-                else {
+                } else {
                     args.unshift(returnValue);
                     this.$emit(emitName, ...args);
                 }
@@ -863,8 +784,7 @@ function Emit(event) {
             const returnValue = original.apply(this, args);
             if (isPromise(returnValue)) {
                 returnValue.then(emit);
-            }
-            else {
+            } else {
                 emit(returnValue);
             }
             return returnValue;
@@ -876,15 +796,16 @@ function Emit(event) {
  * decorator of an event function
  *
  * @return MethodDecorator
- */
-function Event() {
-    return function (_target, propertyKey, descriptor) {
+ */ function Event() {
+    return function(_target, propertyKey, descriptor) {
         const original = descriptor.value;
         descriptor.value = function dispatchEvent(e) {
-            const event = { ...e };
+            const event = {
+                ...e
+            };
             if (event) {
-                event.preventDefault = function () { };
-                event.stopPropagation = function () { };
+                event.preventDefault = function() {};
+                event.stopPropagation = function() {};
                 event.target = event.target || {};
                 event.currentTarget = event.currentTarget || event.target || {};
                 event.detail = event.detail || {};
@@ -901,10 +822,9 @@ function Event() {
  *
  * @param  options the options for the prop
  * @return PropertyDecorator | void
- */
-function Prop(options) {
-    return function (target, key) {
-        createDecorator((componentOptions, k) => {
+ */ function Prop(options) {
+    return function(target, key) {
+        createDecorator((componentOptions, k)=>{
             (componentOptions.props || (componentOptions.props = {}))[k] = options;
         })(target, key);
     };
@@ -916,26 +836,28 @@ function Prop(options) {
  * @param  path the path or the expression to observe
  * @param  WatchOption
  * @return MethodDecorator
- */
-function Watch(path, watchOptions = {}) {
-    return createDecorator((componentOptions, handler) => {
+ */ function Watch(path, watchOptions = {}) {
+    return createDecorator((componentOptions, handler)=>{
         componentOptions.watch = componentOptions.watch || Object.create(null);
         const watch = componentOptions.watch;
         if (typeof watch[path] === 'object' && !Array.isArray(watch[path])) {
-            watch[path] = [watch[path]];
-        }
-        else if (typeof watch[path] === 'undefined') {
+            watch[path] = [
+                watch[path]
+            ];
+        } else if (typeof watch[path] === 'undefined') {
             watch[path] = [];
         }
-        watch[path].push({ handler, ...watchOptions });
+        watch[path].push({
+            handler,
+            ...watchOptions
+        });
     });
 }
 
 /**
  * Strict object type check. Only returns true
  * for plain JavaScript objects.
- */
-function isPlainObject(obj) {
+ */ function isPlainObject(obj) {
     return Object.prototype.toString.call(obj) === '[object Object]';
 }
 
@@ -989,7 +911,7 @@ function debounce(func, wait, options) {
         // Either this is the first call, activity has stopped and we're at the
         // trailing edge, the system time has gone backwards and we're treating
         // it as the trailing edge, or we've hit the `maxWait` limit.
-        return lastCallTime === undefined || timeSinceLastCall >= wait || timeSinceLastCall < 0 || (maxing && timeSinceLastInvoke >= maxWait);
+        return lastCallTime === undefined || timeSinceLastCall >= wait || timeSinceLastCall < 0 || maxing && timeSinceLastInvoke >= maxWait;
     }
     function timerExpired() {
         const time = Date.now();
@@ -1062,7 +984,7 @@ function throttle(func, wait, options) {
     return debounce(func, wait, {
         leading: leading,
         maxWait: wait,
-        trailing: trailing,
+        trailing: trailing
     });
 }
 
@@ -1071,46 +993,43 @@ function isDef(v) {
 }
 
 function initComponents(vm, components) {
-    return Object.keys(components).reduce((acc, key) => {
-        const { module: componentName, type = 'child', observer, throttle = true } = getData$1(components[key]);
-        const linkCb = function (target) {
-            const oName = `_${componentName.replace(/\./g, '').replace(/\//g, '_')}_throttled`;
-            const oFn = function (target) {
+    return Object.keys(components).reduce((acc, key)=>{
+        const { module: componentName, type = 'child', observer, debounce = true } = getData$1(components[key]);
+        const linkCb = function(target) {
+            const oName = `_${componentName.replace(/\./g, '').replace(/\//g, '_')}_debounced`;
+            const oFn = function(target) {
                 const renderProxy = this;
                 if (renderProxy.$component._isMounted) {
                     if (typeof observer === 'string') {
                         return renderProxy.$component[observer]?.(target.$component);
-                    }
-                    else if (typeof observer === 'function') {
+                    } else if (typeof observer === 'function') {
                         return observer.call(renderProxy.$component, target.$component);
                     }
                 }
             };
-            if (throttle !== undefined && throttle !== false) {
+            if (debounce !== undefined && debounce !== false) {
                 if (!this[oName]) {
                     let opts = {
                         wait: 50,
                         options: {
                             trailing: true,
-                            leading: true,
-                        },
+                            leading: false
+                        }
                     };
-                    if (typeof throttle === 'number') {
-                        opts.wait = throttle;
-                    }
-                    else if (isPlainObject(throttle) && throttle !== true) {
+                    if (typeof debounce === 'number') {
+                        opts.wait = debounce;
+                    } else if (isPlainObject(debounce) && debounce !== true) {
                         opts = {
                             ...opts,
-                            ...throttle,
+                            ...debounce
                         };
                     }
                     const { wait, options } = opts;
-                    const { run } = this.useThrottleFn(oFn.bind(this), wait, options);
+                    const { run } = this.useDebounceFn(oFn.bind(this), wait, options);
                     this[oName] = run;
                 }
                 this[oName].call(this, target);
-            }
-            else {
+            } else {
                 return oFn.call(this, target);
             }
         };
@@ -1118,11 +1037,11 @@ function initComponents(vm, components) {
             type,
             linked: !isDef(observer) ? noop : linkCb,
             linkChanged: !isDef(observer) ? noop : linkCb,
-            unlinked: !isDef(observer) ? noop : linkCb,
+            unlinked: !isDef(observer) ? noop : linkCb
         };
         return {
             ...acc,
-            [componentName]: option,
+            [componentName]: option
         };
     }, {});
 }
@@ -1133,20 +1052,18 @@ function getData$1(comp) {
             ['module']: ret.module,
             type: ret.type,
             observer: ret.observer,
-            throttle: ret.throttle,
+            debounce: ret.debounce
         };
-    }
-    else if (typeof comp === 'string') {
+    } else if (typeof comp === 'string') {
         return {
-            ['module']: comp,
+            ['module']: comp
         };
-    }
-    else if (isPlainObject(comp)) {
+    } else if (isPlainObject(comp)) {
         return {
             ['module']: comp.module,
             type: comp.type,
             observer: comp.observer,
-            throttle: comp.throttle,
+            debounce: comp.debounce
         };
     }
     return {};
@@ -1154,42 +1071,57 @@ function getData$1(comp) {
 function useThrottle() {
     return Behavior({
         lifetimes: {
-            created() {
-                this.useThrottleFn = function (fn, wait = 50, options) {
+            created () {
+                this.useThrottleFn = function(fn, wait = 50, options) {
                     const throttled = throttle(fn.bind(this), wait, options);
                     this._throttledFns.push(throttled);
                     return {
                         run: throttled,
                         cancel: throttled.cancel,
-                        flush: throttled.flush,
+                        flush: throttled.flush
+                    };
+                };
+                this.useDebounceFn = function(fn, wait = 50, options) {
+                    const debounced = debounce(fn.bind(this), wait, options);
+                    this._debouncedFns.push(debounced);
+                    return {
+                        run: debounced,
+                        cancel: debounced.cancel,
+                        flush: debounced.flush
                     };
                 };
                 this._throttledFns = [];
+                this._debouncedFns = [];
             },
-            detached() {
+            detached () {
                 if (this._throttledFns.length > 0) {
-                    this._throttledFns.forEach((throttled) => {
+                    this._throttledFns.forEach((throttled)=>{
                         throttled.cancel();
                     });
                     this._throttledFns = [];
                 }
-            },
-        },
+                if (this._debouncedFns.length > 0) {
+                    this._debouncedFns.forEach((debounced)=>{
+                        debounced.cancel();
+                    });
+                    this._debouncedFns = [];
+                }
+            }
+        }
     });
 }
 
 function initComputed(vm, forceUpdate = false) {
     if (vm._isMounted || forceUpdate) {
         const computed = vm.$options.computed || {};
-        Object.keys(computed).forEach((key) => {
+        Object.keys(computed).forEach((key)=>{
             const userDef = computed[key];
             const getter = typeof userDef === 'function' ? userDef : userDef.get;
             if (getter) {
                 const value = getter.call(vm, vm);
-                if (vm.$options.props && key in vm.$options.props) ;
-                else if (!isEqual(vm._renderProxy.data[key], value)) {
+                if (vm.$options.props && key in vm.$options.props) ; else if (!isEqual(vm._renderProxy.data[key], value)) {
                     vm._renderProxy.setData({
-                        [key]: value,
+                        [key]: value
                     });
                 }
             }
@@ -1201,13 +1133,13 @@ function getDefaultData(vm) {
     let data = vm.$options.data || {};
     data = typeof data === 'function' ? getData(data, vm) : data || {};
     const mixins = vm.$options.mixins || [];
-    const instData = mixins.reduce((acc, mixin) => ({
-        ...acc,
-        ...getData(mixin.data, vm),
-    }), {});
+    const instData = mixins.reduce((acc, mixin)=>({
+            ...acc,
+            ...getData(mixin.data, vm)
+        }), {});
     data = {
         ...data,
-        ...instData,
+        ...instData
     };
     return data;
 }
@@ -1227,28 +1159,25 @@ function getData(data, vm) {
         const props = vm.$options.props;
         const methods = vm.$options.methods;
         let i = keys.length;
-        while (i--) {
+        while(i--){
             const key = keys[i];
             if (isDev) ;
             if (props && hasOwn(props, key)) {
                 isDev && warn(`The data property "${key}" is already declared as a prop. ` + 'Use prop default value instead.', vm);
-            }
-            else if (!isReserved(key)) {
+            } else if (!isReserved(key)) {
                 // properties starting with "$" or "_" are not set in miniprogram instance
                 ret[key] = data[key];
             }
         }
         return ret;
-    }
-    catch (e) {
+    } catch (e) {
         return {};
     }
 }
 
 /**
  * Simple bind
- */
-function bind(fn, ctx) {
+ */ function bind(fn, ctx) {
     return fn.bind(ctx);
 }
 
@@ -1257,22 +1186,22 @@ function initLifecycle(vm, options) {
     vm._isMounted = false;
     vm._isDestroyed = false;
     vm._hasHookEvent = true;
-    for (const key in methods) {
+    for(const key in methods){
         vm[key] = methods[key] == null ? noop : bind(methods[key], vm);
     }
 }
 function callHook(vm, hook) {
-    var handlers = [vm.$options[hook]];
+    var handlers = [
+        vm.$options[hook]
+    ];
     if (handlers) {
-        for (var i = 0, j = handlers.length; i < j; i++) {
+        for(var i = 0, j = handlers.length; i < j; i++){
             try {
                 handlers[i].call(vm);
-            }
-            catch (e) {
-                /**
-                 * Ignore
-                 */
-            }
+            } catch (e) {
+            /**
+         * Ignore
+         */ }
         }
     }
     if (vm._hasHookEvent) {
@@ -1286,63 +1215,59 @@ function initExposed(vm) {
     if (Array.isArray(expose)) {
         if (expose.length) {
             const exposed = vm._exposed || (vm._exposed = {});
-            expose.forEach((key) => {
+            expose.forEach((key)=>{
                 Object.defineProperty(exposed, key, {
                     enumerable: !hasProxy,
-                    get: () => vm[key],
-                    set: (val) => (vm[key] = val),
+                    get: ()=>vm[key],
+                    set: (val)=>vm[key] = val
                 });
             });
             return exposed;
-        }
-        else if (!vm._exposed) {
+        } else if (!vm._exposed) {
             vm._exposed = {};
         }
     }
 }
 const publicPropertiesMap = {
-    $data: (vm) => vm.$data,
-    $props: (vm) => vm.$props,
-    $refs: (vm) => vm.$refs,
-    $parent: (vm) => vm.$parent,
-    $root: (vm) => vm.$root,
-    $children: (vm) => vm.$children,
-    $options: (vm) => vm.$options,
-    $emit: (vm) => vm.$emit,
-    $nextTick: (vm) => vm.$nextTick,
+    $data: (vm)=>vm.$data,
+    $props: (vm)=>vm.$props,
+    $refs: (vm)=>vm.$refs,
+    $parent: (vm)=>vm.$parent,
+    $root: (vm)=>vm.$root,
+    $children: (vm)=>vm.$children,
+    $options: (vm)=>vm.$options,
+    $emit: (vm)=>vm.$emit,
+    $nextTick: (vm)=>vm.$nextTick
 };
 function getExposeProxy(vm) {
     if (vm._exposed) {
         if (hasProxy) {
-            return (vm._exposeProxy ||
-                (vm._exposeProxy = new Proxy(vm._exposed, {
-                    get(target, key) {
-                        if (key in target) {
-                            return target[key];
-                        }
-                        else if (key in publicPropertiesMap) {
-                            return publicPropertiesMap[key](vm);
-                        }
-                    },
-                    has(target, key) {
-                        return key in target || key in publicPropertiesMap;
-                    },
-                })));
-        }
-        else {
+            return vm._exposeProxy || (vm._exposeProxy = new Proxy(vm._exposed, {
+                get (target, key) {
+                    if (key in target) {
+                        return target[key];
+                    } else if (key in publicPropertiesMap) {
+                        return publicPropertiesMap[key](vm);
+                    }
+                },
+                has (target, key) {
+                    return key in target || key in publicPropertiesMap;
+                }
+            }));
+        } else {
             vm._exposeProxy = Object.create(null);
-            for (const key in vm._exposed) {
+            for(const key in vm._exposed){
                 Object.defineProperty(vm._exposeProxy, key, {
-                    get() {
+                    get () {
                         return vm._exposed[key];
-                    },
+                    }
                 });
             }
-            for (const key in publicPropertiesMap) {
+            for(const key in publicPropertiesMap){
                 Object.defineProperty(vm._exposeProxy, key, {
-                    get() {
+                    get () {
                         return publicPropertiesMap[key](vm);
-                    },
+                    }
                 });
             }
             return vm._exposeProxy;
@@ -1350,37 +1275,40 @@ function getExposeProxy(vm) {
     }
 }
 function getPublicInstance(vm) {
-    if (!vm)
-        return null;
+    if (!vm) return null;
     return getExposeProxy(vm) || vm;
 }
 
 function initMethods(vm, methods) {
     const methodProxy = {};
     vm.$options.props;
-    for (const key in methods) {
-        methodProxy[key] =
-            typeof methods[key] !== 'function'
-                ? noop
-                : function (...args) {
-                    const renderProxy = this;
-                    return renderProxy.$component[key].call(renderProxy.$component, ...args);
-                };
+    for(const key in methods){
+        methodProxy[key] = typeof methods[key] !== 'function' ? noop : function(...args) {
+            const renderProxy = this;
+            return renderProxy.$component[key].call(renderProxy.$component, ...args);
+        };
     }
     return methodProxy;
 }
 
-const isUndefinable = (val) => val === undefined;
+const isUndefinable = (val)=>val === undefined;
 const NULL_PROP = null;
 function initProps(vm, propsOptions) {
     // miniprogram props
     const properties = {};
-    for (const key in propsOptions) {
+    for(const key in propsOptions){
         const propOptions = propsOptions[key];
         const type = propOptions.type || NULL_PROP;
         const value = validateProp(key, propsOptions, {}, vm);
         // 属性的类型（可以指定多个）
-        properties[key] = Array.isArray(type) ? { optionalTypes: type, type, value } : { type, value };
+        properties[key] = Array.isArray(type) ? {
+            optionalTypes: type,
+            type,
+            value
+        } : {
+            type,
+            value
+        };
     }
     return properties;
 }
@@ -1412,59 +1340,70 @@ function initRefs(vm) {
     const parentNodes = [];
     const childrenNodes = [];
     const refNodes = [];
-    for (const key in components) {
+    for(const key in components){
         const { module: componentName, type = 'child' } = getData$1(components[key]);
-        if (['ancestor', 'parent'].includes(type)) {
+        if ([
+            'ancestor',
+            'parent'
+        ].includes(type)) {
             parentNodes.push(componentName);
-        }
-        else if (['child', 'descendant'].includes(type)) {
+        } else if ([
+            'child',
+            'descendant'
+        ].includes(type)) {
             childrenNodes.push(componentName);
         }
         refNodes.push({
             ref: key,
-            path: componentName,
+            path: componentName
         });
     }
     Object.defineProperty(vm, '$parent', {
-        get() {
-            const nodes = parentNodes.slice(0, 1).reduce((acc, path) => [...acc, ...find(vm, path)], []);
+        get () {
+            const nodes = parentNodes.slice(0, 1).reduce((acc, path)=>[
+                    ...acc,
+                    ...find(vm, path)
+                ], []);
             return nodes && nodes[0];
-        },
+        }
     });
     Object.defineProperty(vm, '$root', {
-        get() {
+        get () {
             return this.$parent ? this.$parent.$root : vm;
-        },
+        }
     });
     Object.defineProperty(vm, '$children', {
-        get() {
-            const nodes = childrenNodes.reduce((acc, path) => [...acc, ...find(vm, path)], []);
+        get () {
+            const nodes = childrenNodes.reduce((acc, path)=>[
+                    ...acc,
+                    ...find(vm, path)
+                ], []);
             return nodes;
-        },
+        }
     });
     Object.defineProperty(vm, '$refs', {
-        get() {
-            const nodes = refNodes.reduce((acc, node) => ({
-                ...acc,
-                [node.ref]: find(vm, node.path),
-            }), {});
+        get () {
+            const nodes = refNodes.reduce((acc, node)=>({
+                    ...acc,
+                    [node.ref]: find(vm, node.path)
+                }), {});
             return nodes;
-        },
+        }
     });
 }
 function find(vm, path) {
     const nodes = vm._renderProxy.getRelationNodes(path);
     if (nodes && nodes.length > 0) {
-        return nodes.map((v) => getPublicInstance(v.$component));
+        return nodes.map((v)=>getPublicInstance(v.$component));
     }
     return [];
 }
 
 function initWatch(vm, watch) {
-    return Object.keys(watch).reduce((acc, key) => ({
-        ...acc,
-        [key]: createWatcher(vm, key, watch[key]),
-    }), {});
+    return Object.keys(watch).reduce((acc, key)=>({
+            ...acc,
+            [key]: createWatcher(vm, key, watch[key])
+        }), {});
 }
 function createWatcher(vm, key, handler) {
     return function defineWatch(newVal) {
@@ -1474,20 +1413,19 @@ function createWatcher(vm, key, handler) {
         }
         // Always equal to the newVal
         const oldVal = renderProxy.data[key];
-        const handlers = Array.isArray(handler) ? handler : [handler];
+        const handlers = Array.isArray(handler) ? handler : [
+            handler
+        ];
         if (Array.isArray(handlers)) {
-            handlers.forEach((h) => {
+            handlers.forEach((h)=>{
                 if (typeof h === 'string') {
                     renderProxy.$component[h]?.(newVal, oldVal);
-                }
-                else if (typeof h === 'function') {
+                } else if (typeof h === 'function') {
                     h.call(renderProxy.$component, newVal, oldVal);
-                }
-                else if (isPlainObject(h)) {
+                } else if (isPlainObject(h)) {
                     if (typeof h.handler === 'string') {
                         renderProxy.$component[h.handler]?.(newVal, oldVal);
-                    }
-                    else {
+                    } else {
                         h.handler.call(renderProxy.$component, newVal, oldVal);
                     }
                 }
@@ -1501,12 +1439,14 @@ function createWatcher(vm, key, handler) {
  *
  * @param {*} vm
  * @param {*} options
- */
-let setUpdatePerformance;
+ */ let setUpdatePerformance;
 if (inMiniprogram) {
-    setUpdatePerformance = function (vm, options = {}) {
+    setUpdatePerformance = function(vm, options = {}) {
         if (vm.setUpdatePerformanceListener) {
-            vm.setUpdatePerformanceListener({ withDataPaths: true, ...options }, (res) => {
+            vm.setUpdatePerformanceListener({
+                withDataPaths: true,
+                ...options
+            }, (res)=>{
                 const cost = res.updateEndTimestamp - res.updateStartTimestamp;
                 const isShow = options.showZero || cost > 0;
                 if (isShow) {
@@ -1518,31 +1458,37 @@ if (inMiniprogram) {
 }
 
 function syncPropsToData(props, computed) {
-    const defaultData = Object.keys(props).reduce((acc, name) => ({
-        ...acc,
-        [name]: props[name].value,
-    }), {});
-    const sync = (data) => {
-        return Object.keys(computed).reduce((acc, key) => {
+    const defaultData = Object.keys(props).reduce((acc, name)=>({
+            ...acc,
+            [name]: props[name].value
+        }), {});
+    const sync = (data)=>{
+        return Object.keys(computed).reduce((acc, key)=>{
             const userDef = computed[key];
             const getter = typeof userDef === 'function' ? userDef : userDef.get;
             if (getter) {
                 const value = getter.call(data, data);
-                return { ...acc, [key]: value };
+                return {
+                    ...acc,
+                    [key]: value
+                };
             }
             return acc;
         }, {});
     };
     return Behavior({
-        definitionFilter(defFields) {
+        definitionFilter (defFields) {
             defFields.data = defFields.data || {};
-            defFields.data = Object.assign(defFields.data, sync({ ...defaultData, ...defFields.data }));
-        },
+            defFields.data = Object.assign(defFields.data, sync({
+                ...defaultData,
+                ...defFields.data
+            }));
+        }
     });
 }
 
 function defineComponentHOC(externalOptions = {}) {
-    return function (target) {
+    return function(target) {
         mergeStaticProperty(externalOptions, target);
         const componentInstance = new target();
         const options = componentInstance.$options;
@@ -1560,32 +1506,44 @@ function defineComponentHOC(externalOptions = {}) {
         const componentConf = {
             options: {
                 multipleSlots: isDef(externalOptions.multipleSlots) ? externalOptions.multipleSlots : true,
-                addGlobalClass: isDef(externalOptions.addGlobalClass) ? externalOptions.addGlobalClass : true,
+                addGlobalClass: isDef(externalOptions.addGlobalClass) ? externalOptions.addGlobalClass : true
             },
-            externalClasses: ['dora-class', 'dora-class-a', 'dora-class-b', 'dora-class-c', 'dora-hover-class'].concat(Array.isArray(externalOptions.externalClasses) ? externalOptions.externalClasses : []),
-            ['export']() {
+            externalClasses: [
+                'dora-class',
+                'dora-class-a',
+                'dora-class-b',
+                'dora-class-c',
+                'dora-hover-class'
+            ].concat(Array.isArray(externalOptions.externalClasses) ? externalOptions.externalClasses : []),
+            ['export'] () {
                 if (externalOptions.expose) {
                     return externalOptions.expose.call(this);
                 }
                 return getPublicInstance(this.$component);
             },
-            relations: { ...components },
+            relations: {
+                ...components
+            },
             behaviors: (Array.isArray(externalOptions.behaviors) ? externalOptions.behaviors : []).concat([
                 'wx://component-export',
                 useThrottle(),
-                syncPropsToData(defaultProps, options.computed),
+                syncPropsToData(defaultProps, options.computed)
             ]),
             observers: {
                 ...watch,
                 ['**']: function defineComputed() {
                     initComputed(this.$component);
-                },
+                }
             },
-            properties: { ...defaultProps },
+            properties: {
+                ...defaultProps
+            },
             data: {
-                ...(typeof externalOptions.data === 'function' ? externalOptions.data() || {} : externalOptions.data || {}),
+                ...typeof externalOptions.data === 'function' ? externalOptions.data() || {} : externalOptions.data || {}
             },
-            methods: { ...methods },
+            methods: {
+                ...methods
+            },
             lifetimes: {
                 created: function beforeCreate() {
                     this.$component = new target();
@@ -1619,8 +1577,8 @@ function defineComponentHOC(externalOptions = {}) {
                 },
                 error: function errorCaptured() {
                     callHook(this.$component, 'errorCaptured');
-                },
-            },
+                }
+            }
         };
         return Component(componentConf);
     };
@@ -1629,16 +1587,22 @@ function toNative(target) {
     return defineComponentHOC()(target);
 }
 function mergeStaticProperty(config, target) {
-    for (const key in target) {
+    for(const key in target){
         config[key] = target[key];
     }
     // 低版本 IOS 下部分属性不能直接访问
-    Object.getOwnPropertyNames(target).forEach((key) => {
-        const excludes = ['arguments', 'caller', 'length', 'name', 'prototype'];
+    Object.getOwnPropertyNames(target).forEach((key)=>{
+        const excludes = [
+            'arguments',
+            'caller',
+            'length',
+            'name',
+            'prototype'
+        ];
         if (excludes.indexOf(key) < 0) {
             config[key] = target[key];
         }
     });
 }
 
-export { Component$1 as Component, Doraemon, Emit, Event, Prop, Watch, defineComponentHOC, toNative };
+export { Component$1 as Component, Doraemon, Emit, Event, Prop, Watch, createDecorator, defineComponentHOC, toNative };

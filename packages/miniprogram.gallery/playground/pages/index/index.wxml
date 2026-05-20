@@ -1,11 +1,86 @@
-<demo-page
-  darkmode="auto"
-  title="miniprogram.gallery"
-  desc="miniprogram.gallery"
-  clickable
-  spacing
->
-  <demo-block title="Basic">
-    <dora-gallery>miniprogram.gallery</dora-gallery>
+<dora-gallery id="dora-gallery" />
+
+<demo-page darkmode="auto" title="Gallery" desc="画廊" clickable>
+  <demo-block title="基于小程序原生的 wx.previewImage">
+    <view class="uploader__files">
+      <block wx:for="{{ urls }}" wx:key="index">
+        <view class="uploader__file" bindtap="previewImage" data-current="{{ item }}">
+          <image class="uploader__img" src="{{ item }}" />
+        </view>
+      </block>
+    </view>
+  </demo-block>
+
+  <demo-block title="基础用法">
+    <block>
+      <button class="button" bindtap="show">显示画廊</button>
+      <dora-gallery id="dora-gallery-show" />
+    </block>
+  </demo-block>
+
+  <demo-block title="声明式">
+    <block>
+      <button class="button" bindtap="onShow1">最简单的画廊</button>
+      <dora-gallery
+        urls="{{ urls }}"
+        visible="{{ visible1 }}"
+        bind:close="onClose1"
+        bind:closed="onClosed1"
+      />
+    </block>
+    <block>
+      <button class="button" bindtap="onShow2">显示指示点</button>
+      <dora-gallery
+        urls="{{ urls }}"
+        visible="{{ visible2 }}"
+        indicatorDots="{{ true }}"
+        indicatorColor="#ffffff"
+        indicatorActiveColor="#04BE02"
+        bind:close="onClose2"
+        bind:closed="onClosed2"
+      />
+    </block>
+    <block>
+      <button class="button" bindtap="onShow3">从第二张开始</button>
+      <dora-gallery
+        urls="{{ urls }}"
+        visible="{{ visible3 }}"
+        current="{{ 1 }}"
+        bind:close="onClose3"
+        bind:closed="onClosed3"
+      />
+    </block>
+    <block>
+      <button class="button" bindtap="onShow4">循环切换</button>
+      <dora-gallery
+        urls="{{ urls }}"
+        visible="{{ visible4 }}"
+        circular="{{ true }}"
+        autoplay="{{ true }}"
+        interval="{{ 3000 }}"
+        bind:close="onClose4"
+        bind:closed="onClosed4"
+      />
+    </block>
+    <block>
+      <button class="button" bindtap="onShow5">自定义图标</button>
+      <dora-gallery
+        urls="{{ urls }}"
+        visible="{{ visible5 }}"
+        icon="https://cdn.skyvow.cn/logo.png"
+        bind:close="onClose5"
+        bind:closed="onClosed5"
+      />
+    </block>
+    <block>
+      <button class="button" bindtap="onShow6">隐藏删除按钮</button>
+      <dora-gallery
+        urls="{{ urls }}"
+        visible="{{ visible6 }}"
+        showDelete="{{ false }}"
+        bind:close="onClose6"
+        bind:closed="onClosed6"
+      />
+    </block>
   </demo-block>
 </demo-page>

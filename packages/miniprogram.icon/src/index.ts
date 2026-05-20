@@ -1,14 +1,14 @@
 import { defineComponentHOC, Doraemon, Component, Prop } from '@doraemon-ui/miniprogram.core-js'
+import { getFontSize } from '@doraemon-ui/miniprogram.shared'
+
 const { classNames, styleToCssString } = Doraemon.util
 
 @Component({
   props: {
-
     prefixCls: {
       type: String,
       default: 'doraicons',
     },
-  
   },
 })
 class Icon extends Doraemon {
@@ -79,17 +79,6 @@ class Icon extends Doraemon {
   }
 
   get containerStyle() {
-    const getFontSize = (size: string | number): string => {
-      let fontSize = size
-      if (typeof size === 'number') {
-        fontSize = `${size}px`
-      } else if (typeof size === 'string') {
-        if (!isNaN(Number(size))) {
-          fontSize = `${size}px`
-        }
-      }
-      return fontSize as string
-    }
     return styleToCssString({
       fontSize: getFontSize(this.size),
       color: this.color !== '' ? this.color : 'unset',

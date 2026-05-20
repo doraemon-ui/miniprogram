@@ -9,6 +9,15 @@
   color: rgba(var(--dora-text-color-rgb), 0.85);
   background-color: var(--dora-background-color);
 
+  &--fixed {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: unset;
+  }
+
   &__hd {
     position: relative;
     padding: @spacing-xl * 2 + @spacing-base;

@@ -4,9 +4,21 @@ exports[`FloatingPanel mount correctly 1`] = `
 <dora-floating-panel>
   <wx-view
     class="dora-class dora-floating-panel"
-    hoverClass="dora-hover-class dora-floating-panel--hover"
-    style=""
-    bind:tap="onClick"
-  />
+    style="height: 500px;  transform: translate3d(0, calc(100% + -100px), 0);  transition: none;  "
+  >
+    <wx-view
+      class="dora-floating-panel__hd"
+      catch:touchend="onTouchEnd"
+      catch:touchmove="onTouchMove"
+      catch:touchstart="onTouchStart"
+    >
+      <wx-view
+        class="dora-floating-panel__bar"
+      />
+    </wx-view>
+    <wx-view
+      class="dora-floating-panel__bd"
+    />
+  </wx-view>
 </dora-floating-panel>
 `;

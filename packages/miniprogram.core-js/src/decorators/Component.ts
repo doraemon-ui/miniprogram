@@ -6,7 +6,7 @@ import { hasProto } from '../util/hasProto'
 import { isPrimitive } from '../util/isPrimitive'
 import type { ComponentOptions } from '../types/options'
 
-type DecoratedClass = { new (...args: any[]) } & {
+export type DecoratedClass = { new (...args: any[]) } & {
   __decorators__?: any
 }
 

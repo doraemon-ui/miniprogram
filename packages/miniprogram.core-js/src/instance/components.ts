@@ -1,5 +1,7 @@
 import type { ComponentRenderProxy, Doraemon } from './init'
 import type { ComponentOptions, RelationComponent } from '../types/options'
+import { debounce } from '../util/debounce'
+import type { DebounceOptions, DebounceReturn } from '../util/debounce'
 import { throttle } from '../util/throttle'
 import type { ThrottleOptions, ThrottleReturn } from '../util/throttle'
 import { isPlainObject } from '../util/isPlainObject'
@@ -36,9 +38,9 @@ export function initComponents(
   [componentName: string]: RelationOption
 } {
   return Object.keys(components).reduce((acc, key) => {
-    const { module: componentName, type = 'child', observer, throttle = true } = getData(components[key])
+    const { module: componentName, type = 'child', observer, debounce = true } = getData(components[key])
     const linkCb = function (this: ComponentRenderProxy<Doraemon>, target: ComponentRenderProxy<Doraemon>) {
-      const oName = `_${componentName.replace(/\./g, '').replace(/\//g, '_')}_throttled`
+      const oName = `_${componentName.replace(/\./g, '').replace(/\//g, '_')}_debounced`
       const oFn = function (target: ComponentRenderProxy<Doraemon>) {
         const renderProxy: ComponentRenderProxy<Doraemon> = this
         if (renderProxy.$component._isMounted) {
@@ -49,28 +51,28 @@ export function initComponents(
           }
         }
       }
-      if (throttle !== undefined && throttle !== false) {
+      if (debounce !== undefined && debounce !== false) {
         if (!this[oName]) {
           let opts: {
             wait: number
-            options: ThrottleOptions
+            options: Partial<DebounceOptions>
           } = {
             wait: 50,
             options: {
               trailing: true,
-              leading: true,
+              leading: false,
             },
           }
-          if (typeof throttle === 'number') {
-            opts.wait = throttle
-          } else if (isPlainObject(throttle) && throttle !== true) {
+          if (typeof debounce === 'number') {
+            opts.wait = debounce
+          } else if (isPlainObject(debounce) && debounce !== true) {
             opts = {
               ...opts,
-              ...throttle,
+              ...debounce,
             }
           }
           const { wait, options } = opts
-          const { run } = this.useThrottleFn(oFn.bind(this), wait, options)
+          const { run } = this.useDebounceFn(oFn.bind(this), wait, options)
           this[oName] = run
         }
         this[oName].call(this, target)
@@ -100,7 +102,7 @@ export function getData(
       ['module']: ret.module,
       type: ret.type,
       observer: ret.observer,
-      throttle: ret.throttle,
+      debounce: ret.debounce,
     }
   } else if (typeof comp === 'string') {
     return {
@@ -111,7 +113,7 @@ export function getData(
       ['module']: comp.module,
       type: comp.type,
       observer: comp.observer,
-      throttle: comp.throttle,
+      debounce: comp.debounce,
     }
   }
   return {}
@@ -130,7 +132,17 @@ export function useThrottle() {
             flush: throttled.flush,
           }
         }
+        this.useDebounceFn = function (fn: Function, wait = 50, options: Partial<DebounceOptions>) {
+          const debounced = debounce(fn.bind(this), wait, options as DebounceOptions)
+          this._debouncedFns.push(debounced)
+          return {
+            run: debounced,
+            cancel: debounced.cancel,
+            flush: debounced.flush,
+          }
+        }
         this._throttledFns = []
+        this._debouncedFns = []
       },
       detached() {
         if (this._throttledFns.length > 0) {
@@ -138,6 +150,12 @@ export function useThrottle() {
             throttled.cancel()
           })
           this._throttledFns = []
+        }
+        if (this._debouncedFns.length > 0) {
+          ;(this._debouncedFns as DebounceReturn<any>[]).forEach((debounced) => {
+            debounced.cancel()
+          })
+          this._debouncedFns = []
         }
       },
     },

@@ -3,10 +3,10 @@
   title="Barcode"
   desc="条形码"
   clickable
-  spacing
 >
   <demo-block title="输入13位条形码，即时输入即时生成">
     <input class="input" value="{{ number }}" bindinput="onChange" />
+    <view class="sub-title">提示：扫描只能识别有效的条形码</view>
     <view class="barcode">
       <dora-barcode
         number="{{ number }}"

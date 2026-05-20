@@ -1,11 +1,11 @@
 /**
  * @doraemon-ui/miniprogram.fab-button.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:38:51.
+ * Built on 2026-05-12, 20:57:14.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 
-import { Doraemon, Prop, Watch, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
+import { Doraemon, Prop, Watch, Event, Emit, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
 import { useRect } from '@doraemon-ui/miniprogram.shared';
 
 function _ts_decorate(decorators, target, key, desc) {
@@ -15,7 +15,6 @@ function _ts_decorate(decorators, target, key, desc) {
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 }
 const { classNames } = Doraemon.util;
-const defaultAction = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAAAAYLlVAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAHdElNRQfhBAQLCR5MtjrbAAAAjUlEQVRo3u3ZMRKAIAxEUbDirp4nXnctFFDHBtDQ/O1Nnk6aHUMgZCBKMkmmNAtgOmL9M+IQQGVM95zljy8DAAAAAAAAAAAAAACALsDZcppSx7Q+WdtUvA5xffUtrjeA8/qQ21S9gc15/3Nfzw0M5O0G2kM5BQAAAAAAAAAAAAAAQGk33q0qZ/p/Q/JFdmei9usomnwIAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE3LTA0LTA0VDExOjA5OjMwKzA4OjAw1U4c3wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxNy0wNC0wNFQxMTowOTozMCswODowMKQTpGMAAAAASUVORK5CYII=';
 const setTransform = (translate = 0, scale = 1, delay = 300, isHorizontal = true)=>{
     const duration = `transition-duration: ${delay}ms`;
     const transform = `transform: scale(${scale}) translate3d(${isHorizontal ? translate : 0}px, ${isHorizontal ? 0 : translate}px, 0)`;
@@ -23,13 +22,14 @@ const setTransform = (translate = 0, scale = 1, delay = 300, isHorizontal = true
 };
 let FabButton = class FabButton extends Doraemon {
     get classes() {
-        const { prefixCls, position, theme, direction, reverse, buttonVisible, hideShadow, actionRotate, buttons, hoverClass } = this;
+        const { prefixCls, position, color, direction, reverse, buttonVisible, hideShadow, actionRotate, buttons, hoverClass } = this;
         const wrap = classNames(prefixCls, {
             [`${prefixCls}--${position}`]: position,
-            [`${prefixCls}--${theme}`]: theme,
             [`${prefixCls}--${direction}`]: direction,
             [`${prefixCls}--reverse`]: reverse,
-            [`${prefixCls}--opened`]: buttonVisible
+            [`${prefixCls}--opened`]: buttonVisible,
+            ['dora-color']: color,
+            [`dora-color--${color}`]: color
         });
         const action = classNames(`${prefixCls}__action`, {
             [`${prefixCls}__action--hide-shadow`]: hideShadow
@@ -85,8 +85,7 @@ let FabButton = class FabButton extends Doraemon {
         this.onChange(!this.buttonVisible);
     }
     onTap(e) {
-        const index = typeof e?.currentTarget?.dataset?.index === 'number' ? e.currentTarget.dataset.index : -1;
-        const value = e?.currentTarget?.dataset?.value || {};
+        const { index, value } = e.currentTarget.dataset;
         const params = {
             index,
             value,
@@ -140,33 +139,65 @@ let FabButton = class FabButton extends Doraemon {
         const transform = `transform: scale(${scale}) translate3d(${x}px, ${y}px, 0)`;
         return `opacity: 1; transition-duration: ${duration}ms; ${transform}`;
     }
-    emitOpenTypeEvent(name, e) {
-        const eventLike = e;
-        this.$emit(name, {
-            ...eventLike.detail || {},
-            ...eventLike.currentTarget?.dataset || {}
-        });
+    onGetUserInfo(e) {
+        return {
+            ...e.detail,
+            ...e.currentTarget.dataset
+        };
     }
-    bindgetuserinfo(e) {
-        this.emitOpenTypeEvent('getuserinfo', e);
+    onContact(e) {
+        return {
+            ...e.detail,
+            ...e.currentTarget.dataset
+        };
     }
-    bindcontact(e) {
-        this.emitOpenTypeEvent('contact', e);
+    onGetPhoneNumber(e) {
+        return {
+            ...e.detail,
+            ...e.currentTarget.dataset
+        };
     }
-    bindgetphonenumber(e) {
-        this.emitOpenTypeEvent('getphonenumber', e);
+    onLaunchApp(e) {
+        return {
+            ...e.detail,
+            ...e.currentTarget.dataset
+        };
     }
-    bindopensetting(e) {
-        this.emitOpenTypeEvent('opensetting', e);
+    onChooseAvatar(e) {
+        return {
+            ...e.detail,
+            ...e.currentTarget.dataset
+        };
     }
-    bindlaunchapp(e) {
-        this.emitOpenTypeEvent('launchapp', e);
+    onOpenSetting(e) {
+        return {
+            ...e.detail,
+            ...e.currentTarget.dataset
+        };
     }
-    bindchooseavatar(e) {
-        this.emitOpenTypeEvent('chooseavatar', e);
+    onCreateLiveActivity(e) {
+        return {
+            ...e.detail,
+            ...e.currentTarget.dataset
+        };
+    }
+    onGetRealtimePhoneNumber(e) {
+        return {
+            ...e.detail,
+            ...e.currentTarget.dataset
+        };
+    }
+    onAgreePrivacyAuthorization(e) {
+        return {
+            ...e.detail,
+            ...e.currentTarget.dataset
+        };
     }
     onError(e) {
-        this.emitOpenTypeEvent('error', e);
+        return {
+            ...e.detail,
+            ...e.currentTarget.dataset
+        };
     }
     mounted() {
         const buttonVisible = this.controlled ? this.visible : this.defaultVisible;
@@ -187,9 +218,9 @@ _ts_decorate([
 _ts_decorate([
     Prop({
         type: String,
-        default: 'balanced'
+        default: 'positive'
     })
-], FabButton.prototype, "theme", void 0);
+], FabButton.prototype, "color", void 0);
 _ts_decorate([
     Prop({
         type: String,
@@ -199,7 +230,7 @@ _ts_decorate([
 _ts_decorate([
     Prop({
         type: String,
-        default: defaultAction
+        default: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAAAAYLlVAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAHdElNRQfhBAQLCR5MtjrbAAAAjUlEQVRo3u3ZMRKAIAxEUbDirp4nXnctFFDHBtDQ/O1Nnk6aHUMgZCBKMkmmNAtgOmL9M+IQQGVM95zljy8DAAAAAAAAAAAAAACALsDZcppSx7Q+WdtUvA5xffUtrjeA8/qQ21S9gc15/3Nfzw0M5O0G2kM5BQAAAAAAAAAAAAAAQGk33q0qZ/p/Q/JFdmei9usomnwIAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE3LTA0LTA0VDExOjA5OjMwKzA4OjAw1U4c3wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxNy0wNC0wNFQxMTowOTozMCswODowMKQTpGMAAAAASUVORK5CYII='
     })
 ], FabButton.prototype, "action", void 0);
 _ts_decorate([
@@ -298,84 +329,52 @@ _ts_decorate([
     Watch('sAngle'),
     Watch('eAngle')
 ], FabButton.prototype, "forceUpdateButtonStyle", null);
+_ts_decorate([
+    Event(),
+    Emit('getuserinfo')
+], FabButton.prototype, "onGetUserInfo", null);
+_ts_decorate([
+    Event(),
+    Emit('contact')
+], FabButton.prototype, "onContact", null);
+_ts_decorate([
+    Event(),
+    Emit('getphonenumber')
+], FabButton.prototype, "onGetPhoneNumber", null);
+_ts_decorate([
+    Event(),
+    Emit('launchapp')
+], FabButton.prototype, "onLaunchApp", null);
+_ts_decorate([
+    Event(),
+    Emit('chooseavatar')
+], FabButton.prototype, "onChooseAvatar", null);
+_ts_decorate([
+    Event(),
+    Emit('opensetting')
+], FabButton.prototype, "onOpenSetting", null);
+_ts_decorate([
+    Event(),
+    Emit('createliveactivity')
+], FabButton.prototype, "onCreateLiveActivity", null);
+_ts_decorate([
+    Event(),
+    Emit('getrealtimephonenumber')
+], FabButton.prototype, "onGetRealtimePhoneNumber", null);
+_ts_decorate([
+    Event(),
+    Emit('agreeprivacyauthorization')
+], FabButton.prototype, "onAgreePrivacyAuthorization", null);
+_ts_decorate([
+    Event(),
+    Emit('error')
+], FabButton.prototype, "onError", null);
 FabButton = _ts_decorate([
     Component({
         props: {
             prefixCls: {
                 type: String,
                 default: 'dora-fab-button'
-            },
-            hoverClass: {
-                type: String,
-                default: 'default'
-            },
-            theme: {
-                type: String,
-                default: 'balanced'
-            },
-            position: {
-                type: String,
-                default: 'bottomRight'
-            },
-            action: {
-                type: String,
-                default: defaultAction
-            },
-            actionRotate: {
-                type: Boolean,
-                default: true
-            },
-            hideShadow: {
-                type: Boolean,
-                default: false
-            },
-            backdrop: {
-                type: Boolean,
-                default: false
-            },
-            buttons: {
-                type: Array,
-                default: ()=>[]
-            },
-            direction: {
-                type: String,
-                default: 'horizontal'
-            },
-            spaceBetween: {
-                type: Number,
-                default: 10
-            },
-            duration: {
-                type: Number,
-                default: 300
-            },
-            scale: {
-                type: Number,
-                default: 0.9
-            },
-            reverse: {
-                type: Boolean,
-                default: false
-            },
-            sAngle: {
-                type: Number,
-                default: 0
-            },
-            eAngle: {
-                type: Number,
-                default: 360
-            },
-            defaultVisible: {
-                type: Boolean,
-                default: false
-            },
-            visible: {
-                type: Boolean,
-                default: false
-            },
-            controlled: {
-                type: Boolean,
-                default: false
             }
         }
     })

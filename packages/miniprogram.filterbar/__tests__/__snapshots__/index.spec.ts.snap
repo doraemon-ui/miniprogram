@@ -4,9 +4,81 @@ exports[`Filterbar mount correctly 1`] = `
 <dora-filterbar>
   <wx-view
     class="dora-class dora-filterbar"
-    hoverClass="dora-hover-class dora-filterbar--hover"
-    style=""
-    bind:tap="onClick"
-  />
+  >
+    <dora-backdrop
+      bind:click="onBackdropClick"
+    >
+      <dora-animation-group
+        doraClass="dora-backdrop"
+        id="dora-animation-group"
+        bind:click="onClick"
+        bind:enter="onShow"
+        bind:entered="onShowed"
+        bind:exited="onClosed"
+      />
+    </dora-backdrop>
+    <wx-view
+      class="dora-filterbar__bd"
+    >
+      <wx-view
+        class="dora-filterbar__item dora-filterbar__item--has-icon"
+        data-index="{{0}}"
+        bind:tap="onClick"
+      >
+        <wx-view
+          class="dora-filterbar__text"
+        >
+          
+          排序
+          
+          <wx-view
+            class="dora-filterbar__icon dora-filterbar__icon--sort"
+          />
+        </wx-view>
+      </wx-view>
+      <wx-view
+        class="dora-filterbar__item dora-filterbar__item--has-icon"
+        data-index="{{1}}"
+        bind:tap="onClick"
+      >
+        <wx-view
+          class="dora-filterbar__text"
+        >
+          
+          单选
+          
+          <wx-view
+            class="dora-filterbar__icon dora-filterbar__icon--radio"
+          />
+        </wx-view>
+      </wx-view>
+      <wx-view
+        class="dora-filterbar__item dora-filterbar__item--has-icon"
+        data-index="{{2}}"
+        bind:tap="onClick"
+      >
+        <wx-view
+          class="dora-filterbar__text"
+        >
+          
+          筛选
+          
+          <wx-view
+            class="dora-filterbar__icon dora-filterbar__icon--filter"
+          />
+        </wx-view>
+      </wx-view>
+    </wx-view>
+    <dora-animation-group
+      doraClass="dora-filterbar__select"
+      bind:enter="onOpen"
+      bind:exited="onClosed"
+    />
+    <dora-animation-group
+      doraClass="dora-filterbar__pop"
+      bind:enter="onOpen"
+      bind:exited="onClosed"
+    />
+  </wx-view>
 </dora-filterbar>
 `;

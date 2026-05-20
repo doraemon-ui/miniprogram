@@ -1,12 +1,13 @@
 /**
  * @doraemon-ui/miniprogram.animation-group.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:37:59.
+ * Built on 2026-05-16, 15:32:39.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 
 import { Doraemon, Prop, Watch, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
 import { AnimateType, AnimateStatus } from './types.js';
+import { useRect } from '@doraemon-ui/miniprogram.shared';
 
 function _ts_decorate(decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -360,6 +361,9 @@ let AnimationGroup = class AnimationGroup extends Doraemon {
             this.updateStatus(appearStatus, true);
         });
     }
+    getBoundingClientRect() {
+        return useRect(`.${this.wrapCls}`, this._renderProxy);
+    }
     constructor(...args){
         super(...args);
         /**
@@ -439,7 +443,7 @@ _ts_decorate([
 _ts_decorate([
     Prop({
         type: String,
-        default: ''
+        default: 'dora-animation-group'
     })
 ], AnimationGroup.prototype, "wrapCls", void 0);
 _ts_decorate([

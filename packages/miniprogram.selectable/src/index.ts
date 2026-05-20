@@ -1,32 +1,14 @@
 import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import type { SelectableType } from './types'
+import { getPresetColor } from '@doraemon-ui/miniprogram.shared'
 const { classNames, styleToCssString } = Doraemon.util
-
-const presetColors: Record<string, string> = {
-  light: '#ddd',
-  stable: '#b2b2b2',
-  positive: '#387ef5',
-  calm: '#11c1f3',
-  balanced: '#33cd5f',
-  energized: '#ffc900',
-  assertive: '#ef473a',
-  royal: '#886aea',
-  dark: '#444',
-}
-
-const isPresetColor = (color: string) => {
-  if (!color) return ''
-  return presetColors[color] ? presetColors[color] : color
-}
 
 @Component({
   props: {
-
     prefixCls: {
       type: String,
       default: 'dora-selectable',
     },
-  
   },
 })
 class Selectable extends Doraemon {
@@ -152,7 +134,7 @@ class Selectable extends Doraemon {
 
   @Watch('color')
   onColorChange(newVal: string) {
-    this.inputColor = isPresetColor(newVal)
+    this.inputColor = getPresetColor(newVal)
   }
 
   @Watch('wrapStyle')
@@ -188,7 +170,7 @@ class Selectable extends Doraemon {
   mounted() {
     const inputChecked = this.controlled ? this.checked : this.defaultChecked
     this.inputChecked = inputChecked
-    this.inputColor = isPresetColor(this.color)
+    this.inputColor = getPresetColor(this.color)
     this.extStyle = styleToCssString(this.wrapStyle as any)
     this.updateTypeIcons(this.type, this.iconSize, this.iconOn, this.iconOff)
   }

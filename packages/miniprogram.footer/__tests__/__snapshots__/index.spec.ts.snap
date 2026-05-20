@@ -3,10 +3,95 @@
 exports[`Footer mount correctly 1`] = `
 <dora-footer>
   <wx-view
-    class="dora-class dora-footer"
-    hoverClass="dora-hover-class dora-footer--hover"
-    style=""
-    bind:tap="onClick"
-  />
+    class="dora-class dora-footer dora-color dora-color--positive"
+  >
+    <wx-view
+      class="dora-footer__label"
+    >
+      <dora-divider>
+        <wx-view
+          class="dora-class dora-divider dora-divider--text dora-divider--text-center dora-divider--horizontal"
+        >
+          <wx-view
+            class="dora-divider__text"
+          >
+            
+    Doraemon UI
+    
+          </wx-view>
+        </wx-view>
+      </dora-divider>
+    </wx-view>
+    <wx-view
+      class="dora-footer__links"
+    >
+      <wx-view
+        class="dora-footer__link"
+        data-index="{{0}}"
+        catch:tap="onLinkClick"
+      >
+        
+        Docs
+      
+      </wx-view>
+      <dora-divider>
+        <wx-view
+          class="dora-class dora-divider dora-divider--vertical"
+        />
+      </dora-divider>
+      <wx-view
+        class="dora-footer__link"
+        data-index="{{1}}"
+        catch:tap="onLinkClick"
+      >
+        
+        GitHub
+      
+      </wx-view>
+      <dora-divider>
+        <wx-view
+          class="dora-class dora-divider dora-divider--vertical"
+        />
+      </dora-divider>
+      <wx-view
+        class="dora-footer__link"
+        data-index="{{2}}"
+        catch:tap="onLinkClick"
+      >
+        
+        Back
+      
+      </wx-view>
+    </wx-view>
+    <wx-view
+      class="dora-footer__content"
+    >
+      
+    Open source miniprogram components
+  
+    </wx-view>
+    <wx-view
+      class="dora-footer__chips"
+    >
+      <wx-view
+        class="dora-footer__chip "
+        data-index="{{0}}"
+        catch:tap="onChipClick"
+      >
+        
+        MIT
+      
+      </wx-view>
+      <wx-view
+        class="dora-footer__chip dora-footer__chip--link"
+        data-index="{{1}}"
+        catch:tap="onChipClick"
+      >
+        
+        Open Source
+      
+      </wx-view>
+    </wx-view>
+  </wx-view>
 </dora-footer>
 `;

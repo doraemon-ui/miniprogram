@@ -1,6 +1,9 @@
-import type { ComponentPublicInstance } from '@doraemon-ui/miniprogram.core-js'
+import type { ComponentPublicInstance, CSSStylePropertiesWithVars } from '@doraemon-ui/miniprogram.core-js'
+import type { PresetColor } from '@doraemon-ui/miniprogram.shared'
 
 import type { Tag } from './index'
+
+export type SemanticName = 'root' | 'icon'
 
 /**
  * TagProps接口定义
@@ -12,6 +15,8 @@ export interface TagProps {
    * @type {string}
    */
   prefixCls?: string
+  classNames?: Partial<Record<SemanticName, string>>
+  styles?: Partial<Record<SemanticName, CSSStylePropertiesWithVars>>
 
   /**
    * 点击态类名
@@ -23,9 +28,16 @@ export interface TagProps {
   /**
    * 标签颜色
    *
-   * @type {string}
+   * @type {(PresetColor | string)}
    */
-  color?: string
+  color?: PresetColor | string
+
+  /**
+   * 填充类型
+   *
+   * @type {('fill' | 'solid' | 'outline')}
+   */
+  fill?: 'fill' | 'solid' | 'outline'
 
   /**
    * 是否可关闭

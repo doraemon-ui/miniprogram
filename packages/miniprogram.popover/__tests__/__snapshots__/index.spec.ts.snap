@@ -3,10 +3,46 @@
 exports[`Popover mount correctly 1`] = `
 <dora-popover>
   <wx-view
-    class="dora-class dora-popover"
-    hoverClass="dora-hover-class dora-popover--hover"
-    style=""
-    bind:tap="onClick"
+    class="dora-class dora-popover dora-popover--color-light dora-popover--placement-top"
+    style="; "
+  >
+    <dora-animation-group
+      bind:enter="onEnter"
+    >
+      <wx-view
+        class="dora-class dora-class-a dora-class-b dora-class-c dora-animation-group dora-animate--fadeIn-enter"
+        style=""
+        bind:tap="onClick"
+        catch:touchmove=""
+        bind:transitionend="onTransitionEnd"
+      >
+        <wx-view
+          class="dora-popover__content"
+        >
+          <wx-view
+            class="dora-popover__arrow"
+          />
+          <wx-view
+            class="dora-popover__inner"
+          >
+            <wx-view
+              class="dora-popover__title"
+            >
+              Title
+            </wx-view>
+            <wx-view
+              class="dora-popover__inner-content"
+            >
+              Content
+            </wx-view>
+          </wx-view>
+        </wx-view>
+      </wx-view>
+    </dora-animation-group>
+  </wx-view>
+  <wx-view
+    class="dora-popover__element"
+    catch:tap="onClick"
   />
 </dora-popover>
 `;

@@ -34,8 +34,8 @@ page {
   --dora-color-light: #f4f5f8;
   --dora-color-light-contrast: #000;
   --dora-color-light-active: #d5d9e4;
-  --dora-color-stable: #92949c;
-  --dora-color-stable-active: #777a84;
+  --dora-color-stable: #636469;
+  --dora-color-stable-active: #4a4b4f;
   --dora-color-stable-contrast: #fff;
   --dora-color-positive: #3880ff;
   --dora-color-positive-active: #055fff;

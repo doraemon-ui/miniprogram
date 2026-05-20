@@ -63,3 +63,25 @@ export function styleToCssString(
 /**
  * @ts-ignore
  */
+
+/**
+ * 扩展的 CSS 样式属性接口，支持 CSS 自定义属性（CSS 变量）
+ *
+ * 继承自标准的 CSSStyleProperties 接口，增加了对 CSS 自定义属性（CSS Variables）的类型支持。
+ * CSS 自定义属性是以 `--` 开头的属性，如 `--primary-color`、`--spacing` 等。
+ *
+ * @example
+ * ```ts
+ * // 基本使用
+ * const style: CSSStylePropertiesWithVars = {};
+ * style.color = 'red';
+ * style['--primary-color'] = '#007bff';
+ * style['--spacing'] = 16;
+ * ```
+ *
+ * @see {@link https://developer.mozilla.org/docs/Web/API/CSSStyleProperties | CSSStyleProperties MDN}
+ * @see {@link https://developer.mozilla.org/docs/Web/CSS/Using_CSS_custom_properties | CSS 自定义属性 MDN}
+ */
+export type CSSStylePropertiesWithVars = Partial<CSSStyleProperties> & {
+  [key: `--${string}`]: string | number | undefined
+}

@@ -92,6 +92,12 @@ class DemoPage extends Doraemon {
     type: Boolean,
     default: false,
   })
+  fixed: boolean
+
+  @Prop({
+    type: Boolean,
+    default: false,
+  })
   clickable: boolean
 
   @Prop({
@@ -113,8 +119,10 @@ class DemoPage extends Doraemon {
   desc: string
 
   get classes() {
-    const { prefixCls, spacing, sysTheme, curTheme, darkmode: _darkmode } = this
-    const wrap = prefixCls
+    const { prefixCls, fixed, spacing, sysTheme, curTheme, darkmode: _darkmode } = this
+    const wrap = classNames(prefixCls, {
+      [`${prefixCls}--fixed`]: fixed,
+    })
     const hd = `${prefixCls}__hd`
     const title = `${prefixCls}__title`
     const desc = `${prefixCls}__desc`

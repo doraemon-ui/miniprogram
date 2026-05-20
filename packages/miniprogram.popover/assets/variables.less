@@ -3,3 +3,16 @@
 // Popover themes
 // -----------------------------
 @popover-prefix-cls: ~'@{dora-prefix}-popover';
+@popover-z-index: var(--dora-popover-z-index, var(--dora-component-z-index, 1030));
+@popover-background-color: var(--dora-popover-background-color, @white-value);
+@popover-text-color: var(--dora-popover-text-color, @text-color);
+@popover-title-color: var(--dora-popover-title-color, @title-color);
+@popover-dark-background-color: var(--dora-popover-dark-background-color, @dark);
+@popover-dark-text-color: var(--dora-popover-dark-text-color, @text-color-inverse);
+@popover-dark-title-color: var(--dora-popover-dark-title-color, @heading-color-inverse);
+@popover-arrow-width: 6px;
+@popover-distance: @popover-arrow-width + 4px;
+@popover-min-width: var(--dora-popover-min-width, 160px);
+@popover-border-radius: var(--dora-popover-border-radius, @border-radius-base);
+@popover-font-size: var(--dora-popover-font-size, @font-size-base);
+@popover-line-height: var(--dora-popover-line-height, @line-height-base);

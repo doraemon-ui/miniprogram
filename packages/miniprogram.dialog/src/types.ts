@@ -177,16 +177,7 @@ export interface DialogConfirmProps extends DialogAlertProps {
 /**
  * DialogExpose接口定义
  */
-export interface DialogExpose {}
-
-/**
- * DialogInternalMethods接口定义
- */
-export interface DialogInternalMethods {
-  /**
-   * visible
-   * @type {boolean}
-   */
+export interface DialogExpose {
   visible?: boolean
   onClose: () => void
   onClosed: () => void
@@ -195,4 +186,4 @@ export interface DialogInternalMethods {
 /**
  * DialogInstance类型定义
  */
-export type DialogInstance = ComponentPublicInstance<Dialog, DialogProps, DialogExpose> & DialogInternalMethods
+export type DialogInstance = ComponentPublicInstance<Dialog, DialogProps, DialogExpose>

@@ -1,4 +1,5 @@
 import type { ComponentPublicInstance } from '@doraemon-ui/miniprogram.core-js'
+import type { MiniprogramDOMRect } from '@doraemon-ui/miniprogram.shared'
 
 import type { AnimationGroup } from './index'
 
@@ -138,7 +139,14 @@ export interface AnimationGroupProps {
 /**
  * AnimationGroupExpose接口定义
  */
-export interface AnimationGroupExpose {}
+export interface AnimationGroupExpose {
+  /**
+   * 获取组件尺寸
+   *
+   * @return {Promise<MiniprogramDOMRect>}
+   */
+  getBoundingClientRect(): Promise<MiniprogramDOMRect>
+}
 
 /**
  * AnimationGroupInstance类型定义

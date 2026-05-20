@@ -25,7 +25,8 @@
     "preversion": "pnpm clean && pnpm build && pnpm test"
   },
   "dependencies": {
-    "@doraemon-ui/miniprogram.core-js": "workspace:*"
+    "@doraemon-ui/miniprogram.core-js": "workspace:*",
+    "@doraemon-ui/miniprogram.shared": "workspace:*"
   },
   "devDependencies": {
     "@doraemon-ui/miniprogram.cli": "0.0.2-alpha.55",

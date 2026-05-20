@@ -1,23 +1,6 @@
 import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+import { getPresetColor } from '@doraemon-ui/miniprogram.shared'
 const { classNames, styleToCssString } = Doraemon.util
-
-const presetColors: Record<string, string> = {
-  light: '#ddd',
-  stable: '#b2b2b2',
-  positive: '#387ef5',
-  calm: '#11c1f3',
-  balanced: '#33cd5f',
-  energized: '#ffc900',
-  assertive: '#ef473a',
-  royal: '#886aea',
-  dark: '#444',
-  default: 'default',
-}
-
-const isPresetColor = (color: string) => {
-  if (!color) return 'default'
-  return presetColors[color] ? presetColors[color] : color
-}
 
 @Component({
   props: {
@@ -138,7 +121,7 @@ class Spin extends Doraemon {
 
   @Watch('spinColor')
   setStyles(spinColor: string) {
-    const inputColor = isPresetColor(spinColor)
+    const inputColor = getPresetColor(spinColor)
     this.dotStyle = inputColor !== 'default' ? styleToCssString({ backgroundColor: inputColor }) : ''
     this.tipStyle = inputColor !== 'default' ? styleToCssString({ color: inputColor }) : ''
   }

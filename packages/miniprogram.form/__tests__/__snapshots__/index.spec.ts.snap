@@ -2,11 +2,31 @@
 
 exports[`Form mount correctly 1`] = `
 <dora-form>
+  <dora-list
+    doraClass="dora-form"
+  >
+    <wx-view
+      class="dora-class dora-list dora-list--has-line"
+      style=""
+    >
+      <wx-view
+        class="dora-list__hd"
+      >
+        Profile
+      </wx-view>
+      <wx-view
+        class="dora-list__bd"
+        style="overflow: visible;  "
+      />
+      <wx-view
+        class="dora-list__ft"
+      >
+        Complete the fields below
+      </wx-view>
+    </wx-view>
+  </dora-list>
   <wx-view
-    class="dora-class dora-form"
-    hoverClass="dora-hover-class dora-form--hover"
-    style=""
-    bind:tap="onClick"
+    class="dora-form__footer"
   />
 </dora-form>
 `;

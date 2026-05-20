@@ -1,5 +1,75 @@
 @import '../../@doraemon-ui/style/var.wxss';
 @import '../../@doraemon-ui/style/color.wxss';
 .dora-footer {
-  position: static;
+  --link-color: var(--dora-color-positive, #3880ff);
+  --chip-link-background-color: rgba(56, 128, 255, 0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--dora-component-background-color, #fff);
+  background-color: var(--dora-component-background-color, #fff);
+  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.65);
+  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.65);
+  font-size: 13px;
+}
+
+.dora-footer__label {
+  width: 100%;
+}
+
+.dora-footer__links {
+  margin: 9px 0;
+  color: var(--link-color);
+  color: var(--link-color);
+  white-space: nowrap;
+}
+
+.dora-footer__link {
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.dora-footer__content {
+  display: flex;
+  align-items: center;
+  margin: 9px 0;
+  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
+  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
+}
+
+.dora-footer__chips {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  margin: 9px 0;
+}
+
+.dora-footer__chip {
+  white-space: nowrap;
+  margin-right: 16px;
+  font-size: 12px;
+  background-color: var(--dora-color-step-10, #e6e6e6);
+  background-color: var(--dora-color-step-10, #e6e6e6);
+  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
+  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
+  padding: 5px 11px;
+  border-radius: 100px;
+}
+
+.dora-footer__chip:last-child {
+  margin-right: 0;
+}
+
+.dora-footer__chip--link {
+  cursor: pointer;
+  color: var(--link-color);
+  color: var(--link-color);
+  background-color: var(--chip-link-background-color);
+  background-color: var(--chip-link-background-color);
+}
+
+.dora-footer.dora-color {
+  --link-color: var(--dora-color-base);
+  --chip-link-background-color: var(--dora-color-step-10, #e6e6e6);
 }

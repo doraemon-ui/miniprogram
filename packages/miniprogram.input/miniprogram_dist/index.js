@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.input.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:39:23.
+ * Built on 2026-05-15, 00:06:24.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 
@@ -93,6 +93,7 @@ let Input = class Input extends Doraemon {
         }
     }
     updated(inputValue) {
+        if (this.hasFieldDecorator) return;
         if (this.inputValue !== inputValue) {
             this.inputValue = inputValue;
         }
@@ -140,14 +141,14 @@ let Input = class Input extends Doraemon {
     }
     setTimer() {
         this.clearTimer();
-        this.timeout = setTimeout(()=>{
+        this._timeout = setTimeout(()=>{
             this.inputFocus = false;
         }, 200);
     }
     clearTimer() {
-        if (this.timeout) {
-            clearTimeout(this.timeout);
-            this.timeout = null;
+        if (this._timeout) {
+            clearTimeout(this._timeout);
+            this._timeout = null;
         }
     }
     mounted() {
@@ -163,7 +164,8 @@ let Input = class Input extends Doraemon {
         this.shouldShowClear = false;
         this.internalPlaceholderStyle = '';
         this.internalVisible = false;
-        this.timeout = null;
+        this.hasFieldDecorator = false;
+        this._timeout = null;
     }
 };
 _ts_decorate([
@@ -187,7 +189,7 @@ _ts_decorate([
 _ts_decorate([
     Prop({
         type: null,
-        default: ''
+        default: null
     })
 ], Input.prototype, "placeholderStyle", void 0);
 _ts_decorate([
@@ -404,158 +406,16 @@ _ts_decorate([
 ], Input.prototype, "onClearPropsChange", null);
 Input = _ts_decorate([
     Component({
+        components: {
+            Field: ()=>({
+                    module: '../miniprogram.form/field',
+                    type: 'ancestor'
+                })
+        },
         props: {
             prefixCls: {
                 type: String,
                 default: 'dora-input'
-            },
-            type: {
-                type: String,
-                default: 'text'
-            },
-            password: {
-                type: Boolean,
-                default: false
-            },
-            placeholder: {
-                type: String,
-                default: ''
-            },
-            placeholderStyle: {
-                type: null,
-                default: ''
-            },
-            placeholderClass: {
-                type: String,
-                default: 'input-placeholder'
-            },
-            maxlength: {
-                type: Number,
-                default: 140
-            },
-            cursorSpacing: {
-                type: Number,
-                default: 11
-            },
-            focus: {
-                type: Boolean,
-                default: false
-            },
-            confirmType: {
-                type: String,
-                default: 'done'
-            },
-            alwaysEmbed: {
-                type: Boolean,
-                default: false
-            },
-            confirmHold: {
-                type: Boolean,
-                default: false
-            },
-            cursor: {
-                type: Number,
-                default: -1
-            },
-            selectionStart: {
-                type: Number,
-                default: -1
-            },
-            selectionEnd: {
-                type: Number,
-                default: -1
-            },
-            adjustPosition: {
-                type: Boolean,
-                default: true
-            },
-            holdKeyboard: {
-                type: Boolean,
-                default: false
-            },
-            safePasswordCertPath: {
-                type: String,
-                default: null
-            },
-            safePasswordLength: {
-                type: Number,
-                default: null
-            },
-            safePasswordTimeStamp: {
-                type: Number,
-                default: null
-            },
-            safePasswordNonce: {
-                type: String,
-                default: null
-            },
-            safePasswordSalt: {
-                type: String,
-                default: null
-            },
-            safePasswordCustomHash: {
-                type: String,
-                default: null
-            },
-            label: {
-                type: String,
-                default: ''
-            },
-            extra: {
-                type: String,
-                default: ''
-            },
-            defaultValue: {
-                type: String,
-                default: ''
-            },
-            value: {
-                type: String,
-                default: ''
-            },
-            controlled: {
-                type: Boolean,
-                default: false
-            },
-            disabled: {
-                type: Boolean,
-                default: false
-            },
-            readOnly: {
-                type: Boolean,
-                default: false
-            },
-            clear: {
-                type: Boolean,
-                default: false
-            },
-            error: {
-                type: Boolean,
-                default: false
-            },
-            labelWrap: {
-                type: Boolean,
-                default: false
-            },
-            requiredMark: {
-                type: Boolean,
-                default: false
-            },
-            onlyShowClearWhenFocus: {
-                type: Boolean,
-                default: true
-            },
-            min: {
-                type: Number,
-                default: null
-            },
-            max: {
-                type: Number,
-                default: null
-            },
-            visibilityToggle: {
-                type: Boolean,
-                default: false
             }
         }
     })

@@ -1,11 +1,65 @@
-<demo-page
-  darkmode="auto"
-  title="miniprogram.image"
-  desc="miniprogram.image"
-  clickable
-  spacing
->
-  <demo-block title="Basic">
-    <dora-image>miniprogram.image</dora-image>
+<demo-page darkmode="auto" title="Image" desc="图片" clickable>
+  <demo-block title="Shape">
+    <dora-row>
+      <dora-col span="4">
+        <dora-image dora-class="image" shape="rounded" src="https://picsum.photos/750/750/?random&s=1" />
+      </dora-col>
+      <dora-col span="4">
+        <dora-image dora-class="image" shape="circle" src="https://picsum.photos/750/750/?random&s=2" loading="Loading" />
+      </dora-col>
+      <dora-col span="4">
+        <dora-image dora-class="image" shape="thumbnail" src="https://picsum.photos/750/750/?random&s=3">
+          <image src="https://placehold.co/200x200?text=Loading..." slot="loading" />
+        </dora-image>
+      </dora-col>
+    </dora-row>
+  </demo-block>
+
+  <demo-block title="Loading">
+    <dora-row>
+      <dora-col span="4">
+        <dora-image dora-class="image" src="https://picsum.photos/750/750/?random&s=4" />
+      </dora-col>
+      <dora-col span="4">
+        <dora-image dora-class="image" src="https://picsum.photos/750/750/?random&s=5" loading="Loading" />
+      </dora-col>
+      <dora-col span="4">
+        <dora-image dora-class="image" src="https://picsum.photos/750/750/?random&s=6">
+          <image src="https://placehold.co/200x200?text=Loading..." slot="loading" />
+        </dora-image>
+      </dora-col>
+    </dora-row>
+  </demo-block>
+
+  <demo-block title="Empty">
+    <dora-row>
+      <dora-col span="4">
+        <dora-image dora-class="image" src="" />
+      </dora-col>
+      <dora-col span="4">
+        <dora-image dora-class="image" src="" empty="Empty" />
+      </dora-col>
+      <dora-col span="4">
+        <dora-image dora-class="image" src="">
+          <image src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" slot="empty" />
+        </dora-image>
+      </dora-col>
+    </dora-row>
+  </demo-block>
+
+  <demo-block title="Error">
+    <dora-row>
+      <dora-col span="4">
+        <dora-image dora-class="image" src="error" />
+      </dora-col>
+      <dora-col span="4">
+        <dora-image dora-class="image" src="error" error="Error" />
+      </dora-col>
+      <dora-col span="4">
+        <dora-image dora-class="image" src="error">
+          <image src="http://cdn.skyvow.cn/logo.png" slot="error" />
+        </dora-image>
+      </dora-col>
+    </dora-row>
   </demo-block>
 </demo-page>

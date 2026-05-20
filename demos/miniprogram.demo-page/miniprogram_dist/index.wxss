@@ -29,6 +29,15 @@
   background-color: var(--dora-background-color);
 }
 
+.dora-demo-page--fixed {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: unset;
+}
+
 .dora-demo-page__hd {
   position: relative;
   padding: 40px;

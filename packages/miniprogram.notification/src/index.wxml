@@ -1,8 +1,31 @@
-<view
-  class="dora-class {{ classes.wrap }}"
-  hover-class="dora-hover-class {{ !disabled ? classes.hover : 'none' }}"
-  bindtap="onClick"
-  style="{{ containerStyle }}"
+<dora-animation-group
+  id="dora-animation-group"
+  dora-class="{{ classes.wrap }}"
+  in="{{ notificationVisible }}"
+  classNames="{{ classNames }}"
+  wrapStyle="{{ notificationWrapStyle }}"
+  bind:click="onTap"
+  bind:touchstart="onTouchStart"
+  bind:touchmove="onTouchMove"
+  bind:touchend="onTouchEnd"
 >
-  <slot></slot>
-</view>
+  <view class="{{ classes.content }}">
+    <view class="{{ classes.hd }}" wx:if="{{ image }}">
+      <view class="{{ classes.icon }}">
+        <image class="{{ classes.image }}" src="{{ image }}" />
+      </view>
+    </view>
+    <view class="{{ classes.bd }}" wx:if="{{ title || titleRightText || subtitle || text }}">
+      <view class="{{ classes.header }}" wx:if="{{ title || titleRightText || closable }}">
+        <view wx:if="{{ title }}" class="{{ classes.title }}">{{ title }}</view>
+        <view wx:if="{{ titleRightText }}" class="{{ classes.titleRightText }}">{{ titleRightText }}</view>
+        <view wx:if="{{ closable }}" class="{{ classes.closeButton }}" catchtap="onCloseTap">
+          <icon type="clear" color="#B2B2B2" size="20" />
+        </view>
+      </view>
+      <view wx:if="{{ subtitle }}" class="{{ classes.subtitle }}">{{ subtitle }}</view>
+      <view wx:if="{{ text }}" class="{{ classes.text }}">{{ text }}</view>
+    </view>
+    <view class="{{ classes.ft }}"></view>
+  </view>
+</dora-animation-group>

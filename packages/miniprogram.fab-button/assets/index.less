@@ -1,16 +1,11 @@
 @import './variables.less';
 
 // FabButton styles
+// @prop --background-color: Background color of the action button and child buttons
 // -----------------------------
-.fab-button-style(@theme, @color) {
-  &--@{theme} &__action,
-  &--@{theme} &__button,
-  &--@{theme} &__button--disabled {
-    background-color: @color !important;
-  }
-}
-
 .@{fab-button-prefix-cls} {
+  .fab-button-color(#get-color(positive)[]);
+
   position: fixed;
   z-index: 1000;
   cursor: pointer;
@@ -58,7 +53,7 @@
     position: relative;
     border-radius: 50%;
     z-index: 1000;
-    background-color: @fab-button-balanced-bg;
+    background-color: var(--background-color);
     color: #fff;
     overflow: visible;
     transition-duration: 0.3s;
@@ -105,7 +100,7 @@
     border-radius: 50%;
     overflow: visible;
     color: #fff !important;
-    background-color: @fab-button-balanced-bg !important;
+    background-color: var(--background-color) !important;
     transition-duration: 0.3s;
     display: flex;
     align-items: center;
@@ -162,16 +157,14 @@
     right: 0;
     left: 0;
     bottom: 0;
-    background: @fab-button-backdrop-bg;
+    background: transparent;
   }
 
-  .fab-button-style(light, @fab-button-light-bg);
-  .fab-button-style(stable, @fab-button-stable-bg);
-  .fab-button-style(positive, @fab-button-positive-bg);
-  .fab-button-style(calm, @fab-button-calm-bg);
-  .fab-button-style(assertive, @fab-button-assertive-bg);
-  .fab-button-style(balanced, @fab-button-balanced-bg);
-  .fab-button-style(energized, @fab-button-energized-bg);
-  .fab-button-style(royal, @fab-button-royal-bg);
-  .fab-button-style(dark, @fab-button-dark-bg);
+  &.@{dora-prefix}-color {
+    .fab-button-color(#current-color(base)[]);
+  }
+}
+
+.fab-button-color(@bg-color) {
+  --background-color: @bg-color;
 }

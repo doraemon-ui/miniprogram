@@ -1,11 +1,23 @@
-<demo-page
-  darkmode="auto"
-  title="miniprogram.footer"
-  desc="miniprogram.footer"
-  clickable
-  spacing
->
-  <demo-block title="Basic">
-    <dora-footer>miniprogram.footer</dora-footer>
+<demo-page darkmode="auto" title="Footer" desc="页脚" clickable>
+  <demo-block padding="0" title="基础页脚">
+    <dora-footer label="doraUI NB" />
+  </demo-block>
+  <demo-block padding="0" title="带内容的页脚">
+    <dora-footer content="@2019-2023 doraUI.com All rights reserved" />
+  </demo-block>
+  <demo-block padding="0" title="带链接的页脚">
+    <dora-footer links="{{ links }}" />
+  </demo-block>
+  <demo-block padding="0" title="通过点击事件跳转">
+    <dora-footer links="{{ linksNoLinkData }}" bind:linkClick="onLinkClick" />
+  </demo-block>
+  <demo-block padding="0" title="带标签的页脚">
+    <dora-footer chips="{{ chipsNoLinkData }}" />
+  </demo-block>
+  <demo-block padding="0" title="标签可点击">
+    <dora-footer chips="{{ chips }}" bind:chipClick="onChipClick" />
+  </demo-block>
+  <demo-block padding="0" title="组合使用">
+    <dora-footer color="balanced" label="doraUI NB" content="@2019-2023 doraUI.com All rights reserved" links="{{ links }}" chips="{{ chips }}" bind:chipClick="onChipClick" />
   </demo-block>
 </demo-page>

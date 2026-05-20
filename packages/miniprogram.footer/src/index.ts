@@ -1,5 +1,10 @@
 import { defineComponentHOC, Doraemon, Component, Prop } from '@doraemon-ui/miniprogram.core-js'
-const { classNames, styleToCssString } = Doraemon.util
+import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
+import { useNativeRoute } from '@doraemon-ui/miniprogram.shared'
+import type { NativeRouteOpenType, PresetColor } from '@doraemon-ui/miniprogram.shared'
+import type { FooterChipItem, FooterLinkItem } from './types'
+
+const { classNames } = Doraemon.util
 
 @Component({
   props: {
@@ -10,71 +15,90 @@ const { classNames, styleToCssString } = Doraemon.util
   },
 })
 class Footer extends Doraemon {
-  /**
-   * 自定义类名前缀
-   *
-   * @type {string}
-   * @memberof Footer
-   */
   prefixCls!: string
 
-  /**
-   * 是否禁用
-   *
-   * @type {boolean}
-   * @memberof Footer
-   */
-  @Prop({
-    type: Boolean,
-    default: false,
-  })
-  disabled: boolean
-
-  /**
-   * 点击态类名
-   *
-   * @type {string}
-   * @memberof Footer
-   */
   @Prop({
     type: String,
-    default: 'default',
+    default: 'positive',
   })
-  hoverClass: string
+  color: PresetColor
 
-  /**
-   * 外层样式
-   *
-   * @type {Partial<CSSStyleDeclaration>}
-   * @memberof Footer
-   */
   @Prop({
-    type: Object,
-    default: null,
+    type: String,
+    default: '',
   })
-  wrapStyle: Partial<CSSStyleDeclaration>
+  label: string
+
+  @Prop({
+    type: String,
+    default: '',
+  })
+  content: string
+
+  @Prop({
+    type: Array,
+    default: () => [],
+  })
+  links: FooterLinkItem[]
+
+  @Prop({
+    type: Array,
+    default: () => [],
+  })
+  chips: FooterChipItem[]
 
   get classes() {
-    const { prefixCls, hoverClass, disabled } = this
-    const wrap = classNames(prefixCls, {
-      [`${prefixCls}--disabled`]: disabled,
-    })
-    const hover = hoverClass && hoverClass !== 'default' ? hoverClass : `${prefixCls}--hover`
+    const { prefixCls, color } = this
 
     return {
-      wrap,
-      hover,
+      wrap: classNames(prefixCls, {
+        'dora-color': color,
+        [`dora-color--${color}`]: color,
+      }),
+      label: `${prefixCls}__label`,
+      content: `${prefixCls}__content`,
+      links: `${prefixCls}__links`,
+      link: `${prefixCls}__link`,
+      chips: `${prefixCls}__chips`,
+      chip: `${prefixCls}__chip`,
+      chipLink: `${prefixCls}__chip--link`,
     }
   }
 
-  get containerStyle() {
-    return this.wrapStyle ? styleToCssString(this.wrapStyle) : ''
+  onLinkClick(e: CustomEvent<unknown, unknown, { index: number }>) {
+    const { index } = e.currentTarget.dataset
+    const item = this.links[index]
+
+    if (!item) return
+
+    if (item.url !== undefined) {
+      useNativeRoute(
+        {
+          url: item.url,
+          urlParams: item.urlParams,
+          openType: item.openType as NativeRouteOpenType | undefined,
+          delta: item.delta,
+        },
+        this,
+      )
+    }
+
+    this.$emit('linkClick', {
+      item,
+      index,
+    })
   }
 
-  onClick() {
-    if (!this.disabled) {
-      this.$emit('click')
-    }
+  onChipClick(e: CustomEvent<unknown, unknown, { index: number }>) {
+    const { index } = e.currentTarget.dataset
+    const item = this.chips[index]
+
+    if (!item || item.type !== 'link') return
+
+    this.$emit('chipClick', {
+      item,
+      index,
+    })
   }
 }
 

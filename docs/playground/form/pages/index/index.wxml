@@ -1,11 +1,117 @@
-<demo-page
-  darkmode="auto"
-  title="miniprogram.form"
-  desc="miniprogram.form"
-  clickable
-  spacing
->
-  <demo-block title="Basic">
-    <dora-form>miniprogram.form</dora-form>
+<demo-page darkmode="auto" title="Form" desc="表单" clickable>
+  <demo-block title="来源示例">
+    <dora-segmented-control values="{{ ['horizontal', 'vertical'] }}" bind:change="onSegmentedControlChange" />
   </demo-block>
+
+    <dora-form
+      id="dora-form"
+      layout="{{ layout }}"
+      title="{{ layout === 'horizontal' ? '水平布局表单' : '竖直布局表单' }}"
+      validateMessages="{{ validateMessages }}"
+      bind:change="onValuesChange"
+      bind:fieldsChange="onFieldsChange"
+    >
+      <dora-field name="name" label="姓名" initialValue="Doraemon UI" rules="{{ [{ required: true, message: '姓名不能为空' }, { type: 'string', min: 2, message: '姓名最少2个字符' }] }}">
+        <dora-input placeholder="请输入姓名" clear />
+      </dora-field>
+
+      <!-- <dora-field name="picker" label="城市" initialValue="{{ [] }}" trigger="onConfirm" rules="{{ [{ required: true, type: 'array' }] }}" isLink>
+        <dora-picker options="{{ options1 }}" cascade cols="{{ 3 }}" bind:confirm="onPickerChange">
+          <dora-touch-view>{{ pickerLabel || '请选择城市' }}</dora-touch-view>
+        </dora-picker>
+      </dora-field>
+
+      <dora-field name="address" label="地址" help="详情地址">
+        <dora-textarea placeholder="请输入地址" hasCount rows="2" maxlength="100" clear />
+      </dora-field>
+
+      <dora-field name="checkbox" label="商品" initialValue="{{ checkbox }}" rules="{{ [{ required: true, max: 2, type: 'array' }] }}">
+        <dora-checkbox-group bind:change="onCheckboxChange">
+          <dora-checkbox title="兔头" value="1" />
+          <dora-checkbox title="兔腿" value="2" />
+          <dora-checkbox title="整兔" value="3" />
+        </dora-checkbox-group>
+      </dora-field>
+
+      <dora-field name="radio" label="口味" initialValue="{{ radio }}" rules="{{ [{ required: true }] }}">
+        <dora-radio-group withListComponent="{{ false }}" bind:change="onRadioChange">
+          <dora-radio title="烟熏" value="1" />
+          <dora-radio title="风干" value="2" />
+        </dora-radio-group>
+      </dora-field>
+
+      <dora-field name="rater" label="辣度" initialValue="{{ 2 }}" childElementPosition="{{ layout === 'horizontal' ? 'right' : 'none' }}">
+        <dora-rater />
+      </dora-field>
+
+      <dora-field name="inputNumber" label="数量" initialValue="{{ 2 }}" rules="{{ [{ min: 1, max: 5, type: 'number' }] }}" childElementPosition="{{ layout === 'horizontal' ? 'right' : 'none' }}">
+        <dora-input-number />
+      </dora-field>
+
+      <dora-field name="slider" label="运费险" initialValue="{{ [10] }}">
+        <dora-slider step="10" showMark />
+      </dora-field>
+
+      <dora-field name="switch" label="送货上门" initialValue="{{ switch }}" valuePropName="inputChecked" childElementPosition="{{ layout === 'horizontal' ? 'right' : 'none' }}">
+        <dora-switch bind:change="onSwitchChange" />
+      </dora-field>
+
+      <dora-field name="datePicker" label="送货日期（带清除图标）" initialValue="{{ [] }}" trigger="onConfirm" rules="{{ [{ required: true, type: 'array' }] }}" isLink="{{ !datePickerLabel }}" align="center" labelWrap>
+        <dora-date-picker mode="date" bind:confirm="onDatePickerChange">
+          <dora-touch-view>{{ datePickerLabel || '请选择日期' }}</dora-touch-view>
+        </dora-date-picker>
+        <view slot="arrow" wx:if="{{ datePickerLabel }}" bindtap="onArrowClick">
+          <dora-icon type="ios-close-circle" color="#B2B2B2" size="14" />
+        </view>
+      </dora-field>
+
+      <dora-field name="popupSelect" label="快递服务" initialValue="{{ '' }}" trigger="onConfirm" rules="{{ [{ required: true }] }}" isLink>
+        <dora-popup-select options="{{ options2 }}" bind:confirm="onPopupSelectChange">
+          <dora-touch-view>{{ popupSelectLabel || '请选择快递' }}</dora-touch-view>
+        </dora-popup-select>
+      </dora-field>
+
+      <dora-field name="selectorGroup" label="付款方式" initialValue="{{ [] }}" rules="{{ [{ required: true }] }}">
+        <dora-selector-group columns="2" options="{{ ['到柜支付', '先寄后付'] }}" />
+      </dora-field>
+
+      <dora-field name="code" label="验证码" rules="{{ [{ required: true }, { validator: 'checkCode' }] }}">
+        <dora-input placeholder="请输入验证码" clear />
+        <text slot="extra" style="color: #387ef5; padding-left: 12px; cursor: pointer;" bindtap="onSendCode">发送验证码</text>
+      </dora-field>
+
+      <dora-field name="password" label="密码" initialValue="" rules="{{ [{ required: true }, { validator: 'validateToNextPassword' }] }}">
+        <dora-input placeholder="请输入密码" clear password visibilityToggle />
+      </dora-field>
+
+      <dora-field name="confirm" label="确认密码" initialValue="" rules="{{ [{ required: true }, { validator: 'compareToFirstPassword' }] }}">
+        <dora-input placeholder="请输入确认密码" clear password visibilityToggle bind:blur="handleConfirmBlur" />
+      </dora-field>
+
+      <dora-field name="author" label="禁用" disabled>
+        <dora-input placeholder="被禁用的输入框" />
+      </dora-field>
+
+      <dora-field name="website" label="只读" readOnly>
+        <dora-input placeholder="只读模式的输入框" />
+      </dora-field>
+
+      <dora-field name="id" label="编号" initialValue="{{ '0001' }}" hidden>
+        <dora-input />
+      </dora-field>
+
+      <dora-field name="email" label="邮箱" initialValue="" rules="{{ !checkEmail ? [] : [{ type: 'email', message: '输入的邮箱无效！' }, { required: true, message: '请输入您的邮箱！' }] }}">
+        <dora-input placeholder="请输入邮箱" clear />
+      </dora-field>
+
+      <dora-field name="agreement" initialValue="{{ false }}" valuePropName="inputChecked">
+        <dora-selectable bind:change="onSelectableChange">邮箱是必填的</dora-selectable>
+      </dora-field> -->
+
+      <view slot="footer" class="btn-area btn-area_auto">
+        <button type="primary" bindtap="onSubmit">Dora Form Submit</button>
+        <button bindtap="onReset">Dora Form Reset</button>
+        <button bindtap="onFill">Fill in the code</button>
+      </view>
+    </dora-form>
 </demo-page>

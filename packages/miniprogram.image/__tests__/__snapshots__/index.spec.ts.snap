@@ -3,10 +3,28 @@
 exports[`Image mount correctly 1`] = `
 <dora-image>
   <wx-view
-    class="dora-class dora-image"
-    hoverClass="dora-hover-class dora-image--hover"
-    style=""
-    bind:tap="onClick"
-  />
+    class="dora-class dora-image dora-image--rounded dora-image--scaleToFill dora-image--loading"
+    style="width: 300px;  height: 225px;  "
+    bind:tap="onTap"
+  >
+    <wx-view
+      class="dora-image__inner"
+    >
+      <wx-image
+        class="dora-image__thumb"
+        forceHttps="{{false}}"
+        lazyLoad="{{false}}"
+        mode="scaleToFill"
+        showMenuByLongpress="{{false}}"
+        src="https://picsum.photos/300/225/?random=1"
+        webp="{{false}}"
+        bind:error="onError"
+        bind:load="onLoad"
+      />
+    </wx-view>
+    <wx-view
+      class="dora-image__mask"
+    />
+  </wx-view>
 </dora-image>
 `;

@@ -874,31 +874,6 @@ importers:
         specifier: ^3.0.2
         version: 3.0.2
 
-  packages/miniprogram.field:
-    dependencies:
-      '@doraemon-ui/miniprogram.core-js':
-        specifier: workspace:*
-        version: link:../miniprogram.core-js
-      '@doraemon-ui/style':
-        specifier: workspace:*
-        version: link:../style
-    devDependencies:
-      '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.55
-        version: 0.0.2-alpha.55(@swc/core@1.3.96)(@types/node@25.6.0)
-      '@types/node':
-        specifier: ^25.5.2
-        version: 25.6.0
-      cross-env:
-        specifier: ^7.0.3
-        version: 7.0.3
-      jest:
-        specifier: ^30.3.0
-        version: 30.3.0(@types/node@25.6.0)(ts-node@10.9.2(@swc/core@1.3.96)(@types/node@25.6.0)(typescript@6.0.3))
-      rimraf:
-        specifier: ^3.0.2
-        version: 3.0.2
-
   packages/miniprogram.filterbar:
     dependencies:
       '@doraemon-ui/miniprogram.core-js':
@@ -2613,9 +2588,6 @@ importers:
       '@doraemon-ui/miniprogram.fab-button':
         specifier: workspace:*
         version: link:../miniprogram.fab-button
-      '@doraemon-ui/miniprogram.field':
-        specifier: workspace:*
-        version: link:../miniprogram.field
       '@doraemon-ui/miniprogram.filterbar':
         specifier: workspace:*
         version: link:../miniprogram.filterbar

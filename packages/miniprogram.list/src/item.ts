@@ -1,7 +1,7 @@
 import { defineComponentHOC, Doraemon, Component, Emit, Event, Prop } from '@doraemon-ui/miniprogram.core-js'
 import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
-import { useNativeRoute, NATIVE_ROUTES } from '@doraemon-ui/miniprogram.shared'
-import type { NativeButtonOpenType, NativeRouteOpenType } from '@doraemon-ui/miniprogram.shared'
+import { useRect, useNativeRoute, NATIVE_ROUTES } from '@doraemon-ui/miniprogram.shared'
+import type { MiniprogramDOMRect, NativeButtonOpenType, NativeRouteOpenType } from '@doraemon-ui/miniprogram.shared'
 const { classNames, styleToCssString } = Doraemon.util
 
 @Component({
@@ -80,12 +80,24 @@ const { classNames, styleToCssString } = Doraemon.util
       type: Boolean,
       default: true,
     },
+    needShowEntrance: {
+      type: Boolean,
+      default: true,
+    },
+    entrancePath: {
+      type: String,
+      default: '',
+    },
+    createliveactivity: {
+      type: Boolean,
+      default: false,
+    },
     appParameter: {
       type: String,
       default: '',
     },
   },
-  expose: ['updateIsLast'],
+  expose: ['updateIsLast', 'getBoundingClientRect'],
 })
 class ListItem extends Doraemon {
   /**
@@ -213,6 +225,9 @@ class ListItem extends Doraemon {
   sendMessageImg!: string
   showMessageCard!: boolean
   phoneNumberNoQuotaToast!: boolean
+  needShowEntrance!: boolean
+  entrancePath!: string
+  createliveactivity!: boolean
   appParameter!: string
 
   // union type
@@ -344,6 +359,10 @@ class ListItem extends Doraemon {
         this.isLast = isLast
       }
     })
+  }
+
+  getBoundingClientRect(): Promise<MiniprogramDOMRect> {
+    return useRect(`.${this.prefixCls}`, this._renderProxy)
   }
 }
 

@@ -1,3 +1,6 @@
 {
-  "component": true
+  "component": true,
+  "usingComponents": {
+    "dora-animation-group": "@doraemon-ui/miniprogram.animation-group/index"
+  }
 }

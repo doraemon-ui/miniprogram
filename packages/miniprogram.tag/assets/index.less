@@ -1,19 +1,29 @@
 @import './variables.less';
 
 // Tag styles
+// @prop --text-color: Text color of the tag
+// @prop --background-color: Background color of the tag
+// @prop --border-color: Border color of the tag
 // -----------------------------
 .@{tag-prefix-cls} {
+  --default-solid-text-color: #fff;
+  --default-background-color: #f5f5f5;
+  --default-text-color: rgba(0, 0, 0, 0.88);
+
   display: inline-flex;
   align-items: center;
   line-height: 20px;
   height: 22px;
   padding: 0 7px;
-  border-radius: @border-radius-base;
-  border: 1px solid @border-color-base;
-  background: #fafafa;
+  border-radius: @border-radius-sm;
+  border-width: 1px;
+  border-style: solid;
+  border-color: @border-color-base;
   font-size: @font-size-base;
-  margin-right: 8px;
   white-space: nowrap;
+  box-sizing: border-box;
+  color: var(--default-text-color);
+  background-color: var(--default-background-color);
 
   &--hover {
     opacity: 0.85;
@@ -23,59 +33,40 @@
     margin-left: 4px;
   }
 
-  &--magenta {
-    color: #eb2f96;
-    background: fade(#eb2f96, 6);
-    border-color: fade(#eb2f96, 30);
+  // .tag-color(#get-color(light, tint)[], #get-color(light, active)[], #get-color(light, base)[]);
+
+  // Tag Colors
+  &.@{dora-prefix}-color {
+    color: var(--text-color);
+    background-color: var(--background-color);
+    border-color: var(--border-color);
+
+    .tag-color(#current-color(base)[], #fff, #current-color(base)[]);
   }
-  &--red {
-    color: #f5222d;
-    background: fade(#f5222d, 6);
-    border-color: fade(#f5222d, 30);
+
+  &:is(&--fill).@{dora-prefix}-color {
+    .tag-color(#current-color(tint)[], #current-color(active)[], transparent);
   }
-  &--volcano {
-    color: #fa541c;
-    background: fade(#fa541c, 6);
-    border-color: fade(#fa541c, 30);
+
+  &:is(&--solid).@{dora-prefix}-color {
+    .tag-color(#current-color(base)[], #fff, #current-color(base)[]);
   }
-  &--orange {
-    color: #fa8c16;
-    background: fade(#fa8c16, 6);
-    border-color: fade(#fa8c16, 30);
+
+  &:is(&--outline).@{dora-prefix}-color {
+    .tag-color(#current-color(tint)[], #current-color(active)[], #current-color(base)[]);
   }
-  &--gold {
-    color: #faad14;
-    background: fade(#faad14, 6);
-    border-color: fade(#faad14, 30);
+
+  &:is(&--solid) {
+    color: var(--default-solid-text-color);
   }
-  &--lime {
-    color: #a0d911;
-    background: fade(#a0d911, 6);
-    border-color: fade(#a0d911, 30);
-  }
-  &--green {
-    color: #52c41a;
-    background: fade(#52c41a, 6);
-    border-color: fade(#52c41a, 30);
-  }
-  &--cyan {
-    color: #13c2c2;
-    background: fade(#13c2c2, 6);
-    border-color: fade(#13c2c2, 30);
-  }
-  &--blue {
-    color: #1890ff;
-    background: fade(#1890ff, 6);
-    border-color: fade(#1890ff, 30);
-  }
-  &--geekblue {
-    color: #2f54eb;
-    background: fade(#2f54eb, 6);
-    border-color: fade(#2f54eb, 30);
-  }
-  &--purple {
-    color: #722ed1;
-    background: fade(#722ed1, 6);
-    border-color: fade(#722ed1, 30);
-  }
+}
+
+.tag-color(
+@bg-color,
+@color,
+@border-color,
+) {
+  --text-color: @color;
+  --background-color: @bg-color;
+  --border-color: @border-color;
 }

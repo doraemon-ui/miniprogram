@@ -1,8 +1,103 @@
-<view
-  class="dora-class {{ classes.wrap }}"
-  hover-class="dora-hover-class {{ !disabled ? classes.hover : 'none' }}"
-  bindtap="onClick"
-  style="{{ containerStyle }}"
->
-  <slot></slot>
+<view class="dora-class {{ classes.wrap }}">
+  <dora-backdrop
+    visible="{{ backdropVisible }}"
+    bind:click="onBackdropClick"
+  />
+  <view class="{{ classes.bd }}">
+    <block wx:for="{{ showOptions }}" wx:for-item="item" wx:key="index">
+      <view class="{{ item.itemClass }}" bindtap="onClick" data-index="{{ index }}">
+        <view class="{{ classes.text }}">
+          {{ item.type !== 'filter' ? item.displayLabel : item.label }}
+          <view class="{{ item.iconClass }}" wx:if="{{ item.type !== 'text' }}"></view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <block wx:for="{{ showOptions }}" wx:for-item="item" wx:key="index">
+    <dora-animation-group
+      dora-class="{{ classes.pop }}"
+      in="{{ item.visible }}"
+      classNames="dora-animate--slideInRight"
+      bind:enter="onOpen"
+      bind:exited="onClosed"
+      wx:if="{{ item.type === 'filter' }}"
+    >
+      <scroll-view class="{{ classes.scrollView }}" scroll-y bindscroll="onScroll">
+        <block wx:for="{{ item.children }}" wx:for-item="panel" wx:for-index="pIndex" wx:key="pIndex">
+          <view class="{{ classes.panel }}">
+            <view class="{{ classes.panelHd }}">
+              <view class="{{ classes.panelTitle }}">{{ panel.label }}</view>
+              <view class="{{ classes.panelSelected }}">{{ panel.selected }}</view>
+            </view>
+            <view class="{{ classes.panelBd }}">
+              <radio-group bindchange="onPopupSelectChange" data-parent-index="{{ index }}" data-index="{{ pIndex }}" wx:if="{{ panel.type === 'radio' }}">
+                <view class="{{ classes.groups }}">
+                  <block wx:for="{{ panel.children }}" wx:for-item="choice" wx:key="value">
+                    <view class="{{ classes.group }}">
+                      <radio class="{{ classes.radio }}" value="{{ choice.value }}" checked="{{ choice.checked }}" />
+                      <view class="{{ classes.btn }} {{ choice.checked ? classes.btnChecked : '' }}">{{ choice.label }}</view>
+                    </view>
+                  </block>
+                </view>
+              </radio-group>
+              <checkbox-group bindchange="onPopupSelectChange" data-parent-index="{{ index }}" data-index="{{ pIndex }}" wx:else>
+                <view class="{{ classes.groups }}">
+                  <block wx:for="{{ panel.children }}" wx:for-item="choice" wx:key="value">
+                    <view class="{{ classes.group }}">
+                      <checkbox class="{{ classes.check }}" value="{{ choice.value }}" checked="{{ choice.checked }}" />
+                      <view class="{{ classes.btn }} {{ choice.checked ? classes.btnChecked : '' }}">{{ choice.label }}</view>
+                    </view>
+                  </block>
+                </view>
+              </checkbox-group>
+            </view>
+          </view>
+        </block>
+      </scroll-view>
+      <view class="{{ classes.btns }}">
+        <view class="{{ classes.btn }}" data-index="{{ index }}" bindtap="onSelectReset" catchtouchmove="noop">{{ cancelText }}</view>
+        <view class="{{ classes.btn }} {{ classes.btnDanger }}" data-index="{{ index }}" bindtap="onSelectConfirm" catchtouchmove="noop">{{ confirmText }}</view>
+      </view>
+    </dora-animation-group>
+    <dora-animation-group
+      dora-class="{{ classes.select }}"
+      in="{{ item.visible }}"
+      classNames="dora-animate--fadeIn"
+      bind:enter="onOpen"
+      bind:exited="onClosed"
+      wx:if="{{ item.type === 'radio' }}"
+    >
+      <scroll-view class="{{ classes.scrollView }}" scroll-y>
+        <dora-radio-group
+          value="{{ values[index] }}"
+          options="{{ item.groupOptions }}"
+          bind:change="onSelectChange"
+          data-index="{{ index }}"
+          data-type="{{ item.type }}"
+        />
+      </scroll-view>
+    </dora-animation-group>
+    <dora-animation-group
+      dora-class="{{ classes.select }}"
+      in="{{ item.visible }}"
+      classNames="dora-animate--fadeIn"
+      bind:enter="onOpen"
+      bind:exited="onClosed"
+      wx:if="{{ item.type === 'checkbox' }}"
+    >
+      <scroll-view class="{{ classes.scrollView }}" scroll-y>
+        <dora-checkbox-group
+          value="{{ values[index] }}"
+          options="{{ item.groupOptions }}"
+          bind:change="onSelectChange"
+          data-index="{{ index }}"
+          data-type="{{ item.type }}"
+        />
+        <view class="{{ classes.btns }}">
+          <view class="{{ classes.btn }}" data-index="{{ index }}" bindtap="onSelectReset" catchtouchmove="noop">{{ cancelText }}</view>
+          <view class="{{ classes.btn }} {{ classes.btnDanger }}" data-index="{{ index }}" bindtap="onSelectConfirm" catchtouchmove="noop">{{ confirmText }}</view>
+        </view>
+      </scroll-view>
+    </dora-animation-group>
+  </block>
 </view>

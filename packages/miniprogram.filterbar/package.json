@@ -25,7 +25,11 @@
     "preversion": "pnpm clean && pnpm build && pnpm test"
   },
   "dependencies": {
+    "@doraemon-ui/miniprogram.animation-group": "workspace:*",
+    "@doraemon-ui/miniprogram.backdrop": "workspace:*",
+    "@doraemon-ui/miniprogram.checkbox": "workspace:*",
     "@doraemon-ui/miniprogram.core-js": "workspace:*",
+    "@doraemon-ui/miniprogram.radio": "workspace:*",
     "@doraemon-ui/style": "workspace:*"
   },
   "devDependencies": {

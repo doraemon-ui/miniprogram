@@ -1,8 +1,9 @@
 {
-  "navigationBarTitleText": "miniprogram.prompt",
+  "navigationBarTitleText": "Prompt",
   "usingComponents": {
-    "demo-page": "@doraemon-ui/miniprogram.demo-page",
-    "demo-block": "@doraemon-ui/miniprogram.demo-block",
-    "dora-prompt": "@doraemon-ui/miniprogram.prompt/index"
+    "demo-page": "@doraemon-ui/miniprogram.demo-page/index",
+    "dora-prompt": "@doraemon-ui/miniprogram.prompt/index",
+    "dora-tabs": "@doraemon-ui/miniprogram.tabs/index",
+    "dora-tab": "@doraemon-ui/miniprogram.tabs/tab"
   }
 }

@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.demo-page.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:41:57.
+ * Built on 2026-05-13, 22:23:12.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 
@@ -61,8 +61,10 @@ const darkmodeSync = (darkmode)=>{
 };
 let DemoPage = class DemoPage extends Doraemon {
     get classes() {
-        const { prefixCls, spacing, sysTheme, curTheme, darkmode: _darkmode } = this;
-        const wrap = prefixCls;
+        const { prefixCls, fixed, spacing, sysTheme, curTheme, darkmode: _darkmode } = this;
+        const wrap = classNames(prefixCls, {
+            [`${prefixCls}--fixed`]: fixed
+        });
         const hd = `${prefixCls}__hd`;
         const title = `${prefixCls}__title`;
         const desc = `${prefixCls}__desc`;
@@ -137,6 +139,12 @@ let DemoPage = class DemoPage extends Doraemon {
         this.sysTheme = getSysTheme();
     }
 };
+_ts_decorate([
+    Prop({
+        type: Boolean,
+        default: false
+    })
+], DemoPage.prototype, "fixed", void 0);
 _ts_decorate([
     Prop({
         type: Boolean,

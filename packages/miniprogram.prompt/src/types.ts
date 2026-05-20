@@ -1,6 +1,20 @@
 import type { ComponentPublicInstance } from '@doraemon-ui/miniprogram.core-js'
+import type { ClassNames } from '@doraemon-ui/miniprogram.animation-group'
+import type { ButtonProps } from '@doraemon-ui/miniprogram.button'
 
 import type { Prompt } from './index'
+
+export interface PromptButton extends Omit<ButtonProps, 'prefixCls'> {
+  /**
+   * 按钮文案
+   */
+  text?: string
+
+  /**
+   * 自定义按钮类名
+   */
+  className?: string
+}
 
 /**
  * PromptProps接口定义
@@ -8,37 +22,54 @@ import type { Prompt } from './index'
 export interface PromptProps {
   /**
    * 自定义类名前缀
-   *
-   * @type {string}
    */
   prefixCls?: string
 
   /**
-   * 是否禁用
-   *
-   * @type {boolean}
+   * 动画类名
    */
-  disabled?: boolean
+  classNames?: ClassNames
 
   /**
-   * 点击态类名
-   *
-   * @type {string}
+   * 图标
    */
-  hoverClass?: string
+  icon?: string
+
+  /**
+   * 标题
+   */
+  title?: string
+
+  /**
+   * 描述文案
+   */
+  text?: string
+
+  /**
+   * 按钮列表
+   */
+  buttons?: PromptButton[]
+
+  /**
+   * 是否显示
+   */
+  visible?: boolean
 
   /**
    * 外层样式
-   *
-   * @type {Partial<CSSStyleDeclaration>}
    */
-  wrapStyle?: Partial<CSSStyleDeclaration>
+  wrapStyle?: string | Partial<CSSStyleDeclaration>
 }
 
 /**
  * PromptExpose接口定义
  */
 export interface PromptExpose {}
+
+export interface PromptClassItem {
+  wrap: string
+  hover: string
+}
 
 /**
  * PromptInstance类型定义

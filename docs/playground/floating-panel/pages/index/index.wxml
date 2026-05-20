@@ -1,11 +1,26 @@
+<map
+  style="width: 100vw; height: 100vh;"
+  scale="9"
+  longitude="{{ geo[0] }}"
+  latitude="{{ geo[1] }}"
+/>
 <demo-page
   darkmode="auto"
-  title="miniprogram.floating-panel"
-  desc="miniprogram.floating-panel"
+  title="FloatingPanel"
+  desc="浮动面板"
   clickable
-  spacing
+  fixed
 >
-  <demo-block title="Basic">
-    <dora-floating-panel>miniprogram.floating-panel</dora-floating-panel>
+  <demo-block padding="0" title="Basic">
+    <dora-floating-panel id="dora-floating-panel" defaultAnchors="{{ defaultAnchors }}" bind:heightChange="onHeightChange">
+      <view style="box-sizing: border-box; padding: 20px; height: {{ height }}; background-image: {{ backgroundImage }};">
+        <dora-list>
+          <block wx:for="{{ locations }}" wx:key="name">
+            <dora-list-item is-link title="{{ item.name }}" data-geo="{{ item.geo }}" bind:click="onLocation"></dora-list-item>
+          </block>
+        </dora-list>
+        <dora-button expand="block" color="light" bind:click="setHeight">收起至200px</dora-button>
+      </view>
+    </dora-floating-panel>
   </demo-block>
 </demo-page>

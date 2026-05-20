@@ -5,11 +5,102 @@
     "miniprogram": {
       "list": [
         {
-          "name": "ellipsis/index",
-          "pathName": "ellipsis/index",
+          "name": "button/index",
+          "pathName": "button/index",
           "query": "",
           "scene": null,
           "launchMode": "default"
+        },
+        {
+          "name": "tag/index",
+          "pathName": "tag/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "image/index",
+          "pathName": "image/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "sticky/index",
+          "pathName": "sticky/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "prompt/index",
+          "pathName": "prompt/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "popover/index",
+          "pathName": "popover/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "notification/index",
+          "pathName": "notification/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "gallery/index",
+          "pathName": "gallery/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "form/index",
+          "pathName": "form/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "footer/index",
+          "pathName": "footer/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "floating-panel/index",
+          "pathName": "floating-panel/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "filterbar/index",
+          "pathName": "filterbar/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "fab-button/index",
+          "pathName": "fab-button/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "ellipsis/index",
+          "pathName": "ellipsis/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         },
         {
           "name": "e-sign/index",

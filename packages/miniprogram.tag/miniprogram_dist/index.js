@@ -1,49 +1,74 @@
 /**
  * @doraemon-ui/miniprogram.tag.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:41:19.
+ * Built on 2026-05-20, 21:13:03.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 
-import { Doraemon, Prop, Watch, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
+import { Doraemon, Prop, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
+import { useControlledState, isPresetColor, useCSSVarCls, useColorCls, useSemanticClassNames, FastColor, useSemanticStylesString } from '@doraemon-ui/miniprogram.shared';
 
 function _ts_decorate(decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    var c = arguments.length, r = c < 3 ? target : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for(var i = decorators.length - 1; i >= 0; i--)if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 }
 const { classNames, styleToCssString } = Doraemon.util;
-const isPresetColor = (color)=>/^(pink|red|yellow|orange|cyan|green|blue|purple|geekblue|magenta|volcano|gold|lime)(-inverse)?$/.test(color);
-let Tag = class Tag extends Doraemon {
+const { ControlledState, setControlledState } = useControlledState('visible');
+let Tag = // const isPresetColor = (color: string) =>
+//   /^(pink|red|yellow|orange|cyan|green|blue|purple|geekblue|magenta|volcano|gold|lime)(-inverse)?$/.test(color)
+class Tag extends Doraemon {
     get classes() {
-        const p = this.prefixCls;
-        const hover = this.hoverClass && this.hoverClass !== 'default' ? this.hoverClass : `${p}--hover`;
-        return {
-            wrap: classNames(p),
-            icon: `${p}__icon`,
+        const { prefixCls, hoverClass, color, fill } = this;
+        const hover = hoverClass && hoverClass !== 'default' ? hoverClass : `${prefixCls}--hover`;
+        const isPreset = isPresetColor(color);
+        const internalClassNames = {
+            root: classNames(prefixCls, useCSSVarCls(prefixCls), useColorCls(color), {
+                [`${prefixCls}--${fill}`]: fill,
+                [`${prefixCls}--${color}`]: isPreset
+            }),
+            icon: `${prefixCls}__icon`,
             hover
         };
+        return useSemanticClassNames(undefined, internalClassNames, this.classNames);
     }
-    onVisibleChange(v) {
-        if (this.controlled) this.updated(v);
-    }
-    onColorChange(c) {
-        this.updateStyle(c);
-    }
-    updated(tagVisible) {
-        if (this.tagVisible !== tagVisible) this.tagVisible = tagVisible;
-    }
-    updateStyle(color) {
+    get mergedStyles() {
+        const { color, fill } = this;
         const isPreset = isPresetColor(color);
-        this.className = isPreset ? `${this.prefixCls}--${color}` : '';
-        this.tagStyle = !isPreset && color ? styleToCssString({
-            backgroundColor: color,
-            color: '#fff'
-        }) : '';
+        const rootStyle = {};
+        if (!isPreset && color) {
+            if (fill === 'solid') {
+                rootStyle.backgroundColor = color;
+            } else {
+                const hsl = new FastColor(color).toHsl();
+                hsl.l = 0.95;
+                rootStyle.backgroundColor = new FastColor(hsl).toHexString();
+                rootStyle.color = color;
+                if (fill === 'outline') {
+                    rootStyle.borderColor = color;
+                }
+            }
+        }
+        return useSemanticStylesString({
+            root: rootStyle
+        }, this.styles);
     }
+    // get rootStyle() {
+    //   const { styles } = this
+    //   return styles?.root ? styleToCssString(styles.root) : ''
+    // }
+    // @Watch('color')
+    // onColorChange(c: string) {
+    //   this.updateStyle(c)
+    // }
+    // updateStyle(color: string) {
+    //   const isPreset = isPresetColor(color)
+    //   this.className = isPreset ? `${this.prefixCls}--${color}` : ''
+    //   this.tagStyle = !isPreset && color ? styleToCssString({ backgroundColor: color, color: '#fff' }) : ''
+    // }
     onChange(tagVisible) {
-        if (!this.controlled) this.updated(tagVisible);
+        setControlledState(this, tagVisible, !this.controlled);
         this.$emit('change', {
             value: tagVisible
         });
@@ -57,14 +82,10 @@ let Tag = class Tag extends Doraemon {
             this.onChange(false);
         }
     }
-    mounted() {
-        this.updated(this.controlled ? this.visible : this.defaultVisible);
-        this.updateStyle(this.color);
-    }
     constructor(...args){
         super(...args);
-        this.className = '';
-        this.tagStyle = '';
+        // className: string = ''
+        // tagStyle: string = ''
         this.tagVisible = true;
     }
 };
@@ -80,6 +101,12 @@ _ts_decorate([
         default: ''
     })
 ], Tag.prototype, "color", void 0);
+_ts_decorate([
+    Prop({
+        type: String,
+        default: 'fill'
+    })
+], Tag.prototype, "fill", void 0);
 _ts_decorate([
     Prop({
         type: Boolean,
@@ -105,17 +132,22 @@ _ts_decorate([
     })
 ], Tag.prototype, "controlled", void 0);
 _ts_decorate([
-    Watch('visible')
-], Tag.prototype, "onVisibleChange", null);
-_ts_decorate([
-    Watch('color')
-], Tag.prototype, "onColorChange", null);
+    ControlledState()
+], Tag.prototype, "tagVisible", void 0);
 Tag = _ts_decorate([
     Component({
         props: {
             prefixCls: {
                 type: String,
                 default: 'dora-tag'
+            },
+            classNames: {
+                type: Object,
+                default: ()=>({})
+            },
+            styles: {
+                type: Object,
+                default: ()=>({})
             }
         }
     })

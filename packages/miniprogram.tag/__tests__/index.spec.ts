@@ -1,5 +1,6 @@
 import path from 'path'
 import simulate from 'miniprogram-simulate'
+import { Tag } from '../src'
 
 function mountTest(id: string | (() => string), defaultProps: Record<string, unknown> = {}) {
   describe('mount and unmount', () => {
@@ -43,9 +44,32 @@ describe('Tag', () => {
   test('should support close and controlled mode', () => {
     const wrapper = simulate.render(id, { closable: true, controlled: true, visible: true })
     wrapper.attach(document.createElement('parent-wrapper'))
-    const comp = wrapper.instance as any
+    const comp = wrapper.instance as unknown as Pick<InstanceType<typeof Tag>, 'onClose' | 'onClick'>
     expect(() => comp.onClose()).not.toThrow()
     expect(() => wrapper.setData({ visible: false })).not.toThrow()
     expect(() => comp.onClick()).not.toThrow()
+  })
+
+  test('should close immediately in uncontrolled mode', () => {
+    const wrapper = simulate.render(id, { closable: true, controlled: false, defaultVisible: true })
+    wrapper.attach(document.createElement('parent-wrapper'))
+    const comp = wrapper.instance as unknown as Pick<InstanceType<typeof Tag>, 'onClose'>
+
+    expect(wrapper.data.tagVisible).toBe(true)
+    comp.onClose()
+    expect(wrapper.data.tagVisible).toBe(false)
+  })
+
+  test('should keep merged value driven by prop in controlled mode', () => {
+    const wrapper = simulate.render(id, { closable: true, controlled: true, visible: true })
+    wrapper.attach(document.createElement('parent-wrapper'))
+    const comp = wrapper.instance as unknown as Pick<InstanceType<typeof Tag>, 'onClose'>
+
+    expect(wrapper.data.tagVisible).toBe(true)
+    comp.onClose()
+    expect(wrapper.data.tagVisible).toBe(true)
+
+    wrapper.setData({ visible: false })
+    expect(wrapper.data.tagVisible).toBe(false)
   })
 })

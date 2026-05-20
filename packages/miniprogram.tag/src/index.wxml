@@ -1,4 +1,4 @@
-<view class="dora-class {{ classes.wrap }} {{ className }}" hover-class="{{ classes.hover }}" style="{{ tagStyle }}" bindtap="onClick" wx:if="{{ tagVisible }}">
+<view class="dora-class {{ classes.root }}" hover-class="{{ classes.hover }}" style="{{ mergedStyles.root }}" bindtap="onClick" wx:if="{{ tagVisible }}">
   <slot></slot>
-  <view class="{{ classes.icon }}" catchtap="onClose" wx:if="{{ closable }}">×</view>
+  <view class="{{ classes.icon }}" catchtap="onClose" wx:if="{{ closable }}" style="{{ mergedStyles.icon }}">×</view>
 </view>

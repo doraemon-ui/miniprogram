@@ -5,29 +5,29 @@
     <view class="userinfo-desc">{{ userInfo.desc }}</view>
 	</view>
 </view>
-<dora-grids dora-class="grid-box">
-  <dora-grid>
+<dora-grid dora-class="grid-box">
+  <dora-grid-item>
     <view class="grid-title">30K</view>
     <view class="grid-desc">
       <dora-icon dora-class="grid-icon" type="ios-eye" size="18" />
       <view>Views</view>
     </view>
-  </dora-grid>
-  <dora-grid>
+  </dora-grid-item>
+  <dora-grid-item>
     <view class="grid-title">4k</view>
     <view class="grid-desc">
       <dora-icon dora-class="grid-icon" type="ios-star" size="18" />
       <view>Stars</view>
     </view>
-  </dora-grid>
-  <dora-grid>
+  </dora-grid-item>
+  <dora-grid-item>
     <view class="grid-title">800</view>
     <view class="grid-desc">
       <dora-icon dora-class="grid-icon" type="ios-git-branch" size="18" />
       <view>Forks</view>
     </view>
-  </dora-grid>
-</dora-grids>
+  </dora-grid-item>
+</dora-grid>
 <dora-list>
   <dora-list-item title="Github" is-link data-clipboard="https://github.com/skyvow" bind:click="clipboard">
     <dora-icon dora-class="icon" slot="header" type="logo-github" size="22" />

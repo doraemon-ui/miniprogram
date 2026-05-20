@@ -1,5 +1,132 @@
 @import '../../@doraemon-ui/style/var.wxss';
 @import '../../@doraemon-ui/style/color.wxss';
 .dora-notification {
-  position: static;
+  --text-color: var(--dora-notification-text-color, rgba(var(--dora-white-rgb, 255, 255, 255), 1));
+  --right-text-color: var(--dora-notification-right-text-color, rgba(var(--dora-white-rgb, 255, 255, 255), 0.65));
+  --background-color: var(--dora-notification-background-color, var(--dora-black, #000));
+  --border-radius: var(--dora-notification-border-radius, var(--dora-border-radius-lg, 12px));
+  --icon-size: var(--dora-notification-icon-size, 28px);
+  --font-size: var(--dora-notification-font-size, 14px);
+  --line-height: var(--dora-notification-line-height, 1.5);
+  --margin: var(--dora-notification-margin, 8px);
+  --padding: var(--dora-notification-padding, 16px);
+  --max-width: var(--dora-notification-max-width, 568px);
+  --z-index: var(--dora-notification-z-index, var(--dora-component-z-index, 1000));
+  box-sizing: border-box;
+  position: fixed;
+  top: var(--margin);
+  top: var(--margin);
+  left: var(--margin);
+  left: var(--margin);
+  width: calc(100% - var(--margin)*2);
+  width: calc(100% - var(--margin)*2);
+  max-width: var(--max-width);
+  max-width: var(--max-width);
+  z-index: var(--z-index);
+  z-index: var(--z-index);
+  margin: 0;
+  font-size: var(--font-size);
+  font-size: var(--font-size);
+  border: none;
+  border-radius: var(--border-radius);
+  border-radius: var(--border-radius);
+  background: var(--background-color);
+  background: var(--background-color);
+  color: var(--text-color);
+  color: var(--text-color);
+  transition-duration: 0.3s;
+}
+
+.dora-notification__content {
+  display: flex;
+  align-items: center;
+  gap: var(--padding);
+  gap: var(--padding);
+  padding: var(--padding);
+  padding: var(--padding);
+}
+
+.dora-notification__hd {
+  flex: none;
+}
+
+.dora-notification__icon {
+  width: var(--icon-size);
+  width: var(--icon-size);
+  height: var(--icon-size);
+  height: var(--icon-size);
+  font-size: 0;
+  line-height: var(--icon-size);
+  line-height: var(--icon-size);
+}
+
+.dora-notification__image {
+  width: 100%;
+  height: 100%;
+}
+
+.dora-notification__bd {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+}
+
+.dora-notification__header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.dora-notification__title {
+  font-size: var(--font-size);
+  font-size: var(--font-size);
+  font-weight: bold;
+  letter-spacing: 0.02em;
+  line-height: var(--line-height);
+  line-height: var(--line-height);
+}
+
+.dora-notification__title-right-text {
+  margin-left: auto;
+  color: var(--right-text-color);
+  color: var(--right-text-color);
+  font-size: var(--font-size);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  line-height: var(--line-height);
+}
+
+.dora-notification__close-button {
+  font-size: var(--font-size);
+  font-size: var(--font-size);
+  height: 20px;
+  transition-duration: 0.3s;
+  width: 20px;
+  margin-left: auto;
+  position: relative;
+}
+
+.dora-notification__title-right-text+.dora-notification__close-button {
+  margin-left: 12px;
+}
+
+.dora-notification__subtitle {
+  font-size: var(--font-size);
+  font-size: var(--font-size);
+  font-weight: 600;
+  line-height: var(--line-height);
+  line-height: var(--line-height);
+}
+
+.dora-notification__text {
+  font-size: var(--font-size);
+  font-size: var(--font-size);
+  font-weight: 400;
+  line-height: var(--line-height);
+  line-height: var(--line-height);
+  word-break: break-word;
+}
+
+.dora-notification__ft {
+  display: none;
 }

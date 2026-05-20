@@ -1,0 +1,38 @@
+@import './variables.less';
+
+// Sticky item styles
+// @prop --title-background-color: Background color of the sticky title
+// @prop --title-height: Height of the sticky title
+// @prop --title-padding: Padding of the sticky title
+// @prop --font-size: Font size of the sticky item
+// -----------------------------
+.@{sticky-item-prefix-cls} {
+  --title-background-color: @sticky-title-background-color;
+  --title-height: @sticky-title-height;
+  --title-padding: @sticky-title-padding;
+  --font-size: @sticky-font-size;
+
+  position: relative;
+  font-size: var(--font-size);
+
+  &__hd {
+    width: 100%;
+    height: var(--title-height);
+    background: var(--title-background-color);
+    line-height: var(--title-height);
+  }
+
+  &__title {
+    box-sizing: border-box;
+    width: 100%;
+    padding: var(--title-padding);
+    background: var(--title-background-color);
+  }
+
+  &--fixed &__title {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: @sticky-item-z-index;
+  }
+}

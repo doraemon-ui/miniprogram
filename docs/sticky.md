@@ -1,18 +1,14 @@
-# Sticky Sticky
+# Sticky 吸顶容器
 
 @doraemon-ui/miniprogram.sticky
 
 ## 安装
-
-我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
 
 ```bash
 npm install --save @doraemon-ui/miniprogram.sticky
 # or
 yarn add @doraemon-ui/miniprogram.sticky
 ```
-
-如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
 
 ## 使用指南
 
@@ -44,24 +40,35 @@ yarn add @doraemon-ui/miniprogram.sticky
 
 ### Sticky props
 
-| 参数      | 类型     | 描述           | 默认值      |
-| --------- | -------- | -------------- | ----------- |
-| prefixCls | `string` | 自定义类名前缀 | dora-sticky |
+| 参数 | 类型 | 描述 | 默认值 |
+| --- | --- | --- | --- |
+| prefixCls | `string` | 自定义类名前缀 | `dora-sticky` |
+| scrollTop | `number` | 页面当前滚动距离 | `0` |
+
+### Sticky events
+
+| 事件名 | 描述 |
+| --- | --- |
+| stick | 某个 `sticky-item` 进入吸顶时触发 |
+| unstick | 某个 `sticky-item` 退出吸顶时触发 |
+
+### StickyItem props
+
+| 参数 | 类型 | 描述 | 默认值 |
+| --- | --- | --- | --- |
+| prefixCls | `string` | 自定义类名前缀 | `dora-sticky-item` |
+| title | `string` | 标题 | `''` |
+| content | `string` | 内容 | `''` |
 
 ### Sticky slot
 
-| 名称 | 描述       |
-| ---- | ---------- |
-| -    | 自定义内容 |
+| 名称 | 描述 |
+| --- | --- |
+| - | `sticky-item` 列表 |
 
-### Sticky externalClasses
+### StickyItem slot
 
-| 名称       | 描述         |
-| ---------- | ------------ |
-| dora-class | 根节点样式类 |
-
-## CSS Variables
-
-| 属性         | 描述     | 默认值 | 全局变量 |
-| ------------ | -------- | ------ | -------- |
-| --text-color | 文字颜色 | `#fff` | -        |
+| 名称 | 描述 |
+| --- | --- |
+| title | 自定义标题 |
+| content | 自定义内容 |

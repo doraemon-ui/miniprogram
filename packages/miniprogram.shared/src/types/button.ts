@@ -119,6 +119,21 @@ export interface NativeButtonProps {
    * 当手机号快速验证或手机号实时验证额度用尽时，是否对用户展示“申请获取你的手机号，但该功能使用次数已达当前小程序上限，暂时无法使用”的提示，默认展示，open-type="getPhoneNumber" 或 open-type="getRealtimePhoneNumber" 时有效
    */
   phoneNumberNoQuotaToast?: boolean
+
+  /**
+   * 转发的文本消息是否要带小程序入口
+   */
+  needShowEntrance?: boolean
+
+  /**
+   * 从消息小程序入口打开小程序的路径，默认为聊天工具启动路径
+   */
+  entrancePath?: string
+
+  /**
+   * 新的一次性订阅消息下发机制回调，open-type=liveActivity时有效
+   */
+  createliveactivity?: boolean
 }
 
 /**

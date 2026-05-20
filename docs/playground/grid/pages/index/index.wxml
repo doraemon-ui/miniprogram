@@ -1,11 +1,98 @@
 <demo-page
   darkmode="auto"
   title="miniprogram.grid"
-  desc="miniprogram.grid"
+  desc="宫格"
   clickable
-  spacing
 >
   <demo-block title="Basic">
-    <dora-grid>miniprogram.grid</dora-grid>
+    <dora-grid>
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+    </dora-grid>
+  </demo-block>
+  <demo-block title="Square = true">
+    <dora-grid square>
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+    </dora-grid>
+  </demo-block>
+  <demo-block title="Bordered = false">
+    <dora-grid bordered="{{ false }}">
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+    </dora-grid>
+  </demo-block>
+  <demo-block title="Col = 4">
+    <dora-grid col="4">
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+      <dora-grid-item thumb="http://cdn.skyvow.cn/logo.png" label="Wux Weapp" />
+    </dora-grid>
+  </demo-block>
+  <demo-block title="Custom content">
+    <dora-grid>
+      <dora-grid-item>
+        <wux-icon type="logo-github" />
+        <view>Wux Weapp</view>
+      </dora-grid-item>
+      <dora-grid-item>
+        <wux-icon type="logo-github" />
+        <view>Wux Weapp</view>
+      </dora-grid-item>
+      <dora-grid-item>
+        <wux-icon type="logo-github" />
+        <view>Wux Weapp</view>
+      </dora-grid-item>
+      <dora-grid-item>
+        <wux-icon type="logo-github" />
+        <view>Wux Weapp</view>
+      </dora-grid-item>
+      <dora-grid-item>
+        <wux-icon type="logo-github" />
+        <view>Wux Weapp</view>
+      </dora-grid-item>
+      <dora-grid-item>
+        <wux-icon type="logo-github" />
+        <view>Wux Weapp</view>
+      </dora-grid-item>
+      <dora-grid-item>
+        <wux-icon type="logo-github" />
+        <view>Wux Weapp</view>
+      </dora-grid-item>
+      <dora-grid-item>
+        <wux-icon type="logo-github" />
+        <view>Wux Weapp</view>
+      </dora-grid-item>
+      <dora-grid-item>
+        <wux-icon type="logo-github" />
+        <view>Wux Weapp</view>
+      </dora-grid-item>
+    </dora-grid>
   </demo-block>
 </demo-page>

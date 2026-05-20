@@ -1,12 +1,42 @@
 // Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Sticky mount correctly 1`] = `
-<dora-sticky>
-  <wx-view
-    class="dora-class dora-sticky"
-    hoverClass="dora-hover-class dora-sticky--hover"
-    style=""
-    bind:tap="onClick"
-  />
-</dora-sticky>
+<main>
+  <dora-sticky
+    id="sticky"
+  >
+    <wx-view
+      class="dora-class dora-sticky"
+    >
+      <dora-sticky-item>
+        <wx-view
+          class="dora-class dora-sticky-item"
+        >
+          <wx-view
+            class="dora-sticky-item__hd"
+          >
+            <wx-view
+              class="dora-sticky-item__title"
+            >
+              小鸡
+            </wx-view>
+          </wx-view>
+          <wx-view
+            class="dora-sticky-item__bd"
+          >
+            <wx-view
+              class="dora-sticky-item__content"
+            >
+              <wx-view
+                slot="content"
+              >
+                内容
+              </wx-view>
+            </wx-view>
+          </wx-view>
+        </wx-view>
+      </dora-sticky-item>
+    </wx-view>
+  </dora-sticky>
+</main>
 `;

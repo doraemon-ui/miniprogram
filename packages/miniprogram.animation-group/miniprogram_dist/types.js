@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.animation-group.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:37:59.
+ * Built on 2026-05-16, 15:32:39.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 

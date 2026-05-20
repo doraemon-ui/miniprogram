@@ -1,10 +1,8 @@
-# Footer Footer
+# Footer
 
 @doraemon-ui/miniprogram.footer
 
 ## 安装
-
-我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
 
 ```bash
 npm install --save @doraemon-ui/miniprogram.footer
@@ -12,11 +10,9 @@ npm install --save @doraemon-ui/miniprogram.footer
 yarn add @doraemon-ui/miniprogram.footer
 ```
 
-如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
-
 ## 使用指南
 
-### 在 page.json 中引入组件
+### 在 `page.json` 中引入组件
 
 [json](./playground/footer/pages/index/index.json ':include :type=code')
 
@@ -34,34 +30,47 @@ yarn add @doraemon-ui/miniprogram.footer
 
 [js](./playground/footer/pages/index/index.js ':include :type=code')
 
-#### **WXSS**
-
-[wxss](./playground/footer/pages/index/index.wxss ':include :type=code')
-
 <!-- tabs:end -->
 
 ## API
 
 ### Footer props
 
-| 参数      | 类型     | 描述           | 默认值      |
-| --------- | -------- | -------------- | ----------- |
-| prefixCls | `string` | 自定义类名前缀 | dora-footer |
+| 参数      | 类型                  | 描述           | 默认值          |
+| --------- | --------------------- | -------------- | --------------- |
+| prefixCls | `string`              | 自定义类名前缀 | `dora-footer`   |
+| color     | `PresetColor`         | 主题色         | `positive`      |
+| label     | `string`              | 顶部分割线文案 | `''`            |
+| content   | `string`              | 中间文案       | `''`            |
+| links     | `FooterLinkItem[]`    | 链接列表       | `[]`            |
+| chips     | `FooterChipItem[]`    | 标签列表       | `[]`            |
 
-### Footer slot
+### FooterLinkItem
 
-| 名称 | 描述       |
-| ---- | ---------- |
-| -    | 自定义内容 |
+| 参数      | 类型                    | 描述               | 默认值 |
+| --------- | ----------------------- | ------------------ | ------ |
+| text      | `string`                | 文案               | -      |
+| url       | `string`                | 小程序页面路径     | -      |
+| urlParams | `Record<string, any>`   | 路由参数           | -      |
+| openType  | `NativeRouteOpenType`   | 跳转方式           | -      |
+| delta     | `number`                | 返回页面层级       | -      |
+
+### FooterChipItem
+
+| 参数 | 类型                  | 描述           | 默认值      |
+| ---- | --------------------- | -------------- | ----------- |
+| text | `string`              | 文案           | -           |
+| type | `'default' \| 'link'` | 是否可点击标签 | `default`   |
+
+### Footer events
+
+| 事件名     | 描述           | 回调参数                                  |
+| ---------- | -------------- | ----------------------------------------- |
+| linkClick  | 点击链接时触发 | `{ item: FooterLinkItem, index: number }` |
+| chipClick  | 点击链接标签时触发 | `{ item: FooterChipItem, index: number }` |
 
 ### Footer externalClasses
 
 | 名称       | 描述         |
 | ---------- | ------------ |
 | dora-class | 根节点样式类 |
-
-## CSS Variables
-
-| 属性         | 描述     | 默认值 | 全局变量 |
-| ------------ | -------- | ------ | -------- |
-| --text-color | 文字颜色 | `#fff` | -        |

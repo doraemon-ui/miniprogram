@@ -1,5 +1,112 @@
 @import '../../@doraemon-ui/style/var.wxss';
 @import '../../@doraemon-ui/style/color.wxss';
 .dora-image {
-  position: static;
+  --text-color: var(--image-text-color, rgba(var(--dora-text-color-rgb, 0, 0, 0), 0.45));
+  --rounded-border-radius: var(--image-rounded-border-radius, var(--dora-border-radius, 8px));
+  --thumbnail-background-color: var(--image-thumbnail-background-color, var(--dora-component-background-color, #fff));
+  --thumbnail-margin: var(--image-thumbnail-margin, 4px);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.dora-image--rounded {
+  border-radius: 8px;
+  border-radius: var(--rounded-border-radius);
+}
+
+.dora-image--circle {
+  border-radius: 50%;
+}
+
+.dora-image--thumbnail {
+  background-color: #fff;
+  background-color: var(--thumbnail-background-color);
+  border-radius: 4px;
+  border-radius: var(--thumbnail-margin);
+}
+
+.dora-image--thumbnail::after {
+  content: " ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  transform: scale(0.5);
+  transform-origin: 0 0;
+  pointer-events: none;
+  box-sizing: border-box;
+  border: 0 solid #d9d9d9;
+  border: 0 solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  border-width: 1px;
+  border-width: var(--dora-border-width, 1px);
+  border-radius: calc(4px*2);
+  border-radius: calc(var(--thumbnail-margin)*2);
+}
+
+.dora-image--thumbnail .dora-image__inner,.dora-image--thumbnail .dora-image__mask {
+  top: 4px;
+  top: var(--thumbnail-margin);
+  right: 4px;
+  right: var(--thumbnail-margin);
+  bottom: 4px;
+  bottom: var(--thumbnail-margin);
+  left: 4px;
+  left: var(--thumbnail-margin);
+  width: calc(100% - 2*4px)!important;
+  width: calc(100% - 2*var(--thumbnail-margin))!important;
+  height: calc(100% - 2*4px)!important;
+  height: calc(100% - 2*var(--thumbnail-margin))!important;
+}
+
+.dora-image--widthFix .dora-image__inner {
+  position: relative;
+}
+
+.dora-image__inner image,.dora-image__mask image,.dora-image__thumb {
+  display: inline-block;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.dora-image__inner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.dora-image--loaded .dora-image__inner {
+  opacity: 1;
+}
+
+.dora-image__mask {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 20;
+}
+
+.dora-image__mask--text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dora-image__text {
+  color: rgba(0,0,0,0.45);
+  color: var(--text-color);
+  text-align: center;
+  padding: 10px;
 }

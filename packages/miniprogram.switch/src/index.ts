@@ -1,21 +1,8 @@
 import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
+import { getPresetColor } from '@doraemon-ui/miniprogram.shared'
 
 const { classNames } = Doraemon.util
-
-const presetColors: Record<string, string> = {
-  light: '#ddd',
-  stable: '#b2b2b2',
-  positive: '#387ef5',
-  calm: '#11c1f3',
-  balanced: '#33cd5f',
-  energized: '#ffc900',
-  assertive: '#ef473a',
-  royal: '#886aea',
-  dark: '#444',
-}
-
-const isPresetColor = (color: string) => (presetColors[color] ? presetColors[color] : color)
 
 @Component({
   props: {
@@ -139,7 +126,7 @@ class Switch extends Doraemon {
 
   @Watch('color')
   onColorChange(c: string) {
-    const newColor = isPresetColor(c)
+    const newColor = getPresetColor(c)
     this.inputStyle = `border-color:${newColor};background-color:${newColor};`
   }
 

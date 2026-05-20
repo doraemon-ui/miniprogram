@@ -1,7 +1,37 @@
 @import './variables.less';
 
-// Prompt styles
-// -----------------------------
 .@{prompt-prefix-cls} {
-  position: static;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  color: @text-color-secondary;
+  background-color: @background-color-base;
+
+  &__bd {
+    margin-top: 0;
+    text-align: center;
+  }
+
+  &__icon {
+    width: 64px;
+    height: 64px;
+  }
+
+  &__title {
+    margin: 2px 0;
+    color: @heading-color;
+    font-size: @font-size-lg;
+    font-weight: bold;
+  }
+
+  &__text {
+    margin: 2px 0;
+    font-size: @font-size-sm;
+  }
+
+  &__button {
+    width: 100px !important;
+    margin: 4px auto;
+  }
 }

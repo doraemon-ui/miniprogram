@@ -1,7 +1,122 @@
 @import './variables.less';
 
 // Notification styles
+// @prop --text-color: Text color of the notification
+// @prop --right-text-color: Text color of the right-aligned text in the notification header
+// @prop --background-color: Background color of the notification
+// @prop --border-radius: Border radius of the notification
+// @prop --icon-size: Size of the notification icon
+// @prop --font-size: Font size of the notification text
+// @prop --line-height: Line height of the notification text
+// @prop --margin: Margin around the notification
+// @prop --padding: Padding inside the notification
+// @prop --max-width: Maximum width of the notification
+// @prop --z-index: Z-index of the notification
 // -----------------------------
 .@{notification-prefix-cls} {
-  position: static;
+  --text-color: @notification-text-color;
+  --right-text-color: @notification-right-text-color;
+  --background-color: @notification-background-color;
+  --border-radius: @notification-border-radius;
+  --icon-size: @notification-icon-size;
+  --font-size: @notification-font-size;
+  --line-height: @notification-line-height;
+  --margin: @notification-margin;
+  --padding: @notification-padding;
+  --max-width: @notification-max-width;
+  --z-index: @notification-z-index;
+
+  box-sizing: border-box;
+  position: fixed;
+  top: var(--margin);
+  left: var(--margin);
+  width: calc(100% - var(--margin) * 2);
+  max-width: var(--max-width);
+  z-index: var(--z-index);
+  margin: 0;
+  font-size: var(--font-size);
+  border: none;
+  border-radius: var(--border-radius);
+  background: var(--background-color);
+  color: var(--text-color);
+  transition-duration: 0.3s;
+
+  &__content {
+    display: flex;
+    align-items: center;
+    gap: var(--padding);
+    padding: var(--padding);
+  }
+
+  &__hd {
+    flex: none;
+  }
+
+  &__icon {
+    width: var(--icon-size);
+    height: var(--icon-size);
+    font-size: 0;
+    line-height: var(--icon-size);
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__bd {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  &__title {
+    font-size: var(--font-size);
+    font-weight: bold;
+    letter-spacing: 0.02em;
+    line-height: var(--line-height);
+  }
+
+  &__title-right-text {
+    margin-left: auto;
+    color: var(--right-text-color);
+    font-size: var(--font-size);
+    line-height: var(--line-height);
+  }
+
+  &__close-button {
+    font-size: var(--font-size);
+    height: 20px;
+    transition-duration: 0.3s;
+    width: 20px;
+    margin-left: auto;
+    position: relative;
+  }
+
+  &__title-right-text + &__close-button {
+    margin-left: @margin-component-xl;
+  }
+
+  &__subtitle {
+    font-size: var(--font-size);
+    font-weight: 600;
+    line-height: var(--line-height);
+  }
+
+  &__text {
+    font-size: var(--font-size);
+    font-weight: 400;
+    line-height: var(--line-height);
+    word-break: break-word;
+  }
+
+  &__ft {
+    display: none;
+  }
 }

@@ -1,7 +1,100 @@
 @import './variables.less';
 
 // Image styles
+// @prop --text-color: Text color for the image mask
+// @prop --rounded-border-radius: Border radius for rounded images
+// @prop --thumbnail-background-color: Background color for the thumbnail image
+// @prop --thumbnail-margin: Margin for the thumbnail image
 // -----------------------------
 .@{image-prefix-cls} {
-  position: static;
+  --text-color: @image-text-color;
+  --rounded-border-radius: @image-rounded-border-radius;
+  --thumbnail-background-color: @image-thumbnail-background-color;
+  --thumbnail-margin: @image-thumbnail-margin;
+
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  box-sizing: border-box;
+
+  &--rounded {
+    border-radius: var(--rounded-border-radius);
+  }
+
+  &--circle {
+    border-radius: 50%;
+  }
+
+  &--thumbnail {
+    background-color: var(--thumbnail-background-color);
+    border-radius: var(--thumbnail-margin);
+
+    &::after {
+      .hairline(@border-color-split);
+
+      border-width: @border-width-base;
+      border-radius: calc(var(--thumbnail-margin) * 2);
+    }
+  }
+
+  &--thumbnail &__inner,
+  &--thumbnail &__mask {
+    top: var(--thumbnail-margin);
+    right: var(--thumbnail-margin);
+    bottom: var(--thumbnail-margin);
+    left: var(--thumbnail-margin);
+    width: calc(~'100% - 2 * var(--thumbnail-margin)') !important;
+    height: calc(~'100% - 2 * var(--thumbnail-margin)') !important;
+  }
+
+  &--widthFix &__inner {
+    position: relative;
+  }
+
+  &__inner image,
+  &__mask image,
+  &__thumb {
+    display: inline-block;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+  }
+
+  &__inner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+
+  &--loaded &__inner {
+    opacity: 1;
+  }
+
+  &__mask {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 20;
+
+    &--text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &__text {
+    color: var(--text-color);
+    text-align: center;
+    padding: 10px;
+  }
 }

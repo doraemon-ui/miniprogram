@@ -2,11 +2,67 @@
 
 exports[`Gallery mount correctly 1`] = `
 <dora-gallery>
-  <wx-view
-    class="dora-class dora-gallery"
-    hoverClass="dora-hover-class dora-gallery--hover"
-    style=""
-    bind:tap="onClick"
-  />
+  <dora-animation-group
+    doraClass="dora-gallery"
+  >
+    <wx-view
+      class="dora-class dora-class-a dora-class-b dora-class-c  dora-animate--slideInRight-enter"
+      style=""
+      bind:tap="onClick"
+      catch:touchmove=""
+      bind:transitionend="onTransitionEnd"
+    >
+      <wx-swiper
+        autoplay="{{false}}"
+        circular="{{false}}"
+        class="dora-gallery__swiper"
+        current="{{0}}"
+        duration="{{500}}"
+        indicatorActiveColor="#000000"
+        indicatorColor="rgba(0, 0, 0, .3)"
+        indicatorDots="{{false}}"
+        interval="{{5000}}"
+        vertical="{{false}}"
+        bind:change="onChange"
+      >
+        <wx-swiper-item
+          class="dora-gallery__item"
+        >
+          <wx-image
+            class="dora-gallery__img"
+            data-index="{{0}}"
+            data-touch="{{
+              {
+                "offset": [
+                  0.5,
+                  3,
+                ],
+                "scale": 1,
+              }
+            }}"
+            mode="aspectFit"
+            src="https://cdn.skyvow.cn/logo.png"
+            style="transform: scale(1); transition: none"
+            bind:tap="onTap"
+            bind:touchend="onTouchEnd"
+            bind:touchmove="onTouchMove"
+            bind:touchstart="onTouchStart"
+          />
+        </wx-swiper-item>
+      </wx-swiper>
+      <wx-view
+        class="dora-gallery__opr"
+        bind:tap="onDelete"
+      >
+        <wx-view
+          class="dora-gallery__del"
+        >
+          <wx-view
+            class="dora-gallery__icon"
+          />
+        </wx-view>
+      </wx-view>
+    </wx-view>
+  </dora-animation-group>
 </dora-gallery>
 `;

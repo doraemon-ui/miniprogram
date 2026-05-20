@@ -3,3 +3,10 @@
 // Sticky themes
 // -----------------------------
 @sticky-prefix-cls: ~'@{dora-prefix}-sticky';
+@sticky-item-prefix-cls: ~'@{dora-prefix}-sticky-item';
+@sticky-z-index: var(--dora-sticky-z-index, 1);
+@sticky-item-z-index: calc(~'@{sticky-z-index} + 1');
+@sticky-title-background-color: var(--dora-sticky-title-background-color, @background-color-base);
+@sticky-title-height: var(--dora-sticky-title-height, 44px);
+@sticky-title-padding: var(--dora-sticky-title-padding, 0 @spacing-xl);
+@sticky-font-size: var(--dora-sticky-font-size, @font-size-base);

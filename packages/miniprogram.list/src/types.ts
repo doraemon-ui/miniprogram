@@ -202,6 +202,13 @@ export interface ListItemExpose {
    * @return {void}
    */
   updateIsLast(isLast: boolean): void
+
+  /**
+   * 获取元素的大小及其相对于视口的位置
+   *
+   * @return {Promise<MiniprogramDOMRect>}
+   */
+  getBoundingClientRect(): Promise<MiniprogramDOMRect>
 }
 
 /**

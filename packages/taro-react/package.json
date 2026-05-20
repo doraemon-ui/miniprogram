@@ -63,7 +63,6 @@
     "@doraemon-ui/miniprogram.e-sign": "workspace:*",
     "@doraemon-ui/miniprogram.ellipsis": "workspace:*",
     "@doraemon-ui/miniprogram.fab-button": "workspace:*",
-    "@doraemon-ui/miniprogram.field": "workspace:*",
     "@doraemon-ui/miniprogram.filterbar": "workspace:*",
     "@doraemon-ui/miniprogram.floating-panel": "workspace:*",
     "@doraemon-ui/miniprogram.footer": "workspace:*",

@@ -1,4 +1,5 @@
 export { Component } from './decorators/Component'
+export { createDecorator } from './decorators/Component'
 export { Emit } from './decorators/Emit'
 export { Event } from './decorators/Event'
 export { Prop } from './decorators/Prop'
@@ -16,7 +17,7 @@ export {
 
 export { defineComponentHOC, toNative } from './miniprogram/defineComponentHOC'
 
-export type { DoraemonDecorator } from './decorators/Component'
+export type { DecoratedClass, DoraemonDecorator } from './decorators/Component'
 
 export type { IAnyObject, Target, BaseEvent, CustomEvent, TouchEvent } from './decorators/Event'
 
@@ -32,5 +33,9 @@ export type {
   RelationComponent,
   ComponentOptions,
   PropOptions,
+  WatchHandler,
   WatchOptions,
+  WatchOptionsWithHandler,
 } from './types/options'
+
+export type { CSSStylePropertiesWithVars } from './util/styleToCssString'

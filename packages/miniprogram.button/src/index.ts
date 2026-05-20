@@ -69,6 +69,18 @@ const { classNames } = Doraemon.util
       type: Boolean,
       default: true,
     },
+    needShowEntrance: {
+      type: Boolean,
+      default: true,
+    },
+    entrancePath: {
+      type: String,
+      default: '',
+    },
+    createliveactivity: {
+      type: Boolean,
+      default: false,
+    },
     appParameter: {
       type: String,
       default: '',
@@ -294,6 +306,33 @@ class Button extends Doraemon {
    * @memberof Button
    */
   phoneNumberNoQuotaToast!: boolean
+
+  /**
+   * 转发的文本消息是否要带小程序入口
+   *
+   * @type {boolean}
+   * @default true
+   * @memberof Button
+   */
+  needShowEntrance!: boolean
+
+  /**
+   * 从消息小程序入口打开小程序的路径，默认为聊天工具启动路径
+   *
+   * @type {string}
+   * @default ''
+   * @memberof Button
+   */
+  entrancePath!: string
+
+  /**
+   * 新的一次性订阅消息下发机制回调，open-type=liveActivity时有效
+   *
+   * @type {boolean}
+   * @default false
+   * @memberof Button
+   */
+  createliveactivity!: boolean
 
   /**
    * 打开 APP 时向 APP 传递的参数，open-type="launchApp" 时有效

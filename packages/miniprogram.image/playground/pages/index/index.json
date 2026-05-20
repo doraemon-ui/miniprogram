@@ -3,6 +3,8 @@
   "usingComponents": {
     "demo-page": "@doraemon-ui/miniprogram.demo-page",
     "demo-block": "@doraemon-ui/miniprogram.demo-block",
+    "dora-row": "@doraemon-ui/miniprogram.layout/index",
+    "dora-col": "@doraemon-ui/miniprogram.layout/col",
     "dora-image": "@doraemon-ui/miniprogram.image/index"
   }
 }

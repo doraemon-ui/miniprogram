@@ -1,11 +1,10 @@
-<demo-page
-  darkmode="auto"
-  title="miniprogram.notification"
-  desc="miniprogram.notification"
-  clickable
-  spacing
->
-  <demo-block title="Basic">
-    <dora-notification>miniprogram.notification</dora-notification>
+<dora-notification id="dora-notification" />
+
+<demo-page darkmode="auto" title="Notification" desc="通知" clickable spacing>
+  <demo-block title="来源示例">
+    <dora-button expand="block" fill="outline" bind:tap="showNotification">Show Notification</dora-button>
+    <dora-button expand="block" fill="outline" bind:tap="closeNotification">Close Notification</dora-button>
+    <dora-button expand="block" fill="outline" bind:tap="showNotificationReturn">Use return value to close</dora-button>
+    <dora-button expand="block" fill="outline" bind:tap="showNotificationPromise">Use promise to know when closed</dora-button>
   </demo-block>
 </demo-page>

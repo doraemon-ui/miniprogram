@@ -1,7 +1,11 @@
 @import './variables.less';
 
 // Sticky styles
+// @prop --z-index: Z-index of the sticky
 // -----------------------------
 .@{sticky-prefix-cls} {
-  position: static;
+  --z-index: @sticky-z-index;
+
+  position: relative;
+  z-index: var(--z-index);
 }

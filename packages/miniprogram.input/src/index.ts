@@ -1,4 +1,5 @@
 import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
 import type { InputType, PlaceholderStyle } from './types'
 
 const { classNames, styleToCssString } = Doraemon.util
@@ -11,10 +12,17 @@ const bound = (value: number, min?: number, max?: number) => {
 }
 
 @Component({
+  components: {
+    Field: () => ({
+      module: '../miniprogram.form/field',
+      type: 'ancestor',
+    }),
+  },
   props: {
-
-    prefixCls: { type: String, default: 'dora-input' },
-
+    prefixCls: {
+      type: String,
+      default: 'dora-input',
+    },
   },
 })
 class Input extends Doraemon {
@@ -25,181 +33,217 @@ class Input extends Doraemon {
     default: 'text',
   })
   type: InputType
+
   @Prop({
     type: Boolean,
     default: false,
   })
   password: boolean
+
   @Prop({
     type: String,
     default: '',
   })
   placeholder: string
+
   @Prop({
     type: null,
     default: null,
   })
   placeholderStyle: PlaceholderStyle
+
   @Prop({
     type: String,
     default: 'input-placeholder',
   })
   placeholderClass: string
+
   @Prop({
     type: Number,
     default: 140,
   })
   maxlength: number
+
   @Prop({
     type: Number,
     default: 11,
   })
   cursorSpacing: number
+
   @Prop({
     type: Boolean,
     default: false,
   })
   focus: boolean
+
   @Prop({
     type: String,
     default: 'done',
   })
   confirmType: string
+
   @Prop({
     type: Boolean,
     default: false,
   })
   alwaysEmbed: boolean
+
   @Prop({
     type: Boolean,
     default: false,
   })
   confirmHold: boolean
+
   @Prop({
     type: Number,
     default: -1,
   })
   cursor: number
+
   @Prop({
     type: Number,
     default: -1,
   })
   selectionStart: number
+
   @Prop({
     type: Number,
     default: -1,
   })
   selectionEnd: number
+
   @Prop({
     type: Boolean,
     default: true,
   })
   adjustPosition: boolean
+
   @Prop({
     type: Boolean,
     default: false,
   })
   holdKeyboard: boolean
+
   @Prop({
     type: String,
     default: null,
   })
   safePasswordCertPath: string | null
+
   @Prop({
     type: Number,
     default: null,
   })
   safePasswordLength: number | null
+
   @Prop({
     type: Number,
     default: null,
   })
   safePasswordTimeStamp: number | null
+
   @Prop({
     type: String,
     default: null,
   })
   safePasswordNonce: string | null
+
   @Prop({
     type: String,
     default: null,
   })
   safePasswordSalt: string | null
+
   @Prop({
     type: String,
     default: null,
   })
   safePasswordCustomHash: string | null
+
   @Prop({
     type: String,
     default: '',
   })
   label: string
+
   @Prop({
     type: String,
     default: '',
   })
   extra: string
+
   @Prop({
     type: String,
     default: '',
   })
   defaultValue: string
+
   @Prop({
     type: String,
     default: '',
   })
   value: string
+
   @Prop({
     type: Boolean,
     default: false,
   })
   controlled: boolean
+
   @Prop({
     type: Boolean,
     default: false,
   })
   disabled: boolean
+
   @Prop({
     type: Boolean,
     default: false,
   })
   readOnly: boolean
+
   @Prop({
     type: Boolean,
     default: false,
   })
   clear: boolean
+
   @Prop({
     type: Boolean,
     default: false,
   })
   error: boolean
+
   @Prop({
     type: Boolean,
     default: false,
   })
   labelWrap: boolean
+
   @Prop({
     type: Boolean,
     default: false,
   })
   requiredMark: boolean
+
   @Prop({
     type: Boolean,
     default: true,
   })
   onlyShowClearWhenFocus: boolean
+
   @Prop({
     type: Number,
     default: null,
   })
   min: number | null
+
   @Prop({
     type: Number,
     default: null,
   })
   max: number | null
+
   @Prop({
     type: Boolean,
     default: false,
@@ -211,7 +255,9 @@ class Input extends Doraemon {
   shouldShowClear: boolean = false
   internalPlaceholderStyle: string = ''
   internalVisible: boolean = false
-  timeout: ReturnType<typeof setTimeout> | null = null
+  hasFieldDecorator: boolean = false
+
+  _timeout: ReturnType<typeof setTimeout> | null = null
 
   get classes() {
     const { prefixCls, disabled, readOnly, inputFocus, error, labelWrap, requiredMark, internalVisible } = this
@@ -300,12 +346,13 @@ class Input extends Doraemon {
   }
 
   updated(inputValue: string) {
+    if (this.hasFieldDecorator) return
     if (this.inputValue !== inputValue) {
       this.inputValue = inputValue
     }
   }
 
-  onChange(e: WechatMiniprogram.CustomEvent<{ value: string }>) {
+  onChange(e: CustomEvent<{ value: string }>) {
     const value = e.detail.value
     if (!this.controlled) {
       this.updated(value)
@@ -313,27 +360,27 @@ class Input extends Doraemon {
     this.$emit('change', e.detail)
   }
 
-  onFocus(e: WechatMiniprogram.CustomEvent<{ value: string }>) {
+  onFocus(e: CustomEvent<{ value: string }>) {
     this.clearTimer()
     this.inputFocus = true
     this.$emit('focus', e.detail)
   }
 
-  onBlur(e: WechatMiniprogram.CustomEvent<{ value: string }>) {
+  onBlur(e: CustomEvent<{ value: string }>) {
     this.setTimer()
     this.checkValue()
     this.$emit('blur', e.detail)
   }
 
-  onConfirm(e: WechatMiniprogram.CustomEvent<Record<string, unknown>>) {
+  onConfirm(e: CustomEvent<Record<string, unknown>>) {
     this.$emit('confirm', e.detail)
   }
 
-  onKeyboardHeightChange(e: WechatMiniprogram.CustomEvent<Record<string, unknown>>) {
+  onKeyboardHeightChange(e: CustomEvent<Record<string, unknown>>) {
     this.$emit('keyboardheightchange', e.detail)
   }
 
-  onNicknameReview(e: WechatMiniprogram.CustomEvent<Record<string, unknown>>) {
+  onNicknameReview(e: CustomEvent<Record<string, unknown>>) {
     this.$emit('nicknamereview', e.detail)
   }
 
@@ -352,15 +399,15 @@ class Input extends Doraemon {
 
   setTimer() {
     this.clearTimer()
-    this.timeout = setTimeout(() => {
+    this._timeout = setTimeout(() => {
       this.inputFocus = false
     }, 200)
   }
 
   clearTimer() {
-    if (this.timeout) {
-      clearTimeout(this.timeout)
-      this.timeout = null
+    if (this._timeout) {
+      clearTimeout(this._timeout)
+      this._timeout = null
     }
   }
 

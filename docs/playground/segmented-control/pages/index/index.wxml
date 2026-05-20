@@ -1,18 +1,18 @@
-<demo-page title="SegmentedControl" desc="分段器">
+<demo-page title="SegmentedControl" desc="分段器" clickable>
   <demo-block title="Default">
     <dora-segmented-control values="{{ ['Segment1', 'Segment2'] }}" />
   </demo-block>
 
-  <demo-block title="Theme">
-    <dora-segmented-control theme="light" values="{{ ['Segment1', 'Segment2'] }}" />
-    <dora-segmented-control theme="stable" values="{{ ['Segment1', 'Segment2'] }}" />
-    <dora-segmented-control theme="positive" values="{{ ['Segment1', 'Segment2'] }}" />
-    <dora-segmented-control theme="calm" values="{{ ['Segment1', 'Segment2'] }}" />
-    <dora-segmented-control theme="balanced" values="{{ ['Segment1', 'Segment2'] }}" />
-    <dora-segmented-control theme="energized" values="{{ ['Segment1', 'Segment2'] }}" />
-    <dora-segmented-control theme="assertive" values="{{ ['Segment1', 'Segment2'] }}" />
-    <dora-segmented-control theme="royal" values="{{ ['Segment1', 'Segment2'] }}" />
-    <dora-segmented-control theme="dark" values="{{ ['Segment1', 'Segment2'] }}" />
+  <demo-block title="Color">
+    <dora-segmented-control color="light" values="{{ ['Segment1', 'Segment2'] }}" />
+    <dora-segmented-control color="stable" values="{{ ['Segment1', 'Segment2'] }}" />
+    <dora-segmented-control color="positive" values="{{ ['Segment1', 'Segment2'] }}" />
+    <dora-segmented-control color="calm" values="{{ ['Segment1', 'Segment2'] }}" />
+    <dora-segmented-control color="balanced" values="{{ ['Segment1', 'Segment2'] }}" />
+    <dora-segmented-control color="energized" values="{{ ['Segment1', 'Segment2'] }}" />
+    <dora-segmented-control color="assertive" values="{{ ['Segment1', 'Segment2'] }}" />
+    <dora-segmented-control color="royal" values="{{ ['Segment1', 'Segment2'] }}" />
+    <dora-segmented-control color="dark" values="{{ ['Segment1', 'Segment2'] }}" />
   </demo-block>
 
   <demo-block title="Disabled">

@@ -1,8 +1,36 @@
-<view
-  class="dora-class {{ classes.wrap }}"
-  hover-class="dora-hover-class {{ !disabled ? classes.hover : 'none' }}"
-  bindtap="onClick"
-  style="{{ containerStyle }}"
->
-  <slot></slot>
+<view class="dora-class {{ classNames.root }} {{ classes.wrap }}" style="{{ rootStyle }} {{ internalRootStyle }}" bindtap="onTap" wx:if="{{ status !== 'unmounted' }}">
+  <view class="{{ classes.inner }}">
+    <image
+      class="{{ classNames.image }} {{ classes.thumb }}"
+      src="{{ src }}"
+      mode="{{ mode }}"
+      webp="{{ webp }}"
+      lazy-load="{{ lazyLoad }}"
+      show-menu-by-longpress="{{ showMenuByLongpress }}"
+      force-https="{{ forceHttps }}"
+      style="{{ imageStyle }}"
+      binderror="onError"
+      bindload="onLoad"
+      wx:if="{{ src }}"
+    />
+    <slot></slot>
+  </view>
+  <view class="{{ classes.mask }}" wx:if="{{ status === 'empty' }}">
+    <view class="{{ classes.text }}" wx:if="{{ empty }}">{{ empty }}</view>
+    <block wx:else>
+      <slot name="empty"></slot>
+    </block>
+  </view>
+  <view class="{{ classes.mask }}" wx:elif="{{ status === 'loading' }}">
+    <view class="{{ classes.text }}" wx:if="{{ loading }}">{{ loading }}</view>
+    <block wx:else>
+      <slot name="loading"></slot>
+    </block>
+  </view>
+  <view class="{{ classes.mask }}" wx:elif="{{ status === 'error' }}">
+    <view class="{{ classes.text }}" wx:if="{{ error }}">{{ error }}</view>
+    <block wx:else>
+      <slot name="error"></slot>
+    </block>
+  </view>
 </view>

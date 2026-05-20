@@ -1,46 +1,46 @@
 import type { ComponentPublicInstance } from '@doraemon-ui/miniprogram.core-js'
+import type { MiniprogramDOMRect } from '@doraemon-ui/miniprogram.shared'
 
 import type { Popover } from './index'
 
-/**
- * PopoverProps接口定义
- */
+export type PopoverPlacement =
+  | 'topLeft'
+  | 'top'
+  | 'topRight'
+  | 'rightTop'
+  | 'right'
+  | 'rightBottom'
+  | 'bottomRight'
+  | 'bottom'
+  | 'bottomLeft'
+  | 'leftBottom'
+  | 'left'
+  | 'leftTop'
+
+export type PopoverColor = 'light' | 'dark'
+export type PopoverTrigger = 'click'
+
 export interface PopoverProps {
-  /**
-   * 自定义类名前缀
-   *
-   * @type {string}
-   */
   prefixCls?: string
-
-  /**
-   * 是否禁用
-   *
-   * @type {boolean}
-   */
-  disabled?: boolean
-
-  /**
-   * 点击态类名
-   *
-   * @type {string}
-   */
-  hoverClass?: string
-
-  /**
-   * 外层样式
-   *
-   * @type {Partial<CSSStyleDeclaration>}
-   */
-  wrapStyle?: Partial<CSSStyleDeclaration>
+  classNames?: string
+  color?: PopoverColor
+  title?: string
+  content?: string
+  placement?: PopoverPlacement
+  trigger?: PopoverTrigger
+  bodyStyle?: string | Partial<CSSStyleDeclaration>
+  defaultVisible?: boolean
+  visible?: boolean
+  controlled?: boolean
+  mask?: boolean
+  maskClosable?: boolean
+  useSlot?: boolean
+  slotRect?: MiniprogramDOMRect | null
+  relativeRect?: MiniprogramDOMRect | null
 }
 
-/**
- * PopoverExpose接口定义
- */
-export interface PopoverExpose {}
+export interface PopoverExpose {
+  onChange?: () => void
+}
 
-/**
- * PopoverInstance类型定义
- */
 export type PopoverInstance = ComponentPublicInstance<Popover, PopoverProps, PopoverExpose>

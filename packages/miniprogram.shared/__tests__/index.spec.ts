@@ -20,7 +20,17 @@ import {
   getSwipeDirection,
   useNativeRoute,
   usePopupStateHOC,
+  useMergeSemantic,
+  mergeClassNames,
+  mergeStyles,
+  fillObjectBySchema,
+  resolveStyleOrClass,
+  useSemanticStylesString,
   buildURL,
+  customPromise,
+  getDefaultContext,
+  getFontSize,
+  useControlledState,
   isDate,
   isDef,
   isFalse,
@@ -34,17 +44,139 @@ import {
   pxToNumber,
   sleep,
 } from '../src'
+import { Doraemon } from '@doraemon-ui/miniprogram.core-js'
+import type { ComponentOptions, TouchEvent } from '@doraemon-ui/miniprogram.core-js'
+import type { TouchPoint } from '../src'
 
-const fakeTouchEvent = (pageX: number, pageY: number) => ({
-  touches: [{ pageX, pageY }],
-  changedTouches: [],
-})
+const fakeTouchEvent = (pageX: number, pageY: number) =>
+  ({
+    touches: [{ pageX, pageY }],
+    changedTouches: [],
+  }) as unknown as TouchEvent
 
-const fakeTouchPoint = (pageX: number, pageY: number) => getTouchPoints(fakeTouchEvent(pageX, pageY) as any)
+const fakeTouchPoint = (pageX: number, pageY: number): TouchPoint => getTouchPoints(fakeTouchEvent(pageX, pageY))
+const globalScope = globalThis as typeof globalThis & {
+  wx?: Record<string, any>
+  getCurrentPages?: () => any[]
+}
 
 describe('Shared', () => {
-  describe('Core', () => {
-    test('call dom func', () => {
+  describe('Decorators', () => {
+    test('call ControlledState', () => {
+      const { ControlledState, setControlledState } = useControlledState('visible')
+
+      class Demo extends Doraemon {
+        controlled = false
+        visible = true
+        defaultVisible = false
+
+        @ControlledState()
+        mergedVisible: boolean = true
+      }
+
+      const decorators = (Reflect.get(Demo, '__decorators__') || []) as Array<(options: ComponentOptions<Doraemon>) => void>
+      const options: ComponentOptions<Doraemon> = {}
+
+      decorators.forEach((fn) => fn(options))
+
+      const instance = new Demo()
+      Object.assign(instance, options.methods || {})
+      const initialData = options.mixins?.reduce<Record<string, unknown>>((acc, mixin) => {
+        if (typeof mixin === 'object' && mixin !== null && 'data' in mixin && typeof mixin.data === 'function') {
+          return { ...acc, ...mixin.data.call(instance) }
+        }
+        return acc
+      }, {})
+      Object.assign(instance, initialData)
+      expect(instance.mergedVisible).toBe(false)
+
+      instance.controlled = true
+      const firstHandler = options.watch?.visible?.[0]?.handler
+      if (typeof firstHandler === 'string') {
+        const handler = Reflect.get(instance, firstHandler)
+        if (typeof handler === 'function') {
+          handler.call(instance, true)
+        }
+      }
+      expect(instance.mergedVisible).toBe(true)
+
+      instance.controlled = false
+      instance.mergedVisible = true
+      instance.visible = false
+      if (typeof firstHandler === 'string') {
+        const handler = Reflect.get(instance, firstHandler)
+        if (typeof handler === 'function') {
+          handler.call(instance, false)
+        }
+      }
+      expect(instance.mergedVisible).toBe(true)
+
+      instance.controlled = true
+      setControlledState(instance, false, false)
+      expect(instance.mergedVisible).toBe(true)
+
+      instance.visible = false
+      if (typeof firstHandler === 'string') {
+        const handler = Reflect.get(instance, firstHandler)
+        if (typeof handler === 'function') {
+          handler.call(instance, false)
+        }
+      }
+      expect(instance.mergedVisible).toBe(false)
+
+      instance.controlled = false
+      expect(instance.mergedVisible).toBe(false)
+    })
+    test('call ControlledState with shorthand and options', () => {
+      const setupInstance = (Demo: new () => Doraemon & { mergedVisible: boolean }) => {
+        const decorators = (Reflect.get(Demo, '__decorators__') || []) as Array<(options: ComponentOptions<Doraemon>) => void>
+        const options: ComponentOptions<Doraemon> = {}
+
+        decorators.forEach((fn) => fn(options))
+
+        const instance = new Demo()
+        Object.assign(instance, options.methods || {})
+        const initialData = options.mixins?.reduce<Record<string, unknown>>((acc, mixin) => {
+          if (typeof mixin === 'object' && mixin !== null && 'data' in mixin && typeof mixin.data === 'function') {
+            return { ...acc, ...mixin.data.call(instance) }
+          }
+          return acc
+        }, {})
+        Object.assign(instance, initialData)
+
+        return instance
+      }
+
+      const useVisibleState = useControlledState('visible')
+
+      class DemoWithString extends Doraemon {
+        controlled = false
+        visible = true
+        defaultVisible = false
+
+        @useVisibleState.ControlledState('visible')
+        mergedVisible: boolean = true
+      }
+
+      class DemoWithOptions extends Doraemon {
+        controlled = false
+        visible = true
+        defaultVisible = false
+
+        @useVisibleState.ControlledState({
+          value: 'visible',
+          defaultValue: 'defaultVisible',
+          controlled: 'controlled',
+        })
+        mergedVisible: boolean = true
+      }
+
+      expect(setupInstance(DemoWithString).mergedVisible).toBe(false)
+      expect(setupInstance(DemoWithOptions).mergedVisible).toBe(false)
+    })
+  })
+  describe('Dom', () => {
+    test('call dom func', async () => {
       expect(canUseMP()).toBe(false)
       expect(findComponentNode('#dora')).toBeNull()
       expect(getCurrentPage()).toBeNull()
@@ -64,25 +196,297 @@ describe('Shared', () => {
       expect(useScrollOffset()).toBeDefined()
       expect(useComputedStyle('#dora')).toBeDefined()
 
-      expect(getTouchPoints(fakeTouchEvent(10, 20) as any)).toEqual({ x: 10, y: 20 })
-      expect(getPointsNumber(fakeTouchEvent(10, 20) as any)).toBe(1)
-      expect(isEqualPoints(fakeTouchPoint(10, 20) as any, fakeTouchPoint(10, 20) as any)).toBeTruthy()
-      expect(isNearbyPoints(fakeTouchPoint(10, 20) as any, fakeTouchPoint(30, 40) as any)).toBeTruthy()
-      expect(getPointsDistance(fakeTouchPoint(10, 20) as any, fakeTouchPoint(10, 20) as any)).toBe(0)
+      expect(getTouchPoints(fakeTouchEvent(10, 20))).toEqual({ x: 10, y: 20 })
+      expect(
+        getTouchPoints({
+          touches: [],
+          changedTouches: [{ pageX: 30, pageY: 40 }],
+        } as unknown as TouchEvent),
+      ).toEqual({ x: 30, y: 40 })
+      expect(getPointsNumber(fakeTouchEvent(10, 20))).toBe(1)
+      expect(
+        getPointsNumber({
+          touches: [],
+          changedTouches: [{ pageX: 30, pageY: 40 }],
+        } as unknown as TouchEvent),
+      ).toBe(1)
+      expect(isEqualPoints(fakeTouchPoint(10, 20), fakeTouchPoint(10, 20))).toBeTruthy()
+      expect(isNearbyPoints(fakeTouchPoint(10, 20), fakeTouchPoint(30, 40))).toBeTruthy()
+      expect(isNearbyPoints(fakeTouchPoint(10, 20), fakeTouchPoint(40, 50))).toBeFalsy()
+      expect(getPointsDistance(fakeTouchPoint(10, 20), fakeTouchPoint(10, 20))).toBe(0)
+      expect(getPointsDistance({ x: 0, y: 0 }, { x: 3, y: 4 })).toBe(5)
       expect(getSwipeDirection(20, 10, 0, 0)).toBe('Left')
       expect(getSwipeDirection(10, 20, 0, 0)).toBe('Right')
       expect(getSwipeDirection(0, 0, 20, 10)).toBe('Up')
       expect(getSwipeDirection(0, 0, 10, 20)).toBe('Down')
 
       expect(useNativeRoute({ url: '/' }, { is: 'test' })).toBeDefined()
-      expect(usePopupStateHOC()({} as any)).toBeDefined()
+      await expect(useNativeRoute({}, { is: 'test' })).rejects.toEqual(expect.stringContaining('Expected an Non-empty String'))
+      await expect(useNativeRoute({ url: '/', openType: 'push' as never }, { is: 'test' })).rejects.toEqual(
+        expect.stringContaining('expected'),
+      )
+      expect(
+        usePopupStateHOC()({
+          $nextTick: (callback?: () => void) => callback?.(),
+        } as Parameters<ReturnType<typeof usePopupStateHOC>>[0]),
+      ).toBeDefined()
+    })
+    test('call dom helpers in miniprogram env', () => {
+      const selectComponent = jest.fn(() => ({ id: 'component' }))
+      const query = {
+        select: jest.fn((selector: string) => selector),
+        selectAll: jest.fn((selector: string) => [selector]),
+      }
+      const navigateTo = jest.fn(({ success }) => success?.('navigateTo'))
+      const navigateBack = jest.fn(({ success }) => success?.('navigateBack'))
+      const createSelectorQuery = jest.fn(() => ({
+        in: jest.fn(() => query),
+        ...query,
+      }))
+      const page = { selectComponent }
+      const previousWx = globalScope.wx
+      const previousGetCurrentPages = globalScope.getCurrentPages
+
+      try {
+        globalScope.wx = {
+          env: {},
+          createSelectorQuery,
+          navigateTo,
+          navigateBack,
+        }
+        globalScope.getCurrentPages = jest.fn(() => [page])
+        jest.resetModules()
+
+        let isolatedDom!: typeof import('../src/core/dom')
+        jest.isolateModules(() => {
+          isolatedDom = require('../src/core/dom')
+        })
+
+        expect(isolatedDom.canUseMP()).toBe(true)
+        expect(isolatedDom.getCurrentPage()).toBe(page)
+        expect(isolatedDom.findComponentNode('#dora')).toEqual({ id: 'component' })
+        expect(isolatedDom.useQuery()).toMatchObject(query)
+        expect(isolatedDom.useSelector('#dora')).toBe('#dora')
+        expect(isolatedDom.useSelectorAll('.dora')).toEqual(['.dora'])
+
+        let isolatedRoute!: typeof import('../src/core/dom/useNativeRoute')
+        jest.isolateModules(() => {
+          isolatedRoute = require('../src/core/dom/useNativeRoute')
+        })
+
+        return Promise.all([
+          expect(isolatedRoute.useNativeRoute({ url: '/detail', urlParams: { id: 1 } }, { is: 'test' })).resolves.toBe('navigateTo'),
+          expect(isolatedRoute.useNativeRoute({ url: '/detail', openType: 'navigateBack', delta: 2 }, { is: 'test' })).resolves.toBe(
+            'navigateBack',
+          ),
+        ])
+      } finally {
+        globalScope.wx = previousWx
+        globalScope.getCurrentPages = previousGetCurrentPages
+        jest.resetModules()
+      }
+    })
+    test('call popup state hoc', async () => {
+      const callback = jest.fn()
+      class Popup extends Doraemon {
+        visible = false
+        title = ''
+        onClick() {}
+      }
+      type PopupProps = {
+        visible?: boolean
+        title?: string
+        onClick?: () => void
+      }
+
+      const container = new Popup()
+      const popup = usePopupStateHOC<Popup, PopupProps>()(container)
+      const originOnClick = container.onClick
+
+      popup.render({ title: 'open', onClick: jest.fn() }, callback)
+      expect(container.visible).toBe(true)
+      expect(container.title).toBe('open')
+      expect(Object.prototype.hasOwnProperty.call(container, 'onClick')).toBe(false)
+      expect(container.onClick).toBe(originOnClick)
+      await sleep(0)
+      expect(callback).toHaveBeenCalledTimes(1)
+
+      popup.update({ visible: false, title: 'update' }, callback)
+      expect(container.visible).toBe(true)
+      expect(container.title).toBe('update')
+      await sleep(0)
+
+      popup.destroy(callback)
+      expect(container.visible).toBe(false)
+      await sleep(0)
+      expect(callback).toHaveBeenCalledTimes(3)
     })
   })
-  describe('Utils', () => {
+  describe('Hooks', () => {
+    test('call semantic merge helpers', () => {
+      const schema = {
+        header: {
+          _default: 'root',
+          icon: {},
+        },
+        body: {
+          _default: 'root',
+        },
+      }
+
+      expect(
+        mergeClassNames(schema, { header: 'base', footer: 'outer' }, { header: { icon: 'icon' } }, { header: 'extra', body: 'body' }),
+      ).toEqual({
+        header: {
+          root: 'base extra',
+        },
+        footer: 'outer',
+        body: {
+          root: 'body',
+        },
+      })
+
+      expect(
+        mergeStyles(
+          {
+            header: {
+              root: { color: 'red' },
+              icon: { fontSize: 12 },
+            },
+          },
+          {
+            header: {
+              icon: { lineHeight: 20 },
+            },
+            body: { color: 'blue' },
+          },
+        ),
+      ).toEqual({
+        header: {
+          root: { color: 'red' },
+          icon: { lineHeight: 20 },
+        },
+        body: { color: 'blue' },
+      })
+
+      expect(fillObjectBySchema({ footer: { color: 'red' } }, schema)).toEqual({
+        footer: { color: 'red' },
+        header: {},
+        body: {},
+      })
+
+      expect(
+        resolveStyleOrClass(({ props }: { props: { active: boolean } }) => (props.active ? 'active' : 'inactive'), {
+          props: { active: true },
+        }),
+      ).toBe('active')
+    })
+
+    test('call useMergeSemantic', () => {
+      const schema = {
+        header: {
+          _default: 'root',
+          icon: {},
+        },
+      }
+
+      expect(
+        useMergeSemantic([{ root: 'a' }, { root: 'b' }], [{ root: { color: 'red' } }, { root: { fontSize: 12 } }], { props: {} }),
+      ).toEqual([{ root: 'a b' }, { root: { color: 'red', fontSize: 12 } }])
+
+      expect(
+        useMergeSemantic(
+          [{ header: 'base' }, ({ props }: { props: { active: boolean } }) => (props.active ? { header: { icon: 'active' } } : undefined)],
+          [
+            { header: { root: { color: 'red' } } },
+            ({ props }: { props: { active: boolean } }) => (props.active ? { header: { icon: { fontSize: 12 } } } : undefined),
+          ],
+          { props: { active: true } },
+          schema,
+        ),
+      ).toEqual([
+        {
+          header: {
+            root: 'base',
+          },
+        },
+        {
+          header: {
+            root: { color: 'red' },
+            icon: { fontSize: 12 },
+          },
+        },
+      ])
+    })
+
+    test('call useSemanticStylesString', () => {
+      expect(useSemanticStylesString({ root: { color: 'red' } }, { root: { fontSize: 12 } })).toEqual({
+        root: 'color: red;  font-size: 12px;  ',
+      })
+
+      expect(
+        useSemanticStylesString({
+          header: {
+            root: { color: 'red' },
+            icon: { fontSize: 12 },
+          },
+        }),
+      ).toEqual({
+        header: {
+          root: 'color: red;  ',
+          icon: 'font-size: 12px;  ',
+        },
+      })
+    })
+  })
+  describe('Util', () => {
     test('call buildURL', () => {
       expect(buildURL('/')).toBe('/')
       expect(buildURL('/', { name: 123 })).toBe('/?name=123')
       expect(buildURL('/?age=45', { name: 123 })).toBe('/?age=45&name=123')
+      expect(
+        buildURL('/#hash', {
+          ids: [1, 2],
+          profile: { name: 'dora' },
+          createdAt: new Date('2024-01-02T03:04:05.000Z'),
+          skip: null,
+        }),
+      ).toBe('/?ids[]=1&ids[]=2&profile=%7B%22name%22:%22dora%22%7D&createdAt=2024-01-02T03:04:05.000Z')
+    })
+    test('call customPromise', async () => {
+      const resolved = customPromise<string>()
+      expect(resolved.promiseState).toBe('pending')
+      resolved.resolve('done')
+      resolved.reject('ignored')
+      await expect(resolved.promise).resolves.toBe('done')
+      expect(resolved.promiseState).toBe('fulfilled')
+
+      const rejected = customPromise<string>()
+      rejected.reject('failed')
+      rejected.resolve('ignored')
+      await expect(rejected.promise).rejects.toBe('failed')
+      expect(rejected.promiseState).toBe('rejected')
+    })
+    test('call getDefaultContext', () => {
+      expect(
+        getDefaultContext(
+          {
+            text: 'hello',
+            count: { value: 2 },
+          },
+          ['text', 'count'],
+        ),
+      ).toEqual({
+        text: 'hello',
+        count: 2,
+      })
+      expect(getDefaultContext({ text: 'hello' }, undefined as never)).toEqual({})
+    })
+    test('call getFontSize', () => {
+      expect(getFontSize(16)).toBe('16px')
+      expect(getFontSize('16')).toBe('16px')
+      expect(getFontSize('1.5rem')).toBe('1.5rem')
+      expect(getFontSize('')).toBe('')
     })
     test('call isDate', () => {
       expect(isDate(undefined)).toBe(false)
@@ -137,11 +541,14 @@ describe('Shared', () => {
       expect(omit(obj, [])).toEqual({ a: 1, b: 2, c: 3 })
       expect(omit(obj, ['c'])).toEqual({ a: 1, b: 2 })
       expect(omit(obj, ['b', 'c'])).toEqual({ a: 1 })
+      expect(omit(obj, undefined as never)).toEqual({ a: 1, b: 2, c: 3 })
     })
     test('call pxToNumber', () => {
       expect(pxToNumber(undefined)).toBe(0)
       expect(pxToNumber(1)).toBe(1)
       expect(pxToNumber('1')).toBe(1)
+      expect(pxToNumber('1.25px')).toBe(1.25)
+      expect(pxToNumber('abc')).toBe(0)
     })
     test('call sleep', async () => {
       jest.setTimeout(3000)

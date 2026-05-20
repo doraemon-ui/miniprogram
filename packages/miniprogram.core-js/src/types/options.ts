@@ -1,5 +1,5 @@
 import type { Doraemon } from '../instance'
-import type { ThrottleOptions } from '../util/throttle'
+import type { DebounceOptions } from '../util/debounce'
 
 /**
  * ExtractComputedReturns类型定义
@@ -62,12 +62,12 @@ export type RelationComponent<D> = {
   ['module']?: string
   type?: 'ancestor' | 'parent' | 'child' | 'descendant'
   observer?: string | ((target: D) => void)
-  throttle?:
+  debounce?:
     | number
     | boolean
     | {
         wait?: number
-        options?: ThrottleOptions
+        options?: Partial<DebounceOptions>
       }
 }
 

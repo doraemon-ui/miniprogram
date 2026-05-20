@@ -1,5 +1,5 @@
 @import '../../@doraemon-ui/style/var.wxss';
 @import '../../@doraemon-ui/style/color.wxss';
-.dora-form {
-  position: static;
+.dora-form__footer {
+  padding: 16px 10px;
 }

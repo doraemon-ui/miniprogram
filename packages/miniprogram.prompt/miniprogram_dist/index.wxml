@@ -1,8 +1,50 @@
-<view
-  class="dora-class {{ classes.wrap }}"
-  hover-class="dora-hover-class {{ !disabled ? classes.hover : 'none' }}"
-  bindtap="onClick"
-  style="{{ containerStyle }}"
->
-  <slot></slot>
-</view>
+<dora-animation-group dora-class="{{ classes.wrap }}" in="{{ visible }}" classNames="{{ classNames }}" wrapStyle="{{ wrapStyle }}">
+  <view class="{{ classes.bd }}">
+    <image src="{{ icon }}" class="{{ classes.icon }}" wx:if="{{ icon }}" />
+    <view class="{{ classes.title }}" wx:if="{{ title }}">{{ title }}</view>
+    <view class="{{ classes.text }}" wx:if="{{ text }}">{{ text }}</view>
+    <view class="{{ classes.buttons }}" wx:if="{{ buttons && !!buttons.length }}">
+      <block wx:for="{{ buttons }}" wx:for-item="button" wx:key="index">
+        <daro-button
+          dora-class="{{ classes.button[index].wrap }}"
+          color="{{ button.color || 'light' }}"
+          fill="{{ button.fill || 'solid' }}"
+          expand="{{ button.expand || '' }}"
+          shape="{{ button.shape || '' }}"
+          size="{{ button.size || 'small' }}"
+          strong="{{ button.strong || false }}"
+          loading="{{ button.loading || false }}"
+          disabled="{{ button.disabled || false }}"
+          form-type="{{ button.formType || '' }}"
+          open-type="{{ button.openType || '' }}"
+          hover-class="{{ button.hoverClass || '' }}"
+          hover-stop-propagation="{{ button.hoverStopPropagation || false }}"
+          hover-start-time="{{ button.hoverStartTime || 20 }}"
+          hover-stay-time="{{ button.hoverStayTime || 70 }}"
+          lang="{{ button.lang || 'en' }}"
+          bind:getuserinfo="onGetUserInfo"
+          session-from="{{ button.sessionFrom || '' }}"
+          send-message-title="{{ button.sendMessageTitle || '' }}"
+          send-message-path="{{ button.sendMessagePath || '' }}"
+          send-message-img="{{ button.sendMessageImg || '' }}"
+          show-message-card="{{ button.showMessageCard || false }}"
+          phone-number-no-quota-toast="{{ button.phoneNumberNoQuotaToast || false }}"
+          bind:contact="onContact"
+          bind:getphonenumber="onGetPhoneNumber"
+          app-parameter="{{ button.appParameter || '' }}"
+          bind:launchapp="onLaunchApp"
+          bind:error="onError"
+          bind:opensetting="onOpenSetting"
+          bind:chooseavatar="onChooseAvatar"
+          bind:createliveactivity="onCreateLiveActivity"
+          bind:getrealtimephonenumber="onGetRealtimePhoneNumber"
+          bind:agreeprivacyauthorization="onAgreePrivacyAuthorization"
+          bind:click="onClick"
+          data-index="{{ index }}"
+        >
+          {{ button.text }}
+        </daro-button>
+      </block>
+    </view>
+  </view>
+</dora-animation-group>

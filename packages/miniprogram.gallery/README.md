@@ -2,17 +2,15 @@
 
 @doraemon-ui/miniprogram.gallery
 
-## 安装
+全屏图片预览画廊，支持 swiper 切换、说明文案、自定义操作图标，以及通过实例 `show()` / `hide()` 打开关闭。
 
-我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
+## 安装
 
 ```bash
 npm install --save @doraemon-ui/miniprogram.gallery
 # or
 yarn add @doraemon-ui/miniprogram.gallery
 ```
-
-如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
 
 ## 使用指南
 
@@ -44,15 +42,37 @@ yarn add @doraemon-ui/miniprogram.gallery
 
 ### Gallery props
 
-| 参数      | 类型     | 描述           | 默认值       |
-| --------- | -------- | -------------- | ------------ |
-| prefixCls | `string` | 自定义类名前缀 | dora-gallery |
+```ts
+export interface GalleryItem {
+  image: string
+  remark?: string
+}
+```
 
-### Gallery slot
-
-| 名称 | 描述       |
-| ---- | ---------- |
-| -    | 自定义内容 |
+| 参数                 | 类型                                                                                               | 描述                                                        | 默认值                     |
+| -------------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- | -------------------------- |
+| prefixCls            | `string`                                                                                           | 自定义类名前缀                                              | dora-gallery               |
+| classNames           | `string`                                                                                           | 动画过渡类名                                                | dora-animate--slideInRight |
+| visible              | `boolean`                                                                                          | 是否显示                                                    | false                      |
+| indicatorDots        | `boolean`                                                                                          | 是否显示指示点                                              | false                      |
+| indicatorColor       | `string`                                                                                           | 指示点颜色                                                  | rgba(0, 0, 0, .3)          |
+| indicatorActiveColor | `string`                                                                                           | 当前指示点颜色                                              | #000000                    |
+| autoplay             | `boolean`                                                                                          | 是否自动切换                                                | false                      |
+| interval             | `number`                                                                                           | 自动切换时间间隔                                            | 5000                       |
+| duration             | `number`                                                                                           | 动画时长                                                    | 500                        |
+| circular             | `boolean`                                                                                          | 是否循环播放                                                | false                      |
+| vertical             | `boolean`                                                                                          | 是否纵向滑动                                                | false                      |
+| icon                 | `string`                                                                                           | 自定义操作图标地址                                          | -                          |
+| showDelete           | `boolean`                                                                                          | 是否显示删除按钮                                            | true                       |
+| allowScale           | `boolean`                                                                                          | 是否允许双指缩放                                            | true                       |
+| current              | `number`                                                                                           | 当前索引                                                    | 0                          |
+| urls                 | `Array<string \| GalleryItem>`                                                                     | 图片列表                                                    | []                         |
+| bind:cancel          | `(event: CustomEvent) => void`                                                                     | 取消时触发                                                  | -                          |
+| bind:click           | `(event: CustomEvent<{ current: number; urls: Array<string \| GalleryItem> }>) => boolean \| void` | 点击图片时触发，返回 current 和 urls；返回 false 可阻止关闭 | -                          |
+| bind:delete          | `(event: CustomEvent<{ current: number; urls: Array<string \| GalleryItem> }>) => boolean \| void` | 点击删除时触发，返回 current 和 urls；返回 false 可阻止关闭 | -                          |
+| bind:change          | `(event: CustomEvent<{ current: number; source: string }>) => void`                                | swiper 切换时触发                                           | -                          |
+| bind:close           | `(event: CustomEvent) => void`                                                                     | 关闭时触发                                                  | -                          |
+| bind:closed          | `(event: CustomEvent) => void`                                                                     | 完全关闭后触发                                              | -                          |
 
 ### Gallery externalClasses
 
@@ -62,6 +82,8 @@ yarn add @doraemon-ui/miniprogram.gallery
 
 ## CSS Variables
 
-| 属性         | 描述     | 默认值 | 全局变量 |
-| ------------ | -------- | ------ | -------- |
-| --text-color | 文字颜色 | `#fff` | -        |
+| 属性               | 描述                            | 默认值                                | 全局变量                          |
+| ------------------ | ------------------------------- | ------------------------------------- | --------------------------------- |
+| --z-index          | 画廊的z-index     | `var(--dora-component-z-index, 1000)` | `--dora-gallery-z-index`          |
+| --background-color | 画廊的背景颜色     | `#000`                                | `--dora-gallery-background-color` |
+| --icon-size        | 画廊的操作图标大小 | `24px`                                | `--dora-gallery-icon-size`        |

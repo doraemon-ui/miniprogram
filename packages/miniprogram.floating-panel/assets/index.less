@@ -1,7 +1,63 @@
 @import './variables.less';
 
 // FloatingPanel styles
+// @prop --z-index: The z-index of the floating panel
 // -----------------------------
 .@{floating-panel-prefix-cls} {
-  position: static;
+  --z-index: @floating-panel-z-index;
+
+  position: fixed;
+  z-index: var(--z-index);
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  touch-action: none;
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -100vh;
+    height: 100vh;
+    width: 100vw;
+    background: @floating-panel-background-color;
+  }
+
+  &__hd {
+    flex: none;
+    height: @floating-panel-header-size;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: grab;
+    user-select: none;
+    background-color: @floating-panel-background-color;
+    border-top-left-radius: calc(@floating-panel-header-size / 2);
+    border-top-right-radius: calc(@floating-panel-header-size / 2);
+  }
+
+  &__bar {
+    height: 3px;
+    width: 20px;
+    border-radius: 10px;
+    background: @color-step-25;
+  }
+
+  &__bd {
+    flex: 1 1;
+    overflow-y: scroll;
+    background: @floating-panel-background-color;
+  }
+
+  &__mask {
+    display: block;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: -100vh;
+    background: transparent;
+  }
 }

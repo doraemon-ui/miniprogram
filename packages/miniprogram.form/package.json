@@ -25,7 +25,23 @@
     "preversion": "pnpm clean && pnpm build && pnpm test"
   },
   "dependencies": {
+    "@doraemon-ui/miniprogram.checkbox": "workspace:*",
     "@doraemon-ui/miniprogram.core-js": "workspace:*",
+    "@doraemon-ui/miniprogram.date-picker": "workspace:*",
+    "@doraemon-ui/miniprogram.icon": "workspace:*",
+    "@doraemon-ui/miniprogram.input": "workspace:*",
+    "@doraemon-ui/miniprogram.input-number": "workspace:*",
+    "@doraemon-ui/miniprogram.list": "workspace:*",
+    "@doraemon-ui/miniprogram.popover": "workspace:*",
+    "@doraemon-ui/miniprogram.popup-select": "workspace:*",
+    "@doraemon-ui/miniprogram.picker": "workspace:*",
+    "@doraemon-ui/miniprogram.radio": "workspace:*",
+    "@doraemon-ui/miniprogram.rater": "workspace:*",
+    "@doraemon-ui/miniprogram.selectable": "workspace:*",
+    "@doraemon-ui/miniprogram.selector-group": "workspace:*",
+    "@doraemon-ui/miniprogram.slider": "workspace:*",
+    "@doraemon-ui/miniprogram.switch": "workspace:*",
+    "@doraemon-ui/miniprogram.textarea": "workspace:*",
     "@doraemon-ui/style": "workspace:*"
   },
   "devDependencies": {

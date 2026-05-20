@@ -1,6 +1,7 @@
 import { defineComponentHOC, Doraemon, Component, Watch, Prop } from '@doraemon-ui/miniprogram.core-js'
 import type { ClassNames, Duration, NextAnimate } from './types'
 import { AnimateStatus, AnimateType } from './types'
+import { useRect } from '@doraemon-ui/miniprogram.shared'
 const { styleToCssString } = Doraemon.util
 
 /**
@@ -139,7 +140,7 @@ class AnimationGroup extends Doraemon {
    */
   @Prop({
     type: String,
-    default: '',
+    default: 'dora-animation-group',
   })
   wrapCls: string
 
@@ -547,6 +548,10 @@ class AnimationGroup extends Doraemon {
       this.$emit('change', { animateStatus })
       this.updateStatus(appearStatus, true)
     })
+  }
+
+  getBoundingClientRect() {
+    return useRect(`.${this.wrapCls}`, this._renderProxy)
   }
 }
 

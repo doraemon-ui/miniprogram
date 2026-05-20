@@ -1,80 +1,83 @@
-import { defineComponentHOC, Doraemon, Component, Prop } from '@doraemon-ui/miniprogram.core-js'
-const { classNames, styleToCssString } = Doraemon.util
+import { Component, defineComponentHOC, Doraemon, Emit, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+import type { StickyItemInstance } from './types'
+
+const { classNames } = Doraemon.util
 
 @Component({
+  components: {
+    StickyItem: () => ({
+      module: './item',
+      type: 'child',
+      observer: 'onChildrenChanged',
+    }),
+  },
   props: {
     prefixCls: {
       type: String,
       default: 'dora-sticky',
     },
   },
+  expose: ['onScroll', 'updated', 'emitStick', 'emitUnstick'],
 })
 class Sticky extends Doraemon {
-  /**
-   * 自定义类名前缀
-   *
-   * @type {string}
-   * @memberof Sticky
-   */
   prefixCls!: string
 
-  /**
-   * 是否禁用
-   *
-   * @type {boolean}
-   * @memberof Sticky
-   */
   @Prop({
-    type: Boolean,
-    default: false,
+    type: Number,
+    default: 0,
   })
-  disabled: boolean
-
-  /**
-   * 点击态类名
-   *
-   * @type {string}
-   * @memberof Sticky
-   */
-  @Prop({
-    type: String,
-    default: 'default',
-  })
-  hoverClass: string
-
-  /**
-   * 外层样式
-   *
-   * @type {Partial<CSSStyleDeclaration>}
-   * @memberof Sticky
-   */
-  @Prop({
-    type: Object,
-    default: null,
-  })
-  wrapStyle: Partial<CSSStyleDeclaration>
+  scrollTop: number
 
   get classes() {
-    const { prefixCls, hoverClass, disabled } = this
-    const wrap = classNames(prefixCls, {
-      [`${prefixCls}--disabled`]: disabled,
-    })
-    const hover = hoverClass && hoverClass !== 'default' ? hoverClass : `${prefixCls}--hover`
-
     return {
-      wrap,
-      hover,
+      wrap: classNames(this.prefixCls),
     }
   }
 
-  get containerStyle() {
-    return this.wrapStyle ? styleToCssString(this.wrapStyle) : ''
+  @Watch('scrollTop')
+  onScrollChange(scrollTop: number) {
+    this.onScroll(scrollTop)
   }
 
-  onClick() {
-    if (!this.disabled) {
-      this.$emit('click')
+  getChildNodes() {
+    return (this.$children as StickyItemInstance[]) || []
+  }
+
+  onScroll(scrollTop = this.scrollTop) {
+    const elements = this.getChildNodes()
+    if (elements.length > 0) {
+      elements.forEach((element) => {
+        element.onScroll(scrollTop)
+      })
     }
+  }
+
+  updated() {
+    const elements = this.getChildNodes()
+    if (elements.length > 0) {
+      elements.forEach((element, index) => {
+        element.updated(index)
+      })
+    }
+  }
+
+  onChildrenChanged() {
+    this.updated()
+  }
+
+  @Emit('stick')
+  emitStick(detail: { index: number }) {
+    return detail
+  }
+
+  @Emit('unstick')
+  emitUnstick(detail: { index: number }) {
+    return detail
+  }
+
+  mounted() {
+    this.updated()
+    this.onScroll(this.scrollTop)
   }
 }
 

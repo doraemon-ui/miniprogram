@@ -25,7 +25,9 @@
     "preversion": "pnpm clean && pnpm build && pnpm test"
   },
   "dependencies": {
+    "@doraemon-ui/miniprogram.animation-group": "workspace:*",
     "@doraemon-ui/miniprogram.core-js": "workspace:*",
+    "@doraemon-ui/miniprogram.shared": "workspace:*",
     "@doraemon-ui/style": "workspace:*"
   },
   "devDependencies": {

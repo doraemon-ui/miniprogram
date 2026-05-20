@@ -1,5 +1,40 @@
 @import '../../@doraemon-ui/style/var.wxss';
 @import '../../@doraemon-ui/style/color.wxss';
 .dora-prompt {
-  position: static;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
+  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
+  background-color: var(--dora-color-step-10, #e6e6e6);
+  background-color: var(--dora-color-step-10, #e6e6e6);
+}
+
+.dora-prompt__bd {
+  margin-top: 0;
+  text-align: center;
+}
+
+.dora-prompt__icon {
+  width: 64px;
+  height: 64px;
+}
+
+.dora-prompt__title {
+  margin: 2px 0;
+  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.55);
+  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.55);
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.dora-prompt__text {
+  margin: 2px 0;
+  font-size: 12px;
+}
+
+.dora-prompt__button {
+  width: 100px!important;
+  margin: 4px auto;
 }

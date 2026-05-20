@@ -1,11 +1,23 @@
-<demo-page
-  darkmode="auto"
-  title="miniprogram.filterbar"
-  desc="miniprogram.filterbar"
-  clickable
-  spacing
->
-  <demo-block title="Basic">
-    <dora-filterbar>miniprogram.filterbar</dora-filterbar>
+<demo-page darkmode="auto" title="Filterbar" desc="筛选栏" clickable>
+  <demo-block padding="0" title="Basic">
+    <dora-filterbar items="{{ items }}" bind:change="onChange" bind:open="onOpen" bind:close="onClose" />
+    <view class="panel panel_access" catchtouchmove="{{ opened ? 'noop' : '' }}">
+      <view class="panel__bd">
+        <view class="media-box media-box_appmsg" hover-class="cell_active" wx:for="{{ repos }}" wx:key="index">
+          <view class="media-box__hd media-box__hd_in-appmsg">
+            <image class="media-box__thumb" src="{{ item.owner.avatar_url }}" />
+          </view>
+          <view class="media-box__bd media-box__bd_in-appmsg">
+            <view class="media-box__title">{{ item.name }}</view>
+            <view class="media-box__desc">{{ item.description }}</view>
+            <view class="media-box__info">
+              <view class="media-box__info__meta">forks: {{ item.forks_count }}</view>
+              <view class="media-box__info__meta">stars: {{ item.stargazers_count }}</view>
+              <view class="media-box__info__meta">date: {{ item.date }}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
   </demo-block>
 </demo-page>

@@ -1,7 +1,82 @@
 @import './variables.less';
 
 // Gallery styles
+// @prop --z-index: The z-index of the gallery
+// @prop --background-color: Background color of the gallery
 // -----------------------------
 .@{gallery-prefix-cls} {
-  position: static;
+  --z-index: @gallery-z-index;
+  --background-color: @gallery-background-color;
+  --icon-size: @gallery-icon-size;
+
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-index);
+  display: block;
+  background-color: var(--background-color);
+
+  &__swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__img {
+    flex: none;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__remark {
+    position: absolute;
+    right: 0;
+    bottom: 60px;
+    left: 0;
+    z-index: 10;
+    padding: 15px;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease 0.5s;
+
+    &--active {
+      opacity: 1;
+    }
+  }
+
+  &__opr {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    color: #fff;
+    text-align: center;
+    background-color: var(--background-color);
+  }
+
+  &__del {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 0;
+  }
+
+  &__icon {
+    width: var(--icon-size);
+    height: var(--icon-size);
+
+    &:not(&--img) {
+      color: #fff;
+      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAAAAYLlVAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAHdElNRQfhAgcLJQQVEPJBAAAA9UlEQVRo3u2YwRGDIBBF1xTjeLAPW6AE27GQXKyJOvJz0DjGBHZZ9JDJf9xwgccCzoAIIYSQQtBiRp4Z7ZXD27hKYZv9I1nWLFwlsNBnIvolxNpjUyqwtEo3gwiUkDdunjw0zm9GAYT03nrlIYcaExRh+/p52S/PtyUIgq2sTlXl2IeWgc9sWDeUpw/XJjwTClDAJYBw/J3k63O4jmHqYJVFV2TgTChAAQpQgAIUoAAFKPCjAuF4xVTqM/BySgGTQM2bjdZWE4h2zewI0StwFxGRoUJg2PVTDjrj27BG554AxhOGHysyKIIOE6Jz6IipYvaE/AVPaUL1Zysou40AAAAldEVYdGRhdGU6Y3JlYXRlADIwMTctMDItMDdUMTE6Mzc6MDQrMDg6MDCcsdZ8AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDE3LTAyLTA3VDExOjM3OjA0KzA4OjAw7exuwAAAAABJRU5ErkJggg==);
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: contain;
+    }
+  }
 }

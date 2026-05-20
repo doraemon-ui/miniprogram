@@ -1,46 +1,40 @@
 import type { ComponentPublicInstance } from '@doraemon-ui/miniprogram.core-js'
+import type { NativeRouteOpenType, PresetColor } from '@doraemon-ui/miniprogram.shared'
 
 import type { Footer } from './index'
 
-/**
- * FooterProps接口定义
- */
-export interface FooterProps {
-  /**
-   * 自定义类名前缀
-   *
-   * @type {string}
-   */
-  prefixCls?: string
-
-  /**
-   * 是否禁用
-   *
-   * @type {boolean}
-   */
-  disabled?: boolean
-
-  /**
-   * 点击态类名
-   *
-   * @type {string}
-   */
-  hoverClass?: string
-
-  /**
-   * 外层样式
-   *
-   * @type {Partial<CSSStyleDeclaration>}
-   */
-  wrapStyle?: Partial<CSSStyleDeclaration>
+export interface FooterLinkItem {
+  text: string
+  url?: string
+  openType?: NativeRouteOpenType
+  delta?: number
+  urlParams?: Record<string, any>
 }
 
-/**
- * FooterExpose接口定义
- */
+export interface FooterChipItem {
+  text: string
+  type?: 'default' | 'link'
+}
+
+export interface FooterLinkClickDetail {
+  item: FooterLinkItem
+  index: number
+}
+
+export interface FooterChipClickDetail {
+  item: FooterChipItem
+  index: number
+}
+
+export interface FooterProps {
+  prefixCls?: string
+  color?: PresetColor
+  label?: string
+  content?: string
+  links?: FooterLinkItem[]
+  chips?: FooterChipItem[]
+}
+
 export interface FooterExpose {}
 
-/**
- * FooterInstance类型定义
- */
 export type FooterInstance = ComponentPublicInstance<Footer, FooterProps, FooterExpose>

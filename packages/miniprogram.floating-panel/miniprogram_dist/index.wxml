@@ -1,8 +1,9 @@
-<view
-  class="dora-class {{ classes.wrap }}"
-  hover-class="dora-hover-class {{ !disabled ? classes.hover : 'none' }}"
-  bindtap="onClick"
-  style="{{ containerStyle }}"
->
-  <slot></slot>
+<view class="dora-class {{ classes.wrap }}" style="{{ wrapStyle }}">
+  <view class="{{ classes.mask }}" wx:if="{{ moving }}"></view>
+  <view class="{{ classes.hd }}" catchtouchstart="onTouchStart" catchtouchmove="onTouchMove" catchtouchend="onTouchEnd">
+    <view class="{{ classes.bar }}"></view>
+  </view>
+  <view class="{{ classes.bd }}">
+    <slot></slot>
+  </view>
 </view>

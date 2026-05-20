@@ -1,24 +1,22 @@
 import type { ComponentPublicInstance } from '@doraemon-ui/miniprogram.core-js'
+import type { NativeButtonProps, PresetColor } from '@doraemon-ui/miniprogram.shared'
 
 import type { FabButton } from './index'
 
 /**
- * FabButtonTheme类型定义
- */
-export type FabButtonTheme = string
-/**
  * FabButtonPosition类型定义
  */
-export type FabButtonPosition = 'bottomRight' | 'bottomLeft' | 'topRight' | 'topLeft' | string
+export type FabButtonPosition = 'bottomRight' | 'bottomLeft' | 'topRight' | 'topLeft'
+
 /**
  * FabButtonDirection类型定义
  */
-export type FabButtonDirection = 'horizontal' | 'vertical' | 'circle' | string
+export type FabButtonDirection = 'horizontal' | 'vertical' | 'circle'
 
 /**
  * FabButtonOption接口定义
  */
-export interface FabButtonOption {
+export type FabButtonOption = Omit<NativeButtonProps, 'size' | 'type' | 'plain' | 'loading' | 'formType'> & {
   /**
    * value
    * @type {unknown}
@@ -32,12 +30,6 @@ export interface FabButtonOption {
   label?: string
 
   /**
-   * disabled
-   * @type {boolean}
-   */
-  disabled?: boolean
-
-  /**
    * hideShadow
    * @type {boolean}
    */
@@ -48,18 +40,6 @@ export interface FabButtonOption {
    * @type {string}
    */
   className?: string
-
-  /**
-   * hoverClass
-   * @type {string}
-   */
-  hoverClass?: string
-
-  /**
-   * openType
-   * @type {string}
-   */
-  openType?: string
 }
 
 /**
@@ -80,10 +60,10 @@ export interface FabButtonProps {
   hoverClass?: string
 
   /**
-   * theme
-   * @type {FabButtonTheme}
+   * color
+   * @type {PresetColor}
    */
-  theme?: FabButtonTheme
+  color?: PresetColor
 
   /**
    * position

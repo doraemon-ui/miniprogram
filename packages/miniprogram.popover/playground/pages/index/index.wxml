@@ -1,11 +1,107 @@
-<demo-page
-  darkmode="auto"
-  title="miniprogram.popover"
-  desc="miniprogram.popover"
-  clickable
-  spacing
->
-  <demo-block title="Basic">
-    <dora-popover>miniprogram.popover</dora-popover>
+<demo-page darkmode="auto" title="Popover" desc="气泡框" clickable>
+  <demo-block title="Placement">
+    <view class="button-sp-area">
+      <dora-popover placement="topLeft" title="Title" content="Content">
+        <dora-button color="light">topLeft</dora-button>
+      </dora-popover>
+    </view>
+    <view class="button-sp-area">
+      <dora-popover placement="top" title="Title" content="Content">
+        <dora-button color="light">top</dora-button>
+      </dora-popover>
+    </view>
+    <view class="button-sp-area">
+      <dora-popover placement="topRight" title="Title" content="Content">
+        <dora-button color="light">topRight</dora-button>
+      </dora-popover>
+    </view>
+    <view class="button-sp-area text-left">
+      <dora-popover placement="rightTop" title="Title" content="Content">
+        <dora-button color="light">rightTop</dora-button>
+      </dora-popover>
+    </view>
+    <view class="button-sp-area text-left">
+      <dora-popover placement="right" title="Title" content="Content">
+        <dora-button color="light">right</dora-button>
+      </dora-popover>
+    </view>
+    <view class="button-sp-area text-left">
+      <dora-popover placement="rightBottom" title="Title" content="Content">
+        <dora-button color="light">rightBottom</dora-button>
+      </dora-popover>
+    </view>
+    <view class="button-sp-area">
+      <dora-popover placement="bottomRight" title="Title" content="Content">
+        <dora-button color="light">bottomRight</dora-button>
+      </dora-popover>
+    </view>
+    <view class="button-sp-area">
+      <dora-popover placement="bottom" title="Title" content="Content">
+        <dora-button color="light">bottom</dora-button>
+      </dora-popover>
+    </view>
+    <view class="button-sp-area">
+      <dora-popover placement="bottomLeft" title="Title" content="Content">
+        <dora-button color="light">bottomLeft</dora-button>
+      </dora-popover>
+    </view>
+    <view class="button-sp-area text-right">
+      <dora-popover placement="leftBottom" title="Title" content="Content">
+        <dora-button color="light">leftBottom</dora-button>
+      </dora-popover>
+    </view>
+    <view class="button-sp-area text-right">
+      <dora-popover placement="left" title="Title" content="Content">
+        <dora-button color="light">left</dora-button>
+      </dora-popover>
+    </view>
+    <view class="button-sp-area text-right">
+      <dora-popover placement="leftTop" title="Title" content="Content">
+        <dora-button color="light">leftTop</dora-button>
+      </dora-popover>
+    </view>
+  </demo-block>
+
+  <demo-block title="Default Visible">
+    <view class="button-sp-area text-left">
+      <dora-popover defaultVisible placement="rightBottom" title="Title" content="Content">
+        <dora-button color="light">rightBottom</dora-button>
+      </dora-popover>
+    </view>
+  </demo-block>
+
+  <demo-block title="Custom style">
+    <view class="button-sp-area">
+      <dora-popover placement="top" title="Title" content="Content" body-style="width: 300px;">
+        <dora-button color="light">top</dora-button>
+      </dora-popover>
+    </view>
+  </demo-block>
+
+  <demo-block title="Color = dark">
+    <view class="button-sp-area">
+      <dora-popover color="dark" placement="top" title="Title" content="Content">
+        <dora-button color="light">top</dora-button>
+      </dora-popover>
+    </view>
+  </demo-block>
+
+  <demo-block title="Slot">
+    <view class="button-sp-area">
+      <dora-popover placement="top">
+        <dora-button color="light">top</dora-button>
+        <view slot="title" class="slot-title">Title</view>
+        <view slot="content" class="slot-content">Content</view>
+      </dora-popover>
+    </view>
+  </demo-block>
+
+  <demo-block title="Controlled">
+    <view class="button-sp-area">
+      <dora-popover visible="{{ visible }}" controlled placement="top" title="Title" bind:change="onChange">
+        <view slot="content" class="slot-content" bindtap="hide">Close</view>
+        <dora-button color="light">top</dora-button>
+      </dora-popover>
+    </view>
   </demo-block>
 </demo-page>

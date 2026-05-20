@@ -1,66 +1,97 @@
 /**
  * @doraemon-ui/miniprogram.sticky.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:41:03.
+ * Built on 2026-05-17, 18:52:03.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 
-import { Doraemon, Prop, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
+import { Doraemon, Prop, Watch, Emit, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
 
 function _ts_decorate(decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc, d;
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for(var i = decorators.length - 1; i >= 0; i--)if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 }
-const { classNames, styleToCssString } = Doraemon.util;
+const { classNames } = Doraemon.util;
 let Sticky = class Sticky extends Doraemon {
     get classes() {
-        const { prefixCls, hoverClass, disabled } = this;
-        const wrap = classNames(prefixCls, {
-            [`${prefixCls}--disabled`]: disabled
-        });
-        const hover = hoverClass && hoverClass !== 'default' ? hoverClass : `${prefixCls}--hover`;
         return {
-            wrap,
-            hover
+            wrap: classNames(this.prefixCls)
         };
     }
-    get containerStyle() {
-        return this.wrapStyle ? styleToCssString(this.wrapStyle) : '';
+    onScrollChange(scrollTop) {
+        this.onScroll(scrollTop);
     }
-    onClick() {
-        if (!this.disabled) {
-            this.$emit('click');
+    getChildNodes() {
+        return this.$children || [];
+    }
+    onScroll(scrollTop = this.scrollTop) {
+        const elements = this.getChildNodes();
+        if (elements.length > 0) {
+            elements.forEach((element)=>{
+                element.onScroll(scrollTop);
+            });
         }
+    }
+    updated() {
+        const elements = this.getChildNodes();
+        if (elements.length > 0) {
+            elements.forEach((element, index)=>{
+                element.updated(index);
+            });
+        }
+    }
+    onChildrenChanged() {
+        this.updated();
+    }
+    emitStick(detail) {
+        return detail;
+    }
+    emitUnstick(detail) {
+        return detail;
+    }
+    mounted() {
+        this.updated();
+        this.onScroll(this.scrollTop);
     }
 };
 _ts_decorate([
     Prop({
-        type: Boolean,
-        default: false
+        type: Number,
+        default: 0
     })
-], Sticky.prototype, "disabled", void 0);
+], Sticky.prototype, "scrollTop", void 0);
 _ts_decorate([
-    Prop({
-        type: String,
-        default: 'default'
-    })
-], Sticky.prototype, "hoverClass", void 0);
+    Watch('scrollTop')
+], Sticky.prototype, "onScrollChange", null);
 _ts_decorate([
-    Prop({
-        type: Object,
-        default: null
-    })
-], Sticky.prototype, "wrapStyle", void 0);
+    Emit('stick')
+], Sticky.prototype, "emitStick", null);
+_ts_decorate([
+    Emit('unstick')
+], Sticky.prototype, "emitUnstick", null);
 Sticky = _ts_decorate([
     Component({
+        components: {
+            StickyItem: ()=>({
+                    module: './item',
+                    type: 'child',
+                    observer: 'onChildrenChanged'
+                })
+        },
         props: {
             prefixCls: {
                 type: String,
                 default: 'dora-sticky'
             }
-        }
+        },
+        expose: [
+            'onScroll',
+            'updated',
+            'emitStick',
+            'emitUnstick'
+        ]
     })
 ], Sticky);
 var index = defineComponentHOC()(Sticky);

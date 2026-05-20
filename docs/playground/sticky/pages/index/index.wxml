@@ -1,11 +1,42 @@
-<demo-page
-  darkmode="auto"
-  title="miniprogram.sticky"
-  desc="miniprogram.sticky"
-  clickable
-  spacing
->
-  <demo-block title="Basic">
-    <dora-sticky>miniprogram.sticky</dora-sticky>
-  </demo-block>
-</demo-page>
+<view class="page">
+  <view class="page__bd">
+    <dora-sticky scrollTop="{{ scrollTop }}" bind:stick="onStick" bind:unstick="onUnStick">
+      <dora-sticky-item>
+        <view slot="title">小鸡 🐤</view>
+        <view slot="content">
+          <view class="demo-item">你看哪里有个小鸡呦</view>
+          <view class="demo-item">你看那里他有小鸡哟</view>
+          <view class="demo-item">小鸡哔哔-bi-哟</view>
+          <view class="demo-item">小鸡哔哔哔哔-bi-哟</view>
+        </view>
+      </dora-sticky-item>
+      <dora-sticky-item>
+        <view slot="title">母鸡 🐔</view>
+        <view slot="content">
+          <view class="demo-item">你看那里又有母鸡哟</view>
+          <view class="demo-item">你看那里又有母鸡哟</view>
+          <view class="demo-item">母鸡咯咯咯咯咯咯-go-</view>
+          <view class="demo-item">小鸡哔哔哔哔-bi-哟</view>
+        </view>
+      </dora-sticky-item>
+      <dora-sticky-item>
+        <view slot="title">公鸡 🐓</view>
+        <view slot="content">
+          <view class="demo-item">你看那里又有公鸡哟</view>
+          <view class="demo-item">你看那里又有公鸡哟</view>
+          <view class="demo-item">公鸡喔喔喔喔喔-wo-</view>
+          <view class="demo-item">母鸡咯咯咯咯咯咯-go-</view>
+        </view>
+      </dora-sticky-item>
+      <dora-sticky-item>
+        <view slot="title">拖拉机 🚜</view>
+        <view slot="content">
+          <view class="demo-item">你看那里又有拖拉机哟</view>
+          <view class="demo-item">你看那里又有拖拉机哟</view>
+          <view class="demo-item">拖拉机嗡-weng-</view>
+          <view class="demo-item">小鸡被撞 喔 啊喔</view>
+        </view>
+      </dora-sticky-item>
+    </dora-sticky>
+  </view>
+</view>

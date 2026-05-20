@@ -1,15 +1,49 @@
 Page({
   data: {
     current: 'tab1',
+    tabs: [
+      {
+        key: 'tab1',
+        title: 'Tab 1',
+        content: 'Content of tab 1',
+      },
+      {
+        key: 'tab2',
+        title: 'Tab 2',
+        content: 'Content of tab 2',
+      },
+      {
+        key: 'tab3',
+        title: 'Tab 3',
+        content: 'Content of tab 3',
+      },
+    ],
   },
   onChange(e) {
     this.setData({
       current: e.detail.key,
     })
   },
-  onTabClick(e) {
+  onTabsChange(e) {
+    console.log('onTabsChange', e)
     const { key } = e.detail
-    // 通过 click 来驱动 controlled 的 current
-    this.setData({ current: key })
+    const index = this.data.tabs.map((n) => n.key).indexOf(key)
+
+    this.setData({
+      key,
+      index,
+    })
+  },
+  onSwiperChange(e) {
+    console.log('onSwiperChange', e)
+    const { current: index, source } = e.detail
+    const { key } = this.data.tabs[index]
+
+    if (!!source) {
+      this.setData({
+        key,
+        index,
+      })
+    }
   },
 })

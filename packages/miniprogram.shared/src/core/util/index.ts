@@ -1,5 +1,9 @@
+export * from './fast-color'
 export * from './buildURL'
+export * from './color'
+export * from './customPromise'
 export * from './getDefaultContext'
+export * from './getFontSize'
 export * from './isDate'
 export * from './isDef'
 export * from './isFalse'
@@ -13,8 +17,12 @@ export * from './omit'
 export * from './pxToNumber'
 export * from './sleep'
 
+import { FastColor } from './fast-color'
 import { buildURL } from './buildURL'
+import { isPresetColor } from './color'
+import { customPromise } from './customPromise'
 import { getDefaultContext } from './getDefaultContext'
+import { getFontSize } from './getFontSize'
 import { isDate } from './isDate'
 import { isDef } from './isDef'
 import { isFalse } from './isFalse'
@@ -29,7 +37,11 @@ import { pxToNumber } from './pxToNumber'
 import { sleep } from './sleep'
 
 export default {
+  FastColor,
   buildURL,
+  isPresetColor,
+  customPromise,
+  getFontSize,
   getDefaultContext,
   isDate,
   isDef,

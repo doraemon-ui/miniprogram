@@ -1,10 +1,11 @@
-import { Doraemon, Component, Prop, Watch, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js'
+import { Doraemon, Component, Event, Emit, Prop, Watch, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js'
 import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
 import { useRect } from '@doraemon-ui/miniprogram.shared'
-import type { FabButtonClassItem as ButtonClassItem, FabButtonDirection, FabButtonOption, FabButtonPosition, FabButtonTheme } from './types'
+import type { PresetColor } from '@doraemon-ui/miniprogram.shared'
+import type { FabButtonClassItem as ButtonClassItem, FabButtonDirection, FabButtonOption, FabButtonPosition } from './types'
 const { classNames } = Doraemon.util
 
-const setTransform = (translate = 0, scale = 1, delay = 300, isHorizontal = true) => {
+const setTransform = (translate: number = 0, scale: number = 1, delay: number = 300, isHorizontal: boolean = true) => {
   const duration = `transition-duration: ${delay}ms`
   const transform = `transform: scale(${scale}) translate3d(${isHorizontal ? translate : 0}px, ${isHorizontal ? 0 : translate}px, 0)`
   return `opacity: 1; ${duration}; ${transform}`
@@ -29,9 +30,9 @@ class FabButton extends Doraemon {
 
   @Prop({
     type: String,
-    default: 'balanced',
+    default: 'positive',
   })
-  theme: FabButtonTheme
+  color: PresetColor
 
   @Prop({
     type: String,
@@ -134,13 +135,14 @@ class FabButton extends Doraemon {
   buttonVisible: boolean = false
 
   get classes() {
-    const { prefixCls, position, theme, direction, reverse, buttonVisible, hideShadow, actionRotate, buttons, hoverClass } = this
+    const { prefixCls, position, color, direction, reverse, buttonVisible, hideShadow, actionRotate, buttons, hoverClass } = this
     const wrap = classNames(prefixCls, {
       [`${prefixCls}--${position}`]: position,
-      [`${prefixCls}--${theme}`]: theme,
       [`${prefixCls}--${direction}`]: direction,
       [`${prefixCls}--reverse`]: reverse,
       [`${prefixCls}--opened`]: buttonVisible,
+      ['dora-color']: color,
+      [`dora-color--${color}`]: color,
     })
     const action = classNames(`${prefixCls}__action`, {
       [`${prefixCls}__action--hide-shadow`]: hideShadow,
@@ -270,32 +272,64 @@ class FabButton extends Doraemon {
     return `opacity: 1; transition-duration: ${duration}ms; ${transform}`
   }
 
-  bindgetuserinfo(e: CustomEvent) {
-    this.$emit('getuserinfo', { ...e.detail, ...e.currentTarget.dataset })
+  @Event()
+  @Emit('getuserinfo')
+  onGetUserInfo(e: CustomEvent) {
+    return { ...e.detail, ...e.currentTarget.dataset }
   }
 
-  bindcontact(e: CustomEvent) {
-    this.$emit('contact', { ...e.detail, ...e.currentTarget.dataset })
+  @Event()
+  @Emit('contact')
+  onContact(e: CustomEvent) {
+    return { ...e.detail, ...e.currentTarget.dataset }
   }
 
-  bindgetphonenumber(e: CustomEvent) {
-    this.$emit('getphonenumber', { ...e.detail, ...e.currentTarget.dataset })
+  @Event()
+  @Emit('getphonenumber')
+  onGetPhoneNumber(e: CustomEvent) {
+    return { ...e.detail, ...e.currentTarget.dataset }
   }
 
-  bindopensetting(e: CustomEvent) {
-    this.$emit('opensetting', { ...e.detail, ...e.currentTarget.dataset })
+  @Event()
+  @Emit('launchapp')
+  onLaunchApp(e: CustomEvent) {
+    return { ...e.detail, ...e.currentTarget.dataset }
   }
 
-  bindlaunchapp(e: CustomEvent) {
-    this.$emit('launchapp', { ...e.detail, ...e.currentTarget.dataset })
+  @Event()
+  @Emit('chooseavatar')
+  onChooseAvatar(e: CustomEvent) {
+    return { ...e.detail, ...e.currentTarget.dataset }
   }
 
-  bindchooseavatar(e: CustomEvent) {
-    this.$emit('chooseavatar', { ...e.detail, ...e.currentTarget.dataset })
+  @Event()
+  @Emit('opensetting')
+  onOpenSetting(e: CustomEvent) {
+    return { ...e.detail, ...e.currentTarget.dataset }
   }
 
+  @Event()
+  @Emit('createliveactivity')
+  onCreateLiveActivity(e: CustomEvent) {
+    return { ...e.detail, ...e.currentTarget.dataset }
+  }
+
+  @Event()
+  @Emit('getrealtimephonenumber')
+  onGetRealtimePhoneNumber(e: CustomEvent) {
+    return { ...e.detail, ...e.currentTarget.dataset }
+  }
+
+  @Event()
+  @Emit('agreeprivacyauthorization')
+  onAgreePrivacyAuthorization(e: CustomEvent) {
+    return { ...e.detail, ...e.currentTarget.dataset }
+  }
+
+  @Event()
+  @Emit('error')
   onError(e: CustomEvent) {
-    this.$emit('error', { ...e.detail, ...e.currentTarget.dataset })
+    return { ...e.detail, ...e.currentTarget.dataset }
   }
 
   mounted() {

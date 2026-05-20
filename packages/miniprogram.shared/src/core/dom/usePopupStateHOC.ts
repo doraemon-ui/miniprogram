@@ -14,7 +14,7 @@ export function usePopupStateHOC<Instance extends ComponentPublicInstance, Props
 ) {
   return (container: Instance): PopupStateFunc<Props> => {
     const render = (props: Props, callback?: () => void) => {
-      Object.assign(container, props)
+      Object.assign(container, Object.fromEntries(Object.entries(props).filter(([, prop]) => typeof prop !== 'function')))
       container.$nextTick(() => callback?.())
     }
 

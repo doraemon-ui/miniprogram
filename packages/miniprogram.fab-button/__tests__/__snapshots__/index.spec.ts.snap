@@ -3,7 +3,7 @@
 exports[`FabButton mount correctly 1`] = `
 <dora-fab-button>
   <wx-view
-    class="dora-class dora-fab-button dora-fab-button--bottomRight dora-fab-button--balanced dora-fab-button--horizontal"
+    class="dora-class dora-fab-button dora-fab-button--bottomRight dora-fab-button--horizontal dora-color dora-color--positive"
     catch:tap="onToggle"
   >
     <wx-view

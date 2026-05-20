@@ -5,6 +5,6 @@
     "demo-block": "@doraemon-ui/miniprogram.demo-block",
     "dora-icon": "@doraemon-ui/miniprogram.icon/index",
     "dora-timeline": "@doraemon-ui/miniprogram.timeline/index",
-    "dora-timeline-item": "@doraemon-ui/miniprogram.timeline/timeline-item"
+    "dora-timeline-item": "@doraemon-ui/miniprogram.timeline/item"
   }
 }

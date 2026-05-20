@@ -1,8 +1,18 @@
-<view
-  class="dora-class {{ classes.wrap }}"
-  hover-class="dora-hover-class {{ !disabled ? classes.hover : 'none' }}"
-  bindtap="onClick"
-  style="{{ containerStyle }}"
->
+<block wx:if="{{ layout !== 'none' }}">
+  <dora-list
+    dora-class="{{ classes.wrap }}"
+    prefixCls="{{ cellGroupPrefixCls }}"
+    title="{{ title }}"
+    label="{{ label }}"
+    mode="{{ mode }}"
+    bodyStyle="{{ { overflow: 'visible', ...bodyStyle } }}"
+  >
+    <slot></slot>
+  </dora-list>
+  <view class="{{ classes.footer }}">
+    <slot name="footer"></slot>
+  </view>
+</block>
+<block wx:else>
   <slot></slot>
-</view>
+</block>

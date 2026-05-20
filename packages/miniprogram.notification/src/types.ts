@@ -1,46 +1,40 @@
 import type { ComponentPublicInstance } from '@doraemon-ui/miniprogram.core-js'
+import type { MiniprogramPublicInstance } from '@doraemon-ui/miniprogram.shared'
 
 import type { Notification } from './index'
 
-/**
- * NotificationProps接口定义
- */
 export interface NotificationProps {
-  /**
-   * 自定义类名前缀
-   *
-   * @type {string}
-   */
   prefixCls?: string
-
-  /**
-   * 是否禁用
-   *
-   * @type {boolean}
-   */
-  disabled?: boolean
-
-  /**
-   * 点击态类名
-   *
-   * @type {string}
-   */
-  hoverClass?: string
-
-  /**
-   * 外层样式
-   *
-   * @type {Partial<CSSStyleDeclaration>}
-   */
-  wrapStyle?: Partial<CSSStyleDeclaration>
+  visible?: boolean
+  classNames?: string
+  image?: string
+  title?: string
+  titleRightText?: string
+  closable?: boolean
+  swipeToClose?: boolean
+  subtitle?: string
+  text?: string
+  duration?: number
+  data?: Record<string, unknown> | null
 }
 
-/**
- * NotificationExpose接口定义
- */
-export interface NotificationExpose {}
+export interface NotificationExpose {
+  onClick?: (data?: Record<string, unknown> | null) => void
+  onClose?: (data?: Record<string, unknown> | null) => void
+  onClosed?: () => void
+}
 
-/**
- * NotificationInstance类型定义
- */
+export interface NotificationShowOptions {
+  selector?: string
+  instance?: MiniprogramPublicInstance
+}
+
+export interface NotificationDestroyHandle {
+  (): void
+  then: (onfulfilled?: () => void, onrejected?: (reason: unknown) => void) => Promise<void>
+  promise: Promise<void>
+}
+
+export type NotificationShowProps = Omit<NotificationProps, 'visible'> & NotificationExpose
+
 export type NotificationInstance = ComponentPublicInstance<Notification, NotificationProps, NotificationExpose>

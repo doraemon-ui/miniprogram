@@ -1,0 +1,25 @@
+.dora-demo-block__bd {
+  position: unset !important;
+}
+
+.button-sp-area {
+  padding: 16rpx 0;
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.slot-title {
+  padding: 20rpx;
+  color: red;
+}
+
+.slot-content {
+  padding: 20rpx;
+}

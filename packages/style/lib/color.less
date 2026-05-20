@@ -4,54 +4,63 @@
 @light-value: {
   base: #f4f5f8;
   active: darken(#f4f5f8, 10%);
+  tint: mix(#f4f5f8, #fff, 10%);
   contrast: #000;
 };
 
 @stable-value: {
-  base: #92949c;
-  active: darken(#92949c, 10%);
+  base: #636469;
+  active: darken(#636469, 10%);
+  tint: mix(#636469, #fff, 10%);
   contrast: #fff;
 };
 
 @positive-value: {
   base: #3880ff;
   active: darken(#3880ff, 10%);
+  tint: mix(#3880ff, #fff, 10%);
   contrast: #fff;
 };
 
 @calm-value: {
   base: #3dc2ff;
   active: darken(#3dc2ff, 10%);
+  tint: mix(#3dc2ff, #fff, 10%);
   contrast: #fff;
 };
 
 @balanced-value: {
   base: #2dd36f;
   active: darken(#2dd36f, 10%);
+  tint: mix(#2dd36f, #fff, 10%);
   contrast: #fff;
 };
 
 @energized-value: {
   base: #ffc409;
   active: darken(#ffc409, 10%);
+  tint: mix(#ffc409, #fff, 10%);
   contrast: #000;
 };
 
 @assertive-value: {
   base: #eb445a;
   active: darken(#eb445a, 10%);
+  tint: mix(#eb445a, #fff, 10%);
   contrast: #fff;
 };
 
 @royal-value: {
   base: #8a63d2;
   active: darken(#8a63d2, 10%);
+  tint: mix(#8a63d2, #fff, 10%);
   contrast: #fff;
 };
 
 @dark-value: {
   base: #222428;
   active: darken(#222428, 10%);
+  tint: mix(#222428, #fff, 10%);
   contrast: #fff;
 };
 
@@ -87,8 +96,9 @@
   @values: ~'@{name}-value';
   @base: var(~'--dora-color-@{name}', @@values[base]);
   @active: var(~'--dora-color-@{name}-active', @@values[active]);
+  @tint: var(~'--dora-color-@{name}-tint', @@values[tint]);
   @contrast: var(~'--dora-color-@{name}-contrast', @@values[contrast]);
-  @return: if((@variation = base), @base, if((@variation = active), @active, @contrast));
+  @return: if((@variation = base), @base, if((@variation = active), @active, if((@variation = tint), @tint, @contrast)));
 }
 
 /*! inject:wxss:../../@doraemon-ui/style/color.wxss */
@@ -100,11 +110,15 @@ each(@colors, {
   @v: @value;
   @base: @@v[base];
   @active: @@v[active];
+  @tint: @@v[tint];
   @contrast: @@v[contrast];
   .@{dora-prefix}-color--@{k} {
     --dora-color-base: var(~"--dora-color-@{k}", @base) !important;
+    --dora-color-base-rgb: var(~"--dora-color-@{k}-rgb", .colorToRGB(@base)[@list]) !important;
     --dora-color-active: var(~"--dora-color-@{k}-active", @active) !important;
+    --dora-color-tint: var(~"--dora-color-@{k}-tint", @tint) !important;
     --dora-color-contrast: var(~"--dora-color-@{k}-contrast", @contrast) !important;
+    --dora-color-contrast-rgb: var(~"--dora-color-@{k}-contrast-rgb", .colorToRGB(@contrast)[@list]) !important;
   }
 });
 /*! endinject */

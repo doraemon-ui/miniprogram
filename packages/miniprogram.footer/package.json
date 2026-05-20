@@ -26,6 +26,8 @@
   },
   "dependencies": {
     "@doraemon-ui/miniprogram.core-js": "workspace:*",
+    "@doraemon-ui/miniprogram.divider": "workspace:*",
+    "@doraemon-ui/miniprogram.shared": "workspace:*",
     "@doraemon-ui/style": "workspace:*"
   },
   "devDependencies": {

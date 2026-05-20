@@ -1,6 +1,6 @@
-# Filterbar Filterbar
+# Filterbar 筛选栏
 
-@doraemon-ui/miniprogram.filterbar
+筛选栏组件用于承载排序、单选、多选和侧边筛选等常见商品列表筛选场景，交互参考 `wux-weapp/filterbar`，并对齐 Doraemon UI 的组件结构与命名体系。
 
 ## 安装
 
@@ -44,24 +44,70 @@ yarn add @doraemon-ui/miniprogram.filterbar
 
 ### Filterbar props
 
-| 参数      | 类型     | 描述           | 默认值         |
-| --------- | -------- | -------------- | -------------- |
-| prefixCls | `string` | 自定义类名前缀 | dora-filterbar |
+```ts
+type FilterbarChoiceItem = {
+  label: string
+  value: string | number
+}
 
-### Filterbar slot
+type FilterbarItem =
+  | {
+      label: string
+      type: 'text'
+      value?: string | number
+      groups?: string[]
+    }
+  | {
+      label: string
+      type: 'sort'
+      sort?: 1 | -1
+      groups?: string[]
+    }
+  | {
+      label: string
+      type: 'radio' | 'checkbox'
+      groups?: string[]
+      children: FilterbarChoiceItem[]
+    }
+  | {
+      label: string
+      type: 'filter'
+      groups?: string[]
+      children: Array<{
+        label: string
+        type: 'radio' | 'checkbox'
+        children: FilterbarChoiceItem[]
+      }>
+    }
+```
 
-| 名称 | 描述       |
-| ---- | ---------- |
-| -    | 自定义内容 |
+| 参数 | 类型 | 描述 | 默认值 |
+| --- | --- | --- | --- |
+| prefixCls | `string` | 自定义类名前缀 | `dora-filterbar` |
+| items | `FilterbarItem[]` | 筛选项配置 | `[]` |
+| cancelText | `string` | 多选/筛选面板的重置按钮文案 | `重置` |
+| confirmText | `string` | 多选/筛选面板的确认按钮文案 | `确定` |
+| bind:change | `(event: CustomEvent) => void` | 选项确认或排序切换时触发 | - |
+| bind:open | `(event: CustomEvent) => void` | 下拉面板或侧边筛选展开时触发 | - |
+| bind:close | `(event: CustomEvent) => void` | 下拉面板或侧边筛选收起时触发 | - |
+| bind:scroll | `(event: CustomEvent) => void` | 筛选内容区域滚动时触发 | - |
+
+### Filterbar change detail
+
+| 字段 | 类型 | 描述 |
+| --- | --- | --- |
+| checkedItems | `FilterbarItem[]` | 当前已选中的筛选项 |
+| items | `FilterbarItem[]` | 带展示态数据的完整筛选项列表 |
+| checkedValues | `Array<string \| number \| Array<string \| number>>` | 当前各项的选中值 |
 
 ### Filterbar externalClasses
 
-| 名称       | 描述         |
-| ---------- | ------------ |
+| 名称 | 描述 |
+| --- | --- |
 | dora-class | 根节点样式类 |
 
 ## CSS Variables
 
-| 属性         | 描述     | 默认值 | 全局变量 |
-| ------------ | -------- | ------ | -------- |
-| --text-color | 文字颜色 | `#fff` | -        |
+| 属性 | 描述 | 默认值 | 全局变量 |
+| --- | --- | --- | --- |
+| --z-index | 筛选栏层级 | `var(--dora-filterbar-z-index, 1000)` | `--dora-filterbar-z-index` |

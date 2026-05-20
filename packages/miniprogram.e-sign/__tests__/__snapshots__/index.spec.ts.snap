@@ -23,12 +23,11 @@ exports[`ESign mount correctly 1`] = `
     >
       <dora-button
         doraClass="dora-e-sign__button"
-        type="light"
         bind:click="clear"
       >
         <wx-button
           appParameter=""
-          class="dora-class dora-button dora-color dora-color--positive dora-button--small dora-button--solid"
+          class="dora-class dora-button dora-color dora-color--light dora-button--small dora-button--solid"
           disabled="{{false}}"
           formType=""
           hoverClass="dora-hover-class dora-button--activated"
@@ -63,7 +62,6 @@ exports[`ESign mount correctly 1`] = `
       </dora-button>
       <dora-button
         doraClass="dora-e-sign__button"
-        type="balanced"
         bind:click="submit"
       >
         <wx-button

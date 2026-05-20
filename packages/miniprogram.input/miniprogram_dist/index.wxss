@@ -13,8 +13,8 @@
   text-align: left;
   white-space: nowrap;
   overflow: hidden;
-  width: var(--dora-input-label-width, 210rpx);
-  width: var(--dora-input-label-width, 210rpx);
+  width: var(--dora-input-label-width, 105px);
+  width: var(--dora-input-label-width, 105px);
 }
 
 .dora-input__label--wrap {
@@ -23,10 +23,10 @@
 
 .dora-input__label--required::before {
   display: inline-block;
-  margin-right: 6rpx;
+  margin-right: 3px;
   color: var(--dora-color-assertive, #eb445a);
   color: var(--dora-color-assertive, #eb445a);
-  font-size: 28rpx;
+  font-size: 14px;
   font-family: SimSun,sans-serif;
   line-height: 1;
   content: "*";
@@ -57,10 +57,10 @@
 
 .dora-input__eye {
   display: flex;
-  width: var(--dora-input-eye-size, 32rpx);
-  width: var(--dora-input-eye-size, 32rpx);
-  height: var(--dora-input-eye-size, 32rpx);
-  height: var(--dora-input-eye-size, 32rpx);
+  width: var(--dora-input-eye-size, 16px);
+  width: var(--dora-input-eye-size, 16px);
+  height: var(--dora-input-eye-size, 16px);
+  height: var(--dora-input-eye-size, 16px);
   background-repeat: no-repeat;
   background-size: contain;
   margin-left: 6px;
@@ -89,5 +89,5 @@
 }
 
 .dora-input__keyboardAccessory {
-  max-height: 400rpx;
+  max-height: 200px;
 }
