@@ -68,7 +68,7 @@ describe('Style', () => {
       const root = document.querySelector('.page') as HTMLElement
       const cs = window.getComputedStyle(root)
       expect(cs.getPropertyValue('--dora-color-positive').trim()).toBe('#3880ff')
-      expect(cs.getPropertyValue('--dora-color-stable').trim()).toBe('#92949c')
+      expect(cs.getPropertyValue('--dora-color-stable').trim()).toBe('#636469')
     })
   })
 
@@ -99,7 +99,7 @@ describe('Style', () => {
       expect(p.getPropertyValue('--dora-color-contrast').trim()).toContain('#fff')
 
       const s = window.getComputedStyle(stable)
-      expect(s.getPropertyValue('--dora-color-base').trim()).toContain('#92949c')
+      expect(s.getPropertyValue('--dora-color-base').trim()).toContain('#636469')
 
       const d = window.getComputedStyle(dark)
       expect(d.getPropertyValue('--dora-color-base').trim()).toContain('#222428')

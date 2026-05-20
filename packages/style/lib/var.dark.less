@@ -1,27 +1,102 @@
 @import './var.fn.less';
 
 .varDark() {
+  @light-value: {
+    base: #222428;
+    active: #get-color-active(#222428) [];
+    tint: #get-color-tint(#222428) [];
+    contrast: #000;
+  };
+
+  @stable-value: {
+    base: #989aa2;
+    active: #get-color-active(#989aa2) [];
+    tint: #get-color-tint(#989aa2) [];
+    contrast: #fff;
+  };
+
+  @positive-value: {
+    base: #3880ff;
+    active: #get-color-active(#3880ff) [];
+    tint: #get-color-tint(#3880ff) [];
+    contrast: #000;
+  };
+
+  @calm-value: {
+    base: #3dc2ff;
+    active: #get-color-active(#3dc2ff) [];
+    tint: #get-color-tint(#3dc2ff) [];
+    contrast: #000;
+  };
+
+  @balanced-value: {
+    base: #2dd36f;
+    active: #get-color-active(#2dd36f) [];
+    tint: #get-color-tint(#2dd36f) [];
+    contrast: #000;
+  };
+
+  @energized-value: {
+    base: #ffc409;
+    active: #get-color-active(#ffc409) [];
+    tint: #get-color-tint(#ffc409) [];
+    contrast: #000;
+  };
+
+  @assertive-value: {
+    base: #eb445a;
+    active: #get-color-active(#eb445a) [];
+    tint: #get-color-tint(#eb445a) [];
+    contrast: #000;
+  };
+
+  @royal-value: {
+    base: #8a63d2;
+    active: #get-color-active(#8a63d2) [];
+    tint: #get-color-tint(#8a63d2) [];
+    contrast: #000;
+  };
+
+  @dark-value: {
+    base: #f4f5f8;
+    active: #get-color-active(#f4f5f8) [];
+    tint: #get-color-tint(#f4f5f8) [];
+    contrast: #000;
+  };
+
+  @colors: {
+    light: light-value;
+    stable: stable-value;
+    positive: positive-value;
+    calm: calm-value;
+    balanced: balanced-value;
+    energized: energized-value;
+    assertive: assertive-value;
+    royal: royal-value;
+    dark: dark-value;
+  };
+
   // Background color for `<body>`
   --dora-background-color: #0d0d0d;
-  --dora-background-color-rgb: .colorToRGB(#0d0d0d)[@list];
+  --dora-background-color-rgb: #color-to-rgb-list(#0d0d0d) [];
 
   // Text color for `<body>`
   --dora-text-color: #fff;
-  --dora-text-color-rgb: .colorToRGB(#fff)[@list];
+  --dora-text-color-rgb: #color-to-rgb-list(#fff) [];
 
   // Default colors
   --dora-white: #000;
-  --dora-white-rgb: .colorToRGB(#000)[@list];
+  --dora-white-rgb: #color-to-rgb-list(#000) [];
   --dora-black: #fff;
-  --dora-black-rgb: .colorToRGB(#fff)[@list];
+  --dora-black-rgb: #color-to-rgb-list(#fff) [];
 
   // Base background color for most components
   --dora-component-background-color: #191919;
-  --dora-component-background-color-rgb: .colorToRGB(#191919)[@list];
+  --dora-component-background-color-rgb: #color-to-rgb-list(#191919) [];
 
   // Base background color for actived state
   --dora-active-state-bg: #333;
-  --dora-active-state-bg-rgb: .colorToRGB(#333)[@list];
+  --dora-active-state-bg-rgb: #color-to-rgb-list(#333) [];
 
   // Default Foreground and Background Step Colors
   // ---------------------------------------------
@@ -47,31 +122,13 @@
 
   // Default Colors
   // ---------------------------------------------
-  --dora-color-light: #222428;
-  --dora-color-light-contrast: #fff;
-  --dora-color-light-active: darken(#222428, 10%);
-  --dora-color-stable: #989aa2;
-  --dora-color-stable-active: darken(#989aa2, 10%);
-  --dora-color-stable-contrast: #000;
-  --dora-color-positive: #428cff;
-  --dora-color-positive-active: darken(#428cff, 10%);
-  --dora-color-positive-contrast: #fff;
-  --dora-color-calm: #50c8ff;
-  --dora-color-calm-active: darken(#50c8ff, 10%);
-  --dora-color-calm-contrast: #fff;
-  --dora-color-balanced: #2fdf75;
-  --dora-color-balanced-active: darken(#2fdf75, 10%);
-  --dora-color-balanced-contrast: #000;
-  --dora-color-energized: #ffd534;
-  --dora-color-energized-active: darken(#ffd534, 10%);
-  --dora-color-energized-contrast: #000;
-  --dora-color-assertive: #ff4961;
-  --dora-color-assertive-active: darken(#ff4961, 10%);
-  --dora-color-assertive-contrast: #fff;
-  --dora-color-royal: #9673d7;
-  --dora-color-royal-active: darken(#9673d7, 10%);
-  --dora-color-royal-contrast: #fff;
-  --dora-color-dark: #f4f5f8;
-  --dora-color-dark-active: darken(#f4f5f8, 10%);
-  --dora-color-dark-contrast: #000;
+  each(@colors, {
+    @color: @@value;
+    --dora-color-@{key}: @color[base];
+    --dora-color-@{key}-rgb: #color-to-rgb-list(@color[base]) [];
+    --dora-color-@{key}-contrast: @color[contrast];
+    --dora-color-@{key}-contrast-rgb: #color-to-rgb-list(@color[contrast]) [];
+    --dora-color-@{key}-active: @color[active];
+    --dora-color-@{key}-tint: @color[tint];
+  });
 }

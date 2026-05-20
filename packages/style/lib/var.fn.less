@@ -44,6 +44,45 @@
   }
 }
 
-.colorToRGB(@color) {
-  @list: red(@color), green(@color), blue(@color);
+// Mixes a color with black to create its active.
+// --------------------------------------------------------------------------------------------
+#get-color-active(@color) {
+  @return: mix(#000, @color, 12%);
+}
+
+// Mixes a color with white to create its tint.
+// --------------------------------------------------------------------------------------------
+#get-color-tint(@color) {
+  @return: mix(#fff, @color, 10%);
+}
+
+// Converts a color to a comma separated rgb.
+// --------------------------------------------------------------------------------------------
+#color-to-rgb-list(@color) {
+  @return: red(@color), green(@color), blue(@color);
+}
+
+// Gets the active color's css variable from a variation.
+// --------------------------------------------------------------------------------------------
+// Example usage:
+// current-color(base) => var(--dora-color-base)
+// current-color(active) => var(--dora-color-active)
+// current-color(contrast) => var(--dora-color-contrast)
+#current-color (@variation: base) {
+  @return: var(~'--dora-color-@{variation}');
+}
+
+// Gets the specific color's css variable from the name and variation.
+// --------------------------------------------------------------------------------------------
+// Example usage:
+// #get-color(positive)[] => var(--dora-color-positive, #3880ff)
+// #get-color(positive, active)[] => var(--dora-color-positive-active, #055fff)
+// #get-color(positive, contrast)[] => var(--dora-color-positive-contrast, #fff)
+#get-color (@name: positive, @variation: base) {
+  @values: ~'@{name}-value';
+  @base: var(~'--dora-color-@{name}', @@values[base]);
+  @active: var(~'--dora-color-@{name}-active', @@values[active]);
+  @tint: var(~'--dora-color-@{name}-tint', @@values[tint]);
+  @contrast: var(~'--dora-color-@{name}-contrast', @@values[contrast]);
+  @return: if((@variation = base), @base, if((@variation = active), @active, if((@variation = tint), @tint, @contrast)));
 }

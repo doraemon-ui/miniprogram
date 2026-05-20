@@ -16,9 +16,9 @@
 // Default Foreground and Background Colors
 // -------------------------------------------------------------------------------------------
 @white-value: #fff;
-@white-rgb-value: .colorToRGB(#fff)[@list];
+@white-rgb-value: #color-to-rgb-list(#fff) [];
 @black-value: #000;
-@black-rgb-value: .colorToRGB(#000)[@list];
+@black-rgb-value: #color-to-rgb-list(#000) [];
 
 // Step Colors
 // -------------------------------------------------------------------------------------------
@@ -52,7 +52,7 @@
 
 // Background color for `<body>`
 @body-background: var(--dora-background-color, #fafafa);
-@body-background-rgb: var(--dora-background-color-rgb, .colorToRGB(#fafafa)[@list]);
+@body-background-rgb: var(--dora-background-color-rgb, #color-to-rgb-list(#fafafa) []);
 // Base background color for most components
 @component-background: var(--dora-component-background-color, @white-value);
 @component-z-index: var(--dora-component-z-index, 1000);

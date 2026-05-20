@@ -3,7 +3,7 @@ import path from 'node:path'
 
 const rootDir = path.resolve(__dirname, '..', '..')
 
-const colorLessPath = path.resolve(__dirname, 'lib/color.less')
+const colorLessPath = path.resolve(__dirname, 'lib/var.light.less')
 
 const presetTypeOutputPath = path.resolve(rootDir, 'packages/miniprogram.shared/src/types/color.ts')
 
@@ -12,7 +12,7 @@ const colorUtilOutputPath = path.resolve(rootDir, 'packages/miniprogram.shared/s
 const source = fs.readFileSync(colorLessPath, 'utf8')
 
 /**
- * 解析 color.less：
+ * 解析 var.light.less：
  * @light-value: { base: #xxxxxx; }
  */
 const colorMatches = [...source.matchAll(/@([a-z0-9-]+)-value:\s*\{\s*base:\s*(#[0-9a-fA-F]{3,8})\s*;/g)]
@@ -23,7 +23,7 @@ const colors = colorMatches.map((match) => ({
 }))
 
 if (!colors.length) {
-  throw new Error('No preset colors found in color.less')
+  throw new Error('No preset colors found in var.light.less')
 }
 
 const colorNames = colors.map((item) => item.name)
