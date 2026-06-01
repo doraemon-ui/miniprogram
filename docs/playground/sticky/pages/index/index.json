@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "Sticky",
   "usingComponents": {
+    "demo-page": "@doraemon-ui/miniprogram.demo-page/index",
     "dora-sticky": "@doraemon-ui/miniprogram.sticky/index",
     "dora-sticky-item": "@doraemon-ui/miniprogram.sticky/item"
   }

@@ -102,6 +102,13 @@ export type NativeButtonOpenType =
 
 > 更多参数说明请参考微信官方的表单组件 [Button](https://developers.weixin.qq.com/miniprogram/dev/component/button.html)。
 
+### Button Semantic DOM
+
+| 参数  | 描述                         | 示例                                                                                                                 |
+| ----- | ---------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| root  | 根元素，设置容器样式和布局   | info[wxml]>`<dora-button classNames="{{ { root: 'my-classname' } }}" styles="{{ { root: { color: 'red' } } }}" />`   |
+| hover | 按压元素，按钮按下去的样式类 | info[wxml]>`<dora-button classNames="{{ { hover: 'my-classname' } }}" styles="{{ { hover: { color: 'red' } } }}" />` |
+
 ### Button slot
 
 | 名称 | 描述       |

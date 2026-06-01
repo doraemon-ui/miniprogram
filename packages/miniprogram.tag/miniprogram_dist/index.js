@@ -1,12 +1,12 @@
 /**
  * @doraemon-ui/miniprogram.tag.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-20, 21:13:03.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
+ * Built on 2026-06-01, 18:29:07.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.34.
  */
 
 import { Doraemon, Prop, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
-import { useControlledState, isPresetColor, useCSSVarCls, useColorCls, useSemanticClassNames, FastColor, useSemanticStylesString } from '@doraemon-ui/miniprogram.shared';
+import { useControlledState, isPresetColor, useHoverCls, useCSSVarCls, useColorCls, useSemanticClassNames, FastColor, useSemanticStylesString } from '@doraemon-ui/miniprogram.shared';
 
 function _ts_decorate(decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc, d;
@@ -20,38 +20,38 @@ let Tag = // const isPresetColor = (color: string) =>
 //   /^(pink|red|yellow|orange|cyan|green|blue|purple|geekblue|magenta|volcano|gold|lime)(-inverse)?$/.test(color)
 class Tag extends Doraemon {
     get classes() {
-        const { prefixCls, hoverClass, color, fill } = this;
-        const hover = hoverClass && hoverClass !== 'default' ? hoverClass : `${prefixCls}--hover`;
+        const { prefixCls, rootClassName, hoverClass, color, fill } = this;
         const isPreset = isPresetColor(color);
         const internalClassNames = {
-            root: classNames(prefixCls, useCSSVarCls(prefixCls), useColorCls(color), {
+            root: classNames(prefixCls, rootClassName, useCSSVarCls(prefixCls), useColorCls(color), {
                 [`${prefixCls}--${fill}`]: fill,
                 [`${prefixCls}--${color}`]: isPreset
             }),
             icon: `${prefixCls}__icon`,
-            hover
+            hover: useHoverCls(prefixCls, hoverClass)
         };
         return useSemanticClassNames(undefined, internalClassNames, this.classNames);
     }
     get mergedStyles() {
-        const { color, fill } = this;
+        const { rootStyle = {}, color, fill } = this;
         const isPreset = isPresetColor(color);
-        const rootStyle = {};
+        const internalRootStyle = {};
         if (!isPreset && color) {
             if (fill === 'solid') {
-                rootStyle.backgroundColor = color;
+                internalRootStyle.backgroundColor = color;
             } else {
-                const hsl = new FastColor(color).toHsl();
-                hsl.l = 0.95;
-                rootStyle.backgroundColor = new FastColor(hsl).toHexString();
-                rootStyle.color = color;
+                const base = new FastColor(color);
+                internalRootStyle.backgroundColor = base.tint(88).toHexString();
+                internalRootStyle.color = color;
                 if (fill === 'outline') {
-                    rootStyle.borderColor = color;
+                    internalRootStyle.borderColor = color;
                 }
             }
         }
         return useSemanticStylesString({
             root: rootStyle
+        }, {
+            root: internalRootStyle
         }, this.styles);
     }
     // get rootStyle() {
@@ -140,6 +140,14 @@ Tag = _ts_decorate([
             prefixCls: {
                 type: String,
                 default: 'dora-tag'
+            },
+            rootClassName: {
+                type: String,
+                default: ''
+            },
+            rootStyle: {
+                type: null,
+                default: null
             },
             classNames: {
                 type: Object,

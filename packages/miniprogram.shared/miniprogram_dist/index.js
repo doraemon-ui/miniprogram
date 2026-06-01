@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.shared.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-20, 17:49:06.
+ * Built on 2026-06-01, 14:11:47.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 
@@ -1063,7 +1063,7 @@ function buildURL(url, params) {
  * ------------------------------------------------------------------
  */ const colors = {
     light: '#f4f5f8',
-    stable: '#92949c',
+    stable: '#636469',
     positive: '#3880ff',
     calm: '#3dc2ff',
     balanced: '#2dd36f',
@@ -1155,6 +1155,10 @@ function isFalse(v) {
     return v === false;
 }
 
+function isFunction(value) {
+    return typeof value === 'function';
+}
+
 function isPromise(val) {
     return isDef(val) && typeof val.then === 'function' && typeof val.catch === 'function';
 }
@@ -1206,6 +1210,7 @@ var util = {
     isDate,
     isDef,
     isFalse,
+    isFunction,
     isObject,
     isPromise,
     isString,
@@ -1678,7 +1683,25 @@ var dom = {
     usePopupStateHOC
 };
 
-const useColorCls = (color)=>{
+/**
+ * Generate preset color class names.
+ *
+ * Priority:
+ * 1. Return preset color classes when `color` matches a built-in semantic token
+ * 2. Return `null` for custom colors or empty values so callers can handle inline styles separately
+ *
+ * Example:
+ * ```ts
+ * useColorCls('positive')
+ * // => { 'dora-color': true, 'dora-color--positive': true }
+ *
+ * useColorCls('#1677ff')
+ * // => null
+ * ```
+ *
+ * @param color Semantic preset color name
+ * @returns Preset color class map or `null` when no preset color matches
+ */ const useColorCls = (color)=>{
     if (!isPresetColor(color)) {
         return null;
     }
@@ -1689,20 +1712,88 @@ const useColorCls = (color)=>{
 };
 
 /**
- * This hook is only for cssVar to add root className for components.
- * If root ClassName is needed, this hook could be refactored with `--root`
- * @param prefixCls
+ * Generate CSS variable root class name.
+ *
+ * Priority:
+ * 1. Always append the shared `--css-var` suffix to the component prefix class
+ * 2. Keep the output stable so components can opt into CSS variable styles consistently
+ *
+ * Example:
+ * ```ts
+ * useCSSVarCls('dora-button')
+ * // => 'dora-button--css-var'
+ * ```
+ *
+ * @param prefixCls Component prefix class name
+ * @returns Root class name used for CSS variable styles
  */ const useCSSVarCls = (prefixCls)=>`${prefixCls}--css-var`;
 
-const { classNames, styleToCssString: stringifyStyle } = Doraemon.util;
-function isFunction(value) {
-    return typeof value === 'function';
-}
-function isPlainObject(value) {
-    return Object.prototype.toString.call(value) === '[object Object]';
-}
 /**
- * Fill object structure by schema, initialize empty objects for keys with `_default` property.
+ * Generate external class names for semantic slots.
+ *
+ * Priority:
+ * 1. Prefix each semantic name with the shared `dora-` namespace
+ * 2. Suffix each generated class with `-class` to match miniprogram externalClasses conventions
+ *
+ * Example:
+ * ```ts
+ * useExternalCls(['root', 'hover'])
+ * // => ['dora-root-class', 'dora-hover-class']
+ * ```
+ *
+ * @param semanticName Semantic slot names
+ * @returns External class names in the same order as the input names
+ */ const useExternalCls = (semanticName)=>{
+    return semanticName.map((name)=>`dora-${name}-class`);
+};
+
+/**
+ * Generate hover class name.
+ *
+ * Priority:
+ * 1. Use external `hoverClass` when provided and not equal to `default`
+ * 2. Fallback to internal BEM modifier class
+ *
+ * Example:
+ * ```ts
+ * useHoverCls('dora-button', '')
+ * // => 'dora-button--hover'
+ *
+ * useHoverCls('dora-button', 'custom-hover')
+ * // => 'custom-hover'
+ *
+ * useHoverCls('dora-button', '', 'active')
+ * // => 'dora-button--active'
+ * ```
+ *
+ * @param prefixCls Component prefix class name
+ * @param hoverClass Custom hover class name
+ * @param modifier BEM modifier name for hover state
+ * @returns Resolved hover class name
+ */ const useHoverCls = (prefixCls, hoverClass, modifier = 'hover')=>{
+    return hoverClass && hoverClass !== 'default' ? hoverClass : `${prefixCls}--${modifier}`;
+};
+
+const { classNames, styleToCssString: stringifyStyle } = Doraemon.util;
+/**
+ * Fill semantic object structure by schema.
+ *
+ * Priority:
+ * 1. Preserve existing values from `value`
+ * 2. Initialize missing schema branches so downstream merges always receive a complete shape
+ *
+ * Example:
+ * ```ts
+ * fillObjectBySchema({}, {
+ *   header: { _default: 'root' },
+ *   body: { _default: 'root' },
+ * })
+ * // => { header: {}, body: {} }
+ * ```
+ *
+ * @param value Current semantic object
+ * @param schema Semantic schema definition
+ * @returns Object expanded to match the schema structure
  */ function fillObjectBySchema(value, schema = {}) {
     const newObj = {
         ...value || {}
@@ -1719,14 +1810,35 @@ function isPlainObject(value) {
     return newObj;
 }
 // ========================= ClassNames =========================
-const mergeClassNames = (schema = {}, ...classNameList)=>{
+/**
+ * Merge semantic class name objects.
+ *
+ * Priority:
+ * 1. Merge nested schema keys recursively
+ * 2. Convert schema-backed string values into the schema `_default` slot
+ * 3. Flatten non-schema keys with shared class name concatenation
+ *
+ * Example:
+ * ```ts
+ * mergeClassNames(
+ *   { header: { _default: 'root', icon: {} } },
+ *   { header: 'base' },
+ *   { header: 'extra' },
+ * )
+ * // => { header: { root: 'base extra' } }
+ * ```
+ *
+ * @param schema Semantic schema definition
+ * @param classNameList Semantic class name sources
+ * @returns Merged semantic class name object
+ */ const mergeClassNames = (schema = {}, ...classNameList)=>{
     return classNameList.filter((item)=>Boolean(item)).reduce((acc, cur)=>{
         // Loop keys of the current classNames
         Object.keys(cur).forEach((key)=>{
             const keySchema = schema[key];
             const curVal = cur[key];
             if (keySchema) {
-                if (isPlainObject(curVal)) {
+                if (isObject(curVal)) {
                     // Loop fill
                     acc[key] = mergeClassNames(keySchema, acc[key], curVal);
                 } else {
@@ -1746,44 +1858,110 @@ const mergeClassNames = (schema = {}, ...classNameList)=>{
     }, {});
 };
 // =========================== Styles ===========================
-const mergeStyles = (...styles)=>{
+function mergeStyleValue(prev, cur) {
+    if (typeof prev === 'string' || typeof cur === 'string') {
+        return `${prev ? stringifyStyle(prev) : ''}${cur ? stringifyStyle(cur) : ''}`;
+    }
+    return {
+        ...prev,
+        ...cur || {}
+    };
+}
+/**
+ * Merge semantic style objects.
+ *
+ * Priority:
+ * 1. Ignore empty style sources
+ * 2. Merge object styles by key with later values taking precedence
+ * 3. Concatenate style strings when either side is already serialized
+ *
+ * Example:
+ * ```ts
+ * mergeStyles({ root: { color: 'red' } }, { root: { fontSize: 12 } })
+ * // => { root: { color: 'red', fontSize: 12 } }
+ * ```
+ *
+ * @param styles Semantic style sources
+ * @returns Merged semantic style object
+ */ const mergeStyles = (...styles)=>{
     return styles.filter((item)=>Boolean(item)).reduce((acc, cur = {})=>{
-        Object.keys(cur).forEach((key)=>{
-            acc[key] = {
-                ...acc[key],
-                ...cur[key]
-            };
+        const currentStyles = cur;
+        Object.keys(currentStyles).forEach((key)=>{
+            acc[key] = mergeStyleValue(acc[key], currentStyles[key]);
         });
         return acc;
     }, {});
 };
-const useSemanticClassNames = (schema, ...classNames)=>{
+/**
+ * Merge semantic class names with optional schema normalization.
+ *
+ * @param schema Semantic schema definition
+ * @param classNames Semantic class name sources
+ * @returns Merged semantic class names
+ */ const useSemanticClassNames = (schema, ...classNames)=>{
     return mergeClassNames(schema, ...classNames);
 };
-const useSemanticStyles = (...styles)=>{
+/**
+ * Merge semantic styles into a single semantic style object.
+ *
+ * @param styles Semantic style sources
+ * @returns Merged semantic styles
+ */ const useSemanticStyles = (...styles)=>{
     return mergeStyles(...styles);
 };
 function stringifySemanticStyles(styles) {
-    return Object.keys(styles).reduce((acc, key)=>{
+    const result = {};
+    Object.keys(styles).forEach((key)=>{
         const value = styles[key];
-        if (isPlainObject(value) && Object.values(value).some((item)=>isPlainObject(item))) {
-            acc[key] = stringifySemanticStyles(value);
+        if (isObject(value) && Object.values(value).some((item)=>isObject(item))) {
+            result[key] = stringifySemanticStyles(value);
         } else {
-            acc[key] = stringifyStyle(value || {});
+            result[key] = stringifyStyle(value || {});
         }
-        return acc;
-    }, {});
+    });
+    return result;
 }
-const useSemanticStylesString = (...styles)=>{
+/**
+ * Merge semantic styles and convert each leaf node to css text.
+ *
+ * @param styles Semantic style sources
+ * @returns Merged semantic styles as serialized css strings
+ */ const useSemanticStylesString = (...styles)=>{
     return stringifySemanticStyles(useSemanticStyles(...styles));
 };
 // =========================== Export ===========================
-const resolveStyleOrClass = (value, info)=>{
+/**
+ * Resolve a semantic class/style value that may be static or derived from props.
+ *
+ * @param value Static value or value factory
+ * @param info Runtime props info passed to the factory
+ * @returns Resolved semantic class/style value
+ */ const resolveStyleOrClass = (value, info)=>{
     return isFunction(value) ? value(info) : value;
 };
 /**
- * @desc Merge classNames and styles from multiple sources. When `schema` is provided, it **must** provide the nest object structure.
- * @descZH 合并来自多个来源的 classNames 和 styles，当提供了 `schema` 时，必须提供嵌套的对象结构。
+ * Merge semantic class names and styles from multiple sources.
+ *
+ * Priority:
+ * 1. Resolve function inputs with runtime props
+ * 2. Merge class names and styles independently
+ * 3. Fill the merged result with `schema` when nested semantic structure is required
+ *
+ * Example:
+ * ```ts
+ * useMergeSemantic(
+ *   [{ root: 'base' }],
+ *   [{ root: { color: 'red' } }],
+ *   { props: {} },
+ * )
+ * // => [{ root: 'base' }, { root: { color: 'red' } }]
+ * ```
+ *
+ * @param classNamesList Semantic class name sources or factories
+ * @param stylesList Semantic style sources or factories
+ * @param info Runtime props info passed to factories
+ * @param schema Semantic schema definition for nested structures
+ * @returns Tuple of merged class names and merged styles
  */ const useMergeSemantic = (classNamesList, stylesList, info, schema)=>{
     const resolvedClassNamesList = classNamesList.map((classNames)=>classNames ? resolveStyleOrClass(classNames, info) : undefined);
     const resolvedStylesList = stylesList.map((styles)=>styles ? resolveStyleOrClass(styles, info) : undefined);
@@ -1804,6 +1982,8 @@ const resolveStyleOrClass = (value, info)=>{
 var hooks = {
     useColorCls,
     useCSSVarCls,
+    useExternalCls,
+    useHoverCls,
     fillObjectBySchema,
     mergeClassNames,
     mergeStyles,
@@ -1825,4 +2005,4 @@ var index = {
     ...util
 };
 
-export { FastColor, NATIVE_ROUTES, buildURL, canUseMP, chooseMedia, createImage, customPromise, decorators, index as default, dom, downloadImage, fillObjectBySchema, findComponentNode, getCanvasRef, getCurrentPage, getDefaultContext, getFontSize, getMenuButtonBoundingClientRectSync, getPointsDistance, getPointsNumber, getPresetColor, getSwipeDirection, getSystemInfoSync, getTouchPoints, hooks, isDate, isDef, isEqualPoints, isFalse, isNearbyPoints, isObject, isPresetColor, isPromise, isString, isTrue, isUndef, mergeClassNames, mergeStyles, miniprogramThis, nextTick, noop, omit, pxToNumber, resolveStyleOrClass, sleep, toDataURL, uploadFile, useCSSVarCls, useColorCls, useComputedStyle, useControlledState, useMergeSemantic, useNativeRoute, usePopupStateHOC, useQuery, useRect, useRectAll, useRef, useRefAll, useScrollOffset, useSelector, useSelectorAll, useSemanticClassNames, useSemanticStyles, useSemanticStylesString, util, vibrateShort };
+export { FastColor, NATIVE_ROUTES, buildURL, canUseMP, chooseMedia, createImage, customPromise, decorators, index as default, dom, downloadImage, fillObjectBySchema, findComponentNode, getCanvasRef, getCurrentPage, getDefaultContext, getFontSize, getMenuButtonBoundingClientRectSync, getPointsDistance, getPointsNumber, getPresetColor, getSwipeDirection, getSystemInfoSync, getTouchPoints, hooks, isDate, isDef, isEqualPoints, isFalse, isFunction, isNearbyPoints, isObject, isPresetColor, isPromise, isString, isTrue, isUndef, mergeClassNames, mergeStyles, miniprogramThis, nextTick, noop, omit, pxToNumber, resolveStyleOrClass, sleep, toDataURL, uploadFile, useCSSVarCls, useColorCls, useComputedStyle, useControlledState, useExternalCls, useHoverCls, useMergeSemantic, useNativeRoute, usePopupStateHOC, useQuery, useRect, useRectAll, useRef, useRefAll, useScrollOffset, useSelector, useSelectorAll, useSemanticClassNames, useSemanticStyles, useSemanticStylesString, util, vibrateShort };

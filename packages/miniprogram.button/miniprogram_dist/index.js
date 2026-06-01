@@ -1,11 +1,12 @@
 /**
  * @doraemon-ui/miniprogram.button.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-20, 21:43:29.
+ * Built on 2026-05-21, 18:44:29.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 
 import { Doraemon, Prop, Event, Emit, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
+import { useCSSVarCls, useColorCls, useSemanticClassNames, useSemanticStylesString } from '@doraemon-ui/miniprogram.shared';
 
 function _ts_decorate(decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -22,12 +23,13 @@ let Button = class Button extends Doraemon {
    * @readonly
    * @memberof Button
    */ get classes() {
-        const { prefixCls, hoverClass, color, size, fill, expand, shape, strong, disabled } = this;
+        const { prefixCls, rootClassName, hoverClass, color, size, fill, expand, shape, strong, disabled } = this;
         const finalSize = [
             'small',
             'large'
         ].includes(size) ? size : '';
         const finalFill = [
+            'fill',
             'solid',
             'outline',
             'clear'
@@ -40,21 +42,24 @@ let Button = class Button extends Doraemon {
             'rounded',
             'rectangular'
         ].includes(shape) ? shape : '';
-        const wrap = classNames(prefixCls, {
-            ['dora-color']: color,
-            [`dora-color--${color}`]: color,
-            [`${prefixCls}--${size}`]: finalSize,
-            [`${prefixCls}--${fill}`]: finalFill,
-            [`${prefixCls}--${expand}`]: finalExpand,
-            [`${prefixCls}--${shape}`]: finalShape,
-            [`${prefixCls}--strong`]: strong,
-            [`${prefixCls}--disabled`]: disabled
-        });
-        const hover = hoverClass && hoverClass !== 'default' ? hoverClass : `${prefixCls}--activated`;
-        return {
-            wrap,
-            hover
+        const internalClassNames = {
+            root: classNames(prefixCls, rootClassName, useCSSVarCls(prefixCls), useColorCls(color), {
+                [`${prefixCls}--${size}`]: finalSize,
+                [`${prefixCls}--${fill}`]: finalFill,
+                [`${prefixCls}--${expand}`]: finalExpand,
+                [`${prefixCls}--${shape}`]: finalShape,
+                [`${prefixCls}--strong`]: strong,
+                [`${prefixCls}--disabled`]: disabled
+            }),
+            hover: hoverClass && hoverClass !== 'default' ? hoverClass : `${prefixCls}--activated`
         };
+        return useSemanticClassNames(undefined, internalClassNames, this.classNames);
+    }
+    get mergedStyles() {
+        const { rootStyle } = this;
+        return useSemanticStylesString({
+            root: rootStyle || {}
+        }, this.styles);
     }
     /**
    * 按钮点击事件处理
@@ -240,6 +245,22 @@ Button = _ts_decorate([
             prefixCls: {
                 type: String,
                 default: 'dora-button'
+            },
+            rootClassName: {
+                type: String,
+                default: ''
+            },
+            rootStyle: {
+                type: null,
+                default: null
+            },
+            classNames: {
+                type: Object,
+                default: ()=>({})
+            },
+            styles: {
+                type: Object,
+                default: ()=>({})
             },
             disabled: {
                 type: Boolean,

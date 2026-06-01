@@ -4,6 +4,7 @@
   base: #f4f5f8;
   active: #get-color-active(#f4f5f8) [];
   tint: #get-color-tint(#f4f5f8) [];
+  light: #get-color-light(#f4f5f8) [];
   contrast: #000;
 };
 
@@ -11,6 +12,7 @@
   base: #636469;
   active: #get-color-active(#636469) [];
   tint: #get-color-tint(#636469) [];
+  light: #get-color-light(#636469) [];
   contrast: #fff;
 };
 
@@ -18,6 +20,7 @@
   base: #3880ff;
   active: #get-color-active(#3880ff) [];
   tint: #get-color-tint(#3880ff) [];
+  light: #get-color-light(#3880ff) [];
   contrast: #fff;
 };
 
@@ -25,6 +28,7 @@
   base: #3dc2ff;
   active: #get-color-active(#3dc2ff) [];
   tint: #get-color-tint(#3dc2ff) [];
+  light: #get-color-light(#3dc2ff) [];
   contrast: #fff;
 };
 
@@ -32,6 +36,7 @@
   base: #2dd36f;
   active: #get-color-active(#2dd36f) [];
   tint: #get-color-tint(#2dd36f) [];
+  light: #get-color-light(#2dd36f) [];
   contrast: #000;
 };
 
@@ -39,6 +44,7 @@
   base: #ffc409;
   active: #get-color-active(#ffc409) [];
   tint: #get-color-tint(#ffc409) [];
+  light: #get-color-light(#ffc409) [];
   contrast: #000;
 };
 
@@ -46,6 +52,7 @@
   base: #eb445a;
   active: #get-color-active(#eb445a) [];
   tint: #get-color-tint(#eb445a) [];
+  light: #get-color-light(#eb445a) [];
   contrast: #fff;
 };
 
@@ -53,6 +60,7 @@
   base: #8a63d2;
   active: #get-color-active(#8a63d2) [];
   tint: #get-color-tint(#8a63d2) [];
+  light: #get-color-light(#8a63d2) [];
   contrast: #fff;
 };
 
@@ -60,6 +68,7 @@
   base: #222428;
   active: #get-color-active(#222428) [];
   tint: #get-color-tint(#222428) [];
+  light: #get-color-light(#222428) [];
   contrast: #fff;
 };
 
@@ -130,5 +139,6 @@
     --dora-color-@{key}-contrast-rgb: #color-to-rgb-list(@color[contrast]) [];
     --dora-color-@{key}-active: @color[active];
     --dora-color-@{key}-tint: @color[tint];
+    --dora-color-@{key}-light: @color[light];
   });
 }

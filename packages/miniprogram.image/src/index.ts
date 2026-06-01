@@ -1,6 +1,6 @@
 import { defineComponentHOC, Doraemon, Component, Prop, Watch, Event } from '@doraemon-ui/miniprogram.core-js'
 import type { CSSStylePropertiesWithVars, CustomEvent } from '@doraemon-ui/miniprogram.core-js'
-import { getFontSize } from '@doraemon-ui/miniprogram.shared'
+import { getFontSize, useExternalCls } from '@doraemon-ui/miniprogram.shared'
 
 import type { ImageMode, ImageShape, ImageStatus, SemanticName } from './types'
 
@@ -18,6 +18,14 @@ const UNMOUNTED: ImageStatus = 'unmounted'
       type: String,
       default: 'dora-image',
     },
+    rootClassName: {
+      type: String,
+      default: '',
+    },
+    // rootStyle: {
+    //   type: null,
+    //   default: null,
+    // },
     classNames: {
       type: Object,
       default: () => ({}),
@@ -30,8 +38,10 @@ const UNMOUNTED: ImageStatus = 'unmounted'
 })
 class Image extends Doraemon {
   prefixCls!: string
+  rootClassName!: string
+  // rootStyle!: string | Partial<CSSStylePropertiesWithVars>
   classNames!: Partial<Record<SemanticName, string>>
-  styles!: Partial<Record<SemanticName, CSSStylePropertiesWithVars>>
+  styles!: Partial<Record<SemanticName, CSSStylePropertiesWithVars | string>>
 
   @Prop({
     type: String,
@@ -213,4 +223,4 @@ class Image extends Doraemon {
 
 export { Image }
 
-export default defineComponentHOC()(Image)
+export default defineComponentHOC({ externalClasses: useExternalCls(['image']) })(Image)

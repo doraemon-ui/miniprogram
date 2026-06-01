@@ -6,6 +6,7 @@ import {
   useColorCls,
   useControlledState,
   useCSSVarCls,
+  useHoverCls,
   useSemanticClassNames,
   useSemanticStylesString,
 } from '@doraemon-ui/miniprogram.shared'
@@ -23,6 +24,14 @@ const { ControlledState, setControlledState } = useControlledState('visible')
     prefixCls: {
       type: String,
       default: 'dora-tag',
+    },
+    rootClassName: {
+      type: String,
+      default: '',
+    },
+    rootStyle: {
+      type: null,
+      default: null,
     },
     classNames: {
       type: Object,
@@ -42,8 +51,10 @@ class Tag extends Doraemon {
    * @memberof Tag
    */
   prefixCls!: string
+  rootClassName!: string
+  rootStyle!: string | Partial<CSSStylePropertiesWithVars>
   classNames!: Partial<Record<SemanticName, string>>
-  styles!: Partial<Record<SemanticName, CSSStylePropertiesWithVars>>
+  styles!: Partial<Record<SemanticName, CSSStylePropertiesWithVars | string>>
 
   /**
    * 点击态类名
@@ -136,41 +147,42 @@ class Tag extends Doraemon {
   tagVisible: boolean = true
 
   get classes() {
-    const { prefixCls, hoverClass, color, fill } = this
-    const hover = hoverClass && hoverClass !== 'default' ? hoverClass : `${prefixCls}--hover`
+    const { prefixCls, rootClassName, hoverClass, color, fill } = this
     const isPreset = isPresetColor(color)
-    const internalClassNames = {
-      root: classNames(prefixCls, useCSSVarCls(prefixCls), useColorCls(color), {
+    const internalClassNames: Partial<Record<SemanticName, string>> = {
+      root: classNames(prefixCls, rootClassName, useCSSVarCls(prefixCls), useColorCls(color), {
         [`${prefixCls}--${fill}`]: fill,
         [`${prefixCls}--${color}`]: isPreset,
       }),
       icon: `${prefixCls}__icon`,
-      hover,
+      hover: useHoverCls(prefixCls, hoverClass),
     }
     return useSemanticClassNames(undefined, internalClassNames, this.classNames)
   }
 
   get mergedStyles() {
-    const { color, fill } = this
+    const { rootStyle = {}, color, fill } = this
     const isPreset = isPresetColor(color)
-    const rootStyle: CSSStylePropertiesWithVars = {}
+    const internalRootStyle: CSSStylePropertiesWithVars = {}
     if (!isPreset && color) {
       if (fill === 'solid') {
-        rootStyle.backgroundColor = color
+        internalRootStyle.backgroundColor = color
       } else {
-        const hsl = new FastColor(color).toHsl()
-        hsl.l = 0.95
-        rootStyle.backgroundColor = new FastColor(hsl).toHexString()
-        rootStyle.color = color
+        const base = new FastColor(color)
+        internalRootStyle.backgroundColor = base.tint(88).toHexString()
+        internalRootStyle.color = color
 
         if (fill === 'outline') {
-          rootStyle.borderColor = color
+          internalRootStyle.borderColor = color
         }
       }
     }
     return useSemanticStylesString(
       {
         root: rootStyle,
+      },
+      {
+        root: internalRootStyle,
       },
       this.styles,
     )

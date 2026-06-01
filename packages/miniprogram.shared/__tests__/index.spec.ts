@@ -25,6 +25,12 @@ import {
   mergeStyles,
   fillObjectBySchema,
   resolveStyleOrClass,
+  useColorCls,
+  useCSSVarCls,
+  useExternalCls,
+  useHoverCls,
+  useSemanticClassNames,
+  useSemanticStyles,
   useSemanticStylesString,
   buildURL,
   customPromise,
@@ -34,6 +40,7 @@ import {
   isDate,
   isDef,
   isFalse,
+  isFunction,
   isObject,
   isPromise,
   isString,
@@ -323,6 +330,30 @@ describe('Shared', () => {
     })
   })
   describe('Hooks', () => {
+    test('call useColorCls and useCSSVarCls', () => {
+      expect(useColorCls('positive')).toEqual({
+        'dora-color': true,
+        'dora-color--positive': true,
+      })
+      expect(useColorCls('#1677ff')).toBeNull()
+      expect(useColorCls()).toBeNull()
+
+      expect(useCSSVarCls('dora-button')).toBe('dora-button--css-var')
+    })
+
+    test('call useExternalCls', () => {
+      expect(useExternalCls(['root'])).toEqual(['dora-root-class'])
+      expect(useExternalCls(['root', 'hover', 'icon'])).toEqual(['dora-root-class', 'dora-hover-class', 'dora-icon-class'])
+      expect(useExternalCls([])).toEqual([])
+    })
+
+    test('call useHoverCls', () => {
+      expect(useHoverCls('dora-button', '')).toBe('dora-button--hover')
+      expect(useHoverCls('dora-button', 'custom-hover')).toBe('custom-hover')
+      expect(useHoverCls('dora-button', '', 'active')).toBe('dora-button--active')
+      expect(useHoverCls('dora-button', 'default')).toBe('dora-button--hover')
+    })
+
     test('call semantic merge helpers', () => {
       const schema = {
         header: {
@@ -369,6 +400,10 @@ describe('Shared', () => {
         body: { color: 'blue' },
       })
 
+      expect(mergeStyles({ root: { color: 'red' } }, { root: 'font-size: 12px;' })).toEqual({
+        root: 'color: red;  font-size: 12px; ',
+      })
+
       expect(fillObjectBySchema({ footer: { color: 'red' } }, schema)).toEqual({
         footer: { color: 'red' },
         header: {},
@@ -380,6 +415,27 @@ describe('Shared', () => {
           props: { active: true },
         }),
       ).toBe('active')
+      expect(resolveStyleOrClass('static', { props: { active: false } })).toBe('static')
+    })
+
+    test('call useSemanticClassNames and useSemanticStyles', () => {
+      const schema = {
+        header: {
+          _default: 'root',
+          icon: {},
+        },
+      }
+
+      expect(useSemanticClassNames(schema, { header: 'base' }, { header: { icon: 'active' } }, { footer: 'outer' })).toEqual({
+        header: {
+          root: 'base',
+        },
+        footer: 'outer',
+      })
+
+      expect(useSemanticStyles({ root: { color: 'red' } }, undefined, { root: { fontSize: 12 } })).toEqual({
+        root: { color: 'red', fontSize: 12 },
+      })
     })
 
     test('call useMergeSemantic', () => {
@@ -422,6 +478,10 @@ describe('Shared', () => {
     test('call useSemanticStylesString', () => {
       expect(useSemanticStylesString({ root: { color: 'red' } }, { root: { fontSize: 12 } })).toEqual({
         root: 'color: red;  font-size: 12px;  ',
+      })
+
+      expect(useSemanticStylesString({ root: { color: 'red' } }, { root: 'font-size: 12px;' })).toEqual({
+        root: 'color: red;  font-size: 12px; ',
       })
 
       expect(
@@ -502,6 +562,10 @@ describe('Shared', () => {
       expect(isFalse(true)).toBe(false)
       expect(isFalse(false)).toBe(true)
       expect(isFalse('')).toBe(false)
+    })
+    test('call isFunction', () => {
+      expect(isFunction(() => {})).toBe(true)
+      expect(isFunction({})).toBe(false)
     })
     test('call isObject', () => {
       expect(isObject(null)).toBe(false)

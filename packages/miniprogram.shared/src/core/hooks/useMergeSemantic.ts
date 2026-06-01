@@ -1,5 +1,6 @@
 import { Doraemon } from '@doraemon-ui/miniprogram.core-js'
 import type { CSSStylePropertiesWithVars } from '@doraemon-ui/miniprogram.core-js'
+import { isFunction, isObject } from '../util'
 
 export type AnyObject = Record<string, any>
 
@@ -46,14 +47,34 @@ export type DeepClassNameType<T> = {
 }
 
 type CSS = CSSStylePropertiesWithVars
-
-export type DeepStylesType<T> = {
-  [K in keyof T]?: CSS extends T[K] ? CSS : DeepStylesType<T[K]>
+type IsAny<T> = 0 extends 1 & T ? true : false
+export type SemanticStyleValue = CSS | string
+export type SemanticStyleNode = SemanticStyleValue | SemanticStyles
+export type SemanticStyles = {
+  [key: string]: SemanticStyleNode | undefined
 }
 
-export type DeepStylesStringType<T> = {
-  [K in keyof T]?: CSS extends T[K] ? string : DeepStylesStringType<T[K]>
-}
+export type DeepStylesType<T> =
+  IsAny<T> extends true
+    ? SemanticStyles
+    : string extends NonNullable<T>
+      ? SemanticStyleValue
+      : CSS extends NonNullable<T>
+        ? SemanticStyleValue
+        : {
+            [K in keyof NonNullable<T>]?: DeepStylesType<NonNullable<T>[K]>
+          }
+
+export type DeepStylesStringType<T> =
+  IsAny<T> extends true
+    ? Record<string, any>
+    : string extends NonNullable<T>
+      ? string
+      : CSS extends NonNullable<T>
+        ? string
+        : {
+            [K in keyof NonNullable<T>]?: DeepStylesStringType<NonNullable<T>[K]>
+          }
 
 export type GenerateSemantic<T extends { classNames?: any; styles?: any }, Props> = {
   // classNames
@@ -71,16 +92,25 @@ type MaybeFn<T, P> = T | ((info: { props: P }) => T) | undefined
 
 const { classNames, styleToCssString: stringifyStyle } = Doraemon.util
 
-function isFunction(value: unknown): value is (...args: any[]) => any {
-  return typeof value === 'function'
-}
-
-function isPlainObject(value: unknown): value is AnyObject {
-  return Object.prototype.toString.call(value) === '[object Object]'
-}
-
 /**
- * Fill object structure by schema, initialize empty objects for keys with `_default` property.
+ * Fill semantic object structure by schema.
+ *
+ * Priority:
+ * 1. Preserve existing values from `value`
+ * 2. Initialize missing schema branches so downstream merges always receive a complete shape
+ *
+ * Example:
+ * ```ts
+ * fillObjectBySchema({}, {
+ *   header: { _default: 'root' },
+ *   body: { _default: 'root' },
+ * })
+ * // => { header: {}, body: {} }
+ * ```
+ *
+ * @param value Current semantic object
+ * @param schema Semantic schema definition
+ * @returns Object expanded to match the schema structure
  */
 export function fillObjectBySchema<T extends AnyObject = AnyObject>(value: T | undefined, schema: SemanticSchema = {}): T {
   const newObj: Record<string, any> = { ...(value || {}) }
@@ -99,6 +129,28 @@ export function fillObjectBySchema<T extends AnyObject = AnyObject>(value: T | u
 }
 
 // ========================= ClassNames =========================
+/**
+ * Merge semantic class name objects.
+ *
+ * Priority:
+ * 1. Merge nested schema keys recursively
+ * 2. Convert schema-backed string values into the schema `_default` slot
+ * 3. Flatten non-schema keys with shared class name concatenation
+ *
+ * Example:
+ * ```ts
+ * mergeClassNames(
+ *   { header: { _default: 'root', icon: {} } },
+ *   { header: 'base' },
+ *   { header: 'extra' },
+ * )
+ * // => { header: { root: 'base extra' } }
+ * ```
+ *
+ * @param schema Semantic schema definition
+ * @param classNameList Semantic class name sources
+ * @returns Merged semantic class name object
+ */
 export const mergeClassNames = <Name extends string, SemanticClassNames extends Partial<Record<Name, any>>>(
   schema: SemanticSchema = {},
   ...classNameList: (SemanticClassNames | undefined)[]
@@ -112,7 +164,7 @@ export const mergeClassNames = <Name extends string, SemanticClassNames extends 
         const curVal = cur[key as keyof SemanticClassNames]
 
         if (keySchema) {
-          if (isPlainObject(curVal)) {
+          if (isObject(curVal)) {
             // Loop fill
             acc[key] = mergeClassNames(keySchema, acc[key], curVal)
           } else {
@@ -134,17 +186,50 @@ export const mergeClassNames = <Name extends string, SemanticClassNames extends 
 }
 
 // =========================== Styles ===========================
-export const mergeStyles = <StylesType extends AnyObject>(...styles: (Partial<StylesType> | undefined)[]) => {
+function mergeStyleValue(prev: unknown, cur: unknown): SemanticStyleNode {
+  if (typeof prev === 'string' || typeof cur === 'string') {
+    return `${prev ? stringifyStyle(prev as SemanticStyleValue) : ''}${cur ? stringifyStyle(cur as SemanticStyleValue) : ''}`
+  }
+
+  return { ...(prev as AnyObject), ...((cur || {}) as AnyObject) }
+}
+
+/**
+ * Merge semantic style objects.
+ *
+ * Priority:
+ * 1. Ignore empty style sources
+ * 2. Merge object styles by key with later values taking precedence
+ * 3. Concatenate style strings when either side is already serialized
+ *
+ * Example:
+ * ```ts
+ * mergeStyles({ root: { color: 'red' } }, { root: { fontSize: 12 } })
+ * // => { root: { color: 'red', fontSize: 12 } }
+ * ```
+ *
+ * @param styles Semantic style sources
+ * @returns Merged semantic style object
+ */
+export const mergeStyles = <StylesType extends AnyObject>(...styles: (DeepStylesType<StylesType> | SemanticStyles | undefined)[]) => {
   return styles
-    .filter((item): item is Partial<StylesType> => Boolean(item))
-    .reduce<Record<PropertyKey, CSS>>((acc, cur = {}) => {
-      Object.keys(cur).forEach((key) => {
-        acc[key] = { ...acc[key], ...cur[key] }
+    .filter((item): item is DeepStylesType<StylesType> | SemanticStyles => Boolean(item))
+    .reduce<SemanticStyles>((acc, cur = {}) => {
+      const currentStyles = cur as AnyObject
+      Object.keys(currentStyles).forEach((key) => {
+        acc[key] = mergeStyleValue(acc[key], currentStyles[key])
       })
       return acc
     }, {})
 }
 
+/**
+ * Merge semantic class names with optional schema normalization.
+ *
+ * @param schema Semantic schema definition
+ * @param classNames Semantic class name sources
+ * @returns Merged semantic class names
+ */
 export const useSemanticClassNames = <ClassNamesType extends AnyObject>(
   schema?: SemanticSchema,
   ...classNames: (Partial<ClassNamesType> | undefined)[]
@@ -152,42 +237,85 @@ export const useSemanticClassNames = <ClassNamesType extends AnyObject>(
   return mergeClassNames(schema, ...classNames)
 }
 
-export const useSemanticStyles = <StylesType extends AnyObject>(...styles: (Partial<StylesType> | undefined)[]): StylesType => {
-  return mergeStyles(...styles) as StylesType
+/**
+ * Merge semantic styles into a single semantic style object.
+ *
+ * @param styles Semantic style sources
+ * @returns Merged semantic styles
+ */
+export const useSemanticStyles = <StylesType extends AnyObject>(
+  ...styles: (DeepStylesType<StylesType> | SemanticStyles | undefined)[]
+): DeepStylesType<StylesType> => {
+  return mergeStyles(...styles) as DeepStylesType<StylesType>
 }
 
 function stringifySemanticStyles<T extends AnyObject>(styles: T): DeepStylesStringType<T> {
-  return Object.keys(styles).reduce((acc, key) => {
+  const result: AnyObject = {}
+
+  Object.keys(styles).forEach((key) => {
     const value = styles[key]
 
-    if (isPlainObject(value) && Object.values(value).some((item) => isPlainObject(item))) {
-      acc[key as keyof T] = stringifySemanticStyles(value) as DeepStylesStringType<T>[keyof T]
+    if (isObject(value) && Object.values(value).some((item) => isObject(item))) {
+      result[key] = stringifySemanticStyles(value)
     } else {
-      acc[key as keyof T] = stringifyStyle((value as CSS) || {}) as DeepStylesStringType<T>[keyof T]
+      result[key] = stringifyStyle((value as SemanticStyleValue) || {})
     }
+  })
 
-    return acc
-  }, {} as DeepStylesStringType<T>)
+  return result as DeepStylesStringType<T>
 }
 
+/**
+ * Merge semantic styles and convert each leaf node to css text.
+ *
+ * @param styles Semantic style sources
+ * @returns Merged semantic styles as serialized css strings
+ */
 export const useSemanticStylesString = <StylesType extends AnyObject>(
-  ...styles: (Partial<StylesType> | undefined)[]
+  ...styles: (DeepStylesType<StylesType> | SemanticStyles | undefined)[]
 ): DeepStylesStringType<StylesType> => {
-  return stringifySemanticStyles(useSemanticStyles(...styles))
+  return stringifySemanticStyles(useSemanticStyles(...styles) as AnyObject) as DeepStylesStringType<StylesType>
 }
 
 // =========================== Export ===========================
+/**
+ * Resolve a semantic class/style value that may be static or derived from props.
+ *
+ * @param value Static value or value factory
+ * @param info Runtime props info passed to the factory
+ * @returns Resolved semantic class/style value
+ */
 export const resolveStyleOrClass = <T = any, Props = any>(value: T | ((config: { props: Props }) => T), info: { props: Props }) => {
   return isFunction(value) ? value(info) : value
 }
 
 /**
- * @desc Merge classNames and styles from multiple sources. When `schema` is provided, it **must** provide the nest object structure.
- * @descZH 合并来自多个来源的 classNames 和 styles，当提供了 `schema` 时，必须提供嵌套的对象结构。
+ * Merge semantic class names and styles from multiple sources.
+ *
+ * Priority:
+ * 1. Resolve function inputs with runtime props
+ * 2. Merge class names and styles independently
+ * 3. Fill the merged result with `schema` when nested semantic structure is required
+ *
+ * Example:
+ * ```ts
+ * useMergeSemantic(
+ *   [{ root: 'base' }],
+ *   [{ root: { color: 'red' } }],
+ *   { props: {} },
+ * )
+ * // => [{ root: 'base' }, { root: { color: 'red' } }]
+ * ```
+ *
+ * @param classNamesList Semantic class name sources or factories
+ * @param stylesList Semantic style sources or factories
+ * @param info Runtime props info passed to factories
+ * @param schema Semantic schema definition for nested structures
+ * @returns Tuple of merged class names and merged styles
  */
 export const useMergeSemantic = <ClassNamesType = any, StylesType = any, Props = any>(
   classNamesList: MaybeFn<ClassNamesType, Props>[],
-  stylesList: MaybeFn<StylesType, Props>[],
+  stylesList: MaybeFn<DeepStylesType<StylesType> | SemanticStyles, Props>[],
   info: { props: Props },
   schema?: SemanticSchema,
 ) => {
@@ -195,17 +323,17 @@ export const useMergeSemantic = <ClassNamesType = any, StylesType = any, Props =
   const resolvedStylesList = stylesList.map((styles) => (styles ? resolveStyleOrClass(styles, info) : undefined))
 
   const mergedClassNames = useSemanticClassNames(schema, ...(resolvedClassNamesList as Array<Partial<Record<string, any>> | undefined>))
-  const mergedStyles = useSemanticStyles(...(resolvedStylesList as Array<AnyObject | undefined>))
+  const mergedStyles = useSemanticStyles(...(resolvedStylesList as Array<DeepStylesType<StylesType> | SemanticStyles | undefined>))
 
   if (!schema) {
-    return [mergedClassNames, mergedStyles] as [
+    return [mergedClassNames, mergedStyles] as unknown as [
       Required<RemoveClassNamesString<NonNullable<ClassNamesType>>>,
-      Required<NonNullable<StylesType>>,
+      Required<DeepStylesType<NonNullable<StylesType>>>,
     ]
   }
 
-  return [fillObjectBySchema(mergedClassNames, schema), fillObjectBySchema(mergedStyles, schema)] as [
+  return [fillObjectBySchema(mergedClassNames, schema), fillObjectBySchema(mergedStyles as AnyObject, schema)] as unknown as [
     Required<RemoveClassNamesString<NonNullable<ClassNamesType>>>,
-    Required<NonNullable<StylesType>>,
+    Required<DeepStylesType<NonNullable<StylesType>>>,
   ]
 }

@@ -1,6 +1,6 @@
 ---
 name: generate-readme
-description: 自动生成 miniprogram 组件的 README.md，包括 ## API（Props、Slot、ExternalClasses）和 ## CSS Variables 章节
+description: 自动生成 miniprogram 组件的 README.md，包括 ## API（Props、Semantic DOM、Slot、ExternalClasses）和 ## CSS Variables 章节
 allowed-tools: Bash(npm *), Read, Grep, Write
 ---
 
@@ -27,7 +27,8 @@ allowed-tools: Bash(npm *), Read, Grep, Write
 并行读取以下文件：
 1. `{组件路径}/src/index.ts` — props、事件
 2. `{组件路径}/src/index.wxml` — slots、externalClasses
-3. `{组件路径}/assets/` 下所有 `.less` 文件 — CSS variables
+3. `{组件路径}/src/types.ts`（如果存在）— props 精确类型、Semantic DOM 名称
+4. `{组件路径}/assets/` 下所有 `.less` 文件 — CSS variables
 
 ### Step 3: 提取 Props（→ `### Xxx props`）
 
@@ -164,7 +165,68 @@ Props 按以下顺序排列：
 | 数字 | 数字原样 |
 | 非空字符串 | 去掉引号 |
 
-### Step 4: 提取 Slots（→ `### Xxx slot`）
+### Step 4: 提取 Semantic DOM（→ `### Xxx Semantic DOM`）
+
+当组件支持语义化 classNames/styles 定制时，在 `## API` 中补充 `### Xxx Semantic DOM` 章节。
+
+生成 3 列表格：`| 参数 | 描述 | 示例 |`
+
+#### 4a. 判断组件是否支持 Semantic DOM
+
+满足以下任一条件即可认为支持：
+1. `src/index.ts` 的 `@Component.props` 中存在 `classNames` 或 `styles`
+2. 组件类字段或 `src/types.ts` 中存在 `classNames?: Partial<Record<SemanticName, ...>>` / `styles?: Partial<Record<SemanticName, ...>>`
+3. `src/index.ts` 中使用了 `useSemanticClassNames`、`useSemanticStyles`、`useSemanticStylesString`、`useMergeSemantic`
+
+如果不支持，则跳过本节。
+
+#### 4b. 提取语义节点名称
+
+优先级如下：
+1. `src/types.ts` 中的 `export type SemanticName = 'root' | 'hover' | ...`
+2. `src/index.ts` 中 `classNames!: Partial<Record<SemanticName, string>>` / `styles!: ...` 关联到的 `SemanticName`
+3. `src/index.ts` 中 `classNames: { ... }`、`styles: { ... }` 对象字面量的 key
+
+提取后按源码定义顺序输出。
+
+#### 4c. 推导描述
+
+描述规则：
+- **第一优先级：`src/types.ts` 中的注释**
+  - 优先读取和 `SemanticName`、`classNames`、`styles` 相关的类型定义、接口字段或映射对象上的注释
+  - 如果 `src/types.ts` 中为某个语义节点提供了注释说明，直接使用该注释的第一行作为描述
+- **第二优先级：`src/index.ts` 中的注释**
+  - 读取组件类字段、语义合并逻辑、局部映射对象附近的注释 / JSDoc 第一行
+- **第三优先级：内置兜底规则**
+  - `root` → `根元素，设置容器样式和布局`
+  - `hover` → `按压元素，按钮按下去的样式类`
+- 其他语义节点：
+  - 优先读取 `src/types.ts`，其次读取 `src/index.ts` 中该节点附近的注释 / JSDoc 第一行
+  - 若无注释，则根据名称生成占位中文描述，提醒用户后续确认
+
+#### 4d. 生成示例
+
+示例列统一使用 `info[wxml]>` 语法，供 docs 站点的 popover 插件渲染：
+
+```md
+info[wxml]>`<dora-button classNames="{{ { root: 'my-classname' } }}" styles="{{ { root: { color: 'red' } } }}" />`
+```
+
+生成规则：
+1. 标签名取组件 README / WXML 实际使用的自定义组件名，默认按目录名推导为 kebab-case，例如：
+   - `packages/miniprogram.button` → `dora-button`
+   - `packages/miniprogram.selector-group` → `dora-selector-group`
+2. `classNames` 示例始终包含当前语义节点：
+   - `classNames="{{ { root: 'my-classname' } }}"`
+3. `styles` 示例始终包含当前语义节点：
+   - `styles="{{ { root: { color: 'red' } } }}"`
+4. 示例保持单行写法，让 docs 插件负责在 popover 中格式化为多行代码块
+
+#### 4e. 输出位置
+
+`### Xxx Semantic DOM` 必须放在 `### Xxx props` 之后、`### Xxx slot` 之前。
+
+### Step 5: 提取 Slots（→ `### Xxx slot`）
 
 扫描 index.wxml 中的 `<slot>` 元素：
 ```html
@@ -178,7 +240,7 @@ Props 按以下顺序排列：
 - 默认 slot（名称 `-`）→ 描述为 "自定义内容"
 - 命名 slot → 描述为占位文本，提示用户手动填写
 
-### Step 5: 提取 ExternalClasses（→ `### Xxx externalClasses`）
+### Step 6: 提取 ExternalClasses（→ `### Xxx externalClasses`）
 
 扫描 index.wxml 中所有 `dora-` 前缀的 CSS class 属性：
 
@@ -191,9 +253,9 @@ hover-class="dora-hover-class {{ ... }}"
 
 生成 2 列表格：`| 名称 | 描述 |`
 
-### Step 6: 提取 CSS Variables（→ `## CSS Variables`）
+### Step 7: 提取 CSS Variables（→ `## CSS Variables`）
 
-#### 6a. 扫描 @prop 注释
+#### 7a. 扫描 @prop 注释
 
 在 `assets/` 下所有 `.less` 文件中搜索 `// @prop` 注释：
 ```less
@@ -205,7 +267,7 @@ hover-class="dora-hover-class {{ ... }}"
 
 描述翻译约定：变量名含 `z-index` 时，统一用 "xxx的z-index" 格式（如 `--z-index` → "组件的z-index"），而非 "堆叠顺序"。
 
-#### 6b. 查找默认值
+#### 7b. 查找默认值
 
 对每个 CSS 变量，在 assets 的 LESS 文件中搜索 `--var-name: <value>` 的赋值语句，提取默认值。
 
@@ -224,7 +286,7 @@ hover-class="dora-hover-class {{ ... }}"
 
 如果变量有多个赋值，取初始化混入中的第一次赋值作为表格默认值。
 
-#### 6c. 查找全局变量
+#### 7c. 查找全局变量
 
 在 `assets/variables.less` 中搜索 `var(--dora-` 模式，建立映射表：
 
@@ -263,7 +325,7 @@ hover-class="dora-hover-class {{ ... }}"
    - `全局变量`: `-`（这些变量本身就是组件的全局覆盖点）
 3. 如果 `assets/index.less` 中也使用了 `--` 开头的 CSS 变量（用于组件内部），同样纳入表格，并搜索其赋值来源
 
-#### 6d. 生成 CSS Variables 表格
+#### 7d. 生成 CSS Variables 表格
 
 4 列表格：`| 属性 | 描述 | 默认值 | 全局变量 |`
 
@@ -275,7 +337,7 @@ hover-class="dora-hover-class {{ ... }}"
 - 普通值（如 `#fff`、`1`、`48px`）用反引号包裹
 - Less 变量引用需要解析为实际值（如 `@button-disabled-opacity` → 在 variables.less 中找到对应的 `0.5`）
 
-### Step 7: 组装输出
+### Step 8: 组装输出
 
 将生成的章节写入组件的 README.md，格式如下：
 
@@ -289,6 +351,12 @@ hover-class="dora-hover-class {{ ... }}"
 | 参数 | 类型 | 描述 | 默认值 |
 | ---- | ---- | ---- | ------ |
 | ... | ... | ... | ...    |
+
+### {ComponentName} Semantic DOM
+
+| 参数 | 描述 | 示例 |
+| ---- | ---- | ---- |
+| ...  | ...  | ...  |
 
 ### {ComponentName} slot
 
@@ -317,6 +385,9 @@ hover-class="dora-hover-class {{ ... }}"
 4. **联合类型保留原始 TypeScript 语法**（如 `` `'solid' \| 'outline' \| 'clear'` ``）。
 5. **描述来自 JSDoc 的第一行文本**，如果没有注释则留空。
 6. **props 表格中的默认值 `-`** 表示无默认值或默认值为空字符串。
-7. **CSS Variables 描述必须为中文**。@prop 注释中的英文描述需要翻译为中文后再填入表格。
-8. **模式 B 中从变量名推导的描述也必须为中文**（如 `--dora-gallery-icon-size` → "画廊的操作图标大小"）。
-9. **z-index 特殊处理**：变量名含 `z-index` 时描述统一用 "xxx的z-index"（如 `--z-index` → "组件的z-index"），不用 "堆叠顺序"。
+7. **Semantic DOM 示例统一使用 `info[wxml]>` 前缀**，不要直接写普通反引号代码片段。
+8. **Semantic DOM 的示例标签名默认使用 `dora-{component-name}`**，除非源码或现有 README 明确使用了别名。
+9. **章节顺序必须固定为**：`props → Semantic DOM → slot → externalClasses`。
+10. **CSS Variables 描述必须为中文**。@prop 注释中的英文描述需要翻译为中文后再填入表格。
+11. **模式 B 中从变量名推导的描述也必须为中文**（如 `--dora-gallery-icon-size` → "画廊的操作图标大小"）。
+12. **z-index 特殊处理**：变量名含 `z-index` 时描述统一用 "xxx的z-index"（如 `--z-index` → "组件的z-index"），不用 "堆叠顺序"。

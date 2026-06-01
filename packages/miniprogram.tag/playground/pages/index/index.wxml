@@ -6,7 +6,7 @@
   spacing
 >
   <demo-block title="Default">
-    <dora-tag>light</dora-tag>
+    <dora-tag>default</dora-tag>
     <dora-tag color="light">light</dora-tag>
     <dora-tag color="stable">stable</dora-tag>
     <dora-tag color="positive">positive</dora-tag>
@@ -19,7 +19,7 @@
   </demo-block>
 
   <demo-block title="Fill = solid">
-    <dora-tag fill="solid">light</dora-tag>
+    <dora-tag fill="solid">default</dora-tag>
     <dora-tag fill="solid" color="light">light</dora-tag>
     <dora-tag fill="solid" color="stable">stable</dora-tag>
     <dora-tag fill="solid" color="positive">positive</dora-tag>
@@ -32,7 +32,7 @@
   </demo-block>
 
   <demo-block title="Fill = outline">
-    <dora-tag fill="outline">light</dora-tag>
+    <dora-tag fill="outline">default</dora-tag>
     <dora-tag fill="outline" color="light">light</dora-tag>
     <dora-tag fill="outline" color="stable">stable</dora-tag>
     <dora-tag fill="outline" color="positive">positive</dora-tag>

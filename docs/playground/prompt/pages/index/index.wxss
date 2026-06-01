@@ -1,7 +1,7 @@
-.page,
-.page__bd {
-  height: 100%;
-  padding-bottom: 0;
+.dora-demo-page,
+.dora-demo-page__bd {
+  height: 100% !important;
+  padding-bottom: 0 !important;
 }
 
 .content {

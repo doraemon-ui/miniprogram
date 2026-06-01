@@ -1,3 +1,7 @@
+.dora-demo-block__bd {
+  position: unset !important;
+}
+
 .button-sp-area {
   padding: 16rpx 0;
   text-align: center;

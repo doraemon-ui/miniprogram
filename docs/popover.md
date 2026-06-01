@@ -1,10 +1,8 @@
-# Popover Popover
+# Popover 气泡框
 
 @doraemon-ui/miniprogram.popover
 
 ## 安装
-
-我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
 
 ```bash
 npm install --save @doraemon-ui/miniprogram.popover
@@ -12,56 +10,91 @@ npm install --save @doraemon-ui/miniprogram.popover
 yarn add @doraemon-ui/miniprogram.popover
 ```
 
-如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。
-
 ## 使用指南
 
-### 在 page.json 中引入组件
+### 在 `page.json` 中引入组件
 
-[json](./playground/popover/pages/index/index.json ':include :type=code')
+```json
+{
+  "usingComponents": {
+    "dora-popover": "@doraemon-ui/miniprogram.popover/index"
+  }
+}
+```
 
 ### 示例代码
 
-[在开发者工具中预览效果](https://developers.weixin.qq.com/s/DoraemonUI)
+WXML:
 
-<!-- tabs:start -->
+```wxml
+<dora-popover placement="top" title="Title" content="Content">
+  <button size="mini">top</button>
+</dora-popover>
+```
 
-#### **WXML**
+JS:
 
-[wxml](./playground/popover/pages/index/index.wxml ':include :type=code')
+```js
+Page({
+  data: {
+    visible: false,
+  },
 
-#### **JAVASCRIPT**
+  hide() {
+    this.setData({
+      visible: false,
+    })
+  },
 
-[js](./playground/popover/pages/index/index.js ':include :type=code')
+  onChange(e) {
+    this.setData({
+      visible: e.detail.visible,
+    })
+  },
+})
+```
 
-#### **WXSS**
-
-[wxss](./playground/popover/pages/index/index.wxss ':include :type=code')
-
-<!-- tabs:end -->
+更多示例见 [playground/pages/index](/Users/skyvow/xxoo/doraemon-ui/miniprogram/packages/miniprogram.popover/./playground/popover/pages/index/index.wxml)。
 
 ## API
 
-### Popover props
+### Props
 
-| 参数      | 类型     | 描述           | 默认值       |
-| --------- | -------- | -------------- | ------------ |
-| prefixCls | `string` | 自定义类名前缀 | dora-popover |
+| 参数           | 类型                                     | 描述                         | 默认值                 |
+| -------------- | ---------------------------------------- | ---------------------------- | ---------------------- |
+| prefixCls      | `string`                                 | 自定义类名前缀               | `dora-popover`         |
+| classNames     | `string`                                 | 动画类名                     | `dora-animate--fadeIn` |
+| color          | `'light' \| 'dark'`                      | 主题                         | `light`                |
+| title          | `string`                                 | 标题                         | `''`                   |
+| content        | `string`                                 | 内容                         | `''`                   |
+| placement      | `PopoverPlacement`                       | 位置                         | `top`                  |
+| trigger        | `'click'`                                | 触发方式                     | `click`                |
+| bodyStyle      | `string \| Partial<CSSStyleDeclaration>` | 自定义气泡内容样式           | `''`                   |
+| defaultVisible | `boolean`                                | 非受控模式下默认显隐         | `false`                |
+| visible        | `boolean`                                | 是否显示                     | `false`                |
+| controlled     | `boolean`                                | 是否受控                     | `false`                |
+| mask           | `boolean`                                | 是否显示遮罩                 | `false`                |
+| maskClosable   | `boolean`                                | 点击遮罩是否关闭             | `true`                 |
+| useSlot        | `boolean`                                | 是否使用默认插槽作为触发元素 | `true`                 |
+| slotRect       | `MiniprogramDOMRect \| null`             | 外部传入的触发元素尺寸       | `null`                 |
+| relativeRect   | `MiniprogramDOMRect \| null`             | 外部传入的相对容器尺寸       | `null`                 |
 
-### Popover slot
+### Events
 
-| 名称 | 描述       |
-| ---- | ---------- |
-| -    | 自定义内容 |
+| 事件名 | 描述               | 回调参数                                               |
+| ------ | ------------------ | ------------------------------------------------------ |
+| change | 显隐状态变化时触发 | `(event) => void`，`event.detail.visible` 表示当前状态 |
 
-### Popover externalClasses
+### Slots
+
+| 名称    | 描述       |
+| ------- | ---------- |
+| -       | 触发元素   |
+| title   | 自定义标题 |
+| content | 自定义内容 |
+
+### External Classes
 
 | 名称       | 描述         |
 | ---------- | ------------ |
 | dora-class | 根节点样式类 |
-
-## CSS Variables
-
-| 属性         | 描述     | 默认值 | 全局变量 |
-| ------------ | -------- | ------ | -------- |
-| --text-color | 文字颜色 | `#fff` | -        |

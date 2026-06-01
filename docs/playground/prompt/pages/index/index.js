@@ -6,7 +6,7 @@ Page({
       text: '暂时没有相关数据',
     },
     msg2: {
-      icon: '../../assets/images/iconfont-order.png',
+      icon: 'http://cdn.skyvow.cn/logo.png',
       title: '您还没有相关的订单',
       text: '可以去看看有哪些想买',
       buttons: [

@@ -6,25 +6,49 @@
   spacing
 >
   <demo-block title="Default">
-    <dora-tag>magenta</dora-tag>
-    <dora-tag color="magenta">magenta</dora-tag>
-    <dora-tag color="red">red</dora-tag>
-    <dora-tag color="volcano">volcano</dora-tag>
-    <dora-tag color="orange">orange</dora-tag>
-    <dora-tag color="gold">gold</dora-tag>
-    <dora-tag color="lime">lime</dora-tag>
-    <dora-tag color="green">green</dora-tag>
-    <dora-tag color="cyan">cyan</dora-tag>
-    <dora-tag color="blue">blue</dora-tag>
-    <dora-tag color="geekblue">geekblue</dora-tag>
-    <dora-tag color="purple">purple</dora-tag>
+    <dora-tag>default</dora-tag>
+    <dora-tag color="light">light</dora-tag>
+    <dora-tag color="stable">stable</dora-tag>
+    <dora-tag color="positive">positive</dora-tag>
+    <dora-tag color="calm">calm</dora-tag>
+    <dora-tag color="balanced">balanced</dora-tag>
+    <dora-tag color="energized">energized</dora-tag>
+    <dora-tag color="assertive">assertive</dora-tag>
+    <dora-tag color="royal">royal</dora-tag>
+    <dora-tag color="dark">dark</dora-tag>
+  </demo-block>
+
+  <demo-block title="Fill = solid">
+    <dora-tag fill="solid">default</dora-tag>
+    <dora-tag fill="solid" color="light">light</dora-tag>
+    <dora-tag fill="solid" color="stable">stable</dora-tag>
+    <dora-tag fill="solid" color="positive">positive</dora-tag>
+    <dora-tag fill="solid" color="calm">calm</dora-tag>
+    <dora-tag fill="solid" color="balanced">balanced</dora-tag>
+    <dora-tag fill="solid" color="energized">energized</dora-tag>
+    <dora-tag fill="solid" color="assertive">assertive</dora-tag>
+    <dora-tag fill="solid" color="royal">royal</dora-tag>
+    <dora-tag fill="solid" color="dark">dark</dora-tag>
+  </demo-block>
+
+  <demo-block title="Fill = outline">
+    <dora-tag fill="outline">default</dora-tag>
+    <dora-tag fill="outline" color="light">light</dora-tag>
+    <dora-tag fill="outline" color="stable">stable</dora-tag>
+    <dora-tag fill="outline" color="positive">positive</dora-tag>
+    <dora-tag fill="outline" color="calm">calm</dora-tag>
+    <dora-tag fill="outline" color="balanced">balanced</dora-tag>
+    <dora-tag fill="outline" color="energized">energized</dora-tag>
+    <dora-tag fill="outline" color="assertive">assertive</dora-tag>
+    <dora-tag fill="outline" color="royal">royal</dora-tag>
+    <dora-tag fill="outline" color="dark">dark</dora-tag>
   </demo-block>
 
   <demo-block title="Custom color">
     <dora-tag color="#f50">#f50</dora-tag>
-    <dora-tag color="#2db7f5">#2db7f5</dora-tag>
-    <dora-tag color="#87d068">#87d068</dora-tag>
-    <dora-tag color="#108ee9">#108ee9</dora-tag>
+    <dora-tag fill="fill" color="#2db7f5">#2db7f5</dora-tag>
+    <dora-tag fill="solid" color="#87d068">#87d068</dora-tag>
+    <dora-tag fill="outline" color="#108ee9">#108ee9</dora-tag>
   </demo-block>
 
   <demo-block title="Closable">

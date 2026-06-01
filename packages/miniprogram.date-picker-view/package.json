@@ -29,7 +29,7 @@
     "@doraemon-ui/style": "workspace:*"
   },
   "devDependencies": {
-    "@doraemon-ui/miniprogram.cli": "0.0.2-alpha.55",
+    "@doraemon-ui/miniprogram.cli": "0.0.2-alpha.57",
     "@types/node": "^25.5.2",
     "cross-env": "^7.0.3",
     "jest": "^30.3.0",

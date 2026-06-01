@@ -1,10 +1,42 @@
 <dora-notification id="dora-notification" />
 
 <demo-page darkmode="auto" title="Notification" desc="通知" clickable spacing>
-  <demo-block title="来源示例">
-    <dora-button expand="block" fill="outline" bind:tap="showNotification">Show Notification</dora-button>
-    <dora-button expand="block" fill="outline" bind:tap="closeNotification">Close Notification</dora-button>
-    <dora-button expand="block" fill="outline" bind:tap="showNotificationReturn">Use return value to close</dora-button>
-    <dora-button expand="block" fill="outline" bind:tap="showNotificationPromise">Use promise to know when closed</dora-button>
+  <demo-block title="函数式">
+    <dora-button expand="block" color="light" bind:tap="showNotification">Show Notification</dora-button>
+    <dora-button expand="block" color="light" bind:tap="closeNotification">Close Notification</dora-button>
+    <dora-button expand="block" color="light" bind:tap="showNotificationReturn">Use return value to close</dora-button>
+    <dora-button expand="block" color="light" bind:tap="showNotificationPromise">Use promise to know when closed</dora-button>
+  </demo-block>
+
+  <demo-block title="声明式">
+    <dora-button expand="block" color="light" bind:tap="onShow1">Show Declarative Notification</dora-button>
+    <dora-notification
+      visible="{{ visible1 }}"
+      image="http://cdn.skyvow.cn/logo.png"
+      title="这是一个标题"
+      subtitle="这是一个副标题"
+      text="这是一条简单的通知消息"
+      titleRightText="上午"
+      data="{{ declarativeData }}"
+      duration="{{ 3000 }}"
+      bind:click="onNotificationClick1"
+      bind:close="onClose1"
+      bind:closed="onClosed1"
+    />
+    <dora-button expand="block" color="light" bind:tap="onShow2">With close button</dora-button>
+    <dora-notification
+      visible="{{ visible2 }}"
+      image="http://cdn.skyvow.cn/logo.png"
+      title="这是一个标题"
+      subtitle="这是一个副标题"
+      text="这是一条简单的通知消息"
+      titleRightText="上午"
+      data="{{ declarativeData }}"
+      duration="{{ 0 }}"
+      closable
+      bind:click="onNotificationClick2"
+      bind:close="onClose2"
+      bind:closed="onClosed2"
+    />
   </demo-block>
 </demo-page>

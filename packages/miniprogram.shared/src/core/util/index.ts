@@ -7,6 +7,7 @@ export * from './getFontSize'
 export * from './isDate'
 export * from './isDef'
 export * from './isFalse'
+export * from './isFunction'
 export * from './isObject'
 export * from './isPromise'
 export * from './isString'
@@ -26,6 +27,7 @@ import { getFontSize } from './getFontSize'
 import { isDate } from './isDate'
 import { isDef } from './isDef'
 import { isFalse } from './isFalse'
+import { isFunction } from './isFunction'
 import { isObject } from './isObject'
 import { isPromise } from './isPromise'
 import { isString } from './isString'
@@ -46,6 +48,7 @@ export default {
   isDate,
   isDef,
   isFalse,
+  isFunction,
   isObject,
   isPromise,
   isString,

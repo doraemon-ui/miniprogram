@@ -1,6 +1,9 @@
 import { defineComponentHOC, Doraemon, Component, Event, Emit, Prop } from '@doraemon-ui/miniprogram.core-js'
-import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
+import type { CSSStylePropertiesWithVars, CustomEvent } from '@doraemon-ui/miniprogram.core-js'
+import { useColorCls, useCSSVarCls, useHoverCls, useSemanticClassNames, useSemanticStylesString } from '@doraemon-ui/miniprogram.shared'
 import type { PresetColor, NativeButtonOpenType } from '@doraemon-ui/miniprogram.shared'
+import type { SemanticName } from './types'
+
 const { classNames } = Doraemon.util
 
 @Component({
@@ -8,6 +11,22 @@ const { classNames } = Doraemon.util
     prefixCls: {
       type: String,
       default: 'dora-button',
+    },
+    rootClassName: {
+      type: String,
+      default: '',
+    },
+    rootStyle: {
+      type: null,
+      default: null,
+    },
+    classNames: {
+      type: Object,
+      default: () => ({}),
+    },
+    styles: {
+      type: Object,
+      default: () => ({}),
     },
     disabled: {
       type: Boolean,
@@ -95,6 +114,10 @@ class Button extends Doraemon {
    * @memberof Button
    */
   prefixCls!: string
+  rootClassName!: string
+  rootStyle!: string | Partial<CSSStylePropertiesWithVars>
+  classNames!: Partial<Record<SemanticName, string>>
+  styles!: Partial<Record<SemanticName, CSSStylePropertiesWithVars | string>>
 
   /**
    * 按钮颜色
@@ -111,14 +134,14 @@ class Button extends Doraemon {
   /**
    * 填充模式
    *
-   * @type {('solid' | 'outline' | 'clear')}
+   * @type {('fill' | 'solid' | 'outline' | 'clear')}
    * @memberof Button
    */
   @Prop({
     type: String,
     default: 'solid',
   })
-  fill: 'solid' | 'outline' | 'clear'
+  fill: 'fill' | 'solid' | 'outline' | 'clear'
 
   /**
    * 扩展模式
@@ -351,27 +374,34 @@ class Button extends Doraemon {
    * @memberof Button
    */
   get classes() {
-    const { prefixCls, hoverClass, color, size, fill, expand, shape, strong, disabled } = this
+    const { prefixCls, rootClassName, hoverClass, color, size, fill, expand, shape, strong, disabled } = this
     const finalSize = ['small', 'large'].includes(size) ? size : ''
-    const finalFill = ['solid', 'outline', 'clear'].includes(fill) ? fill : ''
+    const finalFill = ['fill', 'solid', 'outline', 'clear'].includes(fill) ? fill : ''
     const finalExpand = ['block', 'full'].includes(expand) ? expand : ''
     const finalShape = ['rounded', 'rectangular'].includes(shape) ? shape : ''
-    const wrap = classNames(prefixCls, {
-      ['dora-color']: color,
-      [`dora-color--${color}`]: color,
-      [`${prefixCls}--${size}`]: finalSize,
-      [`${prefixCls}--${fill}`]: finalFill,
-      [`${prefixCls}--${expand}`]: finalExpand,
-      [`${prefixCls}--${shape}`]: finalShape,
-      [`${prefixCls}--strong`]: strong,
-      [`${prefixCls}--disabled`]: disabled,
-    })
-    const hover = hoverClass && hoverClass !== 'default' ? hoverClass : `${prefixCls}--activated`
-
-    return {
-      wrap,
-      hover,
+    const internalClassNames: Partial<Record<SemanticName, string>> = {
+      root: classNames(prefixCls, rootClassName, useCSSVarCls(prefixCls), useColorCls(color), {
+        [`${prefixCls}--${size}`]: finalSize,
+        [`${prefixCls}--${fill}`]: finalFill,
+        [`${prefixCls}--${expand}`]: finalExpand,
+        [`${prefixCls}--${shape}`]: finalShape,
+        [`${prefixCls}--strong`]: strong,
+        [`${prefixCls}--disabled`]: disabled,
+      }),
+      hover: useHoverCls(prefixCls, hoverClass, 'activated'),
     }
+
+    return useSemanticClassNames(undefined, internalClassNames, this.classNames)
+  }
+
+  get mergedStyles() {
+    const { rootStyle = {} } = this
+    return useSemanticStylesString(
+      {
+        root: rootStyle,
+      },
+      this.styles,
+    )
   }
 
   /**

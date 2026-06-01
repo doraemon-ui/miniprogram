@@ -44,9 +44,31 @@ yarn add @doraemon-ui/miniprogram.tag
 
 ### Tag props
 
-| 参数      | 类型     | 描述           | 默认值   |
-| --------- | -------- | -------------- | -------- |
-| prefixCls | `string` | 自定义类名前缀 | dora-tag |
+```ts
+export type PresetColor = 'light' | 'stable' | 'positive' | 'calm' | 'balanced' | 'energized' | 'assertive' | 'royal' | 'dark'
+```
+
+| 参数           | 类型                             | 描述                 | 默认值   |
+| -------------- | -------------------------------- | -------------------- | -------- |
+| prefixCls      | `string`                         | 自定义类名前缀       | dora-tag |
+| hoverClass     | `string`                         | 点击态类名           | default  |
+| color          | `PresetColor \| string`          | 标签颜色             | -        |
+| fill           | `'fill' \| 'solid' \| 'outline'` | 填充类型             | fill     |
+| closable       | `boolean`                        | 是否可关闭           | false    |
+| defaultVisible | `boolean`                        | 默认是否可见         | true     |
+| visible        | `boolean`                        | 是否可见             | true     |
+| controlled     | `boolean`                        | 是否受控             | false    |
+| bind:change    | `(event: CustomEvent) => void`   | 标签显示状态变化时触发 | -      |
+| bind:click     | `(event: CustomEvent) => void`   | 点击标签时触发       | -        |
+| bind:close     | `(event: CustomEvent) => void`   | 关闭按钮点击时触发   | -        |
+
+### Tag Semantic DOM
+
+| 参数  | 描述                         | 示例                                                                                                              |
+| ----- | ---------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| root  | 根元素，设置容器样式和布局   | info[wxml]>`<dora-tag classNames="{{ { root: 'my-classname' } }}" styles="{{ { root: { color: 'red' } } }}" />`  |
+| icon  | 图标元素，设置图标样式       | info[wxml]>`<dora-tag classNames="{{ { icon: 'my-classname' } }}" styles="{{ { icon: { color: 'red' } } }}" />`  |
+| hover | 按压元素，按钮按下去的样式类 | info[wxml]>`<dora-tag classNames="{{ { hover: 'my-classname' } }}" styles="{{ { hover: { color: 'red' } } }}" />` |
 
 ### Tag slot
 
@@ -62,6 +84,8 @@ yarn add @doraemon-ui/miniprogram.tag
 
 ## CSS Variables
 
-| 属性         | 描述     | 默认值 | 全局变量 |
-| ------------ | -------- | ------ | -------- |
-| --text-color | 文字颜色 | `#fff` | -        |
+| 属性               | 描述     | 默认值        | 全局变量 |
+| ------------------ | -------- | ------------- | -------- |
+| --text-color       | 文字颜色 | `#fff`        | -        |
+| --background-color | 背景颜色 | `#f5f5f5`     | -        |
+| --border-color     | 边框颜色 | `transparent` | -        |

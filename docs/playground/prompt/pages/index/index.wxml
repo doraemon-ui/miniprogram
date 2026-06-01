@@ -1,32 +1,30 @@
-<demo-page darkmode="auto" title="Prompt" desc="提示页">
-  <view class="page__bd">
-    <dora-tabs current="{{ activeKey }}" controlled bind:change="onChange">
-      <dora-tab key="0" title="全部"></dora-tab>
-      <dora-tab key="1" title="待收货"></dora-tab>
-      <dora-tab key="2" title="待评价"></dora-tab>
-    </dora-tabs>
-    <view class="content" hidden="{{ activeKey !== '0' }}">
-      <dora-prompt visible="{{ activeKey === '0' }}" title="{{ msg1.title }}" text="{{ msg1.text }}" />
-    </view>
-    <view class="content" hidden="{{ activeKey !== '1' }}">
-      <dora-prompt
-        visible="{{ activeKey === '1' }}"
-        icon="{{ msg2.icon }}"
-        title="{{ msg2.title }}"
-        text="{{ msg2.text }}"
-        buttons="{{ msg2.buttons }}"
-        bind:click="buttonClicked"
-      />
-    </view>
-    <view class="content" hidden="{{ activeKey !== '2' }}">
-      <dora-prompt
-        visible="{{ activeKey === '2' }}"
-        icon="{{ msg3.icon }}"
-        title="{{ msg3.title }}"
-        text="{{ msg3.text }}"
-        buttons="{{ msg3.buttons }}"
-        bind:getuserinfo="onGotUserInfo"
-      />
-    </view>
+<demo-page darkmode="auto" title="Prompt" desc="提示页" clickable>
+  <dora-tabs current="{{ activeKey }}" controlled bind:change="onChange">
+    <dora-tab key="0" title="全部"></dora-tab>
+    <dora-tab key="1" title="待收货"></dora-tab>
+    <dora-tab key="2" title="待评价"></dora-tab>
+  </dora-tabs>
+  <view class="content" hidden="{{ activeKey !== '0' }}">
+    <dora-prompt visible="{{ activeKey === '0' }}" title="{{ msg1.title }}" text="{{ msg1.text }}" />
+  </view>
+  <view class="content" hidden="{{ activeKey !== '1' }}">
+    <dora-prompt
+      visible="{{ activeKey === '1' }}"
+      icon="{{ msg2.icon }}"
+      title="{{ msg2.title }}"
+      text="{{ msg2.text }}"
+      buttons="{{ msg2.buttons }}"
+      bind:click="buttonClicked"
+    />
+  </view>
+  <view class="content" hidden="{{ activeKey !== '2' }}">
+    <dora-prompt
+      visible="{{ activeKey === '2' }}"
+      icon="{{ msg3.icon }}"
+      title="{{ msg3.title }}"
+      text="{{ msg3.text }}"
+      buttons="{{ msg3.buttons }}"
+      bind:getuserinfo="onGotUserInfo"
+    />
   </view>
 </demo-page>

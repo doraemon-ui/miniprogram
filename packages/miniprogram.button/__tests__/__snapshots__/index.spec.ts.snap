@@ -4,8 +4,10 @@ exports[`Button mount correctly 1`] = `
 <dora-button>
   <wx-button
     appParameter=""
-    class="dora-class dora-button dora-color dora-color--positive dora-button--solid"
+    class="dora-class dora-button dora-button--css-var dora-color dora-color--positive dora-button--solid"
+    createliveactivity="{{false}}"
     disabled="{{false}}"
+    entrancePath=""
     formType=""
     hoverClass="dora-hover-class dora-button--activated"
     hoverStartTime="{{20}}"
@@ -13,6 +15,7 @@ exports[`Button mount correctly 1`] = `
     hoverStopPropagation="{{false}}"
     lang="en"
     loading="{{false}}"
+    needShowEntrance="{{true}}"
     openType=""
     phoneNumberNoQuotaToast="{{true}}"
     sendMessageImg=""
@@ -20,6 +23,7 @@ exports[`Button mount correctly 1`] = `
     sendMessageTitle=""
     sessionFrom=""
     showMessageCard="{{false}}"
+    style=""
     bind:agreeprivacyauthorization="onAgreePrivacyAuthorization"
     bind:chooseavatar="onChooseAvatar"
     bind:contact="onContact"

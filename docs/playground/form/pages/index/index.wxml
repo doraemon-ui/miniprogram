@@ -15,7 +15,7 @@
         <dora-input placeholder="请输入姓名" clear />
       </dora-field>
 
-      <!-- <dora-field name="picker" label="城市" initialValue="{{ [] }}" trigger="onConfirm" rules="{{ [{ required: true, type: 'array' }] }}" isLink>
+      <dora-field name="picker" label="城市" initialValue="{{ [] }}" trigger="onConfirm" rules="{{ [{ required: true, type: 'array' }] }}" isLink>
         <dora-picker options="{{ options1 }}" cascade cols="{{ 3 }}" bind:confirm="onPickerChange">
           <dora-touch-view>{{ pickerLabel || '请选择城市' }}</dora-touch-view>
         </dora-picker>
@@ -106,7 +106,7 @@
 
       <dora-field name="agreement" initialValue="{{ false }}" valuePropName="inputChecked">
         <dora-selectable bind:change="onSelectableChange">邮箱是必填的</dora-selectable>
-      </dora-field> -->
+      </dora-field>
 
       <view slot="footer" class="btn-area btn-area_auto">
         <button type="primary" bindtap="onSubmit">Dora Form Submit</button>

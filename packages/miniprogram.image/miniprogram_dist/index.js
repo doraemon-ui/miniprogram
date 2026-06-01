@@ -1,12 +1,12 @@
 /**
  * @doraemon-ui/miniprogram.image.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-18, 01:08:49.
+ * Built on 2026-06-01, 14:15:58.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
  */
 
 import { Doraemon, Prop, Watch, Event, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
-import { getFontSize } from '@doraemon-ui/miniprogram.shared';
+import { useExternalCls, getFontSize } from '@doraemon-ui/miniprogram.shared';
 
 function _ts_decorate(decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -227,6 +227,10 @@ Image = _ts_decorate([
         }
     })
 ], Image);
-var index = defineComponentHOC()(Image);
+var index = defineComponentHOC({
+    externalClasses: useExternalCls([
+        'image'
+    ])
+})(Image);
 
 export { Image, index as default };

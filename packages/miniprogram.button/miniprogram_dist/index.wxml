@@ -1,5 +1,6 @@
 <button
-  class="dora-class {{ classes.wrap }}"
+  class="dora-class {{ classes.root }}"
+  style="{{ mergedStyles.root }}"
   disabled="{{ disabled }}"
   loading="{{ loading }}"
   form-type="{{ formType }}"

@@ -2,6 +2,12 @@ import type { ComponentPublicInstance, CSSStylePropertiesWithVars } from '@dorae
 
 import type { Image } from './index'
 
+/**
+ * SemanticName类型定义
+ *
+ * - root: 根元素，设置容器样式和布局
+ * - image: 图片元素，设置图片样式
+ */
 export type SemanticName = 'root' | 'image'
 
 export type ImageStatus = 'empty' | 'loading' | 'loaded' | 'error' | 'unmounted'
@@ -26,8 +32,10 @@ export type ImageMode =
 
 export interface ImageProps {
   prefixCls?: string
+  rootClassName?: string
+  rootStyle?: string | Partial<CSSStylePropertiesWithVars>
   classNames?: Partial<Record<SemanticName, string>>
-  styles?: Partial<Record<SemanticName, CSSStylePropertiesWithVars>>
+  styles?: Partial<Record<SemanticName, CSSStylePropertiesWithVars | string>>
   src?: string
   mode?: ImageMode
   webp?: boolean

@@ -3,7 +3,7 @@
 .dora-tag {
   --default-solid-text-color: #fff;
   --default-background-color: #f5f5f5;
-  --default-text-color: rgba(0, 0, 0, 0.88);
+  --default-text-color: rgba(var(--dora-text-color-rgb, 0, 0, 0), 0.65);
   display: inline-flex;
   align-items: center;
   line-height: 20px;
@@ -13,12 +13,11 @@
   border-radius: var(--dora-border-radius-sm, 4px);
   border-width: 1px;
   border-style: solid;
-  border-color: #e6e6e6;
-  border-color: var(--dora-border-color, var(--dora-color-step-10, #e6e6e6));
+  border-color: var(--border-color);
   font-size: 14px;
   white-space: nowrap;
   box-sizing: border-box;
-  color: rgba(0,0,0,0.88);
+  color: rgba(0,0,0,0.65);
   color: var(--default-text-color);
   background-color: #f5f5f5;
   background-color: var(--default-background-color);
@@ -62,7 +61,13 @@
   --border-color: var(--dora-color-base);
 }
 
+.dora-tag:is(.dora-tag--fill) {
+  --background-color: var(--default-background-color);
+  --border-color: transparent;
+}
+
 .dora-tag:is(.dora-tag--solid) {
-  color: #fff;
-  color: var(--default-solid-text-color);
+  --border-color: transparent;
+  --background-color: var(--default-background-color);
+  --text-color: var(--default-solid-text-color);
 }

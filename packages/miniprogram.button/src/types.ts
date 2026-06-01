@@ -1,7 +1,15 @@
-import type { ComponentPublicInstance } from '@doraemon-ui/miniprogram.core-js'
+import type { ComponentPublicInstance, CSSStylePropertiesWithVars } from '@doraemon-ui/miniprogram.core-js'
 import type { NativeButtonOpenType, PresetColor } from '@doraemon-ui/miniprogram.shared'
 
 import type { Button } from './index'
+
+/**
+ * SemanticName类型定义
+ *
+ * - root: 根元素，设置容器样式和布局
+ * - hover: 按压元素，按钮按下去的样式类
+ */
+export type SemanticName = 'root' | 'hover'
 
 /**
  * ButtonProps接口定义
@@ -13,6 +21,10 @@ export interface ButtonProps {
    * @type {string}
    */
   prefixCls?: string
+  rootClassName?: string
+  rootStyle?: string | Partial<CSSStylePropertiesWithVars>
+  classNames?: Partial<Record<SemanticName, string>>
+  styles?: Partial<Record<SemanticName, CSSStylePropertiesWithVars | string>>
 
   /**
    * 按钮颜色
@@ -24,9 +36,9 @@ export interface ButtonProps {
   /**
    * 填充模式
    *
-   * @type {('solid' | 'outline' | 'clear')}
+   * @type {('fill' | 'solid' | 'outline' | 'clear')}
    */
-  fill?: 'solid' | 'outline' | 'clear'
+  fill?: 'fill' | 'solid' | 'outline' | 'clear'
 
   /**
    * 扩展模式

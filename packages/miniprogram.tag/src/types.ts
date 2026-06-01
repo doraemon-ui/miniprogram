@@ -3,7 +3,14 @@ import type { PresetColor } from '@doraemon-ui/miniprogram.shared'
 
 import type { Tag } from './index'
 
-export type SemanticName = 'root' | 'icon'
+/**
+ * SemanticName类型定义
+ *
+ * - root: 根元素，设置容器样式和布局
+ * - icon: 图标元素，设置图标样式
+ * - hover: 按压元素，按钮按下去的样式类
+ */
+export type SemanticName = 'root' | 'icon' | 'hover'
 
 /**
  * TagProps接口定义
@@ -15,8 +22,10 @@ export interface TagProps {
    * @type {string}
    */
   prefixCls?: string
+  rootClassName?: string
+  rootStyle?: string | Partial<CSSStylePropertiesWithVars>
   classNames?: Partial<Record<SemanticName, string>>
-  styles?: Partial<Record<SemanticName, CSSStylePropertiesWithVars>>
+  styles?: Partial<Record<SemanticName, CSSStylePropertiesWithVars | string>>
 
   /**
    * 点击态类名

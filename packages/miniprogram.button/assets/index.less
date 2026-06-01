@@ -167,6 +167,14 @@
       #current-color(base)[], #current-color(base)[]
     );
   }
+
+  &:is(&--fill).@{dora-prefix}-color {
+    .button-color(
+      #current-color(light)[], #current-color(tint)[],
+      #current-color(base)[], #current-color(base)[],
+      #current-color(light)[], #current-color(tint)[]
+    );
+  }
 }
 
 .button-color(

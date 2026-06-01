@@ -7,6 +7,8 @@ import type { ThrottleOptions, ThrottleReturn } from '../util/throttle'
 import { isPlainObject } from '../util/isPlainObject'
 import { noop } from '../util/noop'
 import { isDef } from '../util/isDef'
+import { subscribeConfigProvider, unsubscribeConfigProvider } from './configProvider'
+import type { ConfigProviderValue } from './configProvider'
 
 interface RelationOption {
   /**
@@ -157,6 +159,57 @@ export function useThrottle() {
           })
           this._debouncedFns = []
         }
+      },
+    },
+  })
+}
+
+type ConfigConsumerProxy = ComponentRenderProxy<Doraemon> & {
+  __configProviderUpdateScheduled?: boolean
+}
+
+type DoraemonWithConfigMergedValue = Doraemon & {
+  __configProviderMergedValue?: ConfigProviderValue
+}
+
+export function useConfigProviderConsumer() {
+  return Behavior({
+    definitionFilter(defFields: { data?: Record<string, unknown> }) {
+      defFields.data = defFields.data || {}
+      defFields.data = Object.assign(defFields.data, {
+        __configProviderVersion: 0,
+      })
+    },
+    lifetimes: {
+      attached() {
+        const renderProxy: ComponentRenderProxy<Doraemon> = this
+
+        const scheduleUpdate = () => {
+          if ((renderProxy as ConfigConsumerProxy).__configProviderUpdateScheduled) return
+          ;(renderProxy as ConfigConsumerProxy).__configProviderUpdateScheduled = true
+          setTimeout(() => {
+            ;(renderProxy as ConfigConsumerProxy).__configProviderUpdateScheduled = false
+            // In some runtimes, calling setData too early (inside attached) may break template init.
+            if (typeof renderProxy.setData === 'function') {
+              renderProxy.setData({
+                __configProviderVersion: (renderProxy.data.__configProviderVersion || 0) + 1,
+              })
+            }
+          }, 0)
+        }
+
+        // Re-subscribe when attached.
+        unsubscribeConfigProvider(renderProxy)
+        subscribeConfigProvider(renderProxy, (nextMergedValue) => {
+          if (renderProxy.$component) {
+            ;(renderProxy.$component as DoraemonWithConfigMergedValue).__configProviderMergedValue = nextMergedValue
+          }
+          scheduleUpdate()
+        })
+      },
+      detached() {
+        const renderProxy: ComponentRenderProxy<Doraemon> = this
+        unsubscribeConfigProvider(renderProxy)
       },
     },
   })

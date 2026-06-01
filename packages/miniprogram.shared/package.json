@@ -27,7 +27,7 @@
     "@doraemon-ui/miniprogram.core-js": "workspace:*"
   },
   "devDependencies": {
-    "@doraemon-ui/miniprogram.tools": "0.0.2-alpha.32",
+    "@doraemon-ui/miniprogram.tools": "0.0.2-alpha.34",
     "@types/node": "^25.5.2",
     "cross-env": "^7.0.3",
     "jest": "^30.3.0",

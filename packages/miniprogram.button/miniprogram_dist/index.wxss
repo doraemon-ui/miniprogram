@@ -190,9 +190,9 @@
 .dora-button--activated {
   opacity: 1!important;
   opacity: var(--activated-opacity)!important;
-  border-color: #055fff!important;
+  border-color: #3171e0!important;
   border-color: var(--activated-border-color)!important;
-  background-color: #055fff!important;
+  background-color: #3171e0!important;
   background-color: var(--activated-background-color)!important;
   color: #fff!important;
   color: var(--activated-text-color)!important;
@@ -223,4 +223,13 @@
   --activated-background-color: var(--dora-color-base);
   --border-color: var(--dora-color-base);
   --activated-border-color: var(--dora-color-base);
+}
+
+.dora-button:is(.dora-button--fill).dora-color {
+  --text-color: var(--dora-color-base);
+  --activated-text-color: var(--dora-color-base);
+  --background-color: var(--dora-color-light);
+  --activated-background-color: var(--dora-color-tint);
+  --border-color: var(--dora-color-light);
+  --activated-border-color: var(--dora-color-tint);
 }

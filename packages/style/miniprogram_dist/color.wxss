@@ -3,7 +3,8 @@
   --dora-color-base: var(--dora-color-light, #f4f5f8) !important;
   --dora-color-base-rgb: var(--dora-color-light-rgb, 244, 245, 248) !important;
   --dora-color-active: var(--dora-color-light-active, #d7d8da) !important;
-  --dora-color-tint: var(--dora-color-light-tint, #f5f6f9) !important;
+  --dora-color-tint: var(--dora-color-light-tint, #fafafc) !important;
+  --dora-color-light: var(--dora-color-light-light, #fefefe) !important;
   --dora-color-contrast: var(--dora-color-light-contrast, #000) !important;
   --dora-color-contrast-rgb: var(--dora-color-light-contrast-rgb, 0, 0, 0) !important;
 }
@@ -11,7 +12,8 @@
   --dora-color-base: var(--dora-color-stable, #636469) !important;
   --dora-color-base-rgb: var(--dora-color-stable-rgb, 99, 100, 105) !important;
   --dora-color-active: var(--dora-color-stable-active, #57585c) !important;
-  --dora-color-tint: var(--dora-color-stable-tint, #737478) !important;
+  --dora-color-tint: var(--dora-color-stable-tint, #b7b8ba) !important;
+  --dora-color-light: var(--dora-color-stable-light, #ececed) !important;
   --dora-color-contrast: var(--dora-color-stable-contrast, #fff) !important;
   --dora-color-contrast-rgb: var(--dora-color-stable-contrast-rgb, 255, 255, 255) !important;
 }
@@ -19,7 +21,8 @@
   --dora-color-base: var(--dora-color-positive, #3880ff) !important;
   --dora-color-base-rgb: var(--dora-color-positive-rgb, 56, 128, 255) !important;
   --dora-color-active: var(--dora-color-positive-active, #3171e0) !important;
-  --dora-color-tint: var(--dora-color-positive-tint, #4c8dff) !important;
+  --dora-color-tint: var(--dora-color-positive-tint, #a3c5ff) !important;
+  --dora-color-light: var(--dora-color-positive-light, #e7f0ff) !important;
   --dora-color-contrast: var(--dora-color-positive-contrast, #fff) !important;
   --dora-color-contrast-rgb: var(--dora-color-positive-contrast-rgb, 255, 255, 255) !important;
 }
@@ -27,7 +30,8 @@
   --dora-color-base: var(--dora-color-calm, #3dc2ff) !important;
   --dora-color-base-rgb: var(--dora-color-calm-rgb, 61, 194, 255) !important;
   --dora-color-active: var(--dora-color-calm-active, #36abe0) !important;
-  --dora-color-tint: var(--dora-color-calm-tint, #50c8ff) !important;
+  --dora-color-tint: var(--dora-color-calm-tint, #a6e3ff) !important;
+  --dora-color-light: var(--dora-color-calm-light, #e8f8ff) !important;
   --dora-color-contrast: var(--dora-color-calm-contrast, #fff) !important;
   --dora-color-contrast-rgb: var(--dora-color-calm-contrast-rgb, 255, 255, 255) !important;
 }
@@ -35,7 +39,8 @@
   --dora-color-base: var(--dora-color-balanced, #2dd36f) !important;
   --dora-color-base-rgb: var(--dora-color-balanced-rgb, 45, 211, 111) !important;
   --dora-color-active: var(--dora-color-balanced-active, #28ba62) !important;
-  --dora-color-tint: var(--dora-color-balanced-tint, #42d77d) !important;
+  --dora-color-tint: var(--dora-color-balanced-tint, #9eebbd) !important;
+  --dora-color-light: var(--dora-color-balanced-light, #e6faee) !important;
   --dora-color-contrast: var(--dora-color-balanced-contrast, #000) !important;
   --dora-color-contrast-rgb: var(--dora-color-balanced-contrast-rgb, 0, 0, 0) !important;
 }
@@ -43,7 +48,8 @@
   --dora-color-base: var(--dora-color-energized, #ffc409) !important;
   --dora-color-base-rgb: var(--dora-color-energized-rgb, 255, 196, 9) !important;
   --dora-color-active: var(--dora-color-energized-active, #e0ac08) !important;
-  --dora-color-tint: var(--dora-color-energized-tint, #ffca22) !important;
+  --dora-color-tint: var(--dora-color-energized-tint, #ffe48e) !important;
+  --dora-color-light: var(--dora-color-energized-light, #fff8e1) !important;
   --dora-color-contrast: var(--dora-color-energized-contrast, #000) !important;
   --dora-color-contrast-rgb: var(--dora-color-energized-contrast-rgb, 0, 0, 0) !important;
 }
@@ -51,7 +57,8 @@
   --dora-color-base: var(--dora-color-assertive, #eb445a) !important;
   --dora-color-base-rgb: var(--dora-color-assertive-rgb, 235, 68, 90) !important;
   --dora-color-active: var(--dora-color-assertive-active, #cf3c4f) !important;
-  --dora-color-tint: var(--dora-color-assertive-tint, #ed576b) !important;
+  --dora-color-tint: var(--dora-color-assertive-tint, #f6a9b3) !important;
+  --dora-color-light: var(--dora-color-assertive-light, #fde9eb) !important;
   --dora-color-contrast: var(--dora-color-assertive-contrast, #fff) !important;
   --dora-color-contrast-rgb: var(--dora-color-assertive-contrast-rgb, 255, 255, 255) !important;
 }
@@ -59,7 +66,8 @@
   --dora-color-base: var(--dora-color-royal, #8a63d2) !important;
   --dora-color-base-rgb: var(--dora-color-royal-rgb, 138, 99, 210) !important;
   --dora-color-active: var(--dora-color-royal-active, #7957b9) !important;
-  --dora-color-tint: var(--dora-color-royal-tint, #9673d7) !important;
+  --dora-color-tint: var(--dora-color-royal-tint, #c9b7ea) !important;
+  --dora-color-light: var(--dora-color-royal-light, #f1ecfa) !important;
   --dora-color-contrast: var(--dora-color-royal-contrast, #fff) !important;
   --dora-color-contrast-rgb: var(--dora-color-royal-contrast-rgb, 255, 255, 255) !important;
 }
@@ -67,7 +75,8 @@
   --dora-color-base: var(--dora-color-dark, #222428) !important;
   --dora-color-base-rgb: var(--dora-color-dark-rgb, 34, 36, 40) !important;
   --dora-color-active: var(--dora-color-dark-active, #1e2023) !important;
-  --dora-color-tint: var(--dora-color-dark-tint, #383a3d) !important;
+  --dora-color-tint: var(--dora-color-dark-tint, #999a9c) !important;
+  --dora-color-light: var(--dora-color-dark-light, #e4e5e5) !important;
   --dora-color-contrast: var(--dora-color-dark-contrast, #fff) !important;
   --dora-color-contrast-rgb: var(--dora-color-dark-contrast-rgb, 255, 255, 255) !important;
 }

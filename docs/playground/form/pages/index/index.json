@@ -5,6 +5,20 @@
     "demo-block": "@doraemon-ui/miniprogram.demo-block",
     "dora-form": "@doraemon-ui/miniprogram.form/index",
     "dora-field": "@doraemon-ui/miniprogram.form/field",
-    "dora-input": "@doraemon-ui/miniprogram.input/index"
+    "dora-input": "@doraemon-ui/miniprogram.input/index",
+    "dora-slider": "@doraemon-ui/miniprogram.slider/index",
+    "dora-rater": "@doraemon-ui/miniprogram.rater/index",
+    "dora-input-number": "@doraemon-ui/miniprogram.input-number/index",
+    "dora-textarea": "@doraemon-ui/miniprogram.textarea/index",
+    "dora-checkbox-group": "@doraemon-ui/miniprogram.checkbox/group",
+    "dora-checkbox": "@doraemon-ui/miniprogram.checkbox/index",
+    "dora-radio-group": "@doraemon-ui/miniprogram.radio/group",
+    "dora-radio": "@doraemon-ui/miniprogram.radio/index",
+    "dora-selectable": "@doraemon-ui/miniprogram.selectable/index",
+    "dora-selector-group": "@doraemon-ui/miniprogram.selector-group/index",
+    "dora-switch": "@doraemon-ui/miniprogram.switch/index",
+    "dora-picker": "@doraemon-ui/miniprogram.picker/index",
+    "dora-date-picker": "@doraemon-ui/miniprogram.date-picker/index",
+    "dora-popup-select": "@doraemon-ui/miniprogram.popup-select/index"
   }
 }

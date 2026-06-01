@@ -53,7 +53,13 @@
 // Mixes a color with white to create its tint.
 // --------------------------------------------------------------------------------------------
 #get-color-tint(@color) {
-  @return: mix(#fff, @color, 10%);
+  @return: mix(#fff, @color, 54%);
+}
+
+// Mixes a color with white to create its light.
+// --------------------------------------------------------------------------------------------
+#get-color-light(@color) {
+  @return: mix(#fff, @color, 88%);
 }
 
 // Converts a color to a comma separated rgb.
@@ -83,6 +89,11 @@
   @base: var(~'--dora-color-@{name}', @@values[base]);
   @active: var(~'--dora-color-@{name}-active', @@values[active]);
   @tint: var(~'--dora-color-@{name}-tint', @@values[tint]);
+  @light: var(~'--dora-color-@{name}-light', @@values[light]);
   @contrast: var(~'--dora-color-@{name}-contrast', @@values[contrast]);
-  @return: if((@variation = base), @base, if((@variation = active), @active, if((@variation = tint), @tint, @contrast)));
+  @return: if(
+    (@variation = base),
+    @base,
+    if((@variation = active), @active, if((@variation = tint), @tint, if((@variation = light), @light, @contrast)))
+  );
 }

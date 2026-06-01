@@ -114,12 +114,15 @@ describe('Image', () => {
     )
     wrapper.attach(document.createElement('parent-wrapper'))
 
-    wrapper.querySelector('#dora-image').querySelector('.dora-image__thumb')?.dispatchEvent('load', {
-      detail: {
-        width: 300,
-        height: 225,
-      },
-    })
+    wrapper
+      .querySelector('#dora-image')
+      .querySelector('.dora-image__thumb')
+      ?.dispatchEvent('load', {
+        detail: {
+          width: 300,
+          height: 225,
+        },
+      })
     await simulate.sleep(0)
 
     expect(onLoad).toHaveBeenCalled()
@@ -152,15 +155,42 @@ describe('Image', () => {
     )
     wrapper.attach(document.createElement('parent-wrapper'))
 
-    wrapper.querySelector('#dora-image').querySelector('.dora-image__thumb')?.dispatchEvent('error', {
-      detail: {
-        errMsg: 'load image fail',
-      },
-    })
+    wrapper
+      .querySelector('#dora-image')
+      .querySelector('.dora-image__thumb')
+      ?.dispatchEvent('error', {
+        detail: {
+          errMsg: 'load image fail',
+        },
+      })
     await simulate.sleep(0)
 
     expect(onError).toHaveBeenCalled()
     expect(onError.mock.calls[0][0].detail.status).toBe('unmounted')
     expect(wrapper.querySelectorAll('.dora-image').length).toBe(0)
+  })
+
+  test('should support externalClasses', async () => {
+    const compId = simulate.load({
+      usingComponents: {
+        'dora-image': id,
+      },
+      template: `
+        <dora-image
+          id="dora-image"
+          src="https://picsum.photos/300/225/?random=4"
+          dora-class="custom-root-class"
+          dora-image-class="custom-image-class"
+        />
+      `,
+    })
+
+    const wrapper = simulate.render(compId)
+    wrapper.attach(document.createElement('parent-wrapper'))
+    await simulate.sleep(0)
+
+    const image = wrapper.querySelector('#dora-image')
+    expect(image.querySelector('.dora-image').dom.className).toContain('custom-root-class')
+    expect(image.querySelector('.dora-image__thumb').dom.className).toContain('custom-image-class')
   })
 })

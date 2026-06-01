@@ -58,6 +58,25 @@ describe('Button', () => {
     expect(wrapper.querySelectorAll('.dora-btn').length).toBe(1)
   })
 
+  test('should support semantic classNames and styles', () => {
+    const wrapper = simulate.render(id, {
+      classNames: {
+        root: 'custom-button-root',
+      },
+      styles: {
+        root: {
+          color: 'red',
+        },
+      },
+    })
+    wrapper.attach(document.createElement('parent-wrapper'))
+    const $comp = getComponentInstance(wrapper)
+
+    expect(wrapper.querySelectorAll('.custom-button-root').length).toBe(1)
+    expect($comp.mergedStyles.root).toContain('color')
+    expect($comp.mergedStyles.root).toContain('red')
+  })
+
   test('should support to change loading', () => {
     const wrapper = simulate.render(id, { loading: true })
     wrapper.attach(document.createElement('parent-wrapper'))
