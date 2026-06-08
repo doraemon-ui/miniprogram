@@ -1,12 +1,12 @@
 /**
  * @doraemon-ui/miniprogram.tag.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-06-01, 18:29:07.
+ * Built on 2026-06-08, 17:05:58.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.34.
  */
 
 import { Doraemon, Prop, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
-import { useControlledState, isPresetColor, useHoverCls, useCSSVarCls, useColorCls, useSemanticClassNames, FastColor, useSemanticStylesString } from '@doraemon-ui/miniprogram.shared';
+import { useControlledState, isPresetColor, useHoverCls, useCSSVarCls, useColorCls, useMergeSemanticClassNames, FastColor, useMergeSemanticStylesString } from '@doraemon-ui/miniprogram.shared';
 
 function _ts_decorate(decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc, d;
@@ -30,7 +30,12 @@ class Tag extends Doraemon {
             icon: `${prefixCls}__icon`,
             hover: useHoverCls(prefixCls, hoverClass)
         };
-        return useSemanticClassNames(undefined, internalClassNames, this.classNames);
+        return useMergeSemanticClassNames([
+            internalClassNames,
+            this.classNames
+        ], {
+            props: this
+        });
     }
     get mergedStyles() {
         const { rootStyle = {}, color, fill } = this;
@@ -48,11 +53,17 @@ class Tag extends Doraemon {
                 }
             }
         }
-        return useSemanticStylesString({
-            root: rootStyle
-        }, {
-            root: internalRootStyle
-        }, this.styles);
+        return useMergeSemanticStylesString([
+            {
+                root: rootStyle
+            },
+            {
+                root: internalRootStyle
+            },
+            this.styles
+        ], {
+            props: this
+        });
     }
     // get rootStyle() {
     //   const { styles } = this

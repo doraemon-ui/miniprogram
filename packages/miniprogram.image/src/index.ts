@@ -1,6 +1,6 @@
 import { defineComponentHOC, Doraemon, Component, Prop, Watch, Event } from '@doraemon-ui/miniprogram.core-js'
 import type { CSSStylePropertiesWithVars, CustomEvent } from '@doraemon-ui/miniprogram.core-js'
-import { getFontSize, useExternalCls } from '@doraemon-ui/miniprogram.shared'
+import { getFontSize, useExternalCls, useMergeSemanticClassNames, useMergeSemanticStylesString } from '@doraemon-ui/miniprogram.shared'
 
 import type { ImageMode, ImageShape, ImageStatus, SemanticName } from './types'
 
@@ -22,10 +22,10 @@ const UNMOUNTED: ImageStatus = 'unmounted'
       type: String,
       default: '',
     },
-    // rootStyle: {
-    //   type: null,
-    //   default: null,
-    // },
+    rootStyle: {
+      type: null,
+      default: null,
+    },
     classNames: {
       type: Object,
       default: () => ({}),
@@ -39,7 +39,7 @@ const UNMOUNTED: ImageStatus = 'unmounted'
 class Image extends Doraemon {
   prefixCls!: string
   rootClassName!: string
-  // rootStyle!: string | Partial<CSSStylePropertiesWithVars>
+  rootStyle!: string | Partial<CSSStylePropertiesWithVars>
   classNames!: Partial<Record<SemanticName, string>>
   styles!: Partial<Record<SemanticName, CSSStylePropertiesWithVars | string>>
 
@@ -128,39 +128,29 @@ class Image extends Doraemon {
   error: string
 
   status: ImageStatus = EMPTY
-  internalRootStyle = ''
+  internalRootStyle: Partial<CSSStylePropertiesWithVars> = {}
 
   get classes() {
-    const { prefixCls, shape, mode, status, empty, loading, error } = this
-    const wrap = classNames(prefixCls, {
-      [`${prefixCls}--${shape}`]: shape,
-      [`${prefixCls}--${mode}`]: mode,
-      [`${prefixCls}--${status}`]: status,
-    })
-    const inner = `${prefixCls}__inner`
-    const thumb = `${prefixCls}__thumb`
-    const mask = classNames(`${prefixCls}__mask`, {
-      [`${prefixCls}__mask--text`]: empty || loading || error,
-    })
-    const text = `${prefixCls}__text`
-
-    return {
-      wrap,
-      inner,
-      thumb,
-      mask,
-      text,
+    const { prefixCls, rootClassName, shape, mode, status, empty, loading, error } = this
+    const internalClassNames: Record<string, string> = {
+      root: classNames(prefixCls, rootClassName, {
+        [`${prefixCls}--${shape}`]: shape,
+        [`${prefixCls}--${mode}`]: mode,
+        [`${prefixCls}--${status}`]: status,
+      }),
+      inner: `${prefixCls}__inner`,
+      thumb: `${prefixCls}__thumb`,
+      mask: classNames(`${prefixCls}__mask`, {
+        [`${prefixCls}__mask--text`]: empty || loading || error,
+      }),
+      text: `${prefixCls}__text`,
     }
+    return useMergeSemanticClassNames([internalClassNames, this.classNames], { props: this })
   }
 
-  get rootStyle() {
-    const { styles } = this
-    return styles?.root ? styleToCssString(styles.root) : ''
-  }
-
-  get imageStyle() {
-    const { styles } = this
-    return styles?.image ? styleToCssString(styles.image) : ''
+  get mergedStyles() {
+    const { rootStyle = {}, internalRootStyle = {} } = this
+    return useMergeSemanticStylesString([{ root: rootStyle }, { root: internalRootStyle }, this.styles], { props: this })
   }
 
   @Watch('src')
@@ -183,10 +173,10 @@ class Image extends Doraemon {
   }
 
   updateStyle(width: string | number, height: string | number) {
-    this.internalRootStyle = styleToCssString({
+    this.internalRootStyle = {
       width: getFontSize(width),
       height: getFontSize(height),
-    })
+    }
   }
 
   updateStatus(status: ImageStatus) {

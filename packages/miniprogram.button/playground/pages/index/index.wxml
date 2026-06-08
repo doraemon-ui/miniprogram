@@ -30,7 +30,7 @@
       <dora-button expand="block" fill="outline" color="dark">outline dark</dora-button>
       <dora-button expand="block" fill="fill" color="energized">fill energized</dora-button>
       <dora-button expand="block" fill="fill" color="royal">fill royal</dora-button>
-      <dora-button expand="block" fill="fill" color="dark">outline dark</dora-button>
+      <dora-button expand="block" fill="fill" color="dark">fill dark</dora-button>
     </block>
   </demo-block>
   <demo-block align="unset" title="Shapes">

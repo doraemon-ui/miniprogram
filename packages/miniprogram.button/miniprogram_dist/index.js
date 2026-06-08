@@ -1,12 +1,12 @@
 /**
  * @doraemon-ui/miniprogram.button.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-21, 18:44:29.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
+ * Built on 2026-06-08, 17:06:04.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.34.
  */
 
 import { Doraemon, Prop, Event, Emit, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
-import { useCSSVarCls, useColorCls, useSemanticClassNames, useSemanticStylesString } from '@doraemon-ui/miniprogram.shared';
+import { useHoverCls, useCSSVarCls, useColorCls, useMergeSemanticClassNames, useMergeSemanticStylesString } from '@doraemon-ui/miniprogram.shared';
 
 function _ts_decorate(decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -51,15 +51,25 @@ let Button = class Button extends Doraemon {
                 [`${prefixCls}--strong`]: strong,
                 [`${prefixCls}--disabled`]: disabled
             }),
-            hover: hoverClass && hoverClass !== 'default' ? hoverClass : `${prefixCls}--activated`
+            hover: useHoverCls(prefixCls, hoverClass, 'activated')
         };
-        return useSemanticClassNames(undefined, internalClassNames, this.classNames);
+        return useMergeSemanticClassNames([
+            internalClassNames,
+            this.classNames
+        ], {
+            props: this
+        });
     }
     get mergedStyles() {
-        const { rootStyle } = this;
-        return useSemanticStylesString({
-            root: rootStyle || {}
-        }, this.styles);
+        const { rootStyle = {} } = this;
+        return useMergeSemanticStylesString([
+            {
+                root: rootStyle
+            },
+            this.styles
+        ], {
+            props: this
+        });
     }
     /**
    * 按钮点击事件处理

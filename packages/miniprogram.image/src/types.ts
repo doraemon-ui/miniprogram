@@ -6,9 +6,9 @@ import type { Image } from './index'
  * SemanticName类型定义
  *
  * - root: 根元素，设置容器样式和布局
- * - image: 图片元素，设置图片样式
+ * - thumb: 图片元素，设置图片样式
  */
-export type SemanticName = 'root' | 'image'
+export type SemanticName = 'root' | 'thumb'
 
 export type ImageStatus = 'empty' | 'loading' | 'loaded' | 'error' | 'unmounted'
 

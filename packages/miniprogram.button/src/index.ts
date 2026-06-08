@@ -1,6 +1,12 @@
 import { defineComponentHOC, Doraemon, Component, Event, Emit, Prop } from '@doraemon-ui/miniprogram.core-js'
 import type { CSSStylePropertiesWithVars, CustomEvent } from '@doraemon-ui/miniprogram.core-js'
-import { useColorCls, useCSSVarCls, useHoverCls, useSemanticClassNames, useSemanticStylesString } from '@doraemon-ui/miniprogram.shared'
+import {
+  useColorCls,
+  useCSSVarCls,
+  useHoverCls,
+  useMergeSemanticClassNames,
+  useMergeSemanticStylesString,
+} from '@doraemon-ui/miniprogram.shared'
 import type { PresetColor, NativeButtonOpenType } from '@doraemon-ui/miniprogram.shared'
 import type { SemanticName } from './types'
 
@@ -391,17 +397,12 @@ class Button extends Doraemon {
       hover: useHoverCls(prefixCls, hoverClass, 'activated'),
     }
 
-    return useSemanticClassNames(undefined, internalClassNames, this.classNames)
+    return useMergeSemanticClassNames([internalClassNames, this.classNames], { props: this })
   }
 
   get mergedStyles() {
     const { rootStyle = {} } = this
-    return useSemanticStylesString(
-      {
-        root: rootStyle,
-      },
-      this.styles,
-    )
+    return useMergeSemanticStylesString([{ root: rootStyle }, this.styles], { props: this })
   }
 
   /**

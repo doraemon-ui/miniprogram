@@ -7,8 +7,8 @@ import {
   useControlledState,
   useCSSVarCls,
   useHoverCls,
-  useSemanticClassNames,
-  useSemanticStylesString,
+  useMergeSemanticClassNames,
+  useMergeSemanticStylesString,
 } from '@doraemon-ui/miniprogram.shared'
 import type { PresetColor } from '@doraemon-ui/miniprogram.shared'
 import type { SemanticName } from './types'
@@ -157,7 +157,7 @@ class Tag extends Doraemon {
       icon: `${prefixCls}__icon`,
       hover: useHoverCls(prefixCls, hoverClass),
     }
-    return useSemanticClassNames(undefined, internalClassNames, this.classNames)
+    return useMergeSemanticClassNames([internalClassNames, this.classNames], { props: this })
   }
 
   get mergedStyles() {
@@ -177,15 +177,7 @@ class Tag extends Doraemon {
         }
       }
     }
-    return useSemanticStylesString(
-      {
-        root: rootStyle,
-      },
-      {
-        root: internalRootStyle,
-      },
-      this.styles,
-    )
+    return useMergeSemanticStylesString([{ root: rootStyle }, { root: internalRootStyle }, this.styles], { props: this })
   }
 
   // get rootStyle() {

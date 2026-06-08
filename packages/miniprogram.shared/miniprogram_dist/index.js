@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.shared.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-06-01, 14:11:47.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
+ * Built on 2026-06-08, 17:05:21.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.34.
  */
 
 import { createDecorator, Doraemon } from '@doraemon-ui/miniprogram.core-js';
@@ -1892,23 +1892,6 @@ function mergeStyleValue(prev, cur) {
         return acc;
     }, {});
 };
-/**
- * Merge semantic class names with optional schema normalization.
- *
- * @param schema Semantic schema definition
- * @param classNames Semantic class name sources
- * @returns Merged semantic class names
- */ const useSemanticClassNames = (schema, ...classNames)=>{
-    return mergeClassNames(schema, ...classNames);
-};
-/**
- * Merge semantic styles into a single semantic style object.
- *
- * @param styles Semantic style sources
- * @returns Merged semantic styles
- */ const useSemanticStyles = (...styles)=>{
-    return mergeStyles(...styles);
-};
 function stringifySemanticStyles(styles) {
     const result = {};
     Object.keys(styles).forEach((key)=>{
@@ -1921,14 +1904,6 @@ function stringifySemanticStyles(styles) {
     });
     return result;
 }
-/**
- * Merge semantic styles and convert each leaf node to css text.
- *
- * @param styles Semantic style sources
- * @returns Merged semantic styles as serialized css strings
- */ const useSemanticStylesString = (...styles)=>{
-    return stringifySemanticStyles(useSemanticStyles(...styles));
-};
 // =========================== Export ===========================
 /**
  * Resolve a semantic class/style value that may be static or derived from props.
@@ -1938,6 +1913,36 @@ function stringifySemanticStyles(styles) {
  * @returns Resolved semantic class/style value
  */ const resolveStyleOrClass = (value, info)=>{
     return isFunction(value) ? value(info) : value;
+};
+/**
+ * Resolve and merge semantic class name sources.
+ *
+ * @param classNamesList Semantic class name sources or factories
+ * @param info Runtime props info passed to factories
+ * @param schema Semantic schema definition for nested structures
+ * @returns Merged semantic class names
+ */ const useMergeSemanticClassNames = (classNamesList, info, schema)=>{
+    const resolvedClassNamesList = classNamesList.map((classNames)=>classNames ? resolveStyleOrClass(classNames, info) : undefined);
+    return mergeClassNames(schema, ...resolvedClassNamesList);
+};
+/**
+ * Resolve and merge semantic style sources.
+ *
+ * @param stylesList Semantic style sources or factories
+ * @param info Runtime props info passed to factories
+ * @returns Merged semantic styles
+ */ const useMergeSemanticStyles = (stylesList, info)=>{
+    const resolvedStylesList = stylesList.map((styles)=>styles ? resolveStyleOrClass(styles, info) : undefined);
+    return mergeStyles(...resolvedStylesList);
+};
+/**
+ * Resolve, merge, and stringify semantic style sources.
+ *
+ * @param stylesList Semantic style sources or factories
+ * @param info Runtime props info passed to factories
+ * @returns Merged semantic styles as serialized css strings
+ */ const useMergeSemanticStylesString = (stylesList, info)=>{
+    return stringifySemanticStyles(useMergeSemanticStyles(stylesList, info));
 };
 /**
  * Merge semantic class names and styles from multiple sources.
@@ -1963,10 +1968,8 @@ function stringifySemanticStyles(styles) {
  * @param schema Semantic schema definition for nested structures
  * @returns Tuple of merged class names and merged styles
  */ const useMergeSemantic = (classNamesList, stylesList, info, schema)=>{
-    const resolvedClassNamesList = classNamesList.map((classNames)=>classNames ? resolveStyleOrClass(classNames, info) : undefined);
-    const resolvedStylesList = stylesList.map((styles)=>styles ? resolveStyleOrClass(styles, info) : undefined);
-    const mergedClassNames = useSemanticClassNames(schema, ...resolvedClassNamesList);
-    const mergedStyles = useSemanticStyles(...resolvedStylesList);
+    const mergedClassNames = useMergeSemanticClassNames(classNamesList, info, schema);
+    const mergedStyles = useMergeSemanticStyles(stylesList, info);
     if (!schema) {
         return [
             mergedClassNames,
@@ -1987,11 +1990,11 @@ var hooks = {
     fillObjectBySchema,
     mergeClassNames,
     mergeStyles,
-    useSemanticClassNames,
-    useSemanticStyles,
-    useSemanticStylesString,
     resolveStyleOrClass,
-    useMergeSemantic
+    useMergeSemantic,
+    useMergeSemanticClassNames,
+    useMergeSemanticStyles,
+    useMergeSemanticStylesString
 };
 
 var index = {
@@ -2005,4 +2008,4 @@ var index = {
     ...util
 };
 
-export { FastColor, NATIVE_ROUTES, buildURL, canUseMP, chooseMedia, createImage, customPromise, decorators, index as default, dom, downloadImage, fillObjectBySchema, findComponentNode, getCanvasRef, getCurrentPage, getDefaultContext, getFontSize, getMenuButtonBoundingClientRectSync, getPointsDistance, getPointsNumber, getPresetColor, getSwipeDirection, getSystemInfoSync, getTouchPoints, hooks, isDate, isDef, isEqualPoints, isFalse, isFunction, isNearbyPoints, isObject, isPresetColor, isPromise, isString, isTrue, isUndef, mergeClassNames, mergeStyles, miniprogramThis, nextTick, noop, omit, pxToNumber, resolveStyleOrClass, sleep, toDataURL, uploadFile, useCSSVarCls, useColorCls, useComputedStyle, useControlledState, useExternalCls, useHoverCls, useMergeSemantic, useNativeRoute, usePopupStateHOC, useQuery, useRect, useRectAll, useRef, useRefAll, useScrollOffset, useSelector, useSelectorAll, useSemanticClassNames, useSemanticStyles, useSemanticStylesString, util, vibrateShort };
+export { FastColor, NATIVE_ROUTES, buildURL, canUseMP, chooseMedia, createImage, customPromise, decorators, index as default, dom, downloadImage, fillObjectBySchema, findComponentNode, getCanvasRef, getCurrentPage, getDefaultContext, getFontSize, getMenuButtonBoundingClientRectSync, getPointsDistance, getPointsNumber, getPresetColor, getSwipeDirection, getSystemInfoSync, getTouchPoints, hooks, isDate, isDef, isEqualPoints, isFalse, isFunction, isNearbyPoints, isObject, isPresetColor, isPromise, isString, isTrue, isUndef, mergeClassNames, mergeStyles, miniprogramThis, nextTick, noop, omit, pxToNumber, resolveStyleOrClass, sleep, toDataURL, uploadFile, useCSSVarCls, useColorCls, useComputedStyle, useControlledState, useExternalCls, useHoverCls, useMergeSemantic, useMergeSemanticClassNames, useMergeSemanticStyles, useMergeSemanticStylesString, useNativeRoute, usePopupStateHOC, useQuery, useRect, useRectAll, useRef, useRefAll, useScrollOffset, useSelector, useSelectorAll, util, vibrateShort };

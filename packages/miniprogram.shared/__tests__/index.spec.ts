@@ -21,6 +21,9 @@ import {
   useNativeRoute,
   usePopupStateHOC,
   useMergeSemantic,
+  useMergeSemanticClassNames,
+  useMergeSemanticStyles,
+  useMergeSemanticStylesString,
   mergeClassNames,
   mergeStyles,
   fillObjectBySchema,
@@ -29,9 +32,6 @@ import {
   useCSSVarCls,
   useExternalCls,
   useHoverCls,
-  useSemanticClassNames,
-  useSemanticStyles,
-  useSemanticStylesString,
   buildURL,
   customPromise,
   getDefaultContext,
@@ -418,7 +418,7 @@ describe('Shared', () => {
       expect(resolveStyleOrClass('static', { props: { active: false } })).toBe('static')
     })
 
-    test('call useSemanticClassNames and useSemanticStyles', () => {
+    test('call useMergeSemanticClassNames and useMergeSemanticStyles', () => {
       const schema = {
         header: {
           _default: 'root',
@@ -426,14 +426,16 @@ describe('Shared', () => {
         },
       }
 
-      expect(useSemanticClassNames(schema, { header: 'base' }, { header: { icon: 'active' } }, { footer: 'outer' })).toEqual({
+      expect(
+        useMergeSemanticClassNames([{ header: 'base' }, { header: { icon: 'active' } }, { footer: 'outer' }], { props: {} }, schema),
+      ).toEqual({
         header: {
           root: 'base',
         },
         footer: 'outer',
       })
 
-      expect(useSemanticStyles({ root: { color: 'red' } }, undefined, { root: { fontSize: 12 } })).toEqual({
+      expect(useMergeSemanticStyles([{ root: { color: 'red' } }, undefined, { root: { fontSize: 12 } }], { props: {} })).toEqual({
         root: { color: 'red', fontSize: 12 },
       })
     })
@@ -475,22 +477,63 @@ describe('Shared', () => {
       ])
     })
 
-    test('call useSemanticStylesString', () => {
-      expect(useSemanticStylesString({ root: { color: 'red' } }, { root: { fontSize: 12 } })).toEqual({
+    test('call useMergeSemanticClassNames and useMergeSemanticStyles', () => {
+      const schema = {
+        header: {
+          _default: 'root',
+          icon: {},
+        },
+      }
+
+      expect(
+        useMergeSemanticClassNames(
+          [{ header: 'base' }, ({ props }: { props: { active: boolean } }) => (props.active ? { header: { icon: 'active' } } : undefined)],
+          { props: { active: true } },
+          schema,
+        ),
+      ).toEqual({
+        header: {
+          root: 'base',
+        },
+      })
+
+      expect(
+        useMergeSemanticStyles(
+          [
+            { header: { root: { color: 'red' } } },
+            ({ props }: { props: { active: boolean } }) => (props.active ? { header: { icon: { fontSize: 12 } } } : undefined),
+          ],
+          { props: { active: true } },
+        ),
+      ).toEqual({
+        header: {
+          root: { color: 'red' },
+          icon: { fontSize: 12 },
+        },
+      })
+    })
+
+    test('call useMergeSemanticStylesString', () => {
+      expect(useMergeSemanticStylesString([{ root: { color: 'red' } }, { root: { fontSize: 12 } }], { props: {} })).toEqual({
         root: 'color: red;  font-size: 12px;  ',
       })
 
-      expect(useSemanticStylesString({ root: { color: 'red' } }, { root: 'font-size: 12px;' })).toEqual({
+      expect(useMergeSemanticStylesString([{ root: { color: 'red' } }, { root: 'font-size: 12px;' }], { props: {} })).toEqual({
         root: 'color: red;  font-size: 12px; ',
       })
 
       expect(
-        useSemanticStylesString({
-          header: {
-            root: { color: 'red' },
-            icon: { fontSize: 12 },
-          },
-        }),
+        useMergeSemanticStylesString(
+          [
+            {
+              header: {
+                root: { color: 'red' },
+                icon: { fontSize: 12 },
+              },
+            },
+          ],
+          { props: {} },
+        ),
       ).toEqual({
         header: {
           root: 'color: red;  ',

@@ -1,12 +1,12 @@
 /**
  * @doraemon-ui/miniprogram.image.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-06-01, 14:15:58.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
+ * Built on 2026-06-08, 17:05:45.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.34.
  */
 
 import { Doraemon, Prop, Watch, Event, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
-import { useExternalCls, getFontSize } from '@doraemon-ui/miniprogram.shared';
+import { useExternalCls, useMergeSemanticClassNames, useMergeSemanticStylesString, getFontSize } from '@doraemon-ui/miniprogram.shared';
 
 function _ts_decorate(decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -22,33 +22,40 @@ const ERROR = 'error';
 const UNMOUNTED = 'unmounted';
 let Image = class Image extends Doraemon {
     get classes() {
-        const { prefixCls, shape, mode, status, empty, loading, error } = this;
-        const wrap = classNames(prefixCls, {
-            [`${prefixCls}--${shape}`]: shape,
-            [`${prefixCls}--${mode}`]: mode,
-            [`${prefixCls}--${status}`]: status
-        });
-        const inner = `${prefixCls}__inner`;
-        const thumb = `${prefixCls}__thumb`;
-        const mask = classNames(`${prefixCls}__mask`, {
-            [`${prefixCls}__mask--text`]: empty || loading || error
-        });
-        const text = `${prefixCls}__text`;
-        return {
-            wrap,
-            inner,
-            thumb,
-            mask,
-            text
+        const { prefixCls, rootClassName, shape, mode, status, empty, loading, error } = this;
+        const internalClassNames = {
+            root: classNames(prefixCls, rootClassName, {
+                [`${prefixCls}--${shape}`]: shape,
+                [`${prefixCls}--${mode}`]: mode,
+                [`${prefixCls}--${status}`]: status
+            }),
+            inner: `${prefixCls}__inner`,
+            thumb: `${prefixCls}__thumb`,
+            mask: classNames(`${prefixCls}__mask`, {
+                [`${prefixCls}__mask--text`]: empty || loading || error
+            }),
+            text: `${prefixCls}__text`
         };
+        return useMergeSemanticClassNames([
+            internalClassNames,
+            this.classNames
+        ], {
+            props: this
+        });
     }
-    get rootStyle() {
-        const { styles } = this;
-        return styles?.root ? styleToCssString(styles.root) : '';
-    }
-    get imageStyle() {
-        const { styles } = this;
-        return styles?.image ? styleToCssString(styles.image) : '';
+    get mergedStyles() {
+        const { rootStyle = {}, internalRootStyle = {} } = this;
+        return useMergeSemanticStylesString([
+            {
+                root: rootStyle
+            },
+            {
+                root: internalRootStyle
+            },
+            this.styles
+        ], {
+            props: this
+        });
     }
     onSrcChange(src) {
         this.updated(src);
@@ -63,10 +70,10 @@ let Image = class Image extends Doraemon {
         this.updateStatus(src ? LOADING : this.unmountOnEmpty ? UNMOUNTED : EMPTY);
     }
     updateStyle(width, height) {
-        this.internalRootStyle = styleToCssString({
+        this.internalRootStyle = {
             width: getFontSize(width),
             height: getFontSize(height)
-        });
+        };
     }
     updateStatus(status) {
         if (this.status !== status) {
@@ -104,7 +111,7 @@ let Image = class Image extends Doraemon {
     constructor(...args){
         super(...args);
         this.status = EMPTY;
-        this.internalRootStyle = '';
+        this.internalRootStyle = {};
     }
 };
 _ts_decorate([
@@ -215,6 +222,14 @@ Image = _ts_decorate([
             prefixCls: {
                 type: String,
                 default: 'dora-image'
+            },
+            rootClassName: {
+                type: String,
+                default: ''
+            },
+            rootStyle: {
+                type: null,
+                default: null
             },
             classNames: {
                 type: Object,

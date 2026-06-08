@@ -13,11 +13,11 @@ import {
   fillObjectBySchema,
   mergeClassNames,
   mergeStyles,
-  useSemanticClassNames,
-  useSemanticStyles,
-  useSemanticStylesString,
   resolveStyleOrClass,
   useMergeSemantic,
+  useMergeSemanticClassNames,
+  useMergeSemanticStyles,
+  useMergeSemanticStylesString,
 } from './useMergeSemantic'
 
 export default {
@@ -28,9 +28,9 @@ export default {
   fillObjectBySchema,
   mergeClassNames,
   mergeStyles,
-  useSemanticClassNames,
-  useSemanticStyles,
-  useSemanticStylesString,
   resolveStyleOrClass,
   useMergeSemantic,
+  useMergeSemanticClassNames,
+  useMergeSemanticStyles,
+  useMergeSemanticStylesString,
 }
