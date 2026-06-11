@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.index-list.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-06-08, 19:59:27.
+ * Built on 2026-06-11, 14:12:41.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.34.
  */
 

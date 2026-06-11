@@ -1,6 +1,3 @@
 {
-  "component": true,
-  "usingComponents": {
-    "dora-index-item": "./item"
-  }
+  "component": true
 }

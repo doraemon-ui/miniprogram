@@ -171,6 +171,7 @@ console.log('当前工作目录:', currentDir)
 
 // packages 路径
 const basePath = path.join(currentDir, 'packages')
+const coreBasePath = path.join(currentDir, 'packages-core')
 console.log('扫描路径:', basePath)
 
 function main() {
@@ -181,13 +182,19 @@ function main() {
     process.exit(1)
   }
 
-  const items = fs.readdirSync(basePath)
+  const allBasePaths = [basePath, coreBasePath].filter((dir) => fs.existsSync(dir))
+  const targetDirs = []
 
-  // 找到所有 miniprogram.xx 目录
-  const targetDirs = items.filter((item) => {
-    const fullPath = path.join(basePath, item)
-    return item.startsWith('miniprogram.') && fs.statSync(fullPath).isDirectory()
-  })
+  for (const rootPath of allBasePaths) {
+    const items = fs.readdirSync(rootPath)
+    const matchedDirs = items
+      .filter((item) => {
+        const fullPath = path.join(rootPath, item)
+        return item.startsWith('miniprogram.') && fs.statSync(fullPath).isDirectory()
+      })
+      .map((dirName) => ({ rootPath, dirName }))
+    targetDirs.push(...matchedDirs)
+  }
 
   if (targetDirs.length === 0) {
     console.log('没有找到符合条件的 miniprogram.xx 目录')
@@ -198,8 +205,8 @@ function main() {
 
   let deletedCount = 0
 
-  targetDirs.forEach((dirName) => {
-    const snapshotPath = path.join(basePath, dirName, '__tests__', '__snapshots__')
+  targetDirs.forEach(({ rootPath, dirName }) => {
+    const snapshotPath = path.join(rootPath, dirName, '__tests__', '__snapshots__')
 
     console.log(`\n检查: ${dirName}`)
 

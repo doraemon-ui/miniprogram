@@ -7,7 +7,9 @@ const repoRoot = path.resolve(__dirname, '..')
 const docsDir = path.join(repoRoot, 'docs')
 const docsPlaygroundDir = path.join(docsDir, 'playground')
 const packagesDir = path.join(repoRoot, 'packages')
+const corePackagesDir = path.join(repoRoot, 'packages-core')
 const sidebarPath = path.join(docsDir, '_sidebar.md')
+const corePackageNames = new Set(['miniprogram.core-js', 'miniprogram.shared'])
 
 function exists(p) {
   try {
@@ -39,9 +41,8 @@ function listMiniprogramPackages() {
 
   const entries = fs.readdirSync(packagesDir, { withFileTypes: true })
   return entries
-    .filter((e) => e.isDirectory() && e.name.startsWith('miniprogram.'))
+    .filter((e) => e.isDirectory() && e.name.startsWith('miniprogram.') && !corePackageNames.has(e.name))
     .map((e) => e.name)
-    .filter((name) => name !== 'miniprogram.core-js')
 }
 
 function pkgNameToDocKey(pkgDirName) {
@@ -124,10 +125,15 @@ function main() {
   ensureDir(docsDir)
   ensureDir(docsPlaygroundDir)
 
+  const warnings = []
+
+  if (exists(path.join(corePackagesDir, 'miniprogram.core-js'))) {
+    warnings.push('[info] core packages are stored under packages-core/ and are excluded from component docs generation')
+  }
+
   const pkgDirs = listMiniprogramPackages()
   const pkgDocMap = new Map()
 
-  const warnings = []
   for (const pkgDirName of pkgDirs) {
     const key = pkgNameToDocKey(pkgDirName)
     const readmePath = path.join(packagesDir, pkgDirName, 'README.md')
@@ -152,7 +158,7 @@ function main() {
   let exampleUnchangedCount = 0
   let exampleMissingCount = 0
 
-  // 1) 复制 packages 下所有 miniprogram.xx 文档（除 core-js）
+  // 1) 复制 packages 下所有 miniprogram.xx 组件文档
   for (const [key, readmePath] of pkgDocMap.entries()) {
     const destPath = path.join(docsDir, `${key}.md`)
     const pkgRootDir = path.dirname(readmePath)

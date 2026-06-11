@@ -4,8 +4,10 @@ const path = require('path')
 
 const ROOT = path.resolve(__dirname, '..')
 const PACKAGES_ROOT = path.join(ROOT, 'packages')
+const CORE_PACKAGES_ROOT = path.join(ROOT, 'packages-core')
 const OUTPUT_PATH = path.join(ROOT, 'miniprogram.pkg-deps.json')
 const DRY_RUN = process.argv.includes('--dry-run')
+const CORE_PACKAGE_NAMES = new Set(['miniprogram.core-js', 'miniprogram.shared'])
 
 function readFileIfExists(filePath) {
   if (!fs.existsSync(filePath)) return null
@@ -50,7 +52,7 @@ function findClassName(sourceCode) {
 function getMiniprogramPackages() {
   return fs
     .readdirSync(PACKAGES_ROOT)
-    .filter((dir) => dir.startsWith('miniprogram.') && dir !== 'miniprogram.core-js')
+    .filter((dir) => dir.startsWith('miniprogram.') && !CORE_PACKAGE_NAMES.has(dir))
     .sort(sortBy)
 }
 
@@ -163,6 +165,9 @@ function buildPkgDeps() {
 }
 
 function main() {
+  if (fs.existsSync(path.join(CORE_PACKAGES_ROOT, 'miniprogram.core-js'))) {
+    console.warn('[build-pkg-deps] info: core packages are stored under packages-core/')
+  }
   const data = buildPkgDeps()
   const content = `${JSON.stringify(data, null, 2)}\n`
   if (!DRY_RUN) {

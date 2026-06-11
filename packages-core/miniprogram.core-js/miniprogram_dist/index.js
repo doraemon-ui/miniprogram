@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.core-js.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-19, 17:42:31.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
+ * Built on 2026-06-11, 13:59:34.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.34.
  */
 
 const LIFECYCLE_HOOKS = [

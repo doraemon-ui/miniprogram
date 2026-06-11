@@ -4,6 +4,7 @@
   "packages": [
     "demos/*",
     "packages/*",
+    "packages-core/*",
     "playground/*"
   ],
   "command": {

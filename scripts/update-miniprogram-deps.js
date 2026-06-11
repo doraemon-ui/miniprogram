@@ -14,10 +14,16 @@ const PACKAGES = {
 }
 
 const packagesDir = path.resolve(__dirname, '../packages')
+const corePackagesDir = path.resolve(__dirname, '../packages-core')
 
-const files = glob.sync(`${packagesDir}/**/package.json`, {
-  ignore: '**/node_modules/**',
-})
+const files = [...new Set([
+  ...glob.sync(`${packagesDir}/**/package.json`, {
+    ignore: '**/node_modules/**',
+  }),
+  ...glob.sync(`${corePackagesDir}/**/package.json`, {
+    ignore: '**/node_modules/**',
+  }),
+])]
 
 let updated = 0
 
@@ -38,7 +44,7 @@ files.forEach((file) => {
 
   if (changed) {
     fs.writeFileSync(file, JSON.stringify(pkg, null, 2) + '\n')
-    console.log(`✓ ${path.relative(packagesDir, file)}`)
+    console.log(`✓ ${path.relative(path.resolve(__dirname, '..'), file)}`)
     updated++
   }
 })

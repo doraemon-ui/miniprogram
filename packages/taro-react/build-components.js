@@ -8,6 +8,7 @@ const DRY_RUN = process.argv.includes('--dry-run')
 const TARO_ROOT = __dirname
 const REPO_ROOT = path.resolve(TARO_ROOT, '../..')
 const PACKAGES_ROOT = path.join(REPO_ROOT, 'packages')
+const CORE_PACKAGES_ROOT = path.join(REPO_ROOT, 'packages-core')
 const PKG_DEPS_PATH = path.join(REPO_ROOT, 'miniprogram.pkg-deps.json')
 const TARO_SRC_ROOT = path.join(TARO_ROOT, 'src')
 const TARO_COMPONENTS_ROOT = path.join(TARO_SRC_ROOT, 'components')
@@ -158,6 +159,17 @@ function getPkgDepsPackage(packageName) {
   return matchedKey ? PKG_DEPS[matchedKey] : null
 }
 
+function resolvePackageRoot(packageName) {
+  const packageDirName = `miniprogram.${packageName}`
+  const packagePath = path.join(PACKAGES_ROOT, packageDirName)
+  if (fs.existsSync(packagePath)) return packagePath
+
+  const corePackagePath = path.join(CORE_PACKAGES_ROOT, packageDirName)
+  if (fs.existsSync(corePackagePath)) return corePackagePath
+
+  return packagePath
+}
+
 function getPkgDepsComponentMetas(packageName) {
   const pkgMeta = getPkgDepsPackage(packageName)
   if (!pkgMeta || !pkgMeta.components || typeof pkgMeta.components !== 'object') return []
@@ -173,7 +185,7 @@ function getPkgDepsComponentMetas(packageName) {
 function createComponentDefinition(packageName, componentMeta, typesSourceCode) {
   const moduleName = componentMeta.src
   const tag = `dora-${componentMeta.dir}`
-  const moduleFilePath = path.join(PACKAGES_ROOT, `miniprogram.${packageName}`, 'src', `${moduleName}.ts`)
+  const moduleFilePath = path.join(resolvePackageRoot(packageName), 'src', `${moduleName}.ts`)
   const moduleSourceCode = readFileIfExists(moduleFilePath)
   if (!moduleSourceCode) return null
 

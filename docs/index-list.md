@@ -1,6 +1,8 @@
-# Index Index
+# IndexList 索引列表
 
-@doraemon-ui/miniprogram.index-list
+`@doraemon-ui/miniprogram.index-list`
+
+索引列表常用于通讯录、城市选择等需要按首字母快速定位的长列表场景。组件包同时提供 `dora-index-list` 和 `dora-index-list-item` 两个组件，分别负责索引容器和分组内容。
 
 ## 安装
 
@@ -42,26 +44,69 @@ yarn add @doraemon-ui/miniprogram.index-list
 
 ## API
 
-### Index props
+```ts
+export type IndexListIndicatorPosition = 'left' | 'center' | 'right'
+```
 
-| 参数      | 类型     | 描述           | 默认值     |
-| --------- | -------- | -------------- | ---------- |
-| prefixCls | `string` | 自定义类名前缀 | dora-index |
+### IndexList props
 
-### Index slot
+| 参数 | 类型 | 描述 | 默认值 |
+| --- | --- | --- | --- |
+| prefixCls | `string` | 自定义类名前缀 | dora-index-list |
+| height | `string \| number` | 组件高度 | 300 |
+| showIndicator | `boolean` | 是否显示提示指示器 | true |
+| indicatorPosition | `IndexListIndicatorPosition` | 提示指示器位置 | center |
+| parentOffsetTop | `number` | 父容器顶部偏移 | 0 |
+| bind:change | `(event: CustomEvent<{ index: number; name: string; brief: string }>) => void` | 当前激活索引切换时触发 | - |
 
-| 名称 | 描述       |
-| ---- | ---------- |
-| -    | 自定义内容 |
+### IndexList slot
 
-### Index externalClasses
+| 名称 | 描述 |
+| --- | --- |
+| - | `dora-index-list-item` 列表 |
 
-| 名称       | 描述         |
-| ---------- | ------------ |
+### IndexList externalClasses
+
+| 名称 | 描述 |
+| --- | --- |
+| dora-class | 根节点样式类 |
+
+### IndexListItem props
+
+| 参数 | 类型 | 描述 | 默认值 |
+| --- | --- | --- | --- |
+| prefixCls | `string` | 自定义类名前缀 | dora-index-list-item |
+| name | `string` | 分组名称 | - |
+
+### IndexListItem slot
+
+| 名称 | 描述 |
+| --- | --- |
+| - | 分组下的自定义内容 |
+
+### IndexListItem externalClasses
+
+| 名称 | 描述 |
+| --- | --- |
 | dora-class | 根节点样式类 |
 
 ## CSS Variables
 
-| 属性         | 描述     | 默认值 | 全局变量 |
-| ------------ | -------- | ------ | -------- |
-| --text-color | 文字颜色 | `#fff` | -        |
+| 属性 | 描述 | 默认值 | 全局变量 |
+| --- | --- | --- | --- |
+| --dora-index-list-nav-size | 索引导航单项尺寸 | `20px` | - |
+| --dora-index-list-nav-font-size | 索引导航字体大小 | `12px` | - |
+| --dora-index-list-nav-padding-vertical | 索引导航垂直内边距 | `4px` | - |
+| --dora-index-list-nav-padding-horizontal | 索引导航水平内边距 | `6px` | - |
+| --dora-index-list-nav-activated-text-color | 当前索引文字颜色 | `rgba(255, 255, 255, 1)` | - |
+| --dora-index-list-nav-activated-background-color | 当前索引背景色 | `#3880ff` | - |
+| --dora-index-list-nav-activated-border-radius | 当前索引圆角 | `50%` | - |
+| --dora-index-list-indicator-size | 提示指示器尺寸 | `48px` | - |
+| --dora-index-list-indicator-background-color | 提示指示器背景色 | `rgba(0, 0, 0, 0.7)` | - |
+| --dora-index-list-indicator-color | 提示指示器文字颜色 | `rgba(255, 255, 255, 1)` | - |
+| --dora-index-list-indicator-font-size | 提示指示器字体大小 | `20px` | - |
+| --dora-index-list-indicator-border-radius | 提示指示器圆角 | `var(--dora-border-radius, 8px)` | - |
+| --dora-index-list-item-background-color | 分组标题背景色 | `var(--dora-color-step-15, #d9d9d9)` | - |
+| --dora-index-list-item-size | 分组标题高度 | `28px` | - |
+| --dora-index-list-item-padding-vertical | 分组标题垂直内边距 | `0` | - |
+| --dora-index-list-item-padding-horizontal | 分组标题水平内边距 | `16px` | - |

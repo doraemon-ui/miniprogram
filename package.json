@@ -5,6 +5,7 @@
     "packages": [
       "demos/*",
       "packages/*",
+      "packages-core/*",
       "playground/*"
     ],
     "nohoist": [
@@ -54,12 +55,12 @@
     "start:docs": "./node_modules/.bin/docsify serve docs -p 80",
     "build:docs": "node scripts/build-docs.js",
     "build:pkg-deps": "node scripts/build-pkg-deps.js",
-    "prettier": "prettier --check \"{packages,playground,demos}/**/*.{js,ts,jsx,tsx,json,less,css,md}\"",
-    "prettier:fix": "prettier --write \"{packages,playground,demos}/**/*.{js,ts,jsx,tsx,json,less,css,md}\"",
-    "eslint": "eslint {packages,playground,demos}/** --ext js,ts",
-    "eslint:fix": "eslint {packages,playground,demos}/** --ext js,ts --fix",
-    "stylelint": "stylelint \"{packages,playground,demos}/**/*.less\" --syntax less",
-    "stylelint:fix": "stylelint \"{packages,playground,demos}/**/*.less\" --syntax less --fix",
+    "prettier": "prettier --check \"{packages,packages-core,playground,demos}/**/*.{js,ts,jsx,tsx,json,less,css,md}\"",
+    "prettier:fix": "prettier --write \"{packages,packages-core,playground,demos}/**/*.{js,ts,jsx,tsx,json,less,css,md}\"",
+    "eslint": "eslint {packages,packages-core,playground,demos}/** --ext js,ts",
+    "eslint:fix": "eslint {packages,packages-core,playground,demos}/** --ext js,ts --fix",
+    "stylelint": "stylelint \"{packages,packages-core,playground,demos}/**/*.less\" --syntax less",
+    "stylelint:fix": "stylelint \"{packages,packages-core,playground,demos}/**/*.less\" --syntax less --fix",
     "lint": "pnpm eslint && pnpm stylelint",
     "lint:fix": "pnpm eslint:fix && pnpm stylelint:fix",
     "pre-commit": "lint-staged",
