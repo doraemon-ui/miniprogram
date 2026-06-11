@@ -9,9 +9,19 @@ import type { FormProps, FormExpose } from './types'
 export const Form = createHostComponent<FormProps, FormExpose>('dora-form',
 {
   prefixCls: 'dora-form',
+  cellGroupPrefixCls: 'dora-list',
+  title: '',
+  label: '',
+  mode: 'default',
+  bodyStyle: '',
+  layout: 'none',
+  validateMessages: null,
+  requiredMarkStyle: 'asterisk',
+  asteriskText: '*',
+  requiredText: '必填',
+  optionalText: '选填',
   disabled: false,
-  hoverClass: 'default',
-  wrapStyle: null,
+  readOnly: false,
 })
 
 Form.displayName = 'DoraForm'
@@ -20,8 +30,19 @@ Form.displayName = 'DoraForm'
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
 React.createElement('dora-form', {
   prefixCls: '',
+  cellGroupPrefixCls: '',
+  title: '',
+  label: '',
+  mode: '',
+  bodyStyle: '',
+  layout: '',
+  validateMessages: '',
+  requiredMarkStyle: '',
+  asteriskText: '',
+  requiredText: '',
+  optionalText: '',
   disabled: '',
-  hoverClass: '',
-  wrapStyle: '',
-  onClick: '',
+  readOnly: '',
+  onChange: '',
+  onFieldsChange: '',
 })

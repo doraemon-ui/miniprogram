@@ -381,26 +381,6 @@
       }
     }
   },
-  "field": {
-    "components": {
-      "field": {
-        "src": "index",
-        "dir": "field",
-        "name": "Field",
-        "slot": null,
-        "deps": [
-          {
-            "name": "icon",
-            "source": "packages"
-          },
-          {
-            "name": "popover",
-            "source": "packages"
-          }
-        ]
-      }
-    }
-  },
   "filterbar": {
     "components": {
       "filterbar": {
@@ -408,7 +388,24 @@
         "dir": "filterbar",
         "name": "Filterbar",
         "slot": null,
-        "deps": null
+        "deps": [
+          {
+            "name": "animation-group",
+            "source": "packages"
+          },
+          {
+            "name": "backdrop",
+            "source": "packages"
+          },
+          {
+            "name": "checkbox-group",
+            "source": "packages"
+          },
+          {
+            "name": "radio-group",
+            "source": "packages"
+          }
+        ]
       }
     }
   },
@@ -430,7 +427,12 @@
         "dir": "footer",
         "name": "Footer",
         "slot": null,
-        "deps": null
+        "deps": [
+          {
+            "name": "divider",
+            "source": "packages"
+          }
+        ]
       }
     }
   },
@@ -441,7 +443,32 @@
         "dir": "form",
         "name": "Form",
         "slot": null,
-        "deps": null
+        "deps": [
+          {
+            "name": "list",
+            "source": "packages"
+          }
+        ]
+      },
+      "field": {
+        "src": "field",
+        "dir": "field",
+        "name": "Field",
+        "slot": "Field",
+        "deps": [
+          {
+            "name": "icon",
+            "source": "packages"
+          },
+          {
+            "name": "list-item",
+            "source": "packages"
+          },
+          {
+            "name": "popover",
+            "source": "packages"
+          }
+        ]
       }
     }
   },
@@ -501,24 +528,19 @@
       }
     }
   },
-  "index": {
+  "index-list": {
     "components": {
-      "index": {
+      "index-list": {
         "src": "index",
-        "dir": "index",
-        "name": "Index",
+        "dir": "index-list",
+        "name": "IndexList",
         "slot": null,
-        "deps": [
-          {
-            "name": "index-item",
-            "source": "self"
-          }
-        ]
+        "deps": null
       },
       "item": {
         "src": "item",
-        "dir": "index-item",
-        "name": "IndexItem",
+        "dir": "index-list-item",
+        "name": "IndexListItem",
         "slot": "Item",
         "deps": null
       }
@@ -699,7 +721,12 @@
         "dir": "notification",
         "name": "Notification",
         "slot": null,
-        "deps": null
+        "deps": [
+          {
+            "name": "animation-group",
+            "source": "packages"
+          }
+        ]
       }
     }
   },
@@ -766,7 +793,16 @@
         "dir": "popover",
         "name": "Popover",
         "slot": null,
-        "deps": null
+        "deps": [
+          {
+            "name": "animation-group",
+            "source": "packages"
+          },
+          {
+            "name": "backdrop",
+            "source": "packages"
+          }
+        ]
       }
     }
   },
@@ -832,7 +868,16 @@
         "dir": "prompt",
         "name": "Prompt",
         "slot": null,
-        "deps": null
+        "deps": [
+          {
+            "name": "animation-group",
+            "source": "packages"
+          },
+          {
+            "name": "daro-button",
+            "source": "packages"
+          }
+        ]
       }
     }
   },
@@ -1099,6 +1144,13 @@
         "name": "Sticky",
         "slot": null,
         "deps": null
+      },
+      "item": {
+        "src": "item",
+        "dir": "sticky-item",
+        "name": "StickyItem",
+        "slot": "Item",
+        "deps": null
       }
     }
   },
@@ -1132,6 +1184,10 @@
         "name": "Tabbar",
         "slot": null,
         "deps": [
+          {
+            "name": "safe-area",
+            "source": "packages"
+          },
           {
             "name": "tabbar-item",
             "source": "self"

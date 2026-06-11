@@ -1,21 +1,17 @@
 /**
  * @doraemon-ui/taro-react.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-09, 19:19:21.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
+ * Built on 2026-06-08, 20:28:41.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.34.
  */
 
-import React, { forwardRef, createElement, Component, createRef, Children } from 'react';
+import React, { Component, Children, createRef, forwardRef, createElement } from 'react';
 
 function styleToString(style) {
-    if (!style)
-        return '';
-    return Object.entries(style)
-        .map(([k, v]) => `${k.replace(/[A-Z]/g, (m) => '-' + m.toLowerCase())}:${v}`)
-        .join(';');
+    if (!style) return '';
+    return Object.entries(style).map(([k, v])=>`${k.replace(/[A-Z]/g, (m)=>'-' + m.toLowerCase())}:${v}`).join(';');
 }
 class HostComponent extends Component {
-    nativeRef = createRef();
     componentDidMount() {
         this._attachRef();
     }
@@ -24,12 +20,10 @@ class HostComponent extends Component {
     }
     _attachRef() {
         const { forwardedRef } = this.props;
-        if (!forwardedRef)
-            return;
+        if (!forwardedRef) return;
         if (typeof forwardedRef === 'function') {
             forwardedRef(this.nativeRef.current);
-        }
-        else {
+        } else {
             forwardedRef.current = this.nativeRef.current;
         }
     }
@@ -51,16 +45,25 @@ class HostComponent extends Component {
         // const nativeProps = this._transformProps(rest)
         console.log('nativeProps====', rest);
         const Comp = compName;
-        return (React.createElement(Comp, { ref: this.nativeRef, "dora-class": className, "dora-style": styleToString(style), ...rest }, Children.toArray(children)));
+        return /*#__PURE__*/ React.createElement(Comp, {
+            ref: this.nativeRef,
+            "dora-class": className,
+            "dora-style": styleToString(style),
+            ...rest
+        }, Children.toArray(children));
+    }
+    constructor(...args){
+        super(...args);
+        this.nativeRef = /*#__PURE__*/ createRef();
     }
 }
 function createHostComponent(compName, defaultProps) {
-    return forwardRef((props, ref) => createElement(HostComponent, {
-        ...defaultProps,
-        ...props,
-        compName,
-        forwardedRef: ref,
-    }));
+    return /*#__PURE__*/ forwardRef((props, ref)=>/*#__PURE__*/ createElement(HostComponent, {
+            ...defaultProps,
+            ...props,
+            compName,
+            forwardedRef: ref
+        }));
 }
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -74,19 +77,19 @@ const Accordion = createHostComponent('dora-accordion', {
     controlled: false,
     accordion: false,
     title: '',
-    label: '',
+    label: ''
 });
 Accordion.displayName = 'DoraAccordion';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-accordion', {
+/*#__PURE__*/ React.createElement('dora-accordion', {
     prefixCls: '',
     defaultCurrent: '',
     current: '',
     controlled: '',
     accordion: '',
     title: '',
-    label: '',
+    label: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -100,19 +103,19 @@ const AccordionPanel = createHostComponent('dora-accordion-panel', {
     title: '',
     content: '',
     disabled: false,
-    showArrow: true,
+    showArrow: true
 });
 AccordionPanel.displayName = 'DoraAccordionPanel';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-accordion-panel', {
+/*#__PURE__*/ React.createElement('dora-accordion-panel', {
     prefixCls: '',
     key: '',
     thumb: '',
     title: '',
     content: '',
     disabled: '',
-    showArrow: '',
+    showArrow: ''
 });
 
 const InnerAccordion = Accordion;
@@ -129,12 +132,12 @@ const ActionSheet = createHostComponent('dora-action-sheet', {
     buttons: [],
     cancelText: '取消',
     destructiveText: '',
-    visible: false,
+    visible: false
 });
 ActionSheet.displayName = 'DoraActionSheet';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-action-sheet', {
+/*#__PURE__*/ React.createElement('dora-action-sheet', {
     prefixCls: '',
     theme: '',
     titleText: '',
@@ -146,7 +149,7 @@ React.createElement('dora-action-sheet', {
     onClose: '',
     onCancel: '',
     onAction: '',
-    onDestructive: '',
+    onDestructive: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -160,12 +163,12 @@ const Alert = createHostComponent('dora-alert', {
     thumb: '',
     title: '',
     label: '',
-    closable: false,
+    closable: false
 });
 Alert.displayName = 'DoraAlert';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-alert', {
+/*#__PURE__*/ React.createElement('dora-alert', {
     prefixCls: '',
     classNames: '',
     color: '',
@@ -173,7 +176,7 @@ React.createElement('dora-alert', {
     title: '',
     label: '',
     closable: '',
-    onClick: '',
+    onClick: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -190,14 +193,14 @@ const AnimationGroup = createHostComponent('dora-animation-group', {
     exit: true,
     mountOnEnter: true,
     unmountOnExit: true,
-    wrapCls: '',
+    wrapCls: 'dora-animation-group',
     wrapStyle: null,
-    disableScroll: false,
+    disableScroll: false
 });
 AnimationGroup.displayName = 'DoraAnimationGroup';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-animation-group', {
+/*#__PURE__*/ React.createElement('dora-animation-group', {
     in: '',
     classNames: '',
     duration: '',
@@ -211,7 +214,7 @@ React.createElement('dora-animation-group', {
     wrapStyle: '',
     disableScroll: '',
     onChange: '',
-    onClick: '',
+    onClick: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -224,18 +227,18 @@ const Avatar = createHostComponent('dora-avatar', {
     size: 'default',
     src: '',
     bodyStyle: null,
-    scale: false,
+    scale: false
 });
 Avatar.displayName = 'DoraAvatar';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-avatar', {
+/*#__PURE__*/ React.createElement('dora-avatar', {
     prefixCls: '',
     shape: '',
     size: '',
     src: '',
     bodyStyle: '',
-    scale: '',
+    scale: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -251,12 +254,12 @@ const Backdrop = createHostComponent('dora-backdrop', {
     disableScroll: true,
     visible: false,
     classNames: 'dora-animate--fadeIn',
-    wrapStyle: null,
+    wrapStyle: null
 });
 Backdrop.displayName = 'DoraBackdrop';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-backdrop', {
+/*#__PURE__*/ React.createElement('dora-backdrop', {
     prefixCls: '',
     transparent: '',
     zIndex: '',
@@ -270,7 +273,7 @@ React.createElement('dora-backdrop', {
     onShowed: '',
     onClose: '',
     onClosed: '',
-    onClick: '',
+    onClick: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -288,12 +291,12 @@ const Badge = createHostComponent('dora-badge', {
     position: 'topRight',
     backgroundColor: '#ed3f14',
     hideShadow: false,
-    title: '',
+    title: ''
 });
 Badge.displayName = 'DoraBadge';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-badge', {
+/*#__PURE__*/ React.createElement('dora-badge', {
     prefixCls: '',
     count: '',
     overflowCount: '',
@@ -304,7 +307,7 @@ React.createElement('dora-badge', {
     position: '',
     backgroundColor: '',
     hideShadow: '',
-    title: '',
+    title: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -316,19 +319,29 @@ const Barcode = createHostComponent('dora-barcode', {
     width: 200,
     height: 100,
     number: '',
-    options: { number: true, prefix: true, color: 'black', debug: false },
-    canvasId: 'dora-barcode',
+    options: {
+        number: true,
+        prefix: true,
+        color: 'black',
+        debug: false
+    },
+    canvasId: 'dora-barcode'
 });
 Barcode.displayName = 'DoraBarcode';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-barcode', {
+/*#__PURE__*/ React.createElement('dora-barcode', {
     prefixCls: '',
     width: '',
     height: '',
     number: '',
     options: '',
     canvasId: '',
+    onValid: '',
+    onInvalid: '',
+    onLoad: '',
+    onSuccess: '',
+    onError: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -337,6 +350,10 @@ React.createElement('dora-barcode', {
 // expressions in both createHostComponent and React.createElement for Taro to detect them.
 const Button = createHostComponent('dora-button', {
     prefixCls: 'dora-button',
+    rootClassName: '',
+    rootStyle: null,
+    classNames: {},
+    styles: {},
     color: 'positive',
     fill: 'solid',
     expand: '',
@@ -358,13 +375,17 @@ const Button = createHostComponent('dora-button', {
     sendMessageImg: '',
     showMessageCard: false,
     phoneNumberNoQuotaToast: true,
-    appParameter: '',
+    appParameter: ''
 });
 Button.displayName = 'DoraButton';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-button', {
+/*#__PURE__*/ React.createElement('dora-button', {
     prefixCls: '',
+    rootClassName: '',
+    rootStyle: '',
+    classNames: '',
+    styles: '',
     color: '',
     fill: '',
     expand: '',
@@ -387,7 +408,7 @@ React.createElement('dora-button', {
     showMessageCard: '',
     phoneNumberNoQuotaToast: '',
     appParameter: '',
-    onClick: '',
+    onClick: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -395,13 +416,13 @@ React.createElement('dora-button', {
 // resolve spread operators (..._defaultProps), so props must be literal object
 // expressions in both createHostComponent and React.createElement for Taro to detect them.
 const Calendar = createHostComponent('dora-calendar', {
-    prefixCls: 'dora-calendar',
+    prefixCls: 'dora-calendar'
 });
 Calendar.displayName = 'DoraCalendar';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-calendar', {
-    prefixCls: '',
+/*#__PURE__*/ React.createElement('dora-calendar', {
+    prefixCls: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -417,12 +438,12 @@ const Card = createHostComponent('dora-card', {
     thumb: '',
     thumbStyle: null,
     extra: '',
-    actions: [],
+    actions: []
 });
 Card.displayName = 'DoraCard';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-card', {
+/*#__PURE__*/ React.createElement('dora-card', {
     prefixCls: '',
     hoverClass: '',
     bordered: '',
@@ -432,7 +453,7 @@ React.createElement('dora-card', {
     thumbStyle: '',
     extra: '',
     actions: '',
-    onAction: '',
+    onAction: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -453,12 +474,12 @@ const Cascader = createHostComponent('dora-cascader', {
     chooseTitle: '请选择',
     visible: false,
     skipAnimation: false,
-    defaultFieldNames: {},
+    defaultFieldNames: {}
 });
 Cascader.displayName = 'DoraCascader';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-cascader', {
+/*#__PURE__*/ React.createElement('dora-cascader', {
     prefixCls: '',
     defaultValue: '',
     value: '',
@@ -478,7 +499,7 @@ React.createElement('dora-cascader', {
     onChange: '',
     onClose: '',
     onConfirm: '',
-    onCancel: '',
+    onCancel: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -499,12 +520,17 @@ const CascaderPickerView = createHostComponent('dora-cascader-picker-view', {
     labelAlign: 'center',
     loading: false,
     options: [],
-    defaultFieldNames: { label: 'label', value: 'value', disabled: 'disabled', children: 'children' },
+    defaultFieldNames: {
+        label: 'label',
+        value: 'value',
+        disabled: 'disabled',
+        children: 'children'
+    }
 });
 CascaderPickerView.displayName = 'DoraCascaderPickerView';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-cascader-picker-view', {
+/*#__PURE__*/ React.createElement('dora-cascader-picker-view', {
     prefixCls: '',
     pickerPrefixCls: '',
     value: '',
@@ -519,7 +545,7 @@ React.createElement('dora-cascader-picker-view', {
     loading: '',
     options: '',
     defaultFieldNames: '',
-    onValueChange: '',
+    onValueChange: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -536,12 +562,12 @@ const CascaderView = createHostComponent('dora-cascader-view', {
     placeholder: '请选择',
     height: 'auto',
     skipAnimation: false,
-    defaultFieldNames: {},
+    defaultFieldNames: {}
 });
 CascaderView.displayName = 'DoraCascaderView';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-cascader-view', {
+/*#__PURE__*/ React.createElement('dora-cascader-view', {
     prefixCls: '',
     defaultValue: '',
     value: '',
@@ -554,7 +580,7 @@ React.createElement('dora-cascader-view', {
     defaultFieldNames: '',
     onTabsChange: '',
     onChange: '',
-    onLoad: '',
+    onLoad: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -574,12 +600,12 @@ const Checkbox = createHostComponent('dora-checkbox', {
     readOnly: false,
     color: 'balanced',
     wrapStyle: null,
-    hasLine: true,
+    hasLine: true
 });
 Checkbox.displayName = 'DoraCheckbox';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-checkbox', {
+/*#__PURE__*/ React.createElement('dora-checkbox', {
     prefixCls: '',
     cellPrefixCls: '',
     selectablePrefixCls: '',
@@ -593,7 +619,7 @@ React.createElement('dora-checkbox', {
     color: '',
     wrapStyle: '',
     hasLine: '',
-    onChange: '',
+    onChange: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -617,12 +643,12 @@ const CheckboxGroup = createHostComponent('dora-checkbox-group', {
     iconPosition: 'left',
     iconSize: '',
     iconOn: '',
-    iconOff: '',
+    iconOff: ''
 });
 CheckboxGroup.displayName = 'DoraCheckboxGroup';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-checkbox-group', {
+/*#__PURE__*/ React.createElement('dora-checkbox-group', {
     prefixCls: '',
     cellGroupPrefixCls: '',
     value: '',
@@ -640,7 +666,7 @@ React.createElement('dora-checkbox-group', {
     iconSize: '',
     iconOn: '',
     iconOff: '',
-    onChange: '',
+    onChange: ''
 });
 
 const InnerCheckbox = Checkbox;
@@ -662,12 +688,12 @@ const Circle = createHostComponent('dora-circle', {
     counterclockwise: false,
     speed: 2000,
     animate: true,
-    background: true,
+    background: true
 });
 Circle.displayName = 'DoraCircle';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-circle', {
+/*#__PURE__*/ React.createElement('dora-circle', {
     prefixCls: '',
     percent: '',
     strokeWidth: '',
@@ -680,7 +706,7 @@ React.createElement('dora-circle', {
     speed: '',
     animate: '',
     background: '',
-    onChange: '',
+    onChange: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -712,7 +738,11 @@ const DatePicker = createHostComponent('dora-date-picker', {
     prefixCls: 'dora-date-picker',
     multiPickerPrefixCls: 'dora-picker',
     pickerPrefixCls: 'dora-picker-view',
-    toolbar: { title: '请选择', cancelText: '取消', confirmText: '确定' },
+    toolbar: {
+        title: '请选择',
+        cancelText: '取消',
+        confirmText: '确定'
+    },
     defaultVisible: false,
     visible: false,
     controlled: false,
@@ -735,12 +765,12 @@ const DatePicker = createHostComponent('dora-date-picker', {
     minMinute: 0,
     maxMinute: 59,
     lang: 'zh_CN',
-    tillNow: false,
+    tillNow: false
 });
 DatePicker.displayName = 'DoraDatePicker';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-date-picker', {
+/*#__PURE__*/ React.createElement('dora-date-picker', {
     prefixCls: '',
     multiPickerPrefixCls: '',
     pickerPrefixCls: '',
@@ -772,7 +802,7 @@ React.createElement('dora-date-picker', {
     onChange: '',
     onConfirm: '',
     onCancel: '',
-    onValueChange: '',
+    onValueChange: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -801,12 +831,12 @@ const DatePickerView = createHostComponent('dora-date-picker-view', {
     minMinute: 0,
     maxMinute: 59,
     lang: 'zh_CN',
-    tillNow: false,
+    tillNow: false
 });
 DatePickerView.displayName = 'DoraDatePickerView';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-date-picker-view', {
+/*#__PURE__*/ React.createElement('dora-date-picker-view', {
     prefixCls: '',
     multiPickerPrefixCls: '',
     pickerPrefixCls: '',
@@ -829,7 +859,7 @@ React.createElement('dora-date-picker-view', {
     maxMinute: '',
     lang: '',
     tillNow: '',
-    onValueChange: '',
+    onValueChange: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -849,12 +879,12 @@ const Dialog = createHostComponent('dora-dialog', {
     image: '',
     title: '',
     content: '',
-    buttons: [],
+    buttons: []
 });
 Dialog.displayName = 'DoraDialog';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-dialog', {
+/*#__PURE__*/ React.createElement('dora-dialog', {
     prefixCls: '',
     bodyStyle: '',
     mask: '',
@@ -870,7 +900,7 @@ React.createElement('dora-dialog', {
     buttons: '',
     onClose: '',
     onClosed: '',
-    onAction: '',
+    onAction: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -883,18 +913,18 @@ const Divider = createHostComponent('dora-divider', {
     dashed: false,
     text: '',
     showText: true,
-    direction: 'horizontal',
+    direction: 'horizontal'
 });
 Divider.displayName = 'DoraDivider';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-divider', {
+/*#__PURE__*/ React.createElement('dora-divider', {
     prefixCls: '',
     position: '',
     dashed: '',
     text: '',
     showText: '',
-    direction: '',
+    direction: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -911,12 +941,12 @@ const ESign = createHostComponent('dora-e-sign', {
     lineColor: '#000000',
     hasFooter: true,
     cancelText: '重置',
-    confirmText: '确定',
+    confirmText: '确定'
 });
 ESign.displayName = 'DoraESign';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-e-sign', {
+/*#__PURE__*/ React.createElement('dora-e-sign', {
     prefixCls: '',
     type: '',
     width: '',
@@ -931,7 +961,7 @@ React.createElement('dora-e-sign', {
     onSigning: '',
     onEnd: '',
     onClear: '',
-    onSubmit: '',
+    onSubmit: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -945,12 +975,12 @@ const Ellipsis = createHostComponent('dora-ellipsis', {
     defaultExpanded: false,
     expandText: '',
     collapseText: '',
-    rows: 1,
+    rows: 1
 });
 Ellipsis.displayName = 'DoraEllipsis';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-ellipsis', {
+/*#__PURE__*/ React.createElement('dora-ellipsis', {
     prefixCls: '',
     content: '',
     direction: '',
@@ -958,7 +988,7 @@ React.createElement('dora-ellipsis', {
     expandText: '',
     collapseText: '',
     rows: '',
-    onClick: '',
+    onClick: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -968,7 +998,7 @@ React.createElement('dora-ellipsis', {
 const FabButton = createHostComponent('dora-fab-button', {
     prefixCls: 'dora-fab-button',
     hoverClass: 'default',
-    theme: 'balanced',
+    color: 'positive',
     position: 'bottomRight',
     action: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAAAAYLlVAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAHdElNRQfhBAQLCR5MtjrbAAAAjUlEQVRo3u3ZMRKAIAxEUbDirp4nXnctFFDHBtDQ/O1Nnk6aHUMgZCBKMkmmNAtgOmL9M+IQQGVM95zljy8DAAAAAAAAAAAAAACALsDZcppSx7Q+WdtUvA5xffUtrjeA8/qQ21S9gc15/3Nfzw0M5O0G2kM5BQAAAAAAAAAAAAAAQGk33q0qZ/p/Q/JFdmei9usomnwIAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE3LTA0LTA0VDExOjA5OjMwKzA4OjAw1U4c3wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxNy0wNC0wNFQxMTowOTozMCswODowMKQTpGMAAAAASUVORK5CYII=',
     actionRotate: true,
@@ -984,15 +1014,15 @@ const FabButton = createHostComponent('dora-fab-button', {
     eAngle: 360,
     defaultVisible: false,
     visible: false,
-    controlled: false,
+    controlled: false
 });
 FabButton.displayName = 'DoraFabButton';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-fab-button', {
+/*#__PURE__*/ React.createElement('dora-fab-button', {
     prefixCls: '',
     hoverClass: '',
-    theme: '',
+    color: '',
     position: '',
     action: '',
     actionRotate: '',
@@ -1010,7 +1040,7 @@ React.createElement('dora-fab-button', {
     visible: '',
     controlled: '',
     onChange: '',
-    onClick: '',
+    onClick: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -1019,42 +1049,60 @@ React.createElement('dora-fab-button', {
 // expressions in both createHostComponent and React.createElement for Taro to detect them.
 const Field = createHostComponent('dora-field', {
     prefixCls: 'dora-field',
+    initialValue: null,
+    valuePropName: 'inputValue',
+    trigger: 'onChange',
+    validate: [],
+    validateTrigger: 'onChange',
+    preserve: false,
+    rules: [],
+    validateFirst: false,
+    hidden: false,
+    childElementPosition: 'none',
+    cellPrefixCls: 'dora-list-item',
     label: '',
     labelWrap: false,
     extra: '',
-    help: '',
-    childElementPosition: 'none',
     isLink: false,
     align: 'flex-start',
     disabled: false,
     readOnly: false,
-    hidden: false,
-    required: false,
-    feedbackMessage: [],
-    hasFeedback: false,
-    index: 0,
-    isLast: false,
+    validateStatus: null,
+    required: null,
+    help: null,
+    hasFeedback: true,
+    name: '',
+    value: ''
 });
 Field.displayName = 'DoraField';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-field', {
+/*#__PURE__*/ React.createElement('dora-field', {
     prefixCls: '',
+    initialValue: '',
+    valuePropName: '',
+    trigger: '',
+    validate: '',
+    validateTrigger: '',
+    preserve: '',
+    rules: '',
+    validateFirst: '',
+    hidden: '',
+    childElementPosition: '',
+    cellPrefixCls: '',
     label: '',
     labelWrap: '',
     extra: '',
-    help: '',
-    childElementPosition: '',
     isLink: '',
     align: '',
     disabled: '',
     readOnly: '',
-    hidden: '',
+    validateStatus: '',
     required: '',
-    feedbackMessage: '',
+    help: '',
     hasFeedback: '',
-    index: '',
-    isLast: '',
+    name: '',
+    value: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -1063,19 +1111,22 @@ React.createElement('dora-field', {
 // expressions in both createHostComponent and React.createElement for Taro to detect them.
 const Filterbar = createHostComponent('dora-filterbar', {
     prefixCls: 'dora-filterbar',
-    disabled: false,
-    hoverClass: 'default',
-    wrapStyle: null,
+    items: [],
+    cancelText: '重置',
+    confirmText: '确定'
 });
 Filterbar.displayName = 'DoraFilterbar';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-filterbar', {
+/*#__PURE__*/ React.createElement('dora-filterbar', {
     prefixCls: '',
-    disabled: '',
-    hoverClass: '',
-    wrapStyle: '',
-    onClick: '',
+    items: '',
+    cancelText: '',
+    confirmText: '',
+    onChange: '',
+    onScroll: '',
+    onOpen: '',
+    onClose: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -1084,19 +1135,15 @@ React.createElement('dora-filterbar', {
 // expressions in both createHostComponent and React.createElement for Taro to detect them.
 const FloatingPanel = createHostComponent('dora-floating-panel', {
     prefixCls: 'dora-floating-panel',
-    disabled: false,
-    hoverClass: 'default',
-    wrapStyle: null,
+    defaultAnchors: []
 });
 FloatingPanel.displayName = 'DoraFloatingPanel';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-floating-panel', {
+/*#__PURE__*/ React.createElement('dora-floating-panel', {
     prefixCls: '',
-    disabled: '',
-    hoverClass: '',
-    wrapStyle: '',
-    onClick: '',
+    defaultAnchors: '',
+    onHeightChange: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -1105,19 +1152,24 @@ React.createElement('dora-floating-panel', {
 // expressions in both createHostComponent and React.createElement for Taro to detect them.
 const Footer = createHostComponent('dora-footer', {
     prefixCls: 'dora-footer',
-    disabled: false,
-    hoverClass: 'default',
-    wrapStyle: null,
+    color: 'positive',
+    label: '',
+    content: '',
+    links: [],
+    chips: []
 });
 Footer.displayName = 'DoraFooter';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-footer', {
+/*#__PURE__*/ React.createElement('dora-footer', {
     prefixCls: '',
-    disabled: '',
-    hoverClass: '',
-    wrapStyle: '',
-    onClick: '',
+    color: '',
+    label: '',
+    content: '',
+    links: '',
+    chips: '',
+    onLinkClick: '',
+    onChipClick: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -1126,20 +1178,44 @@ React.createElement('dora-footer', {
 // expressions in both createHostComponent and React.createElement for Taro to detect them.
 const Form = createHostComponent('dora-form', {
     prefixCls: 'dora-form',
+    cellGroupPrefixCls: 'dora-list',
+    title: '',
+    label: '',
+    mode: 'default',
+    bodyStyle: '',
+    layout: 'none',
+    validateMessages: null,
+    requiredMarkStyle: 'asterisk',
+    asteriskText: '*',
+    requiredText: '必填',
+    optionalText: '选填',
     disabled: false,
-    hoverClass: 'default',
-    wrapStyle: null,
+    readOnly: false
 });
 Form.displayName = 'DoraForm';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-form', {
+/*#__PURE__*/ React.createElement('dora-form', {
     prefixCls: '',
+    cellGroupPrefixCls: '',
+    title: '',
+    label: '',
+    mode: '',
+    bodyStyle: '',
+    layout: '',
+    validateMessages: '',
+    requiredMarkStyle: '',
+    asteriskText: '',
+    requiredText: '',
+    optionalText: '',
     disabled: '',
-    hoverClass: '',
-    wrapStyle: '',
-    onClick: '',
+    readOnly: '',
+    onChange: '',
+    onFieldsChange: ''
 });
+
+const InnerForm = Form;
+InnerForm.Field = Field;
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
 // TaroNormalModulesPlugin scans React.createElement() args at AST level and cannot
@@ -1147,19 +1223,48 @@ React.createElement('dora-form', {
 // expressions in both createHostComponent and React.createElement for Taro to detect them.
 const Gallery = createHostComponent('dora-gallery', {
     prefixCls: 'dora-gallery',
-    disabled: false,
-    hoverClass: 'default',
-    wrapStyle: null,
+    visible: false,
+    current: 0,
+    urls: [],
+    classNames: 'dora-animate--slideInRight',
+    indicatorDots: false,
+    indicatorColor: 'rgba(0, 0, 0, .3)',
+    indicatorActiveColor: '#000000',
+    autoplay: false,
+    interval: 5000,
+    duration: 500,
+    circular: false,
+    vertical: false,
+    showDelete: true,
+    allowScale: true,
+    icon: ''
 });
 Gallery.displayName = 'DoraGallery';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-gallery', {
+/*#__PURE__*/ React.createElement('dora-gallery', {
     prefixCls: '',
-    disabled: '',
-    hoverClass: '',
-    wrapStyle: '',
+    visible: '',
+    current: '',
+    urls: '',
+    classNames: '',
+    indicatorDots: '',
+    indicatorColor: '',
+    indicatorActiveColor: '',
+    autoplay: '',
+    interval: '',
+    duration: '',
+    circular: '',
+    vertical: '',
+    showDelete: '',
+    allowScale: '',
+    icon: '',
+    onCancel: '',
+    onClose: '',
+    onClosed: '',
     onClick: '',
+    onDelete: '',
+    onChange: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -1170,16 +1275,16 @@ const Grid = createHostComponent('dora-grid', {
     prefixCls: 'dora-grid',
     col: 3,
     bordered: true,
-    square: false,
+    square: false
 });
 Grid.displayName = 'DoraGrid';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-grid', {
+/*#__PURE__*/ React.createElement('dora-grid', {
     prefixCls: '',
     col: '',
     bordered: '',
-    square: '',
+    square: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -1190,17 +1295,17 @@ const GridItem = createHostComponent('dora-grid-item', {
     prefixCls: 'dora-grid-item',
     hoverClass: 'default',
     thumb: '',
-    label: '',
+    label: ''
 });
 GridItem.displayName = 'DoraGridItem';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-grid-item', {
+/*#__PURE__*/ React.createElement('dora-grid-item', {
     prefixCls: '',
     hoverClass: '',
     thumb: '',
     label: '',
-    onClick: '',
+    onClick: ''
 });
 
 const InnerGrid = Grid;
@@ -1215,18 +1320,18 @@ const Icon = createHostComponent('dora-icon', {
     hidden: false,
     type: '',
     size: 32,
-    color: '',
+    color: ''
 });
 Icon.displayName = 'DoraIcon';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-icon', {
+/*#__PURE__*/ React.createElement('dora-icon', {
     prefixCls: '',
     hidden: '',
     type: '',
     size: '',
     color: '',
-    onClick: '',
+    onClick: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -1235,62 +1340,93 @@ React.createElement('dora-icon', {
 // expressions in both createHostComponent and React.createElement for Taro to detect them.
 const Image = createHostComponent('dora-image', {
     prefixCls: 'dora-image',
-    disabled: false,
-    hoverClass: 'default',
-    wrapStyle: null,
+    rootClassName: '',
+    rootStyle: null,
+    classNames: {},
+    styles: {},
+    src: '',
+    mode: 'scaleToFill',
+    webp: false,
+    lazyLoad: false,
+    showMenuByLongpress: false,
+    shape: 'normal',
+    width: 300,
+    height: 225,
+    unmountOnEmpty: false,
+    unmountOnError: false,
+    empty: '',
+    loading: '',
+    error: ''
 });
 Image.displayName = 'DoraImage';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-image', {
+/*#__PURE__*/ React.createElement('dora-image', {
     prefixCls: '',
-    disabled: '',
-    hoverClass: '',
-    wrapStyle: '',
-    onClick: '',
+    rootClassName: '',
+    rootStyle: '',
+    classNames: '',
+    styles: '',
+    src: '',
+    mode: '',
+    webp: '',
+    lazyLoad: '',
+    showMenuByLongpress: '',
+    shape: '',
+    width: '',
+    height: '',
+    unmountOnEmpty: '',
+    unmountOnError: '',
+    empty: '',
+    loading: '',
+    error: '',
+    onChange: '',
+    onLoad: '',
+    onError: '',
+    onClick: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
 // TaroNormalModulesPlugin scans React.createElement() args at AST level and cannot
 // resolve spread operators (..._defaultProps), so props must be literal object
 // expressions in both createHostComponent and React.createElement for Taro to detect them.
-const Index = createHostComponent('dora-index', {
-    prefixCls: 'dora-index',
+const IndexList = createHostComponent('dora-index-list', {
+    prefixCls: 'dora-index-list',
     height: 300,
     showIndicator: true,
     indicatorPosition: 'center',
-    parentOffsetTop: 0,
+    parentOffsetTop: 0
 });
-Index.displayName = 'DoraIndex';
+IndexList.displayName = 'DoraIndexList';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-index', {
+/*#__PURE__*/ React.createElement('dora-index-list', {
     prefixCls: '',
     height: '',
     showIndicator: '',
     indicatorPosition: '',
     parentOffsetTop: '',
-    onChange: '',
+    onChange: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
 // TaroNormalModulesPlugin scans React.createElement() args at AST level and cannot
 // resolve spread operators (..._defaultProps), so props must be literal object
 // expressions in both createHostComponent and React.createElement for Taro to detect them.
-const IndexItem = createHostComponent('dora-index-item', {
-    prefixCls: 'dora-index-item',
-    name: '',
+const IndexListItem = createHostComponent('dora-index-list-item', {
+    prefixCls: 'dora-index-list-item',
+    name: ''
 });
-IndexItem.displayName = 'DoraIndexItem';
+IndexListItem.displayName = 'DoraIndexListItem';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-index-item', {
+/*#__PURE__*/ React.createElement('dora-index-list-item', {
     prefixCls: '',
-    name: '',
+    name: ''
 });
 
-const InnerIndex = Index;
-InnerIndex.Item = IndexItem;
+const InnerIndexList = IndexList;
+InnerIndexList.Item = IndexListItem;
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
 // TaroNormalModulesPlugin scans React.createElement() args at AST level and cannot
@@ -1334,12 +1470,12 @@ const Input = createHostComponent('dora-input', {
     onlyShowClearWhenFocus: true,
     min: null,
     max: null,
-    visibilityToggle: false,
+    visibilityToggle: false
 });
 Input.displayName = 'DoraInput';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-input', {
+/*#__PURE__*/ React.createElement('dora-input', {
     prefixCls: '',
     type: '',
     password: '',
@@ -1385,7 +1521,7 @@ React.createElement('dora-input', {
     onKeyboardheightchange: '',
     onNicknamereview: '',
     onClear: '',
-    onError: '',
+    onError: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -1405,12 +1541,12 @@ const InputNumber = createHostComponent('dora-input-number', {
     longpress: false,
     color: 'balanced',
     controlled: false,
-    digits: -1,
+    digits: -1
 });
 InputNumber.displayName = 'DoraInputNumber';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-input-number', {
+/*#__PURE__*/ React.createElement('dora-input-number', {
     prefixCls: '',
     shape: '',
     min: '',
@@ -1426,7 +1562,7 @@ React.createElement('dora-input-number', {
     digits: '',
     onChange: '',
     onFocus: '',
-    onBlur: '',
+    onBlur: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -1434,13 +1570,13 @@ React.createElement('dora-input-number', {
 // resolve spread operators (..._defaultProps), so props must be literal object
 // expressions in both createHostComponent and React.createElement for Taro to detect them.
 const Keyboard = createHostComponent('dora-keyboard', {
-    prefixCls: 'dora-keyboard',
+    prefixCls: 'dora-keyboard'
 });
 Keyboard.displayName = 'DoraKeyboard';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-keyboard', {
-    prefixCls: '',
+/*#__PURE__*/ React.createElement('dora-keyboard', {
+    prefixCls: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -1452,18 +1588,18 @@ const Landscape = createHostComponent('dora-landscape', {
     visible: false,
     mask: true,
     maskClosable: false,
-    closable: true,
+    closable: true
 });
 Landscape.displayName = 'DoraLandscape';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-landscape', {
+/*#__PURE__*/ React.createElement('dora-landscape', {
     prefixCls: '',
     visible: '',
     mask: '',
     maskClosable: '',
     closable: '',
-    onClose: '',
+    onClose: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -1477,19 +1613,19 @@ const List = createHostComponent('dora-list', {
     mode: 'default',
     hasLine: true,
     wrapStyle: null,
-    bodyStyle: null,
+    bodyStyle: null
 });
 List.displayName = 'DoraList';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-list', {
+/*#__PURE__*/ React.createElement('dora-list', {
     prefixCls: '',
     title: '',
     label: '',
     mode: '',
     hasLine: '',
     wrapStyle: '',
-    bodyStyle: '',
+    bodyStyle: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -1522,12 +1658,12 @@ const ListItem = createHostComponent('dora-list-item', {
     sendMessageImg: '',
     showMessageCard: false,
     phoneNumberNoQuotaToast: true,
-    appParameter: '',
+    appParameter: ''
 });
 ListItem.displayName = 'DoraListItem';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-list-item', {
+/*#__PURE__*/ React.createElement('dora-list-item', {
     prefixCls: '',
     thumb: '',
     title: '',
@@ -1554,7 +1690,7 @@ React.createElement('dora-list-item', {
     showMessageCard: '',
     phoneNumberNoQuotaToast: '',
     appParameter: '',
-    onClick: '',
+    onClick: ''
 });
 
 const InnerList = List;
@@ -1565,13 +1701,13 @@ InnerList.Item = ListItem;
 // resolve spread operators (..._defaultProps), so props must be literal object
 // expressions in both createHostComponent and React.createElement for Taro to detect them.
 const Loading = createHostComponent('dora-loading', {
-    prefixCls: 'dora-loading',
+    prefixCls: 'dora-loading'
 });
 Loading.displayName = 'DoraLoading';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-loading', {
-    prefixCls: '',
+/*#__PURE__*/ React.createElement('dora-loading', {
+    prefixCls: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -1584,18 +1720,18 @@ const Media = createHostComponent('dora-media', {
     thumbStyle: null,
     title: '',
     label: '',
-    align: 'center',
+    align: 'center'
 });
 Media.displayName = 'DoraMedia';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-media', {
+/*#__PURE__*/ React.createElement('dora-media', {
     prefixCls: '',
     thumb: '',
     thumbStyle: '',
     title: '',
     label: '',
-    align: '',
+    align: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -1614,18 +1750,18 @@ const Navbar = createHostComponent('dora-navbar', {
     color: 'light',
     title: '',
     leftText: '',
-    rightText: '',
+    rightText: ''
 });
 Navbar.displayName = 'DoraNavbar';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-navbar', {
+/*#__PURE__*/ React.createElement('dora-navbar', {
     prefixCls: '',
     color: '',
     title: '',
     leftText: '',
     rightText: '',
-    onClick: '',
+    onClick: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -1641,12 +1777,12 @@ const NoticeBar = createHostComponent('dora-notice-bar', {
     loop: false,
     leading: 500,
     trailing: 800,
-    speed: 25,
+    speed: 25
 });
 NoticeBar.displayName = 'DoraNoticeBar';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-notice-bar', {
+/*#__PURE__*/ React.createElement('dora-notice-bar', {
     prefixCls: '',
     icon: '',
     content: '',
@@ -1656,7 +1792,7 @@ React.createElement('dora-notice-bar', {
     leading: '',
     trailing: '',
     speed: '',
-    onClick: '',
+    onClick: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -1665,19 +1801,37 @@ React.createElement('dora-notice-bar', {
 // expressions in both createHostComponent and React.createElement for Taro to detect them.
 const Notification = createHostComponent('dora-notification', {
     prefixCls: 'dora-notification',
-    disabled: false,
-    hoverClass: 'default',
-    wrapStyle: null,
+    visible: false,
+    classNames: 'dora-animate--slideInDown',
+    image: '',
+    title: '',
+    titleRightText: '',
+    closable: false,
+    swipeToClose: true,
+    subtitle: '',
+    text: '',
+    duration: 3000,
+    data: null
 });
 Notification.displayName = 'DoraNotification';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-notification', {
+/*#__PURE__*/ React.createElement('dora-notification', {
     prefixCls: '',
-    disabled: '',
-    hoverClass: '',
-    wrapStyle: '',
+    visible: '',
+    classNames: '',
+    image: '',
+    title: '',
+    titleRightText: '',
+    closable: '',
+    swipeToClose: '',
+    subtitle: '',
+    text: '',
+    duration: '',
+    data: '',
     onClick: '',
+    onClose: '',
+    onClosed: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -1691,19 +1845,19 @@ const Pagination = createHostComponent('dora-pagination', {
     current: 1,
     controlled: false,
     total: 0,
-    simple: false,
+    simple: false
 });
 Pagination.displayName = 'DoraPagination';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-pagination', {
+/*#__PURE__*/ React.createElement('dora-pagination', {
     prefixCls: '',
     mode: '',
     defaultCurrent: '',
     current: '',
     controlled: '',
     total: '',
-    simple: '',
+    simple: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -1714,7 +1868,11 @@ const Picker = createHostComponent('dora-picker', {
     prefixCls: 'dora-popup-picker',
     multiPickerPrefixCls: 'dora-picker',
     pickerPrefixCls: 'dora-picker-view',
-    toolbar: { title: '请选择', cancelText: '取消', confirmText: '确定' },
+    toolbar: {
+        title: '请选择',
+        cancelText: '取消',
+        confirmText: '确定'
+    },
     defaultVisible: false,
     visible: false,
     controlled: false,
@@ -1731,12 +1889,17 @@ const Picker = createHostComponent('dora-picker', {
     maskStyle: null,
     maskClass: '',
     labelAlign: 'center',
-    defaultFieldNames: { label: 'label', value: 'value', disabled: 'disabled', children: 'children' },
+    defaultFieldNames: {
+        label: 'label',
+        value: 'value',
+        disabled: 'disabled',
+        children: 'children'
+    }
 });
 Picker.displayName = 'DoraPicker';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-picker', {
+/*#__PURE__*/ React.createElement('dora-picker', {
     prefixCls: '',
     multiPickerPrefixCls: '',
     pickerPrefixCls: '',
@@ -1762,7 +1925,7 @@ React.createElement('dora-picker', {
     onChange: '',
     onConfirm: '',
     onCancel: '',
-    onValueChange: '',
+    onValueChange: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -1783,12 +1946,16 @@ const PickerView = createHostComponent('dora-picker-view', {
     labelAlign: 'center',
     loading: false,
     options: [],
-    defaultFieldNames: { label: 'label', value: 'value', disabled: 'disabled' },
+    defaultFieldNames: {
+        label: 'label',
+        value: 'value',
+        disabled: 'disabled'
+    }
 });
 PickerView.displayName = 'DoraPickerView';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-picker-view', {
+/*#__PURE__*/ React.createElement('dora-picker-view', {
     prefixCls: '',
     defaultValue: '',
     value: '',
@@ -1804,7 +1971,7 @@ React.createElement('dora-picker-view', {
     options: '',
     defaultFieldNames: '',
     onValueChange: '',
-    onBeforeChange: '',
+    onBeforeChange: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -1813,19 +1980,43 @@ React.createElement('dora-picker-view', {
 // expressions in both createHostComponent and React.createElement for Taro to detect them.
 const Popover = createHostComponent('dora-popover', {
     prefixCls: 'dora-popover',
-    disabled: false,
-    hoverClass: 'default',
-    wrapStyle: null,
+    classNames: 'dora-animate--fadeIn',
+    color: 'light',
+    title: '',
+    content: '',
+    placement: 'top',
+    trigger: 'click',
+    bodyStyle: null,
+    defaultVisible: false,
+    visible: false,
+    controlled: false,
+    mask: false,
+    maskClosable: true,
+    useSlot: true,
+    slotRect: null,
+    relativeRect: null
 });
 Popover.displayName = 'DoraPopover';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-popover', {
+/*#__PURE__*/ React.createElement('dora-popover', {
     prefixCls: '',
-    disabled: '',
-    hoverClass: '',
-    wrapStyle: '',
-    onClick: '',
+    classNames: '',
+    color: '',
+    title: '',
+    content: '',
+    placement: '',
+    trigger: '',
+    bodyStyle: '',
+    defaultVisible: '',
+    visible: '',
+    controlled: '',
+    mask: '',
+    maskClosable: '',
+    useSlot: '',
+    slotRect: '',
+    relativeRect: '',
+    onChange: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -1848,12 +2039,12 @@ const Popup = createHostComponent('dora-popup', {
     mountOnEnter: true,
     unmountOnExit: true,
     closable: false,
-    safeArea: false,
+    safeArea: false
 });
 Popup.displayName = 'DoraPopup';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-popup', {
+/*#__PURE__*/ React.createElement('dora-popup', {
     prefixCls: '',
     animationPrefixCls: '',
     position: '',
@@ -1873,7 +2064,7 @@ React.createElement('dora-popup', {
     onShow: '',
     onShowed: '',
     onClose: '',
-    onClosed: '',
+    onClosed: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -1884,21 +2075,29 @@ const PopupSelect = createHostComponent('dora-popup-select', {
     prefixCls: 'dora-popup-select',
     classNames: 'dora-animate--fadeIn',
     virtualized: false,
-    notFoundContent: { icon: '', title: '', text: '暂无数据' },
+    notFoundContent: {
+        icon: '',
+        title: '',
+        text: '暂无数据'
+    },
     value: '',
     options: [],
     iconPosition: '',
     multiple: false,
     max: -1,
-    toolbar: { title: '请选择', cancelText: '取消', confirmText: '确定' },
+    toolbar: {
+        title: '请选择',
+        cancelText: '取消',
+        confirmText: '确定'
+    },
     visible: false,
     defaultVisible: false,
-    controlled: false,
+    controlled: false
 });
 PopupSelect.displayName = 'DoraPopupSelect';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-popup-select', {
+/*#__PURE__*/ React.createElement('dora-popup-select', {
     prefixCls: '',
     classNames: '',
     virtualized: '',
@@ -1916,7 +2115,7 @@ React.createElement('dora-popup-select', {
     onClosed: '',
     onCancel: '',
     onValueChange: '',
-    onConfirm: '',
+    onConfirm: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -1932,12 +2131,12 @@ const Progress = createHostComponent('dora-progress', {
     status: 'normal',
     shape: 'round',
     barStyle: null,
-    showInfo: false,
+    showInfo: false
 });
 Progress.displayName = 'DoraProgress';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-progress', {
+/*#__PURE__*/ React.createElement('dora-progress', {
     prefixCls: '',
     percent: '',
     strokeWidth: '',
@@ -1946,7 +2145,7 @@ React.createElement('dora-progress', {
     status: '',
     shape: '',
     barStyle: '',
-    showInfo: '',
+    showInfo: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -1955,19 +2154,27 @@ React.createElement('dora-progress', {
 // expressions in both createHostComponent and React.createElement for Taro to detect them.
 const Prompt = createHostComponent('dora-prompt', {
     prefixCls: 'dora-prompt',
-    disabled: false,
-    hoverClass: 'default',
-    wrapStyle: null,
+    classNames: 'dora-animate--fadeIn',
+    icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAAAAYLlVAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAHdElNRQfgCxwAHyE2vHbUAAACWUlEQVRo3u2ZP2gTcRTHP7EpBTOJWrDSxdZBxE0yCC3UdilqUBCs4B8ogVfr0EnQ6lAEsylIXR6moFA1g6IoSAct7WhxUBQFsS5aLDgWcWitLjG5y11zufxyl8Hfd8n7vd+79z738svvfkfAysrqf1fC3609jHGYtnDJJBEuHiDpU7yNAkfj6sAmH990fOV9ADTN8fjK+3VA4izvB9AfL4B3EbY67E75Vn9qHeSCHAzfgQZJIU+f7moaAPvpAC7FAKAnPJ6EprkOQFbP6OZIAbSdgna5PEf4wSt6i8O7/NRx3RZdB84B4y7PGFsrYq7RExGAppgAhnV72ScDdDFVGi7ST4s8jqoD/77/UadTvkiW0wB8pltmZX3jBEYAmizd6YSmKiYfATAStLGadWDAYQ+5p+QXF4G5oBQGANrObccwr50VAXmG5HdQFs8RQpfoKA023Ip1N5c563E/5Qrvwj3NkqGiAU2Q5gYHfCczZPio55mvtuyMADTDHbZUDdnDLOhJKbiu+1O23Qe3sGsgFVC+HFejQgLIA1ro40OVkGUO0SpTtWYM/SuQdZljL/t44jM5T5od8lzWas8XehECCLznmO7kDc6HTLcshs9lsA/IEsOO4Wg95U13whmHPV1fCiMAWWWkaOZkpQkAwP3i52S9CQwBZIUccE+WmwQA3AKu1n+5MYB8JyufmggAte96EQGYyQJYAAtgASyA90y46rC/ahM68DLiigtBAFHfdC4AQBZ4GGH5tzwL6gCc8n3paIRe01v52trQ/wuqaI0X3JQZ80RWVlYN11+uNXxr6IunHwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxNi0xMS0yOFQwMDozMTozMyswODowMBHRiXcAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTYtMTEtMjhUMDA6MzE6MzMrMDg6MDBgjDHLAAAAAElFTkSuQmCC',
+    title: '',
+    text: '',
+    buttons: [],
+    visible: false,
+    wrapStyle: null
 });
 Prompt.displayName = 'DoraPrompt';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-prompt', {
+/*#__PURE__*/ React.createElement('dora-prompt', {
     prefixCls: '',
-    disabled: '',
-    hoverClass: '',
+    classNames: '',
+    icon: '',
+    title: '',
+    text: '',
+    buttons: '',
+    visible: '',
     wrapStyle: '',
-    onClick: '',
+    onClick: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -1987,12 +2194,12 @@ const Qrcode = createHostComponent('dora-qrcode', {
     showMenuByLongpress: false,
     qrcodeStatus: 'activated',
     qrcodeExpiredText: '二维码过期',
-    qrcodeRefreshText: '点击刷新',
+    qrcodeRefreshText: '点击刷新'
 });
 Qrcode.displayName = 'DoraQrcode';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-qrcode', {
+/*#__PURE__*/ React.createElement('dora-qrcode', {
     prefixCls: '',
     typeNumber: '',
     errorCorrectLevel: '',
@@ -2009,7 +2216,7 @@ React.createElement('dora-qrcode', {
     onLoad: '',
     onError: '',
     onClick: '',
-    onRefresh: '',
+    onRefresh: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -2029,12 +2236,12 @@ const Radio = createHostComponent('dora-radio', {
     readOnly: false,
     color: 'balanced',
     wrapStyle: null,
-    hasLine: true,
+    hasLine: true
 });
 Radio.displayName = 'DoraRadio';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-radio', {
+/*#__PURE__*/ React.createElement('dora-radio', {
     prefixCls: '',
     cellPrefixCls: '',
     selectablePrefixCls: '',
@@ -2047,7 +2254,7 @@ React.createElement('dora-radio', {
     readOnly: '',
     color: '',
     wrapStyle: '',
-    hasLine: '',
+    hasLine: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -2071,12 +2278,12 @@ const RadioGroup = createHostComponent('dora-radio-group', {
     iconPosition: 'right',
     iconSize: '',
     iconOn: '',
-    iconOff: '',
+    iconOff: ''
 });
 RadioGroup.displayName = 'DoraRadioGroup';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-radio-group', {
+/*#__PURE__*/ React.createElement('dora-radio-group', {
     prefixCls: '',
     cellGroupPrefixCls: '',
     value: '',
@@ -2094,7 +2301,7 @@ React.createElement('dora-radio-group', {
     iconSize: '',
     iconOn: '',
     iconOff: '',
-    onChange: '',
+    onChange: ''
 });
 
 const InnerRadio = Radio;
@@ -2118,12 +2325,12 @@ const Rater = createHostComponent('dora-rater', {
     allowHalf: false,
     allowClear: false,
     allowTouchMove: false,
-    controlled: false,
+    controlled: false
 });
 Rater.displayName = 'DoraRater';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-rater', {
+/*#__PURE__*/ React.createElement('dora-rater', {
     prefixCls: '',
     max: '',
     icon: '',
@@ -2138,7 +2345,7 @@ React.createElement('dora-rater', {
     allowClear: '',
     allowTouchMove: '',
     controlled: '',
-    onChange: '',
+    onChange: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -2157,12 +2364,12 @@ const Refresher = createHostComponent('dora-refresher', {
     isShowLoadingText: false,
     loadingText: '正在加载',
     loadNoDataText: '没有更多数据',
-    scrollTop: 0,
+    scrollTop: 0
 });
 Refresher.displayName = 'DoraRefresher';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-refresher', {
+/*#__PURE__*/ React.createElement('dora-refresher', {
     prefixCls: '',
     pullingIcon: '',
     pullingText: '',
@@ -2177,7 +2384,7 @@ React.createElement('dora-refresher', {
     scrollTop: '',
     onPulling: '',
     onRefresh: '',
-    onLoadmore: '',
+    onLoadmore: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -2191,12 +2398,12 @@ const Result = createHostComponent('dora-result', {
     label: '',
     buttons: [],
     extra: '',
-    fixed: false,
+    fixed: false
 });
 Result.displayName = 'DoraResult';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-result', {
+/*#__PURE__*/ React.createElement('dora-result', {
     prefixCls: '',
     icon: '',
     title: '',
@@ -2204,7 +2411,7 @@ React.createElement('dora-result', {
     buttons: '',
     extra: '',
     fixed: '',
-    onClick: '',
+    onClick: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -2213,14 +2420,14 @@ React.createElement('dora-result', {
 // expressions in both createHostComponent and React.createElement for Taro to detect them.
 const Row = createHostComponent('dora-row', {
     prefixCls: 'dora-row',
-    gutter: 0,
+    gutter: 0
 });
 Row.displayName = 'DoraRow';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-row', {
+/*#__PURE__*/ React.createElement('dora-row', {
     prefixCls: '',
-    gutter: '',
+    gutter: ''
 });
 
 const InnerRow = Row;
@@ -2232,22 +2439,25 @@ InnerRow.Col = Col;
 // expressions in both createHostComponent and React.createElement for Taro to detect them.
 const SafeArea = createHostComponent('dora-safe-area', {
     prefixCls: 'dora-safe-area',
-    safeArea: { top: false, bottom: false },
+    safeArea: {
+        top: false,
+        bottom: false
+    },
     safeAreaStyle: 'default',
     forceRender: false,
     supports: false,
-    wrapStyle: null,
+    wrapStyle: null
 });
 SafeArea.displayName = 'DoraSafeArea';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-safe-area', {
+/*#__PURE__*/ React.createElement('dora-safe-area', {
     prefixCls: '',
     safeArea: '',
     safeAreaStyle: '',
     forceRender: '',
     supports: '',
-    wrapStyle: '',
+    wrapStyle: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -2275,12 +2485,12 @@ const SearchBar = createHostComponent('dora-search-bar', {
     cancelText: '取消',
     showCancel: false,
     controlled: false,
-    onlyShowClearWhenFocus: true,
+    onlyShowClearWhenFocus: true
 });
 SearchBar.displayName = 'DoraSearchBar';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-search-bar', {
+/*#__PURE__*/ React.createElement('dora-search-bar', {
     prefixCls: '',
     defaultValue: '',
     value: '',
@@ -2307,7 +2517,7 @@ React.createElement('dora-search-bar', {
     onBlur: '',
     onConfirm: '',
     onClear: '',
-    onCancel: '',
+    onCancel: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -2321,12 +2531,12 @@ const SegmentedControl = createHostComponent('dora-segmented-control', {
     current: 0,
     values: [],
     disabled: false,
-    controlled: false,
+    controlled: false
 });
 SegmentedControl.displayName = 'DoraSegmentedControl';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-segmented-control', {
+/*#__PURE__*/ React.createElement('dora-segmented-control', {
     prefixCls: '',
     color: '',
     defaultCurrent: '',
@@ -2334,7 +2544,7 @@ React.createElement('dora-segmented-control', {
     values: '',
     disabled: '',
     controlled: '',
-    onChange: '',
+    onChange: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -2347,14 +2557,22 @@ const Select = createHostComponent('dora-select', {
     options: [],
     multiple: false,
     max: -1,
-    notFoundContent: { icon: '', title: '', text: '暂无数据' },
+    notFoundContent: {
+        icon: '',
+        title: '',
+        text: '暂无数据'
+    },
     virtualized: false,
-    toolbar: { title: '请选择', cancelText: '取消', confirmText: '确定' },
+    toolbar: {
+        title: '请选择',
+        cancelText: '取消',
+        confirmText: '确定'
+    }
 });
 Select.displayName = 'DoraSelect';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-select', {
+/*#__PURE__*/ React.createElement('dora-select', {
     prefixCls: '',
     value: '',
     options: '',
@@ -2362,7 +2580,7 @@ React.createElement('dora-select', {
     max: '',
     notFoundContent: '',
     virtualized: '',
-    toolbar: '',
+    toolbar: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -2382,12 +2600,12 @@ const Selectable = createHostComponent('dora-selectable', {
     wrapStyle: null,
     iconSize: '',
     iconOn: '',
-    iconOff: '',
+    iconOff: ''
 });
 Selectable.displayName = 'DoraSelectable';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-selectable', {
+/*#__PURE__*/ React.createElement('dora-selectable', {
     prefixCls: '',
     type: '',
     value: '',
@@ -2401,7 +2619,7 @@ React.createElement('dora-selectable', {
     iconSize: '',
     iconOn: '',
     iconOff: '',
-    onChange: '',
+    onChange: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -2420,12 +2638,16 @@ const SelectorGroup = createHostComponent('dora-selector-group', {
     controlled: false,
     multiple: false,
     showCheckMark: true,
-    defaultFieldNames: { label: 'label', value: 'value', disabled: 'disabled' },
+    defaultFieldNames: {
+        label: 'label',
+        value: 'value',
+        disabled: 'disabled'
+    }
 });
 SelectorGroup.displayName = 'DoraSelectorGroup';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-selector-group', {
+/*#__PURE__*/ React.createElement('dora-selector-group', {
     prefixCls: '',
     color: '',
     shape: '',
@@ -2438,7 +2660,7 @@ React.createElement('dora-selector-group', {
     multiple: '',
     showCheckMark: '',
     defaultFieldNames: '',
-    onChange: '',
+    onChange: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -2447,14 +2669,14 @@ React.createElement('dora-selector-group', {
 // expressions in both createHostComponent and React.createElement for Taro to detect them.
 const Skeleton = createHostComponent('dora-skeleton', {
     prefixCls: 'dora-skeleton',
-    active: false,
+    active: false
 });
 Skeleton.displayName = 'DoraSkeleton';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-skeleton', {
+/*#__PURE__*/ React.createElement('dora-skeleton', {
     prefixCls: '',
-    active: '',
+    active: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -2465,16 +2687,16 @@ const SkeletonAvatar = createHostComponent('dora-skeleton-avatar', {
     prefixCls: 'dora-skeleton-avatar',
     size: 'default',
     shape: 'circle',
-    active: false,
+    active: false
 });
 SkeletonAvatar.displayName = 'DoraSkeletonAvatar';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-skeleton-avatar', {
+/*#__PURE__*/ React.createElement('dora-skeleton-avatar', {
     prefixCls: '',
     size: '',
     shape: '',
-    active: '',
+    active: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -2485,16 +2707,16 @@ const SkeletonParagraph = createHostComponent('dora-skeleton-paragraph', {
     prefixCls: 'dora-skeleton-paragraph',
     rows: 3,
     rounded: false,
-    active: false,
+    active: false
 });
 SkeletonParagraph.displayName = 'DoraSkeletonParagraph';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-skeleton-paragraph', {
+/*#__PURE__*/ React.createElement('dora-skeleton-paragraph', {
     prefixCls: '',
     rows: '',
     rounded: '',
-    active: '',
+    active: ''
 });
 
 const InnerSkeleton = Skeleton;
@@ -2510,8 +2732,12 @@ const Slider = createHostComponent('dora-slider', {
     min: 0,
     max: 100,
     step: 1,
-    defaultValue: [0],
-    value: [0],
+    defaultValue: [
+        0
+    ],
+    value: [
+        0
+    ],
     controlled: false,
     disabled: false,
     showMark: false,
@@ -2521,12 +2747,12 @@ const Slider = createHostComponent('dora-slider', {
     handleStyle: null,
     trackStyle: null,
     railStyle: null,
-    wrapStyle: null,
+    wrapStyle: null
 });
 Slider.displayName = 'DoraSlider';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-slider', {
+/*#__PURE__*/ React.createElement('dora-slider', {
     prefixCls: '',
     min: '',
     max: '',
@@ -2544,7 +2770,7 @@ React.createElement('dora-slider', {
     railStyle: '',
     wrapStyle: '',
     onChange: '',
-    onAfterChange: '',
+    onAfterChange: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -2558,19 +2784,19 @@ const Spin = createHostComponent('dora-spin', {
     size: 'default',
     spinning: true,
     nested: false,
-    spinColor: 'default',
+    spinColor: 'default'
 });
 Spin.displayName = 'DoraSpin';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-spin', {
+/*#__PURE__*/ React.createElement('dora-spin', {
     prefixCls: '',
     classNames: '',
     tip: '',
     size: '',
     spinning: '',
     nested: '',
-    spinColor: '',
+    spinColor: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -2582,17 +2808,17 @@ const Step = createHostComponent('dora-step', {
     status: '',
     title: '',
     content: '',
-    icon: '',
+    icon: ''
 });
 Step.displayName = 'DoraStep';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-step', {
+/*#__PURE__*/ React.createElement('dora-step', {
     prefixCls: '',
     status: '',
     title: '',
     content: '',
-    icon: '',
+    icon: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -2602,15 +2828,15 @@ React.createElement('dora-step', {
 const Steps = createHostComponent('dora-steps', {
     prefixCls: 'dora-steps',
     current: 0,
-    direction: 'horizontal',
+    direction: 'horizontal'
 });
 Steps.displayName = 'DoraSteps';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-steps', {
+/*#__PURE__*/ React.createElement('dora-steps', {
     prefixCls: '',
     current: '',
-    direction: '',
+    direction: ''
 });
 
 const InnerSteps = Steps;
@@ -2622,20 +2848,36 @@ InnerSteps.Step = Step;
 // expressions in both createHostComponent and React.createElement for Taro to detect them.
 const Sticky = createHostComponent('dora-sticky', {
     prefixCls: 'dora-sticky',
-    disabled: false,
-    hoverClass: 'default',
-    wrapStyle: null,
+    scrollTop: 0
 });
 Sticky.displayName = 'DoraSticky';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-sticky', {
+/*#__PURE__*/ React.createElement('dora-sticky', {
     prefixCls: '',
-    disabled: '',
-    hoverClass: '',
-    wrapStyle: '',
-    onClick: '',
+    scrollTop: ''
 });
+
+// NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
+// TaroNormalModulesPlugin scans React.createElement() args at AST level and cannot
+// resolve spread operators (..._defaultProps), so props must be literal object
+// expressions in both createHostComponent and React.createElement for Taro to detect them.
+const StickyItem = createHostComponent('dora-sticky-item', {
+    prefixCls: 'dora-sticky-item',
+    title: '',
+    content: ''
+});
+StickyItem.displayName = 'DoraStickyItem';
+// Props registry for Taro WXML template generator.
+// Values are all '' because TaroNormalModulesPlugin only scans key names.
+/*#__PURE__*/ React.createElement('dora-sticky-item', {
+    prefixCls: '',
+    title: '',
+    content: ''
+});
+
+const InnerSticky = Sticky;
+InnerSticky.Item = StickyItem;
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
 // TaroNormalModulesPlugin scans React.createElement() args at AST level and cannot
@@ -2648,12 +2890,12 @@ const SwipeAction = createHostComponent('dora-swipe-action', {
     left: [],
     right: [],
     useSlots: false,
-    data: null,
+    data: null
 });
 SwipeAction.displayName = 'DoraSwipeAction';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-swipe-action', {
+/*#__PURE__*/ React.createElement('dora-swipe-action', {
     prefixCls: '',
     autoClose: '',
     disabled: '',
@@ -2663,7 +2905,7 @@ React.createElement('dora-swipe-action', {
     data: '',
     onClick: '',
     onOpen: '',
-    onClose: '',
+    onClose: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -2677,12 +2919,12 @@ const Switch = createHostComponent('dora-switch', {
     loading: false,
     color: 'balanced',
     checkedText: '',
-    uncheckedText: '',
+    uncheckedText: ''
 });
 Switch.displayName = 'DoraSwitch';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-switch', {
+/*#__PURE__*/ React.createElement('dora-switch', {
     prefixCls: '',
     value: '',
     disabled: '',
@@ -2690,7 +2932,7 @@ React.createElement('dora-switch', {
     color: '',
     checkedText: '',
     uncheckedText: '',
-    onChange: '',
+    onChange: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -2701,17 +2943,17 @@ const Tab = createHostComponent('dora-tab', {
     prefixCls: 'dora-tabs__tab',
     key: '',
     title: '',
-    disabled: false,
+    disabled: false
 });
 Tab.displayName = 'DoraTab';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-tab', {
+/*#__PURE__*/ React.createElement('dora-tab', {
     prefixCls: '',
     key: '',
     title: '',
     disabled: '',
-    onClick: '',
+    onClick: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -2726,12 +2968,12 @@ const Tabbar = createHostComponent('dora-tabbar', {
     color: 'positive',
     backgroundColor: '#fff',
     position: '',
-    safeArea: false,
+    safeArea: false
 });
 Tabbar.displayName = 'DoraTabbar';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-tabbar', {
+/*#__PURE__*/ React.createElement('dora-tabbar', {
     prefixCls: '',
     defaultCurrent: '',
     current: '',
@@ -2740,7 +2982,7 @@ React.createElement('dora-tabbar', {
     backgroundColor: '',
     position: '',
     safeArea: '',
-    onChange: '',
+    onChange: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -2749,19 +2991,19 @@ React.createElement('dora-tabbar', {
 // expressions in both createHostComponent and React.createElement for Taro to detect them.
 const TabbarItem = createHostComponent('dora-tabbar-item', {
     prefixCls: 'dora-tabbar-item',
-    tabKey: '',
+    key: '',
     title: '',
-    disabled: false,
+    disabled: false
 });
 TabbarItem.displayName = 'DoraTabbarItem';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-tabbar-item', {
+/*#__PURE__*/ React.createElement('dora-tabbar-item', {
     prefixCls: '',
-    tabKey: '',
+    key: '',
     title: '',
     disabled: '',
-    onClick: '',
+    onClick: ''
 });
 
 const InnerTabbar = Tabbar;
@@ -2780,12 +3022,12 @@ const Tabs = createHostComponent('dora-tabs', {
     color: 'positive',
     direction: 'horizontal',
     justify: 'space-around',
-    activeLineMode: 'auto',
+    activeLineMode: 'auto'
 });
 Tabs.displayName = 'DoraTabs';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-tabs', {
+/*#__PURE__*/ React.createElement('dora-tabs', {
     prefixCls: '',
     defaultCurrent: '',
     current: '',
@@ -2795,7 +3037,7 @@ React.createElement('dora-tabs', {
     direction: '',
     justify: '',
     activeLineMode: '',
-    onChange: '',
+    onChange: ''
 });
 
 const InnerTabs = Tabs;
@@ -2807,27 +3049,37 @@ InnerTabs.Tab = Tab;
 // expressions in both createHostComponent and React.createElement for Taro to detect them.
 const Tag = createHostComponent('dora-tag', {
     prefixCls: 'dora-tag',
+    rootClassName: '',
+    rootStyle: null,
+    classNames: {},
+    styles: {},
     hoverClass: 'default',
     color: '',
+    fill: 'fill',
     closable: false,
     defaultVisible: true,
     visible: true,
-    controlled: false,
+    controlled: false
 });
 Tag.displayName = 'DoraTag';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-tag', {
+/*#__PURE__*/ React.createElement('dora-tag', {
     prefixCls: '',
+    rootClassName: '',
+    rootStyle: '',
+    classNames: '',
+    styles: '',
     hoverClass: '',
     color: '',
+    fill: '',
     closable: '',
     defaultVisible: '',
     visible: '',
     controlled: '',
     onChange: '',
     onClick: '',
-    onClose: '',
+    onClose: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -2847,12 +3099,12 @@ const Textarea = createHostComponent('dora-textarea', {
     hasCount: false,
     clear: false,
     error: false,
-    placeholderStyle: null,
+    placeholderStyle: null
 });
 Textarea.displayName = 'DoraTextarea';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-textarea', {
+/*#__PURE__*/ React.createElement('dora-textarea', {
     prefixCls: '',
     label: '',
     extra: '',
@@ -2873,7 +3125,7 @@ React.createElement('dora-textarea', {
     onKeyboardheightchange: '',
     onClear: '',
     onError: '',
-    onLinechange: '',
+    onLinechange: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -2885,17 +3137,17 @@ const Timeago = createHostComponent('dora-timeago', {
     to: null,
     from: null,
     refreshable: false,
-    lang: 'zh_CN',
+    lang: 'zh_CN'
 });
 Timeago.displayName = 'DoraTimeago';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-timeago', {
+/*#__PURE__*/ React.createElement('dora-timeago', {
     prefixCls: '',
     to: '',
     from: '',
     refreshable: '',
-    lang: '',
+    lang: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -2905,15 +3157,15 @@ React.createElement('dora-timeago', {
 const Timeline = createHostComponent('dora-timeline', {
     prefixCls: 'dora-timeline',
     pending: false,
-    position: 'left',
+    position: 'left'
 });
 Timeline.displayName = 'DoraTimeline';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-timeline', {
+/*#__PURE__*/ React.createElement('dora-timeline', {
     prefixCls: '',
     pending: '',
-    position: '',
+    position: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -2924,16 +3176,16 @@ const TimelineItem = createHostComponent('dora-timeline-item', {
     prefixCls: 'dora-timeline-item',
     content: '',
     dotStyle: null,
-    custom: false,
+    custom: false
 });
 TimelineItem.displayName = 'DoraTimelineItem';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-timeline-item', {
+/*#__PURE__*/ React.createElement('dora-timeline-item', {
     prefixCls: '',
     content: '',
     dotStyle: '',
-    custom: '',
+    custom: ''
 });
 
 const InnerTimeline = Timeline;
@@ -2953,12 +3205,12 @@ const Toast = createHostComponent('dora-toast', {
     mask: true,
     maskClosable: true,
     visible: false,
-    zIndex: null,
+    zIndex: null
 });
 Toast.displayName = 'DoraToast';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-toast', {
+/*#__PURE__*/ React.createElement('dora-toast', {
     prefixCls: '',
     image: '',
     icon: '',
@@ -2970,7 +3222,7 @@ React.createElement('dora-toast', {
     visible: '',
     zIndex: '',
     onClose: '',
-    onClosed: '',
+    onClosed: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -2983,18 +3235,18 @@ const Toptips = createHostComponent('dora-toptips', {
     icon: 'cancel',
     hidden: false,
     text: '',
-    duration: 3000,
+    duration: 3000
 });
 Toptips.displayName = 'DoraToptips';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-toptips', {
+/*#__PURE__*/ React.createElement('dora-toptips', {
     prefixCls: '',
     classNames: '',
     icon: '',
     hidden: '',
     text: '',
-    duration: '',
+    duration: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -3007,19 +3259,19 @@ const TouchView = createHostComponent('dora-touch-view', {
     hoverStopPropagation: false,
     hoverStartTime: 20,
     hoverStayTime: 70,
-    wrapStyle: null,
+    wrapStyle: null
 });
 TouchView.displayName = 'DoraTouchView';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-touch-view', {
+/*#__PURE__*/ React.createElement('dora-touch-view', {
     prefixCls: '',
     hoverClass: '',
     hoverStopPropagation: '',
     hoverStartTime: '',
     hoverStayTime: '',
     wrapStyle: '',
-    onClick: '',
+    onClick: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -3034,8 +3286,14 @@ const Upload = createHostComponent('dora-upload', {
     compressed: true,
     maxDuration: 60,
     camera: 'back',
-    sizeType: ['original', 'compressed'],
-    sourceType: ['album', 'camera'],
+    sizeType: [
+        'original',
+        'compressed'
+    ],
+    sourceType: [
+        'album',
+        'camera'
+    ],
     url: '',
     name: 'file',
     header: {},
@@ -3048,12 +3306,12 @@ const Upload = createHostComponent('dora-upload', {
     fileList: [],
     controlled: false,
     showUploadList: true,
-    showRemoveIcon: true,
+    showRemoveIcon: true
 });
 Upload.displayName = 'DoraUpload';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-upload', {
+/*#__PURE__*/ React.createElement('dora-upload', {
     prefixCls: '',
     max: '',
     count: '',
@@ -3083,7 +3341,7 @@ React.createElement('dora-upload', {
     onProgress: '',
     onComplete: '',
     onPreview: '',
-    onRemove: '',
+    onRemove: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -3100,12 +3358,12 @@ const Vcode = createHostComponent('dora-vcode', {
     fontColor: '',
     hasPoint: true,
     hasLine: true,
-    canvasId: 'dora-vcode',
+    canvasId: 'dora-vcode'
 });
 Vcode.displayName = 'DoraVcode';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-vcode', {
+/*#__PURE__*/ React.createElement('dora-vcode', {
     prefixCls: '',
     str: '',
     num: '',
@@ -3117,7 +3375,7 @@ React.createElement('dora-vcode', {
     hasLine: '',
     canvasId: '',
     onChange: '',
-    onError: '',
+    onError: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -3136,12 +3394,12 @@ const VirtualList = createHostComponent('dora-virtual-list', {
     disableScroll: false,
     enablePageScroll: false,
     height: 300,
-    debounce: 0,
+    debounce: 0
 });
 VirtualList.displayName = 'DoraVirtualList';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-virtual-list', {
+/*#__PURE__*/ React.createElement('dora-virtual-list', {
     prefixCls: '',
     itemHeight: '',
     itemBuffer: '',
@@ -3157,7 +3415,7 @@ React.createElement('dora-virtual-list', {
     onChange: '',
     onScroll: '',
     onScrolltoupper: '',
-    onScrolltolower: '',
+    onScrolltolower: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -3191,12 +3449,12 @@ const WaterMark = createHostComponent('dora-water-mark', {
     imageHeight: 64,
     imageWidth: 128,
     rotate: -22,
-    zIndex: 2000,
+    zIndex: 2000
 });
 WaterMark.displayName = 'DoraWaterMark';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-water-mark', {
+/*#__PURE__*/ React.createElement('dora-water-mark', {
     prefixCls: '',
     content: '',
     fontColor: '',
@@ -3215,7 +3473,7 @@ React.createElement('dora-water-mark', {
     rotate: '',
     zIndex: '',
     onLoad: '',
-    onError: '',
+    onError: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -3225,16 +3483,16 @@ React.createElement('dora-water-mark', {
 const WhiteSpace = createHostComponent('dora-white-space', {
     prefixCls: 'dora-white-space',
     size: 'default',
-    bodyStyle: null,
+    bodyStyle: null
 });
 WhiteSpace.displayName = 'DoraWhiteSpace';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-white-space', {
+/*#__PURE__*/ React.createElement('dora-white-space', {
     prefixCls: '',
     size: '',
     bodyStyle: '',
-    onClick: '',
+    onClick: ''
 });
 
 // NOTE: Props are intentionally duplicated inline instead of extracted to _defaultProps.
@@ -3244,15 +3502,15 @@ React.createElement('dora-white-space', {
 const WingBlank = createHostComponent('dora-wing-blank', {
     prefixCls: 'dora-wing-blank',
     size: 'default',
-    bodyStyle: null,
+    bodyStyle: null
 });
 WingBlank.displayName = 'DoraWingBlank';
 // Props registry for Taro WXML template generator.
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
-React.createElement('dora-wing-blank', {
+/*#__PURE__*/ React.createElement('dora-wing-blank', {
     prefixCls: '',
     size: '',
-    bodyStyle: '',
+    bodyStyle: ''
 });
 
-export { InnerAccordion as Accordion, AccordionPanel, ActionSheet, Alert, AnimationGroup, Avatar, Backdrop, Badge, Barcode, Button, Calendar, Card, Cascader, CascaderPickerView, CascaderView, InnerCheckbox as Checkbox, CheckboxGroup, Circle, Col, Countdown, Countup, DatePicker, DatePickerView, Dialog, Divider, ESign, Ellipsis, FabButton, Field, Filterbar, FloatingPanel, Footer, Form, Gallery, InnerGrid as Grid, GridItem, Icon, Image, InnerIndex as Index, IndexItem, Input, InputNumber, Keyboard, Landscape, InnerList as List, ListItem, Loading, Media, MultiPickerView, Navbar, NoticeBar, Notification, Pagination, Picker, PickerView, Popover, Popup, PopupSelect, Progress, Prompt, Qrcode, InnerRadio as Radio, RadioGroup, Rater, Refresher, Result, InnerRow as Row, SafeArea, SearchBar, SegmentedControl, Select, Selectable, SelectorGroup, InnerSkeleton as Skeleton, SkeletonAvatar, SkeletonParagraph, Slider, Spin, Step, InnerSteps as Steps, Sticky, SwipeAction, Switch, Tab, InnerTabbar as Tabbar, TabbarItem, InnerTabs as Tabs, Tag, Textarea, Timeago, InnerTimeline as Timeline, TimelineItem, Toast, Toptips, TouchView, Upload, Vcode, InnerVirtualList as VirtualList, VirtualListItem, WaterMark, WhiteSpace, WingBlank };
+export { InnerAccordion as Accordion, AccordionPanel, ActionSheet, Alert, AnimationGroup, Avatar, Backdrop, Badge, Barcode, Button, Calendar, Card, Cascader, CascaderPickerView, CascaderView, InnerCheckbox as Checkbox, CheckboxGroup, Circle, Col, Countdown, Countup, DatePicker, DatePickerView, Dialog, Divider, ESign, Ellipsis, FabButton, Field, Filterbar, FloatingPanel, Footer, InnerForm as Form, Gallery, InnerGrid as Grid, GridItem, Icon, Image, InnerIndexList as IndexList, IndexListItem, Input, InputNumber, Keyboard, Landscape, InnerList as List, ListItem, Loading, Media, MultiPickerView, Navbar, NoticeBar, Notification, Pagination, Picker, PickerView, Popover, Popup, PopupSelect, Progress, Prompt, Qrcode, InnerRadio as Radio, RadioGroup, Rater, Refresher, Result, InnerRow as Row, SafeArea, SearchBar, SegmentedControl, Select, Selectable, SelectorGroup, InnerSkeleton as Skeleton, SkeletonAvatar, SkeletonParagraph, Slider, Spin, Step, InnerSteps as Steps, InnerSticky as Sticky, StickyItem, SwipeAction, Switch, Tab, InnerTabbar as Tabbar, TabbarItem, InnerTabs as Tabs, Tag, Textarea, Timeago, InnerTimeline as Timeline, TimelineItem, Toast, Toptips, TouchView, Upload, Vcode, InnerVirtualList as VirtualList, VirtualListItem, WaterMark, WhiteSpace, WingBlank };

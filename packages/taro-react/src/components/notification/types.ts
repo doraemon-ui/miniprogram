@@ -3,6 +3,8 @@ import type { BasicComponent } from '../../types'
 
 export interface NotificationProps extends NativeNotificationProps, BasicComponent {
   onClick?: (event: any) => void
+  onClose?: (event: any) => void
+  onClosed?: (event: any) => void
 }
 
 export interface NotificationExpose extends NativeNotificationExpose {}

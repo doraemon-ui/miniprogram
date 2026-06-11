@@ -9,9 +9,11 @@ import type { FooterProps, FooterExpose } from './types'
 export const Footer = createHostComponent<FooterProps, FooterExpose>('dora-footer',
 {
   prefixCls: 'dora-footer',
-  disabled: false,
-  hoverClass: 'default',
-  wrapStyle: null,
+  color: 'positive',
+  label: '',
+  content: '',
+  links: [],
+  chips: [],
 })
 
 Footer.displayName = 'DoraFooter'
@@ -20,8 +22,11 @@ Footer.displayName = 'DoraFooter'
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
 React.createElement('dora-footer', {
   prefixCls: '',
-  disabled: '',
-  hoverClass: '',
-  wrapStyle: '',
-  onClick: '',
+  color: '',
+  label: '',
+  content: '',
+  links: '',
+  chips: '',
+  onLinkClick: '',
+  onChipClick: '',
 })

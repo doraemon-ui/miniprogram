@@ -9,9 +9,7 @@ import type { FloatingPanelProps, FloatingPanelExpose } from './types'
 export const FloatingPanel = createHostComponent<FloatingPanelProps, FloatingPanelExpose>('dora-floating-panel',
 {
   prefixCls: 'dora-floating-panel',
-  disabled: false,
-  hoverClass: 'default',
-  wrapStyle: null,
+  defaultAnchors: [],
 })
 
 FloatingPanel.displayName = 'DoraFloatingPanel'
@@ -20,8 +18,6 @@ FloatingPanel.displayName = 'DoraFloatingPanel'
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
 React.createElement('dora-floating-panel', {
   prefixCls: '',
-  disabled: '',
-  hoverClass: '',
-  wrapStyle: '',
-  onClick: '',
+  defaultAnchors: '',
+  onHeightChange: '',
 })

@@ -305,7 +305,6 @@ exports.default = (ctx) => {
     const sourceInjectWrapStart = '/* doraemon-taro-react-plugin:wrap-start */';
     const sourceInjectWrapEnd = '/* doraemon-taro-react-plugin:wrap-end */';
     const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    let appConfigBackup = null;
     const findAppConfigSourceFile = () => {
         const candidates = ['app.config.ts', 'app.config.js', 'app.config.tsx', 'app.config.jsx'];
         for (const fileName of candidates) {
@@ -329,33 +328,29 @@ exports.default = (ctx) => {
         return `  ${sourceInjectWrapStart}\n  usingComponents: {\n${entriesBlock}  },\n  ${sourceInjectWrapEnd}\n`;
     };
     const injectSourceAppConfig = async () => {
-        if (appConfigBackup)
-            return;
-        if (!usingComponentsToInject || Object.keys(usingComponentsToInject).length === 0)
+        if (Object.keys(usingComponentsToInject).length === 0)
             return;
         const appConfigPath = findAppConfigSourceFile();
         if (!appConfigPath)
             return;
         const source = await fs_extra_1.default.readFile(appConfigPath, 'utf8');
-        appConfigBackup = { path: appConfigPath, content: source };
         const baseMap = { ...usingComponentsToInject };
         const entryMarkerRE = new RegExp(`\\n?[ \\t]*${escapeRegExp(sourceInjectStart)}[\\s\\S]*?${escapeRegExp(sourceInjectEnd)}\\n?`, 'm');
         const wrapperMarkerRE = new RegExp(`\\n?[ \\t]*${escapeRegExp(sourceInjectWrapStart)}[\\s\\S]*?${escapeRegExp(sourceInjectWrapEnd)}\\n?`, 'm');
-        const cleaned = source
-            .replace(wrapperMarkerRE, '')
-            .replace(entryMarkerRE, '');
+        const cleaned = source.replace(wrapperMarkerRE, '').replace(entryMarkerRE, '');
         let next = cleaned;
         {
-            const scriptKind = appConfigPath.endsWith('.tsx') ? typescript_1.default.ScriptKind.TSX :
-                appConfigPath.endsWith('.ts') ? typescript_1.default.ScriptKind.TS :
-                    appConfigPath.endsWith('.jsx') ? typescript_1.default.ScriptKind.JSX :
-                        typescript_1.default.ScriptKind.JS;
+            const scriptKind = appConfigPath.endsWith('.tsx')
+                ? typescript_1.default.ScriptKind.TSX
+                : appConfigPath.endsWith('.ts')
+                    ? typescript_1.default.ScriptKind.TS
+                    : appConfigPath.endsWith('.jsx')
+                        ? typescript_1.default.ScriptKind.JSX
+                        : typescript_1.default.ScriptKind.JS;
             const sourceFile = typescript_1.default.createSourceFile(appConfigPath, next, typescript_1.default.ScriptTarget.Latest, true, scriptKind);
             let configObject = null;
             const findConfigObject = (node) => {
-                if (typescript_1.default.isCallExpression(node)
-                    && node.arguments.length > 0
-                    && typescript_1.default.isObjectLiteralExpression(node.arguments[0])) {
+                if (typescript_1.default.isCallExpression(node) && node.arguments.length > 0 && typescript_1.default.isObjectLiteralExpression(node.arguments[0])) {
                     const exprText = node.expression.getText(sourceFile);
                     if (exprText === 'defineAppConfig' || exprText.endsWith('.defineAppConfig')) {
                         configObject = node.arguments[0];
@@ -367,10 +362,10 @@ exports.default = (ctx) => {
             findConfigObject(sourceFile);
             if (!configObject)
                 return;
-            const usingProperty = configObject.properties.find((prop) => typescript_1.default.isPropertyAssignment(prop)
-                && ((typescript_1.default.isIdentifier(prop.name) && prop.name.text === 'usingComponents')
-                    || (typescript_1.default.isStringLiteral(prop.name) && prop.name.text === 'usingComponents'))
-                && typescript_1.default.isObjectLiteralExpression(prop.initializer));
+            const usingProperty = configObject.properties.find((prop) => typescript_1.default.isPropertyAssignment(prop) &&
+                ((typescript_1.default.isIdentifier(prop.name) && prop.name.text === 'usingComponents') ||
+                    (typescript_1.default.isStringLiteral(prop.name) && prop.name.text === 'usingComponents')) &&
+                typescript_1.default.isObjectLiteralExpression(prop.initializer));
             if (usingProperty && typescript_1.default.isObjectLiteralExpression(usingProperty.initializer)) {
                 const existingKeys = new Set();
                 usingProperty.initializer.properties.forEach((prop) => {
@@ -408,38 +403,42 @@ exports.default = (ctx) => {
                 console.log('[doraemon-taro-react-plugin] source app.config injected');
         }
     };
-    const restoreSourceAppConfig = async () => {
-        if (appConfigBackup) {
-            const { path: filePath, content } = appConfigBackup;
-            appConfigBackup = null;
-            if (!(await fs_extra_1.default.pathExists(filePath)))
-                return;
-            await fs_extra_1.default.writeFile(filePath, content, 'utf8');
-            if (debug)
-                console.log('[doraemon-taro-react-plugin] source app.config restored');
-            return;
-        }
-        const filePath = findAppConfigSourceFile();
-        if (!filePath)
-            return;
-        if (!(await fs_extra_1.default.pathExists(filePath)))
-            return;
-        const source = await fs_extra_1.default.readFile(filePath, 'utf8');
-        const entryMarkerRE = new RegExp(`\\n?[ \\t]*${escapeRegExp(sourceInjectStart)}[\\s\\S]*?${escapeRegExp(sourceInjectEnd)}\\n?`, 'm');
-        const wrapperMarkerRE = new RegExp(`\\n?[ \\t]*${escapeRegExp(sourceInjectWrapStart)}[\\s\\S]*?${escapeRegExp(sourceInjectWrapEnd)}\\n?`, 'm');
-        const restored = source
-            .replace(wrapperMarkerRE, '')
-            .replace(entryMarkerRE, '');
-        if (restored !== source) {
-            await fs_extra_1.default.writeFile(filePath, restored, 'utf8');
-            if (debug)
-                console.log('[doraemon-taro-react-plugin] source app.config restored');
-        }
-    };
     let usingComponentsToInject = {};
     let packagesToCopy = new Set();
     let prepared = false;
     let copiedBeforeBuild = false;
+    let copiedAfterBuild = false;
+    const copyResolvedPackages = async () => {
+        if (copiedAfterBuild)
+            return;
+        copiedAfterBuild = true;
+        if (debug) {
+            console.log('[doraemon-taro-react-plugin] copyResolvedPackages', `packagesToCopy=${packagesToCopy.size}`);
+        }
+        if (packagesToCopy.size > 0) {
+            for (const packageName of packagesToCopy) {
+                await copyPackageDist(packageName);
+            }
+            return;
+        }
+        if (!(await fs_extra_1.default.pathExists(scopeDir)))
+            return;
+        const packages = await fs_extra_1.default.readdir(scopeDir);
+        for (const pkg of packages) {
+            if (excludePackages.has(pkg))
+                continue;
+            if (!pkg.startsWith('miniprogram.') && pkg !== 'style')
+                continue;
+            const pkgDir = path_1.default.join(scopeDir, pkg);
+            const stat = await fs_extra_1.default.stat(pkgDir);
+            if (!stat.isDirectory())
+                continue;
+            const miniprogramDistDir = path_1.default.join(pkgDir, 'miniprogram_dist');
+            if (!(await fs_extra_1.default.pathExists(miniprogramDistDir)))
+                continue;
+            await fs_extra_1.default.copy(miniprogramDistDir, path_1.default.join(targetScopeDir, pkg));
+        }
+    };
     const prepare = () => {
         if (prepared)
             return;
@@ -508,38 +507,14 @@ exports.default = (ctx) => {
         }
     });
     ctx.onBuildComplete(async () => {
-        try {
-            prepare();
-            if (debug) {
-                console.log('[doraemon-taro-react-plugin] onBuildComplete', `packagesToCopy=${packagesToCopy.size}`);
-            }
-            if (packagesToCopy.size > 0) {
-                for (const packageName of packagesToCopy) {
-                    await copyPackageDist(packageName);
-                }
-                return;
-            }
-            // Fallback: copy all doraemon miniprogram packages
-            if (!(await fs_extra_1.default.pathExists(scopeDir)))
-                return;
-            const packages = await fs_extra_1.default.readdir(scopeDir);
-            for (const pkg of packages) {
-                if (excludePackages.has(pkg))
-                    continue;
-                if (!pkg.startsWith('miniprogram.') && pkg !== 'style')
-                    continue;
-                const pkgDir = path_1.default.join(scopeDir, pkg);
-                const stat = await fs_extra_1.default.stat(pkgDir);
-                if (!stat.isDirectory())
-                    continue;
-                const miniprogramDistDir = path_1.default.join(pkgDir, 'miniprogram_dist');
-                if (!(await fs_extra_1.default.pathExists(miniprogramDistDir)))
-                    continue;
-                await fs_extra_1.default.copy(miniprogramDistDir, path_1.default.join(targetScopeDir, pkg));
-            }
+        prepare();
+        if (debug) {
+            console.log('[doraemon-taro-react-plugin] onBuildComplete', `packagesToCopy=${packagesToCopy.size}`);
         }
-        finally {
-            await restoreSourceAppConfig();
-        }
+        await copyResolvedPackages();
+    });
+    ctx.onBuildFinish?.(async () => {
+        prepare();
+        await copyResolvedPackages();
     });
 };

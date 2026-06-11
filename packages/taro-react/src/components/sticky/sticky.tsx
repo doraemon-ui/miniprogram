@@ -9,9 +9,7 @@ import type { StickyProps, StickyExpose } from './types'
 export const Sticky = createHostComponent<StickyProps, StickyExpose>('dora-sticky',
 {
   prefixCls: 'dora-sticky',
-  disabled: false,
-  hoverClass: 'default',
-  wrapStyle: null,
+  scrollTop: 0,
 })
 
 Sticky.displayName = 'DoraSticky'
@@ -20,8 +18,5 @@ Sticky.displayName = 'DoraSticky'
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
 React.createElement('dora-sticky', {
   prefixCls: '',
-  disabled: '',
-  hoverClass: '',
-  wrapStyle: '',
-  onClick: '',
+  scrollTop: '',
 })

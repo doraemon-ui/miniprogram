@@ -1,0 +1,21 @@
+@import '../../@doraemon-ui/style/var.wxss';
+@import '../../@doraemon-ui/style/color.wxss';
+.dora-index-list-item {
+  --item-background-color: var(--dora-index-list-item-background-color, var(--dora-color-step-15, #d9d9d9));
+  --item-size: var(--dora-index-list-item-size, 28px);
+  --item-padding-vertical: var(--dora-index-list-item-padding-vertical, 0);
+  --item-padding-horizontal: var(--dora-index-list-item-padding-horizontal, 16px);
+}
+
+.dora-index-list-item__hd {
+  background: #d9d9d9;
+  background: var(--item-background-color);
+  width: 100%;
+  height: 28px;
+  height: var(--item-size);
+  line-height: 28px;
+  line-height: var(--item-size);
+  padding: 0 16px;
+  padding: var(--item-padding-vertical) var(--item-padding-horizontal);
+  box-sizing: border-box;
+}

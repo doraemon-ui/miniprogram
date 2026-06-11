@@ -7,7 +7,13 @@ export default defineAppConfig({
     navigationBarTextStyle: 'black',
   },
   usingComponents: {
-    'dora-list2': '/miniprogram_npm/@doraemon-ui/miniprogram.list/index',
+    /* doraemon-taro-react-plugin:start */
+    'dora-checkbox': '/miniprogram_npm/@doraemon-ui/miniprogram.checkbox/index',
+    'dora-checkbox-group': '/miniprogram_npm/@doraemon-ui/miniprogram.checkbox/group',
+    'dora-list': '/miniprogram_npm/@doraemon-ui/miniprogram.list/index',
+    'dora-list-item': '/miniprogram_npm/@doraemon-ui/miniprogram.list/item',
+    'dora-selectable': '/miniprogram_npm/@doraemon-ui/miniprogram.selectable/index',
+    /* doraemon-taro-react-plugin:end */
   },
   // usingComponents: {
   //   'dora-list-item': '/miniprogram_npm/@doraemon-ui/miniprogram.list/item',

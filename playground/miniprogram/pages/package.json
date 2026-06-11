@@ -101,7 +101,8 @@
     "@doraemon-ui/miniprogram.ellipsis": "0.0.1-alpha.1",
     "@doraemon-ui/miniprogram.floating-panel": "0.0.1-alpha.1",
     "@doraemon-ui/miniprogram.footer": "0.0.1-alpha.1",
-    "@doraemon-ui/miniprogram.water-mark": "0.0.1-alpha.1"
+    "@doraemon-ui/miniprogram.water-mark": "0.0.1-alpha.1",
+    "@doraemon-ui/miniprogram.index-list": "0.0.1-alpha.1"
   },
   "publishConfig": {
     "access": "public"

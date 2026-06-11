@@ -1,0 +1,120 @@
+@import './variables.less';
+
+// IndexList styles
+// -----------------------------
+// @prop --nav-size: Size of the navigation item
+// @prop --nav-font-size: Font size of the navigation item
+// @prop --nav-padding-vertical: Vertical padding of the navigation item
+// @prop --nav-padding-horizontal: Horizontal padding of the navigation item
+// @prop --nav-activated-text-color: Text color of the activated navigation item
+// @prop --nav-activated-background-color: Background color of the activated navigation item
+// @prop --nav-activated-border-radius: Border radius of the activated navigation item
+// @prop --indicator-size: Size of the indicator
+// @prop --indicator-background-color: Background color of the indicator
+// @prop --indicator-color: Color of the indicator text
+// @prop --indicator-font-size: Font size of the indicator text
+// @prop --indicator-border-radius: Border radius of the indicator
+.@{index-list-prefix-cls} {
+  --nav-size: @index-list-nav-size;
+  --nav-font-size: @index-list-nav-font-size;
+  --nav-padding-vertical: @index-list-nav-padding-vertical;
+  --nav-padding-horizontal: @index-list-nav-padding-horizontal;
+  --nav-activated-text-color: @index-list-nav-activated-text-color;
+  --nav-activated-background-color: @index-list-nav-activated-background-color;
+  --nav-activated-border-radius: @index-list-nav-activated-border-radius;
+  --indicator-size: @index-list-indicator-size;
+  --indicator-background-color: @index-list-indicator-background-color;
+  --indicator-color: @index-list-indicator-color;
+  --indicator-font-size: @index-list-indicator-font-size;
+  --indicator-border-radius: @index-list-indicator-border-radius;
+
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+
+  &__nav {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translate3d(0, -50%, 0);
+    cursor: pointer;
+    user-select: none;
+    text-align: center;
+
+    &-row {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      flex-shrink: 0;
+      height: 100%;
+      width: 100%;
+      position: relative;
+      line-height: var(--nav-size);
+      font-size: var(--nav-font-size);
+    }
+
+    &-col {
+      padding: var(--nav-padding-vertical) var(--nav-padding-horizontal);
+      line-height: inherit;
+      font-size: inherit;
+    }
+
+    &-item {
+      display: inline-flex;
+      width: var(--nav-size);
+      height: var(--nav-size);
+      line-height: inherit;
+      font-size: inherit;
+      justify-content: center;
+      align-items: center;
+
+      &--current {
+        color: var(--nav-activated-text-color);
+        background-color: var(--nav-activated-background-color);
+        border-radius: var(--nav-activated-border-radius);
+      }
+    }
+  }
+
+  &__indicator {
+    width: var(--indicator-size);
+    height: var(--indicator-size);
+    line-height: var(--indicator-size);
+    text-align: center;
+    background-color: var(--indicator-background-color);
+    border-radius: var(--indicator-border-radius);
+    color: var(--indicator-color);
+    font-size: var(--indicator-font-size);
+
+    &--center {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate3d(-50%, -50%, 0);
+    }
+
+    &--right {
+      position: absolute;
+      top: calc(var(--nav-size) / 2 + var(--nav-padding-vertical) / 2);
+      right: 100%;
+      border-radius: 50%;
+      transform: translateY(-50%);
+      margin-right: calc(var(--nav-size) - 1px);
+      background-color: var(--nav-activated-background-color);
+
+      &::before {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50% 0 50% 50%;
+        content: '';
+        background-color: inherit;
+        left: 0;
+        top: 0;
+        transform: rotate(45deg);
+        z-index: -1;
+      }
+    }
+  }
+}

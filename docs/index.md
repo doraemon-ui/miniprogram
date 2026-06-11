@@ -1,15 +1,15 @@
 # Index Index
 
-@doraemon-ui/miniprogram.index
+@doraemon-ui/miniprogram.index-list
 
 ## 安装
 
 我们推荐使用 [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
 
 ```bash
-npm install --save @doraemon-ui/miniprogram.index
+npm install --save @doraemon-ui/miniprogram.index-list
 # or
-yarn add @doraemon-ui/miniprogram.index
+yarn add @doraemon-ui/miniprogram.index-list
 ```
 
 如果你的网络环境不佳，推荐使用 [cnpm](https://cnpmjs.org)。

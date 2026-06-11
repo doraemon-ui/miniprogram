@@ -2,7 +2,8 @@ import type { FormProps as NativeFormProps, FormExpose as NativeFormExpose } fro
 import type { BasicComponent } from '../../types'
 
 export interface FormProps extends NativeFormProps, BasicComponent {
-  onClick?: (event: any) => void
+  onChange?: (event: any) => void
+  onFieldsChange?: (event: any) => void
 }
 
 export interface FormExpose extends NativeFormExpose {}

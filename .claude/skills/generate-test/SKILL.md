@@ -101,7 +101,10 @@ expect(onClick).toHaveBeenCalled()
 
 - 保留统一的 `mountTest`
 - 只为“有行为差异的 props”增加额外挂载用例
-- 生成一个 `mount correctly` 快照测试
+- 生成一个且只生成一个名为 `mount correctly` 的快照测试
+- `mount correctly` 必须使用 `wrapper.toJSON()` 做快照断言
+- 除 `mount correctly` 外，其它测试不允许使用 `wrapper.toJSON()`、`JSON.stringify(wrapper.toJSON())` 或任何等价的快照/字符串化断言
+- 不要擅自改成 `mount correctly with ...`、`renders correctly` 等其它名字
 
 ```ts
 function mountTest(id: string | (() => string), defaultProps: Record<string, unknown> = {}) {

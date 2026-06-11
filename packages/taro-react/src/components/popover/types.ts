@@ -2,7 +2,7 @@ import type { PopoverProps as NativePopoverProps, PopoverExpose as NativePopover
 import type { BasicComponent } from '../../types'
 
 export interface PopoverProps extends NativePopoverProps, BasicComponent {
-  onClick?: (event: any) => void
+  onChange?: (event: any) => void
 }
 
 export interface PopoverExpose extends NativePopoverExpose {}

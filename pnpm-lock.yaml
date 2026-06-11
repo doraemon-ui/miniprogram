@@ -1155,11 +1155,14 @@ importers:
         specifier: ^3.0.2
         version: 3.0.2
 
-  packages/miniprogram.index:
+  packages/miniprogram.index-list:
     dependencies:
       '@doraemon-ui/miniprogram.core-js':
         specifier: workspace:*
         version: link:../miniprogram.core-js
+      '@doraemon-ui/miniprogram.shared':
+        specifier: workspace:*
+        version: link:../miniprogram.shared
       '@doraemon-ui/style':
         specifier: workspace:*
         version: link:../style
@@ -2727,9 +2730,9 @@ importers:
       '@doraemon-ui/miniprogram.image':
         specifier: workspace:*
         version: link:../miniprogram.image
-      '@doraemon-ui/miniprogram.index':
+      '@doraemon-ui/miniprogram.index-list':
         specifier: workspace:*
-        version: link:../miniprogram.index
+        version: link:../miniprogram.index-list
       '@doraemon-ui/miniprogram.input':
         specifier: workspace:*
         version: link:../miniprogram.input

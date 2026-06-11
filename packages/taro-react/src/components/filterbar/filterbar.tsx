@@ -9,9 +9,9 @@ import type { FilterbarProps, FilterbarExpose } from './types'
 export const Filterbar = createHostComponent<FilterbarProps, FilterbarExpose>('dora-filterbar',
 {
   prefixCls: 'dora-filterbar',
-  disabled: false,
-  hoverClass: 'default',
-  wrapStyle: null,
+  items: [],
+  cancelText: '重置',
+  confirmText: '确定',
 })
 
 Filterbar.displayName = 'DoraFilterbar'
@@ -20,8 +20,11 @@ Filterbar.displayName = 'DoraFilterbar'
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
 React.createElement('dora-filterbar', {
   prefixCls: '',
-  disabled: '',
-  hoverClass: '',
-  wrapStyle: '',
-  onClick: '',
+  items: '',
+  cancelText: '',
+  confirmText: '',
+  onChange: '',
+  onScroll: '',
+  onOpen: '',
+  onClose: '',
 })

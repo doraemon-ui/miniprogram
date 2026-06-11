@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`IndexList mount correctly 1`] = `
+<main>
+  <dora-index-list
+    id="index-list"
+    bind:change="onChange"
+  >
+    <wx-view
+      class="dora-class dora-index-list"
+      style="height: 320px;  "
+    >
+      <wx-scroll-view
+        scrollTop="{{0}}"
+        scrollY="{{true}}"
+        style="height: 320px;  "
+        bind:scroll="onScroll"
+      >
+        <dora-index-list-item
+          id="item-a"
+        >
+          <wx-view
+            class="dora-class dora-index-list-item"
+            data-brief="A"
+            data-index="{{0}}"
+            data-name="Alpha"
+          >
+            <wx-view
+              class="dora-index-list-item__hd"
+            >
+              Alpha
+            </wx-view>
+            <wx-view
+              class="dora-index-list-item__bd"
+            >
+              <wx-view
+                class="cell"
+              >
+                Aaron
+              </wx-view>
+            </wx-view>
+          </wx-view>
+        </dora-index-list-item>
+        <dora-index-list-item
+          id="item-b"
+        >
+          <wx-view
+            class="dora-class dora-index-list-item"
+            data-brief="B"
+            data-index="{{1}}"
+            data-name="Beta"
+          >
+            <wx-view
+              class="dora-index-list-item__hd"
+            >
+              Beta
+            </wx-view>
+            <wx-view
+              class="dora-index-list-item__bd"
+            >
+              <wx-view
+                class="cell"
+              >
+                Braden
+              </wx-view>
+            </wx-view>
+          </wx-view>
+        </dora-index-list-item>
+      </wx-scroll-view>
+      <wx-view
+        class="dora-index-list__nav"
+        catch:touchend="onTouchEnd"
+        catch:touchmove="onTouchMove"
+        catch:touchstart="onTouchStart"
+      >
+        <wx-view
+          class="dora-index-list__nav-row"
+        >
+          <wx-view
+            class="dora-index-list__nav-col"
+            data-brief="A"
+            data-index="{{0}}"
+            data-name="Alpha"
+          >
+            <wx-view
+              class="dora-index-list__nav-item dora-index-list__nav-item--current"
+              data-brief="A"
+              data-index="{{0}}"
+              data-name="Alpha"
+            >
+              A
+            </wx-view>
+          </wx-view>
+          <wx-view
+            class="dora-index-list__nav-col"
+            data-brief="B"
+            data-index="{{1}}"
+            data-name="Beta"
+          >
+            <wx-view
+              class="dora-index-list__nav-item "
+              data-brief="B"
+              data-index="{{1}}"
+              data-name="Beta"
+            >
+              B
+            </wx-view>
+          </wx-view>
+        </wx-view>
+      </wx-view>
+    </wx-view>
+  </dora-index-list>
+</main>
+`;

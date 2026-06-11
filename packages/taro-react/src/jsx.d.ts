@@ -36,8 +36,8 @@ import type { GridItemProps } from './components/grid-item/types'
 import type { GridProps } from './components/grid/types'
 import type { IconProps } from './components/icon/types'
 import type { ImageProps } from './components/image/types'
-import type { IndexItemProps } from './components/index-item/types'
-import type { IndexProps } from './components/index/types'
+import type { IndexListItemProps } from './components/index-list-item/types'
+import type { IndexListProps } from './components/index-list/types'
 import type { InputNumberProps } from './components/input-number/types'
 import type { InputProps } from './components/input/types'
 import type { KeyboardProps } from './components/keyboard/types'
@@ -78,6 +78,7 @@ import type { SliderProps } from './components/slider/types'
 import type { SpinProps } from './components/spin/types'
 import type { StepProps } from './components/step/types'
 import type { StepsProps } from './components/steps/types'
+import type { StickyItemProps } from './components/sticky-item/types'
 import type { StickyProps } from './components/sticky/types'
 import type { SwipeActionProps } from './components/swipe-action/types'
 import type { SwitchProps } from './components/switch/types'
@@ -142,8 +143,8 @@ declare global {
       'dora-grid': GridProps
       'dora-icon': IconProps
       'dora-image': ImageProps
-      'dora-index-item': IndexItemProps
-      'dora-index': IndexProps
+      'dora-index-list-item': IndexListItemProps
+      'dora-index-list': IndexListProps
       'dora-input-number': InputNumberProps
       'dora-input': InputProps
       'dora-keyboard': KeyboardProps
@@ -184,6 +185,7 @@ declare global {
       'dora-spin': SpinProps
       'dora-step': StepProps
       'dora-steps': StepsProps
+      'dora-sticky-item': StickyItemProps
       'dora-sticky': StickyProps
       'dora-swipe-action': SwipeActionProps
       'dora-switch': SwitchProps

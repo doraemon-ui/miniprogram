@@ -36,8 +36,8 @@ import Grid from './components/grid'
 import GridItem from './components/grid-item'
 import Icon from './components/icon'
 import Image from './components/image'
-import Index from './components/index'
-import IndexItem from './components/index-item'
+import IndexList from './components/index-list'
+import IndexListItem from './components/index-list-item'
 import Input from './components/input'
 import InputNumber from './components/input-number'
 import Keyboard from './components/keyboard'
@@ -79,6 +79,7 @@ import Spin from './components/spin'
 import Step from './components/step'
 import Steps from './components/steps'
 import Sticky from './components/sticky'
+import StickyItem from './components/sticky-item'
 import SwipeAction from './components/swipe-action'
 import Switch from './components/switch'
 import Tab from './components/tab'
@@ -139,8 +140,8 @@ export * from './components/grid'
 export * from './components/grid-item'
 export * from './components/icon'
 export * from './components/image'
-export * from './components/index'
-export * from './components/index-item'
+export * from './components/index-list'
+export * from './components/index-list-item'
 export * from './components/input'
 export * from './components/input-number'
 export * from './components/keyboard'
@@ -182,6 +183,7 @@ export * from './components/spin'
 export * from './components/step'
 export * from './components/steps'
 export * from './components/sticky'
+export * from './components/sticky-item'
 export * from './components/swipe-action'
 export * from './components/switch'
 export * from './components/tab'
@@ -243,8 +245,8 @@ export {
   GridItem,
   Icon,
   Image,
-  Index,
-  IndexItem,
+  IndexList,
+  IndexListItem,
   Input,
   InputNumber,
   Keyboard,
@@ -286,6 +288,7 @@ export {
   Step,
   Steps,
   Sticky,
+  StickyItem,
   SwipeAction,
   Switch,
   Tab,

@@ -2,7 +2,7 @@ import type { FloatingPanelProps as NativeFloatingPanelProps, FloatingPanelExpos
 import type { BasicComponent } from '../../types'
 
 export interface FloatingPanelProps extends NativeFloatingPanelProps, BasicComponent {
-  onClick?: (event: any) => void
+  onHeightChange?: (event: any) => void
 }
 
 export interface FloatingPanelExpose extends NativeFloatingPanelExpose {}

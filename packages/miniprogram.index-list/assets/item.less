@@ -1,0 +1,23 @@
+@import './variables.less';
+
+// IndexListItem styles
+// @prop --item-background-color: Background color of the item
+// @prop --item-size: Size of the item
+// @prop --item-padding-vertical: Vertical padding of the item
+// @prop --item-padding-horizontal: Horizontal padding of the item
+// -----------------------------
+.@{index-list-item-prefix-cls} {
+  --item-background-color: @index-list-item-background-color;
+  --item-size: @index-list-item-size;
+  --item-padding-vertical: @index-list-item-padding-vertical;
+  --item-padding-horizontal: @index-list-item-padding-horizontal;
+
+  &__hd {
+    background: var(--item-background-color);
+    width: 100%;
+    height: var(--item-size);
+    line-height: var(--item-size);
+    padding: var(--item-padding-vertical) var(--item-padding-horizontal);
+    box-sizing: border-box;
+  }
+}

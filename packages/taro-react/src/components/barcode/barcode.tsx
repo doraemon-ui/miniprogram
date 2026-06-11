@@ -27,4 +27,9 @@ React.createElement('dora-barcode', {
   number: '',
   options: '',
   canvasId: '',
+  onValid: '',
+  onInvalid: '',
+  onLoad: '',
+  onSuccess: '',
+  onError: '',
 })

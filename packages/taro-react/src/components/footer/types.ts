@@ -2,7 +2,8 @@ import type { FooterProps as NativeFooterProps, FooterExpose as NativeFooterExpo
 import type { BasicComponent } from '../../types'
 
 export interface FooterProps extends NativeFooterProps, BasicComponent {
-  onClick?: (event: any) => void
+  onLinkClick?: (event: any) => void
+  onChipClick?: (event: any) => void
 }
 
 export interface FooterExpose extends NativeFooterExpose {}

@@ -9,8 +9,13 @@ import type { TagProps, TagExpose } from './types'
 export const Tag = createHostComponent<TagProps, TagExpose>('dora-tag',
 {
   prefixCls: 'dora-tag',
+  rootClassName: '',
+  rootStyle: null,
+  classNames: {},
+  styles: {},
   hoverClass: 'default',
   color: '',
+  fill: 'fill',
   closable: false,
   defaultVisible: true,
   visible: true,
@@ -23,8 +28,13 @@ Tag.displayName = 'DoraTag'
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
 React.createElement('dora-tag', {
   prefixCls: '',
+  rootClassName: '',
+  rootStyle: '',
+  classNames: '',
+  styles: '',
   hoverClass: '',
   color: '',
+  fill: '',
   closable: '',
   defaultVisible: '',
   visible: '',

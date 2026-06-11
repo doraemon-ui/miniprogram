@@ -71,7 +71,7 @@
     "@doraemon-ui/miniprogram.grid": "workspace:*",
     "@doraemon-ui/miniprogram.icon": "workspace:*",
     "@doraemon-ui/miniprogram.image": "workspace:*",
-    "@doraemon-ui/miniprogram.index": "workspace:*",
+    "@doraemon-ui/miniprogram.index-list": "workspace:*",
     "@doraemon-ui/miniprogram.input": "workspace:*",
     "@doraemon-ui/miniprogram.input-number": "workspace:*",
     "@doraemon-ui/miniprogram.keyboard": "workspace:*",

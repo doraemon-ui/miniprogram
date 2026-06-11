@@ -17,7 +17,7 @@ export const AnimationGroup = createHostComponent<AnimationGroupProps, Animation
   exit: true,
   mountOnEnter: true,
   unmountOnExit: true,
-  wrapCls: '',
+  wrapCls: 'dora-animation-group',
   wrapStyle: null,
   disableScroll: false,
 })

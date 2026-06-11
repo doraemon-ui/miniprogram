@@ -2,7 +2,10 @@ import type { FilterbarProps as NativeFilterbarProps, FilterbarExpose as NativeF
 import type { BasicComponent } from '../../types'
 
 export interface FilterbarProps extends NativeFilterbarProps, BasicComponent {
-  onClick?: (event: any) => void
+  onChange?: (event: any) => void
+  onScroll?: (event: any) => void
+  onOpen?: (event: any) => void
+  onClose?: (event: any) => void
 }
 
 export interface FilterbarExpose extends NativeFilterbarExpose {}

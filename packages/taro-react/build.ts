@@ -11,6 +11,7 @@ const indexConfig = getRollupConfig({
 
 async function buildAll() {
   indexConfig.inputOptions.external = [/@doraemon-ui/, '@tarojs/react', '@tarojs/taro', '@tarojs/components', 'react']
+  indexConfig.inputOptions.treeshake = false
   await startBuild(indexConfig)
 }
 

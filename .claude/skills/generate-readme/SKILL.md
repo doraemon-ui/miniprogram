@@ -30,6 +30,21 @@ allowed-tools: Bash(npm *), Read, Grep, Write
 3. `{组件路径}/src/types.ts`（如果存在）— props 精确类型、Semantic DOM 名称
 4. `{组件路径}/assets/` 下所有 `.less` 文件 — CSS variables
 
+### Step 2.5: 多组件 README 排序规则
+
+当一个包同时导出多个组件时，`## API` 章节必须按“组件分组”输出，且每个组件内的章节顺序固定：
+
+1. `### Xxx props`
+2. `### Xxx Semantic DOM`（如果支持，否则跳过）
+3. `### Xxx slot`
+4. `### Xxx externalClasses`
+
+要求：
+- 先完整输出第一个组件的以上章节，再输出第二个组件，依次类推
+- 不要把多个组件的 `props`、`slot`、`externalClasses` 交叉摆放
+- `## CSS Variables` 必须放在所有组件 API 小节之后，统一作为最后一节
+- 如果组件没有 Semantic DOM，则直接跳到 `slot`，不要打乱剩余顺序
+
 ### Step 3: 提取 Props（→ `### Xxx props`）
 
 #### 3a. 提取 @Component 装饰器中的 props
@@ -284,6 +299,25 @@ hover-class="dora-hover-class {{ ... }}"
 → 默认值: 0.5
 ```
 
+**递归解析要求**：
+- 如果 `assets/variables.less` 本身又 `@import` 了设计 token 文件（如 `@doraemon-ui/style/lib/index.less`、`theme.default.less`），必须继续解析这些导入文件中的 Less 变量定义
+- 对 `var(--token, @less-var)` 这种 fallback 形式，默认值不能停在 `@less-var`，必须继续追到最终字面值
+- 对链式引用同样继续展开，例如：
+  - `@index-list-item-padding-horizontal: var(--dora-index-list-item-padding-horizontal, @spacing-xl);`
+  - `@spacing-xl: 16px;`
+  - 最终默认值应为 `16px`
+- 对同类情况如 `@margin-component-base: 6px`、`@font-size-sm: 12px`、`@border-radius-base: var(--dora-border-radius, 8px)`，应分别解析为：
+  - `6px`
+  - `12px`
+  - `var(--dora-border-radius, 8px)`（如果最终定义本身就是 CSS 变量表达式，则默认值列保留整个 `var(...)` 原文）
+- 规则总结：
+  - 最终解析结果若是普通字面值，表格写字面值，如 `16px`、`6px`、`12px`
+  - 最终解析结果若是 `var(...)`，表格写完整 `var(...)`
+  - 但 `var(...)` 的 fallback 部分如果仍包含 Less 变量、Less 颜色函数或可安全计算的表达式，必须继续解析为更具体的值
+  - 例如 `var(--dora-color-step-15, mix(@black-value, @white-value, 15%))` 应进一步写成 `var(--dora-color-step-15, #d9d9d9)`
+  - 最终解析结果若是 Less 表达式且无法安全继续化简，也保留表达式原文
+- 不要把中间态 Less 变量名（如 `@spacing-xl`）或错误的猜测值直接写进 README
+
 如果变量有多个赋值，取初始化混入中的第一次赋值作为表格默认值。
 
 #### 7c. 查找全局变量
@@ -335,7 +369,9 @@ hover-class="dora-hover-class {{ ... }}"
 默认值格式化：
 - CSS 变量引用（如 `var(--dora-border-radius, 8px)`）保持原样，用反引号包裹
 - 普通值（如 `#fff`、`1`、`48px`）用反引号包裹
-- Less 变量引用需要解析为实际值（如 `@button-disabled-opacity` → 在 variables.less 中找到对应的 `0.5`）
+- Less 变量引用需要递归解析：
+  - 若最终落到普通值，写普通值
+  - 若最终落到 `var(...)`，写完整 `var(...)`
 
 ### Step 8: 组装输出
 

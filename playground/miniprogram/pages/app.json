@@ -86,7 +86,8 @@
     "ellipsis/index",
     "floating-panel/index",
     "footer/index",
-    "water-mark/index"
+    "water-mark/index",
+    "index-list/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -9,6 +9,10 @@ import type { ButtonProps, ButtonExpose } from './types'
 export const Button = createHostComponent<ButtonProps, ButtonExpose>('dora-button',
 {
   prefixCls: 'dora-button',
+  rootClassName: '',
+  rootStyle: null,
+  classNames: {},
+  styles: {},
   color: 'positive',
   fill: 'solid',
   expand: '',
@@ -39,6 +43,10 @@ Button.displayName = 'DoraButton'
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
 React.createElement('dora-button', {
   prefixCls: '',
+  rootClassName: '',
+  rootStyle: '',
+  classNames: '',
+  styles: '',
   color: '',
   fill: '',
   expand: '',

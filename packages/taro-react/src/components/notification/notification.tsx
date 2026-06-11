@@ -9,9 +9,17 @@ import type { NotificationProps, NotificationExpose } from './types'
 export const Notification = createHostComponent<NotificationProps, NotificationExpose>('dora-notification',
 {
   prefixCls: 'dora-notification',
-  disabled: false,
-  hoverClass: 'default',
-  wrapStyle: null,
+  visible: false,
+  classNames: 'dora-animate--slideInDown',
+  image: '',
+  title: '',
+  titleRightText: '',
+  closable: false,
+  swipeToClose: true,
+  subtitle: '',
+  text: '',
+  duration: 3000,
+  data: null,
 })
 
 Notification.displayName = 'DoraNotification'
@@ -20,8 +28,18 @@ Notification.displayName = 'DoraNotification'
 // Values are all '' because TaroNormalModulesPlugin only scans key names.
 React.createElement('dora-notification', {
   prefixCls: '',
-  disabled: '',
-  hoverClass: '',
-  wrapStyle: '',
+  visible: '',
+  classNames: '',
+  image: '',
+  title: '',
+  titleRightText: '',
+  closable: '',
+  swipeToClose: '',
+  subtitle: '',
+  text: '',
+  duration: '',
+  data: '',
   onClick: '',
+  onClose: '',
+  onClosed: '',
 })
