@@ -1,12 +1,11 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-popup-picker {
   background: #fff;
 }
 
 .dora-popup-picker__toolbar {
-  border-bottom: 1px solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
-  border-bottom: 1px solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  border-bottom: 2rpx solid #d9d9d9;
+  border-bottom: 2rpx solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
 }
 
 .dora-popup-picker__inner {
@@ -17,14 +16,14 @@
 }
 
 .dora-popup-picker__cancel,.dora-popup-picker__confirm {
-  color: var(--dora-color-balanced, #2dd36f);
+  color: #2dd36f;
   color: var(--dora-color-balanced, #2dd36f);
   font-size: 28rpx;
 }
 
 .dora-popup-picker__title {
-  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.55);
-  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.55);
+  color: rgba(0,0,0,0.65);
+  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.65);
   font-size: 30rpx;
   font-weight: 500;
 }

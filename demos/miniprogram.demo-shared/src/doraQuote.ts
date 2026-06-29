@@ -42,6 +42,6 @@ const quotes = [
   '混蛋，宰了你！',
 ]
 
-export default function (index?: number): string {
+export default function doraQuote(index?: number): string {
   return quotes[index ?? Math.floor(Math.random() * quotes.length)]
 }

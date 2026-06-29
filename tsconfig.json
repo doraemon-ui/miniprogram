@@ -5,9 +5,14 @@
     "target": "esnext",
     "module": "es2015",
     "moduleResolution": "bundler",
+    "baseUrl": ".",
+    "paths": {
+      "@doraemon-ui/miniprogram.core-js": ["packages-core/miniprogram.core-js/src"],
+      "@doraemon-ui/miniprogram.shared": ["packages-core/miniprogram.shared/src"]
+    },
     "allowJs": false,
     "typeRoots": ["node_modules/@types", "node_modules"],
-    "types": ["miniprogram-api-typings", "jest", "node"],
+    "types": ["miniprogram-api-typings", "@douyin-microapp/typings", "jest", "node"],
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,

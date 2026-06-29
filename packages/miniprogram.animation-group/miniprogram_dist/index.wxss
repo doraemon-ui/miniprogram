@@ -1,5 +1,4 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-animate--fadeIn-enter {
   transition: opacity 0.3s;
   opacity: 0;

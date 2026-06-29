@@ -29,6 +29,9 @@ importers:
       '@babel/preset-typescript':
         specifier: ^7.28.5
         version: 7.28.5(@babel/core@7.29.0)
+      '@douyin-microapp/typings':
+        specifier: ^1.3.1
+        version: 1.3.1
       '@eslint/js':
         specifier: ^10.0.1
         version: 10.0.1(eslint@10.3.0(jiti@2.6.1))
@@ -130,8 +133,8 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.55
-        version: 0.0.2-alpha.55(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -158,8 +161,8 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.55
-        version: 0.0.2-alpha.55(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -176,8 +179,8 @@ importers:
   demos/miniprogram.demo-shared:
     devDependencies:
       '@doraemon-ui/miniprogram.tools':
-        specifier: 0.0.2-alpha.32
-        version: 0.0.2-alpha.32(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -196,16 +199,22 @@ importers:
 
   packages-core/miniprogram.core-js:
     dependencies:
+      '@douyin-microapp/typings':
+        specifier: ^1.3.1
+        version: 1.3.1
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
+      miniprogram-api-typings:
+        specifier: ^5.1.2
+        version: 5.1.2
       react-style-object-to-css:
         specifier: ^1.1.2
         version: 1.1.2
     devDependencies:
       '@doraemon-ui/miniprogram.tools':
-        specifier: 0.0.2-alpha.34
-        version: 0.0.2-alpha.34(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -229,8 +238,8 @@ importers:
         version: link:../miniprogram.core-js
     devDependencies:
       '@doraemon-ui/miniprogram.tools':
-        specifier: 0.0.2-alpha.34
-        version: 0.0.2-alpha.34(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -278,8 +287,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -309,8 +321,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -337,8 +352,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -365,8 +383,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -393,8 +414,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -421,8 +445,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -446,8 +473,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -471,8 +501,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -499,8 +532,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -524,8 +560,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -549,8 +588,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -574,8 +616,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -599,8 +644,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -624,8 +672,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -652,8 +703,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -677,8 +731,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -702,8 +759,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -727,8 +787,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -752,8 +815,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -777,8 +843,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -808,8 +877,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -833,8 +905,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -861,8 +936,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -886,8 +964,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -914,8 +995,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -951,8 +1035,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -979,8 +1066,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1010,8 +1100,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1083,8 +1176,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1108,8 +1204,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1133,8 +1232,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1158,8 +1260,11 @@ importers:
         version: link:../../packages-core/miniprogram.shared
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1186,8 +1291,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1214,8 +1322,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1239,8 +1350,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1264,8 +1378,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1289,8 +1406,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1314,8 +1434,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1339,8 +1462,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1367,8 +1493,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1392,8 +1521,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1417,8 +1549,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1442,8 +1577,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1470,8 +1608,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1495,8 +1636,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1526,8 +1670,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1554,8 +1701,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1579,8 +1729,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1604,8 +1757,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1638,8 +1794,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1675,8 +1834,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1700,8 +1862,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1725,8 +1890,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1759,8 +1927,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1784,8 +1955,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1809,8 +1983,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1834,8 +2011,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1859,8 +2039,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1884,8 +2067,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1912,8 +2098,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1937,8 +2126,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1965,8 +2157,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -1990,8 +2185,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -2015,8 +2213,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -2043,8 +2244,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -2068,8 +2272,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -2093,8 +2300,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -2118,8 +2328,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -2143,8 +2356,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -2171,8 +2387,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -2196,8 +2415,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -2221,8 +2443,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -2249,8 +2474,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -2277,8 +2505,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -2305,8 +2536,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -2330,8 +2564,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -2355,8 +2592,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -2380,8 +2620,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -2414,8 +2657,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -2439,8 +2685,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -2464,8 +2713,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -2489,8 +2741,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -2514,8 +2769,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -2539,8 +2797,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -2564,8 +2825,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -2589,8 +2853,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -2614,8 +2881,11 @@ importers:
         version: link:../../packages-core/style
     devDependencies:
       '@doraemon-ui/miniprogram.cli':
-        specifier: 0.0.2-alpha.57
-        version: 0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.64
+        version: 0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.tools':
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.5.2
         version: 25.6.0
@@ -2894,8 +3164,8 @@ importers:
         version: link:../miniprogram.wing-blank
     devDependencies:
       '@doraemon-ui/miniprogram.tools':
-        specifier: 0.0.2-alpha.34
-        version: 0.0.2-alpha.34(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+        specifier: 0.0.2-alpha.41
+        version: 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@tarojs/components':
         specifier: ^4.1.11
         version: 4.1.11(@tarojs/helper@4.1.11)(@types/react@18.3.28)(html-webpack-plugin@5.6.7(webpack@5.91.0(@swc/core@1.3.96)))(postcss@8.5.13)(rollup@3.30.0)(webpack-chain@6.5.1)(webpack-dev-server@4.15.2(webpack@5.91.0(@swc/core@1.3.96)))(webpack@5.91.0(@swc/core@1.3.96))
@@ -3980,22 +4250,18 @@ packages:
     peerDependencies:
       postcss-selector-parser: ^7.1.1
 
-  '@doraemon-ui/miniprogram.cli@0.0.2-alpha.55':
-    resolution: {integrity: sha512-ef4Es+4YwUEPG9bKYUM2eKKsMaSo+L1sPmmo9B9p2AZ/3IcN1/z/cw/gR9aK0hQ3eBs2NF0W5TyJLWjhEx37Vw==}
+  '@doraemon-ui/miniprogram.cli@0.0.2-alpha.64':
+    resolution: {integrity: sha512-ztGZKPI42ZRd2/iT0DlzKBIjuAdK8MZKZa0HiVIMH3b+zGKz+MvRTYU9JChw//UcePb6QbjcTgRdksJZO5HvPA==}
     hasBin: true
 
-  '@doraemon-ui/miniprogram.cli@0.0.2-alpha.57':
-    resolution: {integrity: sha512-b0YYX5NllwkuMLK/8C/H3qzKcbwWqqU6AjZpLezJdXBjVCZHsrvzzJNDvPjBD+YVzIWuWlDoAoAPHMycdfDhdQ==}
-    hasBin: true
+  '@doraemon-ui/miniprogram.templates@0.0.2-alpha.4':
+    resolution: {integrity: sha512-OpzvQxdChzslPwMcZsc0cj5HdFdm+3Ck8harcq0/yqsLWfLvHg1kzPl3NC8lPlM7Zam/1LgjJIv3RBJQbdRvgw==}
 
-  '@doraemon-ui/miniprogram.templates@0.0.2-alpha.1':
-    resolution: {integrity: sha512-0fXXOP9RQ1+8trATulx6P3sfOJ3p84/2ercYpJWC4ZvUvK0MZjoP7QqOp1dt9JyIyldl0d499L7yh1iUfq0Skg==}
+  '@doraemon-ui/miniprogram.tools@0.0.2-alpha.41':
+    resolution: {integrity: sha512-F6UvggsO2RPkC3yYU3SjTEm0LUcfqgXPe1vQDax0YBECBYlrvxdzbFqCo5kmq6iCSFMBv4Tx66S4AydgzlNauw==}
 
-  '@doraemon-ui/miniprogram.tools@0.0.2-alpha.32':
-    resolution: {integrity: sha512-y0se/hMfOjfN93C6uM2lMAhr6ePQ899zpVmfDk9tvXMY9VCDMM8qyg7C+lg8zencztijIzWH8WZjGiezK5oBmw==}
-
-  '@doraemon-ui/miniprogram.tools@0.0.2-alpha.34':
-    resolution: {integrity: sha512-ksGtMTvkGRtXcuYn4yduv4z0qFQUUYJ4n1PqKkAxvpFWbeYCtH52dksLG1PQsgtD6ni9jQnwijQyEzjxscmRjQ==}
+  '@douyin-microapp/typings@1.3.1':
+    resolution: {integrity: sha512-TuooIb1SYqMQ6FcC2Ux5wm5/2VH9hKO6bHIHxlKhcpW9fBp8FXHn7X/wfpVi0SaKNK15zA+B8JN2HSsaJ/wjUw==}
 
   '@dual-bundle/import-meta-resolve@4.2.1':
     resolution: {integrity: sha512-id+7YRUgoUX6CgV0DtuhirQWodeeA7Lf4i2x71JS/vtA5pRb/hIGWlw+G6MeXvsM+MXrz0VAydTGElX1rAfgPg==}
@@ -9963,6 +10229,9 @@ packages:
   miniprogram-api-typings@3.12.3:
     resolution: {integrity: sha512-o7bOfrU28MEMCBWo83nXv0ROQSBFxJcfCl4f2wTYqah64ipC5RGqLJfvWJTWhlQt2ECVwspSzM8LgvnfMo7TEQ==}
 
+  miniprogram-api-typings@5.1.2:
+    resolution: {integrity: sha512-+4tABz3krRZu0EFO9obYwsfNC5Grpc5v49ZZc9qNzHRUHvKnM6G/n8/LnJBQCFht9dymhRnRx3FKcJ6TmzfmwA==}
+
   miniprogram-api-typings@5.1.3:
     resolution: {integrity: sha512-qU9YqepEvUJ8wcqw3Kku2hPBN8IuSQjbhnIlkm/8GVyP7WftTboc6fC68AVoc/TfOSfugotMg5XknQhH2J8/kg==}
 
@@ -13781,9 +14050,10 @@ snapshots:
     dependencies:
       postcss-selector-parser: 7.1.1
 
-  '@doraemon-ui/miniprogram.cli@0.0.2-alpha.55(@swc/core@1.3.96)(@types/node@25.6.0)':
+  '@doraemon-ui/miniprogram.cli@0.0.2-alpha.64(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)':
     dependencies:
-      '@doraemon-ui/miniprogram.tools': 0.0.2-alpha.32(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
+      '@doraemon-ui/miniprogram.templates': 0.0.2-alpha.4
+      '@doraemon-ui/miniprogram.tools': 0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
       '@types/minimist': 1.2.5
       axios: 1.16.0
       chalk: 4.1.2
@@ -13808,37 +14078,9 @@ snapshots:
       - debug
       - supports-color
 
-  '@doraemon-ui/miniprogram.cli@0.0.2-alpha.57(@swc/core@1.3.96)(@types/node@25.6.0)':
-    dependencies:
-      '@doraemon-ui/miniprogram.templates': 0.0.2-alpha.1
-      '@doraemon-ui/miniprogram.tools': 0.0.2-alpha.34(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)
-      '@types/minimist': 1.2.5
-      axios: 1.16.0
-      chalk: 4.1.2
-      command-exists: 1.2.9
-      commander: 14.0.3
-      cross-env: 10.1.0
-      find-parent-dir: 0.3.1
-      git-user-name: 2.0.0
-      inquirer: 8.2.7(@types/node@25.6.0)
-      lodash.defaultsdeep: 4.6.1
-      minimist: 1.2.8
-      ncp: 2.0.0
-      rimraf: 6.1.3
-      string.prototype.padend: 3.1.6
-      tslib: 2.8.1
-      typescript: 6.0.3
-    transitivePeerDependencies:
-      - '@swc/core'
-      - '@swc/wasm'
-      - '@types/babel__core'
-      - '@types/node'
-      - debug
-      - supports-color
+  '@doraemon-ui/miniprogram.templates@0.0.2-alpha.4': {}
 
-  '@doraemon-ui/miniprogram.templates@0.0.2-alpha.1': {}
-
-  '@doraemon-ui/miniprogram.tools@0.0.2-alpha.32(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)':
+  '@doraemon-ui/miniprogram.tools@0.0.2-alpha.41(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)':
     dependencies:
       '@babel/core': 7.29.0
       '@babel/plugin-proposal-class-properties': 7.18.6(@babel/core@7.29.0)
@@ -13877,44 +14119,7 @@ snapshots:
       - '@types/node'
       - supports-color
 
-  '@doraemon-ui/miniprogram.tools@0.0.2-alpha.34(@swc/core@1.3.96)(@types/babel__core@7.20.5)(@types/node@25.6.0)':
-    dependencies:
-      '@babel/core': 7.29.0
-      '@babel/plugin-proposal-class-properties': 7.18.6(@babel/core@7.29.0)
-      '@babel/plugin-proposal-decorators': 7.29.0(@babel/core@7.29.0)
-      '@babel/preset-typescript': 7.28.5(@babel/core@7.29.0)
-      '@rollup/plugin-babel': 7.0.0(@babel/core@7.29.0)(@types/babel__core@7.20.5)(rollup@4.60.2)
-      '@rollup/plugin-commonjs': 29.0.2(rollup@4.60.2)
-      '@rollup/plugin-node-resolve': 16.0.3(rollup@4.60.2)
-      '@rollup/plugin-replace': 6.0.3(rollup@4.60.2)
-      '@rollup/plugin-swc': 0.4.0(@swc/core@1.3.96)(rollup@4.60.2)
-      '@rollup/plugin-typescript': 12.3.0(rollup@4.60.2)(tslib@2.8.1)(typescript@6.0.3)
-      '@types/pretty-hrtime': 1.0.3
-      autoprefixer: 10.4.27(postcss@8.5.13)
-      chalk: 4.1.2
-      chokidar: 3.6.0
-      cross-env: 10.1.0
-      css-tree: 3.2.1
-      cssbeautify: 0.3.1
-      fast-glob: 3.3.3
-      less: 4.6.4
-      miniprogram-api-typings: 5.1.3
-      moment: 2.30.1
-      postcss: 8.5.13
-      pretty-hrtime: 1.0.3
-      rimraf: 6.1.3
-      rollup: 4.60.2
-      rollup-plugin-copy: 3.5.0
-      through2: 4.0.2
-      ts-node: 10.9.2(@swc/core@1.3.96)(@types/node@25.6.0)(typescript@6.0.3)
-      tslib: 2.8.1
-      typescript: 6.0.3
-    transitivePeerDependencies:
-      - '@swc/core'
-      - '@swc/wasm'
-      - '@types/babel__core'
-      - '@types/node'
-      - supports-color
+  '@douyin-microapp/typings@1.3.1': {}
 
   '@dual-bundle/import-meta-resolve@4.2.1': {}
 
@@ -20826,6 +21031,8 @@ snapshots:
   minipass@7.1.3: {}
 
   miniprogram-api-typings@3.12.3: {}
+
+  miniprogram-api-typings@5.1.2: {}
 
   miniprogram-api-typings@5.1.3: {}
 

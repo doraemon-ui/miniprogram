@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.cascader.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:38:16.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
+ * Built on 2026-06-27, 16:55:51.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.41.
  */
 
 import { Doraemon, Prop, Watch, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
@@ -252,58 +252,6 @@ Cascader = _ts_decorate([
             prefixCls: {
                 type: String,
                 default: 'dora-cascader'
-            },
-            defaultValue: {
-                type: Array,
-                default: ()=>[]
-            },
-            value: {
-                type: Array,
-                default: ()=>[]
-            },
-            controlled: {
-                type: Boolean,
-                default: false
-            },
-            title: {
-                type: String,
-                default: ''
-            },
-            cancelText: {
-                type: String,
-                default: '取消'
-            },
-            confirmText: {
-                type: String,
-                default: '确定'
-            },
-            options: {
-                type: Array,
-                default: ()=>[]
-            },
-            full: {
-                type: Boolean,
-                default: false
-            },
-            height: {
-                type: null,
-                default: 'auto'
-            },
-            chooseTitle: {
-                type: String,
-                default: '请选择'
-            },
-            visible: {
-                type: Boolean,
-                default: false
-            },
-            skipAnimation: {
-                type: Boolean,
-                default: false
-            },
-            defaultFieldNames: {
-                type: Object,
-                default: ()=>getDefaultFieldNames()
             }
         },
         expose: [

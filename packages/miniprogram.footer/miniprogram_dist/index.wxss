@@ -1,5 +1,4 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-footer {
   --link-color: var(--dora-color-positive, #3880ff);
   --chip-link-background-color: rgba(56, 128, 255, 0.12);
@@ -10,7 +9,7 @@
   background-color: var(--dora-component-background-color, #fff);
   color: rgba(0,0,0,0.65);
   color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.65);
-  font-size: 13px;
+  font-size: 26rpx;
 }
 
 .dora-footer__label {
@@ -18,7 +17,7 @@
 }
 
 .dora-footer__links {
-  margin: 9px 0;
+  margin: 18rpx 0;
   color: #3880ff;
   color: var(--link-color);
   white-space: nowrap;
@@ -33,7 +32,7 @@
 .dora-footer__content {
   display: flex;
   align-items: center;
-  margin: 9px 0;
+  margin: 18rpx 0;
   color: rgba(0,0,0,0.45);
   color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
 }
@@ -42,19 +41,19 @@
   display: flex;
   align-items: center;
   white-space: nowrap;
-  margin: 9px 0;
+  margin: 18rpx 0;
 }
 
 .dora-footer__chip {
   white-space: nowrap;
-  margin-right: 16px;
-  font-size: 12px;
+  margin-right: 32rpx;
+  font-size: 24rpx;
   background-color: #e6e6e6;
   background-color: var(--dora-color-step-10, #e6e6e6);
   color: rgba(0,0,0,0.45);
   color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
-  padding: 5px 11px;
-  border-radius: 100px;
+  padding: 10rpx 22rpx;
+  border-radius: 200rpx;
 }
 
 .dora-footer__chip:last-child {

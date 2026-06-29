@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": "src",
+    "outDir": "temp",
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "stripInternal": true,
+    "composite": false
+  },
+  "include": ["src/**/*"]
+}

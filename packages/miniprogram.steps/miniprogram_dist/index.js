@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.steps.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:41:00.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
+ * Built on 2026-06-27, 16:55:30.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.41.
  */
 
 import { Prop, Watch, Component, defineComponentHOC, Doraemon } from '@doraemon-ui/miniprogram.core-js';
@@ -18,8 +18,8 @@ let Steps = class Steps extends Doraemon {
         this.updateCurrent();
     }
     getChildrenSteps() {
-        const nodes = this._renderProxy?.getRelationNodes?.('./step') || [];
-        return nodes.map((n)=>n?.$component).filter(Boolean);
+        const nodes = this.$children || [];
+        return nodes.filter(Boolean);
     }
     onChildrenChanged() {
         this.updateCurrent();
@@ -68,14 +68,6 @@ Steps = _ts_decorate([
             prefixCls: {
                 type: String,
                 default: 'dora-steps'
-            },
-            current: {
-                type: Number,
-                default: 0
-            },
-            direction: {
-                type: String,
-                default: 'horizontal'
             }
         }
     })

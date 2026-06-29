@@ -1,11 +1,12 @@
 /**
  * @doraemon-ui/miniprogram.switch.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:41:09.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
+ * Built on 2026-06-27, 16:55:25.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.41.
  */
 
 import { Doraemon, Prop, Watch, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
+import { getPresetColor } from '@doraemon-ui/miniprogram.shared';
 
 function _ts_decorate(decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -14,18 +15,6 @@ function _ts_decorate(decorators, target, key, desc) {
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 }
 const { classNames } = Doraemon.util;
-const presetColors = {
-    light: '#ddd',
-    stable: '#b2b2b2',
-    positive: '#387ef5',
-    calm: '#11c1f3',
-    balanced: '#33cd5f',
-    energized: '#ffc900',
-    assertive: '#ef473a',
-    royal: '#886aea',
-    dark: '#444'
-};
-const isPresetColor = (color)=>presetColors[color] ? presetColors[color] : color;
 let Switch = class Switch extends Doraemon {
     get classes() {
         const { prefixCls, inputChecked, disabled, loading, color } = this;
@@ -52,7 +41,7 @@ let Switch = class Switch extends Doraemon {
         this.updated(v);
     }
     onColorChange(c) {
-        const newColor = isPresetColor(c);
+        const newColor = getPresetColor(c);
         this.inputStyle = `border-color:${newColor};background-color:${newColor};`;
     }
     onTap(_e) {

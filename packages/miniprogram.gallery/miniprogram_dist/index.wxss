@@ -1,15 +1,14 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-gallery {
   --z-index: var(--dora-gallery-z-index, var(--dora-component-z-index, 1000));
   --background-color: var(--dora-gallery-background-color, #000);
-  --icon-size: var(--dora-gallery-icon-size, 24px);
+  --icon-size: var(--dora-gallery-icon-size, 48rpx);
   position: fixed;
   inset: 0;
-  z-index: var(--z-index);
+  z-index: 1000;
   z-index: var(--z-index);
   display: block;
-  background-color: var(--background-color);
+  background-color: #000;
   background-color: var(--background-color);
 }
 
@@ -33,11 +32,11 @@
 .dora-gallery__remark {
   position: absolute;
   right: 0;
-  bottom: 60px;
+  bottom: 120rpx;
   left: 0;
   z-index: 10;
-  padding: 15px;
-  font-size: 14px;
+  padding: 30rpx;
+  font-size: 28rpx;
   color: #fff;
   text-align: center;
   opacity: 0;
@@ -55,7 +54,7 @@
   left: 0;
   color: #fff;
   text-align: center;
-  background-color: var(--background-color);
+  background-color: #000;
   background-color: var(--background-color);
 }
 
@@ -63,13 +62,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 18px 0;
+  padding: 36rpx 0;
 }
 
 .dora-gallery__icon {
+  width: 48rpx;
   width: var(--icon-size);
-  width: var(--icon-size);
-  height: var(--icon-size);
+  height: 48rpx;
   height: var(--icon-size);
 }
 

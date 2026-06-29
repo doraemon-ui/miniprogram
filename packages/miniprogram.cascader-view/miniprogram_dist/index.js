@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.cascader-view.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:38:22.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
+ * Built on 2026-06-27, 16:55:31.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.41.
  */
 
 import { Doraemon, Prop, Watch, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
@@ -398,42 +398,6 @@ CascaderView = _ts_decorate([
             prefixCls: {
                 type: String,
                 default: 'dora-cascader-view'
-            },
-            defaultValue: {
-                type: Array,
-                default: ()=>[]
-            },
-            value: {
-                type: Array,
-                default: ()=>[]
-            },
-            controlled: {
-                type: Boolean,
-                default: false
-            },
-            options: {
-                type: Array,
-                default: ()=>[]
-            },
-            full: {
-                type: Boolean,
-                default: false
-            },
-            placeholder: {
-                type: String,
-                default: '请选择'
-            },
-            height: {
-                type: null,
-                default: 'auto'
-            },
-            skipAnimation: {
-                type: Boolean,
-                default: false
-            },
-            defaultFieldNames: {
-                type: Object,
-                default: ()=>getDefaultFieldNames()
             }
         },
         expose: [

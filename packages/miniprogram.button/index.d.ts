@@ -1,3 +1,484 @@
-export * from './src'
+import { Doraemon } from '@doraemon-ui/miniprogram.core-js';
 
-export type * from './src/types'
+import type { ComponentPublicInstance, CSSStylePropertiesWithVars, CustomEvent, Target } from '@doraemon-ui/miniprogram.core-js';
+
+import type { NativeButtonOpenType, PresetColor } from '@doraemon-ui/miniprogram.shared';
+
+declare class Button extends Doraemon {
+    /**
+     * 自定义类名前缀
+     *
+     * @type {string}
+     * @memberof Button
+     */
+    prefixCls: string;
+    rootClassName: string;
+    rootStyle: string | Partial<CSSStylePropertiesWithVars>;
+    classNames: Partial<Record<SemanticName, string>>;
+    styles: Partial<Record<SemanticName, CSSStylePropertiesWithVars | string>>;
+    /**
+     * 按钮颜色
+     *
+     * @type {PresetColor}
+     * @memberof Button
+     */
+    color: PresetColor;
+    /**
+     * 填充模式
+     *
+     * @type {('fill' | 'solid' | 'outline' | 'clear')}
+     * @memberof Button
+     */
+    fill: 'fill' | 'solid' | 'outline' | 'clear';
+    /**
+     * 扩展模式
+     *
+     * @type {('block' | 'full' | '')}
+     * @memberof Button
+     */
+    expand: 'block' | 'full' | '';
+    /**
+     * 按钮的形状
+     *
+     * @type {('rounded' | 'rectangular' | '')}
+     * @memberof Button
+     */
+    shape: 'rounded' | 'rectangular' | '';
+    /**
+     * 按钮的大小
+     *
+     * @type {('small' | 'default' | 'large')}
+     * @memberof Button
+     */
+    size: 'small' | 'default' | 'large';
+    /**
+     * 是否粗体字体
+     *
+     * @type {boolean}
+     * @memberof Button
+     */
+    strong: boolean;
+    /**
+     * 是否禁用按钮
+     *
+     * @type {boolean}
+     * @default false
+     * @memberof Button
+     */
+    disabled: boolean;
+    /**
+     * 是否显示加载状态
+     *
+     * @type {boolean}
+     * @default false
+     * @memberof Button
+     */
+    loading: boolean;
+    /**
+     * 用于 form 组件，点击后触发的表单事件类型
+     *
+     * @type {('submit' | 'reset' | '')}
+     * @default ''
+     * @memberof Button
+     */
+    formType: 'submit' | 'reset' | '';
+    /**
+     * 微信开放能力
+     *
+     * @type {(NativeButtonOpenType | '')}
+     * @default ''
+     * @see https://developers.weixin.qq.com/miniprogram/dev/component/button.html
+     * @memberof Button
+     */
+    openType: NativeButtonOpenType | '';
+    /**
+     * 按钮按下时的自定义样式类
+     *
+     * @type {string}
+     * @default 'default'
+     * @memberof Button
+     */
+    hoverClass: string;
+    /**
+     * 是否阻止本节点的祖先节点出现点击态
+     *
+     * @type {boolean}
+     * @default false
+     * @memberof Button
+     */
+    hoverStopPropagation: boolean;
+    /**
+     * 按住后多久出现点击态，单位毫秒
+     *
+     * @type {number}
+     * @default 20
+     * @memberof Button
+     */
+    hoverStartTime: number;
+    /**
+     * 手指松开后点击态保留时间，单位毫秒
+     *
+     * @type {number}
+     * @default 70
+     * @memberof Button
+     */
+    hoverStayTime: number;
+    /**
+     * 指定返回用户信息的语言
+     *
+     * @type {('en' | 'zh_CN' | 'zh_TW')}
+     * @default 'en'
+     * @memberof Button
+     */
+    lang: 'en' | 'zh_CN' | 'zh_TW';
+    /**
+     * 会话来源，open-type="contact" 时有效
+     *
+     * @type {string}
+     * @default ''
+     * @memberof Button
+     */
+    sessionFrom: string;
+    /**
+     * 会话内消息卡片标题，open-type="contact" 时有效
+     *
+     * @type {string}
+     * @default ''
+     * @memberof Button
+     */
+    sendMessageTitle: string;
+    /**
+     * 会话内消息卡片点击跳转小程序路径，open-type="contact" 时有效
+     *
+     * @type {string}
+     * @default ''
+     * @memberof Button
+     */
+    sendMessagePath: string;
+    /**
+     * 会话内消息卡片图片，open-type="contact" 时有效
+     *
+     * @type {string}
+     * @default ''
+     * @memberof Button
+     */
+    sendMessageImg: string;
+    /**
+     * 是否显示会话内消息卡片，open-type="contact" 时有效
+     *
+     * @type {boolean}
+     * @default false
+     * @memberof Button
+     */
+    showMessageCard: boolean;
+    /**
+     * 当手机号快速验证或手机号实时验证额度用尽时，是否对用户展示"申请获取你的手机号，但该功能使用次数已达当前体验版 / 日 / 月上限"的toast提示
+     *
+     * @type {boolean}
+     * @default true
+     * @memberof Button
+     */
+    phoneNumberNoQuotaToast: boolean;
+    /**
+     * 转发的文本消息是否要带小程序入口
+     *
+     * @type {boolean}
+     * @default true
+     * @memberof Button
+     */
+    needShowEntrance: boolean;
+    /**
+     * 从消息小程序入口打开小程序的路径，默认为聊天工具启动路径
+     *
+     * @type {string}
+     * @default ''
+     * @memberof Button
+     */
+    entrancePath: string;
+    /**
+     * 新的一次性订阅消息下发机制回调，open-type=liveActivity时有效
+     *
+     * @type {boolean}
+     * @default false
+     * @memberof Button
+     */
+    createliveactivity: boolean;
+    /**
+     * 打开 APP 时向 APP 传递的参数，open-type="launchApp" 时有效
+     *
+     * @type {string}
+     * @default ''
+     * @memberof Button
+     */
+    appParameter: string;
+    /**
+     * 计算按钮的 CSS 类名
+     *
+     * @description 根据组件属性动态生成按钮的包裹类名和点击态类名
+     * @readonly
+     * @memberof Button
+     */
+    get classes(): Partial<Record<string, any>>;
+    get mergedStyles(): Record<string, any>;
+    /**
+     * 按钮点击事件处理
+     *
+     * @description 当按钮未被禁用且未处于加载状态时，触发 click 事件
+     * @fires click
+     * @memberof Button
+     */
+    onClick(): void;
+    /**
+     * 获取用户信息回调，open-type="getUserInfo" 时触发
+     *
+     * @param {CustomEvent} e - 微信原生事件对象
+     * @fires getuserinfo
+     * @memberof Button
+     */
+    onGetUserInfo(e: CustomEvent): Target;
+    /**
+     * 客服消息回调，open-type="contact" 时触发
+     *
+     * @param {CustomEvent} e - 微信原生事件对象
+     * @fires contact
+     * @memberof Button
+     */
+    onContact(e: CustomEvent): Target;
+    /**
+     * 获取用户手机号回调，open-type="getPhoneNumber" 时触发
+     *
+     * @param {CustomEvent} e - 微信原生事件对象
+     * @fires getphonenumber
+     * @memberof Button
+     */
+    onGetPhoneNumber(e: CustomEvent): Target;
+    /**
+     * 打开 APP 回调，open-type="launchApp" 时触发
+     *
+     * @param {CustomEvent} e - 微信原生事件对象
+     * @fires launchapp
+     * @memberof Button
+     */
+    onLaunchApp(e: CustomEvent): Target;
+    /**
+     * 选择头像回调，open-type="chooseAvatar" 时触发
+     *
+     * @param {CustomEvent} e - 微信原生事件对象
+     * @fires chooseavatar
+     * @memberof Button
+     */
+    onChooseAvatar(e: CustomEvent): Target;
+    /**
+     * 打开授权设置页回调，open-type="openSetting" 时触发
+     *
+     * @param {CustomEvent} e - 微信原生事件对象
+     * @fires opensetting
+     * @memberof Button
+     */
+    onOpenSetting(e: CustomEvent): Target;
+    /**
+     * 创建直播活动回调，open-type="createLiveActivity" 时触发
+     *
+     * @param {CustomEvent} e - 微信原生事件对象
+     * @fires createliveactivity
+     * @memberof Button
+     */
+    onCreateLiveActivity(e: CustomEvent): Target;
+    /**
+     * 获取用户实时手机号回调，open-type="getRealtimePhoneNumber" 时触发
+     *
+     * @param {CustomEvent} e - 微信原生事件对象
+     * @fires getrealtimephonenumber
+     * @memberof Button
+     */
+    onGetRealtimePhoneNumber(e: CustomEvent): Target;
+    /**
+     * 同意隐私协议授权回调，open-type="agreePrivacyAuthorization" 时触发
+     *
+     * @param {CustomEvent} e - 微信原生事件对象
+     * @fires agreeprivacyauthorization
+     * @memberof Button
+     */
+    onAgreePrivacyAuthorization(e: CustomEvent): Target;
+    /**
+     * 错误回调，使用开放能力发生错误时触发
+     *
+     * @param {CustomEvent} e - 微信原生事件对象
+     * @fires error
+     * @memberof Button
+     */
+    onError(e: CustomEvent): Target;
+}
+
+export { Button };
+
+/**
+ * SemanticName类型定义
+ *
+ * - root: 根元素，设置容器样式和布局
+ * - hover: 按压元素，按钮按下去的样式类
+ */
+export type SemanticName = 'root' | 'hover';
+
+/**
+ * ButtonProps接口定义
+ */
+export interface ButtonProps {
+    /**
+     * 自定义类名前缀
+     *
+     * @type {string}
+     */
+    prefixCls?: string;
+    rootClassName?: string;
+    rootStyle?: string | Partial<CSSStylePropertiesWithVars>;
+    classNames?: Partial<Record<SemanticName, string>>;
+    styles?: Partial<Record<SemanticName, CSSStylePropertiesWithVars | string>>;
+    /**
+     * 按钮颜色
+     *
+     * @type {PresetColor}
+     */
+    color?: PresetColor;
+    /**
+     * 填充模式
+     *
+     * @type {('fill' | 'solid' | 'outline' | 'clear')}
+     */
+    fill?: 'fill' | 'solid' | 'outline' | 'clear';
+    /**
+     * 扩展模式
+     *
+     * @type {('block' | 'full' | '')}
+     */
+    expand?: 'block' | 'full' | '';
+    /**
+     * 按钮的形状
+     *
+     * @type {('rounded' | 'rectangular' | '')}
+     */
+    shape?: 'rounded' | 'rectangular' | '';
+    /**
+     * 按钮的大小
+     *
+     * @type {('small' | 'default' | 'large')}
+     */
+    size?: 'small' | 'default' | 'large';
+    /**
+     * 是否粗体字体
+     *
+     * @type {boolean}
+     */
+    strong?: boolean;
+    /**
+     * 是否禁用按钮
+     *
+     * @type {boolean}
+     */
+    disabled?: boolean;
+    /**
+     * 是否显示加载状态
+     *
+     * @type {boolean}
+     */
+    loading?: boolean;
+    /**
+     * 用于 form 组件，点击后触发的表单事件类型
+     *
+     * @type {('submit' | 'reset' | '')}
+     */
+    formType?: 'submit' | 'reset' | '';
+    /**
+     * 微信开放能力
+     *
+     * @type {(NativeButtonOpenType | '')}
+     */
+    openType?: NativeButtonOpenType | '';
+    /**
+     * 按钮按下时的自定义样式类
+     *
+     * @type {string}
+     */
+    hoverClass?: string;
+    /**
+     * 是否阻止本节点的祖先节点出现点击态
+     *
+     * @type {boolean}
+     */
+    hoverStopPropagation?: boolean;
+    /**
+     * 按住后多久出现点击态，单位毫秒
+     *
+     * @type {number}
+     */
+    hoverStartTime?: number;
+    /**
+     * 手指松开后点击态保留时间，单位毫秒
+     *
+     * @type {number}
+     */
+    hoverStayTime?: number;
+    /**
+     * 指定返回用户信息的语言
+     *
+     * @type {('en' | 'zh_CN' | 'zh_TW')}
+     */
+    lang?: 'en' | 'zh_CN' | 'zh_TW';
+    /**
+     * 会话来源，open-type="contact" 时有效
+     *
+     * @type {string}
+     */
+    sessionFrom?: string;
+    /**
+     * 会话内消息卡片标题，open-type="contact" 时有效
+     *
+     * @type {string}
+     */
+    sendMessageTitle?: string;
+    /**
+     * 会话内消息卡片点击跳转小程序路径，open-type="contact" 时有效
+     *
+     * @type {string}
+     */
+    sendMessagePath?: string;
+    /**
+     * 会话内消息卡片图片，open-type="contact" 时有效
+     *
+     * @type {string}
+     */
+    sendMessageImg?: string;
+    /**
+     * 是否显示会话内消息卡片，open-type="contact" 时有效
+     *
+     * @type {boolean}
+     */
+    showMessageCard?: boolean;
+    /**
+     * 当手机号快速验证或手机号实时验证额度用尽时，是否对用户展示额度提示
+     *
+     * @type {boolean}
+     */
+    phoneNumberNoQuotaToast?: boolean;
+    /**
+     * 打开 APP 时向 APP 传递的参数，open-type="launchApp" 时有效
+     *
+     * @type {string}
+     */
+    appParameter?: string;
+}
+
+/**
+ * ButtonExpose接口定义
+ */
+export interface ButtonExpose {
+}
+
+/**
+ * ButtonInstance类型定义
+ */
+export type ButtonInstance = ComponentPublicInstance<Button, ButtonProps, ButtonExpose>;
+
+declare const _default: WechatMiniprogram.Component.Identifier<WechatMiniprogram.Component.DataOption, WechatMiniprogram.Component.PropertyOption, WechatMiniprogram.Component.MethodOption>;
+
+export default _default;

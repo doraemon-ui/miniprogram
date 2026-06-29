@@ -1,5 +1,5 @@
 import { defineComponentHOC, Doraemon, Component, Emit, Event, Prop } from '@doraemon-ui/miniprogram.core-js'
-import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
+import type { CustomEvent, Target } from '@doraemon-ui/miniprogram.core-js'
 import { useRect, useNativeRoute, NATIVE_ROUTES } from '@doraemon-ui/miniprogram.shared'
 import type { MiniprogramDOMRect, NativeButtonOpenType, NativeRouteOpenType } from '@doraemon-ui/miniprogram.shared'
 const { classNames, styleToCssString } = Doraemon.util
@@ -279,61 +279,61 @@ class ListItem extends Doraemon {
 
   @Event()
   @Emit('getuserinfo')
-  onGetUserInfo(e: CustomEvent) {
+  onGetUserInfo(e: CustomEvent): Target {
     return e.target
   }
 
   @Event()
   @Emit('contact')
-  onContact(e: CustomEvent) {
+  onContact(e: CustomEvent): Target {
     return e.target
   }
 
   @Event()
   @Emit('getphonenumber')
-  onGetPhoneNumber(e: CustomEvent) {
+  onGetPhoneNumber(e: CustomEvent): Target {
     return e.target
   }
 
   @Event()
   @Emit('launchapp')
-  onLaunchApp(e: CustomEvent) {
+  onLaunchApp(e: CustomEvent): Target {
     return e.target
   }
 
   @Event()
   @Emit('chooseavatar')
-  onChooseAvatar(e: CustomEvent) {
+  onChooseAvatar(e: CustomEvent): Target {
     return e.target
   }
 
   @Event()
   @Emit('opensetting')
-  onOpenSetting(e: CustomEvent) {
+  onOpenSetting(e: CustomEvent): Target {
     return e.target
   }
 
   @Event()
   @Emit('createliveactivity')
-  onCreateLiveActivity(e: CustomEvent) {
+  onCreateLiveActivity(e: CustomEvent): Target {
     return e.target
   }
 
   @Event()
   @Emit('getrealtimephonenumber')
-  onGetRealtimePhoneNumber(e: CustomEvent) {
+  onGetRealtimePhoneNumber(e: CustomEvent): Target {
     return e.target
   }
 
   @Event()
   @Emit('agreeprivacyauthorization')
-  onAgreePrivacyAuthorization(e: CustomEvent) {
+  onAgreePrivacyAuthorization(e: CustomEvent): Target {
     return e.target
   }
 
   @Event()
   @Emit('error')
-  onError(e: CustomEvent) {
+  onError(e: CustomEvent): Target {
     return e.target
   }
 

@@ -1,18 +1,17 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-index-list {
-  --nav-size: var(--dora-index-list-nav-size, 20px);
-  --nav-font-size: var(--dora-index-list-nav-font-size, 12px);
-  --nav-padding-vertical: var(--dora-index-list-nav-padding-vertical, 3px);
-  --nav-padding-horizontal: var(--dora-index-list-nav-padding-horizontal, 6px);
+  --nav-size: var(--dora-index-list-nav-size, 40rpx);
+  --nav-font-size: var(--dora-index-list-nav-font-size, 24rpx);
+  --nav-padding-vertical: var(--dora-index-list-nav-padding-vertical, 6rpx);
+  --nav-padding-horizontal: var(--dora-index-list-nav-padding-horizontal, 12rpx);
   --nav-activated-text-color: var(--dora-index-list-nav-activated-text-color, rgba(255, 255, 255, 1));
   --nav-activated-background-color: var(--dora-index-list-nav-activated-background-color, var(--dora-color-positive, #3880ff));
   --nav-activated-border-radius: var(--dora-index-list-nav-activated-border-radius, 50%);
-  --indicator-size: var(--dora-index-list-indicator-size, 48px);
+  --indicator-size: var(--dora-index-list-indicator-size, 96rpx);
   --indicator-background-color: var(--dora-index-list-indicator-background-color, rgba(0, 0, 0, 0.7));
   --indicator-color: var(--dora-index-list-indicator-color, rgba(255, 255, 255, 1));
-  --indicator-font-size: var(--dora-index-list-indicator-font-size, 20px);
-  --indicator-border-radius: var(--dora-index-list-indicator-border-radius, var(--dora-border-radius, 8px));
+  --indicator-font-size: var(--dora-index-list-indicator-font-size, 40rpx);
+  --indicator-border-radius: var(--dora-index-list-indicator-border-radius, var(--dora-border-radius, 16rpx));
   width: 100%;
   position: relative;
   overflow: hidden;
@@ -39,14 +38,14 @@
   height: 100%;
   width: 100%;
   position: relative;
-  line-height: 20px;
+  line-height: 40rpx;
   line-height: var(--nav-size);
-  font-size: 12px;
+  font-size: 24rpx;
   font-size: var(--nav-font-size);
 }
 
 .dora-index-list__nav-col {
-  padding: 3px 6px;
+  padding: 6rpx 12rpx;
   padding: var(--nav-padding-vertical) var(--nav-padding-horizontal);
   line-height: inherit;
   font-size: inherit;
@@ -54,9 +53,9 @@
 
 .dora-index-list__nav-item {
   display: inline-flex;
-  width: 20px;
+  width: 40rpx;
   width: var(--nav-size);
-  height: 20px;
+  height: 40rpx;
   height: var(--nav-size);
   line-height: inherit;
   font-size: inherit;
@@ -74,20 +73,20 @@
 }
 
 .dora-index-list__indicator {
-  width: 48px;
+  width: 96rpx;
   width: var(--indicator-size);
-  height: 48px;
+  height: 96rpx;
   height: var(--indicator-size);
-  line-height: 48px;
+  line-height: 96rpx;
   line-height: var(--indicator-size);
   text-align: center;
   background-color: rgba(0,0,0,0.7);
   background-color: var(--indicator-background-color);
-  border-radius: 8px;
+  border-radius: 16rpx;
   border-radius: var(--indicator-border-radius);
   color: rgba(255,255,255,1);
   color: var(--indicator-color);
-  font-size: 20px;
+  font-size: 40rpx;
   font-size: var(--indicator-font-size);
 }
 
@@ -100,13 +99,13 @@
 
 .dora-index-list__indicator--right {
   position: absolute;
-  top: calc(20px/2 + 3px/2);
+  top: calc(40rpx/2 + 6rpx/2);
   top: calc(var(--nav-size)/2 + var(--nav-padding-vertical)/2);
   right: 100%;
   border-radius: 50%;
   transform: translateY(-50%);
-  margin-right: calc(20px - 1px);
-  margin-right: calc(var(--nav-size) - 1px);
+  margin-right: calc(40rpx - 2rpx);
+  margin-right: calc(var(--nav-size) - 2rpx);
   background-color: #3880ff;
   background-color: var(--nav-activated-background-color);
 }

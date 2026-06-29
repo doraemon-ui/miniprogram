@@ -1,5 +1,4 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-wing-blank--small {
   margin-left: 16rpx;
   margin-right: 16rpx;

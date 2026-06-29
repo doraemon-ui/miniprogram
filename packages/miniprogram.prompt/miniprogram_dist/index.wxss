@@ -1,13 +1,12 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-prompt {
   display: flex;
   height: 100%;
   align-items: center;
   justify-content: center;
+  color: rgba(0,0,0,0.45);
   color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
-  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
-  background-color: var(--dora-color-step-10, #e6e6e6);
+  background-color: #e6e6e6;
   background-color: var(--dora-color-step-10, #e6e6e6);
 }
 
@@ -17,24 +16,24 @@
 }
 
 .dora-prompt__icon {
-  width: 64px;
-  height: 64px;
+  width: 128rpx;
+  height: 128rpx;
 }
 
 .dora-prompt__title {
-  margin: 2px 0;
-  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.55);
-  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.55);
-  font-size: 16px;
+  margin: 4rpx 0;
+  color: rgba(0,0,0,0.65);
+  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.65);
+  font-size: 32rpx;
   font-weight: bold;
 }
 
 .dora-prompt__text {
-  margin: 2px 0;
-  font-size: 12px;
+  margin: 4rpx 0;
+  font-size: 24rpx;
 }
 
 .dora-prompt__button {
-  width: 100px!important;
-  margin: 4px auto;
+  width: 200rpx!important;
+  margin: 8rpx auto;
 }

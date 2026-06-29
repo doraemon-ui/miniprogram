@@ -1,24 +1,23 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-card {
   position: relative;
-  min-height: var(--dora-card-height, 96px);
-  min-height: var(--dora-card-height, 96px);
-  padding-bottom: 6px;
+  min-height: 192rpx;
+  min-height: var(--dora-card-height, 192rpx);
+  padding-bottom: 12rpx;
   display: flex;
   flex-direction: column;
-  background-color: var(--dora-card-background-color, var(--dora-component-background-color, #fff));
+  background-color: #fff;
   background-color: var(--dora-card-background-color, var(--dora-component-background-color, #fff));
 }
 
 .dora-card--hover {
-  background-color: var(--dora-active-state-bg, var(--dora-color-step-10, #e6e6e6));
+  background-color: #e6e6e6;
   background-color: var(--dora-active-state-bg, var(--dora-color-step-10, #e6e6e6));
 }
 
 .dora-card--bordered {
-  border-radius: var(--dora-card-radius, 10px);
-  border-radius: var(--dora-card-radius, 10px);
+  border-radius: 20rpx;
+  border-radius: var(--dora-card-radius, 20rpx);
 }
 
 .dora-card--bordered::before {
@@ -32,18 +31,18 @@
   transform-origin: 0 0;
   pointer-events: none;
   box-sizing: border-box;
+  border: 0 solid #d9d9d9;
   border: 0 solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
-  border: 0 solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
-  border-radius: var(--dora-card-radius, 10px);
-  border-radius: var(--dora-card-radius, 10px);
-  border-top-width: var(--dora-border-width, 1px);
-  border-top-width: var(--dora-border-width, 1px);
-  border-right-width: var(--dora-border-width, 1px);
-  border-right-width: var(--dora-border-width, 1px);
-  border-bottom-width: var(--dora-border-width, 1px);
-  border-bottom-width: var(--dora-border-width, 1px);
-  border-left-width: var(--dora-border-width, 1px);
-  border-left-width: var(--dora-border-width, 1px);
+  border-radius: 20rpx;
+  border-radius: var(--dora-card-radius, 20rpx);
+  border-top-width: 2rpx;
+  border-top-width: var(--dora-border-width, 2rpx);
+  border-right-width: 2rpx;
+  border-right-width: var(--dora-border-width, 2rpx);
+  border-bottom-width: 2rpx;
+  border-bottom-width: var(--dora-border-width, 2rpx);
+  border-left-width: 2rpx;
+  border-left-width: var(--dora-border-width, 2rpx);
 }
 
 .dora-card--full {
@@ -63,9 +62,9 @@
 .dora-card__hd {
   position: relative;
   display: flex;
-  font-size: 17px;
-  padding: var(--dora-card-hd-padding, 9px 12px);
-  padding: var(--dora-card-hd-padding, 9px 12px);
+  font-size: 34rpx;
+  padding: 18rpx 24rpx;
+  padding: var(--dora-card-hd-padding, 18rpx 24rpx);
   align-items: center;
 }
 
@@ -75,10 +74,10 @@
   left: 0;
   bottom: 0;
   right: 0;
-  height: 1px;
-  border-bottom: 1px solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
-  border-bottom: 1px solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
-  color: var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  height: 2rpx;
+  border-bottom: 2rpx solid #d9d9d9;
+  border-bottom: 2rpx solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  color: #d9d9d9;
   color: var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
   transform-origin: 0 100%;
   transform: scaleY(0.5);
@@ -87,19 +86,19 @@
 .dora-card__content {
   flex: 1;
   text-align: left;
-  color: var(--dora-black, #000);
+  color: #000;
   color: var(--dora-black, #000);
 }
 
 .dora-card__thumb {
-  width: var(--dora-card-icon-size, 32px);
-  width: var(--dora-card-icon-size, 32px);
-  height: var(--dora-card-icon-size, 32px);
-  height: var(--dora-card-icon-size, 32px);
+  width: 64rpx;
+  width: var(--dora-card-icon-size, 64rpx);
+  height: 64rpx;
+  height: var(--dora-card-icon-size, 64rpx);
   display: inline-block;
   position: relative;
   margin-left: auto;
-  margin-right: 6px;
+  margin-right: 12rpx;
   overflow: hidden;
   vertical-align: middle;
 }
@@ -107,35 +106,35 @@
 .dora-card__extra {
   flex: 1;
   text-align: right;
-  font-size: 17px;
-  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
+  font-size: 34rpx;
+  color: rgba(0,0,0,0.45);
   color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
 }
 
 .dora-card__bd {
   position: relative;
-  padding: var(--dora-card-bd-padding, 12px 12px 6px);
-  padding: var(--dora-card-bd-padding, 12px 12px 6px);
-  font-size: 15px;
-  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.55);
-  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.55);
-  min-height: 40px;
+  padding: 24rpx 24rpx 12rpx;
+  padding: var(--dora-card-bd-padding, 24rpx 24rpx 12rpx);
+  font-size: 30rpx;
+  color: rgba(0,0,0,0.65);
+  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.65);
+  min-height: 80rpx;
 }
 
 .dora-card__ft {
   display: flex;
-  font-size: 14px;
+  font-size: 28rpx;
+  color: rgba(0,0,0,0.45);
   color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
-  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
-  padding: var(--dora-card-ft-padding, 0 12px);
-  padding: var(--dora-card-ft-padding, 0 12px);
+  padding: 0 24rpx;
+  padding: var(--dora-card-ft-padding, 0 24rpx);
 }
 
 .dora-card__actions {
   position: relative;
   display: flex;
-  line-height: 50px;
-  margin-top: 6px;
+  line-height: 100rpx;
+  margin-top: 12rpx;
   justify-content: center;
   align-items: center;
 }
@@ -146,10 +145,10 @@
   left: 0;
   top: 0;
   right: 0;
-  height: 1px;
-  border-top: 1px solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
-  border-top: 1px solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
-  color: var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  height: 2rpx;
+  border-top: 2rpx solid #d9d9d9;
+  border-top: 2rpx solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  color: #d9d9d9;
   color: var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
   transform-origin: 0 0;
   transform: scaleY(0.5);
@@ -159,7 +158,7 @@
   position: relative;
   display: block;
   flex: 1;
-  color: var(--dora-color-balanced, #2dd36f);
+  color: #2dd36f;
   color: var(--dora-color-balanced, #2dd36f);
   text-align: center;
 }
@@ -169,11 +168,11 @@
   position: absolute;
   right: 0;
   top: 0;
-  width: 1px;
+  width: 2rpx;
   bottom: 0;
-  border-right: 1px solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
-  border-right: 1px solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
-  color: var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  border-right: 2rpx solid #d9d9d9;
+  border-right: 2rpx solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  color: #d9d9d9;
   color: var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
   transform-origin: 100%0;
   transform: scaleX(0.5);
@@ -184,57 +183,57 @@
 }
 
 .dora-card__action--default {
-  color: var(--dora-color-dark, #222428)!important;
+  color: #222428!important;
   color: var(--dora-color-dark, #222428)!important;
 }
 
 .dora-card__action--primary {
-  color: var(--dora-color-balanced, #2dd36f)!important;
+  color: #2dd36f!important;
   color: var(--dora-color-balanced, #2dd36f)!important;
 }
 
 .dora-card__action--light {
-  color: var(--dora-color-light, #f4f5f8)!important;
+  color: #f4f5f8!important;
   color: var(--dora-color-light, #f4f5f8)!important;
 }
 
 .dora-card__action--stable {
-  color: var(--dora-color-stable, #92949c)!important;
-  color: var(--dora-color-stable, #92949c)!important;
+  color: #636469!important;
+  color: var(--dora-color-stable, #636469)!important;
 }
 
 .dora-card__action--positive {
-  color: var(--dora-color-positive, #3880ff)!important;
+  color: #3880ff!important;
   color: var(--dora-color-positive, #3880ff)!important;
 }
 
 .dora-card__action--calm {
-  color: var(--dora-color-calm, #3dc2ff)!important;
+  color: #3dc2ff!important;
   color: var(--dora-color-calm, #3dc2ff)!important;
 }
 
 .dora-card__action--assertive {
-  color: var(--dora-color-assertive, #eb445a)!important;
+  color: #eb445a!important;
   color: var(--dora-color-assertive, #eb445a)!important;
 }
 
 .dora-card__action--balanced {
-  color: var(--dora-color-balanced, #2dd36f)!important;
+  color: #2dd36f!important;
   color: var(--dora-color-balanced, #2dd36f)!important;
 }
 
 .dora-card__action--energized {
-  color: var(--dora-color-energized, #ffc409)!important;
+  color: #ffc409!important;
   color: var(--dora-color-energized, #ffc409)!important;
 }
 
 .dora-card__action--royal {
-  color: var(--dora-color-royal, #8a63d2)!important;
+  color: #8a63d2!important;
   color: var(--dora-color-royal, #8a63d2)!important;
 }
 
 .dora-card__action--dark {
-  color: var(--dora-color-dark, #222428)!important;
+  color: #222428!important;
   color: var(--dora-color-dark, #222428)!important;
 }
 
@@ -243,12 +242,12 @@
 }
 
 .dora-card__action--hover {
-  background-color: var(--dora-active-state-bg, var(--dora-color-step-10, #e6e6e6))!important;
+  background-color: #e6e6e6!important;
   background-color: var(--dora-active-state-bg, var(--dora-color-step-10, #e6e6e6))!important;
 }
 
 .dora-card__action--disabled {
-  opacity: var(--dora-disabled-opacity, 0.3);
+  opacity: 0.3;
   opacity: var(--dora-disabled-opacity, 0.3);
   cursor: not-allowed;
 }

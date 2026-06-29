@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.demo-shared.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:37:31.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
+ * Built on 2026-06-29, 15:08:20.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.41.
  */
 
 let 主题 = '一天掉多少根头发';
@@ -34,7 +34,7 @@ let 论述 = [
     '一般来说， ',
     '总结的来说， ',
     '既然如何， ',
-    '经过上述讨论',
+    '经过上述讨论'
 ];
 let 名人名言 = [
     '伏尔泰曾经说过，不经巨大的困难，不会有伟大的事业。这不禁令我深思',
@@ -136,16 +136,19 @@ let 名人名言 = [
     '德国曾经说过，只有在人群中间，才能认识自己。这不禁令我深思',
     '史美尔斯曾经说过，书籍把我们引入最美好的社会，使我们认识各个时代的伟大智者。这不禁令我深思',
     '冯学峰曾经说过，当一个人用工作去迎接光明，光明很快就会来照耀着他。这不禁令我深思',
-    '吉格·金克拉曾经说过，如果你能做梦，你就能实现它。这不禁令我深思',
+    '吉格·金克拉曾经说过，如果你能做梦，你就能实现它。这不禁令我深思'
 ];
 let 后面垫话 = [
     '这不禁令我深思。 ',
     '带着这句话，我们还要更加慎重的审视这个问题： ',
     '这启发了我， ',
     '我希望诸位也能好好地体会这句话。 ',
-    '这句话语虽然很短，但令我浮想联翩。 ',
+    '这句话语虽然很短，但令我浮想联翩。 '
 ];
-let 前面垫话 = ['曾经说过', '在不经意间这样说过'];
+let 前面垫话 = [
+    '曾经说过',
+    '在不经意间这样说过'
+];
 function 随便取一句(列表) {
     let 坐标 = Math.floor(Math.random() * 列表.length);
     return 列表[坐标];
@@ -174,22 +177,22 @@ function 增加段落(章节) {
 function 生成文章(title, chapter, paragraph) {
     主题 = title;
     let 文章 = [];
-    for (let 空 in [...Array(paragraph).keys()]) {
+    for(let 空 in [
+        ...Array(paragraph).keys()
+    ]){
         let 章节 = '';
         let 章节长度 = 0;
-        while (章节长度 < chapter) {
+        while(章节长度 < chapter){
             let 随机数 = 随便取一个数();
             if (随机数 < 5 && 章节.length > 200) {
                 章节 = 增加段落(章节);
                 文章.push(章节);
                 章节 = '';
-            }
-            else if (随机数 < 20) {
+            } else if (随机数 < 20) {
                 let 句子 = 来点名人名言();
                 章节长度 = 章节长度 + 句子.length;
                 章节 = 章节 + 句子;
-            }
-            else {
+            } else {
                 let 句子 = 来点论述();
                 章节长度 = 章节长度 + 句子.length;
                 章节 = 章节 + 句子;
@@ -204,11 +207,19 @@ function dogShit(title, chapter = 129, paragraph = 1) {
     return 生成文章(title, chapter, paragraph);
 }
 var dogShit$1 = {
-    dogShit,
+    dogShit
 };
 
 const props = {
-    high: ['四次元口袋', '竹蜻蜓', '时光机', '任意门', '缩小灯', '时光电视', '时光布'],
+    high: [
+        '四次元口袋',
+        '竹蜻蜓',
+        '时光机',
+        '任意门',
+        '缩小灯',
+        '时光电视',
+        '时光布'
+    ],
     medium: [
         '穿透环',
         '翻译米糕',
@@ -237,7 +248,7 @@ const props = {
         '凝云瓦斯',
         '石头帽',
         '隐身披风',
-        '迷你速建照相机',
+        '迷你速建照相机'
     ],
     low: [
         '时光皮带',
@@ -348,8 +359,8 @@ const props = {
         '速成机器人',
         '延伸水管',
         '时门',
-        '无敌炮台',
-    ],
+        '无敌炮台'
+    ]
 };
 function getProp(type, index) {
     return props[type][index ?? Math.floor(Math.random() * props[type].length)];
@@ -360,8 +371,7 @@ function getProp(type, index) {
  * @export
  * @param {number} [index]
  * @return {*}  {string}
- */
-function high(index) {
+ */ function high(index) {
     return getProp('high', index);
 }
 /**
@@ -370,8 +380,7 @@ function high(index) {
  * @export
  * @param {number} [index]
  * @return {*}  {string}
- */
-function medium(index) {
+ */ function medium(index) {
     return getProp('medium', index);
 }
 /**
@@ -380,14 +389,13 @@ function medium(index) {
  * @export
  * @param {number} [index]
  * @return {*}  {string}
- */
-function low(index) {
+ */ function low(index) {
     return getProp('low', index);
 }
 var doraProp = {
     high,
     medium,
-    low,
+    low
 };
 
 const quotes = [
@@ -431,16 +439,16 @@ const quotes = [
     '有障碍跨过去不就行了！选择道路的时候，不一定非要选好走的安全之路哦。',
     '陪我再吃一次铜锣烧吧。',
     '如果给你一个没有口袋的哆啦A梦，你还要么？',
-    '混蛋，宰了你！',
+    '混蛋，宰了你！'
 ];
-function doraQuote (index) {
+function doraQuote(index) {
     return quotes[index ?? Math.floor(Math.random() * quotes.length)];
 }
 
 var index = {
     ...dogShit$1,
     ...doraProp,
-    doraQuote,
+    doraQuote
 };
 
 export { index as default, dogShit, doraProp, doraQuote, high, low, medium };

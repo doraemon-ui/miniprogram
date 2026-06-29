@@ -1,15 +1,14 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-navbar {
   display: flex;
   align-items: center;
-  height: var(--dora-navbar-size, 44px);
-  height: var(--dora-navbar-size, 44px);
+  height: 88rpx;
+  height: var(--dora-navbar-size, 88rpx);
+  background-color: #f4f5f8;
   background-color: var(--background-color);
-  background-color: var(--background-color);
+  color: rgba(0,0,0,0.85);
   color: var(--text-color);
-  color: var(--text-color);
-  --text-color: rgba(var(--dora-text-color-rgb, 0, 0, 0), 0.65);
+  --text-color: rgba(var(--dora-text-color-rgb, 0, 0, 0), 0.85);
   --background-color: var(--dora-color-light, #f4f5f8);
 }
 
@@ -21,25 +20,25 @@
 }
 
 .dora-navbar__left {
-  padding-left: var(--dora-navbar-margin, 12px);
-  padding-left: var(--dora-navbar-margin, 12px);
-  font-size: var(--dora-navbar-font-size, 14px);
-  font-size: var(--dora-navbar-font-size, 14px);
+  padding-left: 24rpx;
+  padding-left: var(--dora-navbar-margin, 24rpx);
+  font-size: 28rpx;
+  font-size: var(--dora-navbar-font-size, 28rpx);
 }
 
 .dora-navbar__title {
   justify-content: center;
-  font-size: calc(var(--dora-navbar-font-size, 14px) + 4rpx);
-  font-size: calc(var(--dora-navbar-font-size, 14px) + 4rpx);
+  font-size: calc(28rpx + 4rpx);
+  font-size: calc(var(--dora-navbar-font-size, 28rpx) + 4rpx);
   white-space: nowrap;
 }
 
 .dora-navbar__right {
   justify-content: flex-end;
-  font-size: var(--dora-navbar-font-size, 14px);
-  font-size: var(--dora-navbar-font-size, 14px);
-  margin-right: var(--dora-navbar-margin, 12px);
-  margin-right: var(--dora-navbar-margin, 12px);
+  font-size: 28rpx;
+  font-size: var(--dora-navbar-font-size, 28rpx);
+  margin-right: 24rpx;
+  margin-right: var(--dora-navbar-margin, 24rpx);
 }
 
 .dora-navbar.dora-color {
@@ -48,11 +47,11 @@
 }
 
 .dora-navbar.dora-color.dora-color--light {
-  --text-color: rgba(var(--dora-text-color-rgb, 0, 0, 0), 0.65);
+  --text-color: rgba(var(--dora-text-color-rgb, 0, 0, 0), 0.85);
   --background-color: var(--dora-color-base);
 }
 
 .dora-navbar.dora-color.dora-color--stable {
-  --text-color: rgba(var(--dora-text-color-rgb, 0, 0, 0), 0.65);
+  --text-color: rgba(var(--dora-text-color-rgb, 0, 0, 0), 0.85);
   --background-color: var(--dora-color-base);
 }

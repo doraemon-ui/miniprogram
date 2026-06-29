@@ -1,5 +1,4 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-slider {
   position: relative;
   z-index: 1;
@@ -91,7 +90,7 @@
 
 .dora-slider__min,.dora-slider__max {
   font-size: 24rpx;
-  color: var(--dora-color-text-secondary, #999);
+  color: #999;
   color: var(--dora-color-text-secondary, #999);
 }
 

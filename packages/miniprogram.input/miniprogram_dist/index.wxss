@@ -1,5 +1,4 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-input {
   position: relative;
   display: flex;
@@ -9,12 +8,12 @@
 .dora-input__label {
   position: relative;
   margin-left: 0;
-  margin-right: 6px;
+  margin-right: 12rpx;
   text-align: left;
   white-space: nowrap;
   overflow: hidden;
-  width: var(--dora-input-label-width, 105px);
-  width: var(--dora-input-label-width, 105px);
+  width: 210rpx;
+  width: var(--dora-input-label-width, 210rpx);
 }
 
 .dora-input__label--wrap {
@@ -23,10 +22,10 @@
 
 .dora-input__label--required::before {
   display: inline-block;
-  margin-right: 3px;
+  margin-right: 6rpx;
+  color: #eb445a;
   color: var(--dora-color-assertive, #eb445a);
-  color: var(--dora-color-assertive, #eb445a);
-  font-size: 14px;
+  font-size: 28rpx;
   font-family: SimSun,sans-serif;
   line-height: 1;
   content: "*";
@@ -57,37 +56,37 @@
 
 .dora-input__eye {
   display: flex;
-  width: var(--dora-input-eye-size, 16px);
-  width: var(--dora-input-eye-size, 16px);
-  height: var(--dora-input-eye-size, 16px);
-  height: var(--dora-input-eye-size, 16px);
+  width: 32rpx;
+  width: var(--dora-input-eye-size, 32rpx);
+  height: 32rpx;
+  height: var(--dora-input-eye-size, 32rpx);
   background-repeat: no-repeat;
   background-size: contain;
-  margin-left: 6px;
+  margin-left: 12rpx;
 }
 
 .dora-input__error {
   display: flex;
-  margin-left: 6px;
+  margin-left: 12rpx;
 }
 
 .dora-input__extra {
+  color: rgba(0,0,0,0.45);
   color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
-  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
-  margin-left: 6px;
+  margin-left: 12rpx;
 }
 
 .dora-input--disabled {
-  opacity: var(--dora-disabled-opacity, 0.3);
+  opacity: 0.3;
   opacity: var(--dora-disabled-opacity, 0.3);
   cursor: not-allowed;
 }
 
 .dora-input--error .dora-input__control {
-  color: var(--dora-color-assertive, #eb445a);
+  color: #eb445a;
   color: var(--dora-color-assertive, #eb445a);
 }
 
 .dora-input__keyboardAccessory {
-  max-height: 200px;
+  max-height: 400rpx;
 }

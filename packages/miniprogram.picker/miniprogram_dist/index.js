@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.picker.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:39:58.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
+ * Built on 2026-06-27, 16:55:24.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.41.
  */
 
 import { Doraemon, Prop, Watch, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
@@ -209,13 +209,13 @@ _ts_decorate([
 _ts_decorate([
     Prop({
         type: null,
-        default: ''
+        default: null
     })
 ], Picker.prototype, "itemStyle", void 0);
 _ts_decorate([
     Prop({
         type: null,
-        default: ''
+        default: null
     })
 ], Picker.prototype, "indicatorStyle", void 0);
 _ts_decorate([
@@ -227,7 +227,7 @@ _ts_decorate([
 _ts_decorate([
     Prop({
         type: null,
-        default: ''
+        default: null
     })
 ], Picker.prototype, "maskStyle", void 0);
 _ts_decorate([

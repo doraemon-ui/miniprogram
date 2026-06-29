@@ -60,12 +60,7 @@ export interface AccordionProps {
 /**
  * AccordionExpose接口定义
  */
-export interface AccordionExpose {}
-
-/**
- * AccordionInternalMethods接口定义
- */
-export interface AccordionInternalMethods {
+export interface AccordionExpose {
   /**
    * 点击面板项
    *
@@ -77,7 +72,7 @@ export interface AccordionInternalMethods {
 /**
  * AccordionInstance类型定义
  */
-export type AccordionInstance = ComponentPublicInstance<Accordion, AccordionProps, AccordionExpose> & AccordionInternalMethods
+export type AccordionInstance = ComponentPublicInstance<Accordion, AccordionProps, AccordionExpose>
 
 /**
  * AccordionPanelProps接口定义
@@ -136,28 +131,16 @@ export interface AccordionPanelProps {
 /**
  * AccordionPanelExpose接口定义
  */
-export interface AccordionPanelExpose {}
-
-/**
- * AccordionPanelInternalMethods接口定义
- */
-export interface AccordionPanelInternalMethods {
+export interface AccordionPanelExpose {
   /**
    * 更新激活状态与索引
    *
    * @return {void}
    */
   updateCurrentAndIndex(current: boolean, index: string): void
-
-  /**
-   * $data
-   * @type {Record<string, any>}
-   */
-  $data: Record<string, any>
 }
 
 /**
  * PanelInstance类型定义
  */
-export type PanelInstance = ComponentPublicInstance<AccordionPanel, AccordionPanelProps, AccordionPanelExpose> &
-  AccordionPanelInternalMethods
+export type PanelInstance = ComponentPublicInstance<AccordionPanel, AccordionPanelProps, AccordionPanelExpose>

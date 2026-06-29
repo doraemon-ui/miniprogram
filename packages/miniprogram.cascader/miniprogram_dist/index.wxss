@@ -1,16 +1,15 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-cascader {
   width: 100%;
   overflow: hidden;
   position: relative;
   display: flex;
   flex-direction: column;
-  font-size: var(--dora-cascader-font-size, 14px);
-  font-size: var(--dora-cascader-font-size, 14px);
+  font-size: 28rpx;
+  font-size: var(--dora-cascader-font-size, 28rpx);
   line-height: 1.5;
-  color: var(--dora-cascader-color, rgba(var(--dora-text-color-rgb, 0, 0, 0), 0.55));
-  color: var(--dora-cascader-color, rgba(var(--dora-text-color-rgb, 0, 0, 0), 0.55));
+  color: rgba(0,0,0,0.65);
+  color: var(--dora-cascader-color, rgba(var(--dora-text-color-rgb, 0, 0, 0), 0.65));
 }
 
 .dora-cascader__hd {
@@ -25,10 +24,10 @@
   left: 0;
   bottom: 0;
   right: 0;
-  height: 1px;
-  border-bottom: 1px solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
-  border-bottom: 1px solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
-  color: var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  height: 2rpx;
+  border-bottom: 2rpx solid #d9d9d9;
+  border-bottom: 2rpx solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  color: #d9d9d9;
   color: var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
   transform-origin: 0 100%;
   transform: scaleY(0.5);
@@ -44,11 +43,11 @@
 .dora-cascader__toolbar {
   position: relative;
   width: 100%;
-  font-size: 17px;
+  font-size: 34rpx;
   line-height: 1.5;
-  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.55);
-  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.55);
-  background-color: var(--dora-cascader-toolbar-bg, #f7f7f8);
+  color: rgba(0,0,0,0.65);
+  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.65);
+  background-color: #f7f7f8;
   background-color: var(--dora-cascader-toolbar-bg, #f7f7f8);
 }
 
@@ -58,17 +57,17 @@
   left: 0;
   top: 0;
   right: 0;
-  height: 1px;
-  border-top: 1px solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
-  border-top: 1px solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
-  color: var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  height: 2rpx;
+  border-top: 2rpx solid #d9d9d9;
+  border-top: 2rpx solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  color: #d9d9d9;
   color: var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
   transform-origin: 0 0;
   transform: scaleY(0.5);
 }
 
 .dora-cascader__inner {
-  height: 44px;
+  height: 88rpx;
   display: flex;
   text-align: center;
 }
@@ -78,11 +77,11 @@
   display: block;
   width: 100%;
   padding: 0;
-  font-size: 17px;
+  font-size: 34rpx;
   font-weight: normal;
-  line-height: 44px;
-  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.55);
-  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.55);
+  line-height: 88rpx;
+  color: rgba(0,0,0,0.65);
+  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.65);
   text-align: center;
   white-space: nowrap;
 }
@@ -90,30 +89,30 @@
 .dora-cascader__button {
   position: absolute;
   box-sizing: border-box;
-  height: 44px;
-  line-height: 44px;
-  padding: 0 15px;
+  height: 88rpx;
+  line-height: 88rpx;
+  padding: 0 30rpx;
   z-index: 10;
 }
 
 .dora-cascader__button--cancel {
   left: 0;
-  color: var(--dora-color-stable, #92949c);
-  color: var(--dora-color-stable, #92949c);
+  color: #636469;
+  color: var(--dora-color-stable, #636469);
 }
 
 .dora-cascader__button--confirm {
   right: 0;
-  color: var(--dora-color-balanced, #2dd36f);
+  color: #2dd36f;
   color: var(--dora-color-balanced, #2dd36f);
 }
 
 .dora-cascader__button--hover {
-  background-color: var(--dora-active-state-bg, var(--dora-color-step-10, #e6e6e6));
+  background-color: #e6e6e6;
   background-color: var(--dora-active-state-bg, var(--dora-color-step-10, #e6e6e6));
 }
 
 .dora-cascader__button--disabled {
-  opacity: var(--dora-disabled-opacity, 0.3);
+  opacity: 0.3;
   opacity: var(--dora-disabled-opacity, 0.3);
 }

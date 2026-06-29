@@ -11,6 +11,10 @@
   "module": "miniprogram_dist/index.js",
   "devMain": "src/index.ts",
   "types": "index.d.ts",
+  "files": [
+    "index.d.ts",
+    "miniprogram_dist"
+  ],
   "keywords": [
     "doraemon-ui",
     "miniprogram",
@@ -19,7 +23,8 @@
   "scripts": {
     "serve": "dora serve ./playground --open --build-npm",
     "build:dev": "dora build --watch",
-    "build": "dora build",
+    "build": "dora build && pnpm build:dts",
+    "build:dts": "cross-env NODE_ENV=production tsx build-dts.ts",
     "test": "cross-env NODE_ENV=testing jest --coverage",
     "clean": "cross-env rimraf miniprogram_dist/* .coverage-report/*",
     "preversion": "pnpm clean && pnpm build && pnpm test"
@@ -31,11 +36,13 @@
     "@doraemon-ui/style": "workspace:*"
   },
   "devDependencies": {
-    "@doraemon-ui/miniprogram.cli": "0.0.2-alpha.57",
+    "@doraemon-ui/miniprogram.cli": "0.0.2-alpha.65",
+    "@doraemon-ui/miniprogram.tools": "0.0.2-alpha.65",
     "@types/node": "^25.5.2",
     "cross-env": "^7.0.3",
     "jest": "^30.3.0",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "tsx": "^4.21.0"
   },
   "publishConfig": {
     "access": "public"

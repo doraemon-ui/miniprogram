@@ -1,6 +1,6 @@
 import { miniprogramThis } from './global'
 
-const fakeMediaResult = (request, response) => {
+function fakeMediaResult(request, response) {
   if ('type' in response) {
     return response
   }

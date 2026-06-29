@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.shared.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-06-11, 13:53:32.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.34.
+ * Built on 2026-06-27, 16:55:27.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.41.
  */
 
 import { createDecorator, Doraemon } from '@doraemon-ui/miniprogram.core-js';
@@ -128,10 +128,10 @@ var decorators = {
     useControlledState
 };
 
-const check = (it)=>{
+function check(it) {
     return it && typeof it.env && it;
-};
-const miniprogramThis = check(typeof wx === 'object' && wx);
+}
+const miniprogramThis = check(typeof wx === 'object' && wx) || check(typeof tt === 'object' && tt);
 
 /**
  * 判断小程序环境
@@ -163,7 +163,7 @@ const miniprogramThis = check(typeof wx === 'object' && wx);
     return (instance?.selectComponent(selector)) || null;
 }
 
-const fakeMediaResult = (request, response)=>{
+function fakeMediaResult(request, response) {
     if ('type' in response) {
         return response;
     }
@@ -192,7 +192,7 @@ const fakeMediaResult = (request, response)=>{
             })),
         type: 'image'
     };
-};
+}
 /**
  * ## 拍摄或从手机相册中选择图片或视频。
  *
@@ -516,7 +516,9 @@ const round = Math.round;
     }
     return numList;
 }
-const parseHSVorHSL = (num, _, index)=>index === 0 ? num : num / 100;
+function parseHSVorHSL(num, _, index) {
+    return index === 0 ? num : num / 100;
+}
 /** round and limit number to integer between 0-255 */ function limitRange(value, max) {
     const mergedMax = max || 255;
     if (value > mergedMax) {
@@ -1253,7 +1255,8 @@ var util = {
  */ function useSelectorAll(selector, instance) {
     return canUseMP() ? useQuery(instance).selectAll(selector) : null;
 }
-const makeFields = ()=>({
+function makeFields() {
+    return {
         id: true,
         dataset: true,
         mark: true,
@@ -1269,8 +1272,9 @@ const makeFields = ()=>({
             'borderLeftWidth'
         ],
         node: true
-    });
-const makeNodeRef = (node)=>{
+    };
+}
+function makeNodeRef(node) {
     const borderRightWidth = pxToNumber(node.borderRightWidth || 0);
     const borderLeftWidth = pxToNumber(node.borderLeftWidth || 0);
     const borderTopWidth = pxToNumber(node.borderTopWidth || 0);
@@ -1303,7 +1307,7 @@ const makeNodeRef = (node)=>{
         scrollWidth: node.scrollWidth,
         node: node.node
     };
-};
+}
 /**
  * 获取第一个节点的相关信息
  *
@@ -1541,7 +1545,7 @@ function downloadImage(imageUrl) {
 
 /**
  * 获取触摸点位置信息
- */ const getTouchPoints = (nativeEvent, index = 0)=>{
+ */ function getTouchPoints(nativeEvent, index = 0) {
     const touches = nativeEvent.touches;
     const changedTouches = nativeEvent.changedTouches;
     const hasTouches = touches && touches.length > 0;
@@ -1551,32 +1555,36 @@ function downloadImage(imageUrl) {
         x: points.pageX,
         y: points.pageY
     };
-};
+}
 /**
  * 获取触摸点个数
- */ const getPointsNumber = (e)=>e.touches?.length || e.changedTouches?.length || 0;
+ */ function getPointsNumber(e) {
+    return e.touches?.length || e.changedTouches?.length || 0;
+}
 /**
  * 判断是否为同一点
- */ const isEqualPoints = (p1, p2)=>p1.x === p2.x && p1.y === p2.y;
+ */ function isEqualPoints(p1, p2) {
+    return p1.x === p2.x && p1.y === p2.y;
+}
 /**
  * 判断是否为相近的两点
- */ const isNearbyPoints = (p1, p2, DOUBLE_TAP_RADIUS = 25)=>{
+ */ function isNearbyPoints(p1, p2, DOUBLE_TAP_RADIUS = 25) {
     const xMove = Math.abs(p1.x - p2.x);
     const yMove = Math.abs(p1.y - p2.y);
     return xMove < DOUBLE_TAP_RADIUS && yMove < DOUBLE_TAP_RADIUS;
-};
+}
 /**
  * 获取两点之间的距离
- */ const getPointsDistance = (p1, p2)=>{
+ */ function getPointsDistance(p1, p2) {
     const xMove = Math.abs(p1.x - p2.x);
     const yMove = Math.abs(p1.y - p2.y);
     return Math.sqrt(xMove * xMove + yMove * yMove);
-};
+}
 /**
  * 获取触摸移动方向
- */ const getSwipeDirection = (x1, x2, y1, y2)=>{
+ */ function getSwipeDirection(x1, x2, y1, y2) {
     return Math.abs(x1 - x2) >= Math.abs(y1 - y2) ? x1 - x2 > 0 ? 'Left' : 'Right' : y1 - y2 > 0 ? 'Up' : 'Down';
-};
+}
 
 /**
  * openType 属性可选值为 navigateTo、redirectTo、switchTab、navigateBack、reLaunch
@@ -1701,7 +1709,7 @@ var dom = {
  *
  * @param color Semantic preset color name
  * @returns Preset color class map or `null` when no preset color matches
- */ const useColorCls = (color)=>{
+ */ function useColorCls(color) {
     if (!isPresetColor(color)) {
         return null;
     }
@@ -1709,7 +1717,7 @@ var dom = {
         ['dora-color']: !!color,
         [`dora-color--${color}`]: !!color
     };
-};
+}
 
 /**
  * Generate CSS variable root class name.
@@ -1726,7 +1734,9 @@ var dom = {
  *
  * @param prefixCls Component prefix class name
  * @returns Root class name used for CSS variable styles
- */ const useCSSVarCls = (prefixCls)=>`${prefixCls}--css-var`;
+ */ function useCSSVarCls(prefixCls) {
+    return `${prefixCls}--css-var`;
+}
 
 /**
  * Generate external class names for semantic slots.
@@ -1743,9 +1753,9 @@ var dom = {
  *
  * @param semanticName Semantic slot names
  * @returns External class names in the same order as the input names
- */ const useExternalCls = (semanticName)=>{
+ */ function useExternalCls(semanticName) {
     return semanticName.map((name)=>`dora-${name}-class`);
-};
+}
 
 /**
  * Generate hover class name.
@@ -1770,9 +1780,9 @@ var dom = {
  * @param hoverClass Custom hover class name
  * @param modifier BEM modifier name for hover state
  * @returns Resolved hover class name
- */ const useHoverCls = (prefixCls, hoverClass, modifier = 'hover')=>{
+ */ function useHoverCls(prefixCls, hoverClass, modifier = 'hover') {
     return hoverClass && hoverClass !== 'default' ? hoverClass : `${prefixCls}--${modifier}`;
-};
+}
 
 const { classNames, styleToCssString: stringifyStyle } = Doraemon.util;
 /**
@@ -1831,7 +1841,7 @@ const { classNames, styleToCssString: stringifyStyle } = Doraemon.util;
  * @param schema Semantic schema definition
  * @param classNameList Semantic class name sources
  * @returns Merged semantic class name object
- */ const mergeClassNames = (schema = {}, ...classNameList)=>{
+ */ function mergeClassNames(schema = {}, ...classNameList) {
     return classNameList.filter((item)=>Boolean(item)).reduce((acc, cur)=>{
         // Loop keys of the current classNames
         Object.keys(cur).forEach((key)=>{
@@ -1856,7 +1866,7 @@ const { classNames, styleToCssString: stringifyStyle } = Doraemon.util;
         });
         return acc;
     }, {});
-};
+}
 // =========================== Styles ===========================
 function mergeStyleValue(prev, cur) {
     if (typeof prev === 'string' || typeof cur === 'string') {
@@ -1883,7 +1893,7 @@ function mergeStyleValue(prev, cur) {
  *
  * @param styles Semantic style sources
  * @returns Merged semantic style object
- */ const mergeStyles = (...styles)=>{
+ */ function mergeStyles(...styles) {
     return styles.filter((item)=>Boolean(item)).reduce((acc, cur = {})=>{
         const currentStyles = cur;
         Object.keys(currentStyles).forEach((key)=>{
@@ -1891,7 +1901,7 @@ function mergeStyleValue(prev, cur) {
         });
         return acc;
     }, {});
-};
+}
 function stringifySemanticStyles(styles) {
     const result = {};
     Object.keys(styles).forEach((key)=>{
@@ -1911,9 +1921,9 @@ function stringifySemanticStyles(styles) {
  * @param value Static value or value factory
  * @param info Runtime props info passed to the factory
  * @returns Resolved semantic class/style value
- */ const resolveStyleOrClass = (value, info)=>{
+ */ function resolveStyleOrClass(value, info) {
     return isFunction(value) ? value(info) : value;
-};
+}
 /**
  * Resolve and merge semantic class name sources.
  *
@@ -1921,29 +1931,29 @@ function stringifySemanticStyles(styles) {
  * @param info Runtime props info passed to factories
  * @param schema Semantic schema definition for nested structures
  * @returns Merged semantic class names
- */ const useMergeSemanticClassNames = (classNamesList, info, schema)=>{
+ */ function useMergeSemanticClassNames(classNamesList, info, schema) {
     const resolvedClassNamesList = classNamesList.map((classNames)=>classNames ? resolveStyleOrClass(classNames, info) : undefined);
     return mergeClassNames(schema, ...resolvedClassNamesList);
-};
+}
 /**
  * Resolve and merge semantic style sources.
  *
  * @param stylesList Semantic style sources or factories
  * @param info Runtime props info passed to factories
  * @returns Merged semantic styles
- */ const useMergeSemanticStyles = (stylesList, info)=>{
+ */ function useMergeSemanticStyles(stylesList, info) {
     const resolvedStylesList = stylesList.map((styles)=>styles ? resolveStyleOrClass(styles, info) : undefined);
     return mergeStyles(...resolvedStylesList);
-};
+}
 /**
  * Resolve, merge, and stringify semantic style sources.
  *
  * @param stylesList Semantic style sources or factories
  * @param info Runtime props info passed to factories
  * @returns Merged semantic styles as serialized css strings
- */ const useMergeSemanticStylesString = (stylesList, info)=>{
+ */ function useMergeSemanticStylesString(stylesList, info) {
     return stringifySemanticStyles(useMergeSemanticStyles(stylesList, info));
-};
+}
 /**
  * Merge semantic class names and styles from multiple sources.
  *
@@ -1967,7 +1977,7 @@ function stringifySemanticStyles(styles) {
  * @param info Runtime props info passed to factories
  * @param schema Semantic schema definition for nested structures
  * @returns Tuple of merged class names and merged styles
- */ const useMergeSemantic = (classNamesList, stylesList, info, schema)=>{
+ */ function useMergeSemantic(classNamesList, stylesList, info, schema) {
     const mergedClassNames = useMergeSemanticClassNames(classNamesList, info, schema);
     const mergedStyles = useMergeSemanticStyles(stylesList, info);
     if (!schema) {
@@ -1980,7 +1990,7 @@ function stringifySemanticStyles(styles) {
         fillObjectBySchema(mergedClassNames, schema),
         fillObjectBySchema(mergedStyles, schema)
     ];
-};
+}
 
 var hooks = {
     useColorCls,

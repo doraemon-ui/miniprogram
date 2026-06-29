@@ -143,7 +143,7 @@ class Accordion extends Doraemon {
     }
 
     if (this.keys.length !== elements.length) {
-      this.keys = elements.map((element) => element.$data)
+      this.keys = elements.map((element, index) => ({ key: element.key, index: String(index) }))
     }
   }
 

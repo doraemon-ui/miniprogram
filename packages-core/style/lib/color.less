@@ -1,8 +1,6 @@
 @import './var.light.less';
 @import './themes.less';
 
-/*! inject:wxss:../../@doraemon-ui/style/color.wxss */
-
 // Colors
 // --------------------------------------------------
 each(@colors, {
@@ -23,4 +21,3 @@ each(@colors, {
     --dora-color-contrast-rgb: var(~"--dora-color-@{k}-contrast-rgb", #color-to-rgb-list(@contrast)[]) !important;
   }
 });
-/*! endinject */

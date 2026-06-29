@@ -1,4 +1,4 @@
-import { initComponents, useThrottle } from '../instance/components'
+import { initComponents, useRelation } from '../instance/components'
 import { initComputed } from '../instance/computed'
 import { config } from '../instance/config'
 import { initData } from '../instance/data'
@@ -8,7 +8,9 @@ import { initMethods } from '../instance/methods'
 import { initProps } from '../instance/props'
 import { initProxy } from '../instance/proxy'
 import { initRefs } from '../instance/refs'
+import { logicalTree } from '../instance/logicalTree'
 import { initWatch } from '../instance/watch'
+import { ENV_TYPE, getEnv } from '../util/env'
 import { isDef } from '../util/isDef'
 import { setUpdatePerformance } from '../util/perf'
 import { syncPropsToData } from './syncPropsToData'
@@ -78,7 +80,8 @@ export function defineComponentHOC(externalOptions: ComponentExternalOptions = {
       relations: { ...components },
       behaviors: (Array.isArray(externalOptions.behaviors) ? externalOptions.behaviors : []).concat([
         'wx://component-export',
-        useThrottle(),
+        ...(getEnv() === ENV_TYPE.TT ? [logicalTree()] : []),
+        useRelation(components),
         syncPropsToData(defaultProps, options.computed),
       ]),
       observers: {

@@ -1,37 +1,36 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-notice-bar {
+  background-color: #fffbe8;
   background-color: var(--dora-notice-bar-bg, #fffbe8);
-  background-color: var(--dora-notice-bar-bg, #fffbe8);
-  height: var(--dora-notice-bar-height, 72rpx);
+  height: 72rpx;
   height: var(--dora-notice-bar-height, 72rpx);
   overflow: hidden;
+  font-size: 26rpx;
   font-size: var(--dora-notice-bar-font-size, 26rpx);
-  font-size: var(--dora-notice-bar-font-size, 26rpx);
+  line-height: 72rpx;
   line-height: var(--dora-notice-bar-height, 72rpx);
-  line-height: var(--dora-notice-bar-height, 72rpx);
-  color: var(--dora-notice-bar-color, #f76a24);
+  color: #f76a24;
   color: var(--dora-notice-bar-color, #f76a24);
   display: flex;
-  padding: 0 var(--dora-notice-bar-icon-margin, 16rpx);
+  padding: 0 16rpx;
   padding: 0 var(--dora-notice-bar-icon-margin, 16rpx);
 }
 
 .dora-notice-bar__icon {
+  width: 32rpx;
   width: var(--dora-notice-bar-icon-size, 32rpx);
-  width: var(--dora-notice-bar-icon-size, 32rpx);
+  height: 32rpx;
   height: var(--dora-notice-bar-icon-size, 32rpx);
-  height: var(--dora-notice-bar-icon-size, 32rpx);
-  margin-right: var(--dora-notice-bar-icon-margin, 16rpx);
+  margin-right: 16rpx;
   margin-right: var(--dora-notice-bar-icon-margin, 16rpx);
 }
 
 .dora-notice-bar__action {
+  width: 32rpx;
   width: var(--dora-notice-bar-icon-size, 32rpx);
-  width: var(--dora-notice-bar-icon-size, 32rpx);
+  height: 32rpx;
   height: var(--dora-notice-bar-icon-size, 32rpx);
-  height: var(--dora-notice-bar-icon-size, 32rpx);
-  margin-left: var(--dora-notice-bar-icon-margin, 16rpx);
+  margin-left: 16rpx;
   margin-left: var(--dora-notice-bar-icon-margin, 16rpx);
 }
 

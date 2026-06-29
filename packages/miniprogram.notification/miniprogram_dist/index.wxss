@@ -1,38 +1,37 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-notification {
-  --text-color: var(--dora-notification-text-color, rgba(var(--dora-white-rgb, 255, 255, 255), 1));
+  --text-color: var(--dora-notification-text-color, rgba(var(--dora-white-rgb, 255, 255, 255), 0.85));
   --right-text-color: var(--dora-notification-right-text-color, rgba(var(--dora-white-rgb, 255, 255, 255), 0.65));
   --background-color: var(--dora-notification-background-color, var(--dora-black, #000));
-  --border-radius: var(--dora-notification-border-radius, var(--dora-border-radius-lg, 12px));
-  --icon-size: var(--dora-notification-icon-size, 28px);
-  --font-size: var(--dora-notification-font-size, 14px);
+  --border-radius: var(--dora-notification-border-radius, var(--dora-border-radius-lg, 24rpx));
+  --icon-size: var(--dora-notification-icon-size, 56rpx);
+  --font-size: var(--dora-notification-font-size, 28rpx);
   --line-height: var(--dora-notification-line-height, 1.5);
-  --margin: var(--dora-notification-margin, 8px);
-  --padding: var(--dora-notification-padding, 16px);
-  --max-width: var(--dora-notification-max-width, 568px);
+  --margin: var(--dora-notification-margin, 16rpx);
+  --padding: var(--dora-notification-padding, 32rpx);
+  --max-width: var(--dora-notification-max-width, 1136rpx);
   --z-index: var(--dora-notification-z-index, var(--dora-component-z-index, 1000));
   box-sizing: border-box;
   position: fixed;
+  top: 16rpx;
   top: var(--margin);
-  top: var(--margin);
+  left: 16rpx;
   left: var(--margin);
-  left: var(--margin);
+  width: calc(100% - 16rpx*2);
   width: calc(100% - var(--margin)*2);
-  width: calc(100% - var(--margin)*2);
+  max-width: 1136rpx;
   max-width: var(--max-width);
-  max-width: var(--max-width);
-  z-index: var(--z-index);
+  z-index: 1000;
   z-index: var(--z-index);
   margin: 0;
-  font-size: var(--font-size);
+  font-size: 28rpx;
   font-size: var(--font-size);
   border: none;
+  border-radius: 24rpx;
   border-radius: var(--border-radius);
-  border-radius: var(--border-radius);
+  background: #000;
   background: var(--background-color);
-  background: var(--background-color);
-  color: var(--text-color);
+  color: rgba(255,255,255,0.85);
   color: var(--text-color);
   transition-duration: 0.3s;
 }
@@ -40,9 +39,9 @@
 .dora-notification__content {
   display: flex;
   align-items: center;
+  gap: 32rpx;
   gap: var(--padding);
-  gap: var(--padding);
-  padding: var(--padding);
+  padding: 32rpx;
   padding: var(--padding);
 }
 
@@ -51,12 +50,12 @@
 }
 
 .dora-notification__icon {
+  width: 56rpx;
   width: var(--icon-size);
-  width: var(--icon-size);
-  height: var(--icon-size);
+  height: 56rpx;
   height: var(--icon-size);
   font-size: 0;
-  line-height: var(--icon-size);
+  line-height: 56rpx;
   line-height: var(--icon-size);
 }
 
@@ -78,51 +77,51 @@
 }
 
 .dora-notification__title {
-  font-size: var(--font-size);
+  font-size: 28rpx;
   font-size: var(--font-size);
   font-weight: bold;
   letter-spacing: 0.02em;
-  line-height: var(--line-height);
+  line-height: 1.5;
   line-height: var(--line-height);
 }
 
 .dora-notification__title-right-text {
   margin-left: auto;
+  color: rgba(255,255,255,0.65);
   color: var(--right-text-color);
-  color: var(--right-text-color);
+  font-size: 28rpx;
   font-size: var(--font-size);
-  font-size: var(--font-size);
-  line-height: var(--line-height);
+  line-height: 1.5;
   line-height: var(--line-height);
 }
 
 .dora-notification__close-button {
+  font-size: 28rpx;
   font-size: var(--font-size);
-  font-size: var(--font-size);
-  height: 20px;
+  height: 40rpx;
   transition-duration: 0.3s;
-  width: 20px;
+  width: 40rpx;
   margin-left: auto;
   position: relative;
 }
 
 .dora-notification__title-right-text+.dora-notification__close-button {
-  margin-left: 12px;
+  margin-left: 24rpx;
 }
 
 .dora-notification__subtitle {
-  font-size: var(--font-size);
+  font-size: 28rpx;
   font-size: var(--font-size);
   font-weight: 600;
-  line-height: var(--line-height);
+  line-height: 1.5;
   line-height: var(--line-height);
 }
 
 .dora-notification__text {
-  font-size: var(--font-size);
+  font-size: 28rpx;
   font-size: var(--font-size);
   font-weight: 400;
-  line-height: var(--line-height);
+  line-height: 1.5;
   line-height: var(--line-height);
   word-break: break-word;
 }

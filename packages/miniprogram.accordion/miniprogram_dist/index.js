@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.accordion.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-07, 16:42:48.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
+ * Built on 2026-06-27, 16:55:25.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.41.
  */
 
 import { Prop, Watch, Emit, Component, defineComponentHOC, Doraemon } from '@doraemon-ui/miniprogram.core-js';
@@ -48,7 +48,10 @@ let Accordion = class Accordion extends Doraemon {
             });
         }
         if (this.keys.length !== elements.length) {
-            this.keys = elements.map((element)=>element.$data);
+            this.keys = elements.map((element, index)=>({
+                    key: element.key,
+                    index: String(index)
+                }));
         }
     }
     setActiveKey(activeKey) {
@@ -75,6 +78,9 @@ let Accordion = class Accordion extends Doraemon {
             ];
         }
         this.setActiveKey(activeKey);
+    }
+    onChildrenChanged() {
+        this.updated();
     }
     mounted() {
         const { defaultCurrent, current, controlled } = this;
@@ -135,9 +141,7 @@ Accordion = _ts_decorate([
             Panel: ()=>({
                     module: './panel',
                     type: 'child',
-                    observer () {
-                        this.updated();
-                    }
+                    observer: 'onChildrenChanged'
                 })
         },
         props: {

@@ -1,12 +1,11 @@
 /**
  * @doraemon-ui/miniprogram.animation-group.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-16, 15:32:39.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
+ * Built on 2026-06-27, 16:55:32.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.41.
  */
 
 import { Doraemon, Prop, Watch, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
-import { AnimateType, AnimateStatus } from './types.js';
 import { useRect } from '@doraemon-ui/miniprogram.shared';
 
 function _ts_decorate(decorators, target, key, desc) {
@@ -16,6 +15,19 @@ function _ts_decorate(decorators, target, key, desc) {
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 }
 const { styleToCssString } = Doraemon.util;
+const AnimateStatusMap = {
+    ENTER: 'enter',
+    ENTERING: 'entering',
+    ENTERED: 'entered',
+    EXIT: 'exit',
+    EXITING: 'exiting',
+    EXITED: 'exited',
+    UNMOUNTED: 'unmounted'
+};
+const AnimateTypeMap = {
+    TRANSITION: 'transition',
+    ANIMATION: 'animation'
+};
 /**
  * 默认动画类名
  */ const defaultClassNames = {
@@ -41,7 +53,7 @@ let AnimationGroup = class AnimationGroup extends Doraemon {
    */ updateStatus(nextStatus, mounting = false) {
         if (nextStatus !== null) {
             this.isAppearing = mounting;
-            if (nextStatus === AnimateStatus.ENTERING) {
+            if (nextStatus === AnimateStatusMap.ENTERING) {
                 this.performEnter();
             } else {
                 this.performExit();
@@ -51,7 +63,7 @@ let AnimationGroup = class AnimationGroup extends Doraemon {
     /**
    * 获取指定状态下的类名
    *
-   * @param {(AnimateStatus.ENTER | AnimateStatus.EXIT)} scene 动画场景，enter 或 exit
+   * @param {'enter' | 'exit'} scene 动画场景，enter 或 exit
    * @returns
    * @memberof AnimationGroup
    */ getClassNames(scene) {
@@ -109,14 +121,14 @@ let AnimationGroup = class AnimationGroup extends Doraemon {
    * @returns
    * @memberof AnimationGroup
    */ performEnter() {
-        const { className, activeClassName } = this.getClassNames(AnimateStatus.ENTER);
+        const { className, activeClassName } = this.getClassNames(AnimateStatusMap.ENTER);
         const { enter } = this.getTimeouts();
         const enterParams = {
-            animateStatus: AnimateStatus.ENTER,
+            animateStatus: AnimateStatusMap.ENTER,
             animateCss: className
         };
         const enteringParams = {
-            animateStatus: AnimateStatus.ENTERING,
+            animateStatus: AnimateStatusMap.ENTERING,
             animateCss: `${className} ${activeClassName}`
         };
         // 若已禁用进场动画，则更新状态至 ENTERED
@@ -128,17 +140,17 @@ let AnimationGroup = class AnimationGroup extends Doraemon {
         // 第三阶段：若已设置过渡的持续时间，则延迟指定时间后触发进场动画完成 performEntered，否则等待触发 onTransitionEnd 或 onAnimationEnd
         this.setNextAnimate(enterParams, async ()=>{
             this.$emit('change', {
-                animateStatus: AnimateStatus.ENTER
+                animateStatus: AnimateStatusMap.ENTER
             });
-            this.$emit(AnimateStatus.ENTER, {
+            this.$emit(AnimateStatusMap.ENTER, {
                 isAppearing: this.isAppearing
             });
             await delayHandler();
             this.setNextAnimate(enteringParams, ()=>{
                 this.$emit('change', {
-                    animateStatus: AnimateStatus.ENTERING
+                    animateStatus: AnimateStatusMap.ENTERING
                 });
-                this.$emit(AnimateStatus.ENTERING, {
+                this.$emit(AnimateStatusMap.ENTERING, {
                     isAppearing: this.isAppearing
                 });
                 if (enter) {
@@ -154,17 +166,17 @@ let AnimationGroup = class AnimationGroup extends Doraemon {
    *
    * @memberof AnimationGroup
    */ performEntered() {
-        const { doneClassName } = this.getClassNames(AnimateStatus.ENTER);
+        const { doneClassName } = this.getClassNames(AnimateStatusMap.ENTER);
         const enteredParams = {
-            animateStatus: AnimateStatus.ENTERED,
+            animateStatus: AnimateStatusMap.ENTERED,
             animateCss: doneClassName
         };
         // 第三阶段：设置进场动画的完成状态，并触发 ENTERED 事件
         this.setNextAnimate(enteredParams, ()=>{
             this.$emit('change', {
-                animateStatus: AnimateStatus.ENTERED
+                animateStatus: AnimateStatusMap.ENTERED
             });
-            this.$emit(AnimateStatus.ENTERED, {
+            this.$emit(AnimateStatusMap.ENTERED, {
                 isAppearing: this.isAppearing
             });
         });
@@ -175,14 +187,14 @@ let AnimationGroup = class AnimationGroup extends Doraemon {
    * @returns
    * @memberof AnimationGroup
    */ performExit() {
-        const { className, activeClassName } = this.getClassNames(AnimateStatus.EXIT);
+        const { className, activeClassName } = this.getClassNames(AnimateStatusMap.EXIT);
         const { exit } = this.getTimeouts();
         const exitParams = {
-            animateStatus: AnimateStatus.EXIT,
+            animateStatus: AnimateStatusMap.EXIT,
             animateCss: className
         };
         const exitingParams = {
-            animateStatus: AnimateStatus.EXITING,
+            animateStatus: AnimateStatusMap.EXITING,
             animateCss: `${className} ${activeClassName}`
         };
         // 若已禁用离场动画，则更新状态至 EXITED
@@ -194,15 +206,15 @@ let AnimationGroup = class AnimationGroup extends Doraemon {
         // 第三阶段：若已设置过渡的持续时间，则延迟指定时间后触发离场动画完成 performExited，否则等待触发 onTransitionEnd 或 onAnimationEnd
         this.setNextAnimate(exitParams, async ()=>{
             this.$emit('change', {
-                animateStatus: AnimateStatus.EXIT
+                animateStatus: AnimateStatusMap.EXIT
             });
-            this.$emit(AnimateStatus.EXIT);
+            this.$emit(AnimateStatusMap.EXIT);
             await delayHandler();
             this.setNextAnimate(exitingParams, ()=>{
                 this.$emit('change', {
-                    animateStatus: AnimateStatus.EXITING
+                    animateStatus: AnimateStatusMap.EXITING
                 });
-                this.$emit(AnimateStatus.EXITING);
+                this.$emit(AnimateStatusMap.EXITING);
                 if (exit) {
                     setTimeout(()=>{
                         this.performExited();
@@ -216,24 +228,24 @@ let AnimationGroup = class AnimationGroup extends Doraemon {
    *
    * @memberof AnimationGroup
    */ performExited() {
-        const { doneClassName } = this.getClassNames(AnimateStatus.EXIT);
+        const { doneClassName } = this.getClassNames(AnimateStatusMap.EXIT);
         const exitedParams = {
-            animateStatus: AnimateStatus.EXITED,
+            animateStatus: AnimateStatusMap.EXITED,
             animateCss: doneClassName
         };
         // 第三阶段：设置离场动画的完成状态，并触发 EXITED 事件
         this.setNextAnimate(exitedParams, ()=>{
             this.$emit('change', {
-                animateStatus: AnimateStatus.EXITED
+                animateStatus: AnimateStatusMap.EXITED
             });
-            this.$emit(AnimateStatus.EXITED);
+            this.$emit(AnimateStatusMap.EXITED);
             // 判断离场动画完成时是否卸载组件
             if (this.unmountOnExit) {
                 this.setNextAnimate({
-                    animateStatus: AnimateStatus.UNMOUNTED
+                    animateStatus: AnimateStatusMap.UNMOUNTED
                 }, ()=>{
                     this.$emit('change', {
-                        animateStatus: AnimateStatus.UNMOUNTED
+                        animateStatus: AnimateStatusMap.UNMOUNTED
                     });
                 });
             }
@@ -261,10 +273,10 @@ let AnimationGroup = class AnimationGroup extends Doraemon {
    */ addEventListener() {
         const { animateStatus } = this;
         const { enter, exit } = this.getTimeouts();
-        if (animateStatus === AnimateStatus.ENTERING && !enter && this.enter) {
+        if (animateStatus === AnimateStatusMap.ENTERING && !enter && this.enter) {
             this.performEntered();
         }
-        if (animateStatus === AnimateStatus.EXITING && !exit && this.exit) {
+        if (animateStatus === AnimateStatusMap.EXITING && !exit && this.exit) {
             this.performExited();
         }
     }
@@ -273,7 +285,7 @@ let AnimationGroup = class AnimationGroup extends Doraemon {
    *
    * @memberof AnimationGroup
    */ onTransitionEnd() {
-        if (this.type === AnimateType.TRANSITION) {
+        if (this.type === AnimateTypeMap.TRANSITION) {
             this.addEventListener();
         }
     }
@@ -282,7 +294,7 @@ let AnimationGroup = class AnimationGroup extends Doraemon {
    *
    * @memberof AnimationGroup
    */ onAnimationEnd() {
-        if (this.type === AnimateType.ANIMATION) {
+        if (this.type === AnimateTypeMap.ANIMATION) {
             this.addEventListener();
         }
     }
@@ -295,22 +307,22 @@ let AnimationGroup = class AnimationGroup extends Doraemon {
         let { animateStatus } = this;
         let nextStatus = null;
         if (newVal) {
-            if (animateStatus === AnimateStatus.UNMOUNTED) {
-                animateStatus = AnimateStatus.EXITED;
+            if (animateStatus === AnimateStatusMap.UNMOUNTED) {
+                animateStatus = AnimateStatusMap.EXITED;
                 this.setNextAnimate({
-                    animateStatus: AnimateStatus.EXITED
+                    animateStatus: AnimateStatusMap.EXITED
                 }, ()=>{
                     this.$emit('change', {
-                        animateStatus: AnimateStatus.EXITED
+                        animateStatus: AnimateStatusMap.EXITED
                     });
                 });
             }
-            if (animateStatus !== AnimateStatus.ENTER && animateStatus !== AnimateStatus.ENTERING && animateStatus !== AnimateStatus.ENTERED) {
-                nextStatus = AnimateStatus.ENTERING;
+            if (animateStatus !== AnimateStatusMap.ENTER && animateStatus !== AnimateStatusMap.ENTERING && animateStatus !== AnimateStatusMap.ENTERED) {
+                nextStatus = AnimateStatusMap.ENTERING;
             }
         } else {
-            if (animateStatus === AnimateStatus.ENTER || animateStatus === AnimateStatus.ENTERING || animateStatus === AnimateStatus.ENTERED) {
-                nextStatus = AnimateStatus.EXITING;
+            if (animateStatus === AnimateStatusMap.ENTER || animateStatus === AnimateStatusMap.ENTERING || animateStatus === AnimateStatusMap.ENTERED) {
+                nextStatus = AnimateStatusMap.EXITING;
             }
         }
         this.updateStatus(nextStatus);
@@ -329,7 +341,7 @@ let AnimationGroup = class AnimationGroup extends Doraemon {
    * @readonly
    * @memberof AnimationGroup
    */ get show() {
-        return this._isMounted ? this.animateStatus !== AnimateStatus.UNMOUNTED : false;
+        return this._isMounted ? this.animateStatus !== AnimateStatusMap.UNMOUNTED : false;
     }
     /**
    * 组件挂载完成生命周期
@@ -341,16 +353,16 @@ let AnimationGroup = class AnimationGroup extends Doraemon {
         let appearStatus = null;
         if (props.in) {
             if (props.appear) {
-                animateStatus = AnimateStatus.EXITED;
-                appearStatus = AnimateStatus.ENTERING;
+                animateStatus = AnimateStatusMap.EXITED;
+                appearStatus = AnimateStatusMap.ENTERING;
             } else {
-                animateStatus = AnimateStatus.ENTERED;
+                animateStatus = AnimateStatusMap.ENTERED;
             }
         } else {
             if (props.unmountOnExit || props.mountOnEnter) {
-                animateStatus = AnimateStatus.UNMOUNTED;
+                animateStatus = AnimateStatusMap.UNMOUNTED;
             } else {
-                animateStatus = AnimateStatus.EXITED;
+                animateStatus = AnimateStatusMap.EXITED;
             }
         }
         this.animateStatus = animateStatus;
@@ -377,7 +389,7 @@ let AnimationGroup = class AnimationGroup extends Doraemon {
    *
    * @type {AnimateStatus}
    * @memberof AnimationGroup
-   */ this.animateStatus = AnimateStatus.EXITED;
+   */ this.animateStatus = AnimateStatusMap.EXITED;
         /**
    * 组件是否首次挂载
    *
@@ -407,7 +419,7 @@ _ts_decorate([
 _ts_decorate([
     Prop({
         type: String,
-        default: AnimateType.TRANSITION
+        default: AnimateTypeMap.TRANSITION
     })
 ], AnimationGroup.prototype, "type", void 0);
 _ts_decorate([

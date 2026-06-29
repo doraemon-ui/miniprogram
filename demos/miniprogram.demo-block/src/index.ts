@@ -1,4 +1,5 @@
 import { defineComponentHOC, Doraemon, Component, Prop } from '@doraemon-ui/miniprogram.core-js'
+import type { CSSStylePropertiesWithVars } from '@doraemon-ui/miniprogram.core-js'
 const { classNames, styleToCssString } = Doraemon.util
 
 @Component({
@@ -71,7 +72,7 @@ class DemoBlock extends Doraemon {
 
   get bodyStyle() {
     const { padding, background, direction, align } = this
-    const bodyStyle: { [key: string]: string } = {}
+    const bodyStyle: CSSStylePropertiesWithVars = {}
     if (padding) {
       bodyStyle.padding = padding
     }
@@ -87,5 +88,7 @@ class DemoBlock extends Doraemon {
     return styleToCssString(bodyStyle)
   }
 }
+
+export { DemoBlock }
 
 export default defineComponentHOC()(DemoBlock)

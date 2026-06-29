@@ -1,5 +1,5 @@
 import type { ComponentRenderProxy, Doraemon } from './init'
-import type { ComponentOptions, RelationComponent } from '../types/options'
+import type { ComponentOptions, RelationComponent, RelationType } from '../types/options'
 import { debounce } from '../util/debounce'
 import type { DebounceOptions, DebounceReturn } from '../util/debounce'
 import { throttle } from '../util/throttle'
@@ -7,12 +7,13 @@ import type { ThrottleOptions, ThrottleReturn } from '../util/throttle'
 import { isPlainObject } from '../util/isPlainObject'
 import { noop } from '../util/noop'
 import { isDef } from '../util/isDef'
+import { findLogicalAncestors } from './logicalTree'
 
 interface RelationOption {
   /**
    * 目标组件的相对关系
    */
-  type: 'parent' | 'child' | 'ancestor' | 'descendant'
+  type: RelationType
   /**
    * 关系生命周期函数，当关系被建立在页面节点树中时触发，触发时机在组件attached生命周期之后
    */
@@ -31,6 +32,53 @@ interface RelationOption {
   target?: string
 }
 
+type DebouncedRunner = (...args: any[]) => any
+
+const relationDebouncedMap = new WeakMap<ComponentRenderProxy<Doraemon>, Map<string, DebouncedRunner>>()
+const throttledFnsMap = new WeakMap<ComponentRenderProxy<Doraemon>, ThrottleReturn<any>[]>()
+const debouncedFnsMap = new WeakMap<ComponentRenderProxy<Doraemon>, DebounceReturn<any>[]>()
+
+function getRelationDebouncedMap(node: ComponentRenderProxy<Doraemon>) {
+  if (!relationDebouncedMap.has(node)) {
+    relationDebouncedMap.set(node, new Map())
+  }
+  return relationDebouncedMap.get(node) as Map<string, DebouncedRunner>
+}
+
+function getDebouncedFns(node: ComponentRenderProxy<Doraemon>) {
+  if (!debouncedFnsMap.has(node)) {
+    debouncedFnsMap.set(node, [])
+  }
+  return debouncedFnsMap.get(node) as DebounceReturn<any>[]
+}
+
+function getThrottledFns(node: ComponentRenderProxy<Doraemon>) {
+  if (!throttledFnsMap.has(node)) {
+    throttledFnsMap.set(node, [])
+  }
+  return throttledFnsMap.get(node) as ThrottleReturn<any>[]
+}
+
+export function useDebounceFn(node: ComponentRenderProxy<Doraemon>, fn: Function, wait = 50, options: Partial<DebounceOptions>) {
+  const debounced = debounce(fn.bind(node), wait, options as DebounceOptions)
+  getDebouncedFns(node).push(debounced)
+  return {
+    run: debounced,
+    cancel: debounced.cancel,
+    flush: debounced.flush,
+  }
+}
+
+export function useThrottleFn(node: ComponentRenderProxy<Doraemon>, fn: Function, wait = 50, options: ThrottleOptions) {
+  const throttled = throttle(fn.bind(node), wait, options)
+  getThrottledFns(node).push(throttled)
+  return {
+    run: throttled,
+    cancel: throttled.cancel,
+    flush: throttled.flush,
+  }
+}
+
 export function initComponents(
   vm: Doraemon,
   components: ComponentOptions<Doraemon>['components'],
@@ -41,6 +89,7 @@ export function initComponents(
     const { module: componentName, type = 'child', observer, debounce = true } = getData(components[key])
     const linkCb = function (this: ComponentRenderProxy<Doraemon>, target: ComponentRenderProxy<Doraemon>) {
       const oName = `_${componentName.replace(/\./g, '').replace(/\//g, '_')}_debounced`
+      const debouncedMap = getRelationDebouncedMap(this)
       const oFn = function (target: ComponentRenderProxy<Doraemon>) {
         const renderProxy: ComponentRenderProxy<Doraemon> = this
         if (renderProxy.$component._isMounted) {
@@ -52,7 +101,7 @@ export function initComponents(
         }
       }
       if (debounce !== undefined && debounce !== false) {
-        if (!this[oName]) {
+        if (!debouncedMap.has(oName)) {
           let opts: {
             wait: number
             options: Partial<DebounceOptions>
@@ -72,10 +121,10 @@ export function initComponents(
             }
           }
           const { wait, options } = opts
-          const { run } = this.useDebounceFn(oFn.bind(this), wait, options)
-          this[oName] = run
+          const { run } = useDebounceFn(this, oFn, wait, options)
+          debouncedMap.set(oName, run)
         }
-        this[oName].call(this, target)
+        debouncedMap.get(oName)?.call(this, target)
       } else {
         return oFn.call(this, target)
       }
@@ -119,44 +168,49 @@ export function getData(
   return {}
 }
 
-export function useThrottle() {
+export function useRelation(relations: { [componentName: string]: RelationOption } = {}) {
   return Behavior({
     lifetimes: {
       created() {
-        this.useThrottleFn = function (fn: Function, wait = 50, options: ThrottleOptions) {
-          const throttled = throttle(fn.bind(this), wait, options)
-          this._throttledFns.push(throttled)
-          return {
-            run: throttled,
-            cancel: throttled.cancel,
-            flush: throttled.flush,
+        const node = this as ComponentRenderProxy<Doraemon>
+        throttledFnsMap.set(node, [])
+        debouncedFnsMap.set(node, [])
+        relationDebouncedMap.set(node, new Map())
+      },
+      ready() {
+        Object.keys(relations).forEach((relationKey) => {
+          const relation = relations[relationKey]
+          if (!relation?.linked) return
+
+          const nodes = findLogicalAncestors(this.$component, relationKey, relation.type)
+          if (Array.isArray(nodes)) {
+            nodes.forEach((target) => {
+              if (target) {
+                relation.linked?.call(this, target)
+              }
+            })
           }
-        }
-        this.useDebounceFn = function (fn: Function, wait = 50, options: Partial<DebounceOptions>) {
-          const debounced = debounce(fn.bind(this), wait, options as DebounceOptions)
-          this._debouncedFns.push(debounced)
-          return {
-            run: debounced,
-            cancel: debounced.cancel,
-            flush: debounced.flush,
-          }
-        }
-        this._throttledFns = []
-        this._debouncedFns = []
+        })
       },
       detached() {
-        if (this._throttledFns.length > 0) {
-          ;(this._throttledFns as ThrottleReturn<any>[]).forEach((throttled) => {
+        const node = this as ComponentRenderProxy<Doraemon>
+        const throttledFns = getThrottledFns(node)
+        if (throttledFns.length > 0) {
+          throttledFns.forEach((throttled) => {
             throttled.cancel()
           })
-          this._throttledFns = []
+          throttledFnsMap.set(node, [])
         }
-        if (this._debouncedFns.length > 0) {
-          ;(this._debouncedFns as DebounceReturn<any>[]).forEach((debounced) => {
+        const debouncedFns = getDebouncedFns(node)
+        if (debouncedFns.length > 0) {
+          debouncedFns.forEach((debounced) => {
             debounced.cancel()
           })
-          this._debouncedFns = []
+          debouncedFnsMap.set(node, [])
         }
+        throttledFnsMap.delete(node)
+        debouncedFnsMap.delete(node)
+        relationDebouncedMap.delete(node)
       },
     },
   })

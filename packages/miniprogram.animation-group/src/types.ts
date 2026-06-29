@@ -3,20 +3,24 @@ import type { MiniprogramDOMRect } from '@doraemon-ui/miniprogram.shared'
 
 import type { AnimationGroup } from './index'
 
-export enum AnimateStatus {
-  ENTER = 'enter',
-  ENTERING = 'entering',
-  ENTERED = 'entered',
-  EXIT = 'exit',
-  EXITING = 'exiting',
-  EXITED = 'exited',
-  UNMOUNTED = 'unmounted',
-}
+/**
+ * AnimateStatus类型定义
+ * 'enter': 进场动画的开始状态
+ * 'entering': 进场动画的结束状态
+ * 'entered': 进场动画的完成状态
+ * 'exit': 离场动画的开始状态
+ * 'exiting': 离场动画的结束状态
+ * 'exited': 离场动画的完成状态
+ * 'unmounted': 组件已卸载
+ */
+export type AnimateStatus = 'enter' | 'entering' | 'entered' | 'exit' | 'exiting' | 'exited' | 'unmounted'
 
-export enum AnimateType {
-  TRANSITION = 'transition',
-  ANIMATION = 'animation',
-}
+/**
+ * AnimateType类型定义
+ * 'transition': 过渡效果
+ * 'animation': 动画效果
+ */
+export type AnimateType = 'transition' | 'animation'
 
 /**
  * ClassNames类型定义

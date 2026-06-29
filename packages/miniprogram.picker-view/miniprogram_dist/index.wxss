@@ -1,5 +1,4 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-picker-view {
   display: block;
   position: relative;
@@ -43,9 +42,9 @@
   box-sizing: border-box;
   height: 68rpx;
   top: 204rpx;
+  border-top: 1rpx solid #ddd;
   border-top: 1rpx solid var(--dora-border-color, #ddd);
-  border-top: 1rpx solid var(--dora-border-color, #ddd);
-  border-bottom: 1rpx solid var(--dora-border-color, #ddd);
+  border-bottom: 1rpx solid #ddd;
   border-bottom: 1rpx solid var(--dora-border-color, #ddd);
 }
 
@@ -62,7 +61,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: var(--dora-font-size-lg, 32rpx);
+  font-size: 32rpx;
   font-size: var(--dora-font-size-lg, 32rpx);
   height: 68rpx;
   line-height: 68rpx;

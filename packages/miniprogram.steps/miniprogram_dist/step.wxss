@@ -1,5 +1,4 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-steps {
   position: relative;
   width: 100%;
@@ -59,7 +58,7 @@
 .dora-step__ft::after {
   content: "";
   display: inline-block;
-  background: var(--dora-border-color, #ddd);
+  background: #ddd;
   background: var(--dora-border-color, #ddd);
   height: 4rpx;
   border-radius: 4rpx;
@@ -80,7 +79,7 @@
   position: relative;
   z-index: 2;
   margin: 0 auto;
-  border: #d9d9d9 solid 1px;
+  border: #d9d9d9 solid 2rpx;
 }
 
 .dora-step__thumb {
@@ -91,13 +90,13 @@
 }
 
 .dora-step--process .dora-step__icon {
-  border: #33cd5f solid 1px;
+  border: #33cd5f solid 2rpx;
   color: #fff;
   background: #33cd5f;
 }
 
 .dora-step--wait .dora-step__icon {
-  border: #d9d9d9 solid 1px;
+  border: #d9d9d9 solid 2rpx;
   color: #d9d9d9;
 }
 
@@ -106,7 +105,7 @@
 }
 
 .dora-step--finish .dora-step__icon {
-  border: #33cd5f solid 1px;
+  border: #33cd5f solid 2rpx;
   color: #33cd5f;
 }
 
@@ -115,7 +114,7 @@
 }
 
 .dora-step--error .dora-step__icon {
-  border: #ef473a solid 1px;
+  border: #ef473a solid 2rpx;
   color: #ef473a;
 }
 
@@ -138,17 +137,17 @@
 }
 
 .dora-step__title {
-  font-size: var(--dora-font-size-lg, 32rpx);
+  font-size: 32rpx;
   font-size: var(--dora-font-size-lg, 32rpx);
   font-weight: 700;
-  color: var(--dora-color-title, #333);
+  color: #333;
   color: var(--dora-color-title, #333);
 }
 
 .dora-step__content {
-  font-size: var(--dora-font-size-sm, 24rpx);
+  font-size: 24rpx;
   font-size: var(--dora-font-size-sm, 24rpx);
   margin-top: 6rpx;
-  color: var(--dora-color-text-base, #666);
+  color: #666;
   color: var(--dora-color-text-base, #666);
 }

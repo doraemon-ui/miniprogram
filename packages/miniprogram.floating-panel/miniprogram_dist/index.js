@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.floating-panel.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-13, 21:56:08.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
+ * Built on 2026-06-27, 16:55:46.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.41.
  */
 
 import { Doraemon, Prop, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';

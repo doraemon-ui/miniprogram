@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.radio.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:40:21.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
+ * Built on 2026-06-27, 16:55:24.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.41.
  */
 
 import { Prop, Watch, Component, defineComponentHOC, Doraemon } from '@doraemon-ui/miniprogram.core-js';
@@ -93,8 +93,8 @@ let RadioGroup = class RadioGroup extends Doraemon {
         Doraemon.nextTick(()=>{
             const proxy = this._renderProxy;
             const selectedNodes = typeof proxy.selectAllComponents === 'function' ? proxy.selectAllComponents(showOptions.length > 0 ? `.${prefixCls}__radio` : 'dora-radio') : [];
-            const relationNodes = proxy.getRelationNodes('./index');
-            const rawNodes = (selectedNodes && selectedNodes.length > 0 ? selectedNodes : relationNodes) || [];
+            const childrenNodes = this.$children;
+            const rawNodes = (selectedNodes && selectedNodes.length > 0 ? selectedNodes : childrenNodes) || [];
             const children = rawNodes.map((node)=>node.$component ? node.$component : node).filter((node)=>{
                 const child = node;
                 return typeof child.changeValue === 'function' && typeof child.value === 'string' && typeof child.title === 'string';
@@ -207,7 +207,7 @@ _ts_decorate([
 _ts_decorate([
     Prop({
         type: null,
-        default: ''
+        default: null
     })
 ], RadioGroup.prototype, "bodyStyle", void 0);
 _ts_decorate([
@@ -276,70 +276,6 @@ RadioGroup = _ts_decorate([
             prefixCls: {
                 type: String,
                 default: 'dora-radio-group'
-            },
-            cellGroupPrefixCls: {
-                type: String,
-                default: 'dora-list'
-            },
-            value: {
-                type: String,
-                default: ''
-            },
-            name: {
-                type: String,
-                default: ''
-            },
-            title: {
-                type: String,
-                default: ''
-            },
-            label: {
-                type: String,
-                default: ''
-            },
-            options: {
-                type: Array,
-                default: ()=>[]
-            },
-            disabled: {
-                type: Boolean,
-                default: false
-            },
-            readOnly: {
-                type: Boolean,
-                default: false
-            },
-            mode: {
-                type: String,
-                default: 'default'
-            },
-            bodyStyle: {
-                type: null,
-                default: ''
-            },
-            hasLine: {
-                type: Boolean,
-                default: true
-            },
-            withListComponent: {
-                type: Boolean,
-                default: true
-            },
-            iconPosition: {
-                type: String,
-                default: 'right'
-            },
-            iconSize: {
-                type: String,
-                default: ''
-            },
-            iconOn: {
-                type: String,
-                default: ''
-            },
-            iconOff: {
-                type: String,
-                default: ''
             }
         },
         expose: [

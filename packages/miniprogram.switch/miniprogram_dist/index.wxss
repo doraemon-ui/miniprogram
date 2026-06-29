@@ -1,5 +1,4 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-switch {
   display: inline-block;
   vertical-align: middle;
@@ -76,7 +75,7 @@
 }
 
 .dora-switch--checked .dora-switch__text {
-  color: var(--dora-white, #fff);
+  color: #fff;
   color: var(--dora-white, #fff);
   margin: 0 70rpx 0 20rpx;
 }

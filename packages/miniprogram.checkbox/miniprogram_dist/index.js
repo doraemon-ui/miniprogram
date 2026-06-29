@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.checkbox.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-05, 20:21:13.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
+ * Built on 2026-06-27, 16:55:33.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.41.
  */
 
 import { Doraemon, Prop, Watch, Event, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
@@ -167,7 +167,7 @@ _ts_decorate([
 _ts_decorate([
     Prop({
         type: null,
-        default: ''
+        default: null
     })
 ], Checkbox.prototype, "wrapStyle", void 0);
 _ts_decorate([
@@ -194,54 +194,6 @@ Checkbox = _ts_decorate([
             prefixCls: {
                 type: String,
                 default: 'dora-checkbox'
-            },
-            cellPrefixCls: {
-                type: String,
-                default: 'dora-list-item'
-            },
-            selectablePrefixCls: {
-                type: String,
-                default: 'dora-selectable'
-            },
-            title: {
-                type: String,
-                default: ''
-            },
-            label: {
-                type: String,
-                default: ''
-            },
-            extra: {
-                type: String,
-                default: ''
-            },
-            value: {
-                type: String,
-                default: ''
-            },
-            checked: {
-                type: Boolean,
-                default: false
-            },
-            disabled: {
-                type: Boolean,
-                default: false
-            },
-            readOnly: {
-                type: Boolean,
-                default: false
-            },
-            color: {
-                type: String,
-                default: 'balanced'
-            },
-            wrapStyle: {
-                type: null,
-                default: ''
-            },
-            hasLine: {
-                type: Boolean,
-                default: true
             }
         },
         expose: [

@@ -1,13 +1,12 @@
 {
   "pages": [
     "index/index",
-    "about/index",
-    "accordion/index",
     "animation-group/index",
     "button/index",
     "icon/index",
     "grid/index",
     "layout/index",
+    "safe-area/index",
     "white-space/index",
     "wing-blank/index",
     "navbar/index",
@@ -19,6 +18,7 @@
     "calendar/index",
     "cascader/index",
     "cascader-picker-view/index",
+    "cascader-view/index",
     "checkbox/index",
     "date-picker/index",
     "date-picker-view/index",
@@ -34,10 +34,12 @@
     "search-bar/index",
     "select/index",
     "selectable/index",
+    "selector-group/index",
     "slider/index",
     "switch/index",
     "textarea/index",
     "upload/index",
+    "accordion/index",
     "alert/index",
     "avatar/index",
     "badge/index",
@@ -46,8 +48,13 @@
     "countdown/index",
     "countup/index",
     "divider/index",
+    "e-sign/index",
+    "ellipsis/index",
     "fab-button/index",
+    "floating-panel/index",
+    "footer/index",
     "image/index",
+    "index-list/index",
     "list/index",
     "media/index",
     "notice-bar/index",
@@ -59,6 +66,7 @@
     "timeago/index",
     "timeline/index",
     "vcode/index",
+    "water-mark/index",
     "action-sheet/index",
     "backdrop/index",
     "circle/index",
@@ -78,42 +86,13 @@
     "refresher/index",
     "result/index",
     "swipe-action/index",
-    "virtual-list/index",
-    "safe-area/index",
-    "cascader-view/index",
-    "selector-group/index",
-    "e-sign/index",
-    "ellipsis/index",
-    "floating-panel/index",
-    "footer/index",
-    "water-mark/index",
-    "index-list/index"
+    "virtual-list/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
-  },
-  "tabBar": {
-    "color": "#888888",
-    "selectedColor": "#04BE02",
-    "borderStyle": "white",
-    "backgroundColor": "#f7f7f8",
-    "list": [
-      {
-        "pagePath": "index/index",
-        "iconPath": "assets/images/iconfont-demo.png",
-        "selectedIconPath": "assets/images/iconfont-demo-active.png",
-        "text": "Demo"
-      },
-      {
-        "pagePath": "about/index",
-        "iconPath": "assets/images/iconfont-about.png",
-        "selectedIconPath": "assets/images/iconfont-about-active.png",
-        "text": "About"
-      }
-    ]
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.form.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-15, 00:06:49.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
+ * Built on 2026-06-27, 16:55:47.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.41.
  */
 
 let warning = function(condition, format, ...args) {};

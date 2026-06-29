@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.input-number.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:39:26.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
+ * Built on 2026-06-27, 16:55:25.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.41.
  */
 
 import { Doraemon, Prop, Watch, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
@@ -242,54 +242,6 @@ InputNumber = _ts_decorate([
             prefixCls: {
                 type: String,
                 default: 'dora-input-number'
-            },
-            shape: {
-                type: String,
-                default: 'square'
-            },
-            min: {
-                type: Number,
-                default: -MAX_SAFE_INTEGER
-            },
-            max: {
-                type: Number,
-                default: MAX_SAFE_INTEGER
-            },
-            step: {
-                type: Number,
-                default: 1
-            },
-            defaultValue: {
-                type: Number,
-                default: 0
-            },
-            value: {
-                type: Number,
-                default: 0
-            },
-            disabled: {
-                type: Boolean,
-                default: true
-            },
-            readOnly: {
-                type: Boolean,
-                default: false
-            },
-            longpress: {
-                type: Boolean,
-                default: false
-            },
-            color: {
-                type: String,
-                default: 'balanced'
-            },
-            controlled: {
-                type: Boolean,
-                default: false
-            },
-            digits: {
-                type: Number,
-                default: -1
             }
         }
     })

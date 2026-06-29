@@ -1,5 +1,4 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-progress {
   display: flex;
   align-items: center;
@@ -10,25 +9,25 @@
 }
 
 .dora-progress__inner {
-  background-color: var(--dora-progress-remaining-color, #f3f3f3);
+  background-color: #f3f3f3;
   background-color: var(--dora-progress-remaining-color, #f3f3f3);
 }
 
 .dora-progress__bar {
-  background-color: var(--dora-progress-default-color, #387ef5);
+  background-color: #387ef5;
   background-color: var(--dora-progress-default-color, #387ef5);
   transition: all 0.3s linear 0s;
 }
 
 .dora-progress__text {
-  margin-left: var(--dora-progress-text-margin, 20rpx);
+  margin-left: 20rpx;
   margin-left: var(--dora-progress-text-margin, 20rpx);
   text-align: left;
   vertical-align: middle;
 }
 
 .dora-progress--round .dora-progress__inner,.dora-progress--round .dora-progress__bar {
-  border-radius: var(--dora-progress-radius, 100rpx);
+  border-radius: 100rpx;
   border-radius: var(--dora-progress-radius, 100rpx);
 }
 
@@ -45,7 +44,7 @@
   right: 0;
   bottom: 0;
   background: #fff;
-  border-radius: 10px;
+  border-radius: 20rpx;
   animation: progress 2s ease-in-out infinite;
 }
 

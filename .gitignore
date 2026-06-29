@@ -42,6 +42,8 @@
 # miniprogram_npm
 **/miniprogram_npm/**
 wux-weapp
+packages-tt
+temp
 
 lerna-debug.log
 yarn-error.log

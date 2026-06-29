@@ -1,5 +1,4 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-refresher {
   position: absolute;
   top: -120rpx;
@@ -23,7 +22,7 @@
   bottom: 10rpx;
   left: 0;
   width: 100%;
-  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.65);
+  color: rgba(0,0,0,0.65);
   color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.65);
   text-align: center;
   font-size: 60rpx;
@@ -34,8 +33,8 @@
 }
 
 .dora-refresher__text-pulling,.dora-refresher__text-refreshing {
-  font-size: 16px;
-  line-height: 16px;
+  font-size: 32rpx;
+  line-height: 32rpx;
 }
 
 .dora-refresher__text-refreshing {
@@ -84,7 +83,7 @@
 }
 
 .dora-loader__text-loading {
-  margin-left: 6px;
+  margin-left: 12rpx;
 }
 
 .dora-loader--hidden {
@@ -107,7 +106,7 @@
   width: 100%;
   top: 50%;
   transform: translateY(-50%);
-  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.65);
+  color: rgba(0,0,0,0.65);
   color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.65);
   display: flex;
   align-items: center;

@@ -14,4 +14,6 @@
  * @param prefixCls Component prefix class name
  * @returns Root class name used for CSS variable styles
  */
-export const useCSSVarCls = (prefixCls: string) => `${prefixCls}--css-var`
+export function useCSSVarCls(prefixCls: string) {
+  return `${prefixCls}--css-var`
+}

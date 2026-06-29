@@ -1,11 +1,12 @@
 /**
  * @doraemon-ui/miniprogram.icon.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:37:43.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
+ * Built on 2026-06-27, 16:55:34.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.41.
  */
 
 import { Doraemon, Prop, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
+import { getFontSize } from '@doraemon-ui/miniprogram.shared';
 
 function _ts_decorate(decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc, d;
@@ -25,17 +26,6 @@ let Icon = class Icon extends Doraemon {
         };
     }
     get containerStyle() {
-        const getFontSize = (size)=>{
-            let fontSize = size;
-            if (typeof size === 'number') {
-                fontSize = `${size}px`;
-            } else if (typeof size === 'string') {
-                if (!isNaN(Number(size))) {
-                    fontSize = `${size}px`;
-                }
-            }
-            return fontSize;
-        };
         return styleToCssString({
             fontSize: getFontSize(this.size),
             color: this.color !== '' ? this.color : 'unset'

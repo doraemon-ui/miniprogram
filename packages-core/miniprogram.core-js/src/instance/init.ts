@@ -123,6 +123,17 @@ export class Doraemon implements ComponentInternalInstance {
  */
 export type DoraemonClass<D> = { new (...args: any[]): D & Doraemon } & typeof Doraemon
 
+type TCustomInstanceProperty<D extends Doraemon> = {
+  /** 组件实例本身 */
+  $component: D
+  /**
+   * 获取这个关系所对应的所有关联节点，参见 组件间关系
+   * @note tt API 均为异步 API，需要指定回调函数
+   */
+  getRelationNodes(relationKey: string): ComponentRenderProxy<D>[]
+  getRelationNodes(relationKey: string, callback?: CallableFunction): void
+}
+
 /**
  * ComponentRenderProxy类型定义
  */
@@ -130,9 +141,7 @@ export type ComponentRenderProxy<D extends Doraemon> = WechatMiniprogram.Compone
   WechatMiniprogram.Component.DataOption,
   WechatMiniprogram.Component.PropertyOption,
   Partial<WechatMiniprogram.Component.MethodOption>,
-  {
-    $component: D
-  }
+  TCustomInstanceProperty<D>
 >
 
 // If the type T accepts type "any", output type Y, otherwise output type N.

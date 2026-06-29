@@ -1,5 +1,6 @@
 import { defineComponentHOC, Doraemon, Component, Prop } from '@doraemon-ui/miniprogram.core-js'
 import { useRect } from '@doraemon-ui/miniprogram.shared'
+import type { MiniprogramDOMRect } from '@doraemon-ui/miniprogram.shared'
 import type { ListItemInstance } from './types'
 
 const { classNames, styleToCssString } = Doraemon.util
@@ -141,7 +142,7 @@ class List extends Doraemon {
     this.updateIsLast()
   }
 
-  getBoundingClientRect() {
+  getBoundingClientRect(): Promise<MiniprogramDOMRect> {
     return useRect(`.${this.prefixCls}`, this._renderProxy)
   }
 

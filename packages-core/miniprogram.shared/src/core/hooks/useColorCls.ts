@@ -19,7 +19,7 @@ import { isPresetColor } from '../util'
  * @param color Semantic preset color name
  * @returns Preset color class map or `null` when no preset color matches
  */
-export const useColorCls = (color?: string): Record<string, boolean> | null => {
+export function useColorCls(color?: string): Record<string, boolean> | null {
   if (!isPresetColor(color)) {
     return null
   }

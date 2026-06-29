@@ -1,8 +1,7 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-demo-block__hd {
-  padding: 16px 16px 8px;
-  font-size: 14px;
+  padding: 32rpx 32rpx 16rpx;
+  font-size: 28rpx;
   color: rgba(0,0,0,0.65);
   color: rgba(var(--dora-text-color-rgb),0.65);
   width: 100%;
@@ -16,7 +15,7 @@
   align-items: stretch;
   background-color: #fafafa;
   background-color: var(--dora-background-color);
-  padding: 12px;
+  padding: 24rpx;
   box-sizing: border-box;
 }
 
@@ -31,12 +30,12 @@
   transform-origin: 0 0;
   pointer-events: none;
   box-sizing: border-box;
+  border: 0 solid #e6e6e6;
   border: 0 solid var(--dora-border-color, var(--dora-color-step-10, #e6e6e6));
-  border: 0 solid var(--dora-border-color, var(--dora-color-step-10, #e6e6e6));
-  border-top-width: var(--dora-border-width, 1px);
-  border-top-width: var(--dora-border-width, 1px);
-  border-bottom-width: var(--dora-border-width, 1px);
-  border-bottom-width: var(--dora-border-width, 1px);
+  border-top-width: 2rpx;
+  border-top-width: var(--dora-border-width, 2rpx);
+  border-bottom-width: 2rpx;
+  border-bottom-width: var(--dora-border-width, 2rpx);
 }
 
 .dora-demo-block__bd .dora-demo-block__button,.dora-demo-block__bd>button {
@@ -55,19 +54,19 @@
   width: auto!important;
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
+  background-color: #fff!important;
   background-color: var(--dora-white, #fff)!important;
-  background-color: var(--dora-white, #fff)!important;
+  color: #000!important;
   color: var(--dora-black, #000)!important;
-  color: var(--dora-black, #000)!important;
-  min-width: calc((12px*1.5*3) + (12px*1.5*3) + 16px*3);
-  min-height: 48px!important;
-  line-height: 48px;
-  border-radius: var(--dora-border-radius, 8px);
-  border-radius: var(--dora-border-radius, 8px);
-  font-size: 16px;
-  padding-left: 12px;
-  padding-right: 12px;
-  margin-bottom: 12px;
+  min-width: calc((24rpx*1.5*3) + (24rpx*1.5*3) + 32rpx*3);
+  min-height: 96rpx!important;
+  line-height: 96rpx;
+  border-radius: 16rpx;
+  border-radius: var(--dora-border-radius, 16rpx);
+  font-size: 32rpx;
+  padding-left: 24rpx;
+  padding-right: 24rpx;
+  margin-bottom: 24rpx;
   text-align: center;
   text-overflow: ellipsis;
 }
@@ -83,6 +82,16 @@
   border-radius: 0;
   transform: none;
   transform-origin: 0 0;
+}
+
+.dora-demo-block__bd .dora-demo-block__button.button-hover,.dora-demo-block__bd>button.button-hover {
+  background-color: #e6e6e6!important;
+  background-color: var(--dora-active-state-bg, var(--dora-color-step-10, #e6e6e6))!important;
+}
+
+.dora-demo-block__bd .dora-demo-block__button.button-disabled,.dora-demo-block__bd>button.button-disabled {
+  opacity: 0.3!important;
+  opacity: var(--dora-disabled-opacity, 0.3)!important;
 }
 
 .dora-demo-block__bd .dora-demo-block__button:last-child,.dora-demo-block__bd>button:last-child {

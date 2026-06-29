@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.core-js.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-06-11, 13:59:34.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.34.
+ * Built on 2026-06-29, 17:28:47.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.41.
  */
 
 const LIFECYCLE_HOOKS = [
@@ -41,15 +41,38 @@ function warn(msg, vm) {
     }
 }
 
+/**
+ * Runtime environment types.
+ * - WEAPP: WeChat Miniporgram
+ * - TT: Douyin/Toutiao Miniporgram
+ */ var ENV_TYPE;
+(function(ENV_TYPE) {
+    ENV_TYPE["WEAPP"] = "WEAPP";
+    ENV_TYPE["TT"] = "TT";
+})(ENV_TYPE || (ENV_TYPE = {}));
 const check = (it)=>{
     return it && typeof it.env && it;
 };
-const miniprogramThis = check(typeof wx === 'object' && wx);
+const wxThis = check(typeof wx === 'object' && wx);
+const ttThis = check(typeof tt === 'object' && tt);
 /**
- * miniporgram environment sniffing
+ * Current Miniporgram global object.
+ */ const miniprogramThis = wxThis || ttThis;
+/**
+ * Miniporgram environment sniffing.
  */ const inMiniprogram = !!miniprogramThis;
 /**
- * development mode
+ * Get the current runtime environment type.
+ *
+ * @returns Current environment type.
+ */ const getEnv = ()=>{
+    if (ttThis) {
+        return "TT";
+    }
+    return "WEAPP";
+};
+/**
+ * Whether the current build is running in development mode.
  */ const isDev = "production" !== 'production' // export const isDev = true
 ;
 
@@ -971,32 +994,263 @@ function debounce(func, wait, options) {
     return debounced;
 }
 
-let FUNC_ERROR_TEXT = 'Expected a function';
-function throttle(func, wait, options) {
-    let leading = true, trailing = true;
-    if (typeof func != 'function') {
-        throw new TypeError(FUNC_ERROR_TEXT);
-    }
-    if (isPlainObject(options)) {
-        leading = 'leading' in options ? !!options.leading : leading;
-        trailing = 'trailing' in options ? !!options.trailing : trailing;
-    }
-    return debounce(func, wait, {
-        leading: leading,
-        maxWait: wait,
-        trailing: trailing
-    });
-}
-
 function isDef(v) {
     return v !== undefined && v !== null;
 }
 
+const hasProxy = typeof Proxy !== 'undefined';
+function initExposed(vm) {
+    const expose = vm.$options.expose || {};
+    if (Array.isArray(expose)) {
+        if (expose.length) {
+            const exposed = vm._exposed || (vm._exposed = {});
+            expose.forEach((key)=>{
+                Object.defineProperty(exposed, key, {
+                    enumerable: !hasProxy,
+                    get: ()=>vm[key],
+                    set: (val)=>vm[key] = val
+                });
+            });
+            return exposed;
+        } else if (!vm._exposed) {
+            vm._exposed = {};
+        }
+    }
+}
+const publicPropertiesMap = {
+    $data: (vm)=>vm.$data,
+    $props: (vm)=>vm.$props,
+    $refs: (vm)=>vm.$refs,
+    $parent: (vm)=>vm.$parent,
+    $root: (vm)=>vm.$root,
+    $children: (vm)=>vm.$children,
+    $options: (vm)=>vm.$options,
+    $emit: (vm)=>vm.$emit,
+    $nextTick: (vm)=>vm.$nextTick
+};
+function getExposeProxy(vm) {
+    if (vm._exposed) {
+        if (hasProxy) {
+            return vm._exposeProxy || (vm._exposeProxy = new Proxy(vm._exposed, {
+                get (target, key) {
+                    if (key in target) {
+                        return target[key];
+                    } else if (key in publicPropertiesMap) {
+                        return publicPropertiesMap[key](vm);
+                    }
+                },
+                has (target, key) {
+                    return key in target || key in publicPropertiesMap;
+                }
+            }));
+        } else {
+            vm._exposeProxy = Object.create(null);
+            for(const key in vm._exposed){
+                Object.defineProperty(vm._exposeProxy, key, {
+                    get () {
+                        return vm._exposed[key];
+                    }
+                });
+            }
+            for(const key in publicPropertiesMap){
+                Object.defineProperty(vm._exposeProxy, key, {
+                    get () {
+                        return publicPropertiesMap[key](vm);
+                    }
+                });
+            }
+            return vm._exposeProxy;
+        }
+    }
+}
+function getPublicInstance(vm) {
+    if (!vm) return null;
+    return getExposeProxy(vm) || vm;
+}
+
+const logicalOwnerMap = new WeakMap();
+const logicalChildrenMap = new WeakMap();
+function ensureLogicalChildren(node) {
+    if (!logicalChildrenMap.has(node)) {
+        logicalChildrenMap.set(node, []);
+    }
+    return logicalChildrenMap.get(node) || [];
+}
+function getLogicalOwner(node) {
+    return logicalOwnerMap.get(node) || null;
+}
+function setLogicalOwner(node, owner) {
+    logicalOwnerMap.set(node, owner);
+}
+function removeLogicalChild(parent, child) {
+    logicalChildrenMap.set(parent, ensureLogicalChildren(parent).filter((item)=>item !== child));
+}
+function addLogicalChild(parent, child) {
+    const children = ensureLogicalChildren(parent);
+    if (!children.includes(child)) {
+        logicalChildrenMap.set(parent, children.concat(child));
+    }
+}
+function collectLogicalDescendants(node) {
+    const result = [];
+    ensureLogicalChildren(node).forEach((child)=>{
+        result.push(child);
+        result.push(...collectLogicalDescendants(child));
+    });
+    return result;
+}
+function getLogicalNames(node) {
+    const names = new Set();
+    const ctorName = node.$component?.constructor?.name;
+    const optionName = node.$component?.$options?.name;
+    if (typeof ctorName === 'string' && ctorName) names.add(ctorName);
+    if (typeof optionName === 'string' && optionName) names.add(optionName);
+    return Array.from(names);
+}
+function matchByAliases(node, aliases) {
+    if (!aliases.length) return false;
+    const names = getLogicalNames(node);
+    return aliases.some((alias)=>names.includes(alias));
+}
+function getOwnerLogicalNode(node) {
+    if (typeof node.selectOwnerComponent !== 'function') {
+        return null;
+    }
+    let owner = node.selectOwnerComponent();
+    while(owner){
+        if (owner.$component) {
+            return owner;
+        }
+        owner = typeof owner.selectOwnerComponent === 'function' ? owner.selectOwnerComponent() : null;
+    }
+    return null;
+}
+function linkParent(node, parent) {
+    const owner = getLogicalOwner(node);
+    if (owner === parent) return;
+    if (owner) {
+        removeLogicalChild(owner, node);
+    }
+    setLogicalOwner(node, parent);
+    addLogicalChild(parent, node);
+}
+function unlinkParent(node, parent) {
+    if (getLogicalOwner(node) === parent) {
+        removeLogicalChild(parent, node);
+        setLogicalOwner(node, null);
+    }
+}
+function logicalTree() {
+    return Behavior({
+        lifetimes: {
+            created () {
+                const node = this;
+                setLogicalOwner(node, null);
+                logicalChildrenMap.set(node, []);
+            },
+            ready () {
+                const node = this;
+                const owner = getOwnerLogicalNode(node);
+                if (owner) {
+                    linkParent(node, owner);
+                }
+            },
+            detached () {
+                const node = this;
+                const owner = getLogicalOwner(node);
+                if (owner) {
+                    unlinkParent(node, owner);
+                }
+                logicalChildrenMap.delete(node);
+                logicalOwnerMap.delete(node);
+            }
+        }
+    });
+}
+function findLogicalAncestorsByAliases(vm, aliases, directOnly = false) {
+    const matches = [];
+    let owner = getLogicalOwner(vm._renderProxy);
+    while(owner){
+        if (matchByAliases(owner, aliases)) {
+            matches.push(owner);
+            if (!directOnly) break;
+        }
+        if (directOnly) break;
+        owner = getLogicalOwner(owner);
+    }
+    return matches;
+}
+function findLogicalDescendantsByAliases(vm, aliases, directOnly = false) {
+    const source = vm._renderProxy;
+    const nodes = directOnly ? ensureLogicalChildren(source) : collectLogicalDescendants(source);
+    return nodes.filter((node)=>matchByAliases(node, aliases));
+}
+function normalizeNodes(nodes) {
+    return nodes.map((node)=>getPublicInstance(node.$component)).filter(Boolean);
+}
+function getAliasesByPath(vm, path) {
+    const components = vm.$options.components || {};
+    const aliases = Object.keys(components).filter((key)=>getData$1(components[key]).module === path);
+    return aliases;
+}
+function findLogicalAncestors(vm, path, type = 'child') {
+    if (getEnv() !== ENV_TYPE.WEAPP) {
+        const nodes = vm._renderProxy.getRelationNodes(path);
+        if (nodes && nodes.length > 0) {
+            return nodes;
+        }
+        return [];
+    }
+    const aliases = getAliasesByPath(vm, path);
+    if (!aliases.length) return [];
+    if (type === 'ancestor') {
+        return findLogicalAncestorsByAliases(vm, aliases, false);
+    }
+    if (type === 'parent') {
+        return findLogicalAncestorsByAliases(vm, aliases, true);
+    }
+    if (type === 'descendant') {
+        return findLogicalDescendantsByAliases(vm, aliases, false);
+    }
+    return findLogicalDescendantsByAliases(vm, aliases, true);
+}
+
+const relationDebouncedMap = new WeakMap();
+const throttledFnsMap = new WeakMap();
+const debouncedFnsMap = new WeakMap();
+function getRelationDebouncedMap(node) {
+    if (!relationDebouncedMap.has(node)) {
+        relationDebouncedMap.set(node, new Map());
+    }
+    return relationDebouncedMap.get(node);
+}
+function getDebouncedFns(node) {
+    if (!debouncedFnsMap.has(node)) {
+        debouncedFnsMap.set(node, []);
+    }
+    return debouncedFnsMap.get(node);
+}
+function getThrottledFns(node) {
+    if (!throttledFnsMap.has(node)) {
+        throttledFnsMap.set(node, []);
+    }
+    return throttledFnsMap.get(node);
+}
+function useDebounceFn(node, fn, wait = 50, options) {
+    const debounced = debounce(fn.bind(node), wait, options);
+    getDebouncedFns(node).push(debounced);
+    return {
+        run: debounced,
+        cancel: debounced.cancel,
+        flush: debounced.flush
+    };
+}
 function initComponents(vm, components) {
     return Object.keys(components).reduce((acc, key)=>{
         const { module: componentName, type = 'child', observer, debounce = true } = getData$1(components[key]);
         const linkCb = function(target) {
             const oName = `_${componentName.replace(/\./g, '').replace(/\//g, '_')}_debounced`;
+            const debouncedMap = getRelationDebouncedMap(this);
             const oFn = function(target) {
                 const renderProxy = this;
                 if (renderProxy.$component._isMounted) {
@@ -1008,7 +1262,7 @@ function initComponents(vm, components) {
                 }
             };
             if (debounce !== undefined && debounce !== false) {
-                if (!this[oName]) {
+                if (!debouncedMap.has(oName)) {
                     let opts = {
                         wait: 50,
                         options: {
@@ -1025,10 +1279,10 @@ function initComponents(vm, components) {
                         };
                     }
                     const { wait, options } = opts;
-                    const { run } = this.useDebounceFn(oFn.bind(this), wait, options);
-                    this[oName] = run;
+                    const { run } = useDebounceFn(this, oFn, wait, options);
+                    debouncedMap.set(oName, run);
                 }
-                this[oName].call(this, target);
+                debouncedMap.get(oName)?.call(this, target);
             } else {
                 return oFn.call(this, target);
             }
@@ -1068,44 +1322,48 @@ function getData$1(comp) {
     }
     return {};
 }
-function useThrottle() {
+function useRelation(relations = {}) {
     return Behavior({
         lifetimes: {
             created () {
-                this.useThrottleFn = function(fn, wait = 50, options) {
-                    const throttled = throttle(fn.bind(this), wait, options);
-                    this._throttledFns.push(throttled);
-                    return {
-                        run: throttled,
-                        cancel: throttled.cancel,
-                        flush: throttled.flush
-                    };
-                };
-                this.useDebounceFn = function(fn, wait = 50, options) {
-                    const debounced = debounce(fn.bind(this), wait, options);
-                    this._debouncedFns.push(debounced);
-                    return {
-                        run: debounced,
-                        cancel: debounced.cancel,
-                        flush: debounced.flush
-                    };
-                };
-                this._throttledFns = [];
-                this._debouncedFns = [];
+                const node = this;
+                throttledFnsMap.set(node, []);
+                debouncedFnsMap.set(node, []);
+                relationDebouncedMap.set(node, new Map());
+            },
+            ready () {
+                Object.keys(relations).forEach((relationKey)=>{
+                    const relation = relations[relationKey];
+                    if (!relation?.linked) return;
+                    const nodes = findLogicalAncestors(this.$component, relationKey, relation.type);
+                    if (Array.isArray(nodes)) {
+                        nodes.forEach((target)=>{
+                            if (target) {
+                                relation.linked?.call(this, target);
+                            }
+                        });
+                    }
+                });
             },
             detached () {
-                if (this._throttledFns.length > 0) {
-                    this._throttledFns.forEach((throttled)=>{
+                const node = this;
+                const throttledFns = getThrottledFns(node);
+                if (throttledFns.length > 0) {
+                    throttledFns.forEach((throttled)=>{
                         throttled.cancel();
                     });
-                    this._throttledFns = [];
+                    throttledFnsMap.set(node, []);
                 }
-                if (this._debouncedFns.length > 0) {
-                    this._debouncedFns.forEach((debounced)=>{
+                const debouncedFns = getDebouncedFns(node);
+                if (debouncedFns.length > 0) {
+                    debouncedFns.forEach((debounced)=>{
                         debounced.cancel();
                     });
-                    this._debouncedFns = [];
+                    debouncedFnsMap.set(node, []);
                 }
+                throttledFnsMap.delete(node);
+                debouncedFnsMap.delete(node);
+                relationDebouncedMap.delete(node);
             }
         }
     });
@@ -1209,76 +1467,6 @@ function callHook(vm, hook) {
     }
 }
 
-const hasProxy = typeof Proxy !== 'undefined';
-function initExposed(vm) {
-    const expose = vm.$options.expose || {};
-    if (Array.isArray(expose)) {
-        if (expose.length) {
-            const exposed = vm._exposed || (vm._exposed = {});
-            expose.forEach((key)=>{
-                Object.defineProperty(exposed, key, {
-                    enumerable: !hasProxy,
-                    get: ()=>vm[key],
-                    set: (val)=>vm[key] = val
-                });
-            });
-            return exposed;
-        } else if (!vm._exposed) {
-            vm._exposed = {};
-        }
-    }
-}
-const publicPropertiesMap = {
-    $data: (vm)=>vm.$data,
-    $props: (vm)=>vm.$props,
-    $refs: (vm)=>vm.$refs,
-    $parent: (vm)=>vm.$parent,
-    $root: (vm)=>vm.$root,
-    $children: (vm)=>vm.$children,
-    $options: (vm)=>vm.$options,
-    $emit: (vm)=>vm.$emit,
-    $nextTick: (vm)=>vm.$nextTick
-};
-function getExposeProxy(vm) {
-    if (vm._exposed) {
-        if (hasProxy) {
-            return vm._exposeProxy || (vm._exposeProxy = new Proxy(vm._exposed, {
-                get (target, key) {
-                    if (key in target) {
-                        return target[key];
-                    } else if (key in publicPropertiesMap) {
-                        return publicPropertiesMap[key](vm);
-                    }
-                },
-                has (target, key) {
-                    return key in target || key in publicPropertiesMap;
-                }
-            }));
-        } else {
-            vm._exposeProxy = Object.create(null);
-            for(const key in vm._exposed){
-                Object.defineProperty(vm._exposeProxy, key, {
-                    get () {
-                        return vm._exposed[key];
-                    }
-                });
-            }
-            for(const key in publicPropertiesMap){
-                Object.defineProperty(vm._exposeProxy, key, {
-                    get () {
-                        return publicPropertiesMap[key](vm);
-                    }
-                });
-            }
-            return vm._exposeProxy;
-        }
-    }
-}
-function getPublicInstance(vm) {
-    if (!vm) return null;
-    return getExposeProxy(vm) || vm;
-}
-
 function initMethods(vm, methods) {
     const methodProxy = {};
     vm.$options.props;
@@ -1346,23 +1534,30 @@ function initRefs(vm) {
             'ancestor',
             'parent'
         ].includes(type)) {
-            parentNodes.push(componentName);
+            parentNodes.push({
+                path: componentName,
+                type: type
+            });
         } else if ([
             'child',
             'descendant'
         ].includes(type)) {
-            childrenNodes.push(componentName);
+            childrenNodes.push({
+                path: componentName,
+                type: type
+            });
         }
         refNodes.push({
             ref: key,
-            path: componentName
+            path: componentName,
+            type
         });
     }
     Object.defineProperty(vm, '$parent', {
         get () {
-            const nodes = parentNodes.slice(0, 1).reduce((acc, path)=>[
+            const nodes = parentNodes.slice(0, 1).reduce((acc, node)=>[
                     ...acc,
-                    ...find(vm, path)
+                    ...find(vm, node.path, node.type)
                 ], []);
             return nodes && nodes[0];
         }
@@ -1374,9 +1569,9 @@ function initRefs(vm) {
     });
     Object.defineProperty(vm, '$children', {
         get () {
-            const nodes = childrenNodes.reduce((acc, path)=>[
+            const nodes = childrenNodes.reduce((acc, node)=>[
                     ...acc,
-                    ...find(vm, path)
+                    ...find(vm, node.path, node.type)
                 ], []);
             return nodes;
         }
@@ -1385,18 +1580,14 @@ function initRefs(vm) {
         get () {
             const nodes = refNodes.reduce((acc, node)=>({
                     ...acc,
-                    [node.ref]: find(vm, node.path)
+                    [node.ref]: find(vm, node.path, node.type)
                 }), {});
             return nodes;
         }
     });
 }
-function find(vm, path) {
-    const nodes = vm._renderProxy.getRelationNodes(path);
-    if (nodes && nodes.length > 0) {
-        return nodes.map((v)=>getPublicInstance(v.$component));
-    }
-    return [];
+function find(vm, path, type = 'child') {
+    return normalizeNodes(findLogicalAncestors(vm, path, type));
 }
 
 function initWatch(vm, watch) {
@@ -1526,7 +1717,10 @@ function defineComponentHOC(externalOptions = {}) {
             },
             behaviors: (Array.isArray(externalOptions.behaviors) ? externalOptions.behaviors : []).concat([
                 'wx://component-export',
-                useThrottle(),
+                ...getEnv() === ENV_TYPE.TT ? [
+                    logicalTree()
+                ] : [],
+                useRelation(components),
                 syncPropsToData(defaultProps, options.computed)
             ]),
             observers: {
@@ -1605,4 +1799,4 @@ function mergeStaticProperty(config, target) {
     });
 }
 
-export { Component$1 as Component, Doraemon, Emit, Event, Prop, Watch, createDecorator, defineComponentHOC, toNative };
+export { Component$1 as Component, Doraemon, ENV_TYPE, Emit, Event, Prop, Watch, createDecorator, defineComponentHOC, getEnv, inMiniprogram, miniprogramThis, toNative };

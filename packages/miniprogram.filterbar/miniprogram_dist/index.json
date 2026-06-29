@@ -1,9 +1,9 @@
 {
   "component": true,
   "usingComponents": {
-    "dora-animation-group": "@doraemon-ui/miniprogram.animation-group/index",
-    "dora-backdrop": "@doraemon-ui/miniprogram.backdrop/index",
-    "dora-checkbox-group": "@doraemon-ui/miniprogram.checkbox/group",
-    "dora-radio-group": "@doraemon-ui/miniprogram.radio/group"
+    "dora-animation-group": "../../miniprogram.animation-group/src/index",
+    "dora-backdrop": "../../miniprogram.backdrop/src/index",
+    "dora-checkbox-group": "../../miniprogram.checkbox/src/group",
+    "dora-radio-group": "../../miniprogram.radio/src/group"
   }
 }

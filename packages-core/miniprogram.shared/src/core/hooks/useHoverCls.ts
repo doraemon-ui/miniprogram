@@ -22,6 +22,6 @@
  * @param modifier BEM modifier name for hover state
  * @returns Resolved hover class name
  */
-export const useHoverCls = (prefixCls: string, hoverClass: string, modifier: string = 'hover') => {
+export function useHoverCls(prefixCls: string, hoverClass: string, modifier: string = 'hover') {
   return hoverClass && hoverClass !== 'default' ? hoverClass : `${prefixCls}--${modifier}`
 }

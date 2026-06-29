@@ -1,14 +1,13 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-divider--horizontal {
   display: block;
-  height: 1px;
+  height: 2rpx;
   width: 100%;
-  margin: 12px0;
-  margin: var(--dora-divider-margin, 12px)0;
+  margin: 24rpx0;
+  margin: var(--dora-divider-margin, 24rpx)0;
   clear: both;
-  border-top: 1px solid #e6e6e6;
-  border-top: 1px solid var(--dora-divider-border-color, var(--dora-border-color, var(--dora-color-step-10, #e6e6e6)));
+  border-top: 2rpx solid #e6e6e6;
+  border-top: 2rpx solid var(--dora-divider-border-color, var(--dora-border-color, var(--dora-color-step-10, #e6e6e6)));
 }
 
 .dora-divider--horizontal.dora-divider--text {
@@ -19,8 +18,8 @@
   font-weight: normal;
   color: rgba(0,0,0,0.45);
   color: var(--dora-divider-color, rgba(var(--dora-text-color-rgb, 0, 0, 0), 0.45));
-  font-size: 16px;
-  font-size: var(--dora-divider-font-size, 16px);
+  font-size: 32rpx;
+  font-size: var(--dora-divider-font-size, 32rpx);
   border-top: none!important;
 }
 
@@ -30,7 +29,7 @@
   position: relative;
   top: 50%;
   width: 50%;
-  border-top-width: 1px;
+  border-top-width: 2rpx;
   border-top-style: solid;
   border-top-color: #e6e6e6;
   border-top-color: var(--dora-divider-border-color, var(--dora-border-color, var(--dora-color-step-10, #e6e6e6)));
@@ -38,8 +37,8 @@
 }
 
 .dora-divider--horizontal.dora-divider--dashed {
-  border-top: 1px dashed #e6e6e6;
-  border-top: 1px dashed var(--dora-divider-border-color, var(--dora-border-color, var(--dora-color-step-10, #e6e6e6)));
+  border-top: 2rpx dashed #e6e6e6;
+  border-top: 2rpx dashed var(--dora-divider-border-color, var(--dora-border-color, var(--dora-color-step-10, #e6e6e6)));
 }
 
 .dora-divider--horizontal.dora-divider--dashed.dora-divider--text::before,.dora-divider--horizontal.dora-divider--dashed.dora-divider--text::after {
@@ -64,8 +63,8 @@
 
 .dora-divider--horizontal .dora-divider__text {
   display: inline-block;
-  padding: 0 12px;
-  padding: 0 var(--dora-divider-text-padding, 12px);
+  padding: 0 24rpx;
+  padding: 0 var(--dora-divider-text-padding, 24rpx);
 }
 
 .dora-divider--vertical {
@@ -73,10 +72,10 @@
   top: -0.06em;
   display: inline-block;
   height: 0.9em;
-  margin: 0 12px;
-  margin: 0 var(--dora-divider-margin, 12px);
+  margin: 0 24rpx;
+  margin: 0 var(--dora-divider-margin, 24rpx);
   vertical-align: middle;
   border-top: 0;
-  border-left: 1px solid #e6e6e6;
-  border-left: 1px solid var(--dora-divider-border-color, var(--dora-border-color, var(--dora-color-step-10, #e6e6e6)));
+  border-left: 2rpx solid #e6e6e6;
+  border-left: 2rpx solid var(--dora-divider-border-color, var(--dora-border-color, var(--dora-color-step-10, #e6e6e6)));
 }

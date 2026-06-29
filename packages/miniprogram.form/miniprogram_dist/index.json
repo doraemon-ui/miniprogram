@@ -1,6 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-    "dora-list": "@doraemon-ui/miniprogram.list/index"
+    "dora-list": "../../miniprogram.list/src/index"
   }
 }

@@ -1,5 +1,4 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-checkbox__selectable {
   position: static!important;
 }
@@ -10,14 +9,14 @@
 }
 
 .dora-checkbox__icon-selectable {
-  min-width: 35px;
-  margin-right: 13px/2;
+  min-width: 70rpx;
+  margin-right: calc((24rpx + 2rpx)/2);
 }
 
 .dora-checkbox__extra {
   align-self: center;
   text-align: left;
+  color: rgba(0,0,0,0.45);
   color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
-  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
-  margin-right: 6px;
+  margin-right: 12rpx;
 }

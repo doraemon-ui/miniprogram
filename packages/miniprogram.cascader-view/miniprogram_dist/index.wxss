@@ -1,13 +1,12 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-cascader-view {
   position: relative;
-  font-size: var(--dora-cascader-view-font-size, 14px);
-  font-size: var(--dora-cascader-view-font-size, 14px);
+  font-size: 28rpx;
+  font-size: var(--dora-cascader-view-font-size, 28rpx);
   line-height: 1.5;
-  color: var(--dora-cascader-view-color, rgba(var(--dora-text-color-rgb, 0, 0, 0), 0.55));
-  color: var(--dora-cascader-view-color, rgba(var(--dora-text-color-rgb, 0, 0, 0), 0.55));
-  background-color: var(--dora-cascader-view-inner-bg, var(--dora-component-background-color, #fff));
+  color: rgba(0,0,0,0.65);
+  color: var(--dora-cascader-view-color, rgba(var(--dora-text-color-rgb, 0, 0, 0), 0.65));
+  background-color: #fff;
   background-color: var(--dora-cascader-view-inner-bg, var(--dora-component-background-color, #fff));
   overflow: hidden;
 }
@@ -23,10 +22,10 @@
   left: 0;
   bottom: 0;
   right: 0;
-  height: 1px;
-  border-bottom: 1px solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
-  border-bottom: 1px solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
-  color: var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  height: 2rpx;
+  border-bottom: 2rpx solid #d9d9d9;
+  border-bottom: 2rpx solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  color: #d9d9d9;
   color: var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
   transform-origin: 0 100%;
   transform: scaleY(0.5);
@@ -35,7 +34,7 @@
 .dora-cascader-view__bd {
   width: 100%;
   display: flex;
-  background-color: var(--dora-cascader-view-bg, var(--dora-color-step-10, #e6e6e6));
+  background-color: #e6e6e6;
   background-color: var(--dora-cascader-view-bg, var(--dora-color-step-10, #e6e6e6));
 }
 
@@ -44,23 +43,23 @@
   height: inherit;
   width: 50%;
   flex: 0 0 50%;
-  background-color: var(--dora-cascader-view-inner-bg, var(--dora-component-background-color, #fff));
+  background-color: #fff;
   background-color: var(--dora-cascader-view-inner-bg, var(--dora-component-background-color, #fff));
 }
 
 .dora-cascader-view__inner-scroll--full {
   width: 100%;
   flex: 0 0 100%;
-  background-color: var(--dora-cascader-view-inner-bg, var(--dora-component-background-color, #fff))!important;
+  background-color: #fff!important;
   background-color: var(--dora-cascader-view-inner-bg, var(--dora-component-background-color, #fff))!important;
 }
 
 .dora-cascader-view__inner-scroll:nth-child(2n) {
-  background-color: var(--dora-cascader-view-bg, var(--dora-color-step-10, #e6e6e6));
+  background-color: #e6e6e6;
   background-color: var(--dora-cascader-view-bg, var(--dora-color-step-10, #e6e6e6));
 }
 
 .dora-cascader-view__scroll-view {
-  max-height: var(--dora-cascader-view-scroll-view-size, 270px);
-  max-height: var(--dora-cascader-view-scroll-view-size, 270px);
+  max-height: 540rpx;
+  max-height: var(--dora-cascader-view-scroll-view-size, 540rpx);
 }

@@ -1,5 +1,4 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-textarea {
   position: relative;
   display: flex;
@@ -8,7 +7,7 @@
 
 .dora-textarea__label {
   margin-left: 0;
-  margin-right: 6px;
+  margin-right: 12rpx;
   text-align: left;
   white-space: nowrap;
   overflow: hidden;
@@ -34,13 +33,13 @@
 }
 
 .dora-textarea__extra {
+  color: rgba(0,0,0,0.45);
   color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
-  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
-  margin-left: 6px;
+  margin-left: 12rpx;
 }
 
 .dora-textarea__error {
-  margin-left: 6px;
+  margin-left: 12rpx;
 }
 
 .dora-textarea__clear {
@@ -52,13 +51,13 @@
 }
 
 .dora-textarea--disabled {
-  opacity: var(--dora-disabled-opacity, 0.3);
+  opacity: 0.3;
   opacity: var(--dora-disabled-opacity, 0.3);
   cursor: not-allowed;
 }
 
 .dora-textarea--error .dora-textarea__control {
-  color: var(--dora-color-assertive, #eb445a);
+  color: #eb445a;
   color: var(--dora-color-assertive, #eb445a);
 }
 
@@ -66,15 +65,15 @@
   position: absolute;
   bottom: -12rpx;
   right: 0;
+  color: rgba(0,0,0,0.45);
   color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
-  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
-  font-size: 14px;
+  font-size: 28rpx;
   line-height: 1.47058824;
 }
 
 .dora-textarea__current {
-  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.55);
-  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.55);
+  color: rgba(0,0,0,0.65);
+  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.65);
 }
 
 .dora-textarea--has-count .dora-textarea__control {

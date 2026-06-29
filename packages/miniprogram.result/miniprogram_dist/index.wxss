@@ -1,5 +1,4 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-result {
   padding-top: 0;
   text-align: center;
@@ -21,9 +20,9 @@
 }
 
 .dora-result__desc {
+  font-size: 28rpx;
   font-size: var(--dora-font-size-md, 28rpx);
-  font-size: var(--dora-font-size-md, 28rpx);
-  color: var(--dora-color-text-secondary, #999);
+  color: #999;
   color: var(--dora-color-text-secondary, #999);
 }
 
@@ -32,9 +31,9 @@
 }
 
 .dora-result__ft {
+  font-size: 28rpx;
   font-size: var(--dora-font-size-md, 28rpx);
-  font-size: var(--dora-font-size-md, 28rpx);
-  color: var(--dora-color-text-secondary, #999);
+  color: #999;
   color: var(--dora-color-text-secondary, #999);
 }
 

@@ -1,10 +1,9 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-keyboard {
   display: block;
   width: 100%;
-  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.55);
-  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.55);
+  color: rgba(0,0,0,0.65);
+  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.65);
   background-color: #f7f7f7;
 }
 
@@ -24,10 +23,10 @@
   left: 0;
   bottom: 0;
   right: 0;
-  height: 1px;
-  border-bottom: 1px solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
-  border-bottom: 1px solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
-  color: var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  height: 2rpx;
+  border-bottom: 2rpx solid #d9d9d9;
+  border-bottom: 2rpx solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  color: #d9d9d9;
   color: var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
   transform-origin: 0 100%;
   transform: scaleY(0.5);
@@ -37,16 +36,16 @@
   margin: 30rpx 80rpx;
   display: flex;
   position: relative;
-  background-color: var(--dora-keyboard-bg, #f7f7f7);
+  background-color: #f7f7f7;
   background-color: var(--dora-keyboard-bg, #f7f7f7);
 }
 
 .dora-keyboard__input {
   width: 100%;
   padding: 8rpx;
+  height: 80rpx;
   height: var(--dora-keyboard-input-size, 80rpx);
-  height: var(--dora-keyboard-input-size, 80rpx);
-  min-height: var(--dora-keyboard-input-size, 80rpx);
+  min-height: 80rpx;
   min-height: var(--dora-keyboard-input-size, 80rpx);
   text-align: center;
   box-sizing: border-box;
@@ -68,7 +67,7 @@
   position: absolute;
   right: 0;
   top: 25%;
-  background-color: var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  background-color: #d9d9d9;
   background-color: var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
   transform: scaleX(0.5);
 }
@@ -80,12 +79,12 @@
 }
 
 .dora-keyboard__password--dot {
-  width: var(--dora-keyboard-dot-size, 16rpx);
-  width: var(--dora-keyboard-dot-size, 16rpx);
-  height: var(--dora-keyboard-dot-size, 16rpx);
-  height: var(--dora-keyboard-dot-size, 16rpx);
+  width: 8px;
+  width: var(--dora-keyboard-dot-size, 8px);
+  height: 8px;
+  height: var(--dora-keyboard-dot-size, 8px);
   border-radius: 50%;
-  background-color: var(--dora-keyboard-dot-bg, #333);
+  background-color: #333;
   background-color: var(--dora-keyboard-dot-bg, #333);
 }
 
@@ -94,7 +93,7 @@
 }
 
 .dora-keyboard__ft {
-  background-color: var(--dora-keyboard-bg, #f7f7f7);
+  background-color: #f7f7f7;
   background-color: var(--dora-keyboard-bg, #f7f7f7);
   position: relative;
 }
@@ -106,9 +105,9 @@
   top: 0;
   right: 0;
   height: 1px;
+  border-top: 1px solid #d9d9d9;
   border-top: 1px solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
-  border-top: 1px solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
-  color: var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  color: #d9d9d9;
   color: var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
   transform-origin: 0 0;
   transform: scaleY(0.5);
@@ -116,18 +115,18 @@
 
 .dora-keyboard__title {
   overflow: hidden;
-  padding: 20rpx 0 12rpx;
+  padding: 10px 0 6px;
   color: #222;
-  margin-bottom: 2rpx;
-  font-size: 24rpx;
+  margin-bottom: 1px;
+  font-size: 12px;
   text-align: center;
-  background-color: var(--dora-keyboard-bg, #f7f7f7);
+  background-color: #f7f7f7;
   background-color: var(--dora-keyboard-bg, #f7f7f7);
 }
 
 .dora-keyboard__numbers {
-  font-size: 48rpx;
-  background-color: var(--dora-keyboard-bg, #f7f7f7);
+  font-size: 24px;
+  background-color: #f7f7f7;
   background-color: var(--dora-keyboard-bg, #f7f7f7);
 }
 
@@ -141,7 +140,7 @@
   width: 1%;
   flex: 1;
   color: #222;
-  height: 100rpx;
+  height: 50px;
   position: relative;
   justify-content: center;
   align-items: center;
@@ -155,9 +154,9 @@
   top: 0;
   right: 0;
   height: 1px;
+  border-top: 1px solid #d9d9d9;
   border-top: 1px solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
-  border-top: 1px solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
-  color: var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  color: #d9d9d9;
   color: var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
   transform-origin: 0 0;
   transform: scaleY(0.5);
@@ -168,11 +167,11 @@
   position: absolute;
   right: 0;
   top: 0;
-  width: 1px;
+  width: 2rpx;
   bottom: 0;
-  border-right: 1px solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
-  border-right: 1px solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
-  color: var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  border-right: 2rpx solid #d9d9d9;
+  border-right: 2rpx solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  color: #d9d9d9;
   color: var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
   transform-origin: 100%0;
   transform: scaleX(0.5);

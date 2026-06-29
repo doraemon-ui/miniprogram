@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.list.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:42:13.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
+ * Built on 2026-06-27, 16:55:35.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.41.
  */
 
 import { Doraemon, Prop, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
@@ -46,6 +46,9 @@ let List = class List extends Doraemon {
                 element.updateIsLast(index === lastIndex);
             });
         }
+    }
+    onChildrenChanged() {
+        this.updateIsLast();
     }
     getBoundingClientRect() {
         return useRect(`.${this.prefixCls}`, this._renderProxy);
@@ -96,7 +99,7 @@ List = _ts_decorate([
             ListItem: ()=>({
                     module: './item',
                     type: 'descendant',
-                    observer: 'updateIsLast'
+                    observer: 'onChildrenChanged'
                 })
         },
         props: {

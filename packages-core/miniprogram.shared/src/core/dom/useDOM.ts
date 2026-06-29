@@ -41,16 +41,18 @@ function useSelectorAll(selector: string, instance?: MiniprogramPublicInstance):
   return canUseMP() ? useQuery(instance).selectAll(selector) : null
 }
 
-const makeFields = () => ({
-  id: true,
-  dataset: true,
-  mark: true,
-  rect: true,
-  // size: true,
-  scrollOffset: true,
-  computedStyle: ['width', 'height', 'borderTopWidth', 'borderRightWidth', 'borderBottomWidth', 'borderLeftWidth'],
-  node: true,
-})
+function makeFields() {
+  return {
+    id: true,
+    dataset: true,
+    mark: true,
+    rect: true,
+    // size: true,
+    scrollOffset: true,
+    computedStyle: ['width', 'height', 'borderTopWidth', 'borderRightWidth', 'borderBottomWidth', 'borderLeftWidth'],
+    node: true,
+  }
+}
 
 /**
  * NodeRef类型定义
@@ -259,7 +261,7 @@ export interface MiniprogramNodeRef extends MiniprogramDOMRect, MiniprogramScrol
   node: Record<string, any>
 }
 
-const makeNodeRef = (node: NodeRef): MiniprogramNodeRef => {
+function makeNodeRef(node: NodeRef): MiniprogramNodeRef {
   const borderRightWidth = pxToNumber(node.borderRightWidth || 0)
   const borderLeftWidth = pxToNumber(node.borderLeftWidth || 0)
   const borderTopWidth = pxToNumber(node.borderTopWidth || 0)

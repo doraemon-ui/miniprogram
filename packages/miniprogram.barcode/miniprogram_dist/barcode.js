@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.barcode.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-09, 21:36:02.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
+ * Built on 2026-06-27, 16:55:41.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.41.
  */
 
 /*

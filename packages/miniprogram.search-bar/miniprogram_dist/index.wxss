@@ -1,14 +1,13 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-search-bar {
   position: relative;
   padding: 16rpx 20rpx;
   display: flex;
   box-sizing: border-box;
   background-color: #efeff4;
+  border-top: 1rpx solid #ddd;
   border-top: 1rpx solid var(--dora-border-color, #ddd);
-  border-top: 1rpx solid var(--dora-border-color, #ddd);
-  border-bottom: 1rpx solid var(--dora-border-color, #ddd);
+  border-bottom: 1rpx solid #ddd;
   border-bottom: 1rpx solid var(--dora-border-color, #ddd);
 }
 
@@ -46,7 +45,7 @@
   border: 0;
   font-size: 28rpx;
   line-height: 1;
-  color: var(--dora-color-text-base, #333);
+  color: #333;
   color: var(--dora-color-text-base, #333);
   text-align: left;
   background: transparent;
@@ -65,7 +64,7 @@
   z-index: 2;
   border-radius: 12rpx;
   text-align: center;
-  color: var(--dora-color-text-secondary, #999);
+  color: #999;
   color: var(--dora-color-text-secondary, #999);
   background: #fff;
 }
@@ -80,7 +79,7 @@
 .dora-search-bar__cancel {
   margin-left: 20rpx;
   line-height: 56rpx;
-  color: var(--dora-color-primary, #33cd5f);
+  color: #33cd5f;
   color: var(--dora-color-primary, #33cd5f);
   white-space: nowrap;
 }

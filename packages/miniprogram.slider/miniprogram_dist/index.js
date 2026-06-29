@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.slider.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:40:53.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
+ * Built on 2026-06-27, 16:55:25.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.41.
  */
 
 import { Doraemon, Prop, Watch, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
@@ -339,31 +339,31 @@ _ts_decorate([
 _ts_decorate([
     Prop({
         type: null,
-        default: ''
+        default: null
     })
 ], Slider.prototype, "markStyle", void 0);
 _ts_decorate([
     Prop({
         type: null,
-        default: ''
+        default: null
     })
 ], Slider.prototype, "handleStyle", void 0);
 _ts_decorate([
     Prop({
         type: null,
-        default: ''
+        default: null
     })
 ], Slider.prototype, "trackStyle", void 0);
 _ts_decorate([
     Prop({
         type: null,
-        default: ''
+        default: null
     })
 ], Slider.prototype, "railStyle", void 0);
 _ts_decorate([
     Prop({
         type: null,
-        default: ''
+        default: null
     })
 ], Slider.prototype, "wrapStyle", void 0);
 _ts_decorate([

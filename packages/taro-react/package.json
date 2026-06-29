@@ -12,6 +12,7 @@
   "devMain": "src/index.ts",
   "types": "index.d.ts",
   "files": [
+    "index.d.ts",
     "miniprogram_dist",
     "plugin"
   ],
@@ -127,7 +128,7 @@
     "@doraemon-ui/miniprogram.wing-blank": "workspace:*"
   },
   "devDependencies": {
-    "@doraemon-ui/miniprogram.tools": "0.0.2-alpha.34",
+    "@doraemon-ui/miniprogram.tools": "0.0.2-alpha.65",
     "@tarojs/components": "^4.1.11",
     "@tarojs/react": "^4.1.11",
     "@tarojs/taro": "^4.1.11",

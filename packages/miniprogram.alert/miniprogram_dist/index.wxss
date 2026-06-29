@@ -1,30 +1,29 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-alert {
-  padding: var(--dora-alert-padding-vertical, 12px) var(--dora-alert-padding-horizontal, 16px);
-  padding: var(--dora-alert-padding-vertical, 12px) var(--dora-alert-padding-horizontal, 16px);
+  padding: 24rpx 32rpx;
+  padding: var(--dora-alert-padding-vertical, 24rpx) var(--dora-alert-padding-horizontal, 32rpx);
   position: relative;
   display: flex;
   align-items: center;
-  border-radius: var(--dora-alert-border-radius, var(--dora-border-radius-sm, 4px));
-  border-radius: var(--dora-alert-border-radius, var(--dora-border-radius-sm, 4px));
-  font-size: var(--dora-alert-font-size, 14px);
-  font-size: var(--dora-alert-font-size, 14px);
+  border-radius: 8rpx;
+  border-radius: var(--dora-alert-border-radius, var(--dora-border-radius-sm, 8rpx));
+  font-size: 28rpx;
+  font-size: var(--dora-alert-font-size, 28rpx);
+  color: #fff;
   color: var(--dora-white, #fff);
-  color: var(--dora-white, #fff);
-  background-color: var(--background-color);
+  background-color: #3880ff;
   background-color: var(--background-color);
   --background-color: var(--dora-color-positive, #3880ff);
 }
 
 .dora-alert__thumb {
-  width: var(--dora-alert-thumb-size, 20px);
-  width: var(--dora-alert-thumb-size, 20px);
-  height: var(--dora-alert-thumb-size, 20px);
-  height: var(--dora-alert-thumb-size, 20px);
+  width: 40rpx;
+  width: var(--dora-alert-thumb-size, 40rpx);
+  height: 40rpx;
+  height: var(--dora-alert-thumb-size, 40rpx);
   display: block;
-  margin-right: var(--dora-alert-thumb-margin, 6px);
-  margin-right: var(--dora-alert-thumb-margin, 6px);
+  margin-right: 12rpx;
+  margin-right: var(--dora-alert-thumb-margin, 12rpx);
 }
 
 .dora-alert__bd {
@@ -38,7 +37,7 @@
 .dora-alert__desc {
   text-align: left;
   line-height: 1.2;
-  font-size: 12px;
+  font-size: 24rpx;
 }
 
 .dora-alert__ft {
@@ -51,8 +50,8 @@
   flex: none;
   display: flex;
   align-items: center;
-  margin-left: var(--dora-alert-closable-margin-left, 6px);
-  margin-left: var(--dora-alert-closable-margin-left, 6px);
+  margin-left: 12rpx;
+  margin-left: var(--dora-alert-closable-margin-left, 12rpx);
   cursor: pointer;
 }
 

@@ -56,11 +56,26 @@ export type DefaultMethods<D> = { [key: string]: (this: D, ...args: any[]) => an
 export type DefaultComputed = Record<string, ComputedGetter<any> | ComputedOptions<any>>
 
 /**
+ * Parent relation type.
+ */
+export type ParentRelationType = 'parent' | 'ancestor'
+
+/**
+ * Child relation type.
+ */
+export type ChildRelationType = 'child' | 'descendant'
+
+/**
+ * Relation type.
+ */
+export type RelationType = ParentRelationType | ChildRelationType
+
+/**
  * RelationComponent类型定义
  */
 export type RelationComponent<D> = {
   ['module']?: string
-  type?: 'ancestor' | 'parent' | 'child' | 'descendant'
+  type?: RelationType
   observer?: string | ((target: D) => void)
   debounce?:
     | number

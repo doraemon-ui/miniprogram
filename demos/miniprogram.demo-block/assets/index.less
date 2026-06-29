@@ -43,6 +43,16 @@
       margin-bottom: @margin-component-xl;
       text-align: center;
       text-overflow: ellipsis;
+
+      // &--hover,
+      &.button-hover {
+        background-color: @active-state-bg !important;
+      }
+
+      // &--disabled,
+      &.button-disabled {
+        opacity: @disabled-opacity !important;
+      }
     }
 
     .@{demo-block-prefix-cls}__button:last-child,

@@ -17,7 +17,7 @@ export default defineConfig<'webpack5'>(async (merge, { command, mode }) => {
       828: 1.81 / 2,
     },
     sourceRoot: 'src',
-    outputRoot: 'dist',
+    outputRoot: `dist/${process.env.TARO_ENV}`,
     plugins: ['@tarojs/plugin-generator', '@doraemon-ui/taro-react/plugin/taro-react-plugin'],
     defineConstants: {},
     copy: {

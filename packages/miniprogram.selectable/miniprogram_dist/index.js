@@ -1,11 +1,12 @@
 /**
  * @doraemon-ui/miniprogram.selectable.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:40:43.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
+ * Built on 2026-06-27, 16:55:24.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.41.
  */
 
 import { Doraemon, Prop, Watch, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
+import { getPresetColor } from '@doraemon-ui/miniprogram.shared';
 
 function _ts_decorate(decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -14,21 +15,6 @@ function _ts_decorate(decorators, target, key, desc) {
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 }
 const { classNames, styleToCssString } = Doraemon.util;
-const presetColors = {
-    light: '#ddd',
-    stable: '#b2b2b2',
-    positive: '#387ef5',
-    calm: '#11c1f3',
-    balanced: '#33cd5f',
-    energized: '#ffc900',
-    assertive: '#ef473a',
-    royal: '#886aea',
-    dark: '#444'
-};
-const isPresetColor = (color)=>{
-    if (!color) return '';
-    return presetColors[color] ? presetColors[color] : color;
-};
 let Selectable = class Selectable extends Doraemon {
     get classes() {
         const { prefixCls, inputChecked, disabled, readOnly } = this;
@@ -69,7 +55,7 @@ let Selectable = class Selectable extends Doraemon {
         }
     }
     onColorChange(newVal) {
-        this.inputColor = isPresetColor(newVal);
+        this.inputColor = getPresetColor(newVal);
     }
     onWrapStyleChange(newVal) {
         this.extStyle = styleToCssString(newVal);
@@ -93,7 +79,7 @@ let Selectable = class Selectable extends Doraemon {
     mounted() {
         const inputChecked = this.controlled ? this.checked : this.defaultChecked;
         this.inputChecked = inputChecked;
-        this.inputColor = isPresetColor(this.color);
+        this.inputColor = getPresetColor(this.color);
         this.extStyle = styleToCssString(this.wrapStyle);
         this.updateTypeIcons(this.type, this.iconSize, this.iconOn, this.iconOff);
     }
@@ -158,7 +144,7 @@ _ts_decorate([
 _ts_decorate([
     Prop({
         type: null,
-        default: ''
+        default: null
     })
 ], Selectable.prototype, "wrapStyle", void 0);
 _ts_decorate([
@@ -200,54 +186,6 @@ Selectable = _ts_decorate([
             prefixCls: {
                 type: String,
                 default: 'dora-selectable'
-            },
-            type: {
-                type: String,
-                default: 'checkbox'
-            },
-            value: {
-                type: String,
-                default: ''
-            },
-            defaultChecked: {
-                type: Boolean,
-                default: false
-            },
-            checked: {
-                type: Boolean,
-                default: false
-            },
-            disabled: {
-                type: Boolean,
-                default: false
-            },
-            readOnly: {
-                type: Boolean,
-                default: false
-            },
-            color: {
-                type: String,
-                default: 'balanced'
-            },
-            controlled: {
-                type: Boolean,
-                default: false
-            },
-            wrapStyle: {
-                type: null,
-                default: ''
-            },
-            iconSize: {
-                type: String,
-                default: ''
-            },
-            iconOn: {
-                type: String,
-                default: ''
-            },
-            iconOff: {
-                type: String,
-                default: ''
             }
         }
     })

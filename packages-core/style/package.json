@@ -7,7 +7,10 @@
   "homepage": "",
   "license": "MIT",
   "miniprogram": "miniprogram_dist",
-  "main": "miniprogram_dist/var.wxss",
+  "main": "miniprogram_dist/index.wxss",
+  "files": [
+    "miniprogram_dist"
+  ],
   "keywords": [
     "doraemon-ui",
     "miniprogram",
@@ -16,7 +19,7 @@
   "scripts": {
     "build": "pnpm build:color && pnpm build:lib",
     "build:color": "cross-env NODE_ENV=production tsx build-color.ts",
-    "build:lib": "lessc lib/var.less miniprogram_dist/var.wxss && lessc lib/color.less miniprogram_dist/color.wxss",
+    "build:lib": "lessc lib/runtime.less miniprogram_dist/index.wxss && cp miniprogram_dist/index.wxss miniprogram_dist/index.ttss",
     "test": "cross-env NODE_ENV=testing jest --coverage",
     "clean": "cross-env rimraf miniprogram_dist/* .coverage-report/*",
     "preversion": "pnpm clean && pnpm build && pnpm test"
@@ -27,7 +30,8 @@
     "cross-env": "^7.0.3",
     "jest": "^30.3.0",
     "less": "^4.6.4",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "tsx": "^4.21.0"
   },
   "publishConfig": {
     "access": "public"

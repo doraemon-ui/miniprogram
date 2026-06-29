@@ -1,12 +1,12 @@
 /**
  * @doraemon-ui/miniprogram.list.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:42:13.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
+ * Built on 2026-06-27, 16:55:35.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.41.
  */
 
 import { Doraemon, Prop, Event, Emit, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
-import { NATIVE_ROUTES, useNativeRoute } from '@doraemon-ui/miniprogram.shared';
+import { NATIVE_ROUTES, useNativeRoute, useRect } from '@doraemon-ui/miniprogram.shared';
 
 function _ts_decorate(decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -102,6 +102,9 @@ let ListItem = class ListItem extends Doraemon {
                 this.isLast = isLast;
             }
         });
+    }
+    getBoundingClientRect() {
+        return useRect(`.${this.prefixCls}`, this._renderProxy);
     }
     constructor(...args){
         super(...args);
@@ -273,13 +276,26 @@ ListItem = _ts_decorate([
                 type: Boolean,
                 default: true
             },
+            needShowEntrance: {
+                type: Boolean,
+                default: true
+            },
+            entrancePath: {
+                type: String,
+                default: ''
+            },
+            createliveactivity: {
+                type: Boolean,
+                default: false
+            },
             appParameter: {
                 type: String,
                 default: ''
             }
         },
         expose: [
-            'updateIsLast'
+            'updateIsLast',
+            'getBoundingClientRect'
         ]
     })
 ], ListItem);

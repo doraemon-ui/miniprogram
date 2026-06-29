@@ -1,5 +1,4 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-button {
   color: inherit!important;
   background: transparent!important;
@@ -30,7 +29,7 @@
   --opacity: 1;
   --activated-opacity: 1;
   --disabled-opacity: var(--dora-button-disabled-opacity, 0.5);
-  --border-width: var(--dora-button-border-width, var(--dora-border-width, 1px));
+  --border-width: var(--dora-button-border-width, var(--dora-border-width, 2rpx));
   --border-style: var(--dora-button-border-style, var(--dora-border-style, solid));
   --border-color: var(--dora-button-border-color, var(--dora-color-positive, #3880ff));
   --text-color: var(--dora-color-positive-contrast, #fff);
@@ -39,30 +38,30 @@
   --activated-background-color: var(--dora-color-positive-active, #3171e0);
   --border-color: var(--dora-color-positive, #3880ff);
   --activated-border-color: var(--dora-color-positive-active, #3171e0);
-  --border-radius: var(--dora-button-border-radius, var(--dora-border-radius, 8px));
-  --font-size: 16px;
-  --height: 48px;
-  --padding-start: 12px;
-  --padding-end: 12px;
+  --border-radius: var(--dora-button-border-radius, var(--dora-border-radius, 16rpx));
+  --font-size: 32rpx;
+  --height: 96rpx;
+  --padding-start: 24rpx;
+  --padding-end: 24rpx;
   padding-top: unset;
   padding-bottom: unset;
-  padding-left: 12px;
+  padding-left: 24rpx;
   padding-left: var(--padding-start);
-  padding-right: 12px;
+  padding-right: 24rpx;
   padding-right: var(--padding-end);
-  min-width: calc((12px*1.5) + (12px*1.5) + 16px);
+  min-width: calc((24rpx*1.5) + (24rpx*1.5) + 32rpx);
   min-width: calc((var(--padding-start)*1.5) + (var(--padding-end)*1.5) + var(--font-size));
-  min-height: 48px!important;
+  min-height: 96rpx!important;
   min-height: var(--height)!important;
-  font-size: 16px;
+  font-size: 32rpx;
   font-size: var(--font-size);
-  line-height: calc(48px - 1px*2);
+  line-height: calc(96rpx - 2rpx*2);
   line-height: calc(var(--height) - var(--border-width)*2);
   opacity: 1;
   opacity: var(--opacity);
-  border-radius: 8px;
+  border-radius: 16rpx;
   border-radius: var(--border-radius);
-  border: 1px solid #3880ff;
+  border: 2rpx solid #3880ff;
   border: var(--border-width) var(--border-style) var(--border-color);
   border-color: #3880ff!important;
   border-color: var(--border-color)!important;
@@ -90,10 +89,10 @@
   width: 100%;
   height: 100%;
   position: absolute;
-  top: -6px;
-  right: -6px;
-  bottom: -6px;
-  left: -6px;
+  top: -12rpx;
+  right: -12rpx;
+  bottom: -12rpx;
+  left: -12rpx;
   border: none;
   transform: none;
   transform-origin: 0 0;
@@ -121,19 +120,19 @@
 }
 
 .dora-button--small {
-  --border-radius: var(--dora-border-radius-sm, 4px);
-  --font-size: 12px;
-  --height: 32px;
-  --padding-start: 4px;
-  --padding-end: 4px;
+  --border-radius: var(--dora-border-radius-sm, 8rpx);
+  --font-size: 24rpx;
+  --height: 64rpx;
+  --padding-start: 8rpx;
+  --padding-end: 8rpx;
 }
 
 .dora-button--large {
-  --border-radius: var(--dora-border-radius-lg, 12px);
-  --font-size: 20px;
-  --height: 56px;
-  --padding-start: 16px;
-  --padding-end: 16px;
+  --border-radius: var(--dora-border-radius-lg, 24rpx);
+  --font-size: 40rpx;
+  --height: 112rpx;
+  --padding-start: 32rpx;
+  --padding-end: 32rpx;
 }
 
 .dora-button--strong {
@@ -141,13 +140,13 @@
 }
 
 .dora-button--block,.dora-button--full {
-  --block-margin-top: 9px;
-  --block-margin-bottom: 9px;
+  --block-margin-top: 18rpx;
+  --block-margin-bottom: 18rpx;
   width: 100%!important;
   contain: content!important;
-  margin-top: 9px;
+  margin-top: 18rpx;
   margin-top: var(--block-margin-top);
-  margin-bottom: 9px;
+  margin-bottom: 18rpx;
   margin-bottom: var(--block-margin-bottom);
 }
 

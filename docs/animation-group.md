@@ -54,29 +54,22 @@ yarn add @doraemon-ui/miniprogram.animation-group
 ### AnimationGroup props
 
 ```ts
-enum AnimateStatus {
-  /** 进场动画的开始状态 */
-  ENTER = 'enter',
-  /** 进场动画的结束状态 */
-  ENTERING = 'entering',
-  /** 进场动画的完成状态 */
-  ENTERED = 'entered',
-  /** 离场动画的开始状态 */
-  EXIT = 'exit',
-  /** 离场动画的结束状态 */
-  EXITING = 'exiting',
-  /** 离场动画的完成状态 */
-  EXITED = 'exited',
-  /** 组件已卸载 */
-  UNMOUNTED = 'unmounted',
-}
+/**
+ * 'enter': 进场动画的开始状态
+ * 'entering': 进场动画的结束状态
+ * 'entered': 进场动画的完成状态
+ * 'exit': 离场动画的开始状态
+ * 'exiting': 离场动画的结束状态
+ * 'exited': 离场动画的完成状态
+ * 'unmounted': 组件已卸载
+ */
+type AnimateStatus = 'enter' | 'entering' | 'entered' | 'exit' | 'exiting' | 'exited' | 'unmounted'
 
-enum AnimateType {
-  /** 过渡效果 */
-  TRANSITION = 'transition',
-  /** 动画效果 */
-  ANIMATION = 'animation',
-}
+/**
+ * 'transition': 过渡效果
+ * 'animation': 动画效果
+ */
+type AnimateType = 'transition' | 'animation'
 
 type ClassNames =
   | string

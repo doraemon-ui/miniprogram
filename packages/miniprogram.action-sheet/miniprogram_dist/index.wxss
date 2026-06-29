@@ -1,5 +1,4 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-action-sheet {
   --options-bg: var(--dora-action-sheet-options-bg, rgba(var(--dora-white-rgb, 255, 255, 255), 0.65));
   --options-normal-bg: var(--dora-action-sheet-options-normal-bg, var(--dora-component-background-color, #fff));
@@ -8,15 +7,15 @@
   --text-color: var(--dora-action-sheet-text-color, #007aff);
   --border-color: var(--dora-action-sheet-border-color, var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9)));
   --destructive-text-color: var(--dora-action-sheet-destructive-text-color, #ff3b30);
-  --icon-size: 20px;
-  --border-radius: 12px;
-  --margin: 10px;
+  --icon-size: 40rpx;
+  --border-radius: 24rpx;
+  --margin: 20rpx;
 }
 
 .dora-action-sheet__content {
+  margin-left: 20rpx;
   margin-left: var(--margin);
-  margin-left: var(--margin);
-  margin-right: var(--margin);
+  margin-right: 20rpx;
   margin-right: var(--margin);
   width: auto;
   overflow: hidden;
@@ -30,12 +29,12 @@
 
 .dora-action-sheet__content--theme-wx .dora-action-sheet__group {
   border-radius: 0;
-  margin-bottom: calc(var(--margin) - 2px);
-  margin-bottom: calc(var(--margin) - 2px);
+  margin-bottom: calc(20rpx - 4rpx);
+  margin-bottom: calc(var(--margin) - 4rpx);
 }
 
 .dora-action-sheet__content--theme-wx .dora-action-sheet__group--options {
-  background-color: var(--options-normal-bg);
+  background-color: #fff;
   background-color: var(--options-normal-bg);
 }
 
@@ -44,7 +43,7 @@
 }
 
 .dora-action-sheet__content--theme-wx .dora-action-sheet__button {
-  font-size: 18px;
+  font-size: 36rpx;
   color: #000;
 }
 
@@ -53,30 +52,30 @@
 }
 
 .dora-action-sheet__content--theme-wx.dora-action-sheet__content--has-cancel {
-  background-color: var(--options-cancel-bg);
+  background-color: #fff;
   background-color: var(--options-cancel-bg);
 }
 
 .dora-action-sheet__group {
+  margin-bottom: 20rpx;
   margin-bottom: var(--margin);
-  margin-bottom: var(--margin);
+  border-radius: 24rpx;
   border-radius: var(--border-radius);
-  border-radius: var(--border-radius);
-  background-color: var(--options-normal-bg);
+  background-color: #fff;
   background-color: var(--options-normal-bg);
   overflow: hidden;
 }
 
 .dora-action-sheet__group--options {
-  background-color: var(--options-bg);
+  background-color: rgba(255,255,255,0.65);
   background-color: var(--options-bg);
 }
 
 .dora-action-sheet__title {
-  padding: 16px;
+  padding: 32rpx;
   color: #8f8f8f;
   text-align: center;
-  font-size: 13px;
+  font-size: 26rpx;
 }
 
 .dora-action-sheet__button {
@@ -98,15 +97,15 @@
   justify-content: center;
   margin: 0;
   padding: 0;
-  min-width: 52px;
-  min-height: 48px;
+  min-width: 104rpx;
+  min-height: 96rpx;
   width: 100%;
   border-radius: 0;
   background-color: transparent;
+  color: #007aff;
   color: var(--text-color);
-  color: var(--text-color);
-  font-size: 21px;
-  line-height: 48px;
+  font-size: 42rpx;
+  line-height: 96rpx;
   text-align: center;
   text-overflow: ellipsis;
   vertical-align: top;
@@ -128,16 +127,16 @@
 
 .dora-action-sheet__button--hover {
   box-shadow: none;
+  border-color: #d9d9d9;
   border-color: var(--border-color);
-  border-color: var(--border-color);
+  color: #007aff;
   color: var(--text-color);
-  color: var(--text-color);
-  background: var(--options-active-bg);
+  background: #e6e6e6;
   background: var(--options-active-bg);
 }
 
 .dora-action-sheet__button--destructive {
-  color: var(--destructive-text-color)!important;
+  color: #ff3b30!important;
   color: var(--destructive-text-color)!important;
 }
 
@@ -146,7 +145,7 @@
 }
 
 .dora-action-sheet__button--disabled {
-  opacity: var(--dora-disabled-opacity, 0.3)!important;
+  opacity: 0.3!important;
   opacity: var(--dora-disabled-opacity, 0.3)!important;
   cursor: not-allowed!important;
 }
@@ -165,10 +164,10 @@
   left: 0;
   top: 0;
   right: 0;
-  height: 1px;
-  border-top: 1px solid var(--border-color);
-  border-top: 1px solid var(--border-color);
-  color: var(--border-color);
+  height: 2rpx;
+  border-top: 2rpx solid #d9d9d9;
+  border-top: 2rpx solid var(--border-color);
+  color: #d9d9d9;
   color: var(--border-color);
   transform-origin: 0 0;
   transform: scaleY(0.5);
@@ -179,12 +178,12 @@
 }
 
 .dora-action-sheet__icon {
+  width: 40rpx;
   width: var(--icon-size);
-  width: var(--icon-size);
-  height: var(--icon-size);
+  height: 40rpx;
   height: var(--icon-size);
   display: inline-block;
-  margin-right: 10px;
+  margin-right: 20rpx;
 }
 
 .dora-action-sheet__text {

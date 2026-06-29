@@ -1,52 +1,46 @@
 import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import { miniprogramThis, canUseMP } from '@doraemon-ui/miniprogram.shared'
+import type { DarkMode } from '@doraemon-ui/miniprogram.shared'
+import type { PresetTheme, SysTheme } from './types'
+
 const { classNames } = Doraemon.util
 
-enum DarkMode {
-  AUTO = 'auto',
-  LIGHT = 'light',
-  DARK = 'dark',
-}
-
-type SysThemeType = DarkMode.LIGHT | DarkMode.DARK
+const DarkModeMap = {
+  AUTO: 'auto',
+  LIGHT: 'light',
+  DARK: 'dark',
+} as const
 
 const getSysTheme = () => {
-  let theme: SysThemeType
+  let theme: SysTheme
   try {
-    theme = miniprogramThis.getSystemInfoSync().theme as SysThemeType
+    theme = miniprogramThis.getSystemInfoSync().theme as SysTheme
   } catch (e) {
-    theme = DarkMode.LIGHT
+    theme = DarkModeMap.LIGHT
   }
   return theme
 }
 
-const presetThemeRecord: {
-  [x in SysThemeType]: {
-    backgroundColor: string
-    backgroundTextStyle: SysThemeType
-    navigationBarBackgroundColor: string
-    navigationBarTextStyle: 'black' | 'white'
-  }
-} = {
+const presetThemeRecord: Record<SysTheme, PresetTheme> = {
   light: {
     backgroundColor: '#fafafa',
-    backgroundTextStyle: DarkMode.LIGHT,
+    backgroundTextStyle: DarkModeMap.LIGHT,
     navigationBarBackgroundColor: '#fafafa',
     navigationBarTextStyle: 'black',
   },
   dark: {
     backgroundColor: '#0d0d0d',
-    backgroundTextStyle: DarkMode.DARK,
+    backgroundTextStyle: DarkModeMap.DARK,
     navigationBarBackgroundColor: '#0d0d0d',
     navigationBarTextStyle: 'white',
   },
 }
 
-const darkmodeSync = (darkmode: SysThemeType) => {
+const darkmodeSync = (darkmode: SysTheme) => {
   const theme = presetThemeRecord[darkmode]
   if (canUseMP()) {
     miniprogramThis.setBackgroundTextStyle({
-      textStyle: theme.backgroundTextStyle,
+      SysTheme: theme.backgroundTextStyle,
     })
     miniprogramThis.setBackgroundColor({
       backgroundColor: theme.backgroundColor,
@@ -129,7 +123,7 @@ class DemoPage extends Doraemon {
     const darkmode = classNames(
       `${prefixCls}__darkmode`,
       `${prefixCls}__iconfont`,
-      (curTheme === DarkMode.AUTO ? sysTheme === DarkMode.DARK : curTheme === DarkMode.DARK)
+      (curTheme === DarkModeMap.AUTO ? sysTheme === DarkModeMap.DARK : curTheme === DarkModeMap.DARK)
         ? `${prefixCls}__iconfont-dark`
         : `${prefixCls}__iconfont-light`,
     )
@@ -155,15 +149,15 @@ class DemoPage extends Doraemon {
   isAuto: boolean = false
   isManual: boolean = false
   isRegister: boolean = false
-  curTheme: DarkMode = DarkMode.AUTO
-  sysTheme: SysThemeType = getSysTheme()
+  curTheme: DarkMode = DarkModeMap.AUTO
+  sysTheme: SysTheme = getSysTheme()
 
   onIconClick() {
     if (!this.clickable) {
       return
     }
     const curTheme = this.isManual ? this.curTheme : getSysTheme()
-    const theme = curTheme === DarkMode.DARK ? DarkMode.LIGHT : DarkMode.DARK
+    const theme = curTheme === DarkModeMap.DARK ? DarkModeMap.LIGHT : DarkModeMap.DARK
     this.isManual = true
     this.setTheme(theme)
     darkmodeSync(theme)
@@ -175,15 +169,15 @@ class DemoPage extends Doraemon {
     }
   }
 
-  onThemeChange(theme?: SysThemeType) {
+  onThemeChange(theme?: SysTheme) {
     if (this.isRegister) {
       return
     }
     const cb = ({ theme }) => {
-      this.sysTheme = theme as SysThemeType
+      this.sysTheme = theme as SysTheme
       this.isRegister = true
       this.isManual = false
-      this.setTheme(DarkMode.AUTO)
+      this.setTheme(DarkModeMap.AUTO)
     }
     if (canUseMP()) {
       miniprogramThis.onThemeChange(cb)
@@ -193,14 +187,14 @@ class DemoPage extends Doraemon {
   }
 
   onDarkmodeChange(darkmode: DarkMode) {
-    const isAuto = darkmode === DarkMode.AUTO
+    const isAuto = darkmode === DarkModeMap.AUTO
     if (isAuto) {
       this.onThemeChange()
     } else if (canUseMP()) {
       miniprogramThis.offThemeChange()
     }
     this.isAuto = isAuto
-    this.setTheme(DarkMode.AUTO)
+    this.setTheme(DarkModeMap.AUTO)
   }
 
   mounted() {

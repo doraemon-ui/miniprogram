@@ -42,7 +42,9 @@ function splitColorStr(str: string, parseNum: ParseNumber): number[] {
   return numList
 }
 
-const parseHSVorHSL: ParseNumber = (num, _, index) => (index === 0 ? num : num / 100)
+function parseHSVorHSL(num: number, _: string, index: number): number {
+  return index === 0 ? num : num / 100
+}
 
 /** round and limit number to integer between 0-255 */
 function limitRange(value: number, max?: number) {

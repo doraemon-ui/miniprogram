@@ -151,10 +151,10 @@ export function fillObjectBySchema<T extends AnyObject = AnyObject>(value: T | u
  * @param classNameList Semantic class name sources
  * @returns Merged semantic class name object
  */
-export const mergeClassNames = <Name extends string, SemanticClassNames extends Partial<Record<Name, any>>>(
+export function mergeClassNames<Name extends string, SemanticClassNames extends Partial<Record<Name, any>>>(
   schema: SemanticSchema = {},
   ...classNameList: (SemanticClassNames | undefined)[]
-) => {
+): SemanticClassNames {
   return classNameList
     .filter((item): item is SemanticClassNames => Boolean(item))
     .reduce<SemanticClassNames>((acc: any, cur) => {
@@ -211,7 +211,9 @@ function mergeStyleValue(prev: unknown, cur: unknown): SemanticStyleNode {
  * @param styles Semantic style sources
  * @returns Merged semantic style object
  */
-export const mergeStyles = <StylesType extends AnyObject>(...styles: (DeepStylesType<StylesType> | SemanticStyles | undefined)[]) => {
+export function mergeStyles<StylesType extends AnyObject>(
+  ...styles: (DeepStylesType<StylesType> | SemanticStyles | undefined)[]
+): SemanticStyles {
   return styles
     .filter((item): item is DeepStylesType<StylesType> | SemanticStyles => Boolean(item))
     .reduce<SemanticStyles>((acc, cur = {}) => {
@@ -247,7 +249,10 @@ function stringifySemanticStyles<T extends AnyObject>(styles: T): DeepStylesStri
  * @param info Runtime props info passed to the factory
  * @returns Resolved semantic class/style value
  */
-export const resolveStyleOrClass = <T = any, Props = any>(value: T | ((config: { props: Props }) => T), info: { props: Props }) => {
+export function resolveStyleOrClass<T = any, Props = any>(
+  value: T | ((config: { props: Props }) => T),
+  info: { props: Props },
+): T {
   return isFunction(value) ? value(info) : value
 }
 
@@ -259,11 +264,11 @@ export const resolveStyleOrClass = <T = any, Props = any>(value: T | ((config: {
  * @param schema Semantic schema definition for nested structures
  * @returns Merged semantic class names
  */
-export const useMergeSemanticClassNames = <ClassNamesType = any, Props = any>(
+export function useMergeSemanticClassNames<ClassNamesType = any, Props = any>(
   classNamesList: MaybeFn<ClassNamesType, Props>[],
   info: { props: Props },
   schema?: SemanticSchema,
-) => {
+): Partial<Record<string, any>> {
   const resolvedClassNamesList = classNamesList.map((classNames) => (classNames ? resolveStyleOrClass(classNames, info) : undefined))
 
   return mergeClassNames(schema, ...(resolvedClassNamesList as Array<Partial<Record<string, any>> | undefined>))
@@ -276,10 +281,10 @@ export const useMergeSemanticClassNames = <ClassNamesType = any, Props = any>(
  * @param info Runtime props info passed to factories
  * @returns Merged semantic styles
  */
-export const useMergeSemanticStyles = <StylesType = any, Props = any>(
+export function useMergeSemanticStyles<StylesType = any, Props = any>(
   stylesList: MaybeFn<DeepStylesType<StylesType> | SemanticStyles, Props>[],
   info: { props: Props },
-) => {
+): DeepStylesType<StylesType> {
   const resolvedStylesList = stylesList.map((styles) => (styles ? resolveStyleOrClass(styles, info) : undefined))
 
   return mergeStyles(...(resolvedStylesList as Array<DeepStylesType<StylesType> | SemanticStyles | undefined>)) as DeepStylesType<StylesType>
@@ -292,10 +297,10 @@ export const useMergeSemanticStyles = <StylesType = any, Props = any>(
  * @param info Runtime props info passed to factories
  * @returns Merged semantic styles as serialized css strings
  */
-export const useMergeSemanticStylesString = <StylesType = any, Props = any>(
+export function useMergeSemanticStylesString<StylesType = any, Props = any>(
   stylesList: MaybeFn<DeepStylesType<StylesType> | SemanticStyles, Props>[],
   info: { props: Props },
-) => {
+): DeepStylesStringType<StylesType> {
   return stringifySemanticStyles(useMergeSemanticStyles(stylesList, info) as AnyObject) as DeepStylesStringType<StylesType>
 }
 
@@ -323,12 +328,15 @@ export const useMergeSemanticStylesString = <StylesType = any, Props = any>(
  * @param schema Semantic schema definition for nested structures
  * @returns Tuple of merged class names and merged styles
  */
-export const useMergeSemantic = <ClassNamesType = any, StylesType = any, Props = any>(
+export function useMergeSemantic<ClassNamesType = any, StylesType = any, Props = any>(
   classNamesList: MaybeFn<ClassNamesType, Props>[],
   stylesList: MaybeFn<DeepStylesType<StylesType> | SemanticStyles, Props>[],
   info: { props: Props },
   schema?: SemanticSchema,
-) => {
+): [
+  Required<RemoveClassNamesString<NonNullable<ClassNamesType>>>,
+  Required<DeepStylesType<NonNullable<StylesType>>>,
+] {
   const mergedClassNames = useMergeSemanticClassNames(classNamesList, info, schema)
   const mergedStyles = useMergeSemanticStyles(stylesList, info)
 

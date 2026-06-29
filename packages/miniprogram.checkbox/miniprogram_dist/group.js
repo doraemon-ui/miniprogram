@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.checkbox.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-05, 20:21:13.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
+ * Built on 2026-06-27, 16:55:33.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.41.
  */
 
 import { Watch, Component, defineComponentHOC, Doraemon } from '@doraemon-ui/miniprogram.core-js';

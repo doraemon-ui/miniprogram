@@ -1,5 +1,5 @@
 import { defineComponentHOC, Doraemon, Component, Event, Emit, Prop } from '@doraemon-ui/miniprogram.core-js'
-import type { CSSStylePropertiesWithVars, CustomEvent } from '@doraemon-ui/miniprogram.core-js'
+import type { CSSStylePropertiesWithVars, CustomEvent, Target } from '@doraemon-ui/miniprogram.core-js'
 import {
   useColorCls,
   useCSSVarCls,
@@ -427,7 +427,7 @@ class Button extends Doraemon {
    */
   @Event()
   @Emit('getuserinfo')
-  onGetUserInfo(e: CustomEvent) {
+  onGetUserInfo(e: CustomEvent): Target {
     return e.target
   }
 
@@ -440,7 +440,7 @@ class Button extends Doraemon {
    */
   @Event()
   @Emit('contact')
-  onContact(e: CustomEvent) {
+  onContact(e: CustomEvent): Target {
     return e.target
   }
 
@@ -453,7 +453,7 @@ class Button extends Doraemon {
    */
   @Event()
   @Emit('getphonenumber')
-  onGetPhoneNumber(e: CustomEvent) {
+  onGetPhoneNumber(e: CustomEvent): Target {
     return e.target
   }
 
@@ -466,7 +466,7 @@ class Button extends Doraemon {
    */
   @Event()
   @Emit('launchapp')
-  onLaunchApp(e: CustomEvent) {
+  onLaunchApp(e: CustomEvent): Target {
     return e.target
   }
 
@@ -479,7 +479,7 @@ class Button extends Doraemon {
    */
   @Event()
   @Emit('chooseavatar')
-  onChooseAvatar(e: CustomEvent) {
+  onChooseAvatar(e: CustomEvent): Target {
     return e.target
   }
 
@@ -492,7 +492,7 @@ class Button extends Doraemon {
    */
   @Event()
   @Emit('opensetting')
-  onOpenSetting(e: CustomEvent) {
+  onOpenSetting(e: CustomEvent): Target {
     return e.target
   }
 
@@ -505,7 +505,7 @@ class Button extends Doraemon {
    */
   @Event()
   @Emit('createliveactivity')
-  onCreateLiveActivity(e: CustomEvent) {
+  onCreateLiveActivity(e: CustomEvent): Target {
     return e.target
   }
 
@@ -518,7 +518,7 @@ class Button extends Doraemon {
    */
   @Event()
   @Emit('getrealtimephonenumber')
-  onGetRealtimePhoneNumber(e: CustomEvent) {
+  onGetRealtimePhoneNumber(e: CustomEvent): Target {
     return e.target
   }
 
@@ -531,7 +531,7 @@ class Button extends Doraemon {
    */
   @Event()
   @Emit('agreeprivacyauthorization')
-  onAgreePrivacyAuthorization(e: CustomEvent) {
+  onAgreePrivacyAuthorization(e: CustomEvent): Target {
     return e.target
   }
 
@@ -544,7 +544,7 @@ class Button extends Doraemon {
    */
   @Event()
   @Emit('error')
-  onError(e: CustomEvent) {
+  onError(e: CustomEvent): Target {
     return e.target
   }
 }

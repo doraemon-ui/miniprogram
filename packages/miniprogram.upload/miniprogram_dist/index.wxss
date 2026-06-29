@@ -1,5 +1,4 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-upload {
   position: relative;
   display: block;
@@ -7,7 +6,7 @@
 }
 
 .dora-upload--disabled {
-  opacity: var(--dora-disabled-opacity, 0.3);
+  opacity: 0.3;
   opacity: var(--dora-disabled-opacity, 0.3);
   cursor: not-allowed;
 }

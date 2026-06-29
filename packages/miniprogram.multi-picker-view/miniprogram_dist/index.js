@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.multi-picker-view.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:39:45.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
+ * Built on 2026-06-27, 16:55:46.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.41.
  */
 
 import { Prop, Watch, Component, defineComponentHOC, Doraemon } from '@doraemon-ui/miniprogram.core-js';
@@ -110,13 +110,13 @@ _ts_decorate([
 _ts_decorate([
     Prop({
         type: null,
-        default: ''
+        default: null
     })
 ], MultiPickerView.prototype, "itemStyle", void 0);
 _ts_decorate([
     Prop({
         type: null,
-        default: ''
+        default: null
     })
 ], MultiPickerView.prototype, "indicatorStyle", void 0);
 _ts_decorate([
@@ -128,7 +128,7 @@ _ts_decorate([
 _ts_decorate([
     Prop({
         type: null,
-        default: ''
+        default: null
     })
 ], MultiPickerView.prototype, "maskStyle", void 0);
 _ts_decorate([

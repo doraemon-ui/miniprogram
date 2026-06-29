@@ -1,5 +1,4 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-selectable {
   position: relative;
   display: inline-block;
@@ -27,6 +26,6 @@
   position: relative;
   top: 0;
   left: 0;
-  margin-left: 6px;
-  margin-right: 6px;
+  margin-left: 12rpx;
+  margin-right: 12rpx;
 }

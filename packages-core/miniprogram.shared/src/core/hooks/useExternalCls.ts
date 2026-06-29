@@ -14,7 +14,9 @@
  * @param semanticName Semantic slot names
  * @returns External class names in the same order as the input names
  */
-export const useExternalCls = <const T extends string[]>(semanticName: T) => {
+export function useExternalCls<const T extends string[]>(semanticName: T): {
+  [K in keyof T]: `dora-${T[K]}-class`
+} {
   return semanticName.map((name) => `dora-${name}-class`) as {
     [K in keyof T]: `dora-${T[K]}-class`
   }

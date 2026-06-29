@@ -1,4 +1,5 @@
 import components from './components'
+import { a } from '@doraemon-ui/miniprogram.accordion'
 
 Page({
   data: {
@@ -6,7 +7,10 @@ Page({
   },
   onShareAppMessage() {
     return {
-      title: '一套组件化、可复用、易扩展的微信小程序 UI 组件库',
+      title: '1一套组件化、可复用、易扩展的微信小程序 UI 组件库',
     }
   },
+  onLoad() {
+    console.log('====', a)
+  }
 })

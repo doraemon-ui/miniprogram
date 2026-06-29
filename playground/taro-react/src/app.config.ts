@@ -6,15 +6,15 @@ export default defineAppConfig({
     navigationBarTitleText: 'WeChat',
     navigationBarTextStyle: 'black',
   },
-  usingComponents: {
-    /* doraemon-taro-react-plugin:start */
+  usingComponents: {  
+  /* doraemon-taro-react-plugin:start */
     'dora-checkbox': '/miniprogram_npm/@doraemon-ui/miniprogram.checkbox/index',
     'dora-checkbox-group': '/miniprogram_npm/@doraemon-ui/miniprogram.checkbox/group',
     'dora-list': '/miniprogram_npm/@doraemon-ui/miniprogram.list/index',
     'dora-list-item': '/miniprogram_npm/@doraemon-ui/miniprogram.list/item',
     'dora-selectable': '/miniprogram_npm/@doraemon-ui/miniprogram.selectable/index',
-    /* doraemon-taro-react-plugin:end */
-  },
+  /* doraemon-taro-react-plugin:end */
+},
   // usingComponents: {
   //   'dora-list-item': '/miniprogram_npm/@doraemon-ui/miniprogram.list/item',
   //   'dora-checkbox': '/miniprogram_npm/@doraemon-ui/miniprogram.checkbox/index',

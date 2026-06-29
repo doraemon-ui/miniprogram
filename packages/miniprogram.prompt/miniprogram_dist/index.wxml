@@ -6,6 +6,7 @@
     <view class="{{ classes.buttons }}" wx:if="{{ buttons && !!buttons.length }}">
       <block wx:for="{{ buttons }}" wx:for-item="button" wx:key="index">
         <daro-button
+          id="prompt-button-{{ index }}"
           dora-class="{{ classes.button[index].wrap }}"
           color="{{ button.color || 'light' }}"
           fill="{{ button.fill || 'solid' }}"
@@ -28,7 +29,10 @@
           send-message-path="{{ button.sendMessagePath || '' }}"
           send-message-img="{{ button.sendMessageImg || '' }}"
           show-message-card="{{ button.showMessageCard || false }}"
-          phone-number-no-quota-toast="{{ button.phoneNumberNoQuotaToast || false }}"
+          phone-number-no-quota-toast="{{ button.phoneNumberNoQuotaToast || true }}"
+          need-show-entrance="{{ button.needShowEntrance || true }}"
+          entrance-path="{{ button.entrancePath }}"
+          createliveactivity="{{ button.createliveactivity || false }}"
           bind:contact="onContact"
           bind:getphonenumber="onGetPhoneNumber"
           app-parameter="{{ button.appParameter || '' }}"

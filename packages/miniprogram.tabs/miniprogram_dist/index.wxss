@@ -1,5 +1,4 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-tabs {
   position: relative;
 }
@@ -18,23 +17,23 @@
   display: inline-flex;
   width: auto;
   height: auto;
-  max-height: var(--dora-tabs-vertical-height, 270px);
-  max-height: var(--dora-tabs-vertical-height, 270px);
+  max-height: 540rpx;
+  max-height: var(--dora-tabs-vertical-height, 540rpx);
   flex-direction: column;
 }
 
 .dora-tabs__scroll-view {
   display: flex;
   width: 100%;
-  height: var(--dora-tabs-height, 44px);
-  height: var(--dora-tabs-height, 44px);
-  line-height: var(--dora-tabs-height, 44px);
-  line-height: var(--dora-tabs-height, 44px);
+  height: 88rpx;
+  height: var(--dora-tabs-height, 88rpx);
+  line-height: 88rpx;
+  line-height: var(--dora-tabs-height, 88rpx);
   box-sizing: border-box;
   position: relative;
   justify-content: space-around;
   align-items: center;
-  background: var(--dora-tabs-background-color, var(--dora-component-background-color, #fff));
+  background: #fff;
   background: var(--dora-tabs-background-color, var(--dora-component-background-color, #fff));
 }
 
@@ -84,10 +83,10 @@
   text-align: center;
   position: relative;
   box-sizing: border-box;
-  font-size: var(--dora-tabs-font-size, 14px);
-  font-size: var(--dora-tabs-font-size, 14px);
-  padding: 0 var(--dora-tabs-scrolling-size, 15px);
-  padding: 0 var(--dora-tabs-scrolling-size, 15px);
+  font-size: 28rpx;
+  font-size: var(--dora-tabs-font-size, 28rpx);
+  padding: 0 30rpx;
+  padding: 0 var(--dora-tabs-scrolling-size, 30rpx);
   cursor: pointer;
   --activated-text-color: var(--dora-color-positive, #3880ff);
   --background-color: var(--dora-color-positive, #3880ff);
@@ -95,19 +94,18 @@
 
 .dora-tabs__tab-bar {
   display: block;
-  width: calc(100% - var(--dora-tabs-scrolling-size, 15px)*2);
-  width: calc(100% - var(--dora-tabs-scrolling-size, 15px)*2);
-  height: var(--dora-tabs-bar-size, 2px);
-  height: var(--dora-tabs-bar-size, 2px);
+  width: calc(100% - 30rpx*2);
+  width: calc(100% - var(--dora-tabs-scrolling-size, 30rpx)*2);
+  height: 4rpx;
+  height: var(--dora-tabs-bar-size, 4rpx);
   background: transparent;
   position: absolute;
   bottom: 0;
-  left: var(--dora-tabs-scrolling-size, 15px);
-  left: var(--dora-tabs-scrolling-size, 15px);
+  left: 30rpx;
+  left: var(--dora-tabs-scrolling-size, 30rpx);
   background: var(--background-color);
-  background: var(--background-color);
-  border-radius: var(--dora-tabs-bar-size, 2px);
-  border-radius: var(--dora-tabs-bar-size, 2px);
+  border-radius: 4rpx;
+  border-radius: var(--dora-tabs-bar-size, 4rpx);
 }
 
 .dora-tabs__tab-bar--full {
@@ -116,20 +114,19 @@
 }
 
 .dora-tabs__tab--vertical {
-  padding: 0 var(--dora-tabs-scrolling-size, 15px);
-  padding: 0 var(--dora-tabs-scrolling-size, 15px);
+  padding: 0 30rpx;
+  padding: 0 var(--dora-tabs-scrolling-size, 30rpx);
 }
 
 .dora-tabs__tab--vertical .dora-tabs__tab-bar {
-  width: var(--dora-tabs-bar-size, 2px);
-  width: var(--dora-tabs-bar-size, 2px);
+  width: 4rpx;
+  width: var(--dora-tabs-bar-size, 4rpx);
   height: 100%;
   right: 0;
   left: auto;
 }
 
 .dora-tabs__tab--current {
-  color: var(--activated-text-color);
   color: var(--activated-text-color);
 }
 
@@ -139,7 +136,7 @@
 }
 
 .dora-tabs__tab--disabled {
-  opacity: var(--dora-disabled-opacity, 0.3);
+  opacity: 0.3;
   opacity: var(--dora-disabled-opacity, 0.3);
   cursor: not-allowed;
 }

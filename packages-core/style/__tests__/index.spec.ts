@@ -10,6 +10,10 @@ function readWxssFiles(relativePaths: string[]): string {
   return relativePaths.map((rel) => fs.readFileSync(path.join(pkgRoot, rel), 'utf8')).join('\n')
 }
 
+function readArtifact(relativePath: string): string {
+  return fs.readFileSync(path.join(pkgRoot, relativePath), 'utf8')
+}
+
 /** 将小程序 page 选择器替换为可被浏览器/JSDOM 匹配的类选择器 */
 function wxssToBrowserCss(raw: string): string {
   return raw.replace(/page/gi, '.page')
@@ -30,12 +34,12 @@ async function mountStyles(relativePaths: string[], bodyHtml: string): Promise<{
 }
 
 describe('Style', () => {
-  describe('var.wxss', () => {
+  describe('index.wxss', () => {
     let window: DOMWindow
     let document: Document
 
     beforeAll(async () => {
-      const mounted = await mountStyles(['miniprogram_dist/var.wxss'], '<div class="page"><span id="t">Style</span></div>')
+      const mounted = await mountStyles(['miniprogram_dist/index.wxss'], '<div class="page"><span id="t">Style</span></div>')
       window = mounted.window
       document = mounted.document
     })
@@ -72,13 +76,13 @@ describe('Style', () => {
     })
   })
 
-  describe('color.wxss', () => {
+  describe('index color utilities', () => {
     let window: DOMWindow
     let document: Document
 
     beforeAll(async () => {
       const mounted = await mountStyles(
-        ['miniprogram_dist/var.wxss', 'miniprogram_dist/color.wxss'],
+        ['miniprogram_dist/index.wxss'],
         `<div class="page">
           <div id="positive" class="dora-color--positive"></div>
           <div id="stable" class="dora-color--stable"></div>
@@ -107,16 +111,45 @@ describe('Style', () => {
   })
 
   describe('build artifacts', () => {
-    test('var.wxss and color.wxss parse as valid LESS/CSS', async () => {
-      const varCss = wxssToBrowserCss(readWxssFiles(['miniprogram_dist/var.wxss']))
-      const colorCss = readWxssFiles(['miniprogram_dist/color.wxss'])
+    test('index.wxss parses as valid LESS/CSS', async () => {
+      const indexCss = wxssToBrowserCss(readWxssFiles(['miniprogram_dist/index.wxss']))
 
-      await expect(less.render(varCss, { filename: 'var.wxss' })).resolves.toMatchObject({
-        css: expect.stringContaining('--dora-font-family'),
-      })
-      await expect(less.render(colorCss, { filename: 'color.wxss' })).resolves.toMatchObject({
+      await expect(less.render(indexCss, { filename: 'index.wxss' })).resolves.toMatchObject({
         css: expect.stringContaining('.dora-color--light'),
       })
+    })
+
+    test('source index.less excludes runtime style entries', () => {
+      const sourceIndex = readArtifact('lib/index.less')
+
+      expect(sourceIndex).not.toContain("@import './var.less';")
+      expect(sourceIndex).not.toContain("@import './color.less';")
+    })
+
+    test('runtime.less keeps platform inject markers', () => {
+      const runtimeSource = readArtifact('lib/runtime.less')
+
+      expect(runtimeSource).toContain('inject:wxss:../../@doraemon-ui/style/index.wxss')
+      expect(runtimeSource).toContain('inject:ttss:../../../../@doraemon-ui/style/index.ttss')
+      expect(runtimeSource).toContain("@import './var.less';")
+      expect(runtimeSource).toContain("@import './color.less';")
+    })
+
+    test('index artifacts contain bundled style output', async () => {
+      const indexWxss = wxssToBrowserCss(readArtifact('miniprogram_dist/index.wxss'))
+      const indexTtss = readArtifact('miniprogram_dist/index.ttss')
+
+      expect(indexWxss).toContain('--dora-font-family')
+      expect(indexWxss).toContain('.dora-color--light')
+      expect(indexTtss.trim()).toBe(readArtifact('miniprogram_dist/index.wxss').trim())
+
+      await expect(less.render(indexWxss, { filename: 'index.wxss' })).resolves.toMatchObject({
+        css: expect.stringContaining('.dora-color--light'),
+      })
+    })
+
+    test('tt runtime artifact exists and is non-empty', () => {
+      expect(readArtifact('miniprogram_dist/index.ttss').trim()).not.toBe('')
     })
   })
 })

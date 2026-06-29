@@ -1,55 +1,54 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-avatar {
   box-sizing: border-box;
   display: inline-block;
   text-align: center;
+  background: #cccccc;
   background: var(--dora-color-step-20, #cccccc);
-  background: var(--dora-color-step-20, #cccccc);
-  color: var(--dora-white, #fff);
+  color: #fff;
   color: var(--dora-white, #fff);
   white-space: nowrap;
   position: relative;
   overflow: hidden;
   vertical-align: middle;
-  width: 32px;
-  height: 32px;
-  line-height: 32px;
-  border-radius: calc(32px/2);
-  font-size: 18px;
+  width: 64rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  border-radius: calc(64rpx/2);
+  font-size: 36rpx;
 }
 
 .dora-avatar .dora-avatar__string {
-  line-height: 32px;
+  line-height: 64rpx;
 }
 
 .dora-avatar--small {
-  width: 24px;
-  height: 24px;
-  line-height: 24px;
-  border-radius: calc(24px/2);
-  font-size: 14px;
+  width: 48rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  border-radius: calc(48rpx/2);
+  font-size: 28rpx;
 }
 
 .dora-avatar--small .dora-avatar__string {
-  line-height: 24px;
+  line-height: 48rpx;
 }
 
 .dora-avatar--large {
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  border-radius: calc(40px/2);
-  font-size: 24px;
+  width: 80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: calc(80rpx/2);
+  font-size: 48rpx;
 }
 
 .dora-avatar--large .dora-avatar__string {
-  line-height: 40px;
+  line-height: 80rpx;
 }
 
 .dora-avatar--square {
-  border-radius: var(--dora-border-radius, 8px);
-  border-radius: var(--dora-border-radius, 8px);
+  border-radius: 16rpx;
+  border-radius: var(--dora-border-radius, 16rpx);
 }
 
 .dora-avatar--thumb {

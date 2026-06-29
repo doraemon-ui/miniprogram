@@ -22,9 +22,9 @@
           color="{{ color }}"
           disabled="{{ disabled || context.disabled }}"
           readOnly="{{ readOnly || context.readOnly }}"
-          iconSize="{{ context.iconSize }}"
-          iconOn="{{ context.iconOn }}"
-          iconOff="{{ context.iconOff }}"
+          iconSize="{{ context.iconSize || '' }}"
+          iconOn="{{ context.iconOn || '' }}"
+          iconOff="{{ context.iconOff || '' }}"
           controlled
           bind:change="checkboxChange"
         />
@@ -43,9 +43,9 @@
       color="{{ color }}"
       disabled="{{ disabled || context.disabled }}"
       readOnly="{{ readOnly || context.readOnly }}"
-      iconSize="{{ context.iconSize }}"
-      iconOn="{{ context.iconOn }}"
-      iconOff="{{ context.iconOff }}"
+      iconSize="{{ context.iconSize || '' }}"
+      iconOn="{{ context.iconOn || '' }}"
+      iconOff="{{ context.iconOff || '' }}"
       controlled
       bind:change="checkboxChange"
     />
@@ -61,9 +61,9 @@
     color="{{ color }}"
     disabled="{{ disabled || context.disabled }}"
     readOnly="{{ readOnly || context.readOnly }}"
-    iconSize="{{ context.iconSize }}"
-    iconOn="{{ context.iconOn }}"
-    iconOff="{{ context.iconOff }}"
+    iconSize="{{ context.iconSize || '' }}"
+    iconOn="{{ context.iconOn || '' }}"
+    iconOff="{{ context.iconOff || '' }}"
     controlled
     bind:change="checkboxChange"
   >

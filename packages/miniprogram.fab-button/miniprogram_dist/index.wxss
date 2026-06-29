@@ -1,5 +1,4 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-fab-button {
   --background-color: var(--dora-color-positive, #3880ff);
   position: fixed;
@@ -14,40 +13,40 @@
 }
 
 .dora-fab-button--topLeft {
-  left: 15px;
-  top: 15px;
+  left: 30rpx;
+  top: 30rpx;
 }
 
 .dora-fab-button--topRight {
-  right: 15px;
-  top: 15px;
+  right: 30rpx;
+  top: 30rpx;
 }
 
 .dora-fab-button--bottomLeft {
-  left: 15px;
-  bottom: 15px;
+  left: 30rpx;
+  bottom: 30rpx;
 }
 
 .dora-fab-button--bottomRight {
-  right: 15px;
-  bottom: 15px;
+  right: 30rpx;
+  bottom: 30rpx;
 }
 
 .dora-fab-button--vertical.dora-fab-button--topLeft .dora-fab-button__label,.dora-fab-button--vertical.dora-fab-button--bottomLeft .dora-fab-button__label {
-  left: 60px;
+  left: 120rpx;
 }
 
 .dora-fab-button--vertical.dora-fab-button--center .dora-fab-button__label,.dora-fab-button--vertical.dora-fab-button--topRight .dora-fab-button__label,.dora-fab-button--vertical.dora-fab-button--bottomRight .dora-fab-button__label {
-  right: 60px;
+  right: 120rpx;
 }
 
 .dora-fab-button__action {
-  width: 48px;
-  height: 48px;
+  width: 96rpx;
+  height: 96rpx;
   position: relative;
   border-radius: 50%;
   z-index: 1000;
-  background-color: var(--background-color);
+  background-color: #3880ff;
   background-color: var(--background-color);
   color: #fff;
   overflow: visible;
@@ -55,7 +54,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 4px rgba(0,0,0,0.14),0 4px 8px rgba(0,0,0,0.28);
+  box-shadow: 0 0 8rpx rgba(0,0,0,0.14),0 8rpx 16rpx rgba(0,0,0,0.28);
   right: 0;
   bottom: 0;
 }
@@ -71,17 +70,17 @@
 
 .dora-fab-button__icon {
   display: inline-block;
-  width: 20px;
-  height: 20px;
-  font-size: 20px;
+  width: 40rpx;
+  height: 40rpx;
+  font-size: 40rpx;
   line-height: 1;
 }
 
 .dora-fab-button__text {
   display: inline-block;
-  width: 20px;
-  height: 20px;
-  font-size: 20px;
+  width: 40rpx;
+  height: 40rpx;
+  font-size: 40rpx;
   line-height: 1;
   transition: transform 150ms cubic-bezier(0.4,0,1,1);
 }
@@ -95,13 +94,13 @@
   border-radius: 50%;
   overflow: visible;
   color: #fff!important;
-  background-color: var(--background-color)!important;
+  background-color: #3880ff!important;
   background-color: var(--background-color)!important;
   transition-duration: 0.3s;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 4px rgba(0,0,0,0.14),0 4px 8px rgba(0,0,0,0.28);
+  box-shadow: 0 0 8rpx rgba(0,0,0,0.14),0 8rpx 16rpx rgba(0,0,0,0.28);
   position: absolute;
   top: 0;
   left: 0;
@@ -118,7 +117,7 @@
 }
 
 .dora-fab-button__button--disabled {
-  opacity: var(--dora-disabled-opacity, 0.3)!important;
+  opacity: 0.3!important;
   opacity: var(--dora-disabled-opacity, 0.3)!important;
   cursor: not-allowed!important;
 }
@@ -130,12 +129,12 @@
 .dora-fab-button__label {
   position: absolute;
   top: 50%;
-  padding: 4px 8px;
-  font-size: 12px;
+  padding: 8rpx 16rpx;
+  font-size: 24rpx;
+  background: rgba(0,0,0,0.4);
   background: rgba(var(--dora-black-rgb, 0, 0, 0),0.4);
-  background: rgba(var(--dora-black-rgb, 0, 0, 0),0.4);
-  border-radius: 4px;
-  color: rgba(var(--dora-white-rgb, 255, 255, 255),0.85);
+  border-radius: 8rpx;
+  color: rgba(255,255,255,0.85);
   color: rgba(var(--dora-white-rgb, 255, 255, 255),0.85);
   pointer-events: none;
   white-space: nowrap;

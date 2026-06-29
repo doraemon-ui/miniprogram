@@ -1,9 +1,8 @@
-@import '../../@doraemon-ui/style/var.wxss';
-@import '../../@doraemon-ui/style/color.wxss';
+@import '../../@doraemon-ui/style/index.wxss';
 .dora-field {
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
-  border-bottom: 1px solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
+  padding: 24rpx 32rpx;
+  border-bottom: 2rpx solid #d9d9d9;
+  border-bottom: 2rpx solid var(--dora-border-color-split, var(--dora-color-step-15, #d9d9d9));
 }
 
 .dora-field__child {
@@ -22,10 +21,10 @@
   position: relative;
   margin-left: 0;
   margin-bottom: 0;
-  margin-right: 6px;
+  margin-right: 12rpx;
   text-align: left;
   white-space: nowrap;
-  width: 105px;
+  width: 210rpx;
 }
 
 .dora-field__label--wrap {
@@ -33,13 +32,13 @@
 }
 
 .dora-field__label-help {
-  margin-left: 6px;
+  margin-left: 12rpx;
 }
 
 .dora-field__feedback-message {
+  color: #eb445a;
   color: var(--dora-color-assertive, #eb445a);
-  color: var(--dora-color-assertive, #eb445a);
-  margin-top: 6px;
+  margin-top: 12rpx;
 }
 
 .dora-field__required-asterisk {
@@ -47,14 +46,14 @@
   position: absolute;
   left: -0.6em;
   top: 0;
-  color: var(--dora-color-assertive, #eb445a);
+  color: #eb445a;
   color: var(--dora-color-assertive, #eb445a);
 }
 
 .dora-field__required-text {
   display: inline-block;
-  margin-left: 6px;
-  color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
+  margin-left: 12rpx;
+  color: rgba(0,0,0,0.45);
   color: rgba(var(--dora-text-color-rgb, 0, 0, 0),0.45);
 }
 

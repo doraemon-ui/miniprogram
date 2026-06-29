@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.selector-group.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-04, 00:40:46.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
+ * Built on 2026-06-27, 16:55:35.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.41.
  */
 
 import { Doraemon, Prop, Watch, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
@@ -16,13 +16,15 @@ function _ts_decorate(decorators, target, key, desc) {
 const { classNames } = Doraemon.util;
 let SelectorGroup = class SelectorGroup extends Doraemon {
     get classes() {
-        const { prefixCls, theme, shape } = this;
+        const { prefixCls, color, shape } = this;
         const finalShape = [
             'rounded',
             'rectangular'
         ].includes(shape) ? shape : '';
         const wrap = classNames(prefixCls, {
-            [`${prefixCls}--${theme}`]: !!theme
+            [`${prefixCls}--${color}`]: !!color,
+            ['dora-color']: !!color,
+            [`dora-color--${color}`]: !!color
         });
         return {
             wrap,
@@ -121,9 +123,9 @@ let SelectorGroup = class SelectorGroup extends Doraemon {
 _ts_decorate([
     Prop({
         type: String,
-        default: 'balanced'
+        default: 'positive'
     })
-], SelectorGroup.prototype, "theme", void 0);
+], SelectorGroup.prototype, "color", void 0);
 _ts_decorate([
     Prop({
         type: String,

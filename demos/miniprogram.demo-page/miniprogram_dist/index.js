@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.demo-page.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-05-13, 22:23:12.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.32.
+ * Built on 2026-06-29, 15:27:40.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.41.
  */
 
 import { Doraemon, Prop, Watch, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
@@ -15,31 +15,30 @@ function _ts_decorate(decorators, target, key, desc) {
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 }
 const { classNames } = Doraemon.util;
-var DarkMode;
-(function(DarkMode) {
-    DarkMode["AUTO"] = "auto";
-    DarkMode["LIGHT"] = "light";
-    DarkMode["DARK"] = "dark";
-})(DarkMode || (DarkMode = {}));
+const DarkModeMap = {
+    AUTO: 'auto',
+    LIGHT: 'light',
+    DARK: 'dark'
+};
 const getSysTheme = ()=>{
     let theme;
     try {
         theme = miniprogramThis.getSystemInfoSync().theme;
     } catch (e) {
-        theme = "light";
+        theme = DarkModeMap.LIGHT;
     }
     return theme;
 };
 const presetThemeRecord = {
     light: {
         backgroundColor: '#fafafa',
-        backgroundTextStyle: "light",
+        backgroundTextStyle: DarkModeMap.LIGHT,
         navigationBarBackgroundColor: '#fafafa',
         navigationBarTextStyle: 'black'
     },
     dark: {
         backgroundColor: '#0d0d0d',
-        backgroundTextStyle: "dark",
+        backgroundTextStyle: DarkModeMap.DARK,
         navigationBarBackgroundColor: '#0d0d0d',
         navigationBarTextStyle: 'white'
     }
@@ -48,7 +47,7 @@ const darkmodeSync = (darkmode)=>{
     const theme = presetThemeRecord[darkmode];
     if (canUseMP()) {
         miniprogramThis.setBackgroundTextStyle({
-            textStyle: theme.backgroundTextStyle
+            SysTheme: theme.backgroundTextStyle
         });
         miniprogramThis.setBackgroundColor({
             backgroundColor: theme.backgroundColor
@@ -68,7 +67,7 @@ let DemoPage = class DemoPage extends Doraemon {
         const hd = `${prefixCls}__hd`;
         const title = `${prefixCls}__title`;
         const desc = `${prefixCls}__desc`;
-        const darkmode = classNames(`${prefixCls}__darkmode`, `${prefixCls}__iconfont`, (curTheme === "auto" ? sysTheme === "dark" : curTheme === "dark") ? `${prefixCls}__iconfont-dark` : `${prefixCls}__iconfont-light`);
+        const darkmode = classNames(`${prefixCls}__darkmode`, `${prefixCls}__iconfont`, (curTheme === DarkModeMap.AUTO ? sysTheme === DarkModeMap.DARK : curTheme === DarkModeMap.DARK) ? `${prefixCls}__iconfont-dark` : `${prefixCls}__iconfont-light`);
         const bd = classNames(`${prefixCls}__bd`, {
             [`${prefixCls}__bd--spacing`]: spacing
         });
@@ -89,7 +88,7 @@ let DemoPage = class DemoPage extends Doraemon {
             return;
         }
         const curTheme = this.isManual ? this.curTheme : getSysTheme();
-        const theme = curTheme === "dark" ? "light" : "dark";
+        const theme = curTheme === DarkModeMap.DARK ? DarkModeMap.LIGHT : DarkModeMap.DARK;
         this.isManual = true;
         this.setTheme(theme);
         darkmodeSync(theme);
@@ -107,7 +106,7 @@ let DemoPage = class DemoPage extends Doraemon {
             this.sysTheme = theme;
             this.isRegister = true;
             this.isManual = false;
-            this.setTheme("auto");
+            this.setTheme(DarkModeMap.AUTO);
         };
         if (canUseMP()) {
             miniprogramThis.onThemeChange(cb);
@@ -118,14 +117,14 @@ let DemoPage = class DemoPage extends Doraemon {
         }
     }
     onDarkmodeChange(darkmode) {
-        const isAuto = darkmode === "auto";
+        const isAuto = darkmode === DarkModeMap.AUTO;
         if (isAuto) {
             this.onThemeChange();
         } else if (canUseMP()) {
             miniprogramThis.offThemeChange();
         }
         this.isAuto = isAuto;
-        this.setTheme("auto");
+        this.setTheme(DarkModeMap.AUTO);
     }
     mounted() {
         this.onDarkmodeChange(this.darkmode);
@@ -135,7 +134,7 @@ let DemoPage = class DemoPage extends Doraemon {
         this.isAuto = false;
         this.isManual = false;
         this.isRegister = false;
-        this.curTheme = "auto";
+        this.curTheme = DarkModeMap.AUTO;
         this.sysTheme = getSysTheme();
     }
 };
