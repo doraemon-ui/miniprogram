@@ -30,5 +30,5 @@
     "**/dist/**",
     "**/miniprogram_dist/**"
   ],
-  "version": "independent"
+  "version": "0.0.2-alpha.46"
 }
