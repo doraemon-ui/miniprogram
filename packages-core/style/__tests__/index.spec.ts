@@ -129,8 +129,8 @@ describe('Style', () => {
     test('runtime.less keeps platform inject markers', () => {
       const runtimeSource = readArtifact('lib/runtime.less')
 
-      expect(runtimeSource).toContain('inject:wxss:../../@doraemon-ui/style/index.wxss')
-      expect(runtimeSource).toContain('inject:ttss:../../../../@doraemon-ui/style/index.ttss')
+      expect(runtimeSource).toContain('inject:runtime-style')
+      expect(runtimeSource).toContain('endinject')
       expect(runtimeSource).toContain("@import './var.less';")
       expect(runtimeSource).toContain("@import './color.less';")
     })
