@@ -1,12 +1,76 @@
 // Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Grid mount correctly 1`] = `
-<dora-grid>
-  <wx-view
-    class="dora-class dora-grid"
-    hoverClass="dora-hover-class dora-grid--hover"
-    style=""
-    bind:tap="onClick"
-  />
-</dora-grid>
+<main>
+  <dora-grid
+    id="grid"
+  >
+    <wx-view
+      class="dora-class dora-grid dora-grid--bordered"
+    >
+      <dora-grid-item
+        id="item-0"
+      >
+        <wx-view
+          class="dora-class dora-grid-item dora-grid-item--bordered"
+          hoverClass="grid-hover"
+          style="width: 100%"
+          bind:tap="onClick"
+        >
+          <wx-view
+            class="dora-grid-item__content"
+          >
+            <wx-view
+              class="dora-grid-item__inner"
+            >
+              <wx-view
+                class="dora-grid-item__hd"
+              />
+              <wx-view
+                class="dora-grid-item__bd"
+              >
+                <wx-view
+                  class="dora-grid-item__label"
+                >
+                  Grid 1
+                </wx-view>
+              </wx-view>
+            </wx-view>
+          </wx-view>
+        </wx-view>
+      </dora-grid-item>
+      <dora-grid-item
+        id="item-1"
+      >
+        <wx-view
+          class="dora-class dora-grid-item dora-grid-item--bordered"
+          hoverClass="grid-hover"
+          style="width: 100%"
+          bind:tap="onClick"
+        >
+          <wx-view
+            class="dora-grid-item__content"
+          >
+            <wx-view
+              class="dora-grid-item__inner"
+            >
+              <wx-view
+                class="dora-grid-item__hd"
+              />
+              <wx-view
+                class="dora-grid-item__bd"
+              >
+                <wx-view
+                  class="dora-grid-item__label"
+                >
+                  Grid 2
+                </wx-view>
+              </wx-view>
+            </wx-view>
+          </wx-view>
+        </wx-view>
+      </dora-grid-item>
+    </wx-view>
+  </dora-grid>
+</main>
 `;

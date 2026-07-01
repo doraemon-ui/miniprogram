@@ -10,7 +10,7 @@ exports[`PickerView mount correctly 1`] = `
         doraClass="dora-spin__spinning--nested"
       >
         <wx-view
-          class="dora-class dora-class-a dora-class-b dora-class-c  dora-animate--fadeIn-exit"
+          class="dora-class dora-class-a dora-class-b dora-class-c dora-animation-group dora-animate--fadeIn-exit"
           style=""
           bind:tap="onClick"
           catch:touchmove=""
@@ -62,11 +62,11 @@ exports[`PickerView mount correctly 1`] = `
         >
           <wx-view
             class="dora-mask-class  dora-picker-view__mask"
-            style="background-size: 100% 102px; ; "
+            style="background-size: 100% 102px; "
           />
           <wx-view
             class="dora-indicator-class  dora-picker-view__indicator"
-            style="top: 102px; height: 34px; ; "
+            style="top: 102px; height: 34px; "
           />
           <wx-view
             class="dora-content-class dora-picker-view__content"

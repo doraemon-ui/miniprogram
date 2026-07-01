@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "dora-accordion": "../miniprogram_dist/index",
-    "dora-accordion-panel": "../miniprogram_dist/panel"
-  }
-}

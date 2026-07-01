@@ -80,7 +80,7 @@ export function defineComponentHOC(externalOptions: ComponentExternalOptions = {
       relations: { ...components },
       behaviors: (Array.isArray(externalOptions.behaviors) ? externalOptions.behaviors : []).concat([
         'wx://component-export',
-        ...(getEnv() === ENV_TYPE.TT ? [logicalTree()] : []),
+        ...(getEnv() === ENV_TYPE.WEAPP ? [] : [logicalTree()]),
         useRelation(components),
         syncPropsToData(defaultProps, options.computed),
       ]),

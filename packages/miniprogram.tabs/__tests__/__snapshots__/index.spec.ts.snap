@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Tabs mount correctly 1`] = `
+<main>
+  <dora-tabs
+    id="tabs"
+  >
+    <wx-view
+      class="dora-class dora-tabs dora-tabs--horizontal"
+    >
+      <wx-view
+        class="dora-tabs__scroll-view"
+        style="justify-content: space-around;  "
+      >
+        <dora-tab
+          id="home-tab"
+        >
+          <wx-view
+            class="dora-class dora-tabs__tab dora-color dora-color--positive dora-tabs__tab--horizontal dora-tabs__tab--current"
+            bind:tap="onTap"
+          >
+            <wx-view
+              class="dora-tabs__tab-title"
+            >
+              Home
+            </wx-view>
+            <wx-view
+              class="dora-tabs__tab-bar dora-tabs__tab-bar--auto"
+            />
+          </wx-view>
+        </dora-tab>
+        <dora-tab
+          id="profile-tab"
+        >
+          <wx-view
+            class="dora-class dora-tabs__tab dora-color dora-color--positive dora-tabs__tab--horizontal"
+            bind:tap="onTap"
+          >
+            <wx-view
+              class="dora-tabs__tab-title"
+            >
+              Profile
+            </wx-view>
+          </wx-view>
+        </dora-tab>
+      </wx-view>
+    </wx-view>
+  </dora-tabs>
+</main>
+`;

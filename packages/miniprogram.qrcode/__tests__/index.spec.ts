@@ -1,10 +1,14 @@
 import path from 'path'
 import simulate from 'miniprogram-simulate'
 
-jest.mock('@doraemon-ui/miniprogram.shared', () => ({
-  useRef: jest.fn(),
-  getSystemInfoSync: jest.fn(() => ({ pixelRatio: 1 })),
-}))
+jest.mock('@doraemon-ui/miniprogram.shared', () => {
+  const actual = jest.requireActual('@doraemon-ui/miniprogram.shared')
+  return {
+    ...actual,
+    useRef: jest.fn(),
+    getSystemInfoSync: jest.fn(() => ({ pixelRatio: 1 })),
+  }
+})
 
 function mountTest(id: string | (() => string), defaultProps: Record<string, unknown> = {}) {
   describe('mount and unmount', () => {

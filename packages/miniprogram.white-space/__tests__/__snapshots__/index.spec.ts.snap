@@ -4,7 +4,7 @@ exports[`WhiteSpace mount correctly 1`] = `
 <dora-white-space>
   <wx-view
     class="dora-class dora-white-space dora-white-space--default"
-    style="; "
+    style=""
     bind:tap="onTap"
   />
 </dora-white-space>

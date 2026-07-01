@@ -4,7 +4,7 @@ exports[`Slider mount correctly 1`] = `
 <dora-slider>
   <wx-view
     class="dora-class dora-slider dora-slider--has-tip"
-    style="; "
+    style=""
   >
     <wx-view
       class="dora-slider__rail-wrap"
@@ -12,7 +12,7 @@ exports[`Slider mount correctly 1`] = `
     >
       <wx-view
         class="dora-slider__rail"
-        style="; "
+        style=""
       >
         <wx-view
           class="dora-slider__track"

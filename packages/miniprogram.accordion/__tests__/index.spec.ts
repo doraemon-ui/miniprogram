@@ -1,8 +1,7 @@
 import path from 'path'
 import simulate from 'miniprogram-simulate'
-import type { RootComponent, Component } from 'miniprogram-simulate'
+import type { Component, RootComponent } from 'miniprogram-simulate'
 import type { AccordionInstance, PanelInstance } from '../src/types'
-import type { TestCompInstance } from './test-comp'
 
 function getAccordionInstance(wrapper: RootComponent<any, any, any> | Component<any, any, any>): AccordionInstance {
   return wrapper.instance.$component as unknown as AccordionInstance
@@ -10,10 +9,6 @@ function getAccordionInstance(wrapper: RootComponent<any, any, any> | Component<
 
 function getAccordionPanelInstance(wrapper: RootComponent<any, any, any> | Component<any, any, any>): PanelInstance {
   return wrapper.instance.$component as unknown as PanelInstance
-}
-
-function getComponentInstance(wrapper: RootComponent<any, any, any> | Component<any, any, any>): TestCompInstance {
-  return wrapper.instance.$component as unknown as TestCompInstance
 }
 
 function mountTest(id: string | (() => string), defaultProps: Record<string, unknown> = {}) {
@@ -31,7 +26,6 @@ function mountTest(id: string | (() => string), defaultProps: Record<string, unk
 
 let accordionID: string
 let accordionPanelID: string
-let testCompID: string
 
 function getAccordionID() {
   return accordionID
@@ -41,82 +35,141 @@ function getAccordionPanelID() {
   return accordionPanelID
 }
 
-function getTestCompID() {
-  return testCompID
-}
-
-function renderInline(template: string) {
+function renderInline(methods: Record<string, (...args: any[]) => void> = {}, data: Record<string, unknown> = {}) {
   return simulate.render(
     simulate.load({
       usingComponents: {
         'dora-accordion': accordionID,
         'dora-accordion-panel': accordionPanelID,
       },
-      template,
+      template: `
+        <dora-accordion
+          id="accordion"
+          prefixCls="{{ prefixCls }}"
+          title="{{ title }}"
+          label="{{ label }}"
+          defaultCurrent="{{ defaultCurrent }}"
+          current="{{ current }}"
+          controlled="{{ controlled }}"
+          accordion="{{ accordion }}"
+          bind:change="onChange"
+        >
+          <dora-accordion-panel
+            id="panel-1"
+            prefixCls="{{ panelPrefixCls }}"
+            key="key1"
+            thumb="{{ thumb }}"
+            title="Accordion 1"
+            content="Content 1"
+            disabled="{{ disabled }}"
+            showArrow="{{ showArrow }}"
+          />
+          <dora-accordion-panel
+            id="panel-2"
+            prefixCls="{{ panelPrefixCls }}"
+            key="key2"
+            title="Accordion 2"
+            content="Content 2"
+          />
+        </dora-accordion>
+      `,
+      data: {
+        prefixCls: 'dora-accordion',
+        panelPrefixCls: 'dora-accordion-panel',
+        title: 'Default',
+        label: 'Accordion model',
+        defaultCurrent: ['key1'],
+        current: ['key1'],
+        controlled: false,
+        accordion: true,
+        thumb: 'http://cdn.skyvow.cn/logo.png',
+        disabled: true,
+        showArrow: true,
+        ...data,
+      },
+      methods: {
+        onChange: jest.fn(),
+        ...methods,
+      },
     }),
   )
 }
 
 describe('Accordion', () => {
   beforeAll(() => {
-    accordionID = simulate.load(path.resolve(__dirname, '../src/index'), 'dora-accordion', { less: true })
-    accordionPanelID = simulate.load(path.resolve(__dirname, '../src/panel'), 'dora-accordion-panel', { less: true })
-    testCompID = simulate.load(path.resolve(__dirname, './test-comp'), 'test-comp', { less: true })
+    accordionID = simulate.load(path.resolve(__dirname, '../src/index'), 'dora-accordion', {
+      less: true,
+      shareCache: true,
+    } as object)
+    accordionPanelID = simulate.load(path.resolve(__dirname, '../src/panel'), 'dora-accordion-panel', {
+      less: true,
+      shareCache: true,
+    } as object)
+  })
+
+  afterAll(() => {
+    global.simulatePatch.restore()
   })
 
   mountTest(getAccordionID)
   mountTest(getAccordionPanelID)
-  mountTest(getTestCompID)
 
-  test('mount correctly', () => {
-    const wrapper = renderInline(`
-      <dora-accordion id="dora-accordion" title="Default" defaultCurrent="{{ ['0'] }}">
-        <dora-accordion-panel
-          title="Accordion 1"
-          content="微信小程序自定义组件"
-        />
-        <dora-accordion-panel
-          id="dora-accordion-panel"
-          title="Accordion 2"
-          content="微信小程序自定义组件"
-        />
-      </dora-accordion>
-    `)
+  test('mount correctly', async () => {
+    const wrapper = renderInline()
     wrapper.attach(document.createElement('parent-wrapper'))
-    const accordion = wrapper.querySelector('#dora-accordion')
-    const accordionPanel = wrapper.querySelector('#dora-accordion-panel')
-    expect(accordion.querySelectorAll('.dora-accordion').length).toBe(1)
-    expect(accordionPanel.querySelectorAll('.dora-accordion-panel').length).toBe(1)
-    expect(accordionPanel.querySelectorAll('.dora-accordion-panel--current').length).toBe(0)
-    expect(accordionPanel.querySelectorAll('.dora-accordion-panel--disabled').length).toBe(0)
+    await simulate.sleep(30)
+
     expect(wrapper.toJSON()).toMatchSnapshot()
   })
 
-  test('should support to change props', async () => {
-    const wrapper = simulate.render(testCompID)
+  test('should support to trigger event', async () => {
+    const onChange = jest.fn()
+    const wrapper = renderInline({ onChange }, { disabled: false })
     wrapper.attach(document.createElement('parent-wrapper'))
-    const $comp = getComponentInstance(wrapper)
-    const accordion = wrapper.querySelector('#dora-accordion')
-    const accordionPanel = wrapper.querySelector('#dora-accordion-panel')
-    const $accordionComp = getAccordionInstance(accordion)
-    const $accordionPanelComp = getAccordionPanelInstance(accordionPanel)
+    await simulate.sleep(30)
 
-    expect(accordion.querySelectorAll('.dora-accordion').length).toBe(1)
-    expect(accordionPanel.querySelectorAll('.dora-accordion-panel').length).toBe(1)
-    expect(accordionPanel.querySelectorAll('.dora-accordion-panel--disabled').length).toBe(0)
-    expect(accordionPanel.querySelectorAll('.dora-accordion-panel .dora-accordion-panel__arrow').length).toBe(1)
+    const accordion = wrapper.querySelector('#accordion')
+    const panel2 = wrapper.querySelector('#panel-2')
+    const enabledHeader = panel2.querySelector('.dora-accordion-panel__hd')
+    enabledHeader.dispatchEvent('tap')
+    await simulate.sleep(100)
 
-    wrapper.setData({ accordion: true })
+    expect(onChange).toHaveBeenCalledTimes(1)
+    expect(onChange.mock.calls[0][0].detail).toEqual(expect.objectContaining({ key: 'key2' }))
+  })
+
+  test('should support to change props', async () => {
+    const wrapper = renderInline({}, { controlled: true, current: ['key2'], accordion: false })
+    wrapper.attach(document.createElement('parent-wrapper'))
+    await simulate.sleep(30)
+
+    const accordion = wrapper.querySelector('#accordion')
+    const panel1 = wrapper.querySelector('#panel-1')
+    const $accordion = getAccordionInstance(accordion)
+    const $panel1 = getAccordionPanelInstance(panel1)
+
+    wrapper.setData({ prefixCls: 'dora-accordion-custom' })
     await simulate.sleep(0)
-    expect($comp.$data.accordion).toBe(true)
+    expect($accordion.$props.prefixCls).toBe('dora-accordion-custom')
+    expect(accordion.querySelectorAll('.dora-accordion-custom').length).toBe(1)
 
-    expect(accordion.instance.$component.activeKey.length).toBe(1)
-    expect(accordion.instance.$component.activeKey).toEqual(['key1'])
-    const hd = accordionPanel.querySelector('.dora-accordion-panel .dora-accordion-panel__hd')
-    hd.dispatchEvent('tap')
+    wrapper.setData({ current: ['key1'] })
+    await simulate.sleep(10)
+    expect($accordion.$props.current).toEqual(['key1'])
+
+    wrapper.setData({ disabled: false })
     await simulate.sleep(0)
-    expect($comp.$data.haveBeenCalled).toBe(true)
-    expect(accordion.instance.$component.activeKey.length).toBe(1)
-    expect(accordion.instance.$component.activeKey).toEqual(['key2'])
+    expect($panel1.$props.disabled).toBe(false)
+    expect(panel1.querySelectorAll('.dora-accordion-panel--disabled').length).toBe(0)
+
+    wrapper.setData({ showArrow: false })
+    await simulate.sleep(0)
+    expect($panel1.$props.showArrow).toBe(false)
+    expect(panel1.querySelectorAll('.dora-accordion-panel__arrow').length).toBe(0)
+
+    wrapper.setData({ thumb: '' })
+    await simulate.sleep(0)
+    expect($panel1.$props.thumb).toBe('')
+    expect(panel1.querySelectorAll('.dora-accordion-panel__thumb').length).toBe(0)
   })
 })

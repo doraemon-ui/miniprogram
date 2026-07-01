@@ -1,14 +1,59 @@
 // Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Tabbar mount correctly 1`] = `
-<dora-tabbar>
-  <wx-view
-    class="dora-class dora-tabbar"
-    style="background-color: #fff;  "
+<main>
+  <dora-tabbar
+    id="tabbar"
   >
     <wx-view
-      class="dora-tabbar-wrap"
-    />
-  </wx-view>
-</dora-tabbar>
+      class="dora-class dora-tabbar dora-color dora-color--positive"
+      style="background-color: #fff;  "
+    >
+      <wx-view
+        class="dora-tabbar-wrap"
+      >
+        <dora-tabbar-item
+          id="home-tab"
+        >
+          <wx-view
+            class="dora-class dora-tabbar-item dora-tabbar-item--current dora-color dora-color--positive"
+            style="width: 50%"
+            bind:tap="onTap"
+          >
+            <wx-view
+              class="dora-tabbar-item__icon"
+            />
+            <wx-view
+              class="dora-tabbar-item__title"
+            >
+              <wx-text>
+                Home
+              </wx-text>
+            </wx-view>
+          </wx-view>
+        </dora-tabbar-item>
+        <dora-tabbar-item
+          id="profile-tab"
+        >
+          <wx-view
+            class="dora-class dora-tabbar-item dora-color dora-color--positive"
+            style="width: 50%"
+            bind:tap="onTap"
+          >
+            <wx-view
+              class="dora-tabbar-item__icon"
+            />
+            <wx-view
+              class="dora-tabbar-item__title"
+            >
+              <wx-text>
+                Profile
+              </wx-text>
+            </wx-view>
+          </wx-view>
+        </dora-tabbar-item>
+      </wx-view>
+    </wx-view>
+  </dora-tabbar>
+</main>
 `;

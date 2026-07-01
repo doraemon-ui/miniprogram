@@ -1,5 +1,6 @@
 import path from 'path'
 import simulate from 'miniprogram-simulate'
+import type { FieldInstance, FormInstance, InputInstanceLike } from '../src/types'
 
 function mountTest(id: string | (() => string), defaultProps: Record<string, unknown> = {}) {
   describe('mount and unmount', () => {
@@ -16,15 +17,34 @@ function mountTest(id: string | (() => string), defaultProps: Record<string, unk
 
 let formId: string
 let fieldId: string
+let inputId: string
 
 function getId() {
   return formId
+}
+
+async function flushFormUpdates() {
+  await simulate.sleep(10)
+  await simulate.sleep(0)
+}
+
+function connectFieldInput(wrapper: { querySelector: (selector: string) => { instance: unknown } }) {
+  const form = wrapper.querySelector('#form').instance as unknown as FormInstance
+  const field = wrapper.querySelector('#username-field').instance as unknown as FieldInstance
+  const input = wrapper.querySelector('#username-input').instance as unknown as InputInstanceLike
+  const hooks = form.getInternalHooks('FORM_HOOK_MARK')
+  jest.spyOn(field, 'forceUpdate').mockImplementation((_inputElem, callback) => {
+    callback?.()
+  })
+  hooks.registerField('username', field)
+  hooks.getFieldDecorator('username', field.getFieldData(), field)(input)
 }
 
 describe('Form', () => {
   beforeAll(() => {
     formId = simulate.load(path.resolve(__dirname, '../src/index'), 'dora-form', { less: true })
     fieldId = simulate.load(path.resolve(__dirname, '../src/field'), 'dora-field', { less: true })
+    inputId = simulate.load(path.resolve(__dirname, '../../miniprogram.input/src/index'), 'dora-input', { less: true })
   })
 
   mountTest(getId)
@@ -91,28 +111,27 @@ describe('Form', () => {
         usingComponents: {
           'dora-form': formId,
           'dora-field': fieldId,
+          'dora-input': inputId,
         },
         template: `
           <dora-form id="form" layout="horizontal">
-            <dora-field id="username-field" name="username" label="Username"></dora-field>
+            <dora-field id="username-field" name="username" label="Username">
+              <dora-input id="username-input"></dora-input>
+            </dora-field>
           </dora-form>
         `,
       }),
     )
 
     wrapper.attach(document.createElement('parent-wrapper'))
-    await simulate.sleep(10)
+    await flushFormUpdates()
+    connectFieldInput(wrapper)
+    await flushFormUpdates()
 
-    const form = wrapper.querySelector('#form').instance as {
-      setFieldsValue: (values: Record<string, unknown>) => void
-      getFieldValue: (name: string) => unknown
-      getInternalHooks: (key: string) => { registerField: (name: string, field: unknown) => () => void }
-    }
-    const field = wrapper.querySelector('#username-field').instance
-    form.getInternalHooks('FORM_HOOK_MARK').registerField('username', field)
+    const form = wrapper.querySelector('#form').instance as unknown as FormInstance
 
     form.setFieldsValue({ username: 'skyvow' })
-    await simulate.sleep(10)
+    await flushFormUpdates()
 
     expect(form.getFieldValue('username')).toBe('skyvow')
   })
@@ -123,6 +142,7 @@ describe('Form', () => {
         usingComponents: {
           'dora-form': formId,
           'dora-field': fieldId,
+          'dora-input': inputId,
         },
         template: `
           <dora-form id="form" layout="horizontal">
@@ -131,25 +151,20 @@ describe('Form', () => {
               name="username"
               label="Username"
               rules="{{ [{ required: true, message: 'Username is required' }] }}"
-            ></dora-field>
+            >
+              <dora-input id="username-input"></dora-input>
+            </dora-field>
           </dora-form>
         `,
       }),
     )
 
     wrapper.attach(document.createElement('parent-wrapper'))
-    await simulate.sleep(10)
+    await flushFormUpdates()
+    connectFieldInput(wrapper)
+    await flushFormUpdates()
 
-    const form = wrapper.querySelector('#form').instance as {
-      validateFields: () => Promise<Record<string, unknown>>
-      setFieldsValue: (values: Record<string, unknown>) => void
-      resetFields: (names?: string[] | string) => void
-      getFieldError: (name: string) => string[] | undefined
-      getFieldValue: (name: string) => unknown
-      getInternalHooks: (key: string) => { registerField: (name: string, field: unknown) => () => void }
-    }
-    const field = wrapper.querySelector('#username-field').instance
-    form.getInternalHooks('FORM_HOOK_MARK').registerField('username', field)
+    const form = wrapper.querySelector('#form').instance as unknown as FormInstance
 
     await expect(form.validateFields()).rejects.toMatchObject({
       errors: {
@@ -159,15 +174,15 @@ describe('Form', () => {
       },
     })
 
-    await simulate.sleep(10)
+    await flushFormUpdates()
     expect(form.getFieldError('username')).toEqual(['Username is required'])
 
     form.setFieldsValue({ username: 'ok' })
-    await simulate.sleep(10)
+    await flushFormUpdates()
     await expect(form.validateFields()).resolves.toEqual({ username: 'ok' })
 
     form.resetFields('username')
-    await simulate.sleep(10)
+    await flushFormUpdates()
     expect(form.getFieldValue('username')).toBeNull()
   })
 })

@@ -6,32 +6,63 @@ function getComponentInstance(wrapper: RootComponent<any, any, any> | Component<
   return wrapper.instance.$component as unknown as any
 }
 
+function mountTest(id: string | (() => string), defaultProps: Record<string, unknown> = {}) {
+  describe('mount and unmount', () => {
+    it('component could be updated and unmounted without errors', () => {
+      const wrapper = simulate.render(typeof id === 'function' ? id() : id, defaultProps)
+      wrapper.attach(document.createElement('parent-wrapper'))
+      expect(() => {
+        wrapper.setData({})
+        wrapper.detach()
+      }).not.toThrow()
+    })
+  })
+}
+
 let listID: string
 let listItemID: string
 
+function getListID() {
+  return listID
+}
+
+function getListItemID() {
+  return listItemID
+}
+
+function renderInline(template: string, methods: Record<string, (...args: any[]) => void> = {}, data: Record<string, unknown> = {}) {
+  return simulate.render(
+    simulate.load({
+      usingComponents: {
+        'dora-list': listID,
+        'dora-list-item': listItemID,
+      },
+      template,
+      methods,
+      data,
+    }),
+  )
+}
+
 describe('List', () => {
   beforeAll(() => {
-    listID = simulate.load(path.resolve(__dirname, '../src/index'), 'dora-list', { less: true })
-    listItemID = simulate.load(path.resolve(__dirname, '../src/item'), 'dora-list-item', { less: true })
+    listID = simulate.load(path.resolve(__dirname, '../src/index'), 'dora-list', { less: true, shareCache: true } as object)
+    listItemID = simulate.load(path.resolve(__dirname, '../src/item'), 'dora-list-item', { less: true, shareCache: true } as object)
   })
 
+  afterAll(() => {
+    global.simulatePatch.restore()
+  })
+
+  mountTest(getListID)
+  mountTest(getListItemID)
+
   test('mount correctly', () => {
-    const wrapper = simulate.render(
-      simulate.load({
-        usingComponents: {
-          'dora-list': listID,
-          'dora-list-item': listItemID,
-        },
-        template: `
-          <dora-list id="dora-list" title="带说明的列表项">
-            <dora-list-item
-              id="dora-list-item"
-              title="标题文字"
-            />
-          </dora-list>
-        `,
-      }),
-    )
+    const wrapper = renderInline(`
+      <dora-list id="dora-list" title="带说明的列表项">
+        <dora-list-item id="dora-list-item" title="标题文字" />
+      </dora-list>
+    `)
     wrapper.attach(document.createElement('parent-wrapper'))
     const list = wrapper.querySelector('#dora-list')
     const listItem = wrapper.querySelector('#dora-list-item')
@@ -48,37 +79,31 @@ describe('List', () => {
     const onOpenSetting = jest.fn()
     const onGetPhoneNumber = jest.fn()
     const onContact = jest.fn()
-    const wrapper = simulate.render(
-      simulate.load({
-        usingComponents: {
-          'dora-list': listID,
-          'dora-list-item': listItemID,
-        },
-        template: `
-          <dora-list id="dora-list" title="带说明的列表项">
-            <dora-list-item
-              id="dora-list-item"
-              title="标题文字"
-              openType="{{openType}}"
-              bind:getuserinfo="onGetUserInfo"
-              bind:getphonenumber="onGetPhoneNumber"
-              bind:opensetting="onOpenSetting"
-              bind:contact="onContact"
-              bind:tap="onClick"
-            />
-          </dora-list>
-        `,
-        data: {
-          openType: '',
-        },
-        methods: {
-          onContact,
-          onOpenSetting,
-          onGetPhoneNumber,
-          onGetUserInfo,
-          onClick,
-        },
-      }),
+    const wrapper = renderInline(
+      `
+        <dora-list id="dora-list" title="带说明的列表项">
+          <dora-list-item
+            id="dora-list-item"
+            title="标题文字"
+            openType="{{openType}}"
+            bind:getuserinfo="onGetUserInfo"
+            bind:getphonenumber="onGetPhoneNumber"
+            bind:opensetting="onOpenSetting"
+            bind:contact="onContact"
+            bind:tap="onClick"
+          />
+        </dora-list>
+      `,
+      {
+        onContact,
+        onOpenSetting,
+        onGetPhoneNumber,
+        onGetUserInfo,
+        onClick,
+      },
+      {
+        openType: '',
+      },
     )
     wrapper.attach(document.createElement('parent-wrapper'))
     const list = wrapper.querySelector('#dora-list-item')
@@ -115,42 +140,37 @@ describe('List', () => {
   })
 
   test('should support to change props', async () => {
-    const wrapper = simulate.render(
-      simulate.load({
-        usingComponents: {
-          'dora-list': listID,
-          'dora-list-item': listItemID,
-        },
-        template: `
-          <dora-list
-            id="dora-list"
-            prefixCls="{{prefixCls}}"
-            mode="{{mode}}"
-            hasLine="{{hasLine}}"
-            wrapStyle="{{wrapStyle}}"
-            bodyStyle="{{bodyStyle}}"
-            title="带说明的列表项"
-            label="底部说明文字"
-          >
-            <dora-list-item
-              id="dora-list-item"
-              isLink
-              thumb="http://cdn.skyvow.cn/logo.png"
-              title="标题文字"
-              label="附加描述"
-              extra="说明文字"
-              disabled
-            />
-          </dora-list>
-        `,
-        data: {
-          prefixCls: 'dora-list',
-          mode: 'default',
-          hasLine: true,
-          wrapStyle: null,
-          bodyStyle: null,
-        },
-      }),
+    const wrapper = renderInline(
+      `
+        <dora-list
+          id="dora-list"
+          prefixCls="{{prefixCls}}"
+          mode="{{mode}}"
+          hasLine="{{hasLine}}"
+          wrapStyle="{{wrapStyle}}"
+          bodyStyle="{{bodyStyle}}"
+          title="带说明的列表项"
+          label="底部说明文字"
+        >
+          <dora-list-item
+            id="dora-list-item"
+            isLink
+            thumb="http://cdn.skyvow.cn/logo.png"
+            title="标题文字"
+            label="附加描述"
+            extra="说明文字"
+            disabled
+          />
+        </dora-list>
+      `,
+      {},
+      {
+        prefixCls: 'dora-list',
+        mode: 'default',
+        hasLine: true,
+        wrapStyle: null,
+        bodyStyle: null,
+      },
     )
     wrapper.attach(document.createElement('parent-wrapper'))
     const list = wrapper.querySelector('#dora-list')

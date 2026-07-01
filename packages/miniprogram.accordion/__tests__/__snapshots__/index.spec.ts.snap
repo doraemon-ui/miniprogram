@@ -3,7 +3,8 @@
 exports[`Accordion mount correctly 1`] = `
 <main>
   <dora-accordion
-    id="dora-accordion"
+    id="accordion"
+    bind:change="onChange"
   >
     <wx-view
       class="dora-class dora-accordion"
@@ -16,14 +17,20 @@ exports[`Accordion mount correctly 1`] = `
       <wx-view
         class="dora-accordion__bd"
       >
-        <dora-accordion-panel>
+        <dora-accordion-panel
+          id="panel-1"
+        >
           <wx-view
-            class="dora-class dora-accordion-panel"
+            class="dora-class dora-accordion-panel dora-accordion-panel--current dora-accordion-panel--disabled"
           >
             <wx-view
               class="dora-accordion-panel__hd"
               bind:tap="onClick"
             >
+              <wx-image
+                class="dora-accordion-panel__thumb"
+                src="http://cdn.skyvow.cn/logo.png"
+              />
               <wx-view
                 class="dora-accordion-panel__title"
               >
@@ -39,13 +46,13 @@ exports[`Accordion mount correctly 1`] = `
               <wx-view
                 class="dora-accordion-panel__content"
               >
-                微信小程序自定义组件
+                Content 1
               </wx-view>
             </wx-view>
           </wx-view>
         </dora-accordion-panel>
         <dora-accordion-panel
-          id="dora-accordion-panel"
+          id="panel-2"
         >
           <wx-view
             class="dora-class dora-accordion-panel"
@@ -69,11 +76,16 @@ exports[`Accordion mount correctly 1`] = `
               <wx-view
                 class="dora-accordion-panel__content"
               >
-                微信小程序自定义组件
+                Content 2
               </wx-view>
             </wx-view>
           </wx-view>
         </dora-accordion-panel>
+      </wx-view>
+      <wx-view
+        class="dora-accordion__ft"
+      >
+        Accordion model
       </wx-view>
     </wx-view>
   </dora-accordion>

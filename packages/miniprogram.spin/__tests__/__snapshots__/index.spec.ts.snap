@@ -9,7 +9,7 @@ exports[`Spin mount correctly 1`] = `
       doraClass="dora-spin__spinning"
     >
       <wx-view
-        class="dora-class dora-class-a dora-class-b dora-class-c  "
+        class="dora-class dora-class-a dora-class-b dora-class-c dora-animation-group "
         style=""
         bind:tap="onClick"
         catch:touchmove=""

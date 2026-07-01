@@ -3,7 +3,7 @@
 exports[`Tag mount correctly 1`] = `
 <dora-tag>
   <wx-view
-    class="dora-class dora-tag "
+    class="dora-class dora-tag dora-tag--css-var dora-tag--fill"
     hoverClass="dora-tag--hover"
     style=""
     bind:tap="onClick"

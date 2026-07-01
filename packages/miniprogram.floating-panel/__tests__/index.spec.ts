@@ -13,9 +13,7 @@ jest.mock('@doraemon-ui/miniprogram.shared', () => {
   }
 })
 
-function getComponentInstance(
-  wrapper: RootComponent<any, any, any> | Component<any, any, any>,
-): FloatingPanelInstance {
+function getComponentInstance(wrapper: RootComponent<any, any, any> | Component<any, any, any>): FloatingPanelInstance {
   return wrapper.instance.$component as unknown as FloatingPanelInstance
 }
 

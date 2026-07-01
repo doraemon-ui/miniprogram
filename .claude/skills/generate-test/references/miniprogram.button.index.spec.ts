@@ -1,0 +1,191 @@
+import path from 'path'
+import simulate from 'miniprogram-simulate'
+import type { RootComponent, Component } from 'miniprogram-simulate'
+import type { ButtonInstance } from '../src/types'
+
+function getComponentInstance(wrapper: RootComponent<any, any, any> | Component<any, any, any>): ButtonInstance {
+  return wrapper.instance.$component as unknown as ButtonInstance
+}
+
+function mountTest(id: string | (() => string), defaultProps: Record<string, unknown> = {}) {
+  describe('mount and unmount', () => {
+    it('component could be updated and unmounted without errors', () => {
+      const wrapper = simulate.render(typeof id === 'function' ? id() : id, defaultProps)
+      wrapper.attach(document.createElement('parent-wrapper'))
+      expect(() => {
+        wrapper.setData({})
+        wrapper.detach()
+      }).not.toThrow()
+    })
+  })
+}
+
+let id: string
+
+function getId() {
+  return id
+}
+
+describe('Button', () => {
+  beforeAll(() => {
+    id = simulate.load(path.resolve(__dirname, '../src/index'), 'dora-button', { less: true })
+  })
+
+  mountTest(getId)
+  mountTest(getId, { size: 'small' })
+  mountTest(getId, { size: 'default' })
+  mountTest(getId, { size: 'large' })
+  mountTest(getId, { shap: 'rounded' })
+  mountTest(getId, { shap: 'rectangular' })
+  mountTest(getId, { fill: 'solid' })
+  mountTest(getId, { fill: 'outline' })
+  mountTest(getId, { fill: 'clear' })
+  mountTest(getId, { expand: 'block' })
+  mountTest(getId, { expand: 'full' })
+  mountTest(getId, { color: '' })
+  mountTest(getId, { color: 'stable' })
+
+  test('mount correctly', () => {
+    const wrapper = simulate.render(id)
+    wrapper.attach(document.createElement('parent-wrapper'))
+    expect(wrapper.querySelectorAll('.dora-button').length).toBe(1)
+    expect(wrapper.toJSON()).toMatchSnapshot()
+  })
+
+  test('should support to change className', () => {
+    const wrapper = simulate.render(id, { prefixCls: 'dora-btn' })
+    wrapper.attach(document.createElement('parent-wrapper'))
+    expect(wrapper.querySelectorAll('.dora-btn').length).toBe(1)
+  })
+
+  test('should support semantic classNames and styles', () => {
+    const wrapper = simulate.render(id, {
+      classNames: {
+        root: 'custom-button-root',
+      },
+      styles: {
+        root: {
+          color: 'red',
+        },
+      },
+    })
+    wrapper.attach(document.createElement('parent-wrapper'))
+    const button = wrapper.querySelector('.dora-button')
+
+    expect(wrapper.querySelectorAll('.custom-button-root').length).toBe(1)
+    expect(button.dom.getAttribute('style')).toContain('color: red')
+  })
+
+  test('should support to change loading', () => {
+    const wrapper = simulate.render(id, { loading: true })
+    wrapper.attach(document.createElement('parent-wrapper'))
+    const $comp = getComponentInstance(wrapper)
+    expect($comp.$props.loading).toBe(true)
+    wrapper.setData({ loading: false })
+    expect($comp.$props.loading).toBe(false)
+  })
+
+  test('should support to change strong', () => {
+    const wrapper = simulate.render(id, { strong: true })
+    wrapper.attach(document.createElement('parent-wrapper'))
+    const $comp = getComponentInstance(wrapper)
+    expect($comp.$props.strong).toBe(true)
+    expect(wrapper.querySelectorAll('.dora-button--strong').length).toBe(1)
+    wrapper.setData({ strong: false })
+    expect($comp.$props.strong).toBe(false)
+    expect(wrapper.querySelectorAll('.dora-button--strong').length).toBe(0)
+  })
+
+  test('should support to change disabled', () => {
+    const wrapper = simulate.render(id, { disabled: true })
+    wrapper.attach(document.createElement('parent-wrapper'))
+    const $comp = getComponentInstance(wrapper)
+    expect($comp.$props.disabled).toBe(true)
+    expect(wrapper.querySelectorAll('.dora-button--disabled').length).toBe(1)
+    wrapper.setData({ disabled: false })
+    expect($comp.$props.disabled).toBe(false)
+    expect(wrapper.querySelectorAll('.dora-button--disabled').length).toBe(0)
+  })
+
+  test('should support to trigger event', async () => {
+    const onClick = jest.fn()
+    const onGetUserInfo = jest.fn()
+    const onOpenSetting = jest.fn()
+    const onGetPhoneNumber = jest.fn()
+    const onContact = jest.fn()
+    const onSubmit = jest.fn()
+    const wrapper = simulate.render(
+      simulate.load({
+        usingComponents: {
+          'dora-button': id,
+        },
+        template: `
+          <form bindsubmit="onSubmit">
+            <dora-button
+              id="dora-button"
+              formType="{{formType}}"
+              openType="{{openType}}"
+              bind:getuserinfo="onGetUserInfo"
+              bind:getphonenumber="onGetPhoneNumber"
+              bind:opensetting="onOpenSetting"
+              bind:contact="onContact"
+              bind:tap="onClick"
+            >
+              dora-button
+            </dora-button>
+          </form>
+        `,
+        data: {
+          formType: '',
+          openType: '',
+        },
+        methods: {
+          onSubmit,
+          onContact,
+          onOpenSetting,
+          onGetPhoneNumber,
+          onGetUserInfo,
+          onClick,
+        },
+      }),
+    )
+    wrapper.attach(document.createElement('parent-wrapper'))
+    const button = wrapper.querySelector('#dora-button')
+    const $comp = getComponentInstance(button)
+    const nativeButton = button.querySelector('.dora-button')
+
+    nativeButton.dispatchEvent('tap')
+    await simulate.sleep(0)
+    expect(onClick).toHaveBeenCalled()
+
+    wrapper.setData({ openType: 'getUserInfo' })
+    nativeButton.dispatchEvent('getuserinfo')
+    await simulate.sleep(0)
+    expect($comp.$props.openType).toBe('getUserInfo')
+    expect(onGetUserInfo).toHaveBeenCalled()
+
+    wrapper.setData({ openType: 'getPhoneNumber' })
+    nativeButton.dispatchEvent('getphonenumber')
+    await simulate.sleep(0)
+    expect($comp.$props.openType).toBe('getPhoneNumber')
+    expect(onGetPhoneNumber).toHaveBeenCalled()
+
+    wrapper.setData({ openType: 'openSetting' })
+    nativeButton.dispatchEvent('opensetting')
+    await simulate.sleep(0)
+    expect($comp.$props.openType).toBe('openSetting')
+    expect(onOpenSetting).toHaveBeenCalled()
+
+    wrapper.setData({ openType: 'contact' })
+    nativeButton.dispatchEvent('contact')
+    await simulate.sleep(0)
+    expect($comp.$props.openType).toBe('contact')
+    expect(onContact).toHaveBeenCalled()
+
+    wrapper.setData({ formType: 'submit' })
+    nativeButton.dispatchEvent('submit')
+    await simulate.sleep(0)
+    expect($comp.$props.formType).toBe('submit')
+    expect(onSubmit).toHaveBeenCalled()
+  })
+})

@@ -12,13 +12,17 @@ const mockGetTouchPoints = jest.fn((e) => {
 const mockToDataURL = jest.fn(() => Promise.resolve('data:image/png;base64,mock'))
 const mockGetCanvasRef = jest.fn()
 
-jest.mock('@doraemon-ui/miniprogram.shared', () => ({
-  useRef: mockUseRef,
-  getSystemInfoSync: mockGetSystemInfoSync,
-  getTouchPoints: mockGetTouchPoints,
-  toDataURL: mockToDataURL,
-  getCanvasRef: mockGetCanvasRef,
-}))
+jest.mock('@doraemon-ui/miniprogram.shared', () => {
+  const actual = jest.requireActual('@doraemon-ui/miniprogram.shared')
+  return {
+    ...actual,
+    useRef: mockUseRef,
+    getSystemInfoSync: mockGetSystemInfoSync,
+    getTouchPoints: mockGetTouchPoints,
+    toDataURL: mockToDataURL,
+    getCanvasRef: mockGetCanvasRef,
+  }
+})
 
 function mountTest(id: string | (() => string), defaultProps: Record<string, unknown> = {}) {
   describe('mount and unmount', () => {

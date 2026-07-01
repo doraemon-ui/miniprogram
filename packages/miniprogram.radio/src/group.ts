@@ -1,4 +1,5 @@
 import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
 import { useRect } from '@doraemon-ui/miniprogram.shared'
 import type { MiniprogramDOMRect } from '@doraemon-ui/miniprogram.shared'
 import type {
@@ -50,7 +51,7 @@ function normalizeOptions(options: RadioGroupOption[]) {
       default: 'dora-radio-group',
     },
   },
-  expose: ['getValue', 'getBoundingClientRect', 'changeValue'],
+  expose: ['getValue', 'getBoundingClientRect', 'changeValue', 'onChange'],
 })
 class RadioGroup extends Doraemon {
   /**
@@ -355,7 +356,7 @@ class RadioGroup extends Doraemon {
     })
   }
 
-  onRadioChange(e: WechatMiniprogram.CustomEvent<RadioChangeItem>) {
+  onRadioChange(e: CustomEvent<RadioChangeItem>) {
     const dataset = (e.currentTarget as unknown as { dataset: RadioGroupDatasetIndex }).dataset
     const index = typeof dataset?.index === 'number' ? dataset.index : e.detail?.index != null ? e.detail.index : -1
     this.onChange({

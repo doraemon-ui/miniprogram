@@ -518,6 +518,12 @@ export interface RadioGroupExpose {
    * @return {void}
    */
   changeValue(props?: Partial<{ value: string }>): void
+  /**
+   * 组选项变化事件
+   *
+   * @return {void}
+   */
+  onChange(item: RadioChangeItem): void
 }
 
 /**

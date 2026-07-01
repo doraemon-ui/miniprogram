@@ -3,7 +3,7 @@
 exports[`SelectorGroup mount correctly 1`] = `
 <dora-selector-group>
   <wx-view
-    class="dora-class dora-selector-group dora-selector-group--balanced"
+    class="dora-class dora-selector-group dora-selector-group--positive dora-color dora-color--positive"
     style="--selector-group-columns:3;--selector-group-column-gap:16rpx;"
   >
     <wx-view

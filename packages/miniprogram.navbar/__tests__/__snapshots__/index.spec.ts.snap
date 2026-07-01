@@ -3,7 +3,7 @@
 exports[`Navbar mount correctly 1`] = `
 <dora-navbar>
   <wx-view
-    class="dora-class dora-navbar dora-navbar--light"
+    class="dora-class dora-navbar dora-color dora-color--light"
   >
     <wx-view
       class="dora-navbar__left"

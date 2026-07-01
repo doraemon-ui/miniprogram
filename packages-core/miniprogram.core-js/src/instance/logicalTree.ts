@@ -159,7 +159,7 @@ export function getAliasesByPath(vm: Doraemon, path: string) {
 }
 
 export function findLogicalAncestors(vm: Doraemon, path: string, type: RelationType = 'child') {
-  if (getEnv() !== ENV_TYPE.WEAPP) {
+  if (getEnv() === ENV_TYPE.WEAPP) {
     const nodes = vm._renderProxy.getRelationNodes(path) as ComponentRenderProxy<Doraemon>[]
     if (nodes && nodes.length > 0) {
       return nodes

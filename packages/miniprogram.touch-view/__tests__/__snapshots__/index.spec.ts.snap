@@ -8,7 +8,7 @@ exports[`TouchView mount correctly 1`] = `
     hoverStartTime="{{20}}"
     hoverStayTime="{{70}}"
     hoverStopPropagation="{{false}}"
-    style="; "
+    style=""
     catch:tap="onClick"
   />
 </dora-touch-view>

@@ -1,4 +1,5 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+import { defineComponentHOC, Doraemon, Component, Prop, Watch, Event } from '@doraemon-ui/miniprogram.core-js'
+import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
 import type { RadioChangeItem, RadioContext, RadioGroupInstance, SelectableChangeDetail } from './types'
 
 const { classNames } = Doraemon.util
@@ -212,7 +213,8 @@ class Radio extends Doraemon {
     this.inputChecked = newVal
   }
 
-  radioChange(e: WechatMiniprogram.CustomEvent<SelectableChangeDetail>) {
+  @Event()
+  radioChange(e: CustomEvent<SelectableChangeDetail>) {
     const { disabled, readOnly, context } = this
     const { checked } = e.detail
 
@@ -239,9 +241,7 @@ class Radio extends Doraemon {
     if (parent && typeof parent.onChange === 'function') {
       parent.onChange(item)
     } else {
-      if (this._renderProxy) {
-        this._renderProxy.triggerEvent('change', item, { bubbles: true, composed: true })
-      }
+      this.$emit('change', item)
     }
   }
 

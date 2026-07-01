@@ -70,11 +70,10 @@ describe('Button', () => {
       },
     })
     wrapper.attach(document.createElement('parent-wrapper'))
-    const $comp = getComponentInstance(wrapper)
+    const button = wrapper.querySelector('.dora-button')
 
     expect(wrapper.querySelectorAll('.custom-button-root').length).toBe(1)
-    expect($comp.mergedStyles.root).toContain('color')
-    expect($comp.mergedStyles.root).toContain('red')
+    expect(button.dom.getAttribute('style')).toContain('color: red')
   })
 
   test('should support to change loading', () => {

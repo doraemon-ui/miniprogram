@@ -4,11 +4,15 @@ exports[`Sticky mount correctly 1`] = `
 <main>
   <dora-sticky
     id="sticky"
+    bind:stick="onStick"
+    bind:unstick="onUnstick"
   >
     <wx-view
       class="dora-class dora-sticky"
     >
-      <dora-sticky-item>
+      <dora-sticky-item
+        id="item-0"
+      >
         <wx-view
           class="dora-class dora-sticky-item"
         >
@@ -18,7 +22,7 @@ exports[`Sticky mount correctly 1`] = `
             <wx-view
               class="dora-sticky-item__title"
             >
-              小鸡
+              Alpha
             </wx-view>
           </wx-view>
           <wx-view
@@ -27,11 +31,33 @@ exports[`Sticky mount correctly 1`] = `
             <wx-view
               class="dora-sticky-item__content"
             >
-              <wx-view
-                slot="content"
-              >
-                内容
-              </wx-view>
+              Content A
+            </wx-view>
+          </wx-view>
+        </wx-view>
+      </dora-sticky-item>
+      <dora-sticky-item
+        id="item-1"
+      >
+        <wx-view
+          class="dora-class dora-sticky-item"
+        >
+          <wx-view
+            class="dora-sticky-item__hd"
+          >
+            <wx-view
+              class="dora-sticky-item__title"
+            >
+              Beta
+            </wx-view>
+          </wx-view>
+          <wx-view
+            class="dora-sticky-item__bd"
+          >
+            <wx-view
+              class="dora-sticky-item__content"
+            >
+              Content B
             </wx-view>
           </wx-view>
         </wx-view>

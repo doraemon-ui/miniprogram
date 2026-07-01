@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.core-js.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-06-29, 17:28:47.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.41.
+ * Built on 2026-07-01, 14:49:01.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.65.
  */
 
 const LIFECYCLE_HOOKS = [
@@ -1194,7 +1194,7 @@ function getAliasesByPath(vm, path) {
     return aliases;
 }
 function findLogicalAncestors(vm, path, type = 'child') {
-    if (getEnv() !== ENV_TYPE.WEAPP) {
+    if (getEnv() === ENV_TYPE.WEAPP) {
         const nodes = vm._renderProxy.getRelationNodes(path);
         if (nodes && nodes.length > 0) {
             return nodes;
@@ -1717,9 +1717,9 @@ function defineComponentHOC(externalOptions = {}) {
             },
             behaviors: (Array.isArray(externalOptions.behaviors) ? externalOptions.behaviors : []).concat([
                 'wx://component-export',
-                ...getEnv() === ENV_TYPE.TT ? [
+                ...getEnv() === ENV_TYPE.WEAPP ? [] : [
                     logicalTree()
-                ] : [],
+                ],
                 useRelation(components),
                 syncPropsToData(defaultProps, options.computed)
             ]),

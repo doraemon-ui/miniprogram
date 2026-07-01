@@ -1,16 +1,20 @@
 import path from 'path'
 import simulate from 'miniprogram-simulate'
-jest.mock('@doraemon-ui/miniprogram.shared', () => ({
-  useRectAll: jest.fn(() =>
-    Promise.resolve([
-      { left: 0, width: 20 },
-      { left: 20, width: 20 },
-      { left: 40, width: 20 },
-      { left: 60, width: 20 },
-      { left: 80, width: 20 },
-    ]),
-  ),
-}))
+jest.mock('@doraemon-ui/miniprogram.shared', () => {
+  const actual = jest.requireActual('@doraemon-ui/miniprogram.shared')
+  return {
+    ...actual,
+    useRectAll: jest.fn(() =>
+      Promise.resolve([
+        { left: 0, width: 20 },
+        { left: 20, width: 20 },
+        { left: 40, width: 20 },
+        { left: 60, width: 20 },
+        { left: 80, width: 20 },
+      ]),
+    ),
+  }
+})
 
 function mountTest(id: string | (() => string), defaultProps: Record<string, unknown> = {}) {
   describe('mount and unmount', () => {
