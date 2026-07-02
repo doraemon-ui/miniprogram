@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.radio.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-06-27, 16:55:24.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.41.
+ * Built on 2026-07-02, 19:41:53.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.65.
  */
 
 import { Prop, Watch, Component, defineComponentHOC, Doraemon } from '@doraemon-ui/miniprogram.core-js';
@@ -281,7 +281,8 @@ RadioGroup = _ts_decorate([
         expose: [
             'getValue',
             'getBoundingClientRect',
-            'changeValue'
+            'changeValue',
+            'onChange'
         ]
     })
 ], RadioGroup);

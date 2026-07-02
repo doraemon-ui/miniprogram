@@ -1,11 +1,11 @@
 /**
  * @doraemon-ui/miniprogram.radio.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-06-27, 16:55:24.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.41.
+ * Built on 2026-07-02, 19:41:53.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.65.
  */
 
-import { Doraemon, Prop, Watch, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
+import { Doraemon, Prop, Watch, Event, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
 
 function _ts_decorate(decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -69,12 +69,7 @@ let Radio = class Radio extends Doraemon {
         if (parent && typeof parent.onChange === 'function') {
             parent.onChange(item);
         } else {
-            if (this._renderProxy) {
-                this._renderProxy.triggerEvent('change', item, {
-                    bubbles: true,
-                    composed: true
-                });
-            }
+            this.$emit('change', item);
         }
     }
     setChecked(inputChecked) {
@@ -178,6 +173,9 @@ _ts_decorate([
 _ts_decorate([
     Watch('checked')
 ], Radio.prototype, "onCheckedChange", null);
+_ts_decorate([
+    Event()
+], Radio.prototype, "radioChange", null);
 Radio = _ts_decorate([
     Component({
         components: {

@@ -1,6 +1,6 @@
 import { Doraemon } from '@doraemon-ui/miniprogram.core-js';
 
-import type { ComponentPublicInstance } from '@doraemon-ui/miniprogram.core-js';
+import type { ComponentPublicInstance, CustomEvent } from '@doraemon-ui/miniprogram.core-js';
 
 import type { MiniprogramDOMRect } from '@doraemon-ui/miniprogram.shared';
 
@@ -140,7 +140,7 @@ declare class RadioGroup extends Doraemon {
         value: string;
     }>): void;
     onChange(item: RadioChangeItem): void;
-    onRadioChange(e: WechatMiniprogram.CustomEvent<RadioChangeItem>): void;
+    onRadioChange(e: CustomEvent<RadioChangeItem>): void;
     getValue(value?: string, cols?: Array<{
         title: string;
         value: string;
@@ -265,7 +265,7 @@ declare class Radio extends Doraemon {
         selectableH: string;
     };
     onCheckedChange(newVal: boolean): void;
-    radioChange(e: WechatMiniprogram.CustomEvent<SelectableChangeDetail>): void;
+    radioChange(e: CustomEvent<SelectableChangeDetail>): void;
     changeValue(inputChecked?: boolean, index?: number, isLast?: boolean, context?: RadioContext): void;
     onChange(inputChecked: boolean): void;
     setChecked(inputChecked: boolean): void;
@@ -743,6 +743,12 @@ export interface RadioGroupExpose {
     changeValue(props?: Partial<{
         value: string;
     }>): void;
+    /**
+     * 组选项变化事件
+     *
+     * @return {void}
+     */
+    onChange(item: RadioChangeItem): void;
 }
 
 /**
