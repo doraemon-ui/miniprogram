@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.notice-bar.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-07-02, 19:41:25.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.65.
+ * Built on 2026-07-02, 20:46:45.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.66.
  */
 
 import { Doraemon, Prop, Watch, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';

@@ -44,6 +44,7 @@
 wux-weapp
 packages-tt
 temp
+iconfont
 
 lerna-debug.log
 yarn-error.log

@@ -5,11 +5,25 @@
     "miniprogram": {
       "list": [
         {
-          "name": "index-list/index",
-          "pathName": "index-list/index",
+          "name": "icon/index",
+          "pathName": "icon/index",
           "query": "",
           "scene": null,
           "launchMode": "default"
+        },
+        {
+          "name": "input/index",
+          "pathName": "input/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "index-list/index",
+          "pathName": "index-list/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         },
         {
           "name": "button/index",

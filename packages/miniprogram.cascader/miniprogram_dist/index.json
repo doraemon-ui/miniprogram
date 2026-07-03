@@ -1,7 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-    "dora-popup": "../../miniprogram.popup/src/index",
-    "dora-cascader-view": "../../miniprogram.cascader-view/src/index"
+    "dora-popup": "@doraemon-ui/miniprogram.popup/index",
+    "dora-cascader-view": "@doraemon-ui/miniprogram.cascader-view/index"
   }
 }

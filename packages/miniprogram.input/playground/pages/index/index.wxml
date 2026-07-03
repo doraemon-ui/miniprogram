@@ -1,41 +1,41 @@
-<demo-page darkmode="auto" title="Input" desc="文本输入框" clickable spacing>
-  <demo-block title="Normal Usage">
+<demo-page darkmode="auto" title="Input" desc="文本输入框" clickable>
+  <demo-block padding="0" title="Normal Usage">
     <dora-list>
-      <dora-list-item>
+      <dora-list-item hover-class="none">
         <dora-input placeholder="No label" />
       </dora-list-item>
-      <dora-list-item>
+      <dora-list-item hover-class="none">
         <dora-input label="WeChat" />
       </dora-list-item>
-      <dora-list-item>
+      <dora-list-item hover-class="none">
         <dora-input label="QQ" placeholder="Input your QQ" requiredMark />
       </dora-list-item>
-      <dora-list-item>
+      <dora-list-item hover-class="none">
         <dora-input label="Password" placeholder="Input your password" password visibilityToggle type="number" requiredMark />
       </dora-list-item>
-      <dora-list-item>
+      <dora-list-item hover-class="none">
         <dora-input label="Super long label text" labelWrap />
       </dora-list-item>
     </dora-list>
   </demo-block>
 
-  <demo-block title="Show clear">
+  <demo-block padding="0" title="Show clear">
     <dora-list>
-      <dora-list-item>
+      <dora-list-item hover-class="none">
         <dora-input clear label="WeChat" />
       </dora-list-item>
-      <dora-list-item>
+      <dora-list-item hover-class="none">
         <dora-input clear onlyShowClearWhenFocus="{{ false }}" label="QQ" placeholder="Input your QQ" />
       </dora-list-item>
     </dora-list>
   </demo-block>
 
-  <demo-block title="Extra">
+  <demo-block padding="0" title="Extra">
     <dora-list>
-      <dora-list-item>
+      <dora-list-item hover-class="none">
         <dora-input label="Dollar" defaultValue="1024" extra="$" />
       </dora-list-item>
-      <dora-list-item>
+      <dora-list-item hover-class="none">
         <dora-input label="RMB" defaultValue="1024">
           <view slot="footer" style="margin-left: 10rpx;">￥</view>
         </dora-input>
@@ -43,20 +43,20 @@
     </dora-list>
   </demo-block>
 
-  <demo-block title="Controlled & Error">
+  <demo-block padding="0" title="Controlled & Error">
     <dora-list>
-      <dora-list-item>
+      <dora-list-item hover-class="none">
         <dora-input label="Controlled" value="{{ value }}" controlled type="number" bind:change="onChange" bind:focus="onFocus" bind:blur="onBlur" bind:confirm="onConfirm" bind:clear="onClear" />
       </dora-list-item>
-      <dora-list-item>
+      <dora-list-item hover-class="none">
         <dora-input label="Tel number" value="{{ value }}" controlled error="{{ error }}" type="number" bind:change="onChange" bind:focus="onFocus" bind:blur="onBlur" bind:confirm="onConfirm" bind:clear="onClear" bind:error="onError" />
       </dora-list-item>
     </dora-list>
   </demo-block>
 
-  <demo-block title="Keyboard accessory">
+  <demo-block padding="0" title="Keyboard accessory">
     <dora-list>
-      <dora-list-item>
+      <dora-list-item hover-class="none">
         <dora-input hold-keyboard="{{ true }}" placeholder="键盘上方工具栏">
           <cover-view slot="keyboard-accessory" class="container" style="height: 100rpx;">
             <cover-view style="flex: 1; background: green;">1</cover-view>

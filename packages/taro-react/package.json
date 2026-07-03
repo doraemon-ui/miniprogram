@@ -128,7 +128,7 @@
     "@doraemon-ui/miniprogram.wing-blank": "workspace:*"
   },
   "devDependencies": {
-    "@doraemon-ui/miniprogram.tools": "0.0.2-alpha.65",
+    "@doraemon-ui/miniprogram.tools": "0.0.2-alpha.66",
     "@tarojs/components": "^4.1.11",
     "@tarojs/react": "^4.1.11",
     "@tarojs/taro": "^4.1.11",

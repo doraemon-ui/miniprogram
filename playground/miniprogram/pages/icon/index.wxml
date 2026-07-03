@@ -4,14 +4,16 @@
   desc="图标"
   clickable
 >
-  <demo-block title="Basic">
-    <view class="grid">
-      <block wx:for="{{ icons }}" wx:for-item="icon" wx:key="index">
-        <view class="grid__item">
-          <dora-icon type="{{ icon }}" />
-          <view class="grid__label">{{ icon }}</view>
-        </view>
-      </block>
-    </view>
-  </demo-block>
+  <block wx:for="{{ icons }}" wx:key="index">
+    <demo-block title="{{ item.fontFamily }}">
+      <view class="grid">
+        <block wx:for="{{ item.icons }}" wx:for-item="icon" wx:key="index">
+          <view class="grid__item">
+            <dora-icon prefixCls="{{ item.fontFamily }}" type="{{ icon }}" />
+            <view class="grid__label">{{ icon }}</view>
+          </view>
+        </block>
+      </view>
+    </demo-block>
+  </block>
 </demo-page>

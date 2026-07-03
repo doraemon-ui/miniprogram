@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.icon.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-07-02, 19:44:27.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.65.
+ * Built on 2026-07-03, 20:20:11.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.66.
  */
 
 import { Doraemon, Prop, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
@@ -15,6 +15,25 @@ function _ts_decorate(decorators, target, key, desc) {
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 }
 const { classNames, styleToCssString } = Doraemon.util;
+const PRESET_MP_ICON_MAP = {
+    back: '#B2B2B2',
+    cancel: '#F43530',
+    circle: '#C9C9C9',
+    clear: '#B2B2B2',
+    delete: '#B2B2B2',
+    download: '#09BB07',
+    info: '#10AEFF',
+    info_circle: '#09BB07',
+    safe_success: '#09BB07',
+    safe_warn: '#FFBE00',
+    search: '#B2B2B2',
+    success: '#09BB07',
+    success_circle: '#09BB07',
+    success_no_circle: '#09BB07',
+    waiting: '#10AEFF',
+    waiting_circle: '#10AEFF',
+    warn: '#F76260'
+};
 let Icon = class Icon extends Doraemon {
     get classes() {
         const { prefixCls, type } = this;
@@ -26,9 +45,20 @@ let Icon = class Icon extends Doraemon {
         };
     }
     get containerStyle() {
+        const { prefixCls, type, size, color } = this;
+        let iconColor = '';
+        if (prefixCls === 'mpicons' && PRESET_MP_ICON_MAP[type]) {
+            const presetColor = PRESET_MP_ICON_MAP[type];
+            if (presetColor) {
+                iconColor = presetColor;
+            }
+        }
+        if (color !== '') {
+            iconColor = color;
+        }
         return styleToCssString({
-            fontSize: getFontSize(this.size),
-            color: this.color !== '' ? this.color : 'unset'
+            fontSize: getFontSize(size),
+            color: iconColor !== '' ? iconColor : 'unset'
         });
     }
     onClick() {
@@ -74,4 +104,4 @@ Icon = _ts_decorate([
 ], Icon);
 var index = defineComponentHOC()(Icon);
 
-export { Icon, index as default };
+export { Icon, PRESET_MP_ICON_MAP, index as default };

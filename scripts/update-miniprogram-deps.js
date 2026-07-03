@@ -5,8 +5,8 @@ const glob = require('glob')
 // ============================================================
 // 手动修改这里的版本号
 // ============================================================
-const CLI_VERSION = '0.0.2-alpha.65'
-const TOOLS_VERSION = '0.0.2-alpha.65'
+const CLI_VERSION = '0.0.2-alpha.66'
+const TOOLS_VERSION = '0.0.2-alpha.66'
 
 const PACKAGES = {
   '@doraemon-ui/miniprogram.cli': CLI_VERSION,

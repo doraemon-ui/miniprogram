@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.date-picker-view.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-07-02, 19:40:26.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.65.
+ * Built on 2026-07-02, 20:46:48.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.66.
  */
 
 var en = {

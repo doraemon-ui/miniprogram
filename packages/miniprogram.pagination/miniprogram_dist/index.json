@@ -1,6 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-    "dora-button": "../../miniprogram.button/src/index"
+    "dora-button": "@doraemon-ui/miniprogram.button/index"
   }
 }

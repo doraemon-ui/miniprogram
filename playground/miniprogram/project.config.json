@@ -49,9 +49,9 @@
     "disableSWC": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.11.3",
+  "libVersion": "3.15.2",
   "appid": "wx958ccbebf60d68f3",
-  "projectname": "miniprogram%20for%20doraemon-ui",
+  "projectname": "doraemon-ui",
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {

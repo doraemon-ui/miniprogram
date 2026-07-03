@@ -1,8 +1,8 @@
 /**
  * @doraemon-ui/miniprogram.form.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-07-02, 19:46:01.
- * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.65.
+ * Built on 2026-07-02, 20:47:02.
+ * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.66.
  */
 
 const hasOwnProperty = Object.prototype.hasOwnProperty;
