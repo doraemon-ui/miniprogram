@@ -1,7 +1,7 @@
 <view class="dora-class {{ classes.wrap }}">
   <view class="{{ classes.form }}">
     <view class="{{ classes.box }}">
-      <icon class="{{ classes.search }}" type="search" color="#B2B2B2" size="14" />
+      <dora-icon dora-class="{{ classes.search }}" prefixCls="mpicons" type="search" color="#B2B2B2" size="14" />
       <view class="{{ classes.control }}">
         <input
           type="text"
@@ -26,10 +26,10 @@
           bindconfirm="onConfirm"
         />
       </view>
-      <icon class="{{ classes.clear }}" type="clear" color="#B2B2B2" size="14" wx:if="{{ shouldShowClear }}" bindtap="onClear" />
+      <dora-icon dora-class="{{ classes.clear }}" prefixCls="mpicons" type="clear" color="#B2B2B2" size="14" wx:if="{{ shouldShowClear }}" bindtap="onClear" />
     </view>
     <label class="{{ classes.label }}" wx:if="{{ !inputFocus && !inputValue }}" bindtap="onClick">
-      <icon class="{{ classes.icon }}" type="search" color="#B2B2B2" size="14" />
+      <dora-icon dora-class="{{ classes.icon }}" prefixCls="mpicons" type="search" color="#B2B2B2" size="14" />
       <text class="{{ classes.text }}">{{ placeholder }}</text>
     </label>
   </view>

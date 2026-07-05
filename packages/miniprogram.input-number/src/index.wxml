@@ -7,7 +7,7 @@
     data-type="sub"
     class="dora-sub-class {{ classes.sub }}"
   >
-    <dora-icon dora-class="{{ classes.icon }}" type="ios-remove"></dora-icon>
+    <dora-icon dora-class="{{ classes.icon }}" type="remove" color="var(--text-color)"></dora-icon>
   </view>
   <view class="dora-control-class {{ classes.control }}">
     <input
@@ -28,6 +28,6 @@
     data-type="add"
     class="dora-add-class {{ classes.add }}"
   >
-    <dora-icon dora-class="{{ classes.icon }}" type="ios-add"></dora-icon>
+    <dora-icon dora-class="{{ classes.icon }}" type="add" color="var(--text-color)"></dora-icon>
   </view>
 </view>

@@ -16,7 +16,7 @@
       <view class="{{ classes.expired }}">{{ qrcodeExpiredText }}</view>
       <view class="{{ classes.refresh }}">
         <view class="{{ classes.icon }}">
-          <dora-icon type="ios-refresh" size="32rpx" />
+          <dora-icon type="refresh" size="32rpx" />
         </view>
         <text>{{ qrcodeRefreshText }}</text>
       </view>

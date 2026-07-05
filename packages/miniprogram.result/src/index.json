@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-    "dora-button": "../../miniprogram.button/src/index"
+    "dora-button": "../../miniprogram.button/src/index",
+    "dora-icon": "../../miniprogram.icon/src/index"
   }
 }

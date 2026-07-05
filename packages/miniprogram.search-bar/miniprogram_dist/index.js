@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.search-bar.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-07-02, 20:47:06.
+ * Built on 2026-07-03, 20:51:52.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.66.
  */
 

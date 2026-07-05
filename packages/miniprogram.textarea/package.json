@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "@doraemon-ui/miniprogram.core-js": "workspace:*",
+    "@doraemon-ui/miniprogram.icon": "workspace:*",
     "@doraemon-ui/style": "workspace:*"
   },
   "devDependencies": {

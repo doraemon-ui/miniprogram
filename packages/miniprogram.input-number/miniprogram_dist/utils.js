@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.input-number.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-07-02, 20:46:41.
+ * Built on 2026-07-04, 17:12:56.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.66.
  */
 

@@ -1,11 +1,12 @@
 /**
  * @doraemon-ui/miniprogram.input-number.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-07-02, 20:46:41.
+ * Built on 2026-07-04, 17:12:56.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.66.
  */
 
 import { Doraemon, Prop, Watch, Component, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js';
+import { useColorCls } from '@doraemon-ui/miniprogram.shared';
 import NP from './utils.js';
 
 function _ts_decorate(decorators, target, key, desc) {
@@ -32,18 +33,16 @@ let InputNumber = class InputNumber extends Doraemon {
     get classes() {
         const { prefixCls, shape, color, disabled, readOnly, disabledMin, disabledMax } = this;
         return {
-            wrap: classNames(prefixCls, {
+            wrap: classNames(prefixCls, useColorCls(color), {
                 [`${prefixCls}--${shape}`]: shape
             }),
             sub: classNames(`${prefixCls}__selector`, {
                 [`${prefixCls}__selector--sub`]: true,
-                [`${prefixCls}__selector--${color}`]: true,
-                [`${prefixCls}__selector--disabled`]: disabled || readOnly || disabledMin
+                [`${prefixCls}__selector--disabled`]: disabledMin
             }),
             add: classNames(`${prefixCls}__selector`, {
                 [`${prefixCls}__selector--add`]: true,
-                [`${prefixCls}__selector--${color}`]: true,
-                [`${prefixCls}__selector--disabled`]: disabled || readOnly || disabledMax
+                [`${prefixCls}__selector--disabled`]: disabledMax
             }),
             icon: `${prefixCls}__icon`,
             control: `${prefixCls}__control`,
@@ -82,7 +81,6 @@ let InputNumber = class InputNumber extends Doraemon {
         }
     }
     calculation(type, isLoop) {
-        if (this.disabled || this.readOnly) return;
         const current = Number(this.inputValue);
         const value = Number.isNaN(current) ? 0 : current;
         if (type === 'add') {
@@ -94,12 +92,12 @@ let InputNumber = class InputNumber extends Doraemon {
             this.setValue(NP.minus(value, this.step));
         }
         if (this.longpress && isLoop) {
-            this.timeout = setTimeout(()=>this.calculation(type, isLoop), 100);
+            this._timeout = setTimeout(()=>this.calculation(type, isLoop), 100);
         }
     }
     onInput(e) {
         this.clearInputTimer();
-        this.inputTime = setTimeout(()=>{
+        this._inputTime = setTimeout(()=>{
             const value = toNumberWhenUserInput(e.detail.value);
             this.setValue(value);
         }, 300);
@@ -108,16 +106,15 @@ let InputNumber = class InputNumber extends Doraemon {
         this.$emit('focus', e.detail);
     }
     onBlur(e) {
-        this.inputValue = this.inputValue;
         this.$emit('blur', e.detail);
     }
     onLongpress(e) {
-        const type = e.currentTarget?.dataset?.type || 'add';
+        const type = e.currentTarget.dataset.type || 'add';
         if (this.longpress) this.calculation(type, true);
     }
     onTap(e) {
-        const type = e.currentTarget?.dataset?.type || 'add';
-        if (!this.longpress || this.longpress && !this.timeout) {
+        const type = e.currentTarget.dataset.type || 'add';
+        if (!this.longpress || this.longpress && !this._timeout) {
             this.calculation(type, false);
         }
     }
@@ -128,15 +125,15 @@ let InputNumber = class InputNumber extends Doraemon {
         this.clearTimer();
     }
     clearTimer() {
-        if (this.timeout) {
-            clearTimeout(this.timeout);
-            this.timeout = null;
+        if (this._timeout) {
+            clearTimeout(this._timeout);
+            this._timeout = null;
         }
     }
     clearInputTimer() {
-        if (this.inputTime) {
-            clearTimeout(this.inputTime);
-            this.inputTime = null;
+        if (this._inputTime) {
+            clearTimeout(this._inputTime);
+            this._inputTime = null;
         }
     }
     mounted() {
@@ -152,8 +149,8 @@ let InputNumber = class InputNumber extends Doraemon {
         this.inputValue = 0;
         this.disabledMin = false;
         this.disabledMax = false;
-        this.timeout = null;
-        this.inputTime = null;
+        this._timeout = null;
+        this._inputTime = null;
     }
 };
 _ts_decorate([
@@ -213,7 +210,7 @@ _ts_decorate([
 _ts_decorate([
     Prop({
         type: String,
-        default: 'balanced'
+        default: 'positive'
     })
 ], InputNumber.prototype, "color", void 0);
 _ts_decorate([

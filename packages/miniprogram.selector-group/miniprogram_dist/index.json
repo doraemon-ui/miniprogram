@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
+    "dora-icon": "@doraemon-ui/miniprogram.icon/index",
     "dora-selectable": "@doraemon-ui/miniprogram.selectable/index"
   }
 }

@@ -20,7 +20,7 @@
         <view wx:if="{{ title }}" class="{{ classes.title }}">{{ title }}</view>
         <view wx:if="{{ titleRightText }}" class="{{ classes.titleRightText }}">{{ titleRightText }}</view>
         <view wx:if="{{ closable }}" class="{{ classes.closeButton }}" catchtap="onCloseTap">
-          <icon type="clear" color="#B2B2B2" size="20" />
+          <dora-icon prefixCls="mpicons" type="clear" color="#B2B2B2" size="20" />
         </view>
       </view>
       <view wx:if="{{ subtitle }}" class="{{ classes.subtitle }}">{{ subtitle }}</view>

@@ -2,6 +2,8 @@
 .dora-input-number {
   position: relative;
   display: flex;
+  --text-color: var(--dora-color-positive, #3880ff);
+  --border-color: var(--dora-color-positive, #3880ff);
 }
 
 .dora-input-number__control {
@@ -39,8 +41,8 @@
   height: 52rpx;
   font-size: 48rpx;
   line-height: 1;
-  color: #2dd36f;
-  color: var(--dora-input-number-balanced-color, var(--dora-color-balanced, #2dd36f));
+  color: #3880ff;
+  color: var(--text-color);
   border: 2rpx solid #e6e6e6;
   border: 2rpx solid var(--dora-border-color, var(--dora-color-step-10, #e6e6e6));
   box-sizing: border-box;
@@ -50,9 +52,8 @@
 }
 
 .dora-input-number__selector--disabled {
-  color: #c7c7cc!important;
-  color: var(--dora-input-number-disabled-color, #c7c7cc)!important;
-  cursor: not-allowed;
+  --text-color: var(--dora-input-number-disabled-color, var(--dora-color-step-20, #cccccc));
+  --border-color: var(--dora-input-number-disabled-color, var(--dora-color-step-20, #cccccc));
 }
 
 .dora-input-number__selector--sub {
@@ -82,101 +83,11 @@
 .dora-input-number--circle .dora-input-number__selector {
   width: 52rpx;
   border-radius: 50%;
-  border: 2rpx solid #2dd36f;
-  border: 2rpx solid var(--dora-input-number-balanced-color, var(--dora-color-balanced, #2dd36f));
+  border: 2rpx solid #3880ff;
+  border: 2rpx solid var(--border-color);
 }
 
-.dora-input-number--circle .dora-input-number__selector--disabled {
-  border-color: #c7c7cc!important;
-  border-color: var(--dora-input-number-disabled-color, #c7c7cc)!important;
-}
-
-.dora-input-number .dora-input-number__selector--light {
-  color: #f4f5f8;
-  color: var(--dora-input-number-light-color, var(--dora-color-light, #f4f5f8));
-}
-
-.dora-input-number .dora-input-number--circle .dora-input-number__selector--light {
-  border-color: #f4f5f8;
-  border-color: var(--dora-input-number-light-color, var(--dora-color-light, #f4f5f8));
-}
-
-.dora-input-number .dora-input-number__selector--stable {
-  color: #636469;
-  color: var(--dora-input-number-stable-color, var(--dora-color-stable, #636469));
-}
-
-.dora-input-number .dora-input-number--circle .dora-input-number__selector--stable {
-  border-color: #636469;
-  border-color: var(--dora-input-number-stable-color, var(--dora-color-stable, #636469));
-}
-
-.dora-input-number .dora-input-number__selector--positive {
-  color: #3880ff;
-  color: var(--dora-input-number-positive-color, var(--dora-color-positive, #3880ff));
-}
-
-.dora-input-number .dora-input-number--circle .dora-input-number__selector--positive {
-  border-color: #3880ff;
-  border-color: var(--dora-input-number-positive-color, var(--dora-color-positive, #3880ff));
-}
-
-.dora-input-number .dora-input-number__selector--calm {
-  color: #3dc2ff;
-  color: var(--dora-input-number-calm-color, var(--dora-color-calm, #3dc2ff));
-}
-
-.dora-input-number .dora-input-number--circle .dora-input-number__selector--calm {
-  border-color: #3dc2ff;
-  border-color: var(--dora-input-number-calm-color, var(--dora-color-calm, #3dc2ff));
-}
-
-.dora-input-number .dora-input-number__selector--assertive {
-  color: #eb445a;
-  color: var(--dora-input-number-assertive-color, var(--dora-color-assertive, #eb445a));
-}
-
-.dora-input-number .dora-input-number--circle .dora-input-number__selector--assertive {
-  border-color: #eb445a;
-  border-color: var(--dora-input-number-assertive-color, var(--dora-color-assertive, #eb445a));
-}
-
-.dora-input-number .dora-input-number__selector--balanced {
-  color: #2dd36f;
-  color: var(--dora-input-number-balanced-color, var(--dora-color-balanced, #2dd36f));
-}
-
-.dora-input-number .dora-input-number--circle .dora-input-number__selector--balanced {
-  border-color: #2dd36f;
-  border-color: var(--dora-input-number-balanced-color, var(--dora-color-balanced, #2dd36f));
-}
-
-.dora-input-number .dora-input-number__selector--energized {
-  color: #ffc409;
-  color: var(--dora-input-number-energized-color, var(--dora-color-energized, #ffc409));
-}
-
-.dora-input-number .dora-input-number--circle .dora-input-number__selector--energized {
-  border-color: #ffc409;
-  border-color: var(--dora-input-number-energized-color, var(--dora-color-energized, #ffc409));
-}
-
-.dora-input-number .dora-input-number__selector--royal {
-  color: #8a63d2;
-  color: var(--dora-input-number-royal-color, var(--dora-color-royal, #8a63d2));
-}
-
-.dora-input-number .dora-input-number--circle .dora-input-number__selector--royal {
-  border-color: #8a63d2;
-  border-color: var(--dora-input-number-royal-color, var(--dora-color-royal, #8a63d2));
-}
-
-.dora-input-number .dora-input-number__selector--dark {
-  color: #222428;
-  color: var(--dora-input-number-dark-color, var(--dora-color-dark, #222428));
-}
-
-.dora-input-number .dora-input-number--circle .dora-input-number__selector--dark {
-  border-color: #222428;
-  border-color: var(--dora-input-number-dark-color, var(--dora-color-dark, #222428));
+.dora-input-number.dora-color {
+  --text-color: var(--dora-color-base);
+  --border-color: var(--dora-color-base);
 }

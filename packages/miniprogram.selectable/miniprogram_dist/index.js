@@ -1,7 +1,7 @@
 /**
  * @doraemon-ui/miniprogram.selectable.
  * © 2021 - 2026 Doraemon UI.
- * Built on 2026-07-02, 20:46:40.
+ * Built on 2026-07-03, 20:45:45.
  * With @doraemon-ui/miniprogram.tools v0.0.2-alpha.66.
  */
 

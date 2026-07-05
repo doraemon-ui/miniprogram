@@ -1,7 +1,7 @@
 <view class="dora-class {{ classes.wrap }}">
   <view class="{{ classes.hd }}">
     <view wx:if="{{ resultIcon }}" class="{{ classes.icon }}">
-      <icon type="{{ resultIcon.type }}" size="{{ resultIcon.size }}" color="{{ resultIcon.color }}" />
+      <dora-icon prefixCls="mpicons" type="{{ resultIcon.type }}" size="{{ resultIcon.size }}" color="{{ resultIcon.color }}" />
     </view>
     <block wx:else>
       <slot name="header"></slot>

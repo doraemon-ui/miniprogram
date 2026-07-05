@@ -1,5 +1,8 @@
 import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
-import type { InputNumberChangeDetail, InputNumberColor, InputNumberShape } from './types'
+import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
+import { useColorCls } from '@doraemon-ui/miniprogram.shared'
+import type { PresetColor } from '@doraemon-ui/miniprogram.shared'
+import type { CalculationType, InputNumberShape } from './types'
 import NP from './utils'
 
 const { classNames } = Doraemon.util
@@ -21,9 +24,10 @@ const getValidValue = (value: number | string, min: number, max: number) => {
 
 @Component({
   props: {
-
-    prefixCls: { type: String, default: 'dora-input-number' },
-  
+    prefixCls: {
+      type: String,
+      default: 'dora-input-number',
+    },
   },
 })
 class InputNumber extends Doraemon {
@@ -140,14 +144,14 @@ class InputNumber extends Doraemon {
   /**
    * 主题色
    *
-   * @type {InputNumberColor}
+   * @type {PresetColor}
    * @memberof InputNumber
    */
   @Prop({
     type: String,
-    default: 'balanced',
+    default: 'positive',
   })
-  color: InputNumberColor
+  color: PresetColor
 
   /**
    * 是否受控
@@ -176,24 +180,23 @@ class InputNumber extends Doraemon {
   inputValue: number | string = 0
   disabledMin: boolean = false
   disabledMax: boolean = false
-  timeout: ReturnType<typeof setTimeout> | null = null
-  inputTime: ReturnType<typeof setTimeout> | null = null
+
+  _timeout: ReturnType<typeof setTimeout> | null = null
+  _inputTime: ReturnType<typeof setTimeout> | null = null
 
   get classes() {
     const { prefixCls, shape, color, disabled, readOnly, disabledMin, disabledMax } = this
     return {
-      wrap: classNames(prefixCls, {
+      wrap: classNames(prefixCls, useColorCls(color), {
         [`${prefixCls}--${shape}`]: shape,
       }),
       sub: classNames(`${prefixCls}__selector`, {
         [`${prefixCls}__selector--sub`]: true,
-        [`${prefixCls}__selector--${color}`]: true,
-        [`${prefixCls}__selector--disabled`]: disabled || readOnly || disabledMin,
+        [`${prefixCls}__selector--disabled`]: disabledMin,
       }),
       add: classNames(`${prefixCls}__selector`, {
         [`${prefixCls}__selector--add`]: true,
-        [`${prefixCls}__selector--${color}`]: true,
-        [`${prefixCls}__selector--disabled`]: disabled || readOnly || disabledMax,
+        [`${prefixCls}__selector--disabled`]: disabledMax,
       }),
       icon: `${prefixCls}__icon`,
       control: `${prefixCls}__control`,
@@ -238,8 +241,7 @@ class InputNumber extends Doraemon {
     }
   }
 
-  calculation(type: 'add' | 'sub', isLoop: boolean) {
-    if (this.disabled || this.readOnly) return
+  calculation(type: CalculationType, isLoop: boolean) {
     const current = Number(this.inputValue)
     const value = Number.isNaN(current) ? 0 : current
     if (type === 'add') {
@@ -251,35 +253,34 @@ class InputNumber extends Doraemon {
       this.setValue(NP.minus(value, this.step))
     }
     if (this.longpress && isLoop) {
-      this.timeout = setTimeout(() => this.calculation(type, isLoop), 100)
+      this._timeout = setTimeout(() => this.calculation(type, isLoop), 100)
     }
   }
 
-  onInput(e: WechatMiniprogram.CustomEvent<{ value: string }>) {
+  onInput(e: CustomEvent<{ value: string }>) {
     this.clearInputTimer()
-    this.inputTime = setTimeout(() => {
+    this._inputTime = setTimeout(() => {
       const value = toNumberWhenUserInput(e.detail.value)
       this.setValue(value)
     }, 300)
   }
 
-  onFocus(e: WechatMiniprogram.CustomEvent<Record<string, unknown>>) {
+  onFocus(e: CustomEvent) {
     this.$emit('focus', e.detail)
   }
 
-  onBlur(e: WechatMiniprogram.CustomEvent<Record<string, unknown>>) {
-    this.inputValue = this.inputValue
+  onBlur(e: CustomEvent) {
     this.$emit('blur', e.detail)
   }
 
-  onLongpress(e: WechatMiniprogram.BaseEvent<{ type?: 'add' | 'sub' }>) {
-    const type = (e.currentTarget?.dataset?.type || 'add') as 'add' | 'sub'
+  onLongpress(e: CustomEvent<{}, {}, { type: CalculationType }>) {
+    const type = e.currentTarget.dataset.type || 'add'
     if (this.longpress) this.calculation(type, true)
   }
 
-  onTap(e: WechatMiniprogram.BaseEvent<{ type?: 'add' | 'sub' }>) {
-    const type = (e.currentTarget?.dataset?.type || 'add') as 'add' | 'sub'
-    if (!this.longpress || (this.longpress && !this.timeout)) {
+  onTap(e: CustomEvent<{}, {}, { type: CalculationType }>) {
+    const type = e.currentTarget.dataset.type || 'add'
+    if (!this.longpress || (this.longpress && !this._timeout)) {
       this.calculation(type, false)
     }
   }
@@ -293,16 +294,16 @@ class InputNumber extends Doraemon {
   }
 
   clearTimer() {
-    if (this.timeout) {
-      clearTimeout(this.timeout)
-      this.timeout = null
+    if (this._timeout) {
+      clearTimeout(this._timeout)
+      this._timeout = null
     }
   }
 
   clearInputTimer() {
-    if (this.inputTime) {
-      clearTimeout(this.inputTime)
-      this.inputTime = null
+    if (this._inputTime) {
+      clearTimeout(this._inputTime)
+      this._inputTime = null
     }
   }
 

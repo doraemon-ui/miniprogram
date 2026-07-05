@@ -1,6 +1,8 @@
 import { Doraemon } from '@doraemon-ui/miniprogram.core-js';
 
-import type { ComponentPublicInstance } from '@doraemon-ui/miniprogram.core-js';
+import type { ComponentPublicInstance, CustomEvent } from '@doraemon-ui/miniprogram.core-js';
+
+import type { PresetColor } from '@doraemon-ui/miniprogram.shared';
 
 declare class InputNumber extends Doraemon {
     prefixCls: string;
@@ -70,10 +72,10 @@ declare class InputNumber extends Doraemon {
     /**
      * 主题色
      *
-     * @type {InputNumberColor}
+     * @type {PresetColor}
      * @memberof InputNumber
      */
-    color: InputNumberColor;
+    color: PresetColor;
     /**
      * 是否受控
      *
@@ -91,8 +93,8 @@ declare class InputNumber extends Doraemon {
     inputValue: number | string;
     disabledMin: boolean;
     disabledMax: boolean;
-    timeout: ReturnType<typeof setTimeout> | null;
-    inputTime: ReturnType<typeof setTimeout> | null;
+    _timeout: ReturnType<typeof setTimeout> | null;
+    _inputTime: ReturnType<typeof setTimeout> | null;
     get classes(): {
         wrap: string;
         sub: string;
@@ -105,17 +107,17 @@ declare class InputNumber extends Doraemon {
     onRangeChange(): void;
     updated(inputValue: number | string): void;
     setValue(value: number | string, runCallbacks?: boolean): void;
-    calculation(type: 'add' | 'sub', isLoop: boolean): void;
-    onInput(e: WechatMiniprogram.CustomEvent<{
+    calculation(type: CalculationType, isLoop: boolean): void;
+    onInput(e: CustomEvent<{
         value: string;
     }>): void;
-    onFocus(e: WechatMiniprogram.CustomEvent<Record<string, unknown>>): void;
-    onBlur(e: WechatMiniprogram.CustomEvent<Record<string, unknown>>): void;
-    onLongpress(e: WechatMiniprogram.BaseEvent<{
-        type?: 'add' | 'sub';
+    onFocus(e: CustomEvent): void;
+    onBlur(e: CustomEvent): void;
+    onLongpress(e: CustomEvent<{}, {}, {
+        type: CalculationType;
     }>): void;
-    onTap(e: WechatMiniprogram.BaseEvent<{
-        type?: 'add' | 'sub';
+    onTap(e: CustomEvent<{}, {}, {
+        type: CalculationType;
     }>): void;
     onTouchEnd(): void;
     onTouchCancel(): void;
@@ -127,26 +129,12 @@ declare class InputNumber extends Doraemon {
 
 export { InputNumber };
 
+export type CalculationType = 'add' | 'sub';
+
 /**
  * InputNumberShape类型定义
  */
 export type InputNumberShape = 'square' | 'round';
-
-/**
- * InputNumberColor类型定义
- */
-export type InputNumberColor = 'positive' | 'balanced' | 'assertive' | 'dark' | 'gray';
-
-/**
- * InputNumberChangeDetail接口定义
- */
-export interface InputNumberChangeDetail {
-    /**
-     * value
-     * @type {number | string}
-     */
-    value: number | string;
-}
 
 /**
  * InputNumberProps接口定义
@@ -215,9 +203,9 @@ export interface InputNumberProps {
     /**
      * 主题色
      *
-     * @type {InputNumberColor}
+     * @type {PresetColor}
      */
-    color?: InputNumberColor;
+    color?: PresetColor;
     /**
      * 是否受控
      *

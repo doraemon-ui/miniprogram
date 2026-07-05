@@ -30,7 +30,9 @@
     "preversion": "pnpm clean && pnpm build && pnpm test"
   },
   "dependencies": {
+    "@doraemon-ui/miniprogram.button": "workspace:*",
     "@doraemon-ui/miniprogram.core-js": "workspace:*",
+    "@doraemon-ui/miniprogram.icon": "workspace:*",
     "@doraemon-ui/style": "workspace:*"
   },
   "devDependencies": {

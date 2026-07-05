@@ -22,7 +22,7 @@
         <view class="{{ classes.text }}" wx:if="{{ context.requiredMarkStyle === 'text-optional' }}">({{ context.optionalText }})</view>
       </block>
       <block wx:if="{{ !!help }}">
-        <dora-icon class="{{ classes.labelHelp }}" type="ios-information-circle" color="#B2B2B2" size="14" catchtap="setPopoverVisible" />
+        <dora-icon class="{{ classes.labelHelp }}" type="information-circle" color="#B2B2B2" size="14" catchtap="setPopoverVisible" />
       </block>
     </view>
     <view slot="title" class="{{ classes.label }}" wx:elif="{{ context.layout === 'vertical' && (!!label || mergedRequired || !!help) }}">
@@ -35,7 +35,7 @@
         <view class="{{ classes.text }}" wx:if="{{ context.requiredMarkStyle === 'text-optional' }}">({{ context.optionalText }})</view>
       </block>
       <block wx:if="{{ !!help }}">
-        <dora-icon class="{{ classes.labelHelp }}" type="ios-information-circle" color="#B2B2B2" size="14" catchtap="setPopoverVisible" />
+        <dora-icon class="{{ classes.labelHelp }}" type="information-circle" color="#B2B2B2" size="14" catchtap="setPopoverVisible" />
       </block>
     </view>
     <view class="{{ classes.child }}" wx:if="{{ childElementPosition !== 'none' }}">

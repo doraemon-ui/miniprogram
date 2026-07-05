@@ -1,26 +1,14 @@
 import type { ComponentPublicInstance } from '@doraemon-ui/miniprogram.core-js'
+import type { PresetColor } from '@doraemon-ui/miniprogram.shared'
 
 import type { InputNumber } from './index'
+
+export type CalculationType = 'add' | 'sub'
 
 /**
  * InputNumberShape类型定义
  */
 export type InputNumberShape = 'square' | 'round'
-/**
- * InputNumberColor类型定义
- */
-export type InputNumberColor = 'positive' | 'balanced' | 'assertive' | 'dark' | 'gray'
-
-/**
- * InputNumberChangeDetail接口定义
- */
-export interface InputNumberChangeDetail {
-  /**
-   * value
-   * @type {number | string}
-   */
-  value: number | string
-}
 
 /**
  * InputNumberProps接口定义
@@ -99,9 +87,9 @@ export interface InputNumberProps {
   /**
    * 主题色
    *
-   * @type {InputNumberColor}
+   * @type {PresetColor}
    */
-  color?: InputNumberColor
+  color?: PresetColor
 
   /**
    * 是否受控

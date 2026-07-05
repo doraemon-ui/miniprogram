@@ -23,7 +23,7 @@
   "scripts": {
     "serve": "dora serve ./playground --open --build-npm",
     "build:dev": "dora build --watch",
-    "build": "dora build && pnpm build:less && pnpm build:dts",
+    "build": "pnpm build:less && dora build && pnpm build:dts",
     "build:icon": "cross-env NODE_ENV=production tsx build-icon.ts",
     "build:less": "cross-env NODE_ENV=production tsx build-less.ts",
     "build:dts": "pnpm build:icon && cross-env NODE_ENV=production tsx build-dts.ts",

@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-    "dora-animation-group": "../../miniprogram.animation-group/src/index"
+    "dora-animation-group": "../../miniprogram.animation-group/src/index",
+    "dora-icon": "../../miniprogram.icon/src/index"
   }
 }
