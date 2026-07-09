@@ -1,7 +1,7 @@
-import path from 'path'
-import simulate from 'miniprogram-simulate'
-import type { RootComponent, Component } from 'miniprogram-simulate'
 import { getPointsDistance, getPointsNumber } from '@doraemon-ui/miniprogram.shared'
+import type { Component, RootComponent } from 'miniprogram-simulate'
+import simulate from 'miniprogram-simulate'
+import path from 'path'
 
 import * as gallery from '../src/gallery'
 import type { GalleryInstance, GalleryItem } from '../src/types'
@@ -271,7 +271,7 @@ describe('Gallery', () => {
         usingComponents: {
           'dora-gallery': id,
         },
-        template: `<dora-gallery id="dora-gallery" />`,
+        template: '<dora-gallery id="dora-gallery" />',
       }),
     )
     wrapper.attach(document.createElement('parent-wrapper'))

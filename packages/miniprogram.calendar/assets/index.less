@@ -4,10 +4,10 @@
 // -----------------------------
 .@{calendar-prefix-cls} {
   position: relative;
-  background: @calendar-bg;
-  height: @calendar-height;
   width: 100%;
+  height: @calendar-height;
   overflow: hidden;
+  background: @calendar-bg;
 
   &__content {
     position: relative;
@@ -17,8 +17,8 @@
   }
 
   &__bd {
-    height: 100%;
     position: relative;
+    height: 100%;
     overflow: hidden;
   }
 
@@ -36,36 +36,36 @@
   }
 
   &__toolbar {
-    height: 2.2rem;
     display: flex;
+    height: 2.2rem;
     text-align: center;
   }
 
   &__picker {
     display: flex;
+    display: block;
+    flex-shrink: 10;
     align-items: center;
     justify-content: space-between;
     width: 50%;
     max-width: 200px;
-    flex-shrink: 10;
-    display: block;
     line-height: 2.2rem;
   }
 
   &__link {
     float: left;
     width: 25%;
+    min-width: 36px;
     height: 2.2rem;
     line-height: 2rem;
-    min-width: 36px;
     cursor: pointer;
   }
 
   &__icon {
     display: inline-block;
     vertical-align: middle;
-    background-size: 100% auto;
     background-position: center;
+    background-size: 100% auto;
 
     &--next,
     &--prev {
@@ -83,22 +83,22 @@
   }
 
   &__value {
-    flex-shrink: 1;
     position: relative;
-    overflow: hidden;
-    text-overflow: ellipsis;
     float: left;
+    flex-shrink: 1;
     width: 50%;
     height: 2.2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &__weekdays {
-    height: 18px;
-    background: #f7f7f8;
-    display: flex;
-    font-size: 11px;
-    box-sizing: border-box;
     position: relative;
+    box-sizing: border-box;
+    display: flex;
+    height: 18px;
+    font-size: 11px;
+    background: #f7f7f8;
 
     &::after {
       .setBottomLine(@border-color-split);
@@ -118,39 +118,39 @@
   }
 
   &__months {
+    position: relative;
     width: 100%;
     height: 100%;
     overflow: hidden;
-    position: relative;
 
     &-content {
       position: relative;
+      position: relative;
+      display: flex;
       width: 100%;
       height: 100%;
-      display: flex;
-      position: relative;
-      -webkit-backface-visibility: hidden;
       transform: translate3d(0, 0, 0);
+      backface-visibility: hidden;
     }
   }
 
   &__month {
+    position: absolute;
+    top: 0;
+    left: 0;
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
   }
 
   &__days {
-    height: 16.66666667%;
-    height: calc(100% / 6);
+    position: relative;
     display: flex;
     flex-shrink: 1;
     width: 100%;
-    position: relative;
+    height: 16.66666667%;
+    height: calc(100% / 6);
 
     &::after {
       .setBottomLine(@border-color-split);
@@ -162,16 +162,16 @@
   }
 
   &__day {
-    flex-shrink: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     box-sizing: border-box;
+    display: flex;
+    flex-shrink: 1;
+    align-items: center;
+    justify-content: center;
     width: 14.28571429%;
     width: calc(100% / 7);
-    text-align: center;
-    color: @calendar-text-color;
     font-size: @calendar-text-font-size;
+    color: @calendar-text-color;
+    text-align: center;
     cursor: pointer;
 
     &--prev {
@@ -193,16 +193,16 @@
   }
 
   &__day--selected &__text {
-    background: @calendar-active-text-bg;
     color: @calendar-active-text-color;
+    background: @calendar-active-text-bg;
   }
 
   &__text {
-    cursor: pointer;
     display: inline-block;
-    border-radius: 100%;
     width: @calendar-text-size;
     height: @calendar-text-size;
     line-height: @calendar-text-size;
+    cursor: pointer;
+    border-radius: 100%;
   }
 }

@@ -1,4 +1,5 @@
-import type { BackdropProps as NativeBackdropProps, BackdropExpose as NativeBackdropExpose } from '@doraemon-ui/miniprogram.backdrop'
+import type { BackdropExpose as NativeBackdropExpose, BackdropProps as NativeBackdropProps } from '@doraemon-ui/miniprogram.backdrop'
+
 import type { BasicComponent } from '../../types'
 
 export interface BackdropProps extends NativeBackdropProps, BasicComponent {

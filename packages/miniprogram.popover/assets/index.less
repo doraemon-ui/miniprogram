@@ -25,27 +25,27 @@
   --border-radius: @popover-border-radius;
   --font-size: @popover-font-size;
   --line-height: @popover-line-height;
-
-  font-size: var(--font-size);
-  line-height: var(--line-height);
-  color: var(--text-color);
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  list-style: none;
   position: absolute;
   top: 0;
   left: 0;
   z-index: var(--z-index);
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+
+  font-size: var(--font-size);
+  font-weight: 400;
+  line-height: var(--line-height);
+  color: var(--text-color);
+  text-align: left;
+  white-space: normal;
   cursor: auto;
   user-select: text;
-  white-space: normal;
-  font-weight: 400;
-  text-align: left;
+  list-style: none;
 
   &::after {
-    content: '';
     position: absolute;
+    content: '';
     background: fade(@white-value, 1%);
   }
 
@@ -119,30 +119,30 @@
   }
 
   &__inner {
+    color: var(--text-color);
     background-color: var(--background-color);
     background-clip: padding-box;
     border-radius: var(--border-radius);
     box-shadow: @box-shadow-base;
-    color: var(--text-color);
   }
 
   &__title {
     position: relative;
-    min-width: var(--min-width);
-    margin: 0;
-    padding: 5px 16px 4px;
-    min-height: 32px;
     box-sizing: border-box;
-    color: var(--title-color);
+    min-width: var(--min-width);
+    min-height: 32px;
+    padding: 5px 16px 4px;
+    margin: 0;
     font-weight: 500;
+    color: var(--title-color);
 
     &::after {
-      content: '';
       position: absolute;
-      left: 0;
       right: 0;
       bottom: 0;
+      left: 0;
       height: 1px;
+      content: '';
       background: @border-color-split;
       transform: scaleY(0.5);
       transform-origin: center bottom;
@@ -154,10 +154,10 @@
   }
 
   &__arrow {
-    width: 0;
-    height: 0;
     position: absolute;
     display: block;
+    width: 0;
+    height: 0;
     border-color: transparent;
     border-style: solid;
     border-width: sqrt(@popover-arrow-width * @popover-arrow-width * 2);
@@ -167,8 +167,8 @@
   &--placement-topLeft &__arrow,
   &--placement-topRight &__arrow {
     bottom: 4px;
-    border-bottom-width: 0;
     border-top-color: var(--background-color);
+    border-bottom-width: 0;
   }
 
   &--placement-top &__arrow {
@@ -188,8 +188,8 @@
   &--placement-rightBottom &__arrow,
   &--placement-rightTop &__arrow {
     left: 4px;
-    border-left-width: 0;
     border-right-color: var(--background-color);
+    border-left-width: 0;
   }
 
   &--placement-right &__arrow {

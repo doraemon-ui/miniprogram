@@ -3,15 +3,15 @@
 // Avatar styles
 // -----------------------------
 .@{avatar-prefix-cls} {
+  position: relative;
   box-sizing: border-box;
   display: inline-block;
-  text-align: center;
-  background: @avatar-bg;
-  color: @avatar-color;
-  white-space: nowrap;
-  position: relative;
   overflow: hidden;
   vertical-align: middle;
+  color: @avatar-color;
+  text-align: center;
+  white-space: nowrap;
+  background: @avatar-bg;
   .avatar-size(@avatar-size-base, @avatar-font-size-base);
 
   &--small {
@@ -39,9 +39,9 @@
 .avatar-size(@size, @font-size) {
   width: @size;
   height: @size;
+  font-size: @font-size;
   line-height: @size;
   border-radius: calc(@size / 2);
-  font-size: @font-size;
 
   .@{avatar-prefix-cls}__string {
     line-height: @size;

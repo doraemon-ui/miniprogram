@@ -1,7 +1,8 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+import { Component, defineComponentHOC, Doraemon, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+
 import { props } from './props'
-import { getIndexFromValue, getLabelFromIndex, getRealCol, getRealValue } from './utils'
 import type { PickerFieldNames, PickerLabelAlign, PickerOption, PickerOptionRecord, PickerViewItemDataset } from './types'
+import { getIndexFromValue, getLabelFromIndex, getRealCol, getRealValue } from './utils'
 
 const { classNames, styleToCssString } = Doraemon.util
 

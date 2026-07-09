@@ -9,7 +9,7 @@ import type {
 
 import type { ActionSheet } from './index'
 
-export type { DefaultButtonHandle, NativeButtonHandle, NativeButtonEvent }
+export type { DefaultButtonHandle, NativeButtonEvent, NativeButtonHandle }
 
 /**
  * 操作按钮的类型

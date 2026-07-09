@@ -1,5 +1,6 @@
-import { getCurrentPage, findComponentNode } from '@doraemon-ui/miniprogram.shared'
 import type { MiniprogramPublicInstance } from '@doraemon-ui/miniprogram.shared'
+import { findComponentNode, getCurrentPage } from '@doraemon-ui/miniprogram.shared'
+
 import type { ToptipsInstance, ToptipsShowOptions, ToptipsShowProps } from './types'
 
 const mergeOptions = (selector?: ToptipsShowOptions | string, instance?: MiniprogramPublicInstance): Required<ToptipsShowOptions> => {

@@ -14,7 +14,7 @@ export default defineAppConfig({
     'dora-list-item': '/miniprogram_npm/@doraemon-ui/miniprogram.list/item',
     'dora-selectable': '/miniprogram_npm/@doraemon-ui/miniprogram.selectable/index',
   /* doraemon-taro-react-plugin:end */
-},
+  },
   // usingComponents: {
   //   'dora-list-item': '/miniprogram_npm/@doraemon-ui/miniprogram.list/item',
   //   'dora-checkbox': '/miniprogram_npm/@doraemon-ui/miniprogram.checkbox/index',

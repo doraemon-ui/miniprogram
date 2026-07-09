@@ -1,4 +1,5 @@
-import type { ActionSheetProps as NativeActionSheetProps, ActionSheetExpose as NativeActionSheetExpose } from '@doraemon-ui/miniprogram.action-sheet'
+import type { ActionSheetExpose as NativeActionSheetExpose, ActionSheetProps as NativeActionSheetProps } from '@doraemon-ui/miniprogram.action-sheet'
+
 import type { BasicComponent } from '../../types'
 
 export interface ActionSheetProps extends NativeActionSheetProps, BasicComponent {

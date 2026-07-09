@@ -1,4 +1,5 @@
-import type { ButtonProps as NativeButtonProps, ButtonExpose as NativeButtonExpose } from '@doraemon-ui/miniprogram.button'
+import type { ButtonExpose as NativeButtonExpose, ButtonProps as NativeButtonProps } from '@doraemon-ui/miniprogram.button'
+
 import type { BasicComponent } from '../../types'
 
 export interface ButtonProps extends NativeButtonProps, BasicComponent {

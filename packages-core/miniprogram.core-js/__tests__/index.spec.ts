@@ -1,9 +1,10 @@
-import path from 'path'
+import type { Component, RootComponent } from 'miniprogram-simulate'
 import simulate from 'miniprogram-simulate'
-import type { RootComponent, Component } from 'miniprogram-simulate'
-import type { MyCompInstance } from './types'
-import { Doraemon, Component as ComponentDecorator } from '../src'
+import path from 'path'
+
 import type { Config } from '../src'
+import { Component as ComponentDecorator, Doraemon } from '../src'
+import type { MyCompInstance } from './types'
 
 function getComponentInstance(wrapper: RootComponent<any, any, any> | Component<any, any, any>): MyCompInstance {
   return wrapper.instance.$component as unknown as MyCompInstance
@@ -200,7 +201,7 @@ describe('CoreJs internals', () => {
 
   test('Doraemon.config setter should warn in dev mode', () => {
     const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {})
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line
     const config = Doraemon.config
     Doraemon.config = {} as Config
     expect(consoleSpy).toHaveBeenCalled()

@@ -1,6 +1,7 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
+import { Component, defineComponentHOC, Doraemon, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import { chooseMedia, uploadFile } from '@doraemon-ui/miniprogram.shared'
+
 import type { UploadFile, UploadTaskLike } from './types'
 
 const { classNames } = Doraemon.util

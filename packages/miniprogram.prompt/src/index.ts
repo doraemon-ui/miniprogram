@@ -1,6 +1,6 @@
-import { Component, defineComponentHOC, Doraemon, Event, Emit, Prop } from '@doraemon-ui/miniprogram.core-js'
-import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
 import type { ClassNames } from '@doraemon-ui/miniprogram.animation-group'
+import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
+import { Component, defineComponentHOC, Doraemon, Emit, Event, Prop } from '@doraemon-ui/miniprogram.core-js'
 
 import type { PromptButton, PromptClassItem } from './types'
 
@@ -163,6 +163,6 @@ class Prompt extends Doraemon {
   }
 }
 
-export { Prompt, defaultIcon }
+export { defaultIcon, Prompt }
 
 export default defineComponentHOC()(Prompt)

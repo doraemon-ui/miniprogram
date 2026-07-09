@@ -1,6 +1,7 @@
-import { defineComponentHOC, Doraemon, Component, Prop } from '@doraemon-ui/miniprogram.core-js'
-import { useRect } from '@doraemon-ui/miniprogram.shared'
+import { Component, defineComponentHOC, Doraemon, Prop } from '@doraemon-ui/miniprogram.core-js'
 import type { MiniprogramDOMRect } from '@doraemon-ui/miniprogram.shared'
+import { useRect } from '@doraemon-ui/miniprogram.shared'
+
 import type { ListItemInstance } from './types'
 
 const { classNames, styleToCssString } = Doraemon.util

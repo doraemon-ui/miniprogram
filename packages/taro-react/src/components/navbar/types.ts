@@ -1,4 +1,5 @@
-import type { NavbarProps as NativeNavbarProps, NavbarExpose as NativeNavbarExpose } from '@doraemon-ui/miniprogram.navbar'
+import type { NavbarExpose as NativeNavbarExpose, NavbarProps as NativeNavbarProps } from '@doraemon-ui/miniprogram.navbar'
+
 import type { BasicComponent } from '../../types'
 
 export interface NavbarProps extends NativeNavbarProps, BasicComponent {

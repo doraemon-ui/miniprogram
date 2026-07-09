@@ -1,7 +1,7 @@
-import type { Doraemon } from './init'
 import { hasOwn } from '../util/hasOwn'
 import { isReserved } from '../util/isReserved'
 import { noop } from '../util/noop'
+import type { Doraemon } from './init'
 
 const sharedPropertyDefinition: PropertyDescriptor = {
   enumerable: true,

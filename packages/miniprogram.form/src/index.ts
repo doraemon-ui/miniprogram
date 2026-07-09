@@ -1,4 +1,8 @@
-import { defineComponentHOC, Doraemon, Component, Watch } from '@doraemon-ui/miniprogram.core-js'
+import { Component, defineComponentHOC, Doraemon, Watch } from '@doraemon-ui/miniprogram.core-js'
+
+import AsyncValidator from './async-validator'
+import { DEFAULT_TRIGGER, FIELD_DATA_PROP, FIELD_META_PROP, toFormEventName } from './constants'
+import type { FormFieldMeta, FormFieldState, FormInputProps, FormRule } from './form-store'
 import createFieldsStore, {
   flattenArray,
   getParams,
@@ -10,7 +14,7 @@ import createFieldsStore, {
   normalizeValidateRules,
   transformRules,
 } from './form-store'
-import type { FormFieldMeta, FormFieldState, FormInputProps, FormRule } from './form-store'
+import { formProps } from './props'
 import type {
   FieldData,
   FieldInstance,
@@ -23,10 +27,7 @@ import type {
   InputInstanceLike,
 } from './types'
 import { eq, get, set } from './utils'
-import AsyncValidator from './async-validator'
 import warning from './warning'
-import { DEFAULT_TRIGGER, FIELD_DATA_PROP, FIELD_META_PROP, toFormEventName } from './constants'
-import { formProps } from './props'
 
 const { classNames } = Doraemon.util
 

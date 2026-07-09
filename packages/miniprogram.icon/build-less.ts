@@ -49,15 +49,8 @@ function extractFontSrc(cssSource: string, cssPath: string) {
   return match[0]
 }
 
-function extractIconRules(
-  cssSource: string,
-  sourceFontFamily: string,
-  cssPath: string,
-) {
-  const selectorPattern = new RegExp(
-    `\\.${escapeRegExp(sourceFontFamily)}-([a-z0-9_-]+)::?before\\s*\\{[\\s\\S]*?\\}`,
-    'gi',
-  )
+function extractIconRules(cssSource: string, sourceFontFamily: string, cssPath: string) {
+  const selectorPattern = new RegExp(`\\.${escapeRegExp(sourceFontFamily)}-([a-z0-9_-]+)::?before\\s*\\{[\\s\\S]*?\\}`, 'gi')
 
   const rules = Array.from(cssSource.matchAll(selectorPattern), (match) => ({
     name: match[1],
@@ -77,14 +70,14 @@ function extractIconRules(
 function createBaseClassBlock(sourceFontFamily: string) {
   return [
     `.${sourceFontFamily} {`,
-    `  font-family: '${sourceFontFamily}' !important;`,
-    '  speak: none;',
+    `  font-family: "${sourceFontFamily}" !important;`,
     '  font-style: normal;',
     '  font-weight: 400;',
     '  font-variant: normal;',
+    '  line-height: 1;',
     '  text-transform: none;',
     '  text-rendering: auto;',
-    '  line-height: 1;',
+    '  speak: none;',
     '  -webkit-font-smoothing: antialiased;',
     '  -moz-osx-font-smoothing: grayscale;',
     '}',
@@ -118,9 +111,9 @@ async function buildLess() {
     ...fontAssets.flatMap((asset) => [
       '@font-face {',
       `  ${asset.fontFamilyLine}`,
-      `  src: ${asset.src};`,
-      '  font-weight: 400;',
       '  font-style: normal;',
+      '  font-weight: 400;',
+      `  src: ${asset.src};`,
       '}',
       '',
       ...createBaseClassBlock(asset.sourceFontFamily),
@@ -132,9 +125,7 @@ async function buildLess() {
 
   await writeFile(outputLessPath, lessSource)
 
-  console.log(
-    `Generated ${path.relative(packageRoot, outputLessPath)} with ${iconCount} icons from ${fontAssets.length} iconfont sources`,
-  )
+  console.log(`Generated ${path.relative(packageRoot, outputLessPath)} with ${iconCount} icons from ${fontAssets.length} iconfont sources`)
 }
 
 buildLess().catch((error) => {

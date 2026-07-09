@@ -11,7 +11,7 @@
 .button-sp-area {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 16rpx;
+  justify-content: center;
 }
 

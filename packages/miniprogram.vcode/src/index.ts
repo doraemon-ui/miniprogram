@@ -1,6 +1,6 @@
-import { defineComponentHOC, Doraemon, Component, Prop } from '@doraemon-ui/miniprogram.core-js'
-import { useRef, getSystemInfoSync } from '@doraemon-ui/miniprogram.shared'
+import { Component, defineComponentHOC, Doraemon, Prop } from '@doraemon-ui/miniprogram.core-js'
 import type { MiniprogramNodeRef, MiniprogramPublicInstance } from '@doraemon-ui/miniprogram.shared'
+import { getSystemInfoSync, useRef } from '@doraemon-ui/miniprogram.shared'
 
 const randomNum = (min: number, max: number) => Math.floor(Math.random() * (max - min) + min)
 const randomColor = (min: number, max: number) => `rgb(${randomNum(min, max)}, ${randomNum(min, max)}, ${randomNum(min, max)})`

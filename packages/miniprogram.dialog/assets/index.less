@@ -11,19 +11,19 @@
   --button-text-color: #get-color(dark) [];
 
   position: relative;
-  background-color: @dialog-content-bg;
-  border: 0;
-  background-clip: padding-box;
   height: 100%;
-  text-align: center;
   overflow: hidden;
+  text-align: center;
+  background-color: @dialog-content-bg;
+  background-clip: padding-box;
+  border: 0;
   border-radius: @border-radius-lg;
 
   &__title {
-    font-weight: 700;
-    font-size: var(--title-font-size);
-    color: @dialog-color;
     margin-bottom: 12px;
+    font-size: var(--title-font-size);
+    font-weight: 700;
+    color: @dialog-color;
 
     &:last-child {
       margin-bottom: 0;
@@ -31,19 +31,19 @@
   }
 
   &__bd {
+    padding: @dialog-bd-padding;
     font-size: var(--font-size);
     line-height: 1.4;
-    word-wrap: break-word;
-    word-break: break-all;
     color: @text-color-secondary;
-    padding: @dialog-bd-padding;
+    word-break: break-all;
+    overflow-wrap: break-word;
   }
 
   &__ft {
     position: relative;
-    line-height: 56px;
-    font-size: var(--title-font-size);
     display: flex;
+    font-size: var(--title-font-size);
+    line-height: 56px;
 
     &::after {
       .setTopLine(@border-color-split);
@@ -56,10 +56,10 @@
     overflow: hidden;
 
     &-img {
+      display: block;
       width: 100%;
       height: 100%;
       object-fit: fill;
-      display: block;
     }
   }
 
@@ -93,11 +93,11 @@
 
   &__button {
     .button-reset();
+    position: relative;
 
     display: block;
     flex: 1;
     color: var(--button-text-color) !important;
-    position: relative;
 
     &.@{dora-prefix}-color {
       --button-text-color: #current-color(base) [];

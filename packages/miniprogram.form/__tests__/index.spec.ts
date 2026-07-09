@@ -1,5 +1,6 @@
-import path from 'path'
 import simulate from 'miniprogram-simulate'
+import path from 'path'
+
 import type { FieldInstance, FormInstance, InputInstanceLike } from '../src/types'
 
 function mountTest(id: string | (() => string), defaultProps: Record<string, unknown> = {}) {
@@ -72,7 +73,7 @@ describe('Form', () => {
         usingComponents: {
           'dora-form': formId,
         },
-        template: `<dora-form id="form" layout="none"><view class="custom-content">content</view></dora-form>`,
+        template: '<dora-form id="form" layout="none"><view class="custom-content">content</view></dora-form>',
       }),
     )
     wrapper.attach(document.createElement('parent-wrapper'))

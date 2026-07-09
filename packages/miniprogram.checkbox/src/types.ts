@@ -1,5 +1,6 @@
 import type { ComponentPublicInstance } from '@doraemon-ui/miniprogram.core-js'
 import type { MiniprogramDOMRect } from '@doraemon-ui/miniprogram.shared'
+
 import type { CheckboxGroup } from './group'
 import type { Checkbox } from './index'
 

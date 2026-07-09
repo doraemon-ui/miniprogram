@@ -1,75 +1,85 @@
-@import './var.fn.less';
+@import '../themes/fn.color.less';
 
 .varDark() {
+  @light: #222428;
+  @stable: #989aa2;
+  @positive: #4d8dff;
+  @calm: #46b1ff;
+  @balanced: #2dd55b;
+  @energized: #ffce31;
+  @assertive: #f24c58;
+  @royal: #8482fb;
+  @dark: #f4f5f8;
+
   @light-value: {
-    base: #222428;
-    active: #get-color-active(#222428) [];
-    tint: #get-color-tint(#222428) [];
-    light: #get-color-light(#222428) [];
+    base: @light;
+    shade: #get-color-shade(@light) [];
+    tint: #get-color-tint(@light) [];
+    lighter: #get-color-lighter(@light) [];
     contrast: #000;
   };
 
   @stable-value: {
-    base: #989aa2;
-    active: #get-color-active(#989aa2) [];
-    tint: #get-color-tint(#989aa2) [];
-    light: #get-color-light(#989aa2) [];
+    base: @stable;
+    shade: #get-color-shade(@stable) [];
+    tint: #get-color-tint(@stable) [];
+    lighter: #get-color-lighter(@stable) [];
     contrast: #fff;
   };
 
   @positive-value: {
-    base: #3880ff;
-    active: #get-color-active(#3880ff) [];
-    tint: #get-color-tint(#3880ff) [];
-    light: #get-color-light(#3880ff) [];
+    base: @positive;
+    shade: #get-color-shade(@positive) [];
+    tint: #get-color-tint(@positive) [];
+    lighter: #get-color-lighter(@positive) [];
     contrast: #000;
   };
 
   @calm-value: {
-    base: #3dc2ff;
-    active: #get-color-active(#3dc2ff) [];
-    tint: #get-color-tint(#3dc2ff) [];
-    light: #get-color-light(#3dc2ff) [];
+    base: @calm;
+    shade: #get-color-shade(@calm) [];
+    tint: #get-color-tint(@calm) [];
+    lighter: #get-color-lighter(@calm) [];
     contrast: #000;
   };
 
   @balanced-value: {
-    base: #2dd36f;
-    active: #get-color-active(#2dd36f) [];
-    tint: #get-color-tint(#2dd36f) [];
-    light: #get-color-light(#2dd36f) [];
+    base: @balanced;
+    shade: #get-color-shade(@balanced) [];
+    tint: #get-color-tint(@balanced) [];
+    lighter: #get-color-lighter(@balanced) [];
     contrast: #000;
   };
 
   @energized-value: {
-    base: #ffc409;
-    active: #get-color-active(#ffc409) [];
-    tint: #get-color-tint(#ffc409) [];
-    light: #get-color-light(#ffc409) [];
+    base: @energized;
+    shade: #get-color-shade(@energized) [];
+    tint: #get-color-tint(@energized) [];
+    lighter: #get-color-lighter(@energized) [];
     contrast: #000;
   };
 
   @assertive-value: {
-    base: #eb445a;
-    active: #get-color-active(#eb445a) [];
-    tint: #get-color-tint(#eb445a) [];
-    light: #get-color-light(#eb445a) [];
+    base: @assertive;
+    shade: #get-color-shade(@assertive) [];
+    tint: #get-color-tint(@assertive) [];
+    lighter: #get-color-lighter(@assertive) [];
     contrast: #000;
   };
 
   @royal-value: {
-    base: #8a63d2;
-    active: #get-color-active(#8a63d2) [];
-    tint: #get-color-tint(#8a63d2) [];
-    light: #get-color-light(#8a63d2) [];
+    base: @royal;
+    shade: #get-color-shade(@royal) [];
+    tint: #get-color-tint(@royal) [];
+    lighter: #get-color-lighter(@royal) [];
     contrast: #000;
   };
 
   @dark-value: {
-    base: #f4f5f8;
-    active: #get-color-active(#f4f5f8) [];
-    tint: #get-color-tint(#f4f5f8) [];
-    light: #get-color-light(#f4f5f8) [];
+    base: @dark;
+    shade: #get-color-shade(@dark) [];
+    tint: #get-color-tint(@dark) [];
+    lighter: #get-color-lighter(@dark) [];
     contrast: #000;
   };
 
@@ -137,8 +147,8 @@
     --dora-color-@{key}-rgb: #color-to-rgb-list(@color[base]) [];
     --dora-color-@{key}-contrast: @color[contrast];
     --dora-color-@{key}-contrast-rgb: #color-to-rgb-list(@color[contrast]) [];
-    --dora-color-@{key}-active: @color[active];
+    --dora-color-@{key}-shade: @color[shade];
     --dora-color-@{key}-tint: @color[tint];
-    --dora-color-@{key}-light: @color[light];
+    --dora-color-@{key}-lighter: @color[lighter];
   });
 }

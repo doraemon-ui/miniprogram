@@ -11,24 +11,24 @@
   cursor: pointer;
 
   &--center {
-    left: 50%;
     top: 50%;
+    left: 50%;
     transform: translate3d(-50%, -50%, 0);
   }
 
   &--topLeft {
-    left: 15px;
     top: 15px;
+    left: 15px;
   }
 
   &--topRight {
-    right: 15px;
     top: 15px;
+    right: 15px;
   }
 
   &--bottomLeft {
-    left: 15px;
     bottom: 15px;
+    left: 15px;
   }
 
   &--bottomRight {
@@ -48,26 +48,26 @@
   }
 
   &__action {
-    width: @fab-button-action-size;
-    height: @fab-button-action-size;
     position: relative;
-    border-radius: 50%;
+    right: 0;
+    bottom: 0;
     z-index: 1000;
-    background-color: var(--background-color);
-    color: #fff;
-    overflow: visible;
-    transition-duration: 0.3s;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: @fab-button-action-size;
+    height: @fab-button-action-size;
+    overflow: visible;
+    color: #fff;
+    background-color: var(--background-color);
+    border-radius: 50%;
     box-shadow: @fab-button-box-shadow;
-    right: 0;
-    bottom: 0;
+    transition-duration: 0.3s;
   }
 
   &--hover {
-    transition-duration: 0s;
     opacity: 0.8 !important;
+    transition-duration: 0s;
   }
 
   &__action--hide-shadow {
@@ -96,34 +96,34 @@
   }
 
   &__button {
-    border: 0;
-    border-radius: 50%;
-    overflow: visible;
-    color: #fff !important;
-    background-color: var(--background-color) !important;
-    transition-duration: 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: @fab-button-box-shadow;
     position: absolute;
     top: 0;
     left: 0;
-    opacity: 0;
     z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100% !important;
     height: 100%;
     padding: 0;
+    overflow: visible;
+    color: #fff !important;
+    background-color: var(--background-color) !important;
+    border: 0;
+    border-radius: 50%;
+    box-shadow: @fab-button-box-shadow;
+    opacity: 0;
+    transition-duration: 0.3s;
   }
 
   &__button--hover {
-    transition-duration: 0s;
     opacity: 0.8 !important;
+    transition-duration: 0s;
   }
 
   &__button--disabled {
-    opacity: @fab-button-disabled-opacity !important;
     cursor: not-allowed !important;
+    opacity: @fab-button-disabled-opacity !important;
   }
 
   &__button--hide-shadow {
@@ -133,15 +133,15 @@
   &__label {
     position: absolute;
     top: 50%;
+    box-sizing: border-box;
     padding: @fab-button-label-padding;
     font-size: 12px;
+    color: @fab-button-label-color;
+    white-space: nowrap;
+    pointer-events: none;
     background: @fab-button-label-bg;
     border-radius: 4px;
-    color: @fab-button-label-color;
-    pointer-events: none;
-    white-space: nowrap;
     opacity: 0;
-    box-sizing: border-box;
     transform: translate3d(0, -50%, 0);
     transition: all 0.3s;
   }
@@ -152,11 +152,8 @@
 
   &__backdrop {
     position: fixed;
+    inset: 0;
     z-index: 999;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
     background: transparent;
   }
 

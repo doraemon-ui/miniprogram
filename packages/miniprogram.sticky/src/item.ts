@@ -1,5 +1,6 @@
 import { Component, defineComponentHOC, Doraemon, Prop } from '@doraemon-ui/miniprogram.core-js'
 import { useRect } from '@doraemon-ui/miniprogram.shared'
+
 import type { StickyInstance } from './types'
 
 const { classNames } = Doraemon.util

@@ -1,4 +1,5 @@
-import type { FabButtonProps as NativeFabButtonProps, FabButtonExpose as NativeFabButtonExpose } from '@doraemon-ui/miniprogram.fab-button'
+import type { FabButtonExpose as NativeFabButtonExpose, FabButtonProps as NativeFabButtonProps } from '@doraemon-ui/miniprogram.fab-button'
+
 import type { BasicComponent } from '../../types'
 
 export interface FabButtonProps extends NativeFabButtonProps, BasicComponent {

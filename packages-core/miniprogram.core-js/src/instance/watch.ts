@@ -1,6 +1,6 @@
-import type { Doraemon, ComponentRenderProxy } from './init'
 import type { ComponentOptions, WatchHandler, WatchOptionsWithHandler } from '../types/options'
 import { isPlainObject } from '../util/isPlainObject'
+import type { ComponentRenderProxy, Doraemon } from './init'
 
 export function initWatch(vm: Doraemon, watch: ComponentOptions<Doraemon>['watch']) {
   return Object.keys(watch).reduce<Record<string, (newVal: any) => void>>(
@@ -8,7 +8,7 @@ export function initWatch(vm: Doraemon, watch: ComponentOptions<Doraemon>['watch
       ...acc,
       [key]: createWatcher(vm, key, watch[key]),
     }),
-    {},
+  {},
   )
 }
 

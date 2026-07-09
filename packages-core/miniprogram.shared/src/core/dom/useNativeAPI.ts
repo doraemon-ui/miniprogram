@@ -108,12 +108,12 @@ export function uploadFile(options) {
 export function getSystemInfoSync(keys: ('window' | 'device' | 'appBase')[] = ['window', 'device', 'appBase']): Record<string, any> {
   return typeof miniprogramThis.getWindowInfo === 'function'
     ? keys.reduce(
-        (acc, key) => ({
-          ...acc,
-          ...miniprogramThis[`get${key.charAt(0).toUpperCase() + key.substring(1)}Info`](),
-        }),
-        {},
-      )
+      (acc, key) => ({
+        ...acc,
+        ...miniprogramThis[`get${key.charAt(0).toUpperCase() + key.substring(1)}Info`](),
+      }),
+      {},
+    )
     : miniprogramThis.getSystemInfoSync()
 }
 

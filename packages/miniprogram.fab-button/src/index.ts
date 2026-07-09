@@ -1,7 +1,8 @@
-import { Doraemon, Component, Event, Emit, Prop, Watch, defineComponentHOC } from '@doraemon-ui/miniprogram.core-js'
 import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
-import { useRect } from '@doraemon-ui/miniprogram.shared'
+import { Component, defineComponentHOC, Doraemon, Emit, Event, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import type { PresetColor } from '@doraemon-ui/miniprogram.shared'
+import { useRect } from '@doraemon-ui/miniprogram.shared'
+
 import type { FabButtonClassItem as ButtonClassItem, FabButtonDirection, FabButtonOption, FabButtonPosition } from './types'
 const { classNames } = Doraemon.util
 

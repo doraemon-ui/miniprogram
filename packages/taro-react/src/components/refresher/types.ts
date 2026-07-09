@@ -1,4 +1,5 @@
-import type { RefresherProps as NativeRefresherProps, RefresherExpose as NativeRefresherExpose } from '@doraemon-ui/miniprogram.refresher'
+import type { RefresherExpose as NativeRefresherExpose, RefresherProps as NativeRefresherProps } from '@doraemon-ui/miniprogram.refresher'
+
 import type { BasicComponent } from '../../types'
 
 export interface RefresherProps extends NativeRefresherProps, BasicComponent {

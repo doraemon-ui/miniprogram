@@ -1,6 +1,7 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
-import { miniprogramThis, canUseMP } from '@doraemon-ui/miniprogram.shared'
+import { Component, defineComponentHOC, Doraemon, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import type { DarkMode } from '@doraemon-ui/miniprogram.shared'
+import { canUseMP, miniprogramThis } from '@doraemon-ui/miniprogram.shared'
+
 import type { PresetTheme, SysTheme } from './types'
 
 const { classNames } = Doraemon.util

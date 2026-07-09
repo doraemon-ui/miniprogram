@@ -1,50 +1,50 @@
 .button-style(@bg-color, @border-color: transparent, @color: #fff) {
-  border-color: @border-color !important;
-  background-color: @bg-color !important;
   color: @color !important;
+  background-color: @bg-color !important;
+  border-color: @border-color !important;
 }
 
 .button-hover(@active-bg-color, @active-border-color: transparent, @active-color: #fff) {
-  border-color: @active-border-color !important;
-  background-color: @active-bg-color !important;
   color: @active-color !important;
+  background-color: @active-bg-color !important;
+  border-color: @active-border-color !important;
 }
 
 .button-clear(@color, @bg-color: transparent) {
-  border-color: @bg-color !important;
-  background-color: @bg-color !important;
   color: @color !important;
+  background-color: @bg-color !important;
+  border-color: @bg-color !important;
 }
 
 .button-outline(@color, @bg-color: transparent) {
-  border-color: @color !important;
-  background-color: @bg-color !important;
   color: @color !important;
+  background-color: @bg-color !important;
+  border-color: @color !important;
 }
 
 // reset button style for miniprogram
 .button-reset(@color: inherit, @bg-color: transparent) {
+  box-sizing: border-box;
+  width: auto !important;
+  min-height: 0 !important;
   padding: 0;
   margin: 0;
-  border-radius: 0;
-  color: @color !important;
-  background: @bg-color !important;
+  overflow: visible;
   font-size: inherit;
   font-weight: normal;
   line-height: inherit;
+  color: @color !important;
   text-align: inherit;
   text-decoration: none;
-  overflow: visible;
-  min-height: 0 !important;
-  width: auto !important;
-  box-sizing: border-box;
+  background: @bg-color !important;
+  border-radius: 0;
   -webkit-tap-highlight-color: transparent;
 
   &::after {
-    display: block;
     position: static;
     top: auto;
     left: auto;
+    display: block;
     width: auto;
     height: auto;
     border: none;

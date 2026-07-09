@@ -1,4 +1,5 @@
-import type { FormProps as NativeFormProps, FormExpose as NativeFormExpose } from '@doraemon-ui/miniprogram.form'
+import type { FormExpose as NativeFormExpose, FormProps as NativeFormProps } from '@doraemon-ui/miniprogram.form'
+
 import type { BasicComponent } from '../../types'
 
 export interface FormProps extends NativeFormProps, BasicComponent {

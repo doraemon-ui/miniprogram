@@ -1,8 +1,8 @@
-import type { Doraemon, ComponentPublicInstance } from '@doraemon-ui/miniprogram.core-js'
+import type { ComponentPublicInstance, Doraemon } from '@doraemon-ui/miniprogram.core-js'
 
 import type { Field } from './field'
-import type { Form } from './index'
 import type { FormFieldState, FormInputProps, FormRule, FormValidateConfig } from './form-store'
+import type { Form } from './index'
 
 export type InputInstanceLike = Doraemon & {
   hasFieldDecorator?: boolean

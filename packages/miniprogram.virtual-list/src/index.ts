@@ -1,7 +1,8 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+import { Component, defineComponentHOC, Doraemon, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import { useRect } from '@doraemon-ui/miniprogram.shared'
-import { mapVirtualToProps, getVisibleItemBounds, debounce } from './utils'
+
 import type { VirtualListRenderPayload, VirtualListVirtualData } from './types'
+import { debounce, getVisibleItemBounds, mapVirtualToProps } from './utils'
 
 const { classNames, styleToCssString } = Doraemon.util
 

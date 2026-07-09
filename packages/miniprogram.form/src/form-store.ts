@@ -1,7 +1,7 @@
-import warning from './warning'
+import type { FIELD_DATA_PROP, FIELD_META_PROP } from './constants'
+import type { FieldInstance, InputInstanceLike } from './types'
 import { set } from './utils'
-import { FieldInstance, InputInstanceLike } from './types'
-import { FIELD_DATA_PROP, FIELD_META_PROP } from './constants'
+import warning from './warning'
 
 export type FormInputProps = {
   [FIELD_DATA_PROP]: FormFieldState

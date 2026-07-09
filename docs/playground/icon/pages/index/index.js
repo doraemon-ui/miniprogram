@@ -1,60 +1,46 @@
-const icons = [
-  'loading-outline',
-  'loading-3-quarters-outline',
-  'dora-bell',
-  'dora-hopter',
-  'dora-avatar',
-  'sunny-outline',
-  'moon-outline',
-  'search-circle',
-  'search-circle-outline',
-  'arrow-up-circle',
-  'arrow-down',
-  'arrow-up',
-  'information-circle-outline',
-  'information-circle',
-  'star-half',
-  'arrow-right-circle',
-  'arrow-down-circle',
-  'close',
-  'checkmark',
-  'help',
-  'star-outline',
-  'arrow-left-circle',
-  'arrow-right',
-  'arrow-up-circle-outline',
-  'arrow-right-circle-outline',
-  'checkmark-circle',
-  'heart',
-  'help-circle-outline',
-  'alert-circle',
-  'close-circle',
-  'alert-circle-outline',
-  'remove',
-  'remove-circle',
-  'star',
-  'search',
-  'sunny',
-  'add-circle-outline',
-  'arrow-left-circle-outline',
-  'arrow-left',
-  'close-circle-outline',
-  'checkmark-circle-outline',
-  'moon',
-  'remove-circle-outline',
-  'add',
-  'add-circle',
-  'arrow-down-circle-outline',
-  'information',
-  'heart-half',
-  'heart-half-outline',
-  'heart-outline',
-  'help-circle',
-  'alert',
-]
+import { icons } from './icons'
+
+const iconSize = icons.reduce((acc, cur) => (acc += cur.icons.length), 0)
 
 Page({
   data: {
     icons,
+    iconSize,
+  },
+  onIconClick(e) {
+    const { font, icon } = e.currentTarget.dataset
+    const data = `<dora-icon prefixCls="${font}" type="${icon}" />`
+    console.log('code: ', data)
+    wx.setClipboardData({
+      data,
+      success() {
+        wx.showToast({
+          title: '已复制到剪切板',
+          icon: 'none',
+        })
+      },
+    })
+  },
+  onSearchInput(e) {
+    const { value } = e.detail
+    const keyword = value.trim().toLowerCase()
+
+    if (!keyword) {
+      this.setData({
+        icons,
+      })
+      return
+    }
+
+    const filteredIcons = icons
+      .map((group) => ({
+        ...group,
+        icons: group.icons.filter((icon) => icon.toLowerCase().includes(keyword)),
+      }))
+      .filter((group) => group.icons.length > 0)
+
+    this.setData({
+      icons: filteredIcons,
+    })
   },
 })

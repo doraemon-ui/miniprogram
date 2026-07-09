@@ -1,10 +1,7 @@
 page {
+  position: relative;
   width: 100%;
   height: 100%;
-  position: relative;
-  color: rgba(0, 0, 0, 0.85);
-  background-color: #f8f8f8;
-  font-size: 16px;
   font-family:
     PingFang SC,
     Helvetica Neue,
@@ -12,8 +9,10 @@ page {
     Helvetica,
     Microsoft YaHei,
     Arial;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
+  font-size: 16px;
+  color: rgb(0 0 0 / 85%);
+  background-color: #f8f8f8;
+  text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -26,8 +25,8 @@ page {
 }
 
 .page__bd_spacing {
-  padding-left: 15px;
   padding-right: 15px;
+  padding-left: 15px;
 }
 
 .page__ft {
@@ -36,39 +35,39 @@ page {
 }
 
 .page__title {
-  text-align: left;
   font-size: 20px;
   font-weight: 400;
+  text-align: left;
 }
 
 .page__desc {
   margin-top: 5px;
-  color: rgba(0, 0, 0, 0.45);
-  text-align: left;
   font-size: 14px;
+  color: rgb(0 0 0 / 45%);
+  text-align: left;
 }
 
 .placeholder {
-  background-color: #ebebef;
-  color: #bbb;
-  text-align: center;
+  box-sizing: content-box;
+  width: 100%;
   height: 30px;
   line-height: 30px;
-  width: 100%;
-  box-sizing: content-box;
+  color: #bbb;
+  text-align: center;
+  background-color: #ebebef;
 }
 
 .sub-title {
+  box-sizing: border-box;
+  width: 100%;
   padding: 30rpx 30rpx 18rpx;
   font-size: 28rpx;
-  color: rgba(0, 0, 0, 0.65);
-  width: 100%;
-  box-sizing: border-box;
+  color: rgb(0 0 0 / 65%);
 }
 
 .button-sp-area {
-  margin: 20px auto 0;
   width: 80%;
+  margin: 20px auto 0;
   text-align: center;
 }
 

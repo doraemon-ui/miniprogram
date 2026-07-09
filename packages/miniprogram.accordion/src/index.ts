@@ -1,4 +1,5 @@
-import { defineComponentHOC, Doraemon, Component, Emit, Watch, Prop } from '@doraemon-ui/miniprogram.core-js'
+import { Component, defineComponentHOC, Doraemon, Emit, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+
 import type { PanelInstance } from './types'
 
 @Component({

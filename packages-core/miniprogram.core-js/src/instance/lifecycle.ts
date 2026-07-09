@@ -1,7 +1,7 @@
+import type { ComponentOptions } from '../types/options'
 import { bind } from '../util/bind'
 import { noop } from '../util/noop'
 import type { Doraemon } from './init'
-import type { ComponentOptions } from '../types/options'
 
 export function initLifecycle(vm: Doraemon, options: ComponentOptions<Doraemon>) {
   const methods = options.methods

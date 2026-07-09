@@ -1,8 +1,8 @@
+import type { RelationType } from '../types/options'
 import { ENV_TYPE, getEnv } from '../util/env'
 import { getData } from './components'
 import { getPublicInstance } from './expose'
 import type { ComponentPublicInstance, ComponentRenderProxy, Doraemon } from './init'
-import type { RelationType } from '../types/options'
 
 const logicalOwnerMap = new WeakMap<ComponentRenderProxy<Doraemon>, ComponentRenderProxy<Doraemon> | null>()
 const logicalChildrenMap = new WeakMap<ComponentRenderProxy<Doraemon>, ComponentRenderProxy<Doraemon>[]>()

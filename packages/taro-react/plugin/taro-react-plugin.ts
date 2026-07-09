@@ -1,8 +1,8 @@
-import path from 'path'
-import fs from 'fs-extra'
-import glob from 'fast-glob'
-import ts from 'typescript'
 import type { IPluginContext } from '@tarojs/service'
+import glob from 'fast-glob'
+import fs from 'fs-extra'
+import path from 'path'
+import ts from 'typescript'
 
 type DepSource = 'self' | 'packages'
 

@@ -1,6 +1,7 @@
-import { defineComponentHOC, Doraemon, Component, Prop } from '@doraemon-ui/miniprogram.core-js'
 import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
-import { getTouchPoints, getPointsNumber, getSwipeDirection, useRect } from '@doraemon-ui/miniprogram.shared'
+import { Component, defineComponentHOC, Doraemon, Prop } from '@doraemon-ui/miniprogram.core-js'
+import { getPointsNumber, getSwipeDirection, getTouchPoints, useRect } from '@doraemon-ui/miniprogram.shared'
+
 import type { ActionItem } from './types'
 
 const { classNames } = Doraemon.util

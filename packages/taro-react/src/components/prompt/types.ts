@@ -1,4 +1,5 @@
-import type { PromptProps as NativePromptProps, PromptExpose as NativePromptExpose } from '@doraemon-ui/miniprogram.prompt'
+import type { PromptExpose as NativePromptExpose, PromptProps as NativePromptProps } from '@doraemon-ui/miniprogram.prompt'
+
 import type { BasicComponent } from '../../types'
 
 export interface PromptProps extends NativePromptProps, BasicComponent {

@@ -1,4 +1,5 @@
-import type { LoadingProps as NativeLoadingProps, LoadingExpose as NativeLoadingExpose } from '@doraemon-ui/miniprogram.loading'
+import type { LoadingExpose as NativeLoadingExpose, LoadingProps as NativeLoadingProps } from '@doraemon-ui/miniprogram.loading'
+
 import type { BasicComponent } from '../../types'
 
 export interface LoadingProps extends NativeLoadingProps, BasicComponent {}

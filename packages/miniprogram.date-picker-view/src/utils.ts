@@ -59,7 +59,7 @@ export function convertStringArrayToDate(value: any, props: any = {}) {
       if (makePattern(modeRecord.year).test(nextValue)) nextValue = `${nextValue}-${now.getMonth()}-${now.getDate()}`
       if (makePattern(modeRecord.month).test(nextValue)) nextValue = `${nextValue}-${now.getDate()}`
       if (makePattern(modeRecord.time).test(nextValue)) nextValue = `${now.getFullYear()}-${now.getMonth()}-${now.getDate()} ${nextValue}`
-      nextValue = nextValue.replace(/\-/g, '/')
+      nextValue = nextValue.replace(/-/g, '/')
     } else if (!isNaN(parseInt(nextValue, 10))) {
       nextValue = parseInt(nextValue, 10)
     }

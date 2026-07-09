@@ -14,53 +14,53 @@
   }
 
   &__rail {
+    position: relative;
     width: 100%;
     height: @slider-rail-size;
+    vertical-align: middle;
     background-color: @slider-rail-bg;
     border-radius: @slider-radius;
-    vertical-align: middle;
-    position: relative;
   }
 
   &__track {
     position: absolute;
     left: 0;
     height: @slider-rail-size;
-    border-radius: @slider-radius;
     background-color: @slider-track-bg;
+    border-radius: @slider-radius;
   }
 
   &__handle {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: @slider-handle-size;
+    height: @slider-handle-size;
     background-color: @slider-handle-bg;
     border-radius: 50%;
-    height: @slider-handle-size;
-    left: 0;
-    top: 50%;
-    position: absolute;
-    width: @slider-handle-size;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 4px rgb(0 0 0 / 20%);
     transform: translate3d(-50%, -50%, 0);
     transition: transform 0.2s;
 
     &::after {
-      content: attr(data-meta);
-      color: #fff;
       position: absolute;
-      pointer-events: none;
-      display: none;
-      opacity: 0;
-      visibility: hidden;
+      bottom: 100%;
+      left: 50%;
       z-index: 15;
+      display: none;
+      visibility: hidden;
+      padding: 4px 8px;
+      margin-bottom: 10px;
       font-size: @slider-font-size;
       line-height: 1.25;
-      padding: 4px 8px;
-      border-radius: @slider-radius;
-      background-color: rgba(0, 0, 0, 0.7);
-      white-space: nowrap;
+      color: #fff;
       text-align: center;
-      left: 50%;
-      bottom: 100%;
-      margin-bottom: 10px;
+      white-space: nowrap;
+      pointer-events: none;
+      content: attr(data-meta);
+      background-color: rgb(0 0 0 / 70%);
+      border-radius: @slider-radius;
+      opacity: 0;
       transform: translateX(-50%);
     }
 
@@ -75,16 +75,16 @@
 
   &--has-tip &__handle--is-touched::after {
     display: block;
-    opacity: 1;
     visibility: visible;
+    opacity: 1;
   }
 
   &__mark {
+    position: absolute;
     width: @slider-rail-size;
     height: @slider-rail-size;
-    position: absolute;
-    border-radius: 50%;
     background-color: @slider-mark-bg;
+    border-radius: 50%;
     transform: translateX(-50%);
   }
 

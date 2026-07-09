@@ -1,4 +1,4 @@
-import { startBuild, getRollupConfig } from '@doraemon-ui/miniprogram.tools'
+import { getRollupConfig, startBuild } from '@doraemon-ui/miniprogram.tools'
 
 const indexConfig = getRollupConfig({
   entry: 'src/index.ts',

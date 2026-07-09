@@ -5,17 +5,17 @@
 .@{accordion-prefix-cls}-panel {
   &__hd {
     position: relative;
-    padding: @accordion-panel-hd-padding;
-    color: @accordion-color;
-    background-color: @accordion-bg;
     box-sizing: border-box;
-    padding-right: @accordion-panel-hd-padding-extra;
-    width: auto;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
     display: flex;
     align-items: center;
+    width: auto;
+    padding: @accordion-panel-hd-padding;
+    padding-right: @accordion-panel-hd-padding-extra;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: @accordion-color;
+    white-space: nowrap;
+    background-color: @accordion-bg;
 
     &::after {
       .setBottomLine(@border-color-split);
@@ -33,12 +33,12 @@
 
   &__arrow {
     .setArrow(down);
-
-    transition: transform 0.2s ease;
     position: absolute;
-    display: block;
     // top: @spacing-xl;
     right: @spacing-xl;
+    display: block;
+
+    transition: transform 0.2s ease;
   }
 
   &--current > &__hd > &__arrow {
@@ -46,12 +46,12 @@
   }
 
   &__bd {
-    display: none;
-    overflow: hidden;
-    background: @accordion-bg;
-    color: @text-color;
     position: relative;
+    display: none;
     padding: @accordion-panel-bd-padding;
+    overflow: hidden;
+    color: @text-color;
+    background: @accordion-bg;
 
     &::after {
       .setBottomLine(@border-color-split);

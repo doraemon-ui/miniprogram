@@ -1,8 +1,9 @@
-import { defineComponentHOC, Doraemon, Component, Watch } from '@doraemon-ui/miniprogram.core-js'
-import { useRef } from '@doraemon-ui/miniprogram.shared'
+import { Component, defineComponentHOC, Doraemon, Watch } from '@doraemon-ui/miniprogram.core-js'
 import type { PresetColor } from '@doraemon-ui/miniprogram.shared'
-import type { ActiveLineMode, TabContext, TabInstance, TabsChangeDetail, TabsDirection } from './types'
+import { useRef } from '@doraemon-ui/miniprogram.shared'
+
 import { tabsProps } from './props'
+import type { ActiveLineMode, TabContext, TabInstance, TabsChangeDetail, TabsDirection } from './types'
 
 const { classNames, styleToCssString } = Doraemon.util
 

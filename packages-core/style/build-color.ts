@@ -2,28 +2,36 @@ import fs from 'node:fs'
 import path from 'node:path'
 
 const rootDir = path.resolve(__dirname, '..', '..')
-
-const colorLessPath = path.resolve(__dirname, 'lib/var.light.less')
-
+const themeLessPath = path.resolve(__dirname, 'lib/themes/theme.default.less')
 const presetTypeOutputPath = path.resolve(rootDir, 'packages-core/miniprogram.shared/src/types/color.ts')
-
 const colorUtilOutputPath = path.resolve(rootDir, 'packages-core/miniprogram.shared/src/core/util/color.ts')
-
-const source = fs.readFileSync(colorLessPath, 'utf8')
+const source = fs.readFileSync(themeLessPath, 'utf8')
+const sourceFileName = path.relative(__dirname, themeLessPath)
+const colorVariableMatches = [...source.matchAll(/^@([a-z0-9-]+):\s*(#[0-9a-fA-F]{3,8});$/gm)]
+const colorVariableMap = new Map(colorVariableMatches.map((match) => [match[1], match[2]]))
 
 /**
- * 解析 var.light.less：
- * @light-value: { base: #xxxxxx; }
+ * 解析 theme.default.less：
+ * @light-value: { base: @light; }
  */
-const colorMatches = [...source.matchAll(/@([a-z0-9-]+)-value:\s*\{\s*base:\s*(#[0-9a-fA-F]{3,8})\s*;/g)]
+const colorMatches = [...source.matchAll(/@([a-z0-9-]+)-value:\s*\{\s*base:\s*@([a-z0-9-]+)\s*;/g)]
 
-const colors = colorMatches.map((match) => ({
-  name: match[1],
-  base: match[2],
-}))
+const colors = colorMatches.map((match) => {
+  const [, name, baseToken] = match
+  const base = colorVariableMap.get(baseToken)
+
+  if (!base) {
+    throw new Error(`Missing base color "${baseToken}" in ${sourceFileName}`)
+  }
+
+  return {
+    name,
+    base,
+  }
+})
 
 if (!colors.length) {
-  throw new Error('No preset colors found in var.light.less')
+  throw new Error(`No preset colors found in ${sourceFileName}`)
 }
 
 const colorNames = colors.map((item) => item.name)
@@ -74,18 +82,17 @@ export const getPresetColor = (color?: string): string => {
 }
 `
 
-/**
- * ensure dir
- */
-fs.mkdirSync(path.dirname(presetTypeOutputPath), { recursive: true })
-fs.mkdirSync(path.dirname(colorUtilOutputPath), { recursive: true })
+const outputs = [
+  [presetTypeOutputPath, presetTypeContent],
+  [colorUtilOutputPath, colorUtilContent],
+] as const
 
-/**
- * write files
- */
-fs.writeFileSync(presetTypeOutputPath, presetTypeContent)
-fs.writeFileSync(colorUtilOutputPath, colorUtilContent)
+for (const [outputPath, content] of outputs) {
+  fs.mkdirSync(path.dirname(outputPath), { recursive: true })
+  fs.writeFileSync(outputPath, content)
+}
 
 console.log('[build-color] done')
-console.log(`- ${presetTypeOutputPath}`)
-console.log(`- ${colorUtilOutputPath}`)
+for (const [outputPath] of outputs) {
+  console.log(`- ${outputPath}`)
+}

@@ -1,5 +1,6 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+import { Component, defineComponentHOC, Doraemon, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import { findComponentNode } from '@doraemon-ui/miniprogram.shared'
+
 import type { CascaderChangeDetail, CascaderFieldNames, CascaderOption, CascaderValue, CascaderViewPublicInstance } from './types'
 
 const { classNames } = Doraemon.util

@@ -1,5 +1,5 @@
-import path from 'path'
 import simulate from 'miniprogram-simulate'
+import path from 'path'
 jest.mock('@doraemon-ui/miniprogram.shared', () => ({
   getSystemInfoSync: jest.fn(() => ({ windowHeight: 667 })),
   useRect: jest.fn(() => Promise.resolve({ height: 1200 })),

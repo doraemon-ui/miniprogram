@@ -5,8 +5,8 @@
 .@{toptips-prefix-cls} {
   position: fixed;
   top: 0;
-  left: 0;
   right: 0;
+  left: 0;
   z-index: 9999;
 
   &__content {
@@ -14,8 +14,8 @@
     padding: 5px;
     font-size: @font-size-base;
     color: #fff;
-    word-wrap: break-word;
     word-break: break-all;
+    overflow-wrap: break-word;
     transition: background-color 0.3s;
 
     &--success {
@@ -43,7 +43,7 @@
 
   &__text {
     display: block;
-    text-align: center;
     padding: 0 26px;
+    text-align: center;
   }
 }

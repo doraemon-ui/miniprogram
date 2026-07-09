@@ -1,9 +1,9 @@
-import type { Doraemon } from './init'
 import { isDev } from '../util/env'
 import { hasOwn } from '../util/hasOwn'
 import { isPlainObject } from '../util/isPlainObject'
 import { isReserved } from '../util/isReserved'
 import { warn } from '../util/warn'
+import type { Doraemon } from './init'
 
 export function getDefaultData(vm: Doraemon) {
   let data: Record<string, any> = vm.$options.data || {}

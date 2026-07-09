@@ -1,4 +1,5 @@
-import type { SliderProps as NativeSliderProps, SliderExpose as NativeSliderExpose } from '@doraemon-ui/miniprogram.slider'
+import type { SliderExpose as NativeSliderExpose, SliderProps as NativeSliderProps } from '@doraemon-ui/miniprogram.slider'
+
 import type { BasicComponent } from '../../types'
 
 export interface SliderProps extends NativeSliderProps, BasicComponent {

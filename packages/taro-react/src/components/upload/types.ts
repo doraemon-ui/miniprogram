@@ -1,4 +1,5 @@
-import type { UploadProps as NativeUploadProps, UploadExpose as NativeUploadExpose } from '@doraemon-ui/miniprogram.upload'
+import type { UploadExpose as NativeUploadExpose, UploadProps as NativeUploadProps } from '@doraemon-ui/miniprogram.upload'
+
 import type { BasicComponent } from '../../types'
 
 export interface UploadProps extends NativeUploadProps, BasicComponent {

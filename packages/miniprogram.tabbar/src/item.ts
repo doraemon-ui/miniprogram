@@ -1,4 +1,5 @@
-import { defineComponentHOC, Doraemon, Component, Prop } from '@doraemon-ui/miniprogram.core-js'
+import { Component, defineComponentHOC, Doraemon, Prop } from '@doraemon-ui/miniprogram.core-js'
+
 import type { TabbarInstance } from './types'
 
 const { classNames } = Doraemon.util

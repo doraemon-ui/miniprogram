@@ -1,5 +1,6 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import type { CSSStylePropertiesWithVars } from '@doraemon-ui/miniprogram.core-js'
+import { Component, defineComponentHOC, Doraemon, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+import type { PresetColor } from '@doraemon-ui/miniprogram.shared'
 import {
   FastColor,
   isPresetColor,
@@ -10,7 +11,7 @@ import {
   useMergeSemanticClassNames,
   useMergeSemanticStylesString,
 } from '@doraemon-ui/miniprogram.shared'
-import type { PresetColor } from '@doraemon-ui/miniprogram.shared'
+
 import type { SemanticName } from './types'
 
 const { classNames, styleToCssString } = Doraemon.util

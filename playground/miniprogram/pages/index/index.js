@@ -1,5 +1,6 @@
-import components from './components'
 import { a } from '@doraemon-ui/miniprogram.accordion'
+
+import components from './components'
 
 Page({
   data: {
@@ -12,5 +13,5 @@ Page({
   },
   onLoad() {
     console.log('====', a)
-  }
+  },
 })

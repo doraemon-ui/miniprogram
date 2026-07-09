@@ -1,5 +1,5 @@
-import path from 'path'
 import simulate from 'miniprogram-simulate'
+import path from 'path'
 
 function mountTest(id: string | (() => string), defaultProps: Record<string, unknown> = {}) {
   describe('mount and unmount', () => {

@@ -1,7 +1,7 @@
-import type { Doraemon } from './init'
 import { isDev } from '../util/env'
 import { isEqual } from '../util/isEqual'
 import { warn } from '../util/warn'
+import type { Doraemon } from './init'
 
 export function initComputed(vm: Doraemon, forceUpdate: boolean = false) {
   if (vm._isMounted || forceUpdate) {

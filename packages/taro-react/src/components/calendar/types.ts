@@ -1,4 +1,5 @@
-import type { CalendarProps as NativeCalendarProps, CalendarExpose as NativeCalendarExpose } from '@doraemon-ui/miniprogram.calendar'
+import type { CalendarExpose as NativeCalendarExpose, CalendarProps as NativeCalendarProps } from '@doraemon-ui/miniprogram.calendar'
+
 import type { BasicComponent } from '../../types'
 
 export interface CalendarProps extends NativeCalendarProps, BasicComponent {}

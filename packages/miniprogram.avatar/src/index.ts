@@ -1,6 +1,6 @@
-import { useRect } from '@doraemon-ui/miniprogram.shared'
+import { Component, defineComponentHOC, Doraemon, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import type { MiniprogramPublicInstance } from '@doraemon-ui/miniprogram.shared'
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+import { useRect } from '@doraemon-ui/miniprogram.shared'
 
 const { classNames, styleToCssString } = Doraemon.util
 
@@ -143,11 +143,11 @@ class Avatar extends Doraemon {
       const childrenStyle =
         childrenScale !== 1
           ? styleToCssString({
-              position: 'absolute',
-              display: 'inline-block',
-              transform: `scale(${childrenScale})`,
-              left: `calc(50% - ${Math.round(child.width / 2)}px)`,
-            })
+            position: 'absolute',
+            display: 'inline-block',
+            transform: `scale(${childrenScale})`,
+            left: `calc(50% - ${Math.round(child.width / 2)}px)`,
+          })
           : ''
       this.childrenStyle = childrenStyle
     })

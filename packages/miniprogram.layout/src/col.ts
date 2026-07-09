@@ -1,4 +1,4 @@
-import { defineComponentHOC, Doraemon, Component, Prop } from '@doraemon-ui/miniprogram.core-js'
+import { Component, defineComponentHOC, Doraemon, Prop } from '@doraemon-ui/miniprogram.core-js'
 const { classNames } = Doraemon.util
 
 const DEFAULT_COL_STYLE = 'padding-left: var(--dora-row-gutter-half, 0px); padding-right: var(--dora-row-gutter-half, 0px);'

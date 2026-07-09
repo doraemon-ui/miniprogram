@@ -6,9 +6,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: @component-background;
-  color: @text-color;
   font-size: @font-size-sm + 1;
+  color: @text-color;
+  background-color: @component-background;
 
   &__label {
     width: 100%;
@@ -36,17 +36,17 @@
   &__chips {
     display: flex;
     align-items: center;
-    white-space: nowrap;
     margin: @margin-component-lg 0;
+    white-space: nowrap;
   }
 
   &__chip {
-    white-space: nowrap;
+    padding: @margin-component-sm + 2 @margin-component-lg + 2;
     margin-right: @spacing-base * 2;
     font-size: @font-size-sm;
-    background-color: @background-color-base;
     color: @text-color-secondary;
-    padding: @margin-component-sm + 2 @margin-component-lg + 2;
+    white-space: nowrap;
+    background-color: @background-color-base;
     border-radius: 100px;
 
     &:last-child {
@@ -54,8 +54,8 @@
     }
 
     &--link {
-      cursor: pointer;
       color: var(--link-color);
+      cursor: pointer;
       background-color: var(--chip-link-background-color);
     }
   }

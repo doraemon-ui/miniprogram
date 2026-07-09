@@ -1,4 +1,5 @@
-import type { GridItemProps as NativeGridItemProps, GridItemExpose as NativeGridItemExpose } from '@doraemon-ui/miniprogram.grid'
+import type { GridItemExpose as NativeGridItemExpose, GridItemProps as NativeGridItemProps } from '@doraemon-ui/miniprogram.grid'
+
 import type { BasicComponent } from '../../types'
 
 export interface GridItemProps extends NativeGridItemProps, BasicComponent {

@@ -11,7 +11,9 @@ if (__DEV__) {
     }
     try {
       throw new Error(message)
-    } catch (_e) {}
+    } catch (_e) {
+      /** Ignore */
+    }
   }
 
   warning = (condition: unknown, format?: string, ...args: unknown[]) => {

@@ -25,19 +25,19 @@
   --margin: @action-sheet-margin;
 
   &__content {
-    margin-left: var(--margin);
-    margin-right: var(--margin);
     width: auto;
+    margin-right: var(--margin);
+    margin-left: var(--margin);
     overflow: hidden;
 
     &--theme-wx {
-      margin-left: 0;
       margin-right: 0;
       margin-bottom: 0;
+      margin-left: 0;
 
       .@{action-sheet-prefix-cls}__group {
-        border-radius: 0;
         margin-bottom: calc(var(--margin) - 2px);
+        border-radius: 0;
 
         &--options {
           background-color: var(--options-normal-bg);
@@ -65,9 +65,9 @@
 
   &__group {
     margin-bottom: var(--margin);
-    border-radius: var(--border-radius);
-    background-color: var(--options-normal-bg);
     overflow: hidden;
+    background-color: var(--options-normal-bg);
+    border-radius: var(--border-radius);
 
     &--options {
       background-color: var(--options-bg);
@@ -76,9 +76,9 @@
 
   &__title {
     padding: 16px;
+    font-size: 13px;
     color: #8f8f8f;
     text-align: center;
-    font-size: 13px;
   }
 
   &__button {
@@ -88,26 +88,26 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0;
-    padding: 0;
+    width: 100%;
     min-width: 52px;
     min-height: 48px;
-    width: 100%;
-    border-radius: 0;
-    background-color: transparent;
-    color: var(--text-color);
+    padding: 0;
+    margin: 0;
+    text-overflow: ellipsis;
     font-size: 21px;
     line-height: 48px;
-    text-align: center;
-    text-overflow: ellipsis;
     vertical-align: top;
+    color: var(--text-color);
+    text-align: center;
     cursor: pointer;
+    background-color: transparent;
+    border-radius: 0;
 
     &--hover {
-      box-shadow: none;
-      border-color: var(--border-color);
       color: var(--text-color);
       background: var(--options-active-bg);
+      border-color: var(--border-color);
+      box-shadow: none;
     }
 
     &--destructive {
@@ -119,8 +119,8 @@
     }
 
     &--disabled {
-      opacity: @disabled-opacity !important;
       cursor: not-allowed !important;
+      opacity: @disabled-opacity !important;
     }
   }
 
@@ -128,10 +128,10 @@
     border-top: none;
 
     &::after {
-      transform: none;
-      transform-origin: none;
       border: none;
       border-radius: 0;
+      transform: none;
+      transform-origin: none;
       .setTopLine(var(--border-color));
     }
 
@@ -141,9 +141,9 @@
   }
 
   &__icon {
+    display: inline-block;
     width: var(--icon-size);
     height: var(--icon-size);
-    display: inline-block;
     margin-right: 10px;
   }
 

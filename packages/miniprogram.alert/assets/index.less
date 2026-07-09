@@ -4,14 +4,14 @@
 // @prop --background-color: Background color of the alert
 // -----------------------------
 .@{alert-prefix-cls} {
-  padding: @alert-padding-vertical @alert-padding-horizontal;
   position: relative;
   display: flex;
   align-items: center;
-  border-radius: @alert-border-radius;
+  padding: @alert-padding-vertical @alert-padding-horizontal;
   font-size: @alert-font-size;
   color: @white;
   background-color: var(--background-color);
+  border-radius: @alert-border-radius;
 
   .alert-color(#get-color(positive)[]);
 
@@ -31,9 +31,9 @@
   }
 
   &__desc {
-    text-align: left;
-    line-height: 1.2;
     font-size: 12px;
+    line-height: 1.2;
+    text-align: left;
   }
 
   &__ft {
@@ -43,8 +43,8 @@
   }
 
   &__closable:not(:empty) {
-    flex: none;
     display: flex;
+    flex: none;
     align-items: center;
     margin-left: @alert-closable-margin-left;
     cursor: pointer;

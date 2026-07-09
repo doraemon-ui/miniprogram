@@ -1,4 +1,5 @@
-import type { InputProps as NativeInputProps, InputExpose as NativeInputExpose } from '@doraemon-ui/miniprogram.input'
+import type { InputExpose as NativeInputExpose, InputProps as NativeInputProps } from '@doraemon-ui/miniprogram.input'
+
 import type { BasicComponent } from '../../types'
 
 export interface InputProps extends NativeInputProps, BasicComponent {

@@ -1,6 +1,7 @@
-import path from 'path'
+import type { Component, RootComponent } from 'miniprogram-simulate'
 import simulate from 'miniprogram-simulate'
-import type { RootComponent, Component } from 'miniprogram-simulate'
+import path from 'path'
+
 import type { EllipsisDirection, EllipsisInstance } from '../src/types'
 
 function mountTest(id: string | (() => string), defaultProps: Record<string, unknown> = {}) {
@@ -131,7 +132,7 @@ describe('Ellipsis', () => {
       usingComponents: {
         'dora-ellipsis': id,
       },
-      template: `<dora-ellipsis id="ellipsis" content="hello world" bind:click="onClick" />`,
+      template: '<dora-ellipsis id="ellipsis" content="hello world" bind:click="onClick" />',
       methods: {
         onClick,
       },

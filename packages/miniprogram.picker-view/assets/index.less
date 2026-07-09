@@ -1,19 +1,21 @@
 @import './variables.less';
 
 .@{picker-view-prefix-cls} {
-  display: block;
   position: relative;
+  display: block;
+  flex: 1;
+  width: 100%;
   height: @picker-item-height * 7;
   overflow: hidden;
-  width: 100%;
-  flex: 1;
 
   &--left {
     text-align: left;
   }
+
   &--center {
     text-align: center;
   }
+
   &--right {
     text-align: right;
   }
@@ -22,8 +24,8 @@
   &__indicator {
     position: absolute;
     left: 0;
-    width: 100%;
     z-index: 3;
+    width: 100%;
     pointer-events: none;
   }
 
@@ -32,41 +34,41 @@
     height: 100%;
     margin: 0 auto;
     background-image:
-      linear-gradient(180deg, hsla(0, 0%, 100%, 0.95), hsla(0, 0%, 100%, 0.6)),
-      linear-gradient(0deg, hsla(0, 0%, 100%, 0.95), hsla(0, 0%, 100%, 0.6));
+      linear-gradient(180deg, hsl(0deg 0% 100% / 95%), hsl(0deg 0% 100% / 60%)),
+      linear-gradient(0deg, hsl(0deg 0% 100% / 95%), hsl(0deg 0% 100% / 60%));
+    background-repeat: no-repeat;
     background-position: top, bottom;
     background-size: 100% @picker-item-height * 3;
-    background-repeat: no-repeat;
   }
 
   &__indicator {
+    top: @picker-item-height * 3;
     box-sizing: border-box;
     height: @picker-item-height;
-    top: @picker-item-height * 3;
     border-top: 0.50px solid var(--dora-border-color, #ddd);
     border-bottom: 0.50px solid var(--dora-border-color, #ddd);
   }
 
   &__content {
     position: absolute;
-    left: 0;
     top: 0;
-    width: 100%;
+    left: 0;
     z-index: 1;
+    width: 100%;
     padding: @picker-item-height * 3 0;
   }
 
   &__item {
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: var(--dora-font-size-lg, 16px);
+    justify-content: center;
     height: @picker-item-height;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: var(--dora-font-size-lg, 16px);
     line-height: @picker-item-height;
     color: #000;
     white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
 
     &--disabled {
       opacity: 0.45;
@@ -82,7 +84,7 @@
 
   &__image {
     display: inline-block;
-    height: calc(@picker-item-height * 0.6);
     width: calc(@picker-item-height * 0.6);
+    height: calc(@picker-item-height * 0.6);
   }
 }

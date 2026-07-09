@@ -13,9 +13,9 @@
   --thumbnail-margin: @image-thumbnail-margin;
 
   position: relative;
-  overflow: hidden;
-  display: flex;
   box-sizing: border-box;
+  display: flex;
+  overflow: hidden;
 
   &--rounded {
     border-radius: var(--rounded-border-radius);
@@ -39,10 +39,7 @@
 
   &--thumbnail &__inner,
   &--thumbnail &__mask {
-    top: var(--thumbnail-margin);
-    right: var(--thumbnail-margin);
-    bottom: var(--thumbnail-margin);
-    left: var(--thumbnail-margin);
+    inset: var(--thumbnail-margin) var(--thumbnail-margin) var(--thumbnail-margin) var(--thumbnail-margin);
     width: calc(~'100% - 2 * var(--thumbnail-margin)') !important;
     height: calc(~'100% - 2 * var(--thumbnail-margin)') !important;
   }
@@ -55,18 +52,15 @@
   &__mask image,
   &__thumb {
     display: inline-block;
-    overflow: hidden;
     width: 100%;
     height: 100%;
+    overflow: hidden;
     vertical-align: middle;
   }
 
   &__inner {
     position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    inset: 0;
     z-index: 10;
     width: 100%;
     height: 100%;
@@ -79,10 +73,7 @@
 
   &__mask {
     position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    inset: 0;
     z-index: 20;
 
     &--text {
@@ -93,8 +84,8 @@
   }
 
   &__text {
+    padding: 10px;
     color: var(--text-color);
     text-align: center;
-    padding: 10px;
   }
 }

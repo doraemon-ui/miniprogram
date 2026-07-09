@@ -1,4 +1,4 @@
-import { defineComponentHOC, Doraemon, Component, Prop } from '@doraemon-ui/miniprogram.core-js'
+import { Component, defineComponentHOC, Doraemon, Prop } from '@doraemon-ui/miniprogram.core-js'
 import type { PresetColor } from '@doraemon-ui/miniprogram.shared'
 const { classNames } = Doraemon.util
 

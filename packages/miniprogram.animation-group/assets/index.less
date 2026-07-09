@@ -5,8 +5,8 @@
 .@{animation-group-prefix-cls} {
   &--fadeIn {
     &-enter {
-      transition: opacity 0.3s;
       opacity: 0;
+      transition: opacity 0.3s;
     }
 
     &-enter-active,
@@ -15,8 +15,8 @@
     }
 
     &-exit {
-      transition: opacity 0.3s;
       opacity: 1;
+      transition: opacity 0.3s;
     }
 
     &-exit-active,
@@ -27,11 +27,11 @@
 
   &--fadeInDown {
     &-enter {
+      opacity: 0;
+      transform: translate3d(0, -100%, 0);
       transition:
         opacity 0.3s,
         transform 0.3s;
-      opacity: 0;
-      transform: translate3d(0, -100%, 0);
     }
 
     &-enter-active,
@@ -41,11 +41,11 @@
     }
 
     &-exit {
+      opacity: 1;
+      transform: none;
       transition:
         opacity 0.3s,
         transform 0.3s;
-      opacity: 1;
-      transform: none;
     }
 
     &-exit-active,
@@ -57,11 +57,11 @@
 
   &--fadeInLeft {
     &-enter {
+      opacity: 0;
+      transform: translate3d(-100%, 0, 0);
       transition:
         opacity 0.3s,
         transform 0.3s;
-      opacity: 0;
-      transform: translate3d(-100%, 0, 0);
     }
 
     &-enter-active,
@@ -71,11 +71,11 @@
     }
 
     &-exit {
+      opacity: 1;
+      transform: none;
       transition:
         opacity 0.3s,
         transform 0.3s;
-      opacity: 1;
-      transform: none;
     }
 
     &-exit-active,
@@ -87,11 +87,11 @@
 
   &--fadeInRight {
     &-enter {
+      opacity: 0;
+      transform: translate3d(100%, 0, 0);
       transition:
         opacity 0.3s,
         transform 0.3s;
-      opacity: 0;
-      transform: translate3d(100%, 0, 0);
     }
 
     &-enter-active,
@@ -101,11 +101,11 @@
     }
 
     &-exit {
+      opacity: 1;
+      transform: none;
       transition:
         opacity 0.3s,
         transform 0.3s;
-      opacity: 1;
-      transform: none;
     }
 
     &-exit-active,
@@ -117,11 +117,11 @@
 
   &--fadeInUp {
     &-enter {
+      opacity: 0;
+      transform: translate3d(0, 100%, 0);
       transition:
         opacity 0.3s,
         transform 0.3s;
-      opacity: 0;
-      transform: translate3d(0, 100%, 0);
     }
 
     &-enter-active,
@@ -131,11 +131,11 @@
     }
 
     &-exit {
+      opacity: 1;
+      transform: none;
       transition:
         opacity 0.3s,
         transform 0.3s;
-      opacity: 1;
-      transform: none;
     }
 
     &-exit-active,
@@ -147,9 +147,9 @@
 
   &--slideInUp {
     &-enter {
-      transition: transform 0.3s;
-      transform: translate3d(0, 100%, 0);
       visibility: visible;
+      transform: translate3d(0, 100%, 0);
+      transition: transform 0.3s;
     }
 
     &-enter-active,
@@ -158,22 +158,22 @@
     }
 
     &-exit {
-      transition: transform 0.3s;
       transform: translateZ(0);
+      transition: transform 0.3s;
     }
 
     &-exit-active,
     &-exit-done {
-      transform: translate3d(0, 100%, 0);
       visibility: visible;
+      transform: translate3d(0, 100%, 0);
     }
   }
 
   &--slideInDown {
     &-enter {
-      transition: transform 0.3s;
-      transform: translate3d(0, -100%, 0);
       visibility: visible;
+      transform: translate3d(0, -100%, 0);
+      transition: transform 0.3s;
     }
 
     &-enter-active,
@@ -182,22 +182,22 @@
     }
 
     &-exit {
-      transition: transform 0.3s;
       transform: translateZ(0);
+      transition: transform 0.3s;
     }
 
     &-exit-active,
     &-exit-done {
-      transform: translate3d(0, -100%, 0);
       visibility: visible;
+      transform: translate3d(0, -100%, 0);
     }
   }
 
   &--slideInLeft {
     &-enter {
-      transition: transform 0.3s;
-      transform: translate3d(-100%, 0, 0);
       visibility: visible;
+      transform: translate3d(-100%, 0, 0);
+      transition: transform 0.3s;
     }
 
     &-enter-active,
@@ -206,22 +206,22 @@
     }
 
     &-exit {
-      transition: transform 0.3s;
       transform: translateZ(0);
+      transition: transform 0.3s;
     }
 
     &-exit-active,
     &-exit-done {
-      transform: translate3d(-100%, 0, 0);
       visibility: visible;
+      transform: translate3d(-100%, 0, 0);
     }
   }
 
   &--slideInRight {
     &-enter {
-      transition: transform 0.3s;
-      transform: translate3d(100%, 0, 0);
       visibility: visible;
+      transform: translate3d(100%, 0, 0);
+      transition: transform 0.3s;
     }
 
     &-enter-active,
@@ -230,22 +230,22 @@
     }
 
     &-exit {
-      transition: transform 0.3s;
       transform: none;
+      transition: transform 0.3s;
     }
 
     &-exit-active,
     &-exit-done {
-      transform: translate3d(100%, 0, 0);
       visibility: visible;
+      transform: translate3d(100%, 0, 0);
     }
   }
 
   &--zoom {
     &-enter {
-      transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
       opacity: 0.01;
       transform: scale(0.75);
+      transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
     }
 
     &-enter-active,
@@ -255,8 +255,8 @@
     }
 
     &-exit {
-      transition: all 0.25s linear;
       transform: none;
+      transition: all 0.25s linear;
     }
 
     &-exit-active,
@@ -268,9 +268,9 @@
 
   &--punch {
     &-enter {
-      transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
       opacity: 0.01;
       transform: scale(1.35);
+      transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
     }
 
     &-enter-active,
@@ -280,8 +280,8 @@
     }
 
     &-exit {
-      transition: all 0.25s linear;
       transform: none;
+      transition: all 0.25s linear;
     }
 
     &-exit-active,

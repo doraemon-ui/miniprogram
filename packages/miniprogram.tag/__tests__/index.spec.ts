@@ -1,6 +1,7 @@
-import path from 'path'
 import simulate from 'miniprogram-simulate'
-import { Tag } from '../src'
+import path from 'path'
+
+import type { Tag } from '../src'
 
 function mountTest(id: string | (() => string), defaultProps: Record<string, unknown> = {}) {
   describe('mount and unmount', () => {

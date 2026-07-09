@@ -1,4 +1,5 @@
-import type { WaterMarkProps as NativeWaterMarkProps, WaterMarkExpose as NativeWaterMarkExpose } from '@doraemon-ui/miniprogram.water-mark'
+import type { WaterMarkExpose as NativeWaterMarkExpose, WaterMarkProps as NativeWaterMarkProps } from '@doraemon-ui/miniprogram.water-mark'
+
 import type { BasicComponent } from '../../types'
 
 export interface WaterMarkProps extends NativeWaterMarkProps, BasicComponent {

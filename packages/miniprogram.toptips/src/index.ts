@@ -1,6 +1,7 @@
-import { defineComponentHOC, Doraemon, Component, Prop } from '@doraemon-ui/miniprogram.core-js'
-import { defaults } from './utils'
+import { Component, defineComponentHOC, Doraemon, Prop } from '@doraemon-ui/miniprogram.core-js'
+
 import type { ToptipsShowProps } from './types'
+import { defaults } from './utils'
 
 const { classNames } = Doraemon.util
 

@@ -1,51 +1,17 @@
+// Global Color Functions
+@import './fn.color.less';
+
+// Global Mixins
+@import './mixins.less';
+
+// Default Theme
+@import './theme.default.less';
+
 // The prefix to use on all css classes from doraemon-ui.
 @dora-prefix: dora;
 
-// Preset Colors
-// -------------------------------------------------------------------------------------------
-@light: #get-color(light) [];
-@stable: #get-color(stable) [];
-@positive: #get-color(positive) [];
-@calm: #get-color(calm) [];
-@balanced: #get-color(balanced) [];
-@energized: #get-color(energized) [];
-@assertive: #get-color(assertive) [];
-@royal: #get-color(royal) [];
-@dark: #get-color(dark) [];
-
-// Default Foreground and Background Colors
-// -------------------------------------------------------------------------------------------
-@white-value: #fff;
-@white-rgb-value: #color-to-rgb-list(#fff) [];
-@black-value: #000;
-@black-rgb-value: #color-to-rgb-list(#000) [];
-
-// Step Colors
-// -------------------------------------------------------------------------------------------
-@color-step-95: var(--dora-color-step-95, mix(@black-value, @white-value, 95%));
-@color-step-90: var(--dora-color-step-90, mix(@black-value, @white-value, 90%));
-@color-step-85: var(--dora-color-step-85, mix(@black-value, @white-value, 85%));
-@color-step-80: var(--dora-color-step-80, mix(@black-value, @white-value, 80%));
-@color-step-75: var(--dora-color-step-75, mix(@black-value, @white-value, 75%));
-@color-step-70: var(--dora-color-step-70, mix(@black-value, @white-value, 70%));
-@color-step-65: var(--dora-color-step-65, mix(@black-value, @white-value, 65%));
-@color-step-60: var(--dora-color-step-60, mix(@black-value, @white-value, 60%));
-@color-step-55: var(--dora-color-step-55, mix(@black-value, @white-value, 55%));
-@color-step-50: var(--dora-color-step-50, mix(@black-value, @white-value, 50%));
-@color-step-45: var(--dora-color-step-45, mix(@black-value, @white-value, 45%));
-@color-step-40: var(--dora-color-step-40, mix(@black-value, @white-value, 40%));
-@color-step-35: var(--dora-color-step-35, mix(@black-value, @white-value, 35%));
-@color-step-30: var(--dora-color-step-30, mix(@black-value, @white-value, 30%));
-@color-step-25: var(--dora-color-step-25, mix(@black-value, @white-value, 25%));
-@color-step-20: var(--dora-color-step-20, mix(@black-value, @white-value, 20%));
-@color-step-15: var(--dora-color-step-15, mix(@black-value, @white-value, 15%));
-@color-step-10: var(--dora-color-step-10, mix(@black-value, @white-value, 10%));
-@color-step-5: var(--dora-color-step-5, mix(@black-value, @white-value, 5%));
-
-@white: var(--dora-white, @white-value);
-@white-rgb: var(--dora-white-rgb, @white-rgb-value);
-@black: var(--dora-black, @black-value);
-@black-rgb: var(--dora-black-rgb, @black-rgb-value);
+// Body node for miniprogram
+@body-node: page;
 
 // Base Scaffolding Variables
 // ---
@@ -56,13 +22,17 @@
 // Base background color for most components
 @component-background: var(--dora-component-background-color, @white-value);
 @component-z-index: var(--dora-component-z-index, 1000);
-// @font-family: var(--dora-font-family);
+
+// Text Colors
 @title-color: rgba(var(--dora-text-color-rgb, @black-rgb-value), 0.85);
 @text-color: rgba(var(--dora-text-color-rgb, @black-rgb-value), 0.65);
 @text-color-secondary: rgba(var(--dora-text-color-rgb, @black-rgb-value), 0.45);
 @title-color-inverse: rgba(var(--dora-white-rgb, @white-rgb-value), 1);
 @text-color-inverse: rgba(var(--dora-white-rgb, @white-rgb-value), 0.85);
 @text-color-secondary-inverse: rgba(var(--dora-white-rgb, @white-rgb-value), 0.65);
+
+// Font
+// @font-family: var(--dora-font-family);
 @font-variant-base: tabular-nums;
 @font-feature-settings-base: 'tnum';
 @font-size-base: 14px;
@@ -71,6 +41,8 @@
 @line-height-base: 1.5;
 @line-height-lg: 2;
 @line-height-sm: 1;
+
+// Border Radius
 @border-radius-base: var(--dora-border-radius, 8px);
 @border-radius-lg: var(--dora-border-radius-lg, 12px);
 @border-radius-sm: var(--dora-border-radius-sm, 4px);
@@ -96,6 +68,7 @@
 // Disabled states
 @disabled-opacity: var(--dora-disabled-opacity, 0.3);
 
+// Background Colors
 @background-color-base: @color-step-10;
 @background-color-light: @color-step-5;
 

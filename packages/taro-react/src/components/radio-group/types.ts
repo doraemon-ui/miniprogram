@@ -1,4 +1,5 @@
-import type { RadioGroupProps as NativeRadioGroupProps, RadioGroupExpose as NativeRadioGroupExpose } from '@doraemon-ui/miniprogram.radio'
+import type { RadioGroupExpose as NativeRadioGroupExpose, RadioGroupProps as NativeRadioGroupProps } from '@doraemon-ui/miniprogram.radio'
+
 import type { BasicComponent } from '../../types'
 
 export interface RadioGroupProps extends NativeRadioGroupProps, BasicComponent {

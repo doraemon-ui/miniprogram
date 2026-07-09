@@ -1,7 +1,8 @@
 import classNames from 'classnames'
+
+import { isEqual } from '../util/isEqual'
 import { styleToCssString } from '../util/styleToCssString'
 import { warn } from '../util/warn'
-import { isEqual } from '../util/isEqual'
 
 export const util: {
   warn: typeof warn

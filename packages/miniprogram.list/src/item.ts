@@ -1,7 +1,7 @@
-import { defineComponentHOC, Doraemon, Component, Emit, Event, Prop } from '@doraemon-ui/miniprogram.core-js'
 import type { CustomEvent, Target } from '@doraemon-ui/miniprogram.core-js'
-import { useRect, useNativeRoute, NATIVE_ROUTES } from '@doraemon-ui/miniprogram.shared'
+import { Component, defineComponentHOC, Doraemon, Emit, Event, Prop } from '@doraemon-ui/miniprogram.core-js'
 import type { MiniprogramDOMRect, NativeButtonOpenType, NativeRouteOpenType } from '@doraemon-ui/miniprogram.shared'
+import { NATIVE_ROUTES, useNativeRoute, useRect } from '@doraemon-ui/miniprogram.shared'
 const { classNames, styleToCssString } = Doraemon.util
 
 @Component({

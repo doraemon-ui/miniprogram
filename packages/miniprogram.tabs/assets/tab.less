@@ -6,34 +6,34 @@
 // -----------------------------
 .@{tabs-prefix-cls} {
   &__tab {
-    flex: 1;
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
     position: relative;
     box-sizing: border-box;
-    font-size: @tabs-font-size;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
     padding: 0 @tabs-scrolling-size;
+    font-size: @tabs-font-size;
+    text-align: center;
     cursor: pointer;
 
     .tab-color(#get-color(positive)[]);
 
     &-bar {
+      position: absolute;
+      bottom: 0;
+      left: @tabs-scrolling-size;
       display: block;
       width: calc(~'100%' - @tabs-scrolling-size * 2);
       height: @tabs-bar-size;
       background: transparent;
-      position: absolute;
-      bottom: 0;
-      left: @tabs-scrolling-size;
       background: var(--background-color);
       border-radius: @tabs-bar-size;
 
       &--full {
-        width: 100%;
         left: 0;
+        width: 100%;
       }
     }
 
@@ -42,10 +42,10 @@
     }
 
     &--vertical &-bar {
-      width: @tabs-bar-size;
-      height: 100%;
       right: 0;
       left: auto;
+      width: @tabs-bar-size;
+      height: 100%;
     }
 
     &--current {
@@ -58,8 +58,8 @@
     }
 
     &--disabled {
-      opacity: @disabled-opacity;
       cursor: not-allowed;
+      opacity: @disabled-opacity;
     }
 
     // Tab Colors

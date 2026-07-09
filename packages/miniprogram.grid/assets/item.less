@@ -30,30 +30,30 @@
   }
 
   &__label {
-    text-align: center;
-    color: @grid-color;
-    font-size: @grid-font-size;
     margin-top: @margin-component-base;
+    font-size: @grid-font-size;
+    color: @grid-color;
+    text-align: center;
     .ellipsis();
   }
 
   &__inner {
-    height: 100%;
-    width: 100%;
-    text-align: center;
-    padding: @grid-inner-padding;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: @grid-inner-padding;
+    text-align: center;
   }
 
   &--square &__content {
     position: relative;
     display: block;
-    content: ' ';
     padding-bottom: 100%;
+    content: ' ';
   }
 
   &--square &__inner {

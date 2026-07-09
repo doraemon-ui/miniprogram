@@ -1,8 +1,8 @@
 .uploader__files {
-  padding: 16px;
   position: relative;
   display: flex;
   align-items: center;
+  padding: 16px;
   background-color: #fff;
 }
 

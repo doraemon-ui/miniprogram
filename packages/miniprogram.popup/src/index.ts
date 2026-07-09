@@ -1,9 +1,10 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
-import type { TouchEvent } from '@doraemon-ui/miniprogram.core-js'
-import { findComponentNode, getPointsNumber, getSwipeDirection, getTouchPoints } from '@doraemon-ui/miniprogram.shared'
-import type { TouchPoint } from '@doraemon-ui/miniprogram.shared'
 import type { BackdropInstance } from '@doraemon-ui/miniprogram.backdrop'
+import type { TouchEvent } from '@doraemon-ui/miniprogram.core-js'
+import { Component, defineComponentHOC, Doraemon, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import type { SafeAreaProp } from '@doraemon-ui/miniprogram.safe-area'
+import type { TouchPoint } from '@doraemon-ui/miniprogram.shared'
+import { findComponentNode, getPointsNumber, getSwipeDirection, getTouchPoints } from '@doraemon-ui/miniprogram.shared'
+
 import type { Position } from './types'
 
 const { classNames, styleToCssString } = Doraemon.util

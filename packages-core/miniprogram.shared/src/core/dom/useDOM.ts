@@ -1,8 +1,8 @@
-import { miniprogramThis } from './global'
+import type { MiniprogramDOMRect, MiniprogramElement, MiniprogramPublicInstance } from '../../types'
 import { pxToNumber } from '../util'
 import { canUseMP } from './canUseMP'
 import { getCurrentPage } from './getCurrentPage'
-import type { MiniprogramDOMRect, MiniprogramElement, MiniprogramPublicInstance } from '../../types'
+import { miniprogramThis } from './global'
 
 /**
  * 查询节点信息的对象
@@ -474,4 +474,4 @@ function useComputedStyle(selector: string, ...args: any[]): Promise<{ [key in k
   })
 }
 
-export { useQuery, useSelector, useSelectorAll, useRef, useRefAll, useRect, useRectAll, useScrollOffset, useComputedStyle }
+export { useComputedStyle, useQuery, useRect, useRectAll, useRef, useRefAll, useScrollOffset, useSelector, useSelectorAll }

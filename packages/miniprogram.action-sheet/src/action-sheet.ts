@@ -1,5 +1,6 @@
-import { getCurrentPage, findComponentNode, usePopupStateHOC, isObject, isString, isTrue, isFalse } from '@doraemon-ui/miniprogram.shared'
 import type { MiniprogramPublicInstance } from '@doraemon-ui/miniprogram.shared'
+import { findComponentNode, getCurrentPage, isFalse, isObject, isString, isTrue, usePopupStateHOC } from '@doraemon-ui/miniprogram.shared'
+
 import type {
   ActionSheetButton,
   ActionSheetInstance,
@@ -87,4 +88,4 @@ function show(props?: ActionSheetShowProps, selector?: ActionSheetShowOptions | 
   return () => destroy()
 }
 
-export { show, clear }
+export { clear, show }

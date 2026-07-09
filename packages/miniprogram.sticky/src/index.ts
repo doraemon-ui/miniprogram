@@ -1,4 +1,5 @@
 import { Component, defineComponentHOC, Doraemon, Emit, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+
 import type { StickyItemInstance } from './types'
 
 const { classNames } = Doraemon.util

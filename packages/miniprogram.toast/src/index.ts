@@ -1,4 +1,5 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+import { Component, defineComponentHOC, Doraemon, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+
 import { presetIconRecord } from './toast'
 import type { ToastIcon, ToastPosition } from './types'
 const { classNames } = Doraemon.util

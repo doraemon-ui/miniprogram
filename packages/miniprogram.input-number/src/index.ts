@@ -1,7 +1,8 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
-import { useColorCls } from '@doraemon-ui/miniprogram.shared'
+import { Component, defineComponentHOC, Doraemon, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import type { PresetColor } from '@doraemon-ui/miniprogram.shared'
+import { useColorCls } from '@doraemon-ui/miniprogram.shared'
+
 import type { CalculationType, InputNumberShape } from './types'
 import NP from './utils'
 

@@ -1,4 +1,5 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch, Emit } from '@doraemon-ui/miniprogram.core-js'
+import { Component, defineComponentHOC, Doraemon, Emit, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+
 import type { PaginationMode } from './types'
 const { classNames } = Doraemon.util
 

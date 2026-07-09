@@ -1,5 +1,5 @@
-import { miniprogramThis } from './global'
 import { buildURL } from '../util'
+import { miniprogramThis } from './global'
 
 /**
  * NativeRouteOpenType类型定义

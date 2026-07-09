@@ -1,4 +1,5 @@
-import type { NotificationProps as NativeNotificationProps, NotificationExpose as NativeNotificationExpose } from '@doraemon-ui/miniprogram.notification'
+import type { NotificationExpose as NativeNotificationExpose, NotificationProps as NativeNotificationProps } from '@doraemon-ui/miniprogram.notification'
+
 import type { BasicComponent } from '../../types'
 
 export interface NotificationProps extends NativeNotificationProps, BasicComponent {

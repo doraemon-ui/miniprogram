@@ -232,8 +232,8 @@ export {
   DatePickerView,
   Dialog,
   Divider,
-  ESign,
   Ellipsis,
+  ESign,
   FabButton,
   Field,
   Filterbar,
@@ -309,5 +309,5 @@ export {
   VirtualListItem,
   WaterMark,
   WhiteSpace,
-  WingBlank
+  WingBlank,
 }

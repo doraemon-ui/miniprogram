@@ -1,5 +1,5 @@
-import { getCurrentPage } from './getCurrentPage'
 import type { MiniprogramComponentInstance, MiniprogramPublicInstance } from '../../types'
+import { getCurrentPage } from './getCurrentPage'
 
 /**
  * 获取自定义组件的实例

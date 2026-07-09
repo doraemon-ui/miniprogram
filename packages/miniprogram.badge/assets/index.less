@@ -10,38 +10,38 @@
 
   &__count {
     position: absolute;
-    transform: translate(50%, -50%);
     top: 0;
     right: 0;
-    height: @badge-height;
-    border-radius: calc(@badge-height / 2);
+    z-index: 10;
+    box-sizing: border-box;
     min-width: @badge-height;
-    background: @badge-bg;
-    color: @badge-color;
-    line-height: @badge-height;
-    text-align: center;
+    height: @badge-height;
     padding: 0 5px;
     font-size: @badge-font-size;
+    line-height: @badge-height;
+    color: @badge-color;
+    text-align: center;
     white-space: nowrap;
-    transform-origin: 100% 0%;
-    z-index: 10;
+    background: @badge-bg;
+    border-radius: calc(@badge-height / 2);
     box-shadow: 0 0 0 1px @shadow-color-inverse;
-    box-sizing: border-box;
-    text-rendering: optimizeLegibility;
+    text-rendering: optimizelegibility;
+    transform: translate(50%, -50%);
+    transform-origin: 100% 0%;
   }
 
   &__dot {
     .square(@badge-dot-size);
 
     position: absolute;
-    transform: translate(50%, -50%);
-    transform-origin: 100% 0%;
     top: 0;
     right: 0;
-    border-radius: 100%;
-    background: @badge-bg;
     z-index: 10;
+    background: @badge-bg;
+    border-radius: 100%;
     box-shadow: 0 0 0 1px @shadow-color-inverse;
+    transform: translate(50%, -50%);
+    transform-origin: 100% 0%;
   }
 
   &--position-topLeft &__count,
@@ -72,20 +72,20 @@
 
   &__status-dot {
     .square(@badge-status-size);
-
-    display: inline-block;
-    border-radius: 50%;
-    vertical-align: middle;
     position: relative;
     top: -1px;
+
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 50%;
 
     &--success {
       background-color: @badge-success-bg;
     }
 
     &--processing {
-      background-color: @badge-processing-bg;
       position: relative;
+      background-color: @badge-processing-bg;
     }
 
     &--processing::after {
@@ -94,9 +94,9 @@
       left: -1px;
       width: 100%;
       height: 100%;
-      border-radius: 50%;
-      border: 1px solid @badge-processing-bg;
       content: '';
+      border: 1px solid @badge-processing-bg;
+      border-radius: 50%;
       animation: statusProcessing 1.2s infinite ease-in-out;
     }
 
@@ -115,20 +115,20 @@
 
   &__status-text {
     display: inline-block;
-    color: @text-color;
-    font-size: @font-size-base;
     margin-left: 8px;
+    font-size: @font-size-base;
+    color: @text-color;
   }
 }
 
 @keyframes statusProcessing {
   0% {
-    transform: scale(0.8);
     opacity: 0.5;
+    transform: scale(0.8);
   }
 
-  to {
-    transform: scale(2.4);
+  100% {
     opacity: 0;
+    transform: scale(2.4);
   }
 }

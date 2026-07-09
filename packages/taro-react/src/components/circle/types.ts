@@ -1,4 +1,5 @@
-import type { CircleProps as NativeCircleProps, CircleExpose as NativeCircleExpose } from '@doraemon-ui/miniprogram.circle'
+import type { CircleExpose as NativeCircleExpose, CircleProps as NativeCircleProps } from '@doraemon-ui/miniprogram.circle'
+
 import type { BasicComponent } from '../../types'
 
 export interface CircleProps extends NativeCircleProps, BasicComponent {

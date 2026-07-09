@@ -1,5 +1,6 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
+import { Component, defineComponentHOC, Doraemon, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+
 import type {
   FilterbarDisplayValue,
   FilterbarFilterChildItem,
@@ -226,9 +227,9 @@ function buildRenderOptions(prefixCls: string, options: FilterbarItem[], values:
           ? buildFilterChildren(option.children, currentValue)
           : 'children' in option
             ? option.children.map((child) => ({
-                ...child,
-                checked: isContain(currentValue as any, child.value),
-              }))
+              ...child,
+              checked: isContain(currentValue as any, child.value),
+            }))
             : undefined,
     } as FilterbarRenderItem
   })

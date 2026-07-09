@@ -1,7 +1,8 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
-import { getIndexesFromValues, getLabelsFromIndexes, getRealValues } from './utils'
+import { Component, defineComponentHOC, Doraemon, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+
 import type { CascaderPickerFieldNames, CascaderPickerValueChangeDetail, TreeOption } from './types'
+import { getIndexesFromValues, getLabelsFromIndexes, getRealValues } from './utils'
 
 function arrayTreeFilter(data: TreeOption[], filterFn: (item: TreeOption, level: number) => boolean, childrenKeyName: string) {
   let children = data || []

@@ -6,8 +6,8 @@
 .loadmore {
   display: inline-flex;
   align-items: center;
-  font-weight: normal;
   font-size: 28rpx;
+  font-weight: normal;
 }
 
 .loading {

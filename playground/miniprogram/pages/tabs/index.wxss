@@ -1,14 +1,14 @@
 .bordered::before {
-  content: ' ';
   position: absolute;
-  left: 0;
-  bottom: 0;
   right: 0;
+  bottom: 0;
+  left: 0;
   height: 2rpx;
-  border-bottom: 2rpx solid #d9d9d9;
   color: #d9d9d9;
-  transform-origin: 0 100%;
+  content: ' ';
+  border-bottom: 2rpx solid #d9d9d9;
   transform: scaleY(0.5);
+  transform-origin: 0 100%;
 }
 
 .content {

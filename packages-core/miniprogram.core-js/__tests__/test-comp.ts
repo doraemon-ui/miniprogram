@@ -1,4 +1,4 @@
-import { defineComponentHOC, Doraemon, Component } from '../src'
+import { Component, defineComponentHOC, Doraemon } from '../src'
 
 @Component({
   components: {

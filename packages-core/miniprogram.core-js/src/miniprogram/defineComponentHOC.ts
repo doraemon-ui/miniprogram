@@ -1,20 +1,20 @@
+import type { ComponentRenderProxy, Doraemon, DoraemonClass } from '../instance'
 import { initComponents, useRelation } from '../instance/components'
 import { initComputed } from '../instance/computed'
 import { config } from '../instance/config'
 import { initData } from '../instance/data'
+import { getPublicInstance, initExposed } from '../instance/expose'
 import { callHook, initLifecycle } from '../instance/lifecycle'
-import { initExposed, getPublicInstance } from '../instance/expose'
+import { logicalTree } from '../instance/logicalTree'
 import { initMethods } from '../instance/methods'
 import { initProps } from '../instance/props'
 import { initProxy } from '../instance/proxy'
 import { initRefs } from '../instance/refs'
-import { logicalTree } from '../instance/logicalTree'
 import { initWatch } from '../instance/watch'
 import { ENV_TYPE, getEnv } from '../util/env'
 import { isDef } from '../util/isDef'
 import { setUpdatePerformance } from '../util/perf'
 import { syncPropsToData } from './syncPropsToData'
-import type { ComponentRenderProxy, Doraemon, DoraemonClass } from '../instance'
 
 /**
  * ComponentExternalOptions接口定义

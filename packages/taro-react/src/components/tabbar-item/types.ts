@@ -1,4 +1,5 @@
-import type { TabbarItemProps as NativeTabbarItemProps, TabbarItemExpose as NativeTabbarItemExpose } from '@doraemon-ui/miniprogram.tabbar'
+import type { TabbarItemExpose as NativeTabbarItemExpose, TabbarItemProps as NativeTabbarItemProps } from '@doraemon-ui/miniprogram.tabbar'
+
 import type { BasicComponent } from '../../types'
 
 export interface TabbarItemProps extends NativeTabbarItemProps, BasicComponent {

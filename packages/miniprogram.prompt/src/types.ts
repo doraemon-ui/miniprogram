@@ -1,6 +1,6 @@
-import type { ComponentPublicInstance } from '@doraemon-ui/miniprogram.core-js'
 import type { ClassNames } from '@doraemon-ui/miniprogram.animation-group'
 import type { ButtonProps } from '@doraemon-ui/miniprogram.button'
+import type { ComponentPublicInstance } from '@doraemon-ui/miniprogram.core-js'
 
 import type { Prompt } from './index'
 

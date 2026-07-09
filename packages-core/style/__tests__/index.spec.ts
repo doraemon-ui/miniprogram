@@ -1,8 +1,8 @@
 import fs from 'fs'
-import path from 'path'
-import less from 'less'
-import { JSDOM } from 'jsdom'
 import type { DOMWindow } from 'jsdom'
+import { JSDOM } from 'jsdom'
+import less from 'less'
+import path from 'path'
 
 const pkgRoot = path.resolve(__dirname, '..')
 

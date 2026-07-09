@@ -1,0 +1,53 @@
+@import './palettes/light.less';
+@import './palettes/dark.less';
+@import './palettes/default.less';
+@import './themes/globals.less';
+
+// Light & Dark Mode
+// --------------------------------------------------
+@{body-node} {
+  .varLight();
+}
+
+@media (prefers-color-scheme: dark) {
+  @{body-node} [data-dora-theme='auto'],
+  @{body-node} [data-dora-theme='dark'] {
+    .varDark();
+  }
+}
+
+@{body-node} [data-dora-theme='dark'] {
+  .varDark();
+}
+
+// Global Styles
+// --------------------------------------------------
+@{body-node} {
+  .varDefault();
+}
+
+@{body-node} {
+  font-family: var(--dora-font-family);
+  background: var(--dora-background-color);
+}
+
+// Colors
+// --------------------------------------------------
+each(@colors, {
+  @k: @key;
+  @v: @value;
+  @base: @@v[base];
+  @shade: @@v[shade];
+  @tint: @@v[tint];
+  @lighter: @@v[lighter];
+  @contrast: @@v[contrast];
+  .@{dora-prefix}-color--@{k} {
+    --dora-color-base: var(~'--dora-color-@{k}', @base) !important;
+    --dora-color-base-rgb: var(~'--dora-color-@{k}-rgb', #color-to-rgb-list(@base)[]) !important;
+    --dora-color-shade: var(~'--dora-color-@{k}-shade', @shade) !important;
+    --dora-color-tint: var(~'--dora-color-@{k}-tint', @tint) !important;
+    --dora-color-lighter: var(~'--dora-color-@{k}-lighter' , @lighter) !important;
+    --dora-color-contrast: var(~'--dora-color-@{k}-contrast', @contrast) !important;
+    --dora-color-contrast-rgb: var(~'--dora-color-@{k}-contrast-rgb', #color-to-rgb-list(@contrast)[]) !important;
+  }
+});

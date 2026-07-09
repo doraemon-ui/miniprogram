@@ -1,8 +1,8 @@
-import type { Doraemon } from './init'
 import { isDev } from '../util/env'
 import { nextTick } from '../util/nextTick'
 import { toArray } from '../util/toArray'
 import { warn } from '../util/warn'
+import type { Doraemon } from './init'
 
 export function stateMixin(Component: typeof Doraemon) {
   const dataDef: PropertyDescriptor = {}

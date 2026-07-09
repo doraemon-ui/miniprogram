@@ -16,12 +16,12 @@ import type { PresetColor } from '../../types'
 const colors: { [key in PresetColor]: string } = {
   light: '#f4f5f8',
   stable: '#636469',
-  positive: '#3880ff',
-  calm: '#3dc2ff',
-  balanced: '#2dd36f',
+  positive: '#0054e9',
+  calm: '#0163aa',
+  balanced: '#2dd55b',
   energized: '#ffc409',
-  assertive: '#eb445a',
-  royal: '#8a63d2',
+  assertive: '#c5000f',
+  royal: '#6030ff',
   dark: '#222428',
 }
 

@@ -1,5 +1,5 @@
-import { toast } from '@doraemon-ui/miniprogram.toast'
 import { doraProp } from '@doraemon-ui/miniprogram.demo-shared'
+import { toast } from '@doraemon-ui/miniprogram.toast'
 
 Page({
   onclose(e) {

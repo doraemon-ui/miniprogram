@@ -13,22 +13,22 @@
   &__body {
     position: fixed;
     z-index: calc(var(--z-index) + 10);
-    background-color: var(--background-color);
     box-sizing: border-box;
+    background-color: var(--background-color);
   }
 
   &__close {
-    border: 0;
-    background-color: transparent;
-    outline: none;
     position: absolute;
     top: 8px;
     right: 8px;
-    height: 24px;
-    width: 24px;
-    padding: 4px;
-    box-sizing: border-box;
     z-index: 100;
+    box-sizing: border-box;
+    width: 24px;
+    height: 24px;
+    padding: 4px;
+    outline: none;
+    background-color: transparent;
+    border: 0;
   }
 
   &__close-x {
@@ -51,9 +51,9 @@
 
   &--position-top {
     .@{popup-prefix-cls}__body {
-      width: 100%;
       top: 0;
       left: 0;
+      width: 100%;
     }
 
     .@{popup-prefix-cls}__close {
@@ -64,31 +64,31 @@
 
   &--position-right {
     .@{popup-prefix-cls}__body {
-      height: 100%;
-      right: 0;
       top: 0;
+      right: 0;
+      height: 100%;
     }
 
     .@{popup-prefix-cls}__close {
-      left: 8px;
       top: 8px;
       right: unset;
+      left: 8px;
     }
   }
 
   &--position-bottom {
     .@{popup-prefix-cls}__body {
-      width: 100%;
       bottom: 0;
       left: 0;
+      width: 100%;
     }
   }
 
   &--position-left {
     .@{popup-prefix-cls}__body {
-      height: 100%;
       top: 0;
       left: 0;
+      height: 100%;
     }
   }
 }

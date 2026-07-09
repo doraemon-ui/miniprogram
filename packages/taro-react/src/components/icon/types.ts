@@ -1,4 +1,5 @@
-import type { IconProps as NativeIconProps, IconExpose as NativeIconExpose } from '@doraemon-ui/miniprogram.icon'
+import type { IconExpose as NativeIconExpose, IconProps as NativeIconProps } from '@doraemon-ui/miniprogram.icon'
+
 import type { BasicComponent } from '../../types'
 
 export interface IconProps extends NativeIconProps, BasicComponent {

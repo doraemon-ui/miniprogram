@@ -1,7 +1,7 @@
-import type { Doraemon } from './init'
 import type { ComponentOptions } from '../types/options'
-import { hasOwn } from '../util/hasOwn'
 import type { PropOptions } from '../types/options'
+import { hasOwn } from '../util/hasOwn'
+import type { Doraemon } from './init'
 
 const isUndefinable = (val: any) => val === undefined
 const NULL_PROP = null

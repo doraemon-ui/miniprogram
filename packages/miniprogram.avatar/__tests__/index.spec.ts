@@ -1,8 +1,9 @@
-import path from 'path'
-import simulate from 'miniprogram-simulate'
-import type { RootComponent, Component } from 'miniprogram-simulate'
-import type { AvatarInstance } from '../src/types'
 import { useRect } from '@doraemon-ui/miniprogram.shared'
+import type { Component, RootComponent } from 'miniprogram-simulate'
+import simulate from 'miniprogram-simulate'
+import path from 'path'
+
+import type { AvatarInstance } from '../src/types'
 
 function getComponentInstance(wrapper: RootComponent<any, any, any> | Component<any, any, any>): AvatarInstance {
   return wrapper.instance.$component as unknown as AvatarInstance

@@ -1,5 +1,4 @@
 import type { ComponentPublicInstance, CustomEvent } from '../src'
-
 import type { MyComp } from './my-comp'
 import type { TestComp } from './test-comp'
 

@@ -1,4 +1,5 @@
-import type { CardProps as NativeCardProps, CardExpose as NativeCardExpose } from '@doraemon-ui/miniprogram.card'
+import type { CardExpose as NativeCardExpose, CardProps as NativeCardProps } from '@doraemon-ui/miniprogram.card'
+
 import type { BasicComponent } from '../../types'
 
 export interface CardProps extends NativeCardProps, BasicComponent {

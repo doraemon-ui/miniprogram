@@ -1,6 +1,6 @@
-import path from 'path'
-import fs from 'fs-extra'
 import glob from 'fast-glob'
+import fs from 'fs-extra'
+import path from 'path'
 
 interface TaroPluginContext {
   paths: { outputPath: string }

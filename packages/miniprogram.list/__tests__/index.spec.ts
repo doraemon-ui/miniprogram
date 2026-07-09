@@ -1,6 +1,6 @@
-import path from 'path'
+import type { Component, RootComponent } from 'miniprogram-simulate'
 import simulate from 'miniprogram-simulate'
-import type { RootComponent, Component } from 'miniprogram-simulate'
+import path from 'path'
 
 function getComponentInstance(wrapper: RootComponent<any, any, any> | Component<any, any, any>): any {
   return wrapper.instance.$component as unknown as any

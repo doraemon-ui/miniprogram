@@ -1,5 +1,6 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch, Event } from '@doraemon-ui/miniprogram.core-js'
 import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
+import { Component, defineComponentHOC, Doraemon, Event, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+
 import type { RadioChangeItem, RadioContext, RadioGroupInstance, SelectableChangeDetail } from './types'
 
 const { classNames } = Doraemon.util

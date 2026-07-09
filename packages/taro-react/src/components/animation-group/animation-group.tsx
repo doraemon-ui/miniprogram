@@ -11,7 +11,7 @@ export const AnimationGroup = createHostComponent<AnimationGroupProps, Animation
   in: false,
   classNames: '',
   duration: null,
-  type: 'transition',
+  type: '',
   appear: false,
   enter: true,
   exit: true,

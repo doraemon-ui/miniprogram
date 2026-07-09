@@ -1,6 +1,7 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch, Event } from '@doraemon-ui/miniprogram.core-js'
 import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
-import type { DialogButton, NativeButtonHandle, NativeButtonEvent } from './types'
+import { Component, defineComponentHOC, Doraemon, Event, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+
+import type { DialogButton, NativeButtonEvent, NativeButtonHandle } from './types'
 const { classNames } = Doraemon.util
 
 @Component({

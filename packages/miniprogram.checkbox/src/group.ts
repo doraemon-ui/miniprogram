@@ -1,7 +1,8 @@
-import { defineComponentHOC, Doraemon, Component, Watch } from '@doraemon-ui/miniprogram.core-js'
 import type { ComponentRenderProxy, CustomEvent } from '@doraemon-ui/miniprogram.core-js'
-import { useRect } from '@doraemon-ui/miniprogram.shared'
+import { Component, defineComponentHOC, Doraemon, Watch } from '@doraemon-ui/miniprogram.core-js'
 import type { MiniprogramDOMRect } from '@doraemon-ui/miniprogram.shared'
+import { useRect } from '@doraemon-ui/miniprogram.shared'
+
 import { checkboxGroupProps } from './props'
 import type {
   CheckboxChangeItem,

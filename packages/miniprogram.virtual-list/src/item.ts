@@ -1,4 +1,4 @@
-import { defineComponentHOC, Doraemon, Component } from '@doraemon-ui/miniprogram.core-js'
+import { Component, defineComponentHOC, Doraemon } from '@doraemon-ui/miniprogram.core-js'
 
 const { styleToCssString } = Doraemon.util
 

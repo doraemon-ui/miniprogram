@@ -1,6 +1,7 @@
-import path from 'path'
-import simulate from 'miniprogram-simulate'
 import type { Component, RootComponent } from 'miniprogram-simulate'
+import simulate from 'miniprogram-simulate'
+import path from 'path'
+
 import type { FloatingPanelInstance } from '../src/types'
 
 jest.mock('@doraemon-ui/miniprogram.shared', () => {
@@ -74,7 +75,7 @@ describe('FloatingPanel', () => {
         usingComponents: {
           'dora-floating-panel': id,
         },
-        template: `<dora-floating-panel id="panel" defaultAnchors="{{anchors}}" bind:heightChange="onHeightChange">content</dora-floating-panel>`,
+        template: '<dora-floating-panel id="panel" defaultAnchors="{{anchors}}" bind:heightChange="onHeightChange">content</dora-floating-panel>',
         data: {
           anchors: [100, 300, 500],
         },

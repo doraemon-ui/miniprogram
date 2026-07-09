@@ -1,6 +1,6 @@
+import type { Doraemon, DoraemonClass } from '../instance'
 import { proxy } from '../instance/proxy'
 import type { ComponentOptions } from '../types/options'
-import type { Doraemon, DoraemonClass } from '../instance'
 
 let cid = 1
 

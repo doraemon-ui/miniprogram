@@ -1,7 +1,8 @@
-import path from 'path'
-import simulate from 'miniprogram-simulate'
+import { useRect, useRectAll, vibrateShort } from '@doraemon-ui/miniprogram.shared'
 import type { Component, RootComponent } from 'miniprogram-simulate'
-import { useRectAll, useRect, vibrateShort } from '@doraemon-ui/miniprogram.shared'
+import simulate from 'miniprogram-simulate'
+import path from 'path'
+
 import type { IndexListInstance, IndexListItemInstance } from '../src/types'
 
 jest.mock('@doraemon-ui/miniprogram.shared', () => ({

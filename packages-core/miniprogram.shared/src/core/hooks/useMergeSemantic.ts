@@ -1,5 +1,6 @@
-import { Doraemon } from '@doraemon-ui/miniprogram.core-js'
 import type { CSSStylePropertiesWithVars } from '@doraemon-ui/miniprogram.core-js'
+import { Doraemon } from '@doraemon-ui/miniprogram.core-js'
+
 import { isFunction, isObject } from '../util'
 
 export type AnyObject = Record<string, any>

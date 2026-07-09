@@ -1,4 +1,5 @@
-import type { CascaderProps as NativeCascaderProps, CascaderExpose as NativeCascaderExpose } from '@doraemon-ui/miniprogram.cascader'
+import type { CascaderExpose as NativeCascaderExpose, CascaderProps as NativeCascaderProps } from '@doraemon-ui/miniprogram.cascader'
+
 import type { BasicComponent } from '../../types'
 
 export interface CascaderProps extends NativeCascaderProps, BasicComponent {

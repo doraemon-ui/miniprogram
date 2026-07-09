@@ -1,4 +1,5 @@
-import type { QrcodeProps as NativeQrcodeProps, QrcodeExpose as NativeQrcodeExpose } from '@doraemon-ui/miniprogram.qrcode'
+import type { QrcodeExpose as NativeQrcodeExpose, QrcodeProps as NativeQrcodeProps } from '@doraemon-ui/miniprogram.qrcode'
+
 import type { BasicComponent } from '../../types'
 
 export interface QrcodeProps extends NativeQrcodeProps, BasicComponent {

@@ -1,9 +1,9 @@
-import { Component, defineComponentHOC, Doraemon, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
-import { findComponentNode, useRect, useScrollOffset } from '@doraemon-ui/miniprogram.shared'
-import type { MiniprogramDOMRect, MiniprogramScrollOffset } from '@doraemon-ui/miniprogram.shared'
 import type { BackdropInstance } from '@doraemon-ui/miniprogram.backdrop'
+import { Component, defineComponentHOC, Doraemon, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+import type { MiniprogramDOMRect, MiniprogramScrollOffset } from '@doraemon-ui/miniprogram.shared'
+import { findComponentNode, useRect, useScrollOffset } from '@doraemon-ui/miniprogram.shared'
 
-import type { PopoverPlacement, PopoverColor, PopoverTrigger } from './types'
+import type { PopoverColor, PopoverPlacement, PopoverTrigger } from './types'
 
 const { classNames, styleToCssString } = Doraemon.util
 

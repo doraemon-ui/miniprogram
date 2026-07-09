@@ -6,45 +6,45 @@
 .@{tabbar-prefix-cls} {
   position: relative;
   z-index: 500;
+  box-sizing: border-box;
   width: 100%;
   background-color: @tabbar-bg;
-  box-sizing: border-box;
 
   &-wrap {
-    width: 100%;
-    min-height: @tabbar-height;
     box-sizing: border-box;
     display: block;
+    width: 100%;
+    min-height: @tabbar-height;
   }
 
   &--bottom {
     position: fixed;
-    left: 0;
     bottom: 0;
+    left: 0;
     border-top: 0.5px solid @border-color-split;
   }
 
   &--top {
     position: fixed;
-    left: 0;
     top: 0;
+    left: 0;
     border-bottom: 0.5px solid @border-color-split;
   }
 }
 
 .@{tabbar-item-prefix-cls} {
-  flex: 1;
+  float: left;
+  box-sizing: border-box;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex: 1;
   flex-direction: column;
-  text-align: center;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
-  color: @tabbar-default-color;
   padding: 5px 0;
-  box-sizing: border-box;
-  float: left;
+  color: @tabbar-default-color;
+  text-align: center;
   cursor: pointer;
 
   .tabbar-color(#get-color(positive)[]);
@@ -52,14 +52,14 @@
   &__icon {
     display: flex;
     justify-content: center;
-    font-size: 22px;
     height: 22px;
+    font-size: 22px;
     line-height: 1;
   }
 
   &__title {
-    font-size: @tabbar-font-size;
     margin: 2px 0 0;
+    font-size: @tabbar-font-size;
     line-height: 1;
     text-align: center;
   }
@@ -69,8 +69,8 @@
   }
 
   &--disabled {
-    opacity: @disabled-opacity;
     cursor: not-allowed;
+    opacity: @disabled-opacity;
   }
 
   // Tabbar Colors

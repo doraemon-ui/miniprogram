@@ -1,6 +1,7 @@
-import path from 'path'
-import simulate from 'miniprogram-simulate'
 import type { Component, RootComponent } from 'miniprogram-simulate'
+import simulate from 'miniprogram-simulate'
+import path from 'path'
+
 import type { FabButtonInstance } from '../src/types'
 
 jest.mock('@doraemon-ui/miniprogram.shared', () => ({

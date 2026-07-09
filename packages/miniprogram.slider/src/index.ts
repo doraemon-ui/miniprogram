@@ -1,6 +1,7 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
+import { Component, defineComponentHOC, Doraemon, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import { getPointsNumber, getTouchPoints, useRect } from '@doraemon-ui/miniprogram.shared'
+
 import type { SliderShowValue } from './types'
 const { classNames, styleToCssString } = Doraemon.util
 

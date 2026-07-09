@@ -39,12 +39,12 @@
   display: inline-block;
   width: @size;
   height: @size;
-
-  .encoded-svg-background(right, @color);
-
-  background-size: contain;
   background-repeat: no-repeat;
   background-position: 50% 50%;
+
+  background-size: contain;
+
+  .encoded-svg-background(right, @color);
 }
 
 .setArrow(@direction, @size: 16px, @color: #c7c7cc) when (@direction = top) {

@@ -4,14 +4,11 @@
 // -----------------------------
 .@{water-mark-prefix-cls} {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
+  inset: 0;
   z-index: 2000;
+  box-sizing: border-box;
   pointer-events: none;
   background-repeat: repeat;
-  box-sizing: border-box;
 
   &--full-page {
     position: fixed;
@@ -19,9 +16,9 @@
 
   &__canvas {
     position: absolute;
-    left: -9999em;
     top: -9999em;
-    opacity: 0;
+    left: -9999em;
     visibility: hidden;
+    opacity: 0;
   }
 }

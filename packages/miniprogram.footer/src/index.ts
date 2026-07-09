@@ -1,7 +1,8 @@
-import { defineComponentHOC, Doraemon, Component, Prop } from '@doraemon-ui/miniprogram.core-js'
 import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
-import { useNativeRoute } from '@doraemon-ui/miniprogram.shared'
+import { Component, defineComponentHOC, Doraemon, Prop } from '@doraemon-ui/miniprogram.core-js'
 import type { NativeRouteOpenType, PresetColor } from '@doraemon-ui/miniprogram.shared'
+import { useNativeRoute } from '@doraemon-ui/miniprogram.shared'
+
 import type { FooterChipItem, FooterLinkItem } from './types'
 
 const { classNames } = Doraemon.util

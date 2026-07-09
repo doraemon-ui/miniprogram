@@ -1,7 +1,8 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
-import { formatDate } from './utils'
+import { Component, defineComponentHOC, Doraemon, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+
 import type { DatePickerChangeDetail, DatePickerDetail, DatePickerLang, DatePickerMode, DatePickerToolbar } from './types'
+import { formatDate } from './utils'
 
 const { classNames } = Doraemon.util
 const modeRecord: Record<string, string> = {

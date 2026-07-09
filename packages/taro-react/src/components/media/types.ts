@@ -1,4 +1,5 @@
-import type { MediaProps as NativeMediaProps, MediaExpose as NativeMediaExpose } from '@doraemon-ui/miniprogram.media'
+import type { MediaExpose as NativeMediaExpose, MediaProps as NativeMediaProps } from '@doraemon-ui/miniprogram.media'
+
 import type { BasicComponent } from '../../types'
 
 export interface MediaProps extends NativeMediaProps, BasicComponent {}

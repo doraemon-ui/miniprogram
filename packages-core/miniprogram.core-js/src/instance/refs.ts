@@ -1,7 +1,7 @@
-import type { ComponentPublicInstance, Doraemon } from './init'
+import type { ChildRelationType, ParentRelationType, RelationType } from '../types/options'
 import { getData } from './components'
+import type { ComponentPublicInstance, Doraemon } from './init'
 import { findLogicalAncestors, normalizeNodes } from './logicalTree'
-import type { ParentRelationType, ChildRelationType, RelationType } from '../types/options'
 
 export function initRefs(vm: Doraemon) {
   const components = vm.$options.components || {}

@@ -6,15 +6,12 @@
 .@{demo-page-prefix-cls} {
   position: relative;
   min-height: 100%;
-  color: rgba(var(--dora-text-color-rgb), 0.85);
+  color: rgb(var(--dora-text-color-rgb), 0.85);
   background-color: var(--dora-background-color);
 
   &--fixed {
     position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    inset: 0;
     background-color: unset;
   }
 
@@ -27,8 +24,8 @@
     padding-bottom: @spacing-xl * 2 + @spacing-base;
 
     &--spacing {
-      padding-left: @spacing-xl;
       padding-right: @spacing-xl;
+      padding-left: @spacing-xl;
     }
   }
 
@@ -38,22 +35,22 @@
   }
 
   &__title {
-    text-align: left;
     font-size: 20px;
     font-weight: 400;
+    text-align: left;
   }
 
   &__desc {
     margin-top: @margin-component-base;
-    color: rgba(var(--dora-text-color-rgb), 0.45);
-    text-align: left;
     font-size: @font-size-base;
+    color: rgb(var(--dora-text-color-rgb), 0.45);
+    text-align: left;
   }
 
   &__darkmode {
     position: absolute;
-    right: 12px;
     top: 12px;
+    right: 12px;
     width: 24px;
     height: 24px;
     font-size: 24px;

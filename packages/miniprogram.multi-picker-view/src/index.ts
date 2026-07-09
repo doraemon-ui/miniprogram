@@ -1,6 +1,6 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
-import { getIndexesFromValues, getLabelsFromIndexes, getRealCols, getRealValues } from './utils'
+import { Component, defineComponentHOC, Doraemon, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+
 import type {
   MultiPickerFieldNames,
   MultiPickerItemChangeDetail,
@@ -8,6 +8,7 @@ import type {
   MultiPickerOptionRecord,
   MultiPickerOptions,
 } from './types'
+import { getIndexesFromValues, getLabelsFromIndexes, getRealCols, getRealValues } from './utils'
 
 @Component({
   props: {

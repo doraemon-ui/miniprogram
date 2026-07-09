@@ -10,8 +10,8 @@
   left: 0;
   height: 2rpx;
   color: #d9d9d9;
-  border-bottom: 2rpx solid #d9d9d9;
   content: ' ';
+  border-bottom: 2rpx solid #d9d9d9;
   transform: scaleY(.5);
   transform-origin: 0 100%;
 }

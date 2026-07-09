@@ -43,8 +43,8 @@
 }
 
 .dora-tag:is(.dora-tag--fill).dora-color {
-  --text-color: var(--dora-color-active);
-  --background-color: var(--dora-color-tint);
+  --text-color: var(--dora-color-base);
+  --background-color: var(--dora-color-lighter);
   --border-color: transparent;
 }
 
@@ -55,7 +55,7 @@
 }
 
 .dora-tag:is(.dora-tag--outline).dora-color {
-  --text-color: var(--dora-color-active);
+  --text-color: var(--dora-color-shade);
   --background-color: var(--dora-color-tint);
   --border-color: var(--dora-color-base);
 }

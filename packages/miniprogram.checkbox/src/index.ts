@@ -1,6 +1,7 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch, Event } from '@doraemon-ui/miniprogram.core-js'
 import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
+import { Component, defineComponentHOC, Doraemon, Event, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import { getDefaultContext } from '@doraemon-ui/miniprogram.shared'
+
 import { checkboxGroupProps } from './props'
 import type { CheckboxChangeDetail, CheckboxChangeItem, CheckboxContext, CheckboxGroupInstance } from './types'
 

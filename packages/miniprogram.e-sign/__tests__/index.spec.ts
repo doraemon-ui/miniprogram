@@ -1,6 +1,7 @@
-import path from 'path'
+import type { Component, RootComponent } from 'miniprogram-simulate'
 import simulate from 'miniprogram-simulate'
-import type { RootComponent, Component } from 'miniprogram-simulate'
+import path from 'path'
+
 import type { ESignInstance } from '../src/types'
 
 const mockUseRef = jest.fn()
@@ -279,7 +280,7 @@ describe('ESign', () => {
       usingComponents: {
         'dora-e-sign': id,
       },
-      template: `<dora-e-sign id="sign" lineWidth="{{6}}" lineColor="#ff0000" bind:start="onStart" />`,
+      template: '<dora-e-sign id="sign" lineWidth="{{6}}" lineColor="#ff0000" bind:start="onStart" />',
       methods: {
         onStart,
       },
@@ -322,7 +323,7 @@ describe('ESign', () => {
       usingComponents: {
         'dora-e-sign': id,
       },
-      template: `<dora-e-sign id="sign" bind:signing="onSigning" />`,
+      template: '<dora-e-sign id="sign" bind:signing="onSigning" />',
       methods: {
         onSigning,
       },
@@ -354,7 +355,7 @@ describe('ESign', () => {
       usingComponents: {
         'dora-e-sign': id,
       },
-      template: `<dora-e-sign id="sign" bind:end="onEnd" />`,
+      template: '<dora-e-sign id="sign" bind:end="onEnd" />',
       methods: {
         onEnd,
       },
@@ -380,7 +381,7 @@ describe('ESign', () => {
       usingComponents: {
         'dora-e-sign': id,
       },
-      template: `<dora-e-sign id="sign" bind:submit="onSubmit" />`,
+      template: '<dora-e-sign id="sign" bind:submit="onSubmit" />',
       methods: {
         onSubmit,
       },
@@ -403,7 +404,7 @@ describe('ESign', () => {
       usingComponents: {
         'dora-e-sign': id,
       },
-      template: `<dora-e-sign id="sign" bind:clear="onClear" />`,
+      template: '<dora-e-sign id="sign" bind:clear="onClear" />',
       methods: {
         onClear,
       },
@@ -436,7 +437,7 @@ describe('ESign', () => {
       usingComponents: {
         'dora-e-sign': id,
       },
-      template: `<dora-e-sign id="sign" type="jpeg" bind:submit="onSubmit" />`,
+      template: '<dora-e-sign id="sign" type="jpeg" bind:submit="onSubmit" />',
       methods: {
         onSubmit,
       },

@@ -15,14 +15,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--background-color);
+  width: fit-content;
+  min-width: var(--min-width);
   font-size: @toast-font-size;
   line-height: @toast-line-height;
-  word-break: break-all;
-  min-width: var(--min-width);
-  width: fit-content;
-  border-radius: var(--border-radius);
   color: var(--text-color);
+  word-break: break-all;
+  background-color: var(--background-color);
+  border-radius: var(--border-radius);
 
   &__content {
     display: flex;
@@ -30,16 +30,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-top: @toast-content-padding-top;
-    padding-bottom: @toast-content-padding-bottom;
-    padding-left: @toast-content-padding-start;
-    padding-right: @toast-content-padding-end;
+    padding: @toast-content-padding-top @toast-content-padding-end @toast-content-padding-bottom @toast-content-padding-start;
 
     &--has-icon {
-      padding-top: @toast-icon-content-padding-top;
-      padding-bottom: @toast-icon-content-padding-bottom;
-      padding-left: @toast-icon-content-padding-start;
-      padding-right: @toast-icon-content-padding-end;
+      padding: @toast-icon-content-padding-top @toast-icon-content-padding-end @toast-icon-content-padding-bottom @toast-icon-content-padding-start;
     }
   }
 
@@ -49,8 +43,8 @@
   }
 
   &__icon {
-    margin: 0;
     display: inline-block;
+    margin: 0;
 
     &--loading {
       animation: loadingCircle 1s infinite linear;

@@ -1,9 +1,0 @@
-.git
-.github
-.*.js
-.coverage-report
-dist
-example/dist
-miniprogram_dist
-node_modules
-.husky/

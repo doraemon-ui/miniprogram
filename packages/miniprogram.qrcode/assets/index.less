@@ -1,20 +1,20 @@
 @import './variables.less';
 
 .@{qrcode-prefix-cls} {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
   overflow: hidden;
 
   &__canvas {
     position: absolute;
-    left: -9999em;
     top: -9999em;
-    opacity: 0;
+    left: -9999em;
     visibility: hidden;
+    opacity: 0;
   }
 
   &__image {
@@ -28,15 +28,15 @@
     z-index: 10;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     width: 100%;
     height: 100%;
-    color: var(--dora-color-title, #333);
-    background: rgba(255, 255, 255, 0.85);
-    text-align: center;
     font-size: var(--dora-font-size-md, 14px);
     line-height: var(--dora-line-height-md, 1.5);
+    color: var(--dora-color-title, #333);
+    text-align: center;
+    background: rgb(255 255 255 / 85%);
   }
 
   &__expired {
@@ -45,21 +45,21 @@
 
   &__refresh {
     position: relative;
+    box-sizing: border-box;
     display: flex;
     align-items: center;
-    font-weight: 400;
-    white-space: nowrap;
-    text-align: center;
     height: 32px;
     padding: 4px 15px;
-    box-sizing: border-box;
+    font-weight: 400;
     color: var(--dora-color-primary, #33cd5f);
+    text-align: center;
+    white-space: nowrap;
   }
 
   &__icon {
     display: inline-flex;
-    vertical-align: middle;
-    font-size: 0;
     margin-right: 8px;
+    font-size: 0;
+    vertical-align: middle;
   }
 }

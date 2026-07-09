@@ -2,9 +2,9 @@
 
 .@{search-bar-prefix-cls} {
   position: relative;
-  padding: 8px 10px;
-  display: flex;
   box-sizing: border-box;
+  display: flex;
+  padding: 8px 10px;
   background-color: @search-bar-bg;
   border-top: 0.50px solid var(--dora-border-color, #ddd);
   border-bottom: 0.50px solid var(--dora-border-color, #ddd);
@@ -22,54 +22,51 @@
 
   &__box {
     position: relative;
-    padding-left: 30px;
-    padding-right: 30px;
-    height: 100%;
-    width: 100%;
-    box-sizing: border-box;
     z-index: 1;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding-right: 30px;
+    padding-left: 30px;
   }
 
   &__control {
+    box-sizing: border-box;
     height: @search-bar-input-height;
     padding: 4px 0;
-    box-sizing: border-box;
   }
 
   &__input {
+    box-sizing: border-box;
     width: 100%;
     height: 100%;
     min-height: inherit;
-    border: 0;
     font-size: @search-bar-font-size;
     line-height: 1;
     color: var(--dora-color-text-base, #333);
     text-align: left;
     background: transparent;
-    box-sizing: border-box;
+    border: 0;
   }
 
   &__label {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     position: absolute;
-    top: 0.50px;
-    right: 0.50px;
-    bottom: 0.50px;
-    left: 0.50px;
+    inset: 0.50px;
     z-index: 2;
-    border-radius: @search-bar-radius;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: var(--dora-color-text-secondary, #999);
+    text-align: center;
     background: #fff;
+    border-radius: @search-bar-radius;
   }
 
   &__text {
     display: inline-block;
+    margin-left: 8px;
     font-size: @search-bar-font-size;
     vertical-align: middle;
-    margin-left: 8px;
   }
 
   &__cancel {
@@ -85,15 +82,15 @@
 
   &__search {
     position: absolute;
-    left: 10px;
     top: 7px;
+    left: 10px;
   }
 
   &__clear {
-    display: block;
     position: absolute;
     top: 7px;
     right: 0;
+    display: block;
     padding: 0 10px;
   }
 

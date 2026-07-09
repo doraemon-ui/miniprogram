@@ -1,8 +1,9 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import type { TouchEvent } from '@doraemon-ui/miniprogram.core-js'
-import type { ESignFileType, ESignCanvasRef } from './types'
-import { useRef, getSystemInfoSync, getTouchPoints, toDataURL, getCanvasRef } from '@doraemon-ui/miniprogram.shared'
+import { Component, defineComponentHOC, Doraemon, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import type { MiniprogramNodeRef } from '@doraemon-ui/miniprogram.shared'
+import { getCanvasRef, getSystemInfoSync, getTouchPoints, toDataURL, useRef } from '@doraemon-ui/miniprogram.shared'
+
+import type { ESignCanvasRef, ESignFileType } from './types'
 
 const { classNames, styleToCssString } = Doraemon.util
 

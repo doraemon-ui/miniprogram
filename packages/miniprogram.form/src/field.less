@@ -20,12 +20,12 @@
 
   &__label {
     position: relative;
-    margin-left: 0;
-    margin-bottom: 0;
+    width: 105px;
     margin-right: @margin-component-base;
+    margin-bottom: 0;
+    margin-left: 0;
     text-align: left;
     white-space: nowrap;
-    width: 105px;
 
     &--wrap {
       white-space: normal;
@@ -37,15 +37,15 @@
   }
 
   &__feedback-message {
-    color: @assertive;
     margin-top: @margin-component-base;
+    color: @assertive;
   }
 
   &__required-asterisk {
-    display: inline-block;
     position: absolute;
-    left: -0.6em;
     top: 0;
+    left: -0.6em;
+    display: inline-block;
     color: @assertive;
   }
 
@@ -66,6 +66,6 @@
 
 .disabled,
 .readOnly {
-  cursor: not-allowed !important;
   pointer-events: none !important;
+  cursor: not-allowed !important;
 }

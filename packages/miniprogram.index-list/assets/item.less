@@ -13,11 +13,11 @@
   --item-padding-horizontal: @index-list-item-padding-horizontal;
 
   &__hd {
-    background: var(--item-background-color);
+    box-sizing: border-box;
     width: 100%;
     height: var(--item-size);
-    line-height: var(--item-size);
     padding: var(--item-padding-vertical) var(--item-padding-horizontal);
-    box-sizing: border-box;
+    line-height: var(--item-size);
+    background: var(--item-background-color);
   }
 }

@@ -1,6 +1,7 @@
-import path from 'path'
-import simulate from 'miniprogram-simulate'
 import type { Component, RootComponent } from 'miniprogram-simulate'
+import simulate from 'miniprogram-simulate'
+import path from 'path'
+
 import type { AccordionInstance, PanelInstance } from '../src/types'
 
 function getAccordionInstance(wrapper: RootComponent<any, any, any> | Component<any, any, any>): AccordionInstance {

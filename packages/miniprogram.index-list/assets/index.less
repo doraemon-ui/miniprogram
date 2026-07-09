@@ -27,47 +27,47 @@
   --indicator-color: @index-list-indicator-color;
   --indicator-font-size: @index-list-indicator-font-size;
   --indicator-border-radius: @index-list-indicator-border-radius;
+  position: relative;
 
   width: 100%;
-  position: relative;
   overflow: hidden;
 
   &__nav {
     position: fixed;
     top: 50%;
     right: 0;
-    transform: translate3d(0, -50%, 0);
+    text-align: center;
     cursor: pointer;
     user-select: none;
-    text-align: center;
+    transform: translate3d(0, -50%, 0);
 
     &-row {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      flex-shrink: 0;
-      height: 100%;
-      width: 100%;
       position: relative;
-      line-height: var(--nav-size);
+      display: flex;
+      flex-shrink: 0;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
       font-size: var(--nav-font-size);
+      line-height: var(--nav-size);
     }
 
     &-col {
       padding: var(--nav-padding-vertical) var(--nav-padding-horizontal);
-      line-height: inherit;
       font-size: inherit;
+      line-height: inherit;
     }
 
     &-item {
       display: inline-flex;
+      align-items: center;
+      justify-content: center;
       width: var(--nav-size);
       height: var(--nav-size);
-      line-height: inherit;
       font-size: inherit;
-      justify-content: center;
-      align-items: center;
+      line-height: inherit;
 
       &--current {
         color: var(--nav-activated-text-color);
@@ -80,12 +80,12 @@
   &__indicator {
     width: var(--indicator-size);
     height: var(--indicator-size);
+    font-size: var(--indicator-font-size);
     line-height: var(--indicator-size);
+    color: var(--indicator-color);
     text-align: center;
     background-color: var(--indicator-background-color);
     border-radius: var(--indicator-border-radius);
-    color: var(--indicator-color);
-    font-size: var(--indicator-font-size);
 
     &--center {
       position: fixed;
@@ -98,22 +98,22 @@
       position: absolute;
       top: calc(var(--nav-size) / 2 + var(--nav-padding-vertical) / 2);
       right: 100%;
-      border-radius: 50%;
-      transform: translateY(-50%);
       margin-right: calc(var(--nav-size) - 1px);
       background-color: var(--nav-activated-background-color);
+      border-radius: 50%;
+      transform: translateY(-50%);
 
       &::before {
         position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
         width: 100%;
         height: 100%;
-        border-radius: 50% 0 50% 50%;
         content: '';
         background-color: inherit;
-        left: 0;
-        top: 0;
+        border-radius: 50% 0 50% 50%;
         transform: rotate(45deg);
-        z-index: -1;
       }
     }
   }

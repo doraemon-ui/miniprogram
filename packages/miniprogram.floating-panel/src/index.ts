@@ -1,6 +1,7 @@
-import { defineComponentHOC, Doraemon, Component, Prop } from '@doraemon-ui/miniprogram.core-js'
 import type { TouchEvent } from '@doraemon-ui/miniprogram.core-js'
+import { Component, defineComponentHOC, Doraemon, Prop } from '@doraemon-ui/miniprogram.core-js'
 import { getPointsNumber, getSystemInfoSync, getTouchPoints } from '@doraemon-ui/miniprogram.shared'
+
 import type { FloatingPanelBounds } from './types'
 
 const { classNames, styleToCssString } = Doraemon.util

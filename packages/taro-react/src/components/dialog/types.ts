@@ -1,4 +1,5 @@
-import type { DialogProps as NativeDialogProps, DialogExpose as NativeDialogExpose } from '@doraemon-ui/miniprogram.dialog'
+import type { DialogExpose as NativeDialogExpose, DialogProps as NativeDialogProps } from '@doraemon-ui/miniprogram.dialog'
+
 import type { BasicComponent } from '../../types'
 
 export interface DialogProps extends NativeDialogProps, BasicComponent {

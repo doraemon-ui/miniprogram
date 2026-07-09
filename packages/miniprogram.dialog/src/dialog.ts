@@ -1,5 +1,6 @@
-import { getCurrentPage, findComponentNode, usePopupStateHOC, isObject, isString, isTrue, isFalse } from '@doraemon-ui/miniprogram.shared'
 import type { MiniprogramPublicInstance } from '@doraemon-ui/miniprogram.shared'
+import { findComponentNode, getCurrentPage, isFalse, isObject, isString, isTrue, usePopupStateHOC } from '@doraemon-ui/miniprogram.shared'
+
 import type {
   DialogAlertProps,
   DialogButton,
@@ -164,4 +165,4 @@ function confirm(
   })
 }
 
-export { show, alert, confirm, clear }
+export { alert, clear, confirm, show }

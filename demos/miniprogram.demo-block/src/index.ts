@@ -1,5 +1,5 @@
-import { defineComponentHOC, Doraemon, Component, Prop } from '@doraemon-ui/miniprogram.core-js'
 import type { CSSStylePropertiesWithVars } from '@doraemon-ui/miniprogram.core-js'
+import { Component, defineComponentHOC, Doraemon, Prop } from '@doraemon-ui/miniprogram.core-js'
 const { classNames, styleToCssString } = Doraemon.util
 
 @Component({

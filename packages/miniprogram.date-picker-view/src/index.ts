@@ -1,27 +1,28 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import type { CustomEvent } from '@doraemon-ui/miniprogram.core-js'
+import { Component, defineComponentHOC, Doraemon, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+
 import locales from './locales'
 import { props } from './props'
 import type { DatePickerViewLang, DatePickerViewMode, DatePickerViewValueChangeDetail, PickerOption } from './types'
 import {
-  DATETIME,
+  cloneDate,
+  convertDateToStringArray,
+  convertStringArrayToDate,
   DATE,
-  TIME,
-  MONTH,
-  YEAR,
-  ONE_DAY,
-  TILL_NOW,
+  DATETIME,
   fomartArray,
   getDaysInMonth,
-  pad,
-  cloneDate,
-  setMonth,
-  isTillNow,
-  convertStringArrayToDate,
-  convertDateToStringArray,
-  getRealValues,
   getIndexesFromValues,
   getLabelsFromIndexes,
+  getRealValues,
+  isTillNow,
+  MONTH,
+  ONE_DAY,
+  pad,
+  setMonth,
+  TILL_NOW,
+  TIME,
+  YEAR,
 } from './utils'
 
 @Component({ props })

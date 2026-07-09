@@ -1,7 +1,7 @@
 import { debounce } from '../src/util/debounce'
-import { throttle } from '../src/util/throttle'
 import { isEqual } from '../src/util/isEqual'
 import { styleToCssString } from '../src/util/styleToCssString'
+import { throttle } from '../src/util/throttle'
 
 function wait(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms))

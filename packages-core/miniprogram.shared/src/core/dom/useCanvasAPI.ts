@@ -1,7 +1,7 @@
-import { miniprogramThis } from './global'
-import { getSystemInfoSync } from './useNativeAPI'
-import { useRef } from './useDOM'
 import type { MiniprogramCanvas, MiniprogramPublicInstance } from '../../types'
+import { miniprogramThis } from './global'
+import { useRef } from './useDOM'
+import { getSystemInfoSync } from './useNativeAPI'
 
 export async function getCanvasRef(canvasId: string, vm: MiniprogramPublicInstance): Promise<MiniprogramCanvas> {
   const res = await useRef(`#${canvasId}`, vm)

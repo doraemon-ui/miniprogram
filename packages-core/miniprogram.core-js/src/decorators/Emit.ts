@@ -1,5 +1,5 @@
-import { isPromise } from '../util/isPromise'
 import type { Doraemon } from '../instance'
+import { isPromise } from '../util/isPromise'
 
 const hyphenateRE = /\B([A-Z])/g
 const hyphenate = (str: string) => str.replace(hyphenateRE, '-$1').toLowerCase()

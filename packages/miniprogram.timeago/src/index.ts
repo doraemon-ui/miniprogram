@@ -1,5 +1,6 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
-import { parse, diff, format } from './core'
+import { Component, defineComponentHOC, Doraemon, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+
+import { diff, format, parse } from './core'
 import locales from './locales'
 import type { TimeagoLang } from './types'
 

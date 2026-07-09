@@ -1,12 +1,12 @@
-import type { ComponentRenderProxy, Doraemon } from './init'
 import type { ComponentOptions, RelationComponent, RelationType } from '../types/options'
-import { debounce } from '../util/debounce'
 import type { DebounceOptions, DebounceReturn } from '../util/debounce'
-import { throttle } from '../util/throttle'
-import type { ThrottleOptions, ThrottleReturn } from '../util/throttle'
+import { debounce } from '../util/debounce'
+import { isDef } from '../util/isDef'
 import { isPlainObject } from '../util/isPlainObject'
 import { noop } from '../util/noop'
-import { isDef } from '../util/isDef'
+import type { ThrottleOptions, ThrottleReturn } from '../util/throttle'
+import { throttle } from '../util/throttle'
+import type { ComponentRenderProxy, Doraemon } from './init'
 import { findLogicalAncestors } from './logicalTree'
 
 interface RelationOption {

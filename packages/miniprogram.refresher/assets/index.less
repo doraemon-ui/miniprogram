@@ -7,13 +7,14 @@
   top: -60px;
   right: 0;
   left: 0;
-  overflow: hidden;
-  margin: auto;
   height: 50px;
+  margin: auto;
+  overflow: hidden;
 
   &--hidden {
     visibility: hidden;
   }
+
   &--visible {
     visibility: visible;
   }
@@ -23,19 +24,21 @@
     bottom: 5px;
     left: 0;
     width: 100%;
+    font-size: 30px;
     color: @text-color;
     text-align: center;
-    font-size: 30px;
   }
 
   &__content--text {
     bottom: 0;
   }
+
   &__text-pulling,
   &__text-refreshing {
     font-size: @font-size-lg;
     line-height: @font-size-lg;
   }
+
   &__text-refreshing {
     display: none;
   }
@@ -44,13 +47,16 @@
     padding: 7px 0;
     transform: translateZ(0) rotate(0deg);
   }
+
   &__icon-refreshing {
-    padding: 7px 0;
     display: none;
+    padding: 7px 0;
   }
+
   &__icon--arrow-down::before {
     content: '↓';
   }
+
   &__icon--refresher::before {
     content: '⟳';
   }
@@ -68,41 +74,46 @@
 }
 
 .@{loader-prefix-cls} {
-  overflow: hidden;
-  margin: auto;
-  height: 50px;
-  font-size: 15px;
   position: relative;
-  text-align: center;
   display: none;
+  height: 50px;
+  margin: auto;
+  overflow: hidden;
+  font-size: 15px;
+  text-align: center;
 
   .@{refresher-prefix-cls}__icon--refresher {
     display: inline-block;
     margin: 0;
   }
+
   &__text-loading {
     margin-left: @margin-component-base;
   }
+
   &--hidden {
-    visibility: hidden;
     display: none;
+    visibility: hidden;
   }
+
   &--visible {
-    visibility: visible;
     display: block;
+    visibility: visible;
   }
+
   &--end {
-    visibility: visible;
     display: block;
+    visibility: visible;
   }
+
   &__content {
     position: absolute;
-    width: 100%;
     top: 50%;
-    transform: translateY(-50%);
-    color: @text-color;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    color: @text-color;
+    transform: translateY(-50%);
   }
 }

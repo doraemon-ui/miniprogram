@@ -1,5 +1,5 @@
+import { dogShit, doraProp, doraQuote } from '@doraemon-ui/miniprogram.demo-shared'
 import { dialog } from '@doraemon-ui/miniprogram.dialog'
-import { doraProp, doraQuote, dogShit } from '@doraemon-ui/miniprogram.demo-shared'
 
 Page({
   data: {

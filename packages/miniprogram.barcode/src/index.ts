@@ -1,5 +1,6 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
-import { getSystemInfoSync, getCanvasRef, toDataURL } from '@doraemon-ui/miniprogram.shared'
+import { Component, defineComponentHOC, Doraemon, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+import { getCanvasRef, getSystemInfoSync, toDataURL } from '@doraemon-ui/miniprogram.shared'
+
 import EAN13 from './barcode'
 import type { BarcodeOptions, BarcodeProps } from './types'
 

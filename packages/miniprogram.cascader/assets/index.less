@@ -3,11 +3,11 @@
 // Cascader styles
 // -----------------------------
 .@{cascader-prefix-cls} {
-  width: 100%;
-  overflow: hidden;
   position: relative;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  overflow: hidden;
   font-size: @cascader-font-size;
   line-height: 1.5;
   color: @cascader-color;
@@ -43,8 +43,8 @@
   }
 
   &__inner {
-    height: 44px;
     display: flex;
+    height: 44px;
     text-align: center;
   }
 
@@ -63,11 +63,11 @@
 
   &__button {
     position: absolute;
+    z-index: 10;
     box-sizing: border-box;
     height: 44px;
-    line-height: 44px;
     padding: 0 15px;
-    z-index: 10;
+    line-height: 44px;
 
     &--cancel {
       left: 0;

@@ -1,6 +1,6 @@
-import path from 'path'
+import type { Component, RootComponent } from 'miniprogram-simulate'
 import simulate from 'miniprogram-simulate'
-import type { RootComponent, Component } from 'miniprogram-simulate'
+import path from 'path'
 
 import * as notification from '../src/notification'
 import type { NotificationInstance } from '../src/types'
@@ -48,7 +48,7 @@ describe('Notification', () => {
         usingComponents: {
           'dora-notification': id,
         },
-        template: `<dora-notification id="dora-notification" />`,
+        template: '<dora-notification id="dora-notification" />',
       }),
     )
     wrapper.attach(document.createElement('parent-wrapper'))
@@ -111,7 +111,7 @@ describe('Notification', () => {
         usingComponents: {
           'dora-notification': id,
         },
-        template: `<dora-notification id="dora-notification" />`,
+        template: '<dora-notification id="dora-notification" />',
       }),
     )
     wrapper.attach(document.createElement('parent-wrapper'))
@@ -136,7 +136,7 @@ describe('Notification', () => {
         usingComponents: {
           'dora-notification': id,
         },
-        template: `<dora-notification id="dora-notification" />`,
+        template: '<dora-notification id="dora-notification" />',
       }),
     )
     wrapper.attach(document.createElement('parent-wrapper'))

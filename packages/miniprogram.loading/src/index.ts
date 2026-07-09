@@ -1,4 +1,5 @@
-import { defineComponentHOC, Doraemon, Component } from '@doraemon-ui/miniprogram.core-js'
+import { Component, defineComponentHOC, Doraemon } from '@doraemon-ui/miniprogram.core-js'
+
 import type { LoadingShowOptions } from './types'
 
 const { classNames } = Doraemon.util

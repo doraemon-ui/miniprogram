@@ -41,4 +41,5 @@ React.createElement('dora-radio', {
   color: '',
   wrapStyle: '',
   hasLine: '',
+  onChange: '',
 })

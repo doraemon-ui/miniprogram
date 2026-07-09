@@ -1,52 +1,6 @@
-// Body node for miniprogram
-@body-node: page;
-
-.dark(@rule) {
-  @{body-node} [data-dora-theme='dark'] & {
-    @rule();
-  }
-
-  @media (prefers-color-scheme: dark) {
-    @{body-node} [data-dora-theme='auto'] & {
-      @rule();
-    }
-    @{body-node} [data-dora-theme='dark'] & {
-      @rule();
-    }
-  }
-}
-
-.setColor(@var, @color) {
-  .setColor(@var, @color, @color);
-}
-
-.setColor(@var, @light, @dark) {
-  ._setColor({
-    @{var}: @light;
-  }, {
-    @{var}: @dark;
-  });
-}
-
-._setColor(@lightRule, @darkRule) {
-  @{body-node} {
-    @lightRule();
-  }
-  @{body-node} [data-dora-theme='dark'] {
-    @darkRule();
-  }
-
-  @media (prefers-color-scheme: dark) {
-    @{body-node} [data-dora-theme='auto'],
-    @{body-node} [data-dora-theme='dark'] {
-      @darkRule();
-    }
-  }
-}
-
-// Mixes a color with black to create its active.
+// Mixes a color with black to create its shade.
 // --------------------------------------------------------------------------------------------
-#get-color-active(@color) {
+#get-color-shade(@color) {
   @return: mix(#000, @color, 12%);
 }
 
@@ -56,9 +10,9 @@
   @return: mix(#fff, @color, 54%);
 }
 
-// Mixes a color with white to create its light.
+// Mixes a color with white to create its lighter.
 // --------------------------------------------------------------------------------------------
-#get-color-light(@color) {
+#get-color-lighter(@color) {
   @return: mix(#fff, @color, 88%);
 }
 
@@ -68,32 +22,31 @@
   @return: red(@color), green(@color), blue(@color);
 }
 
-// Gets the active color's css variable from a variation.
+// Gets the active color's css variable from a variation. Alpha is optional.
 // --------------------------------------------------------------------------------------------
 // Example usage:
 // current-color(base) => var(--dora-color-base)
-// current-color(active) => var(--dora-color-active)
-// current-color(contrast) => var(--dora-color-contrast)
-#current-color (@variation: base) {
-  @return: var(~'--dora-color-@{variation}');
+// current-color(contrast, 0.1) => rgba(var(--ion-color-contrast-rgb), 0.1)
+#current-color(@variation: base, @alpha: null) {
+  @return: if(isnumber(@alpha), rgba(var(~'--dora-color-@{variation}-rgb'), @alpha), var(~'--dora-color-@{variation}'));
 }
 
 // Gets the specific color's css variable from the name and variation.
 // --------------------------------------------------------------------------------------------
 // Example usage:
 // #get-color(positive)[] => var(--dora-color-positive, #3880ff)
-// #get-color(positive, active)[] => var(--dora-color-positive-active, #055fff)
+// #get-color(positive, shade)[] => var(--dora-color-positive-shade, #055fff)
 // #get-color(positive, contrast)[] => var(--dora-color-positive-contrast, #fff)
 #get-color (@name: positive, @variation: base) {
   @values: ~'@{name}-value';
   @base: var(~'--dora-color-@{name}', @@values[base]);
-  @active: var(~'--dora-color-@{name}-active', @@values[active]);
+  @shade: var(~'--dora-color-@{name}-shade', @@values[shade]);
   @tint: var(~'--dora-color-@{name}-tint', @@values[tint]);
-  @light: var(~'--dora-color-@{name}-light', @@values[light]);
+  @lighter: var(~'--dora-color-@{name}-lighter', @@values[lighter]);
   @contrast: var(~'--dora-color-@{name}-contrast', @@values[contrast]);
   @return: if(
     (@variation = base),
     @base,
-    if((@variation = active), @active, if((@variation = tint), @tint, if((@variation = light), @light, @contrast)))
+    if((@variation = shade), @shade, if((@variation = tint), @tint, if((@variation = lighter), @lighter, @contrast)))
   );
 }

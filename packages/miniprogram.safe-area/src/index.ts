@@ -1,5 +1,6 @@
-import { defineComponentHOC, Doraemon, Component, Prop } from '@doraemon-ui/miniprogram.core-js'
-import { getSystemInfoSync, getMenuButtonBoundingClientRectSync } from '@doraemon-ui/miniprogram.shared'
+import { Component, defineComponentHOC, Doraemon, Prop } from '@doraemon-ui/miniprogram.core-js'
+import { getMenuButtonBoundingClientRectSync, getSystemInfoSync } from '@doraemon-ui/miniprogram.shared'
+
 import type { SafeAreaConfig, SafeAreaProp, SafeAreaStyle } from './types'
 
 const { classNames, styleToCssString } = Doraemon.util

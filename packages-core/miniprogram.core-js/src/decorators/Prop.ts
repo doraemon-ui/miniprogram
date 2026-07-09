@@ -1,6 +1,6 @@
-import { createDecorator } from './Component'
 import type { Doraemon } from '../Doraemon'
 import type { PropOptions } from '../types/options'
+import { createDecorator } from './Component'
 
 type Constructor = {
   new (...args: any[]): any

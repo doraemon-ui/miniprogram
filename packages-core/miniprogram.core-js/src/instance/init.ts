@@ -1,10 +1,10 @@
-import { warn } from '../util/warn'
-import { nextTick } from '../util/nextTick'
-import { isDev } from '../util/env'
-import { util, extend } from '../global-api'
-import { config } from './config'
-import type { Config } from './config'
+import { extend, util } from '../global-api'
 import type { ComponentOptions, DefaultComputed, DefaultMethods, ExtractComputedReturns } from '../types/options'
+import { isDev } from '../util/env'
+import { nextTick } from '../util/nextTick'
+import { warn } from '../util/warn'
+import type { Config } from './config'
+import { config } from './config'
 
 let uid: number = 0
 

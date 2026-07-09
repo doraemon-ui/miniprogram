@@ -1,4 +1,5 @@
-import type { PopupSelectProps as NativePopupSelectProps, PopupSelectExpose as NativePopupSelectExpose } from '@doraemon-ui/miniprogram.popup-select'
+import type { PopupSelectExpose as NativePopupSelectExpose, PopupSelectProps as NativePopupSelectProps } from '@doraemon-ui/miniprogram.popup-select'
+
 import type { BasicComponent } from '../../types'
 
 export interface PopupSelectProps extends NativePopupSelectProps, BasicComponent {

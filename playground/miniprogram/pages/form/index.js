@@ -150,12 +150,12 @@ Page({
       this.setData(
         clearLabel
           ? {
-              [field]: changedValues[field],
-              [`${field}Label`]: null,
-            }
+            [field]: changedValues[field],
+            [`${field}Label`]: null,
+          }
           : {
-              [field]: changedValues[field],
-            },
+            [field]: changedValues[field],
+          },
       )
     })
   },

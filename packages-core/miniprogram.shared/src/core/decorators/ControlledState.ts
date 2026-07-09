@@ -1,5 +1,5 @@
-import { createDecorator } from '@doraemon-ui/miniprogram.core-js'
 import type { ComponentOptions, Doraemon, WatchHandler } from '@doraemon-ui/miniprogram.core-js'
+import { createDecorator } from '@doraemon-ui/miniprogram.core-js'
 
 export interface ControlledStateOptions {
   value?: string

@@ -1,27 +1,27 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch, Emit, Event } from '../src'
 import type { CustomEvent } from '../src'
+import { Component, defineComponentHOC, Doraemon, Emit, Event, Prop, Watch } from '../src'
 
 const { classNames, styleToCssString } = Doraemon.util
 
 const valueDecorator =
   (value: any) =>
-  (_: any, __: any): any => {
-    return {
-      enumerable: true,
-      value,
+    (_: any, __: any): any => {
+      return {
+        enumerable: true,
+        value,
+      }
     }
-  }
 
 const getterDecorator =
   (value: any) =>
-  (_: any, __: any): any => {
-    return {
-      enumerable: true,
-      get() {
-        return value
-      },
+    (_: any, __: any): any => {
+      return {
+        enumerable: true,
+        get() {
+          return value
+        },
+      }
     }
-  }
 
 @Component({
   components: {

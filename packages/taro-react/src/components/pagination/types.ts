@@ -1,4 +1,5 @@
-import type { PaginationProps as NativePaginationProps, PaginationExpose as NativePaginationExpose } from '@doraemon-ui/miniprogram.pagination'
+import type { PaginationExpose as NativePaginationExpose, PaginationProps as NativePaginationProps } from '@doraemon-ui/miniprogram.pagination'
+
 import type { BasicComponent } from '../../types'
 
 export interface PaginationProps extends NativePaginationProps, BasicComponent {}

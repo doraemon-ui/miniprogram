@@ -1,5 +1,5 @@
-import path from 'path'
 import simulate from 'miniprogram-simulate'
+import path from 'path'
 
 type CascaderComponentLike = {
   onChange: (e: { detail: { value: string[]; options: unknown[]; done: boolean } }) => void

@@ -4,11 +4,11 @@
 // -----------------------------
 .@{cascader-view-prefix-cls} {
   position: relative;
+  overflow: hidden;
   font-size: @cascader-view-font-size;
   line-height: @line-height-base;
   color: @cascader-view-color;
   background-color: @cascader-view-inner-bg;
-  overflow: hidden;
 
   &__hd {
     position: relative;
@@ -20,21 +20,21 @@
   }
 
   &__bd {
-    width: 100%;
     display: flex;
+    width: 100%;
     background-color: @cascader-view-bg;
   }
 
   &__inner-scroll {
     display: block;
-    height: inherit;
-    width: 50%;
     flex: 0 0 50%;
+    width: 50%;
+    height: inherit;
     background-color: @cascader-view-inner-bg;
 
     &--full {
-      width: 100%;
       flex: 0 0 100%;
+      width: 100%;
       background-color: @cascader-view-inner-bg !important;
     }
 

@@ -1,7 +1,7 @@
 import type { ComponentPublicInstance } from '@doraemon-ui/miniprogram.core-js'
 
-import type { Step } from './step'
 import type { Steps } from './index'
+import type { Step } from './step'
 
 /**
  * StepsDirection类型定义

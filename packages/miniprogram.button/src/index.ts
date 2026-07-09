@@ -1,5 +1,6 @@
-import { defineComponentHOC, Doraemon, Component, Event, Emit, Prop } from '@doraemon-ui/miniprogram.core-js'
 import type { CSSStylePropertiesWithVars, CustomEvent, Target } from '@doraemon-ui/miniprogram.core-js'
+import { Component, defineComponentHOC, Doraemon, Emit, Event, Prop } from '@doraemon-ui/miniprogram.core-js'
+import type { NativeButtonOpenType, PresetColor } from '@doraemon-ui/miniprogram.shared'
 import {
   useColorCls,
   useCSSVarCls,
@@ -7,7 +8,7 @@ import {
   useMergeSemanticClassNames,
   useMergeSemanticStylesString,
 } from '@doraemon-ui/miniprogram.shared'
-import type { PresetColor, NativeButtonOpenType } from '@doraemon-ui/miniprogram.shared'
+
 import type { SemanticName } from './types'
 
 const { classNames } = Doraemon.util

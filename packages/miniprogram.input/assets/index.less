@@ -9,12 +9,12 @@
 
   &__label {
     position: relative;
-    margin-left: 0;
+    width: @input-label-width;
     margin-right: @margin-component-base;
+    margin-left: 0;
+    overflow: hidden;
     text-align: left;
     white-space: nowrap;
-    overflow: hidden;
-    width: @input-label-width;
 
     &--wrap {
       white-space: normal;
@@ -24,10 +24,10 @@
       &::before {
         display: inline-block;
         margin-right: 3px;
-        color: @assertive;
-        font-size: 14px;
         font-family: SimSun, sans-serif;
+        font-size: 14px;
         line-height: 1;
+        color: @assertive;
         content: '*';
       }
     }
@@ -39,15 +39,15 @@
 
   &__item {
     width: 100%;
-    border: 0;
-    outline: 0;
-    appearance: none;
-    background-color: transparent;
-    font-size: inherit;
-    color: inherit;
     height: 1.47058824em;
     min-height: 1.47058824em;
+    font-size: inherit;
     line-height: 1.47058824;
+    color: inherit;
+    appearance: none;
+    outline: 0;
+    background-color: transparent;
+    border: 0;
   }
 
   &__clear {
@@ -58,9 +58,9 @@
     display: flex;
     width: @input-eye-size;
     height: @input-eye-size;
+    margin-left: @margin-component-base;
     background-repeat: no-repeat;
     background-size: contain;
-    margin-left: @margin-component-base;
 
     .encoded-svg-background(eye, @text-color-secondary);
 
@@ -75,13 +75,13 @@
   }
 
   &__extra {
-    color: @text-color-secondary;
     margin-left: @margin-component-base;
+    color: @text-color-secondary;
   }
 
   &--disabled {
-    opacity: @disabled-opacity;
     cursor: not-allowed;
+    opacity: @disabled-opacity;
   }
 
   &--error &__control {

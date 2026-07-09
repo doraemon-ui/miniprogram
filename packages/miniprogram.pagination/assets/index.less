@@ -3,30 +3,30 @@
 // Pagination styles
 // -----------------------------
 .@{pagination-prefix-cls} {
+  position: relative;
+  box-sizing: border-box;
   display: block;
   width: 100%;
   height: @pagination-height;
   overflow: hidden;
-  box-sizing: border-box;
-  position: relative;
 
   &__prev {
     position: absolute;
-    left: 10px;
     top: 0;
+    left: 10px;
   }
 
   &__next {
     position: absolute;
-    right: 10px;
     top: 0;
+    right: 10px;
   }
 
   &__number {
     width: 100%;
     height: @pagination-height;
-    line-height: @pagination-height;
     margin: 0 auto;
+    line-height: @pagination-height;
     text-align: center;
   }
 
@@ -38,8 +38,8 @@
   &__pointer {
     width: 100%;
     height: @pagination-height;
-    line-height: @pagination-height;
     margin: 0 auto;
+    line-height: @pagination-height;
     text-align: center;
   }
 
@@ -48,8 +48,8 @@
 
     display: inline-block;
     margin: 0 @pagination-dot-margin;
-    border-radius: 50%;
     background: @pagination-dot-bg;
+    border-radius: 50%;
 
     &--active {
       background: @pagination-dot-active-bg;

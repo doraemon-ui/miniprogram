@@ -39,8 +39,8 @@
 
   &--active {
     background: linear-gradient(90deg, @skeleton-bg 25%, @skeleton-to-bg 37%, @skeleton-bg 63%);
-    animation: dora-skeleton-loading 1.4s ease infinite;
     background-size: 400% 100%;
+    animation: dora-skeleton-loading 1.4s ease infinite;
   }
 }
 
@@ -49,10 +49,10 @@
   overflow: hidden;
 
   &__row {
-    height: @skeleton-paragraph-size;
-    background: @skeleton-bg;
     width: 100%;
+    height: @skeleton-paragraph-size;
     margin-top: 16px;
+    background: @skeleton-bg;
 
     &:first-child {
       margin-top: 0;
@@ -61,12 +61,15 @@
     &:nth-child(4n + 1) {
       width: 80%;
     }
+
     &:nth-child(4n + 2) {
       width: 100%;
     }
+
     &:nth-child(4n + 3) {
       width: 70%;
     }
+
     &:nth-child(4n + 4) {
       width: 85%;
     }
@@ -78,8 +81,8 @@
 
   &--active &__row {
     background: linear-gradient(90deg, @skeleton-bg 25%, @skeleton-to-bg 37%, @skeleton-bg 63%);
-    animation: dora-skeleton-loading 1.4s ease infinite;
     background-size: 400% 100%;
+    animation: dora-skeleton-loading 1.4s ease infinite;
   }
 }
 
@@ -87,6 +90,7 @@
   0% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0 50%;
   }

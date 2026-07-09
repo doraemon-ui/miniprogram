@@ -1,4 +1,4 @@
-import { $startWuxRefresher, $stopWuxRefresher, $stopWuxLoader } from '@doraemon-ui/miniprogram.refresher/index'
+import { $startWuxRefresher, $stopWuxLoader, $stopWuxRefresher } from '@doraemon-ui/miniprogram.refresher/index'
 
 const getList = (count = 10, step = 0) => [...new Array(count)].map((_, i) => ({ title: `Pull down ${i + step}`, content: 'Doraemon UI' }))
 

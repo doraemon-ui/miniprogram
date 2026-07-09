@@ -99,7 +99,10 @@ function extractInterfaceMembers(sourceCode, interfaceName) {
   const propRegex = /^\s*(\w+)(?:\?\s*)?:\s*(.+)$/gm
   let propMatch
   while ((propMatch = propRegex.exec(body)) !== null) {
-    const typeExpr = propMatch[2].trim().replace(/\s*\/\/.*$/, '').trim()
+    const typeExpr = propMatch[2]
+      .trim()
+      .replace(/\s*\/\/.*$/, '')
+      .trim()
     members.push({ name: propMatch[1], type: typeExpr })
   }
 
@@ -130,18 +133,18 @@ function getDefaultValue(typeExpr) {
 
   // Union types — estimate from the first non-complex member
   if (t.includes('|')) {
-    const parts = t.split('|').map(s => s.trim())
+    const parts = t.split('|').map((s) => s.trim())
     // Detect unions mixing primitive string with object-like types (e.g. string | Partial<T>)
     // These are common for CSS/styling props. Returning '' for Object-typed native props
     // causes WeChat devtools type warnings: "expected <Object> but got non-object value"
     const hasString = parts.includes('string')
-    const hasObjectLike = parts.some(p => /^(Partial|Record|Omit|Pick|CSS)/.test(p) || p === 'object' || p === '{}')
+    const hasObjectLike = parts.some((p) => /^(Partial|Record|Omit|Pick|CSS)/.test(p) || p === 'object' || p === '{}')
     if (hasString && hasObjectLike) return 'null'
     // If any part is a string literal ('xxx'), default to that
-    const strLit = parts.find(p => /^'[^']*'$/.test(p))
+    const strLit = parts.find((p) => /^'[^']*'$/.test(p))
     if (strLit) return strLit
     // If any part is 'null', skip it and check the next
-    const nonNull = parts.filter(p => p !== 'null')
+    const nonNull = parts.filter((p) => p !== 'null')
     if (nonNull.length > 0) return getDefaultValue(nonNull[0])
   }
 
@@ -207,8 +210,8 @@ function createComponentDefinition(packageName, componentMeta, typesSourceCode) 
   const propDefaults = extractPropsDefaults(moduleSourceCode, path.dirname(moduleFilePath))
 
   // Merge: use actual defaults where available, fall back to type-based defaults
-  const propNamesWithDefaults = propNames.map(p => {
-    let defaultValue = (propDefaults && propDefaults[p.name] !== undefined) ? propDefaults[p.name] : getDefaultValue(p.type)
+  const propNamesWithDefaults = propNames.map((p) => {
+    let defaultValue = propDefaults && propDefaults[p.name] !== undefined ? propDefaults[p.name] : getDefaultValue(p.type)
     // Override empty-string defaults for mixed string|object-like union types.
     // Native components often declare default: '' (fine for their own props), but when
     // the value is forwarded to child components with @Prop type: Object, WeChat devtools
@@ -222,7 +225,7 @@ function createComponentDefinition(packageName, componentMeta, typesSourceCode) 
 
   // Extract emitted events from component source to generate event handler props
   const emitEvents = extractEmitEvents(moduleSourceCode)
-  const eventHandlerProps = emitEvents.map(eventName => ({
+  const eventHandlerProps = emitEvents.map((eventName) => ({
     name: 'on' + eventName.charAt(0).toUpperCase() + eventName.slice(1),
     eventName,
   }))
@@ -251,23 +254,28 @@ function buildTypesFile(definitions, packageName) {
   if (nativeDefs.length > 0) {
     const nativeSpecifiers = []
     for (const item of nativeDefs) {
-      nativeSpecifiers.push(`${item.propsName} as Native${item.propsName}`)
       nativeSpecifiers.push(`${item.exposeName} as Native${item.exposeName}`)
+      nativeSpecifiers.push(`${item.propsName} as Native${item.propsName}`)
     }
     lines.push(`import type { ${unique(nativeSpecifiers).join(', ')} } from '@doraemon-ui/miniprogram.${packageName}'`)
   }
 
-  // eslint-disable-next-line quotes
-  lines.push("import type { BasicComponent } from '../../types'")
+  if (lines.length === 0) {
+    // eslint-disable-next-line quotes
+    lines.push("import type { BasicComponent } from '../../types'")
+  } else {
+    lines.push("\nimport type { BasicComponent } from '../../types'")
+  }
+
   lines.push('')
 
   definitions.forEach((item, index) => {
-    const eventHandlers = (item.eventHandlerProps || []).map(ep => `  ${ep.name}?: (event: any) => void`)
+    const eventHandlers = (item.eventHandlerProps || []).map((ep) => `  ${ep.name}?: (event: any) => void`)
 
     if (item.hasNativeTypes) {
       if (eventHandlers.length > 0) {
         lines.push(`export interface ${item.propsName} extends Native${item.propsName}, BasicComponent {`)
-        eventHandlers.forEach(hl => lines.push(hl))
+        eventHandlers.forEach((hl) => lines.push(hl))
         lines.push('}')
       } else {
         lines.push(`export interface ${item.propsName} extends Native${item.propsName}, BasicComponent {}`)
@@ -277,7 +285,7 @@ function buildTypesFile(definitions, packageName) {
     } else {
       if (eventHandlers.length > 0) {
         lines.push(`export interface ${item.propsName} extends BasicComponent {`)
-        eventHandlers.forEach(hl => lines.push(hl))
+        eventHandlers.forEach((hl) => lines.push(hl))
         lines.push('}')
       } else {
         lines.push(`export interface ${item.propsName} extends BasicComponent {}`)
@@ -299,7 +307,7 @@ function buildHostFile(definition) {
   const hasDefaults = definition.propNames && definition.propNames.length > 0
   let defaultPropsArg = ''
   if (hasDefaults) {
-    const entries = definition.propNames.map(p => `  ${p.name}: ${p.defaultValue}`)
+    const entries = definition.propNames.map((p) => `  ${p.name}: ${p.defaultValue}`)
     defaultPropsArg = `,\n{\n${entries.join(',\n')},\n}`
   }
 
@@ -330,10 +338,8 @@ function buildHostFile(definition) {
   // React.createElement call for Taro's AST-based prop registration (tree-shakeable).
   // TaroNormalModulesPlugin only scans property KEY names — values are irrelevant.
   if (allRegistryProps.length > 0) {
-    const registryValue = USE_REAL_REGISTRY_VALUES
-      ? (p) => p.defaultValue
-      : () => "''"
-    const propLines = allRegistryProps.map(p => `  ${p.name}: ${registryValue(p)}`)
+    const registryValue = USE_REAL_REGISTRY_VALUES ? (p) => p.defaultValue : () => "''"
+    const propLines = allRegistryProps.map((p) => `  ${p.name}: ${registryValue(p)}`)
     lines.push(`// Props registry for Taro WXML template generator.`)
     lines.push(`// Values are all '' because TaroNormalModulesPlugin only scans key names.`)
     lines.push(`React.createElement('${definition.tag}', {`)
@@ -461,15 +467,7 @@ function buildEntryIndex(componentDirs) {
   const exports = sortedDirs.map((name) => `export * from './components/${name}'`)
   const namedExports = sortedDirs.map((name) => toIdentifier(name))
 
-  const lines = [
-    ...imports,
-    '',
-    ...exports,
-    '',
-    'export {',
-    `  ${namedExports.join(',\n  ')}`,
-    '}',
-  ]
+  const lines = [...imports, '', ...exports, '', 'export {', `  ${namedExports.join(',\n  ')}`, '}']
   lines.push('')
   return lines.join('\n')
 }
@@ -511,9 +509,7 @@ function serializeTsLiteral(node, constObjects) {
     const props = []
     for (const prop of node.properties) {
       if (ts.isPropertyAssignment(prop)) {
-        const key = prop.name.kind === ts.SyntaxKind.ComputedPropertyName
-          ? `[${prop.name.getText()}]`
-          : prop.name.getText()
+        const key = prop.name.kind === ts.SyntaxKind.ComputedPropertyName ? `[${prop.name.getText()}]` : prop.name.getText()
         const val = serializeTsLiteral(prop.initializer, constObjects)
         if (val === null) return null
         props.push(`${key}: ${val}`)
@@ -581,7 +577,7 @@ function extractDefaultsLookupFromAST(sourceCode, srcDir) {
 
   // Collect all const/export const literal declarations
   function collectVariableDeclarations(sf) {
-    ts.forEachChild(sf, node => {
+    ts.forEachChild(sf, (node) => {
       if (ts.isVariableStatement(node)) {
         for (const decl of node.declarationList.declarations) {
           if (ts.isIdentifier(decl.name)) {
@@ -604,7 +600,7 @@ function extractDefaultsLookupFromAST(sourceCode, srcDir) {
 
   // Collect all enum declarations
   function collectEnumDeclarations(sf) {
-    ts.forEachChild(sf, node => {
+    ts.forEachChild(sf, (node) => {
       if (ts.isEnumDeclaration(node)) {
         const enumName = node.name.text
         for (const member of node.members) {
@@ -623,7 +619,7 @@ function extractDefaultsLookupFromAST(sourceCode, srcDir) {
   collectEnumDeclarations(sourceFile)
 
   // Follow imports: import { X } from './Y'
-  ts.forEachChild(sourceFile, node => {
+  ts.forEachChild(sourceFile, (node) => {
     if (ts.isImportDeclaration(node) && node.moduleSpecifier && ts.isStringLiteral(node.moduleSpecifier)) {
       const clause = node.importClause
       if (clause && clause.namedBindings && ts.isNamedImports(clause.namedBindings)) {
@@ -660,7 +656,7 @@ function extractImportedComponentProps(sourceCode, srcDir, identifierName, defau
   let importPath = null
 
   // Find the import
-  ts.forEachChild(sourceFile, node => {
+  ts.forEachChild(sourceFile, (node) => {
     if (ts.isImportDeclaration(node) && node.moduleSpecifier && ts.isStringLiteral(node.moduleSpecifier)) {
       const clause = node.importClause
       if (clause && clause.namedBindings && ts.isNamedImports(clause.namedBindings)) {
@@ -685,9 +681,9 @@ function extractImportedComponentProps(sourceCode, srcDir, identifierName, defau
     let result = null
 
     // Find export const identifierName = { propName: { type: ..., default: ... }, ... }
-    ts.forEachChild(importedSF, node => {
+    ts.forEachChild(importedSF, (node) => {
       if (ts.isVariableStatement(node) && node.modifiers) {
-        const isExport = node.modifiers.some(m => m.kind === ts.SyntaxKind.ExportKeyword)
+        const isExport = node.modifiers.some((m) => m.kind === ts.SyntaxKind.ExportKeyword)
         if (!isExport) return
         for (const decl of node.declarationList.declarations) {
           if (ts.isIdentifier(decl.name) && decl.name.text === identifierName) {
@@ -697,8 +693,8 @@ function extractImportedComponentProps(sourceCode, srcDir, identifierName, defau
                 if (ts.isPropertyAssignment(prop)) {
                   const propName = prop.name.getText()
                   if (ts.isObjectLiteralExpression(prop.initializer)) {
-                    const defaultEntry = prop.initializer.properties.find(p =>
-                      ts.isPropertyAssignment(p) && p.name.getText() === 'default'
+                    const defaultEntry = prop.initializer.properties.find(
+                      (p) => ts.isPropertyAssignment(p) && p.name.getText() === 'default',
                     )
                     if (defaultEntry) {
                       const value = resolveDecoratorDefault(defaultEntry.initializer, defaultsLookup, constObjects, enumLookup)
@@ -725,7 +721,7 @@ function extractImportedComponentProps(sourceCode, srcDir, identifierName, defau
  */
 function findDecorators(node) {
   const decorators = []
-  ts.forEachChild(node, child => {
+  ts.forEachChild(node, (child) => {
     if (ts.isDecorator(child)) decorators.push(child)
   })
   return decorators
@@ -737,16 +733,17 @@ function findDecorators(node) {
  */
 function resolveDecoratorDefault(node, defaultsLookup, constObjects, enumLookup) {
   // defaults.XXX reference
-  if (ts.isPropertyAccessExpression(node) &&
-      ts.isIdentifier(node.expression) &&
-      node.expression.text === 'defaults' &&
-      defaultsLookup && defaultsLookup[node.name.text] !== undefined) {
+  if (
+    ts.isPropertyAccessExpression(node) &&
+    ts.isIdentifier(node.expression) &&
+    node.expression.text === 'defaults' &&
+    defaultsLookup &&
+    defaultsLookup[node.name.text] !== undefined
+  ) {
     return defaultsLookup[node.name.text]
   }
   // Enum member reference like AnimateType.TRANSITION
-  if (ts.isPropertyAccessExpression(node) &&
-      ts.isIdentifier(node.expression) &&
-      enumLookup) {
+  if (ts.isPropertyAccessExpression(node) && ts.isIdentifier(node.expression) && enumLookup) {
     const key = `${node.expression.text}.${node.name.text}`
     if (enumLookup[key] !== undefined) return enumLookup[key]
   }
@@ -775,7 +772,7 @@ function extractPropsDefaults(sourceCode, srcDir) {
 
   // Step 3: Find the class declaration
   let classDeclaration = null
-  ts.forEachChild(sourceFile, node => {
+  ts.forEachChild(sourceFile, (node) => {
     if (ts.isClassDeclaration(node)) classDeclaration = node
   })
 
@@ -794,24 +791,29 @@ function extractPropsDefaults(sourceCode, srcDir) {
         if (ts.isIdentifier(callee) && callee.text === 'Component') {
           const arg = decorator.expression.arguments[0]
           if (arg && ts.isObjectLiteralExpression(arg)) {
-            const propsProp = arg.properties.find(p =>
-              (ts.isPropertyAssignment(p) || ts.isShorthandPropertyAssignment(p)) && p.name.getText() === 'props'
+            const propsProp = arg.properties.find(
+              (p) => (ts.isPropertyAssignment(p) || ts.isShorthandPropertyAssignment(p)) && p.name.getText() === 'props',
             )
             if (propsProp) {
               // Shorthand: @Component({ props }) where props is an imported variable
               if (ts.isShorthandPropertyAssignment(propsProp)) {
-                const importedProps = extractImportedComponentProps(sourceCode, srcDir, propsProp.name.text, defaultsLookup, constObjects, enumLookup)
+                const importedProps = extractImportedComponentProps(
+                  sourceCode,
+                  srcDir,
+                  propsProp.name.text,
+                  defaultsLookup,
+                  constObjects,
+                  enumLookup,
+                )
                 if (importedProps) Object.assign(mergedDefaults, importedProps)
-              // Inline: @Component({ props: { propName: { ... } } })
+                // Inline: @Component({ props: { propName: { ... } } })
               } else if (ts.isObjectLiteralExpression(propsProp.initializer)) {
                 for (const propEntry of propsProp.initializer.properties) {
                   if (ts.isPropertyAssignment(propEntry)) {
                     const propName = propEntry.name.getText()
                     const propVal = propEntry.initializer
                     if (ts.isObjectLiteralExpression(propVal)) {
-                      const defaultEntry = propVal.properties.find(p =>
-                        ts.isPropertyAssignment(p) && p.name.getText() === 'default'
-                      )
+                      const defaultEntry = propVal.properties.find((p) => ts.isPropertyAssignment(p) && p.name.getText() === 'default')
                       if (defaultEntry) {
                         const value = resolveDecoratorDefault(defaultEntry.initializer, defaultsLookup, constObjects, enumLookup)
                         if (value !== null) mergedDefaults[propName] = value
@@ -819,9 +821,16 @@ function extractPropsDefaults(sourceCode, srcDir) {
                     }
                   }
                 }
-              // Identifier: @Component({ props: someVar })
+                // Identifier: @Component({ props: someVar })
               } else if (ts.isIdentifier(propsProp.initializer)) {
-                const importedProps = extractImportedComponentProps(sourceCode, srcDir, propsProp.initializer.text, defaultsLookup, constObjects, enumLookup)
+                const importedProps = extractImportedComponentProps(
+                  sourceCode,
+                  srcDir,
+                  propsProp.initializer.text,
+                  defaultsLookup,
+                  constObjects,
+                  enumLookup,
+                )
                 if (importedProps) Object.assign(mergedDefaults, importedProps)
               }
             }
@@ -845,9 +854,7 @@ function extractPropsDefaults(sourceCode, srcDir) {
         if (ts.isIdentifier(callee) && callee.text === 'Prop') {
           const arg = decorator.expression.arguments[0]
           if (arg && ts.isObjectLiteralExpression(arg)) {
-            const defaultEntry = arg.properties.find(p =>
-              ts.isPropertyAssignment(p) && p.name.getText() === 'default'
-            )
+            const defaultEntry = arg.properties.find((p) => ts.isPropertyAssignment(p) && p.name.getText() === 'default')
             if (defaultEntry) {
               const value = resolveDecoratorDefault(defaultEntry.initializer, defaultsLookup, constObjects, enumLookup)
               if (value !== null) mergedDefaults[memberName] = value

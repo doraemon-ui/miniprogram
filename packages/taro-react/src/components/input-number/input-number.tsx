@@ -18,7 +18,7 @@ export const InputNumber = createHostComponent<InputNumberProps, InputNumberExpo
   disabled: true,
   readOnly: false,
   longpress: false,
-  color: 'balanced',
+  color: 'positive',
   controlled: false,
   digits: -1,
 })

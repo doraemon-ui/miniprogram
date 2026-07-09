@@ -16,50 +16,50 @@
   @timeline-dot-color: #387ef5;
 
   position: relative;
+  box-sizing: border-box;
   padding: 0 0 12px;
   margin: 0;
   font-size: @timeline-font-size;
-  box-sizing: border-box;
 
   &__tail {
+    position: absolute;
+    top: 0;
+    left: 5px;
+    box-sizing: border-box;
     height: 100%;
     border-left: @timeline-width solid @timeline-color;
-    position: absolute;
-    left: 5px;
-    top: 0;
-    box-sizing: border-box;
   }
 
   &__dot {
+    position: absolute;
+    box-sizing: border-box;
     width: @timeline-dot-size;
     height: @timeline-dot-size;
-    background-color: @timeline-dot-bg;
-    border-radius: 50%;
-    border: @timeline-dot-border-width solid @timeline-dot-color;
-    position: absolute;
     color: @timeline-dot-color;
-    box-sizing: border-box;
+    background-color: @timeline-dot-bg;
+    border: @timeline-dot-border-width solid @timeline-dot-color;
+    border-radius: 50%;
 
     &--custom {
-      margin-left: 1px !important;
-      left: 5px;
       top: 8px;
-      border: 0;
-      border-radius: 0;
+      left: 5px;
       width: auto;
       height: auto;
-      background-color: transparent;
+      margin-left: 1px !important;
       text-align: center;
+      background-color: transparent;
+      border: 0;
+      border-radius: 0;
       transform: translate(-50%, -50%);
     }
   }
 
   &__content {
-    padding: 0 0 10px 20px;
     position: relative;
     top: -5px;
-    width: 100%;
     box-sizing: border-box;
+    width: 100%;
+    padding: 0 0 10px 20px;
   }
 
   &--last &__tail,
@@ -82,9 +82,9 @@
   }
 
   &--right &__content {
-    text-align: right;
     right: 0;
     left: -20px;
+    text-align: right;
   }
 
   &--alternate&--right &__tail,
@@ -99,14 +99,14 @@
   }
 
   &--alternate&--right &__content {
-    text-align: right;
     right: 50%;
     width: 50%;
+    text-align: right;
   }
 
   &--alternate&--left &__content {
-    text-align: left;
     left: 50%;
     width: 50%;
+    text-align: left;
   }
 }

@@ -24,13 +24,7 @@ function extractIconNames(source: string, prefix: string, sourcePath: string) {
   return iconNames
 }
 
-function createTypeBlock(options: {
-  blockStart: string
-  blockEnd: string
-  typeName: string
-  sourcePath: string
-  iconNames: string[]
-}) {
+function createTypeBlock(options: { blockStart: string; blockEnd: string; typeName: string; sourcePath: string; iconNames: string[] }) {
   const { blockStart, blockEnd, typeName, sourcePath, iconNames } = options
   const union = iconNames.map((iconName) => `  | '${iconName}'`).join('\n')
 
@@ -101,9 +95,7 @@ async function buildIconArtifacts() {
     throw new Error(`Missing icon type markers in ${typesFilePath}`)
   }
 
-  const nextTypesSource = typesSource
-    .replace(iconTypePattern, nextIconTypeBlock)
-    .replace(mpIconTypePattern, nextMpIconTypeBlock)
+  const nextTypesSource = typesSource.replace(iconTypePattern, nextIconTypeBlock).replace(mpIconTypePattern, nextMpIconTypeBlock)
 
   if (nextTypesSource !== typesSource) {
     await writeFile(typesFilePath, nextTypesSource)
@@ -111,9 +103,7 @@ async function buildIconArtifacts() {
 
   await writeFile(playgroundIconsFilePath, nextPlaygroundIconsSource)
 
-  console.log(
-    `Generated IconType (${iconNames.length}), MpIconType (${mpIconNames.length}) and playground icons`,
-  )
+  console.log(`Generated IconType (${iconNames.length}), MpIconType (${mpIconNames.length}) and playground icons`)
 }
 
 buildIconArtifacts().catch((error) => {

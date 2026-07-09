@@ -1,4 +1,4 @@
-import type { Doraemon, ComponentPublicInstance, ComponentInternalInstance } from './init'
+import type { ComponentInternalInstance, ComponentPublicInstance, Doraemon } from './init'
 
 const hasProxy = typeof Proxy !== 'undefined'
 
@@ -11,7 +11,9 @@ export function initExposed(vm: Doraemon) {
         Object.defineProperty(exposed, key, {
           enumerable: !hasProxy,
           get: () => vm[key],
-          set: (val) => (vm[key] = val),
+          set: (val) => {
+            vm[key] = val
+          },
         })
       })
       return exposed

@@ -1,6 +1,7 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
-import type { SelectableType } from './types'
+import { Component, defineComponentHOC, Doraemon, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import { getPresetColor } from '@doraemon-ui/miniprogram.shared'
+
+import type { SelectableType } from './types'
 const { classNames, styleToCssString } = Doraemon.util
 
 @Component({

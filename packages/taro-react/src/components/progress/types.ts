@@ -1,4 +1,5 @@
-import type { ProgressProps as NativeProgressProps, ProgressExpose as NativeProgressExpose } from '@doraemon-ui/miniprogram.progress'
+import type { ProgressExpose as NativeProgressExpose, ProgressProps as NativeProgressProps } from '@doraemon-ui/miniprogram.progress'
+
 import type { BasicComponent } from '../../types'
 
 export interface ProgressProps extends NativeProgressProps, BasicComponent {}

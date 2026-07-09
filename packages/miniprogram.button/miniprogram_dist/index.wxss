@@ -31,13 +31,13 @@
   --disabled-opacity: var(--dora-button-disabled-opacity, 0.5);
   --border-width: var(--dora-button-border-width, var(--dora-border-width, 2rpx));
   --border-style: var(--dora-button-border-style, var(--dora-border-style, solid));
-  --border-color: var(--dora-button-border-color, var(--dora-color-positive, #3880ff));
+  --border-color: var(--dora-button-border-color, #0054e9);
   --text-color: var(--dora-color-positive-contrast, #fff);
   --activated-text-color: var(--dora-color-positive-contrast, #fff);
-  --background-color: var(--dora-color-positive, #3880ff);
-  --activated-background-color: var(--dora-color-positive-active, #3171e0);
-  --border-color: var(--dora-color-positive, #3880ff);
-  --activated-border-color: var(--dora-color-positive-active, #3171e0);
+  --background-color: var(--dora-color-positive, #0054e9);
+  --activated-background-color: var(--dora-color-positive-shade, #004acd);
+  --border-color: var(--dora-color-positive, #0054e9);
+  --activated-border-color: var(--dora-color-positive-shade, #004acd);
   --border-radius: var(--dora-button-border-radius, var(--dora-border-radius, 16rpx));
   --font-size: 32rpx;
   --height: 96rpx;
@@ -61,11 +61,11 @@
   opacity: var(--opacity);
   border-radius: 16rpx;
   border-radius: var(--border-radius);
-  border: 2rpx solid #3880ff;
+  border: 2rpx solid #0054e9;
   border: var(--border-width) var(--border-style) var(--border-color);
-  border-color: #3880ff!important;
+  border-color: #0054e9!important;
   border-color: var(--border-color)!important;
-  background-color: #3880ff!important;
+  background-color: #0054e9!important;
   background-color: var(--background-color)!important;
   color: #fff!important;
   color: var(--text-color)!important;
@@ -102,8 +102,8 @@
 
 .dora-button--clear {
   --activated-opacity: var(--dora-button-clear-activated-opacity, 0.4);
-  --text-color: var(--dora-color-positive-active, #3171e0);
-  --activated-text-color: var(--dora-color-positive-active, #3171e0);
+  --text-color: var(--dora-color-positive-shade, #004acd);
+  --activated-text-color: var(--dora-color-positive-shade, #004acd);
   --background-color: transparent;
   --activated-background-color: transparent;
   --border-color: transparent;
@@ -111,12 +111,12 @@
 }
 
 .dora-button--outline {
-  --text-color: var(--dora-color-positive, #3880ff);
+  --text-color: var(--dora-color-positive, #0054e9);
   --activated-text-color: var(--dora-color-positive-contrast, #fff);
   --background-color: transparent;
-  --activated-background-color: var(--dora-color-positive, #3880ff);
-  --border-color: var(--dora-color-positive, #3880ff);
-  --activated-border-color: var(--dora-color-positive, #3880ff);
+  --activated-background-color: var(--dora-color-positive, #0054e9);
+  --border-color: var(--dora-color-positive, #0054e9);
+  --activated-border-color: var(--dora-color-positive, #0054e9);
 }
 
 .dora-button--small {
@@ -189,9 +189,9 @@
 .dora-button--activated {
   opacity: 1!important;
   opacity: var(--activated-opacity)!important;
-  border-color: #3171e0!important;
+  border-color: #004acd!important;
   border-color: var(--activated-border-color)!important;
-  background-color: #3171e0!important;
+  background-color: #004acd!important;
   background-color: var(--activated-background-color)!important;
   color: #fff!important;
   color: var(--activated-text-color)!important;
@@ -201,14 +201,14 @@
   --text-color: var(--dora-color-contrast);
   --activated-text-color: var(--dora-color-contrast);
   --background-color: var(--dora-color-base);
-  --activated-background-color: var(--dora-color-active);
+  --activated-background-color: var(--dora-color-shade);
   --border-color: var(--dora-color-base);
-  --activated-border-color: var(--dora-color-active);
+  --activated-border-color: var(--dora-color-shade);
 }
 
 .dora-button:is(.dora-button--clear).dora-color {
-  --text-color: var(--dora-color-active);
-  --activated-text-color: var(--dora-color-active);
+  --text-color: var(--dora-color-base);
+  --activated-text-color: var(--dora-color-base);
   --background-color: transparent;
   --activated-background-color: transparent;
   --border-color: transparent;
@@ -227,8 +227,8 @@
 .dora-button:is(.dora-button--fill).dora-color {
   --text-color: var(--dora-color-base);
   --activated-text-color: var(--dora-color-base);
-  --background-color: var(--dora-color-light);
+  --background-color: var(--dora-color-lighter);
   --activated-background-color: var(--dora-color-tint);
-  --border-color: var(--dora-color-light);
+  --border-color: var(--dora-color-lighter);
   --activated-border-color: var(--dora-color-tint);
 }

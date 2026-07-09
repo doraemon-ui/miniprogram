@@ -1,6 +1,7 @@
-import path from 'path'
-import simulate from 'miniprogram-simulate'
 import type { Component, RootComponent } from 'miniprogram-simulate'
+import simulate from 'miniprogram-simulate'
+import path from 'path'
+
 import type { FooterInstance } from '../src/types'
 
 function getComponentInstance(wrapper: RootComponent<any, any, any> | Component<any, any, any>): FooterInstance {
@@ -72,7 +73,7 @@ describe('Footer', () => {
         usingComponents: {
           'dora-footer': id,
         },
-        template: `<dora-footer id="footer" links="{{links}}" bind:linkClick="onLinkClick" />`,
+        template: '<dora-footer id="footer" links="{{links}}" bind:linkClick="onLinkClick" />',
         data: { links },
         methods: { onLinkClick },
       }),
@@ -102,7 +103,7 @@ describe('Footer', () => {
         usingComponents: {
           'dora-footer': id,
         },
-        template: `<dora-footer id="footer" chips="{{chips}}" bind:chipClick="onChipClick" />`,
+        template: '<dora-footer id="footer" chips="{{chips}}" bind:chipClick="onChipClick" />',
         data: { chips },
         methods: { onChipClick },
       }),

@@ -7,12 +7,11 @@ renderMixin(Doraemon)
 
 export { Doraemon }
 
+export type { Config } from './config'
 export type {
-  DoraemonClass,
-  ComponentRenderProxy,
-  ComponentPublicInstance,
   ComponentCustomProperties,
   ComponentInternalInstance,
+  ComponentPublicInstance,
+  ComponentRenderProxy,
+  DoraemonClass,
 } from './init'
-
-export type { Config } from './config'

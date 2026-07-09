@@ -1,59 +1,62 @@
+import type { ComponentOptions, TouchEvent } from '@doraemon-ui/miniprogram.core-js'
+import { Doraemon } from '@doraemon-ui/miniprogram.core-js'
+
+import type { TouchPoint } from '../src'
 import {
+  buildURL,
   canUseMP,
+  customPromise,
+  fillObjectBySchema,
   findComponentNode,
   getCurrentPage,
-  miniprogramThis,
-  useQuery,
-  useSelector,
-  useSelectorAll,
-  useRef,
-  useRefAll,
-  useRect,
-  useRectAll,
-  useScrollOffset,
-  useComputedStyle,
-  getTouchPoints,
-  getPointsNumber,
-  isEqualPoints,
-  isNearbyPoints,
-  getPointsDistance,
-  getSwipeDirection,
-  useNativeRoute,
-  usePopupStateHOC,
-  useMergeSemantic,
-  useMergeSemanticClassNames,
-  useMergeSemanticStyles,
-  useMergeSemanticStylesString,
-  mergeClassNames,
-  mergeStyles,
-  fillObjectBySchema,
-  resolveStyleOrClass,
-  useColorCls,
-  useCSSVarCls,
-  useExternalCls,
-  useHoverCls,
-  buildURL,
-  customPromise,
   getDefaultContext,
   getFontSize,
-  useControlledState,
+  getPointsDistance,
+  getPointsNumber,
+  getSwipeDirection,
+  getTouchPoints,
   isDate,
   isDef,
+  isEqualPoints,
   isFalse,
   isFunction,
+  isNearbyPoints,
   isObject,
   isPromise,
   isString,
   isTrue,
   isUndef,
+  mergeClassNames,
+  mergeStyles,
+  miniprogramThis,
   noop,
   omit,
   pxToNumber,
+  resolveStyleOrClass,
   sleep,
+  useColorCls,
+  useComputedStyle,
+  useControlledState,
+  useCSSVarCls,
+  useExternalCls,
+  useHoverCls,
+  useMergeSemantic,
+  useMergeSemanticClassNames,
+  useMergeSemanticStyles,
+  useMergeSemanticStylesString,
+  useNativeRoute,
+  usePopupStateHOC,
+  useQuery,
+  useRect,
+  useRectAll,
+  useRef,
+  useRefAll,
+  useScrollOffset,
+  useSelector,
+  useSelectorAll,
 } from '../src'
-import { Doraemon } from '@doraemon-ui/miniprogram.core-js'
-import type { ComponentOptions, TouchEvent } from '@doraemon-ui/miniprogram.core-js'
-import type { TouchPoint } from '../src'
+import type * as DomModule from '../src/core/dom'
+import type * as useNativeRouteModule from '../src/core/dom/useNativeRoute'
 
 const fakeTouchEvent = (pageX: number, pageY: number) =>
   ({
@@ -264,7 +267,7 @@ describe('Shared', () => {
         globalScope.getCurrentPages = jest.fn(() => [page])
         jest.resetModules()
 
-        let isolatedDom!: typeof import('../src/core/dom')
+        let isolatedDom!: typeof DomModule
         jest.isolateModules(() => {
           isolatedDom = require('../src/core/dom')
         })
@@ -276,7 +279,7 @@ describe('Shared', () => {
         expect(isolatedDom.useSelector('#dora')).toBe('#dora')
         expect(isolatedDom.useSelectorAll('.dora')).toEqual(['.dora'])
 
-        let isolatedRoute!: typeof import('../src/core/dom/useNativeRoute')
+        let isolatedRoute!: typeof useNativeRouteModule
         jest.isolateModules(() => {
           isolatedRoute = require('../src/core/dom/useNativeRoute')
         })

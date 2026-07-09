@@ -5,8 +5,8 @@
 .@{row-prefix-cls} {
   &::before,
   &::after {
-    content: '';
     display: table;
+    content: '';
   }
 
   &::after {
@@ -39,8 +39,8 @@
 
 .@{col-prefix-cls} {
   position: relative;
-  min-height: 1px;
   box-sizing: border-box;
+  min-height: 1px;
 
   .loop(12);
 }

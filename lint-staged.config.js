@@ -1,16 +1,18 @@
+// lint-staged.config.js
 const micromatch = require('micromatch')
 
 module.exports = {
   '**/*.ts': (files) => {
-    const match = micromatch.not(files, '*/**/shims-tsx.d.ts')
-    return `eslint ${match.join(' ')} --ext ts --fix`
+    const match = micromatch.not(files, '**/shims-tsx.d.ts')
+    return `eslint ${match.join(' ')} --fix`
   },
+
   '**/*.js': (files) => {
-    const match = micromatch.not(files, '*/**/.eslintrc.js')
-    const more = micromatch.not(match, '*/**/lint-staged.config.js')
-    return `eslint ${more.join(' ')} --ext js --fix`
+    const match = micromatch.not(files, ['**/eslint.config.js', '**/lint-staged.config.js'])
+    return `eslint ${match.join(' ')} --fix`
   },
+
   '**/*.less': (files) => {
-    return `stylelint ${files.join(' ')} --syntax less --fix`
+    return `stylelint ${files.join(' ')} --fix`
   },
 }

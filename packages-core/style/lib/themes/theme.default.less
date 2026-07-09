@@ -1,0 +1,129 @@
+// Preset Colors
+// -------------------------------------------------------------------------------------------
+@light: #f4f5f8;
+@stable: #636469;
+@positive: #0054e9;
+@calm: #0163aa;
+@balanced: #2dd55b;
+@energized: #ffc409;
+@assertive: #c5000f;
+@royal: #6030ff;
+@dark: #222428;
+
+@light-value: {
+  base: @light;
+  shade: #get-color-shade(@light) [];
+  tint: #get-color-tint(@light) [];
+  lighter: #get-color-lighter(@light) [];
+  contrast: #000;
+};
+
+@stable-value: {
+  base: @stable;
+  shade: #get-color-shade(@stable) [];
+  tint: #get-color-tint(@stable) [];
+  lighter: #get-color-lighter(@stable) [];
+  contrast: #fff;
+};
+
+@positive-value: {
+  base: @positive;
+  shade: #get-color-shade(@positive) [];
+  tint: #get-color-tint(@positive) [];
+  lighter: #get-color-lighter(@positive) [];
+  contrast: #fff;
+};
+
+@calm-value: {
+  base: @calm;
+  shade: #get-color-shade(@calm) [];
+  tint: #get-color-tint(@calm) [];
+  lighter: #get-color-lighter(@calm) [];
+  contrast: #fff;
+};
+
+@balanced-value: {
+  base: @balanced;
+  shade: #get-color-shade(@balanced) [];
+  tint: #get-color-tint(@balanced) [];
+  lighter: #get-color-lighter(@balanced) [];
+  contrast: #000;
+};
+
+@energized-value: {
+  base: @energized;
+  shade: #get-color-shade(@energized) [];
+  tint: #get-color-tint(@energized) [];
+  lighter: #get-color-lighter(@energized) [];
+  contrast: #000;
+};
+
+@assertive-value: {
+  base: @assertive;
+  shade: #get-color-shade(@assertive) [];
+  tint: #get-color-tint(@assertive) [];
+  lighter: #get-color-lighter(@assertive) [];
+  contrast: #fff;
+};
+
+@royal-value: {
+  base: @royal;
+  shade: #get-color-shade(@royal) [];
+  tint: #get-color-tint(@royal) [];
+  lighter: #get-color-lighter(@royal) [];
+  contrast: #fff;
+};
+
+@dark-value: {
+  base: @dark;
+  shade: #get-color-shade(@dark) [];
+  tint: #get-color-tint(@dark) [];
+  lighter: #get-color-lighter(@dark) [];
+  contrast: #fff;
+};
+
+@colors: {
+  light: light-value;
+  stable: stable-value;
+  positive: positive-value;
+  calm: calm-value;
+  balanced: balanced-value;
+  energized: energized-value;
+  assertive: assertive-value;
+  royal: royal-value;
+  dark: dark-value;
+};
+
+// Default Foreground and Background Colors
+// -------------------------------------------------------------------------------------------
+@white-value: #fff;
+@white-rgb-value: #color-to-rgb-list(#fff) [];
+@black-value: #000;
+@black-rgb-value: #color-to-rgb-list(#000) [];
+
+@white: var(--dora-white, @white-value);
+@white-rgb: var(--dora-white-rgb, @white-rgb-value);
+@black: var(--dora-black, @black-value);
+@black-rgb: var(--dora-black-rgb, @black-rgb-value);
+
+// Step Colors
+// -------------------------------------------------------------------------------------------
+@color-step-95: var(--dora-color-step-95, mix(@black-value, @white-value, 95%));
+@color-step-90: var(--dora-color-step-90, mix(@black-value, @white-value, 90%));
+@color-step-85: var(--dora-color-step-85, mix(@black-value, @white-value, 85%));
+@color-step-80: var(--dora-color-step-80, mix(@black-value, @white-value, 80%));
+@color-step-75: var(--dora-color-step-75, mix(@black-value, @white-value, 75%));
+@color-step-70: var(--dora-color-step-70, mix(@black-value, @white-value, 70%));
+@color-step-65: var(--dora-color-step-65, mix(@black-value, @white-value, 65%));
+@color-step-60: var(--dora-color-step-60, mix(@black-value, @white-value, 60%));
+@color-step-55: var(--dora-color-step-55, mix(@black-value, @white-value, 55%));
+@color-step-50: var(--dora-color-step-50, mix(@black-value, @white-value, 50%));
+@color-step-45: var(--dora-color-step-45, mix(@black-value, @white-value, 45%));
+@color-step-40: var(--dora-color-step-40, mix(@black-value, @white-value, 40%));
+@color-step-35: var(--dora-color-step-35, mix(@black-value, @white-value, 35%));
+@color-step-30: var(--dora-color-step-30, mix(@black-value, @white-value, 30%));
+@color-step-25: var(--dora-color-step-25, mix(@black-value, @white-value, 25%));
+@color-step-20: var(--dora-color-step-20, mix(@black-value, @white-value, 20%));
+@color-step-15: var(--dora-color-step-15, mix(@black-value, @white-value, 15%));
+@color-step-10: var(--dora-color-step-10, mix(@black-value, @white-value, 10%));
+@color-step-5: var(--dora-color-step-5, mix(@black-value, @white-value, 5%));

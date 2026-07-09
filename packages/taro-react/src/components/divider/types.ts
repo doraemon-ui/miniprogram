@@ -1,4 +1,5 @@
-import type { DividerProps as NativeDividerProps, DividerExpose as NativeDividerExpose } from '@doraemon-ui/miniprogram.divider'
+import type { DividerExpose as NativeDividerExpose, DividerProps as NativeDividerProps } from '@doraemon-ui/miniprogram.divider'
+
 import type { BasicComponent } from '../../types'
 
 export interface DividerProps extends NativeDividerProps, BasicComponent {}

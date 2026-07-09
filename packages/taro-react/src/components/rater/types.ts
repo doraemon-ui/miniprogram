@@ -1,4 +1,5 @@
-import type { RaterProps as NativeRaterProps, RaterExpose as NativeRaterExpose } from '@doraemon-ui/miniprogram.rater'
+import type { RaterExpose as NativeRaterExpose, RaterProps as NativeRaterProps } from '@doraemon-ui/miniprogram.rater'
+
 import type { BasicComponent } from '../../types'
 
 export interface RaterProps extends NativeRaterProps, BasicComponent {

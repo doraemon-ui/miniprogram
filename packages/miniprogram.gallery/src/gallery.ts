@@ -1,5 +1,5 @@
-import { findComponentNode, getCurrentPage, isFalse, isObject, isString, isTrue, usePopupStateHOC } from '@doraemon-ui/miniprogram.shared'
 import type { MiniprogramPublicInstance } from '@doraemon-ui/miniprogram.shared'
+import { findComponentNode, getCurrentPage, isFalse, isObject, isString, isTrue, usePopupStateHOC } from '@doraemon-ui/miniprogram.shared'
 
 import type { GalleryInstance, GalleryProps, GalleryShowOptions, GalleryShowProps } from './types'
 
@@ -86,4 +86,4 @@ function show(props?: GalleryShowProps, selector?: GalleryShowOptions | string, 
   return () => destroy()
 }
 
-export { show, clear }
+export { clear, show }

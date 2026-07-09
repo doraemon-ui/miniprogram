@@ -1,5 +1,6 @@
-import { getCurrentPage, findComponentNode, usePopupStateHOC, isObject, isString, isTrue, isFalse } from '@doraemon-ui/miniprogram.shared'
 import type { MiniprogramPublicInstance } from '@doraemon-ui/miniprogram.shared'
+import { findComponentNode, getCurrentPage, isFalse, isObject, isString, isTrue, usePopupStateHOC } from '@doraemon-ui/miniprogram.shared'
+
 import type {
   ToastIcon,
   ToastInstance,
@@ -243,4 +244,4 @@ function loading(
   })
 }
 
-export { config, show, success, warning, error, info, loading, clear }
+export { clear, config, error, info, loading, show, success, warning }

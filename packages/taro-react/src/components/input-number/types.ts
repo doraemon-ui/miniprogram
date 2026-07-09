@@ -1,4 +1,5 @@
-import type { InputNumberProps as NativeInputNumberProps, InputNumberExpose as NativeInputNumberExpose } from '@doraemon-ui/miniprogram.input-number'
+import type { InputNumberExpose as NativeInputNumberExpose, InputNumberProps as NativeInputNumberProps } from '@doraemon-ui/miniprogram.input-number'
+
 import type { BasicComponent } from '../../types'
 
 export interface InputNumberProps extends NativeInputNumberProps, BasicComponent {

@@ -24,38 +24,35 @@
   .button-reset();
 
   position: relative;
-  display: inline-block;
   box-sizing: border-box;
-
-  margin: 0;
-  padding: 0;
+  display: inline-block;
   min-width: auto;
   min-height: auto;
-  border: none;
-  border-radius: 0;
-  vertical-align: middle;
-  text-align: center;
+  padding: 0;
+
+  margin: 0;
   text-overflow: ellipsis;
   font-size: initial;
   line-height: initial;
+  vertical-align: middle;
+  text-align: center;
   cursor: pointer;
+  border: none;
+  border-radius: 0;
 
   .button-native();
 
   &::after {
-    content: ' ';
+    position: absolute;
+    inset: -6px;
+    box-sizing: border-box;
     width: 100%;
     height: 100%;
-    position: absolute;
-    top: -6px;
-    right: -6px;
-    bottom: -6px;
-    left: -6px;
+    content: ' ';
     border: none;
+    border-radius: 0;
     transform: none;
     transform-origin: 0 0;
-    box-sizing: border-box;
-    border-radius: 0;
   }
 
   // Button fills
@@ -63,7 +60,7 @@
   &--clear {
     --activated-opacity: @button-clear-activated-opacity;
     .button-color(
-      transparent, transparent, #get-color(positive, active)[]
+      transparent, transparent, #get-color(positive, shade)[]
     );
   }
 
@@ -98,14 +95,14 @@
     --block-margin-bottom: @button-block-margin;
 
     width: 100% !important;
-    contain: content !important;
     margin-top: var(--block-margin-top);
     margin-bottom: var(--block-margin-bottom);
+    contain: content !important;
   }
 
   &--block {
-    display: block;
     clear: both;
+    display: block;
 
     &::after {
       clear: both;
@@ -137,9 +134,9 @@
   // Button Disabled
   // --------------------------------------------------
   &--disabled {
+    pointer-events: none;
     cursor: default;
     opacity: var(--disabled-opacity) !important;
-    pointer-events: none;
   }
 
   // Button Activated
@@ -151,12 +148,12 @@
 
   // Button Colors
   &.@{dora-prefix}-color {
-    .button-color(#current-color(base)[], #current-color(active)[], #current-color(contrast)[]);
+    .button-color(#current-color(base)[], #current-color(shade)[], #current-color(contrast)[]);
   }
 
   &:is(&--clear).@{dora-prefix}-color {
     .button-color(
-      transparent, transparent, #current-color(active)[]
+      transparent, transparent, #current-color(base)[]
     );
   }
 
@@ -170,9 +167,9 @@
 
   &:is(&--fill).@{dora-prefix}-color {
     .button-color(
-      #current-color(light)[], #current-color(tint)[],
+      #current-color(lighter)[], #current-color(tint)[],
       #current-color(base)[], #current-color(base)[],
-      #current-color(light)[], #current-color(tint)[]
+      #current-color(lighter)[], #current-color(tint)[]
     );
   }
 }
@@ -207,23 +204,23 @@
   --border-color: @button-border-color;
 
   // Set default color
-  .button-color(#get-color(positive)[], #get-color(positive, active)[], #get-color(positive, contrast)[]);
+  .button-color(#get-color(positive)[], #get-color(positive, shade)[], #get-color(positive, contrast)[]);
 
   // Set default size
   .button-size(@button-border-radius-base, @button-font-size-base, @button-height-base, @button-padding-base);
-
-  padding-top: unset;
-  padding-bottom: unset;
-  padding-left: var(--padding-start);
-  padding-right: var(--padding-end);
   min-width: calc((var(--padding-start) * 1.5) + (var(--padding-end) * 1.5) + var(--font-size));
   min-height: var(--height) !important;
+
+  padding-top: unset;
+  padding-right: var(--padding-end);
+  padding-bottom: unset;
+  padding-left: var(--padding-start);
   font-size: var(--font-size);
   line-height: calc(var(--height) - var(--border-width) * 2);
-  opacity: var(--opacity);
-  border-radius: var(--border-radius);
+  color: var(--text-color) !important;
+  background-color: var(--background-color) !important;
   border: var(--border-width) var(--border-style) var(--border-color);
   border-color: var(--border-color) !important;
-  background-color: var(--background-color) !important;
-  color: var(--text-color) !important;
+  border-radius: var(--border-radius);
+  opacity: var(--opacity);
 }

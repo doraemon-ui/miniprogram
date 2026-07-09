@@ -553,7 +553,12 @@
         "dir": "input",
         "name": "Input",
         "slot": null,
-        "deps": null
+        "deps": [
+          {
+            "name": "icon",
+            "source": "packages"
+          }
+        ]
       }
     }
   },
@@ -724,6 +729,10 @@
         "deps": [
           {
             "name": "animation-group",
+            "source": "packages"
+          },
+          {
+            "name": "icon",
             "source": "packages"
           }
         ]
@@ -975,6 +984,10 @@
           {
             "name": "button",
             "source": "packages"
+          },
+          {
+            "name": "icon",
+            "source": "packages"
           }
         ]
       }
@@ -998,7 +1011,12 @@
         "dir": "search-bar",
         "name": "SearchBar",
         "slot": null,
-        "deps": null
+        "deps": [
+          {
+            "name": "icon",
+            "source": "packages"
+          }
+        ]
       }
     }
   },
@@ -1036,7 +1054,12 @@
         "dir": "selectable",
         "name": "Selectable",
         "slot": null,
-        "deps": null
+        "deps": [
+          {
+            "name": "icon",
+            "source": "packages"
+          }
+        ]
       }
     }
   },
@@ -1048,6 +1071,10 @@
         "name": "SelectorGroup",
         "slot": null,
         "deps": [
+          {
+            "name": "icon",
+            "source": "packages"
+          },
           {
             "name": "selectable",
             "source": "packages"
@@ -1244,7 +1271,12 @@
         "dir": "textarea",
         "name": "Textarea",
         "slot": null,
-        "deps": null
+        "deps": [
+          {
+            "name": "icon",
+            "source": "packages"
+          }
+        ]
       }
     }
   },

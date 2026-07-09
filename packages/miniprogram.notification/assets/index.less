@@ -25,26 +25,26 @@
   --padding: @notification-padding;
   --max-width: @notification-max-width;
   --z-index: @notification-z-index;
-
-  box-sizing: border-box;
   position: fixed;
   top: var(--margin);
   left: var(--margin);
+  z-index: var(--z-index);
+
+  box-sizing: border-box;
   width: calc(100% - var(--margin) * 2);
   max-width: var(--max-width);
-  z-index: var(--z-index);
   margin: 0;
   font-size: var(--font-size);
+  color: var(--text-color);
+  background: var(--background-color);
   border: none;
   border-radius: var(--border-radius);
-  background: var(--background-color);
-  color: var(--text-color);
   transition-duration: 0.3s;
 
   &__content {
     display: flex;
-    align-items: center;
     gap: var(--padding);
+    align-items: center;
     padding: var(--padding);
   }
 
@@ -79,24 +79,24 @@
   &__title {
     font-size: var(--font-size);
     font-weight: bold;
-    letter-spacing: 0.02em;
     line-height: var(--line-height);
+    letter-spacing: 0.02em;
   }
 
   &__title-right-text {
     margin-left: auto;
-    color: var(--right-text-color);
     font-size: var(--font-size);
     line-height: var(--line-height);
+    color: var(--right-text-color);
   }
 
   &__close-button {
-    font-size: var(--font-size);
-    height: 20px;
-    transition-duration: 0.3s;
-    width: 20px;
-    margin-left: auto;
     position: relative;
+    width: 20px;
+    height: 20px;
+    margin-left: auto;
+    font-size: var(--font-size);
+    transition-duration: 0.3s;
   }
 
   &__title-right-text + &__close-button {

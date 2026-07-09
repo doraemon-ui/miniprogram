@@ -1,4 +1,5 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+import { Component, defineComponentHOC, Doraemon, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
+
 import type { CascaderFieldNames, CascaderOption, CascaderViewChangeDetail, CascaderViewItemDataset, CascaderViewValue } from './types'
 
 const { classNames, styleToCssString } = Doraemon.util

@@ -1,7 +1,8 @@
-import { defineComponentHOC, Doraemon, Component, Watch, Prop } from '@doraemon-ui/miniprogram.core-js'
-import type { AnimateStatus, AnimateType, ClassNames, Duration, NextAnimate } from './types'
-import { useRect } from '@doraemon-ui/miniprogram.shared'
+import { Component, defineComponentHOC, Doraemon, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import type { MiniprogramDOMRect } from '@doraemon-ui/miniprogram.shared'
+import { useRect } from '@doraemon-ui/miniprogram.shared'
+
+import type { AnimateStatus, AnimateType, ClassNames, Duration, NextAnimate } from './types'
 const { styleToCssString } = Doraemon.util
 
 const AnimateStatusMap = {

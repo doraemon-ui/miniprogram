@@ -1,4 +1,6 @@
+import type { MiniprogramPublicInstance } from '@doraemon-ui/miniprogram.shared'
 import {
+  customPromise,
   findComponentNode,
   getCurrentPage,
   isFalse,
@@ -6,9 +8,7 @@ import {
   isString,
   isTrue,
   usePopupStateHOC,
-  customPromise,
 } from '@doraemon-ui/miniprogram.shared'
-import type { MiniprogramPublicInstance } from '@doraemon-ui/miniprogram.shared'
 
 import type {
   NotificationDestroyHandle,
@@ -104,4 +104,4 @@ function show(
   return destroy
 }
 
-export { show, clear }
+export { clear, show }

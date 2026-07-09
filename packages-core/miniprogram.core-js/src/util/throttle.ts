@@ -1,5 +1,5 @@
-import { debounce } from './debounce'
 import type { DebounceOptions, DebounceReturn } from './debounce'
+import { debounce } from './debounce'
 import { isPlainObject } from './isPlainObject'
 
 /**

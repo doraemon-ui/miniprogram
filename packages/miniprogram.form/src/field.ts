@@ -1,6 +1,7 @@
 import { Component, defineComponentHOC, Doraemon, Watch } from '@doraemon-ui/miniprogram.core-js'
 import type { MiniprogramDOMRect } from '@doraemon-ui/miniprogram.shared'
 import { findComponentNode, useRect } from '@doraemon-ui/miniprogram.shared'
+
 import type { ListItemInstance } from '../../miniprogram.list'
 import { FIELD_DATA_PROP, FIELD_META_PROP } from './constants'
 import type { FormFieldMeta, FormFieldState, FormRule, FormValidateConfig } from './form-store'

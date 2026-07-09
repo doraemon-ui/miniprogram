@@ -1,10 +1,10 @@
-import type { ComponentRenderProxy, Doraemon } from './init'
 import type { ComponentOptions } from '../types/options'
 import { isDev } from '../util/env'
 import { hasOwn } from '../util/hasOwn'
 import { isReserved } from '../util/isReserved'
 import { noop } from '../util/noop'
 import { warn } from '../util/warn'
+import type { ComponentRenderProxy, Doraemon } from './init'
 
 export function initMethods(vm: Doraemon, methods: ComponentOptions<Doraemon>['methods']) {
   const methodProxy: Record<string, any> = {}
@@ -31,9 +31,9 @@ export function initMethods(vm: Doraemon, methods: ComponentOptions<Doraemon>['m
       typeof methods[key] !== 'function'
         ? noop
         : function (...args: any[]) {
-            const renderProxy: ComponentRenderProxy<Doraemon> = this
-            return renderProxy.$component[key].call(renderProxy.$component, ...args)
-          }
+          const renderProxy: ComponentRenderProxy<Doraemon> = this
+          return renderProxy.$component[key].call(renderProxy.$component, ...args)
+        }
   }
   return methodProxy
 }

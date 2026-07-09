@@ -1,15 +1,14 @@
 .thumb {
-  vertical-align: middle;
   margin-right: 5px;
+  vertical-align: middle;
 }
 
 .close {
-  vertical-align: middle;
   margin-left: 5px;
+  vertical-align: middle;
 }
 
-demo-block dora-alert {
+.demo-block .dora-alert {
   display: block;
   margin: 10px 0;
 }
-

@@ -1,6 +1,7 @@
-import { defineComponentHOC, Doraemon, Component } from '@doraemon-ui/miniprogram.core-js'
-import { useRect } from '@doraemon-ui/miniprogram.shared'
+import { Component, defineComponentHOC, Doraemon } from '@doraemon-ui/miniprogram.core-js'
 import type { MiniprogramDOMRect, MiniprogramPublicInstance } from '@doraemon-ui/miniprogram.shared'
+import { useRect } from '@doraemon-ui/miniprogram.shared'
+
 import type {
   CalendarDay,
   CalendarDayType,
@@ -103,14 +104,14 @@ class Calendar extends Doraemon {
       'onMonthAdd' | 'onChange' | 'onOpen' | 'onClose' | 'onDayClick' | 'onMonthYearChangeStart' | 'onMonthYearChangeEnd'
     >
   > = {
-    onMonthAdd: () => {},
-    onChange: () => {},
-    onOpen: () => {},
-    onClose: () => {},
-    onDayClick: () => {},
-    onMonthYearChangeStart: () => {},
-    onMonthYearChangeEnd: () => {},
-  }
+      onMonthAdd: () => {},
+      onChange: () => {},
+      onOpen: () => {},
+      onClose: () => {},
+      onDayClick: () => {},
+      onMonthYearChangeStart: () => {},
+      onMonthYearChangeEnd: () => {},
+    }
 
   private monthsTranslateIndex: number = 0
   private isH: boolean = true

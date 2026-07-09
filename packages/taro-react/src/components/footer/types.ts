@@ -1,4 +1,5 @@
-import type { FooterProps as NativeFooterProps, FooterExpose as NativeFooterExpose } from '@doraemon-ui/miniprogram.footer'
+import type { FooterExpose as NativeFooterExpose, FooterProps as NativeFooterProps } from '@doraemon-ui/miniprogram.footer'
+
 import type { BasicComponent } from '../../types'
 
 export interface FooterProps extends NativeFooterProps, BasicComponent {

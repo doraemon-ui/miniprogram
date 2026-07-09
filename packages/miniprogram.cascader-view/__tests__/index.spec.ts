@@ -1,5 +1,5 @@
-import path from 'path'
 import simulate from 'miniprogram-simulate'
+import path from 'path'
 
 type CascaderViewComponentLike = {
   onTabsChange: (e: { detail: { key: string } }) => void

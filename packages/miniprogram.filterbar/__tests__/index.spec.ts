@@ -1,6 +1,7 @@
-import path from 'path'
-import simulate from 'miniprogram-simulate'
 import type { Component, RootComponent } from 'miniprogram-simulate'
+import simulate from 'miniprogram-simulate'
+import path from 'path'
+
 import type { FilterbarInstance } from '../src/types'
 
 function getComponentInstance(wrapper: RootComponent<any, any, any> | Component<any, any, any>): FilterbarInstance {
@@ -104,7 +105,7 @@ describe('Filterbar', () => {
         usingComponents: {
           'dora-filterbar': id,
         },
-        template: `<dora-filterbar id="filterbar" items="{{items}}" bind:change="onChange" />`,
+        template: '<dora-filterbar id="filterbar" items="{{items}}" bind:change="onChange" />',
         data: { items },
         methods: { onChange },
       }),
@@ -134,7 +135,7 @@ describe('Filterbar', () => {
         usingComponents: {
           'dora-filterbar': id,
         },
-        template: `<dora-filterbar id="filterbar" items="{{items}}" bind:change="onChange" />`,
+        template: '<dora-filterbar id="filterbar" items="{{items}}" bind:change="onChange" />',
         data: { items },
         methods: { onChange },
       }),
@@ -171,7 +172,7 @@ describe('Filterbar', () => {
         usingComponents: {
           'dora-filterbar': id,
         },
-        template: `<dora-filterbar id="filterbar" items="{{items}}" bind:change="onChange" />`,
+        template: '<dora-filterbar id="filterbar" items="{{items}}" bind:change="onChange" />',
         data: { items },
         methods: { onChange },
       }),

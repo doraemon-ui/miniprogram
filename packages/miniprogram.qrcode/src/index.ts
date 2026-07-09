@@ -1,6 +1,7 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
-import { useRef, getSystemInfoSync } from '@doraemon-ui/miniprogram.shared'
+import { Component, defineComponentHOC, Doraemon, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import type { MiniprogramNodeRef, MiniprogramPublicInstance } from '@doraemon-ui/miniprogram.shared'
+import { getSystemInfoSync, useRef } from '@doraemon-ui/miniprogram.shared'
+
 import type { DataUrlOptions, QrcodeStatus } from './types'
 
 const { classNames, styleToCssString } = Doraemon.util

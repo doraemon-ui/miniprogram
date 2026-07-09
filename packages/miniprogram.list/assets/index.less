@@ -12,22 +12,22 @@
   --header-width: @list-item-hd-width;
   --thumb-size: @list-item-thumb-size;
   position: relative;
+  overflow: hidden;
   font-size: var(--font-size);
   line-height: @line-height-base;
-  overflow: hidden;
 
   &__hd {
+    box-sizing: border-box;
+    width: 100%;
     padding: @list-hd-padding;
     font-size: var(--header-font-size);
     color: @text-color-secondary;
-    width: 100%;
-    box-sizing: border-box;
   }
 
   &__bd {
     position: relative;
-    background-color: @list-bg;
     overflow: hidden;
+    background-color: @list-bg;
   }
 
   &--has-line > &__bd::after {
@@ -48,8 +48,8 @@
   }
 
   &--card > &__hd {
-    padding-left: 0;
     padding-right: 0;
+    padding-left: 0;
   }
 
   &--card > &__bd,

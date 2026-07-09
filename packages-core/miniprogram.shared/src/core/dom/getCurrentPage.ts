@@ -1,5 +1,5 @@
-import { canUseMP } from './canUseMP'
 import type { MiniprogramPublicInstance } from '../../types'
+import { canUseMP } from './canUseMP'
 
 /**
  * 获取当前页面的实例

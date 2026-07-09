@@ -1,6 +1,7 @@
-import { defineComponentHOC, Doraemon, Component, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import type { TouchEvent } from '@doraemon-ui/miniprogram.core-js'
+import { Component, defineComponentHOC, Doraemon, Prop, Watch } from '@doraemon-ui/miniprogram.core-js'
 import { getSystemInfoSync, useRect } from '@doraemon-ui/miniprogram.shared'
+
 import type { TouchPoint } from './types'
 
 const { classNames } = Doraemon.util

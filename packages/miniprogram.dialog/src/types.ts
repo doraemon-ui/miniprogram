@@ -10,7 +10,7 @@ import type {
 
 import type { Dialog } from './index'
 
-export type { NativeButtonHandle, NativeButtonEvent }
+export type { NativeButtonEvent, NativeButtonHandle }
 
 /**
  * 操作按钮的类型

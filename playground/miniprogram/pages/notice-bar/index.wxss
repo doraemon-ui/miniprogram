@@ -1,4 +1,4 @@
 .notice-bar {
-  background-color: #33cd5f !important;
   color: #fff !important;
+  background-color: #33cd5f !important;
 }
